@@ -701,15 +701,15 @@ const routineReason = buildRoutineReason(nextLevel);
   </div>
 
   <h2 className="text-4xl sm:text-6xl font-bold leading-tight break-keep mb-5">
-    어떤 방식으로
+    피부를 잘 몰라도
     <br />
-    추천받을까요?
+    괜찮아요
   </h2>
 
   <p className="text-sm sm:text-lg text-gray-600 max-w-2xl leading-relaxed break-keep mb-10">
-    피부타입을 알고 있다면 바로 추천받고,
+    몇 가지 질문으로 현재 피부 상태를 파악하고,
     <br className="hidden sm:block" />
-    처음이라면 5단계 기본 루틴부터 시작할 수 있어요.
+    맞는 루틴과 사용법을 함께 안내해드릴게요.
   </p>
 
   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-4xl w-full">
@@ -719,7 +719,7 @@ const routineReason = buildRoutineReason(nextLevel);
     >
       <p className="text-sm text-gray-400 mb-3">이미 알고 있어요</p>
       <h3 className="text-2xl font-bold mb-3 break-keep">
-        내 피부타입으로 추천받기
+        피부타입 알고 있어요
       </h3>
       <p className="text-sm sm:text-base text-gray-600 leading-relaxed break-keep mb-5">
         건성, 수부지, 지성처럼 내 피부타입을 알고 있다면 바로 맞는 루틴을 추천받을 수 있어요.
@@ -735,7 +735,7 @@ const routineReason = buildRoutineReason(nextLevel);
     >
       <p className="text-sm text-white/60 mb-3">처음 시작해요</p>
       <h3 className="text-2xl font-bold mb-3 break-keep">
-        5단계 기본 루틴부터 시작하기
+        처음이라 설문으로 시작할래요
       </h3>
       <p className="text-sm sm:text-base text-white/75 leading-relaxed break-keep mb-5">
         화장품이 처음이거나 피부타입이 애매하다면 중간 단계 루틴으로 시작한 뒤 2주 후 조정해요.
