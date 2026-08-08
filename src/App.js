@@ -1,3 +1,5 @@
+import { skinSurveyQuestions } from "./data/skinSurvey";
+import { analyzeSkinSurvey } from "./utils/analyzeSkinSurvey";
 import React, { useMemo, useState } from "react";
 import { products } from "./data/products";
 import { starterRoutineByLevel } from "./data/routines";
@@ -631,6 +633,7 @@ export default function App() {
   const [step, setStep] = useState("start");
   const [answers, setAnswers] = useState({});
 const [quickLevel, setQuickLevel] = useState(5);
+const [surveyAnswers, setSurveyAnswers] = useState({});
 
   const isComplete = feedbackQuestions.every((q) => answers[q.id] !== undefined);
 
@@ -645,6 +648,32 @@ const [quickLevel, setQuickLevel] = useState(5);
   const nextRoutine = buildDynamicRoutine(nextLevel);
 const quickRoutine = buildDynamicRoutine(quickLevel);
 const quickRoutineReason = buildRoutineReason(quickLevel);
+const surveyResult = useMemo(() => {
+  return analyzeSkinSurvey(surveyAnswers, skinSurveyQuestions);
+}, [surveyAnswers]);
+
+const surveyRoutine = buildDynamicRoutine(surveyResult.hydrationLevel);
+const surveyRoutineReason = buildRoutineReason(surveyResult.hydrationLevel);
+
+const isSurveyComplete = skinSurveyQuestions.every((question) => {
+  const answer = surveyAnswers[question.id];
+
+  if (question.type === "multi") {
+    return Array.isArray(answer) && answer.length > 0;
+  }
+
+  return !!answer;
+});
+
+const surveyUserContext = {
+  level: surveyResult.hydrationLevel,
+  isSensitive:
+    surveyResult.skinType === "민감성" || surveyResult.scores.sensitivity >= 2,
+  troubleScore: surveyResult.scores.acne ?? 0,
+  skinType: surveyResult.skinType,
+  season: "spring",
+  goal: surveyResult.issueLabel,
+};
 
   const ingredients = getRecommendedIngredients(nextLevel, answers.trouble ?? 0);
   const levelChangeMessage = getLevelChangeMessage(starterLevel, nextLevel);
@@ -668,11 +697,42 @@ const routineReason = buildRoutineReason(nextLevel);
       [id]: value
     }));
   };
+const handleSurveyAnswer = (question, option) => {
+  setSurveyAnswers((prev) => {
+    const currentAnswer = prev[question.id];
 
-  const resetFlow = () => {
-    setAnswers({});
-    setStep("start");
-  };
+    if (question.type === "multi") {
+      const currentList = Array.isArray(currentAnswer) ? currentAnswer : [];
+
+      if (option.lifestyle === "none") {
+        return {
+          ...prev,
+          [question.id]: [option.label],
+        };
+      }
+
+      const withoutNone = currentList.filter((item) => item !== "해당 없음");
+      const alreadySelected = withoutNone.includes(option.label);
+
+      return {
+        ...prev,
+        [question.id]: alreadySelected
+          ? withoutNone.filter((item) => item !== option.label)
+          : [...withoutNone, option.label],
+      };
+    }
+
+    return {
+      ...prev,
+      [question.id]: option.label,
+    };
+  });
+};
+const resetFlow = () => {
+  setAnswers({});
+  setSurveyAnswers({});
+  setStep("start");
+};
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
@@ -730,7 +790,7 @@ const routineReason = buildRoutineReason(nextLevel);
     </button>
 
     <button
-      onClick={() => setStep("starter")}
+  onClick={() => setStep("survey")}
       className="bg-black text-white rounded-3xl shadow-sm p-6 sm:p-8 text-left hover:opacity-90 hover:-translate-y-1 transition active:scale-[0.98]"
     >
       <p className="text-sm text-white/60 mb-3">처음 시작해요</p>
@@ -856,6 +916,222 @@ const routineReason = buildRoutineReason(nextLevel);
       >
         시작 화면으로 돌아가기
       </button>
+    </div>
+  </section>
+)}
+{step === "survey" && (
+  <section>
+    <SectionTitle
+      title="피부 설문 시작"
+      desc="피부타입을 몰라도 괜찮아요. 느껴지는 상태만 선택하면 현재 피부에 맞는 루틴을 찾아드릴게요."
+    />
+
+    <div className="max-w-3xl mx-auto space-y-5">
+      {skinSurveyQuestions.map((question) => (
+        <div
+          key={question.id}
+          className="bg-white border border-gray-100 rounded-3xl shadow-sm p-5 sm:p-6"
+        >
+          <p className="text-base sm:text-lg font-semibold leading-relaxed break-keep mb-4">
+            {question.question}
+          </p>
+
+          <div className="flex flex-wrap gap-2">
+            {question.options.map((option) => {
+              const answer = surveyAnswers[question.id];
+
+              const active =
+                question.type === "multi"
+                  ? Array.isArray(answer) && answer.includes(option.label)
+                  : answer === option.label;
+
+              return (
+                <button
+                  key={option.label}
+                  onClick={() => handleSurveyAnswer(question, option)}
+                  className={`px-4 py-2 rounded-2xl text-sm border transition active:scale-95 ${
+                    active
+                      ? "bg-black text-white border-black shadow-sm"
+                      : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+                  }`}
+                >
+                  {option.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+      <button
+        onClick={() => setStep("start")}
+        className="px-6 py-3 rounded-2xl text-sm sm:text-base font-medium border border-gray-300 bg-white hover:bg-gray-100 transition"
+      >
+        시작 화면으로
+      </button>
+
+      <PrimaryButton
+        onClick={() => setStep("surveyResult")}
+        disabled={!isSurveyComplete}
+      >
+        설문 결과 보기
+      </PrimaryButton>
+    </div>
+  </section>
+)}
+{step === "surveyResult" && (
+  <section>
+    <SectionTitle
+      title="설문 기반 추천 결과"
+      desc="답변을 바탕으로 예상 피부 상태와 추천 루틴을 정리했어요."
+    />
+
+    <div className="max-w-3xl mx-auto mb-8">
+      <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-5 sm:p-6">
+        <p className="text-sm text-gray-500 mb-3">예상 피부 상태</p>
+
+        <div className="flex flex-wrap gap-2 mb-5">
+          <span className="px-3 py-1 rounded-full bg-black text-white text-sm">
+            {surveyResult.skinType}
+          </span>
+
+          <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-sm">
+            수분감 {surveyResult.hydrationLevel}단계
+          </span>
+
+          <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-sm">
+            {surveyResult.issueLabel}
+          </span>
+        </div>
+
+        <p className="text-sm text-gray-500 mb-2">판단에 반영된 답변</p>
+
+        <div className="flex flex-wrap gap-2">
+          {surveyResult.reasons.map((reason) => (
+            <span
+              key={reason}
+              className="px-3 py-1 rounded-full bg-gray-50 border border-gray-200 text-sm text-gray-700"
+            >
+              {reason}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div className="max-w-3xl mx-auto mb-8">
+      <div className="bg-gray-50 rounded-3xl p-5 sm:p-6">
+        <p className="text-sm text-gray-500 mb-3">추천 방향</p>
+
+        <ul className="space-y-2">
+          {surveyRoutineReason.map((text) => (
+            <li
+              key={text}
+              className="text-sm sm:text-base text-gray-700 leading-relaxed break-keep"
+            >
+              · {text}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div className="mb-10">
+      <SectionTitle
+        title="추천 루틴"
+        desc="설문 결과에 맞춰 클렌저, 토너, 세럼, 크림을 하나씩 추천합니다."
+      />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6">
+        {Object.entries(surveyRoutine.products).map(([key, item]) => (
+          <ProductCard
+            key={key}
+            categoryKey={key}
+            product={item}
+            userContext={surveyUserContext}
+          />
+        ))}
+      </div>
+    </div>
+
+    <div className="max-w-3xl mx-auto mb-8">
+      <SectionTitle
+        title="피부 고민 관리 방향"
+        desc="선택한 피부 고민에 맞춘 기본 관리 가이드입니다."
+      />
+
+      <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-5 sm:p-6">
+        <ul className="space-y-2">
+          {surveyResult.solution.map((text) => (
+            <li
+              key={text}
+              className="text-sm sm:text-base text-gray-700 leading-relaxed break-keep"
+            >
+              · {text}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    {surveyResult.lifestyleAdvice.length > 0 && (
+      <div className="max-w-3xl mx-auto mb-8">
+        <SectionTitle
+          title="생활습관 체크"
+          desc="피부 컨디션에 영향을 줄 수 있는 생활 요소입니다."
+        />
+
+        <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-5 sm:p-6">
+          <ul className="space-y-2">
+            {surveyResult.lifestyleAdvice.map((text) => (
+              <li
+                key={text}
+                className="text-sm sm:text-base text-gray-700 leading-relaxed break-keep"
+              >
+                · {text}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    )}
+
+    <div className="max-w-3xl mx-auto mb-8">
+      <div className="bg-amber-50 rounded-3xl p-5 sm:p-6 border border-amber-100">
+        <p className="text-sm font-semibold text-amber-800 mb-3">
+          피부과 상담이 필요한 경우
+        </p>
+
+        <ul className="space-y-1">
+          <li className="text-sm text-amber-800 leading-relaxed break-keep">
+            · 붉고 아픈 트러블이 반복될 때
+          </li>
+          <li className="text-sm text-amber-800 leading-relaxed break-keep">
+            · 고름, 결절, 흉터가 생길 때
+          </li>
+          <li className="text-sm text-amber-800 leading-relaxed break-keep">
+            · 따가움, 진물, 심한 각질이 동반될 때
+          </li>
+          <li className="text-sm text-amber-800 leading-relaxed break-keep">
+            · 6~8주 이상 관리해도 변화가 없을 때
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+      <button
+        onClick={() => setStep("survey")}
+        className="px-6 py-3 rounded-2xl text-sm sm:text-base font-medium border border-gray-300 bg-white hover:bg-gray-100 transition"
+      >
+        설문 다시 하기
+      </button>
+
+      <PrimaryButton onClick={() => setStep("feedback")}>
+        2주 사용 후 피드백 입력
+      </PrimaryButton>
     </div>
   </section>
 )}
