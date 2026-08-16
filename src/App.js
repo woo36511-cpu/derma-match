@@ -801,7 +801,7 @@ const resetFlow = () => {
         화장품이 처음이거나 피부타입이 애매하다면 중간 단계 루틴으로 시작한 뒤 2주 후 조정해요.
       </p>
       <span className="text-sm font-semibold text-white">
-        기본 루틴 보기 →
+        설문 시작하기 →
       </span>
     </button>
   </div>
@@ -1123,7 +1123,10 @@ const resetFlow = () => {
 
     <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
       <button
-        onClick={() => setStep("survey")}
+        onClick={() => {
+  setSurveyAnswers({});
+  setStep("survey");
+}}
         className="px-6 py-3 rounded-2xl text-sm sm:text-base font-medium border border-gray-300 bg-white hover:bg-gray-100 transition"
       >
         설문 다시 하기
