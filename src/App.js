@@ -630,16 +630,17 @@ const cardInner = (
 export default function App() {
   const starterLevel = 5;
 
-  const [step, setStep] = useState("start");
-  const [answers, setAnswers] = useState({});
+const [step, setStep] = useState("start");
+const [answers, setAnswers] = useState({});
 const [quickLevel, setQuickLevel] = useState(5);
+const [baseLevel, setBaseLevel] = useState(5);
 const [surveyAnswers, setSurveyAnswers] = useState({});
 
   const isComplete = feedbackQuestions.every((q) => answers[q.id] !== undefined);
 
   const nextLevel = useMemo(() => {
-    return calculateNextLevel(starterLevel, answers);
-  }, [answers]);
+  return calculateNextLevel(baseLevel, answers);
+}, [baseLevel, answers]);
 
   const starterRoutineInfo = routineMap[starterLevel];
   const nextRoutineInfo = routineMap[nextLevel];
@@ -676,7 +677,7 @@ const surveyUserContext = {
 };
 
   const ingredients = getRecommendedIngredients(nextLevel, answers.trouble ?? 0);
-  const levelChangeMessage = getLevelChangeMessage(starterLevel, nextLevel);
+  const levelChangeMessage = getLevelChangeMessage(baseLevel, nextLevel);
 const userContext = {
   level: nextLevel,
   isSensitive: (answers.dry ?? 0) <= -1 || (answers.trouble ?? 0) >= 1,
@@ -731,6 +732,7 @@ const handleSurveyAnswer = (question, option) => {
 const resetFlow = () => {
   setAnswers({});
   setSurveyAnswers({});
+  setBaseLevel(5);
   setStep("start");
 };
 
@@ -739,9 +741,9 @@ const resetFlow = () => {
       <header className="sticky top-0 z-10 border-b border-gray-200 bg-white/90 backdrop-blur">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <div>
-            <h1 className="text-lg sm:text-xl font-bold break-keep">Derma Match</h1>
+            <h1 className="text-lg sm:text-xl font-bold break-keep">DearSince</h1>
             <p className="text-xs sm:text-sm text-gray-500 break-keep">
-              2주 사용 후 반응 기반 추천
+              파부를 몰라도 괜찮게
             </p>
           </div>
           <button
@@ -798,7 +800,7 @@ const resetFlow = () => {
         처음이라 설문으로 시작할래요
       </h3>
       <p className="text-sm sm:text-base text-white/75 leading-relaxed break-keep mb-5">
-        화장품이 처음이거나 피부타입이 애매하다면 중간 단계 루틴으로 시작한 뒤 2주 후 조정해요.
+        피부타입을 몰라도 괜찮아요. 몇 가지 질문에 답하면 현재 상태에 맞는 루틴과 관리 방향을 추천해드려요.
       </p>
       <span className="text-sm font-semibold text-white">
         설문 시작하기 →
@@ -909,14 +911,24 @@ const resetFlow = () => {
       </div>
     </div>
 
-    <div className="flex justify-center">
-      <button
-        onClick={() => setStep("start")}
-        className="px-6 py-3 rounded-2xl text-sm sm:text-base font-medium border border-gray-300 bg-white hover:bg-gray-100 transition"
-      >
-        시작 화면으로 돌아가기
-      </button>
-    </div>
+<div className="flex flex-col sm:flex-row gap-3 justify-center">
+  <button
+    onClick={() => setStep("start")}
+    className="px-6 py-3 rounded-2xl text-sm sm:text-base font-medium border border-gray-300 bg-white hover:bg-gray-100 transition"
+  >
+    시작 화면으로 돌아가기
+  </button>
+
+  <PrimaryButton
+    onClick={() => {
+      setBaseLevel(quickLevel);
+      setAnswers({});
+      setStep("feedback");
+    }}
+  >
+    2주 사용 후 피드백 입력
+  </PrimaryButton>
+</div>
   </section>
 )}
 {step === "survey" && (
@@ -1132,9 +1144,15 @@ const resetFlow = () => {
         설문 다시 하기
       </button>
 
-      <PrimaryButton onClick={() => setStep("feedback")}>
-        2주 사용 후 피드백 입력
-      </PrimaryButton>
+      <PrimaryButton
+  onClick={() => {
+    setBaseLevel(surveyResult.hydrationLevel);
+    setAnswers({});
+    setStep("feedback");
+  }}
+>
+  2주 사용 후 피드백 입력
+</PrimaryButton>
     </div>
   </section>
 )}
@@ -1169,9 +1187,15 @@ const resetFlow = () => {
             </div>
 
             <div className="mt-10 flex justify-center">
-              <PrimaryButton onClick={() => setStep("feedback")}>
-                2주 사용 후 피드백 입력
-              </PrimaryButton>
+              <PrimaryButton
+  onClick={() => {
+    setBaseLevel(starterLevel);
+    setAnswers({});
+    setStep("feedback");
+  }}
+>
+  2주 사용 후 피드백 입력
+</PrimaryButton>
             </div>
           </section>
         )}
@@ -1249,7 +1273,7 @@ const resetFlow = () => {
                 <div className="flex flex-wrap gap-3 items-center mb-4">
                   <div className="text-5xl font-bold">{nextLevel}</div>
                   <div className="text-sm sm:text-base text-gray-600 leading-relaxed break-keep">
-                    시작 단계 {starterLevel} → 다음 단계 {nextLevel}
+                    기준 단계 {baseLevel} → 다음 단계 {nextLevel}
                   </div>
                 </div>
                 <p className="text-sm sm:text-base text-gray-600 leading-relaxed break-keep">
