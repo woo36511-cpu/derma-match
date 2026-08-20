@@ -11,7 +11,7 @@ export const products = [
     skinTypes: ["중성", "복합성", "수부지"],
     description: "가볍고 무난하게 시작하기 좋은 수분 토너",
     image: "https://t5c.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/421123228552146-ac365ead-d849-48d2-9b25-cb643d89abc5.jpg",
-    link: "https://link.coupang.com/a/edLIgz",
+    link: "https://link.coupang.com/a/gmQS3K67ci",
 
     sensitivitySafe: true,
     beginnerFriendly: true,
@@ -54,7 +54,7 @@ usage: {
     skinTypes: ["건성", "중성", "수부지"],
     description: "기본 보습용으로 쓰기 좋은 가벼운 세럼",
     image: "https://thumbnail5.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/076a/53c053161aa6834869885e94909f50b87e42b050165af8bc153b7eaf327d.jpg",
-    link: "https://link.coupang.com/a/edL5fo",
+    link: "https://link.coupang.com/a/gmRbsjXonA",
 
     sensitivitySafe: true,
     beginnerFriendly: true,
@@ -96,7 +96,7 @@ usage: {
     skinTypes: ["건성", "민감성"],
     description: "건조하고 예민할 때 장벽 보습용으로 무난한 크림",
     image: "https://t2c.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/159640203347477-301e72d8-72b6-4e5d-a684-f802a5852491.jpg",
-    link: "https://link.coupang.com/a/edL5fo",
+    link: "https://link.coupang.com/a/gmRlB3BoY0",
 
     sensitivitySafe: true,
     beginnerFriendly: true,
@@ -138,7 +138,7 @@ usage: {
     skinTypes: ["건성", "중성", "민감성"],
     description: "처음 시작하는 사람도 쓰기 쉬운 순한 클렌저",
     image: "https://thumbnail1.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/322416961259287-bb522629-38c6-423d-a169-80c4c9669047.jpg",
-    link: "https://link.coupang.com/a/edLYma",
+    link: "https://link.coupang.com/a/gmRpCgobYW",
 
     sensitivitySafe: true,
     beginnerFriendly: true,
@@ -181,7 +181,7 @@ usage: {
     skinTypes: ["지성", "수부지"],
     description: "피지와 막힘 관리 보조용으로 보기 좋은 제품",
     image: "https://thumbnail13.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/e9fb/8effc1bb3005666fa6c031616cf281e7c20366f39bfbaeb2cf70c764ddae.jpg",
-    link: "https://link.coupang.com/a/dNObgFPzb2",
+    link: "https://link.coupang.com/a/gmRy1ZCQ2v",
 
     sensitivitySafe: false,
     beginnerFriendly: false,
@@ -226,7 +226,7 @@ usage: {
     skinTypes: ["중성", "복합성"],
     description: "기본 수분 보충용으로 무난한 세럼",
     image: "https://thumbnail6.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2025/01/03/14/4/95bab02b-e604-4e03-b452-81e999a0a36b.jpg",
-    link: "https://link.coupang.com/a/dNOpAjuuQu",
+    link: "https://link.coupang.com/a/gmRDP3XfEG",
 
     sensitivitySafe: false,
     beginnerFriendly: true,
@@ -268,7 +268,7 @@ usage: {
     skinTypes: ["건성", "민감성"],
     description: "건조하고 장벽이 약할 때 보기 좋은 크림",
     image: "https://thumbnail9.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/8222/2abf1f5fb2c41c432e0355b8df2d92a4c106ab1d17af9826382045b53b02.jpg",
-    link: "https://link.coupang.com/a/dNOPp5hkHI",
+    link: "https://link.coupang.com/a/gmRG4mejdc",
 
     sensitivitySafe: true,
     beginnerFriendly: true,
@@ -310,7 +310,7 @@ usage: {
     skinTypes: ["수부지", "복합성", "민감성"],
     description: "가볍고 진정용으로 시작하기 좋은 젤크림",
     image: "https://thumbnail3.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/711411626878446-f5a03ad2-1be3-4c58-87f2-3cb245512016.jpg",
-    link: "https://link.coupang.com/a/dNQzmcQ7ZQ",
+    link: "https://link.coupang.com/a/gmRLMA2WAf",
 
     sensitivitySafe: true,
     beginnerFriendly: true,
@@ -352,7 +352,7 @@ usage: {
     skinTypes: ["수부지", "지성", "민감성"],
     description: "가볍고 진정 위주로 보기 좋은 토너",
     image: "https://t5a.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/13e2/5f4cfc4b08c3682018cbcaf7a4c10a151cbc352c3ae8fbecfbb91184cccd.jpg",
-    link: "https://link.coupang.com/a/dNQC8G1wSO",
+    link: "https://link.coupang.com/a/gmROnkwqCO",
 
     sensitivitySafe: true,
     beginnerFriendly: true,
@@ -396,7 +396,7 @@ usage: {
     skinTypes: ["건성", "민감성", "중성"],
     description: "세정 후 자극 부담을 줄이기 쉬운 클렌저",
     image: "https://thumbnail10.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/323292401994452-6ee66fe4-f38d-4633-8fea-f164540d3b76.jpg",
-    link: "https://link.coupang.com/a/dNQKKuQC2m",
+    link: "https://link.coupang.com/a/gmRSF74qaW",
 
     sensitivitySafe: true,
     beginnerFriendly: true,
@@ -439,7 +439,7 @@ usage: {
     skinTypes: ["지성", "수부지"],
     description: "트러블과 유분 관리 쪽으로 보기 좋은 제품",
     image: "https://t1a.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/5569/783106476aeb01e8eaecfff16da76ff56d70504545cb32773d1c8be10acd.jpg",
-    link: "https://link.coupang.com/a/dNQSktwIMe",
+    link: "https://link.coupang.com/a/gmRZFwpctw",
 
     sensitivitySafe: false,
     beginnerFriendly: false,
@@ -481,7 +481,7 @@ usage: {
     skinTypes: ["건성", "중성", "민감성"],
     description: "무난하게 오래 쓰기 쉬운 보습 로션",
     image: "https://thumbnail1.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/76383476284976-beeac87e-878a-434d-9b87-acc1ecbc6961.jpg",
-    link: "https://link.coupang.com/a/dNQ0j1Xg2S",
+    link: "https://link.coupang.com/a/gmR43V9dv2",
 
     sensitivitySafe: true,
     beginnerFriendly: true,
@@ -523,7 +523,7 @@ usage: {
   skinTypes: ["지성", "수부지"],
   description: "유분 밸런스와 모공 관리용 세럼",
   image: "https://thumbnail8.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/f305/1e9c347b53760f6700536ed4988c0bc515792e70d082a0db853506d31283.png",
-  link: "https://link.coupang.com/a/dNQ3pl98M0",
+  link: "https://link.coupang.com/a/gmR8QVtMya",
   sensitivitySafe: false,
   beginnerFriendly: false,
   seasons: ["spring", "summer", "autumn"],
@@ -564,7 +564,7 @@ usage: {
   skinTypes: ["지성"],
   description: "피지와 트러블 관리 중심 세럼",
   image: "https://t1c.coupangcdn.com/thumbnails/remote/492x492ex/image/1025_amir_coupang_oct_80k/145d/4cd6ffbf602d22c4dc267895124106da27d3797ff766b96628e7eae6a85b.jpg",
-  link: "https://link.coupang.com/a/dNQ59wY2Ka",
+  link: "https://link.coupang.com/a/gmSbUPpoQe",
   sensitivitySafe: false,
   beginnerFriendly: false,
   seasons: ["spring", "summer"],
@@ -605,7 +605,7 @@ usage: {
   skinTypes: ["건성", "중성", "수부지"],
   description: "가볍게 수분을 채우기 좋은 수분 토너",
   image: "https://t1c.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/6065/a07ee5f8fce3eed3f3125dfa0b554774ada005510abac4474bee9e4e3aa1.png",
-  link: "https://link.coupang.com/a/dNRa8fJmFw",
+  link: "https://link.coupang.com/a/gmSe2ecyvA",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -648,7 +648,7 @@ usage: {
   skinTypes: ["건성", "중성", "민감성", "수부지"],
   description: "속수분과 장벽 보습을 같이 보기 좋은 에센스",
   image: "https://thumbnail7.coupangcdn.com/thumbnails/remote/492x492ex/image/1025_amir_coupang_oct_80k/02ea/6c19ed5d20b7ba47ef2312a32faabc6b065f55a519cd7dbf60c3b62a970e.jpg",
-  link: "https://link.coupang.com/a/dNRfBAGe5I",
+  link: "https://link.coupang.com/a/gmSingQDeK",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -690,7 +690,7 @@ usage: {
   skinTypes: ["건성", "중성", "수부지"],
   description: "히알루론산 중심의 수분 앰플",
   image: "https://thumbnail13.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/23109275375806-66e0449b-a752-47ae-af83-e535209617b9.jpg",
-  link: "https://link.coupang.com/a/dNRj5gEghM",
+  link: "https://link.coupang.com/a/gmSlhSQBnE",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -732,7 +732,7 @@ usage: {
   skinTypes: ["중성", "수부지", "복합성"],
   description: "가볍게 수분을 잠가주는 젤크림",
   image: "https://t3c.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/71993950971424-62de1ae8-f5cc-46ab-bcb2-b13e35cd9c69.jpg",
-  link: "https://link.coupang.com/a/dQG6m8WY5Q",
+  link: "https://link.coupang.com/a/gmSpgkU1yS",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -774,7 +774,7 @@ usage: {
   skinTypes: ["건성", "중성", "수부지"],
   description: "수분감 중심의 데일리 크림",
   image: "https://thumbnail11.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/2c17/cd5eabb516815e853338d54cf6f9d2a7b0fc7f987d4789caf1a2b0320346.png",
-  link: "https://link.coupang.com/a/dQHcmiUnfg",
+  link: "https://link.coupang.com/a/gmSsTbdHk4",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -816,7 +816,7 @@ usage: {
   skinTypes: ["수부지", "지성", "민감성"],
   description: "예민함과 유분 고민을 같이 보기 좋은 진정 토너",
   image: "https://thumbnail2.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/2a60/b58ba28c8a0e23a5df8f520587c6c04d7195b89fec5bed02b2b98af3fac2.png",
-  link: "https://link.coupang.com/a/dQHgRvXbRQ",
+  link: "https://link.coupang.com/a/gmSu4mfZRY",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -859,7 +859,7 @@ usage: {
   skinTypes: ["수부지", "민감성", "복합성"],
   description: "진정과 가벼운 수분 정돈용으로 쓰기 좋은 패드",
   image: "https://thumbnail1.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/6f96/a2b431e1d1ab4ba0577bb569decef02f63de6f76c6642ab6a98a1840b613.jpg",
-  link: "https://link.coupang.com/a/dQHmXugSqa",
+  link: "https://link.coupang.com/a/gmSXbSNkL6",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -902,7 +902,7 @@ usage: {
   skinTypes: ["수부지", "지성", "민감성"],
   description: "가볍게 피부를 진정시키는 데일리 토너",
   image: "https://t5c.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/308859245406299-5945ce5a-2f44-4fa4-99e9-96fadccaa13b.jpg",
-  link: "https://link.coupang.com/a/dQHrWiHaWO",
+  link: "https://link.coupang.com/a/gmSZ7XALds",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -945,7 +945,7 @@ usage: {
   skinTypes: ["중성", "건성", "수부지"],
   description: "피부 컨디션과 장벽 보조용으로 보기 좋은 앰플",
   image: "https://thumbnail13.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2026/04/07/17/5/fb583be9-5bd3-4cb5-aaac-daa1e24238d5.png",
-  link: "https://link.coupang.com/a/dQHBapdPYO",
+  link: "https://link.coupang.com/a/gmS2u5vPNc",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -987,7 +987,7 @@ usage: {
   skinTypes: ["건성", "민감성"],
   description: "건조하고 예민할 때 국소 보습용으로 보기 좋은 밤 타입 크림",
   image: "https://thumbnail12.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/44e6/bb8d4273aaea912d8cc3734c4511d8431f1413eda68571903b252baa6352.jpg",
-  link: "https://link.coupang.com/a/dQHDFaj0xg",
+  link: "https://link.coupang.com/a/gmS5hjsujI",
 
   sensitivitySafe: true,
   beginnerFriendly: false,
@@ -1029,7 +1029,7 @@ usage: {
   skinTypes: ["수부지", "민감성", "복합성"],
   description: "예민하고 붉어진 피부를 편안하게 진정시키기 좋은 앰플",
   image: "https://t5a.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/image_audit/prod/662b1b6e-a846-4bda-8855-8ff7a366823f_fixing_v2.png",
-  link: "https://link.coupang.com/a/d8MJqQsvlY",
+  link: "https://link.coupang.com/a/gmTeWUCFqK",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -1073,7 +1073,7 @@ usage: {
   skinTypes: ["지성", "수부지"],
   description: "트러블과 번들거림 관리용으로 가볍게 쓰기 좋은 세럼",
   image: "https://t1a.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/9390/b4dd4be4e3d66b66878b74e1da43fa4bcfc0e211c144bc981d58f9bf6385.jpg",
-  link: "https://link.coupang.com/a/d8M9geXQ6u",
+  link: "https://link.coupang.com/a/gmTiOtX9S8",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -1117,7 +1117,7 @@ usage: {
   skinTypes: ["수부지", "지성", "복합성"],
   description: "번들거림 부담을 줄이면서 세정하기 좋은 젤 클렌저",
   image: "https://t5c.coupangcdn.com/thumbnails/remote/212x212ex/image/retail/images/1748338049250098-c902968d-31a6-43dd-8a2f-1df4889ce41e.jpg",
-  link: "https://link.coupang.com/a/d8Nhl0nrHg",
+  link: "https://link.coupang.com/a/gmTlQAlp3Q",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -1162,7 +1162,7 @@ usage: {
   skinTypes: ["지성", "수부지"],
   description: "유분과 번들거림 관리용으로 많이 쓰이는 젤 클렌저",
   image: "https://thumbnail10.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/b87f/e7a265f06a3c28bded0932c27e6675b66c428d376fbfacc5ad75f653ae7b.jpg",
-  link: "https://link.coupang.com/a/d8NkyLEd4e",
+  link: "https://link.coupang.com/a/gmTq5qQf1g",
 
   sensitivitySafe: false,
   beginnerFriendly: true,
@@ -1207,7 +1207,7 @@ usage: {
   skinTypes: ["수부지", "민감성", "복합성"],
   description: "열감과 붉어짐 진정용으로 보기 좋은 수분 앰플",
   image: "https://thumbnail6.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/f589/4396e31a38e7e5a5256a41ee10f55dd74310913640294560a301788f42b0.png",
-  link: "https://link.coupang.com/a/d8Noklw5fM",
+  link: "https://link.coupang.com/a/gmTukNQiVE",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -1251,7 +1251,7 @@ usage: {
   skinTypes: ["건성", "중성", "수부지"],
   description: "선크림과 메이크업 세정을 부드럽게 도와주는 클렌징 오일",
   image: "https://thumbnail7.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/476b/b9d85a96a7855034ccb4440f5da51b433910061bbe5f74092fd4bc444417.jpg",
-  link: "https://link.coupang.com/a/d8NsurzSoK",
+  link: "https://link.coupang.com/a/gmTxcD5eO4",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -1298,8 +1298,8 @@ usage: {
   ingredients: ["판테놀"],
   skinTypes: ["건성", "민감성"],
   description: "건조하고 민감한 피부를 위한 순한 클렌징 밀크",
-  image: "https://via.placeholder.com/300x220",
-  link: "#",
+  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/212x212q90trim/image/vendor_inventory/1c53/78173e47b79fd440d53c88e793d2a23644cc2c733de459f3d9424bbd6af1.jpg",
+  link: "https://link.coupang.com/a/gmTzkTK61s",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -1342,8 +1342,8 @@ usage: {
   ingredients: ["판테놀"],
   skinTypes: ["민감성", "건성"],
   description: "극민감 피부를 위한 저자극 클렌징",
-  image: "https://via.placeholder.com/300x220",
-  link: "#",
+  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/212x212q90trim/image/vendor_inventory/2599/84580b2bf08fa177039b211c6b3f7373b0d606fabea0fe50b253a7751611.jpg",
+  link: "https://link.coupang.com/a/gmTSzKrBca",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -1386,8 +1386,8 @@ usage: {
   ingredients: ["판테놀"],
   skinTypes: ["수부지", "복합성"],
   description: "산뜻하면서도 자극이 적은 젤 타입 클렌저",
-  image: "https://via.placeholder.com/300x220",
-  link: "#",
+  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/212x212q90trim/image/vendor_inventory/a443/a4a04525b7b8af639640d2beb7ffe5d1884403bcd066d8bfada430219e62.png",
+  link: "https://link.coupang.com/a/gmT1RLGyd2",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -1430,8 +1430,8 @@ usage: {
   ingredients: ["녹차"],
   skinTypes: ["지성", "수부지"],
   description: "번들거림 관리에 좋은 산뜻한 젤 클렌저",
-  image: "https://via.placeholder.com/300x220",
-  link: "#",
+  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/212x212q90trim/image/retail/images/616346333160917-47e1143a-f8a2-453a-a4d0-e1e57405e3fa.jpg",
+  link: "https://link.coupang.com/a/gmT6f2WXmu",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
@@ -1474,8 +1474,8 @@ usage: {
   ingredients: ["효소"],
   skinTypes: ["복합성", "수부지", "지성"],
   description: "각질과 모공 관리를 위한 효소 세안제",
-  image: "https://via.placeholder.com/300x220",
-  link: "#",
+  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/212x212q90trim/image/retail/images/714346960530000-40b05a94-5623-4643-bc32-bb13ea20e55d.jpg",
+  link: "https://link.coupang.com/a/gmT9a2Oudw",
 
   sensitivitySafe: false,
   beginnerFriendly: true,
@@ -1518,8 +1518,8 @@ usage: {
   ingredients: ["효소"],
   skinTypes: ["복합성", "수부지"],
   description: "피부결 정돈을 위한 효소 세안제",
-  image: "https://via.placeholder.com/300x220",
-  link: "#",
+  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/212x212q90trim/image/retail/images/40278605056370-0e5825d6-e422-4449-a1c1-c2bc813c06df.png",
+  link: "https://link.coupang.com/a/gmUf8iSbT2",
 
   sensitivitySafe: true,
   beginnerFriendly: true,
