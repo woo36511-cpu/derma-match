@@ -1550,5 +1550,247 @@ usage: {
       "민감 피부는 주 1회부터 시작하세요."
     ]
   }
+},
+{
+  id: 37,
+  name: "아누아 어성초 77 수딩 토너",
+  brand: "아누아",
+  category: "toner",
+  hydrationLevel: 10,
+  texture: "light",
+  concerns: ["hydration", "soothing", "sebum"],
+  ingredients: ["판테놀"],
+  skinTypes: ["지성", "수부지", "복합성"],
+  description: "유분감이 많은 피부도 부담 없이 쓰기 좋은 산뜻한 진정 토너입니다.",
+  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/retail/images/2026/05/08/12/6/08849224-1456-4486-bdfc-ed59ea2b6777.png",
+  link: "https://link.coupang.com/a/gtjYdxeBR6",
+  sensitivitySafe: true,
+  beginnerFriendly: true,
+  seasons: ["spring", "summer"],
+  price: 0,
+  volume: "250ml",
+  shortReason: "10단계처럼 유분감이 강한 피부에 산뜻하게 쓰기 좋은 토너입니다.",
+  caution: [],
+  ratingTags: ["산뜻함", "진정", "지성 추천"],
+
+  usageType: "toner",
+  usageAmount: {
+    oily: "손바닥에 500원 동전보다 적게",
+    normal: "500원 동전 크기 정도",
+    dry: "500원 동전 크기 정도를 1~2번"
+  },
+  usage: {
+    when: "세안 후 첫 단계 / 아침·저녁",
+    howToUse: [
+      "세안 후 손바닥에 적당량을 덜어냅니다.",
+      "얼굴 전체에 가볍게 눌러 흡수시킵니다.",
+      "번들거림이 많은 부위는 여러 번 덧바르지 않습니다."
+    ],
+    caution: [
+      "화장솜으로 강하게 닦아내면 자극이 될 수 있어요."
+    ]
+  }
+},
+{
+  id: 38,
+  name: "이즈앤트리 그린티 프레시 토너",
+  brand: "이즈앤트리",
+  category: "toner",
+  hydrationLevel: 10,
+  texture: "light",
+  concerns: ["hydration", "sebum", "soothing"],
+  ingredients: ["히알루론산", "판테놀"],
+  skinTypes: ["지성", "수부지", "복합성"],
+  description: "가볍고 산뜻한 사용감으로 유분감이 많은 피부의 수분 밸런스에 맞춘 토너입니다.",
+  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/retail/images/1157158040067497-679aa743-9a4f-41ac-ace0-b734210fc477.jpg",
+  link: "https://link.coupang.com/a/gtkyAwlxGD",
+  sensitivitySafe: true,
+  beginnerFriendly: true,
+  seasons: ["spring", "summer"],
+  price: 0,
+  volume: "200ml",
+  shortReason: "번들거림이 신경 쓰이는 피부에 무겁지 않게 수분을 보충하기 좋습니다.",
+  caution: [],
+  ratingTags: ["가벼움", "피지 밸런스", "수부지 추천"],
+
+  usageType: "toner",
+  usageAmount: {
+    oily: "손바닥에 소량",
+    normal: "500원 동전 크기 정도",
+    dry: "500원 동전 크기 정도"
+  },
+  usage: {
+    when: "세안 후 첫 단계 / 아침·저녁",
+    howToUse: [
+      "세안 후 물기를 가볍게 닦아냅니다.",
+      "손바닥에 소량 덜어 얼굴 전체에 펴 바릅니다.",
+      "T존은 얇게, 건조한 부위는 한 번 더 눌러줍니다."
+    ],
+    caution: [
+      "지성 피부는 여러 겹 바르기보다 얇게 사용하는 것이 좋아요."
+    ]
+  }
+},
+{
+  id: 39,
+  name: "라운드랩 소나무 진정 시카 토너",
+  brand: "라운드랩",
+  category: "toner",
+  hydrationLevel: 9,
+  texture: "light",
+  concerns: ["hydration", "soothing", "acne"],
+  ingredients: ["판테놀"],
+  skinTypes: ["지성", "수부지", "민감성", "복합성"],
+  description: "번들거림과 예민함이 함께 신경 쓰이는 피부에 맞춘 가벼운 진정 토너입니다.",
+  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/1025_amir_coupang_oct_80k/b56e/a3dac60206c68d62cac469185e5ce5dd83b73e6a525749a1c4aa7d6f6bbf.jpg",
+  link: "https://link.coupang.com/a/gtkDSvmYcm",
+  sensitivitySafe: true,
+  beginnerFriendly: true,
+  seasons: ["spring", "summer", "autumn"],
+  price: 0,
+  volume: "250ml",
+  shortReason: "지성 피부라도 자극이 신경 쓰일 때 진정용으로 보기 좋은 토너입니다.",
+  caution: [],
+  ratingTags: ["진정", "민감 지성", "가벼운 토너"],
+
+  usageType: "toner",
+  usageAmount: {
+    oily: "손바닥에 소량",
+    normal: "500원 동전 크기 정도",
+    dry: "500원 동전 크기 정도"
+  },
+  usage: {
+    when: "세안 후 첫 단계 / 아침·저녁",
+    howToUse: [
+      "세안 후 바로 사용합니다.",
+      "얼굴 전체에 얇게 펴 바릅니다.",
+      "붉어짐이 있는 부위는 문지르지 말고 눌러 흡수시킵니다."
+    ],
+    caution: [
+      "따가움이 느껴지면 사용량을 줄이고 상태를 확인하세요."
+    ]
+  }
+},
+{
+  id: 40,
+  name: "닥터지 레드 블레미쉬 클리어 수딩 크림",
+  brand: "닥터지",
+  category: "cream",
+  hydrationLevel: 10,
+  texture: "gel",
+  concerns: ["hydration", "soothing", "acne"],
+  ingredients: ["판테놀"],
+  skinTypes: ["지성", "수부지", "복합성"],
+  description: "무겁지 않은 젤 타입 수딩 크림으로 유분감이 많은 피부도 부담을 줄여 사용할 수 있습니다.",
+  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/vendor_inventory/ab1a/76f2e97a0ef85816e86836fa9fd9e0ce51947b0c55ed5921d732525425c6.jpg",
+  link: "https://www.coupang.com/np/search?component=&q=%EB%8B%A5%ED%84%B0%EC%A7%80+%EB%A0%88%EB%93%9C+%EB%B8%94%EB%A0%88%EB%AF%B8%EC%89%AC+%ED%81%B4%EB%A6%AC%EC%96%B4+%EC%88%98%EB%94%A9+%ED%81%AC%EB%A6%BC&traceId=mt6wqkf5&channel=user",
+  sensitivitySafe: true,
+  beginnerFriendly: true,
+  seasons: ["spring", "summer"],
+  price: 0,
+  volume: "70ml",
+  shortReason: "10단계 피부에 무거운 크림 대신 넣기 좋은 산뜻한 젤크림입니다.",
+  caution: [],
+  ratingTags: ["젤크림", "산뜻함", "트러블 피부"],
+
+  usageType: "cream",
+  usageAmount: {
+    oily: "완두콩 1개 정도",
+    normal: "완두콩 1~2개 정도",
+    dry: "완두콩 2개 정도"
+  },
+  usage: {
+    when: "세럼 다음 단계 / 아침·저녁",
+    howToUse: [
+      "세럼이 흡수된 뒤 소량을 덜어냅니다.",
+      "볼과 턱 위주로 얇게 펴 바릅니다.",
+      "T존은 남은 양만 가볍게 발라줍니다."
+    ],
+    caution: [
+      "번들거림이 심하면 아침에는 양을 줄여 사용하세요."
+    ]
+  }
+},
+{
+  id: 41,
+  name: "토리든 다이브인 수딩 크림",
+  brand: "토리든",
+  category: "cream",
+  hydrationLevel: 9,
+  texture: "gel",
+  concerns: ["hydration", "soothing"],
+  ingredients: ["히알루론산", "판테놀"],
+  skinTypes: ["지성", "수부지", "복합성"],
+  description: "수분감은 주되 마무리가 무겁지 않아 수부지와 지성 피부가 쓰기 좋은 수딩 크림입니다.",
+  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/497x497q90trim/image/retail/images/211098647448173-7032c962-4b4a-48d3-8871-d6f269dc3dc2.jpg",
+  link: "https://www.coupang.com/np/search?component=&q=%ED%86%A0%EB%A6%AC%EB%93%A0+%EB%8B%A4%EC%9D%B4%EB%B8%8C%EC%9D%B8+%EC%88%98%EB%94%A9+%ED%81%AC%EB%A6%BC&traceId=mt6wua5d&channel=user",
+  sensitivitySafe: true,
+  beginnerFriendly: true,
+  seasons: ["spring", "summer", "autumn"],
+  price: 0,
+  volume: "100ml",
+  shortReason: "속당김은 있지만 무거운 크림이 답답한 피부에 맞는 가벼운 수분 크림입니다.",
+  caution: [],
+  ratingTags: ["수분", "수부지 추천", "가벼운 크림"],
+
+  usageType: "cream",
+  usageAmount: {
+    oily: "완두콩 1개 정도",
+    normal: "완두콩 1~2개 정도",
+    dry: "완두콩 2개 정도"
+  },
+  usage: {
+    when: "세럼 다음 단계 / 아침·저녁",
+    howToUse: [
+      "세럼 사용 후 적당량을 덜어냅니다.",
+      "건조한 부위부터 얇게 펴 바릅니다.",
+      "유분이 많은 부위는 적은 양만 사용합니다."
+    ],
+    caution: [
+      "피부가 많이 번들거리면 밤 위주로 먼저 사용해보세요."
+    ]
+  }
+},
+{
+  id: 42,
+  name: "에스트라 테라크네365 하이드레이션 수딩 크림",
+  brand: "에스트라",
+  category: "cream",
+  hydrationLevel: 10,
+  texture: "gel",
+  concerns: ["hydration", "soothing", "sebum", "acne"],
+  ingredients: ["나이아신아마이드", "판테놀"],
+  skinTypes: ["지성", "수부지", "복합성"],
+  description: "피지와 트러블이 신경 쓰이는 피부를 위한 산뜻한 수분 진정 크림입니다.",
+  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/vendor_inventory/9276/4bed48ca6753310a5aeb166677ff815f4dd0356dc15ec568e7d8884dffa6.jpg",
+  link: "https://link.coupang.com/a/gtk9l8COtg",
+  sensitivitySafe: true,
+  beginnerFriendly: true,
+  seasons: ["spring", "summer"],
+  price: 0,
+  volume: "60ml",
+  shortReason: "유분감이 강하고 트러블이 신경 쓰이는 10단계 피부에 맞춘 가벼운 크림입니다.",
+  caution: [
+    "나이아신아마이드에 예민한 피부는 소량부터 테스트하세요."
+  ],
+  ratingTags: ["지성 추천", "피지 관리", "수딩 크림"],
+
+  usageType: "cream",
+  usageAmount: {
+    oily: "완두콩 1개보다 적게",
+    normal: "완두콩 1개 정도",
+    dry: "완두콩 1~2개 정도"
+  },
+  usage: {
+    when: "세럼 다음 단계 / 아침·저녁",
+    howToUse: [
+      "세럼이 흡수된 후 소량만 덜어냅니다.",
+      "피지와 번들거림이 적은 부위부터 얇게 바릅니다.",
+      "T존은 아주 적은 양만 사용합니다."
+    ],
+    caution: [
+      "처음에는 밤에 소량으로 시작해 피부 반응을 확인하세요."
+    ]
+  }
 }
-];
+]
