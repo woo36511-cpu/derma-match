@@ -409,11 +409,10 @@ const recommendedAmount = getRecommendedAmount(product, userContext);
 const cardInner = (
     <>
       <img
-        src={product.image}
-        alt={product.name}
-        className="w-full h-44 object-cover rounded-2xl mb-4"
-      />
-
+  src={product.image}
+  alt={product.name}
+  className="w-full h-36 sm:h-44 object-cover rounded-2xl mb-4"
+/>
       <div className="mb-2 flex items-center justify-between gap-2">
         <span className="inline-block text-[11px] tracking-wider text-gray-400 bg-gray-100 rounded-full px-2 py-1">
           {getCategoryLabel(categoryKey)}
@@ -627,6 +626,26 @@ const cardInner = (
   );
 }
 
+function RoutineProductScroller({ productsByCategory, userContext }) {
+  return (
+    <div className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 xl:grid-cols-4 sm:gap-6 sm:overflow-visible">
+      {Object.entries(productsByCategory)
+        .filter(([, item]) => !!item)
+        .map(([key, item]) => (
+          <div
+            key={key}
+            className="min-w-[82%] max-w-[82%] snap-start sm:min-w-0 sm:max-w-none"
+          >
+            <ProductCard
+              categoryKey={key}
+              product={item}
+              userContext={userContext}
+            />
+          </div>
+        ))}
+    </div>
+  );
+}
 export default function App() {
   const starterLevel = 5;
 
@@ -886,29 +905,23 @@ const resetFlow = () => {
         desc="선택한 피부타입에 맞춰 클렌저, 토너, 세럼, 크림을 하나씩 추천합니다."
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6">
-        {Object.entries(quickRoutine.products).map(([key, item]) => (
-          <ProductCard
-            key={key}
-            categoryKey={key}
-            product={item}
-            userContext={{
-              level: quickLevel,
-              isSensitive: false,
-              troubleScore: 0,
-              skinType:
-                quickLevel <= 4 ? "건성" : quickLevel <= 6 ? "수부지" : "지성",
-              season: "spring",
-              goal:
-                quickLevel <= 4
-                  ? "보습"
-                  : quickLevel <= 6
-                  ? "밸런스"
-                  : "유분 밸런스",
-            }}
-          />
-        ))}
-      </div>
+<RoutineProductScroller
+  productsByCategory={quickRoutine.products}
+  userContext={{
+    level: quickLevel,
+    isSensitive: false,
+    troubleScore: 0,
+    skinType:
+      quickLevel <= 4 ? "건성" : quickLevel <= 6 ? "수부지" : "지성",
+    season: "spring",
+    goal:
+      quickLevel <= 4
+        ? "보습"
+        : quickLevel <= 6
+        ? "밸런스"
+        : "유분 밸런스",
+  }}
+/>
     </div>
 
 <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -1056,16 +1069,10 @@ const resetFlow = () => {
         desc="설문 결과에 맞춰 클렌저, 토너, 세럼, 크림을 하나씩 추천합니다."
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6">
-        {Object.entries(surveyRoutine.products).map(([key, item]) => (
-          <ProductCard
-            key={key}
-            categoryKey={key}
-            product={item}
-            userContext={surveyUserContext}
-          />
-        ))}
-      </div>
+<RoutineProductScroller
+  productsByCategory={surveyRoutine.products}
+  userContext={surveyUserContext}
+/>
     </div>
 
     <div className="max-w-3xl mx-auto mb-8">
@@ -1163,16 +1170,10 @@ const resetFlow = () => {
               desc="처음 사용하는 사람도 시작하기 쉬운 기본 스타터 세트입니다."
             />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6">
-              {Object.entries(starterRoutine.products).map(([key, item]) => (
-<ProductCard
-  key={key}
-  categoryKey={key}
-  product={item}
+<RoutineProductScroller
+  productsByCategory={starterRoutine.products}
   userContext={userContext}
 />
-))}
-            </div>
 
             <div className="max-w-3xl mx-auto mt-8">
               <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 text-center">
@@ -1306,16 +1307,10 @@ const resetFlow = () => {
                 desc="2주 사용 후 반응을 반영한 다음 추천 루틴입니다."
               />
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6">
-{Object.entries(nextRoutine.products).map(([key, item]) => (
-<ProductCard
-  key={key}
-  categoryKey={key}
-  product={item}
+<RoutineProductScroller
+  productsByCategory={nextRoutine.products}
   userContext={userContext}
 />
-))}
-              </div>
             </div>
 
             <div className="max-w-3xl mx-auto">
