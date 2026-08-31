@@ -1792,5 +1792,245 @@ usage: {
       "처음에는 밤에 소량으로 시작해 피부 반응을 확인하세요."
     ]
   }
+},
+{
+  id: 43,
+  name: "라운드랩 독도 토너",
+  brand: "라운드랩",
+  category: "toner",
+  hydrationLevel: 3,
+  texture: "watery",
+  concerns: ["hydration", "soothing", "barrier"],
+  ingredients: ["히알루론산", "판테놀"],
+  skinTypes: ["건성", "민감성", "중성"],
+  description: "세안 후 당김이 있는 피부에 부담 없이 수분을 채워주는 기본 보습 토너입니다.",
+  image: "https://via.placeholder.com/300x220",
+  link: "#",
+  sensitivitySafe: true,
+  beginnerFriendly: true,
+  seasons: ["spring", "autumn", "winter"],
+  price: 0,
+  volume: "500ml",
+  shortReason: "건조하고 예민한 피부가 처음 쓰기 좋은 기본 수분 토너입니다.",
+  caution: [],
+  ratingTags: ["기본 토너", "수분", "민감피부"],
+
+  usageType: "toner",
+  usageAmount: {
+    oily: "손바닥에 소량",
+    normal: "500원 동전 크기 정도",
+    dry: "500원 동전 크기 정도를 1~2번"
+  },
+  usage: {
+    when: "세안 후 첫 단계 / 아침·저녁",
+    howToUse: [
+      "세안 후 물기를 가볍게 닦아냅니다.",
+      "손바닥에 적당량을 덜어 얼굴 전체에 눌러 흡수시킵니다.",
+      "건조함이 심한 부위는 한 번 더 얇게 덧발라줍니다."
+    ],
+    caution: [
+      "화장솜으로 강하게 닦아내기보다 손으로 눌러 흡수시키는 것이 좋아요."
+    ]
+  }
+},
+{
+  id: 44,
+  name: "토리든 다이브인 저분자 히알루론산 토너",
+  brand: "토리든",
+  category: "toner",
+  hydrationLevel: 2,
+  texture: "watery",
+  concerns: ["hydration", "soothing"],
+  ingredients: ["히알루론산", "판테놀"],
+  skinTypes: ["건성", "수부건성", "민감성"],
+  description: "속당김이 느껴지는 피부에 가볍게 수분을 여러 번 채우기 좋은 수분 토너입니다.",
+  image: "https://via.placeholder.com/300x220",
+  link: "#",
+  sensitivitySafe: true,
+  beginnerFriendly: true,
+  seasons: ["spring", "autumn", "winter"],
+  price: 0,
+  volume: "300ml",
+  shortReason: "속당김이 있는 건성 피부에 수분감을 먼저 채워주기 좋습니다.",
+  caution: [],
+  ratingTags: ["속당김", "히알루론산", "건성 추천"],
+
+  usageType: "toner",
+  usageAmount: {
+    oily: "손바닥에 소량",
+    normal: "500원 동전 크기 정도",
+    dry: "500원 동전 크기 정도를 1~2번"
+  },
+  usage: {
+    when: "세안 후 첫 단계 / 아침·저녁",
+    howToUse: [
+      "세안 직후 얼굴이 마르기 전에 사용합니다.",
+      "손바닥으로 얼굴 전체에 부드럽게 펴 바릅니다.",
+      "당김이 있는 볼 주변은 한 번 더 눌러 흡수시킵니다."
+    ],
+    caution: [
+      "많이 바른다고 오래 촉촉한 것은 아니니 얇게 나눠 바르세요."
+    ]
+  }
+},
+{
+  id: 45,
+  name: "에스트라 아토베리어365 하이드로 에센스",
+  brand: "에스트라",
+  category: "toner",
+  hydrationLevel: 2,
+  texture: "essence",
+  concerns: ["hydration", "barrier", "soothing"],
+  ingredients: ["세라마이드", "판테놀", "히알루론산"],
+  skinTypes: ["건성", "민감성"],
+  description: "건조함과 장벽 약화가 함께 신경 쓰이는 피부에 맞춘 촉촉한 에센스 토너입니다.",
+  image: "https://via.placeholder.com/300x220",
+  link: "#",
+  sensitivitySafe: true,
+  beginnerFriendly: true,
+  seasons: ["autumn", "winter"],
+  price: 0,
+  volume: "200ml",
+  shortReason: "1~3단계처럼 당김이 강한 피부에 수분과 장벽 보완을 같이 도와줍니다.",
+  caution: [],
+  ratingTags: ["장벽", "고보습", "건성"],
+
+  usageType: "toner",
+  usageAmount: {
+    oily: "손바닥에 소량",
+    normal: "500원 동전 크기 정도",
+    dry: "500원 동전 크기 정도를 1~2번"
+  },
+  usage: {
+    when: "세안 후 첫 단계 / 아침·저녁",
+    howToUse: [
+      "세안 후 손바닥에 적당량을 덜어냅니다.",
+      "얼굴 전체에 문지르지 말고 눌러 흡수시킵니다.",
+      "건조한 부위는 얇게 한 번 더 덧발라줍니다."
+    ],
+    caution: [
+      "지성 피부에는 다소 무겁게 느껴질 수 있어요."
+    ]
+  }
+},
+{
+  id: 46,
+  name: "토리든 다이브인 저분자 히알루론산 세럼",
+  brand: "토리든",
+  category: "serum",
+  hydrationLevel: 3,
+  texture: "serum",
+  concerns: ["hydration", "soothing"],
+  ingredients: ["히알루론산", "판테놀"],
+  skinTypes: ["건성", "수부건성", "민감성", "중성"],
+  description: "속당김이 있는 피부에 수분감을 보충해주는 기본 수분 세럼입니다.",
+  image: "https://via.placeholder.com/300x220",
+  link: "#",
+  sensitivitySafe: true,
+  beginnerFriendly: true,
+  seasons: ["spring", "autumn", "winter"],
+  price: 0,
+  volume: "50ml",
+  shortReason: "건조한 피부가 첫 세럼으로 쓰기 좋은 수분 중심 제품입니다.",
+  caution: [],
+  ratingTags: ["수분 세럼", "속당김", "초보자"],
+
+  usageType: "serum",
+  usageAmount: {
+    oily: "1~2방울 정도",
+    normal: "2~3방울 정도",
+    dry: "3~4방울 정도"
+  },
+  usage: {
+    when: "토너 다음 단계 / 아침·저녁",
+    howToUse: [
+      "토너가 흡수된 뒤 적당량을 덜어냅니다.",
+      "볼과 입가처럼 당김이 있는 부위부터 펴 바릅니다.",
+      "얼굴 전체를 손바닥으로 가볍게 눌러 흡수시킵니다."
+    ],
+    caution: [
+      "끈적임이 느껴지면 사용량을 줄여보세요."
+    ]
+  }
+},
+{
+  id: 47,
+  name: "웰라쥬 리얼 히알루로닉 블루 앰플",
+  brand: "웰라쥬",
+  category: "serum",
+  hydrationLevel: 2,
+  texture: "ampoule",
+  concerns: ["hydration", "soothing"],
+  ingredients: ["히알루론산"],
+  skinTypes: ["건성", "수부건성", "중성"],
+  description: "건조함이 강하고 수분감이 빨리 사라지는 피부에 맞춘 보습 앰플입니다.",
+  image: "https://via.placeholder.com/300x220",
+  link: "#",
+  sensitivitySafe: true,
+  beginnerFriendly: true,
+  seasons: ["autumn", "winter", "spring"],
+  price: 0,
+  volume: "100ml",
+  shortReason: "건성 피부의 속당김과 수분 부족을 보완하기 좋은 앰플입니다.",
+  caution: [],
+  ratingTags: ["앰플", "고수분", "건성"],
+
+  usageType: "serum",
+  usageAmount: {
+    oily: "1방울 정도",
+    normal: "2~3방울 정도",
+    dry: "3~4방울 정도"
+  },
+  usage: {
+    when: "토너 다음 단계 / 아침·저녁",
+    howToUse: [
+      "토너 사용 후 2~4방울 정도 덜어냅니다.",
+      "건조함이 큰 부위 위주로 먼저 발라줍니다.",
+      "얼굴 전체에 얇게 펴 바르고 충분히 흡수시킵니다."
+    ],
+    caution: [
+      "한 번에 많이 바르면 밀림이 생길 수 있어요."
+    ]
+  }
+},
+{
+  id: 48,
+  name: "에스트라 아토베리어365 세럼",
+  brand: "에스트라",
+  category: "serum",
+  hydrationLevel: 1,
+  texture: "serum",
+  concerns: ["hydration", "barrier", "soothing"],
+  ingredients: ["세라마이드", "판테놀"],
+  skinTypes: ["건성", "민감성"],
+  description: "피부 장벽이 약하고 쉽게 건조해지는 피부를 위한 장벽 보습 세럼입니다.",
+  image: "https://via.placeholder.com/300x220",
+  link: "#",
+  sensitivitySafe: true,
+  beginnerFriendly: true,
+  seasons: ["autumn", "winter"],
+  price: 0,
+  volume: "40ml",
+  shortReason: "1단계처럼 건조함과 장벽 약화가 강한 피부에 맞는 세럼입니다.",
+  caution: [],
+  ratingTags: ["장벽 세럼", "세라마이드", "극건성"],
+
+  usageType: "serum",
+  usageAmount: {
+    oily: "1방울 정도",
+    normal: "2방울 정도",
+    dry: "2~3방울 정도"
+  },
+  usage: {
+    when: "토너 다음 단계 / 아침·저녁",
+    howToUse: [
+      "토너가 흡수된 뒤 적당량을 덜어냅니다.",
+      "볼, 입가, 턱처럼 건조한 부위에 먼저 바릅니다.",
+      "피부가 예민할 때는 문지르지 말고 눌러 흡수시킵니다."
+    ],
+    caution: [
+      "지성 피부에는 무겁게 느껴질 수 있어 건성 루틴 위주로 추천합니다."
+    ]
+  }
 }
 ]
