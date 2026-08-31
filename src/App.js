@@ -1,6 +1,6 @@
 import { skinSurveyQuestions } from "./data/skinSurvey";
 import { analyzeSkinSurvey } from "./utils/analyzeSkinSurvey";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { products } from "./data/products";
 import { starterRoutineByLevel } from "./data/routines";
 import { ingredientsInfo } from "./data/ingredients";
@@ -652,10 +652,42 @@ export default function App() {
 const [step, setStep] = useState("start");
 const [answers, setAnswers] = useState({});
 const [quickLevel, setQuickLevel] = useState(5);
+const isBrowserBackRef = useRef(false);
 const [baseLevel, setBaseLevel] = useState(5);
 const [surveyAnswers, setSurveyAnswers] = useState({});
 
   const isComplete = feedbackQuestions.every((q) => answers[q.id] !== undefined);
+
+  useEffect(() => {
+  window.history.replaceState({ step: "start" }, "", window.location.href);
+
+  const handlePopState = (event) => {
+    isBrowserBackRef.current = true;
+
+    const previousStep = event.state?.step || "start";
+    setStep(previousStep);
+  };
+
+  window.addEventListener("popstate", handlePopState);
+
+  return () => {
+    window.removeEventListener("popstate", handlePopState);
+  };
+}, []);
+
+useEffect(() => {
+  if (isBrowserBackRef.current) {
+    isBrowserBackRef.current = false;
+    return;
+  }
+
+  const currentHistoryStep = window.history.state?.step;
+
+  if (currentHistoryStep !== step) {
+    window.history.pushState({ step }, "", window.location.href);
+  }
+}, [step]);
+
 
   const nextLevel = useMemo(() => {
   return calculateNextLevel(baseLevel, answers);
