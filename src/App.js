@@ -646,6 +646,222 @@ function RoutineProductScroller({ productsByCategory, userContext }) {
     </div>
   );
 }
+function getLevelDescription(level) {
+  if (level <= 3) {
+    return {
+      title: "건조감이 큰 편이에요",
+      desc: "수분을 채우는 것보다, 채운 수분이 날아가지 않게 잡아주는 보습·장벽 루틴이 중요해요.",
+    };
+  }
+
+  if (level <= 6) {
+    return {
+      title: "유수분 밸런스를 맞추는 구간이에요",
+      desc: "너무 무겁지도, 너무 가볍지도 않은 루틴으로 피부 반응을 보면서 조정하는 게 좋아요.",
+    };
+  }
+
+  return {
+    title: "번들거림과 답답함을 줄이는 구간이에요",
+    desc: "무거운 크림보다는 산뜻한 수분 제품과 피지 관리 중심의 루틴이 잘 맞을 수 있어요.",
+  };
+}
+
+function getCareDirections(result) {
+  const skinType = result?.skinType || "";
+  const mainIssue = result?.mainIssue || "none";
+
+  const directions = [];
+
+  if (skinType.includes("건성")) {
+    directions.push("세안 후 바로 수분 제품을 바르고, 마지막에는 보습 크림으로 수분이 날아가지 않게 잡아주세요.");
+  }
+
+  if (skinType.includes("수부지")) {
+    directions.push("기름을 없애는 것보다, 가벼운 수분을 채우고 무거운 크림 사용량을 줄이는 방향이 좋아요.");
+  }
+
+  if (skinType.includes("지성")) {
+    directions.push("산뜻한 토너, 가벼운 세럼, 젤크림처럼 답답함이 적은 제품 위주로 시작해보세요.");
+  }
+
+  if (skinType.includes("민감")) {
+    directions.push("따가움이나 붉어짐이 있다면 기능성 제품보다 진정·장벽 제품을 먼저 추천해요.");
+  }
+
+  if (mainIssue === "inflammatory_acne") {
+    directions.push("붉고 아픈 트러블이 반복되면 화장품만으로 해결하기 어려울 수 있어 피부과 상담도 고려해보세요.");
+  }
+
+  if (mainIssue === "closed_comedones") {
+    directions.push("좁쌀이 신경 쓰이면 무거운 크림, 오일 제품, 과한 레이어링을 먼저 줄여보는 게 좋아요.");
+  }
+
+  if (mainIssue === "blackhead_sebum") {
+    directions.push("블랙헤드와 피지는 강한 세안보다 꾸준한 피지 관리와 산뜻한 보습이 더 중요해요.");
+  }
+
+  if (mainIssue === "dehydration") {
+    directions.push("속당김이 있다면 세안 후 오래 방치하지 말고, 토너나 세럼을 빠르게 발라주세요.");
+  }
+
+  if (mainIssue === "sensitivity_redness") {
+    directions.push("붉어짐과 따가움이 있으면 BHA, 레티놀, 고함량 기능성은 잠시 줄이는 편이 안전해요.");
+  }
+
+  if (directions.length === 0) {
+    directions.push("현재는 큰 문제보다 기본 루틴을 안정적으로 유지하는 게 좋아 보여요.");
+  }
+
+  return directions.slice(0, 4);
+}
+
+function getResultCautions(result) {
+  const skinType = result?.skinType || "";
+  const mainIssue = result?.mainIssue || "none";
+
+  const cautions = [
+    "새 제품은 한 번에 여러 개 바꾸지 말고, 하나씩 추가하는 게 좋아요.",
+    "처음 3~5일은 양을 적게 사용하면서 따가움, 붉어짐, 트러블 변화를 확인하세요.",
+  ];
+
+  if (skinType.includes("민감")) {
+    cautions.push("민감함이 느껴질 때는 각질 제거 제품보다 보습·진정 제품을 우선하세요.");
+  }
+
+  if (mainIssue === "inflammatory_acne") {
+    cautions.push("통증, 고름, 흉터가 있으면 자가 관리보다 피부과 상담이 더 안전할 수 있어요.");
+  }
+
+  if (mainIssue === "blackhead_sebum" || mainIssue === "closed_comedones") {
+    cautions.push("피지가 고민이어도 세안을 너무 강하게 하면 오히려 건조함과 번들거림이 심해질 수 있어요.");
+  }
+
+  return cautions;
+}
+
+function SurveyResultOverview({ result }) {
+  if (!result) return null;
+
+  const levelInfo = getLevelDescription(result.hydrationLevel);
+  const directions = getCareDirections(result);
+  const cautions = getResultCautions(result);
+  const reasons = Array.isArray(result.reasons) ? result.reasons.slice(0, 6) : [];
+
+  return (
+    <section className="space-y-5">
+      <div className="rounded-[2rem] bg-slate-950 text-white p-6 sm:p-7 shadow-lg">
+        <p className="text-sm text-slate-300 mb-2">설문 분석 결과</p>
+        <h2 className="text-2xl sm:text-3xl font-black leading-tight">
+          지금 피부는{" "}
+          <span className="text-emerald-300">{result.skinType}</span> 쪽에 가까워요
+        </h2>
+        <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
+          답변을 기준으로 피부타입, 수분감 단계, 주요 고민을 함께 봤어요.
+          아래 루틴은 처음 시작해도 부담이 적은 방향으로 구성했어요.
+        </p>
+
+        <div className="grid grid-cols-3 gap-3 mt-6">
+          <div className="rounded-2xl bg-white/10 p-4">
+            <p className="text-xs text-slate-300">피부 상태</p>
+            <p className="mt-1 font-bold">{result.skinType}</p>
+          </div>
+
+          <div className="rounded-2xl bg-white/10 p-4">
+            <p className="text-xs text-slate-300">수분감 단계</p>
+            <p className="mt-1 font-bold">{result.hydrationLevel}단계</p>
+          </div>
+
+          <div className="rounded-2xl bg-white/10 p-4">
+            <p className="text-xs text-slate-300">주요 고민</p>
+            <p className="mt-1 font-bold">{result.issueLabel}</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-5">
+        <div className="rounded-[1.7rem] bg-white p-5 sm:p-6 border border-slate-100 shadow-sm">
+          <p className="text-xs font-bold text-emerald-600 mb-2">현재 단계 해석</p>
+          <h3 className="text-xl font-black text-slate-900">{levelInfo.title}</h3>
+          <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+            {levelInfo.desc}
+          </p>
+        </div>
+
+        <div className="rounded-[1.7rem] bg-white p-5 sm:p-6 border border-slate-100 shadow-sm">
+          <p className="text-xs font-bold text-emerald-600 mb-2">추천 사용 순서</p>
+          <h3 className="text-xl font-black text-slate-900">
+            클렌저 → 토너 → 세럼 → 크림
+          </h3>
+          <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+            처음에는 양을 적게 시작하고, 피부가 편안하면 2~3일 간격으로 사용량을 조금씩 맞춰보세요.
+          </p>
+        </div>
+      </div>
+
+      <div className="rounded-[1.7rem] bg-white p-5 sm:p-6 border border-slate-100 shadow-sm">
+        <p className="text-xs font-bold text-emerald-600 mb-2">왜 이렇게 판단했나요?</p>
+        <h3 className="text-xl font-black text-slate-900 mb-4">
+          선택한 답변에서 이런 신호가 보였어요
+        </h3>
+
+        {reasons.length > 0 ? (
+          <div className="flex flex-wrap gap-2">
+            {reasons.map((reason) => (
+              <span
+                key={reason}
+                className="rounded-full bg-slate-100 px-3 py-2 text-xs sm:text-sm font-semibold text-slate-700"
+              >
+                {reason}
+              </span>
+            ))}
+          </div>
+        ) : (
+          <p className="text-sm text-slate-500">
+            선택한 답변이 충분하지 않아 기본 루틴 중심으로 추천했어요.
+          </p>
+        )}
+      </div>
+
+      <div className="rounded-[1.7rem] bg-emerald-50 p-5 sm:p-6 border border-emerald-100">
+        <p className="text-xs font-bold text-emerald-700 mb-2">관리 방향</p>
+        <h3 className="text-xl font-black text-slate-900 mb-4">
+          앞으로는 이렇게 관리해보세요
+        </h3>
+
+        <div className="space-y-3">
+          {directions.map((item) => (
+            <div key={item} className="flex gap-3">
+              <span className="mt-1 h-2 w-2 rounded-full bg-emerald-500 flex-shrink-0" />
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                {item}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="rounded-[1.7rem] bg-amber-50 p-5 sm:p-6 border border-amber-100">
+        <p className="text-xs font-bold text-amber-700 mb-2">주의할 점</p>
+        <h3 className="text-xl font-black text-slate-900 mb-4">
+          처음 2주는 피부 반응을 꼭 확인하세요
+        </h3>
+
+        <div className="space-y-3">
+          {cautions.map((item) => (
+            <div key={item} className="flex gap-3">
+              <span className="mt-1 h-2 w-2 rounded-full bg-amber-500 flex-shrink-0" />
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                {item}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function App() {
   const starterLevel = 5;
 
@@ -756,14 +972,16 @@ const handleSurveyAnswer = (question, option) => {
     if (question.type === "multi") {
       const currentList = Array.isArray(currentAnswer) ? currentAnswer : [];
 
-      if (option.lifestyle === "none") {
-        return {
-          ...prev,
-          [question.id]: [option.label],
-        };
-      }
+      if (option.lifestyle === "none" || option.lifestyle === "unknown") {
+  return {
+    ...prev,
+    [question.id]: [option.label],
+  };
+}
 
-      const withoutNone = currentList.filter((item) => item !== "해당 없음");
+      const withoutNone = currentList.filter(
+  (item) => item !== "딱히 해당되는 게 없다" && item !== "잘 모르겠어요"
+);
       const alreadySelected = withoutNone.includes(option.label);
 
       return {
@@ -1039,61 +1257,8 @@ const resetFlow = () => {
   </section>
 )}
 {step === "surveyResult" && (
-  <section>
-    <SectionTitle
-      title="설문 기반 추천 결과"
-      desc="답변을 바탕으로 예상 피부 상태와 추천 루틴을 정리했어요."
-    />
-
-    <div className="max-w-3xl mx-auto mb-8">
-      <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-5 sm:p-6">
-        <p className="text-sm text-gray-500 mb-3">예상 피부 상태</p>
-
-        <div className="flex flex-wrap gap-2 mb-5">
-          <span className="px-3 py-1 rounded-full bg-black text-white text-sm">
-            {surveyResult.skinType}
-          </span>
-
-          <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-sm">
-            수분감 {surveyResult.hydrationLevel}단계
-          </span>
-
-          <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-sm">
-            {surveyResult.issueLabel}
-          </span>
-        </div>
-
-        <p className="text-sm text-gray-500 mb-2">판단에 반영된 답변</p>
-
-        <div className="flex flex-wrap gap-2">
-          {surveyResult.reasons.map((reason) => (
-            <span
-              key={reason}
-              className="px-3 py-1 rounded-full bg-gray-50 border border-gray-200 text-sm text-gray-700"
-            >
-              {reason}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-
-    <div className="max-w-3xl mx-auto mb-8">
-      <div className="bg-gray-50 rounded-3xl p-5 sm:p-6">
-        <p className="text-sm text-gray-500 mb-3">추천 방향</p>
-
-        <ul className="space-y-2">
-          {surveyRoutineReason.map((text) => (
-            <li
-              key={text}
-              className="text-sm sm:text-base text-gray-700 leading-relaxed break-keep"
-            >
-              · {text}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+  <section className="space-y-10">
+    <SurveyResultOverview result={surveyResult} />
 
     <div className="mb-10">
       <SectionTitle
@@ -1101,10 +1266,10 @@ const resetFlow = () => {
         desc="설문 결과에 맞춰 클렌저, 토너, 세럼, 크림을 하나씩 추천합니다."
       />
 
-<RoutineProductScroller
-  productsByCategory={surveyRoutine.products}
-  userContext={surveyUserContext}
-/>
+      <RoutineProductScroller
+        productsByCategory={surveyRoutine.products}
+        userContext={surveyUserContext}
+      />
     </div>
 
     <div className="max-w-3xl mx-auto mb-8">
@@ -1175,23 +1340,23 @@ const resetFlow = () => {
     <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
       <button
         onClick={() => {
-  setSurveyAnswers({});
-  setStep("survey");
-}}
+          setSurveyAnswers({});
+          setStep("survey");
+        }}
         className="px-6 py-3 rounded-2xl text-sm sm:text-base font-medium border border-gray-300 bg-white hover:bg-gray-100 transition"
       >
         설문 다시 하기
       </button>
 
       <PrimaryButton
-  onClick={() => {
-    setBaseLevel(surveyResult.hydrationLevel);
-    setAnswers({});
-    setStep("feedback");
-  }}
->
-  2주 사용 후 피드백 입력
-</PrimaryButton>
+        onClick={() => {
+          setBaseLevel(surveyResult.hydrationLevel);
+          setAnswers({});
+          setStep("feedback");
+        }}
+      >
+        2주 사용 후 피드백 입력
+      </PrimaryButton>
     </div>
   </section>
 )}
