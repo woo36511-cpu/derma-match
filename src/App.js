@@ -5,6 +5,8 @@ import { products } from "./data/products";
 import { starterRoutineByLevel } from "./data/routines";
 import { ingredientsInfo } from "./data/ingredients";
 
+const SAVED_SURVEY_KEY = "dearsince_saved_survey_result";
+
 // ===== 단계별 설명용 정보 =====
 const routineMap = {
   1: {
@@ -380,7 +382,20 @@ function PrimaryButton({ children, onClick, disabled = false }) {
     </button>
   );
 }
+function formatSavedAt(savedAt) {
+  if (!savedAt) return "최근 저장됨";
 
+  try {
+    return new Intl.DateTimeFormat("ko-KR", {
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(new Date(savedAt));
+  } catch {
+    return "최근 저장됨";
+  }
+}
 function SectionTitle({ title, desc }) {
   return (
     <div className="text-center mb-8 sm:mb-10">
@@ -872,6 +887,7 @@ const isBrowserBackRef = useRef(false);
 const [baseLevel, setBaseLevel] = useState(5);
 const [surveyAnswers, setSurveyAnswers] = useState({});
 const [surveyIndex, setSurveyIndex] = useState(0);
+const [savedSurvey, setSavedSurvey] = useState(null);
 
   const isComplete = feedbackQuestions.every((q) => answers[q.id] !== undefined);
 
@@ -904,6 +920,17 @@ useEffect(() => {
     window.history.pushState({ step }, "", window.location.href);
   }
 }, [step]);
+useEffect(() => {
+  try {
+    const saved = localStorage.getItem(SAVED_SURVEY_KEY);
+
+    if (saved) {
+      setSavedSurvey(JSON.parse(saved));
+    }
+  } catch (error) {
+    console.error("저장된 설문 결과를 불러오지 못했어요.", error);
+  }
+}, []);
 
 
   const nextLevel = useMemo(() => {
@@ -922,6 +949,13 @@ const surveyResult = useMemo(() => {
 }, [surveyAnswers]);
 
 const surveyRoutine = buildDynamicRoutine(surveyResult.hydrationLevel);
+const savedSurveyResult = useMemo(() => {
+  if (!savedSurvey?.surveyAnswers) return null;
+
+  return analyzeSkinSurvey(savedSurvey.surveyAnswers, skinSurveyQuestions);
+}, [savedSurvey]);
+
+const hasSavedSurvey = !!savedSurveyResult;
 
 const currentSurveyQuestion = skinSurveyQuestions[surveyIndex];
 const currentSurveyAnswer = currentSurveyQuestion
@@ -1003,6 +1037,37 @@ const handleSurveyAnswer = (question, option) => {
       [question.id]: option.label,
     };
   });
+};
+
+const saveSurveyResult = () => {
+  const data = {
+    surveyAnswers,
+    savedAt: new Date().toISOString(),
+  };
+
+  try {
+    localStorage.setItem(SAVED_SURVEY_KEY, JSON.stringify(data));
+    setSavedSurvey(data);
+  } catch (error) {
+    console.error("설문 결과를 저장하지 못했어요.", error);
+  }
+};
+
+const openSavedSurveyResult = () => {
+  if (!savedSurvey?.surveyAnswers) return;
+
+  setSurveyAnswers(savedSurvey.surveyAnswers);
+  setSurveyIndex(0);
+  setStep("surveyResult");
+};
+
+const startSavedFeedback = () => {
+  if (!savedSurvey?.surveyAnswers || !savedSurveyResult) return;
+
+  setSurveyAnswers(savedSurvey.surveyAnswers);
+  setBaseLevel(savedSurveyResult.hydrationLevel);
+  setAnswers({});
+  setStep("feedback");
 };
 const resetFlow = () => {
   setAnswers({});
@@ -1104,6 +1169,38 @@ const handleNextSurvey = () => {
       </span>
     </button>
   </div>
+  {hasSavedSurvey && (
+  <div className="mt-6 max-w-4xl w-full bg-white border border-gray-100 rounded-3xl shadow-sm p-5 sm:p-6 text-left">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <p className="text-sm text-gray-400 mb-2">
+          최근 저장된 설문 결과 · {formatSavedAt(savedSurvey?.savedAt)}
+        </p>
+
+        <h3 className="text-xl font-bold mb-2 break-keep">
+          {savedSurveyResult.skinType} · 수분감 {savedSurveyResult.hydrationLevel}단계
+        </h3>
+
+        <p className="text-sm text-gray-600 leading-relaxed break-keep">
+          이전에 추천받은 루틴을 다시 확인하거나, 2주 사용 후 피부 반응을 체크할 수 있어요.
+        </p>
+      </div>
+
+      <div className="flex flex-col sm:flex-row gap-2 sm:flex-shrink-0">
+        <button
+          onClick={openSavedSurveyResult}
+          className="px-5 py-3 rounded-2xl text-sm font-medium border border-gray-300 bg-white hover:bg-gray-100 transition"
+        >
+          최근 결과 다시 보기
+        </button>
+
+        <PrimaryButton onClick={startSavedFeedback}>
+          2주 후 체크하기
+        </PrimaryButton>
+      </div>
+    </div>
+  </div>
+)}
 </section>
         )}
 {step === "quickRecommend" && (
@@ -1509,6 +1606,8 @@ const handleNextSurvey = () => {
             </div>
           </section>
         )}
+        
+        
 
         {step === "result" && nextRoutine && (
           <section>
