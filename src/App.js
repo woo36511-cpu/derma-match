@@ -794,7 +794,7 @@ const resetFlow = () => {
           <div>
             <h1 className="text-lg sm:text-xl font-bold break-keep">DearSince</h1>
             <p className="text-xs sm:text-sm text-gray-500 break-keep">
-              파부를 몰라도 괜찮게
+              당신을 위한 맞춤 루틴
             </p>
           </div>
           <button
