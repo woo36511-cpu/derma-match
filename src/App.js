@@ -871,6 +871,7 @@ const [quickLevel, setQuickLevel] = useState(5);
 const isBrowserBackRef = useRef(false);
 const [baseLevel, setBaseLevel] = useState(5);
 const [surveyAnswers, setSurveyAnswers] = useState({});
+const [surveyIndex, setSurveyIndex] = useState(0);
 
   const isComplete = feedbackQuestions.every((q) => answers[q.id] !== undefined);
 
@@ -921,17 +922,22 @@ const surveyResult = useMemo(() => {
 }, [surveyAnswers]);
 
 const surveyRoutine = buildDynamicRoutine(surveyResult.hydrationLevel);
-const surveyRoutineReason = buildRoutineReason(surveyResult.hydrationLevel);
 
-const isSurveyComplete = skinSurveyQuestions.every((question) => {
-  const answer = surveyAnswers[question.id];
+const currentSurveyQuestion = skinSurveyQuestions[surveyIndex];
+const currentSurveyAnswer = currentSurveyQuestion
+  ? surveyAnswers[currentSurveyQuestion.id]
+  : null;
 
-  if (question.type === "multi") {
-    return Array.isArray(answer) && answer.length > 0;
-  }
+const isLastSurveyQuestion = surveyIndex === skinSurveyQuestions.length - 1;
 
-  return !!answer;
-});
+const isCurrentSurveyAnswered = currentSurveyQuestion
+  ? currentSurveyQuestion.type === "multi"
+    ? Array.isArray(currentSurveyAnswer) && currentSurveyAnswer.length > 0
+    : !!currentSurveyAnswer
+  : false;
+
+const surveyProgress =
+  ((surveyIndex + 1) / skinSurveyQuestions.length) * 100;
 
 const surveyUserContext = {
   level: surveyResult.hydrationLevel,
@@ -1002,7 +1008,29 @@ const resetFlow = () => {
   setAnswers({});
   setSurveyAnswers({});
   setBaseLevel(5);
+  setSurveyIndex(0);
   setStep("start");
+};
+const handlePrevSurvey = () => {
+  if (surveyIndex === 0) {
+    setStep("start");
+    return;
+  }
+
+  setSurveyIndex((prev) => Math.max(prev - 1, 0));
+};
+
+const handleNextSurvey = () => {
+  if (!isCurrentSurveyAnswered) return;
+
+  if (isLastSurveyQuestion) {
+    setStep("surveyResult");
+    return;
+  }
+
+  setSurveyIndex((prev) =>
+    Math.min(prev + 1, skinSurveyQuestions.length - 1)
+  );
 };
 
   return (
@@ -1194,65 +1222,90 @@ const resetFlow = () => {
 </div>
   </section>
 )}
-{step === "survey" && (
+{step === "survey" && currentSurveyQuestion && (
   <section>
     <SectionTitle
       title="피부 설문 시작"
-      desc="피부타입을 몰라도 괜찮아요. 느껴지는 상태만 선택하면 현재 피부에 맞는 루틴을 찾아드릴게요."
+      desc="한 번에 하나씩만 답하면 돼요. 느껴지는 상태에 가장 가까운 답변을 골라주세요."
     />
 
-    <div className="max-w-3xl mx-auto space-y-5">
-      {skinSurveyQuestions.map((question) => (
-        <div
-          key={question.id}
-          className="bg-white border border-gray-100 rounded-3xl shadow-sm p-5 sm:p-6"
-        >
-          <p className="text-base sm:text-lg font-semibold leading-relaxed break-keep mb-4">
-            {question.question}
+    <div className="max-w-3xl mx-auto">
+      <div className="mb-5">
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-sm font-semibold text-gray-500">
+            {surveyIndex + 1} / {skinSurveyQuestions.length}
           </p>
 
-          <div className="flex flex-wrap gap-2">
-            {question.options.map((option) => {
-              const answer = surveyAnswers[question.id];
-
-              const active =
-                question.type === "multi"
-                  ? Array.isArray(answer) && answer.includes(option.label)
-                  : answer === option.label;
-
-              return (
-                <button
-                  key={option.label}
-                  onClick={() => handleSurveyAnswer(question, option)}
-                  className={`px-4 py-2 rounded-2xl text-sm border transition active:scale-95 ${
-                    active
-                      ? "bg-black text-white border-black shadow-sm"
-                      : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
-                  }`}
-                >
-                  {option.label}
-                </button>
-              );
-            })}
-          </div>
+          <p className="text-sm text-gray-400">
+            {Math.round(surveyProgress)}%
+          </p>
         </div>
-      ))}
-    </div>
 
-    <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-      <button
-        onClick={() => setStep("start")}
-        className="px-6 py-3 rounded-2xl text-sm sm:text-base font-medium border border-gray-300 bg-white hover:bg-gray-100 transition"
-      >
-        시작 화면으로
-      </button>
+        <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+          <div
+            className="h-full bg-black rounded-full transition-all duration-300"
+            style={{ width: `${surveyProgress}%` }}
+          />
+        </div>
+      </div>
 
-      <PrimaryButton
-        onClick={() => setStep("surveyResult")}
-        disabled={!isSurveyComplete}
-      >
-        설문 결과 보기
-      </PrimaryButton>
+      <div className="bg-white border border-gray-100 rounded-[2rem] shadow-sm p-6 sm:p-8">
+        <p className="text-sm text-gray-400 mb-3">
+          질문 {surveyIndex + 1}
+        </p>
+
+        <h2 className="text-2xl sm:text-3xl font-black leading-relaxed break-keep mb-6">
+          {currentSurveyQuestion.question}
+        </h2>
+
+        <div className="space-y-3">
+          {currentSurveyQuestion.options.map((option) => {
+            const active =
+              currentSurveyQuestion.type === "multi"
+                ? Array.isArray(currentSurveyAnswer) &&
+                  currentSurveyAnswer.includes(option.label)
+                : currentSurveyAnswer === option.label;
+
+            return (
+              <button
+                key={option.label}
+                onClick={() =>
+                  handleSurveyAnswer(currentSurveyQuestion, option)
+                }
+                className={`w-full text-left px-5 py-4 rounded-2xl text-sm sm:text-base border transition active:scale-[0.98] break-keep ${
+                  active
+                    ? "bg-black text-white border-black shadow-sm"
+                    : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"
+                }`}
+              >
+                {option.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {currentSurveyQuestion.type === "multi" && (
+          <p className="mt-4 text-xs sm:text-sm text-gray-400 leading-relaxed break-keep">
+            여러 개 선택할 수 있어요. 다 골랐으면 다음을 눌러주세요.
+          </p>
+        )}
+      </div>
+
+      <div className="mt-8 flex gap-3 justify-between">
+        <button
+          onClick={handlePrevSurvey}
+          className="px-6 py-3 rounded-2xl text-sm sm:text-base font-medium border border-gray-300 bg-white hover:bg-gray-100 transition"
+        >
+          {surveyIndex === 0 ? "시작 화면으로" : "이전"}
+        </button>
+
+        <PrimaryButton
+          onClick={handleNextSurvey}
+          disabled={!isCurrentSurveyAnswered}
+        >
+          {isLastSurveyQuestion ? "결과 보기" : "다음"}
+        </PrimaryButton>
+      </div>
     </div>
   </section>
 )}
@@ -1338,11 +1391,12 @@ const resetFlow = () => {
     </div>
 
     <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-      <button
-        onClick={() => {
-          setSurveyAnswers({});
-          setStep("survey");
-        }}
+<button
+  onClick={() => {
+    setSurveyAnswers({});
+    setSurveyIndex(0);
+    setStep("survey");
+  }}
         className="px-6 py-3 rounded-2xl text-sm sm:text-base font-medium border border-gray-300 bg-white hover:bg-gray-100 transition"
       >
         설문 다시 하기
