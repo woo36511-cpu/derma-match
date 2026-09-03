@@ -26,12 +26,20 @@ export function analyzeSkinSurvey(answers, questions) {
           (option) => option.label === selectedLabel
         );
 
-        if (!selectedOption) return;
+if (
+  selectedOption.lifestyle &&
+  selectedOption.lifestyle !== "none" &&
+  selectedOption.lifestyle !== "unknown"
+) {
+  lifestyleTags.push(selectedOption.lifestyle);
+  reasons.push(selectedOption.label);
+}
 
-        if (selectedOption.lifestyle && selectedOption.lifestyle !== "none") {
-          lifestyleTags.push(selectedOption.lifestyle);
-          reasons.push(selectedOption.label);
-        }
+if (selectedOption.scores) {
+  Object.entries(selectedOption.scores).forEach(([key, value]) => {
+    totalScores[key] = (totalScores[key] || 0) + value;
+  });
+}
       });
 
       return;
@@ -77,45 +85,68 @@ export function analyzeSkinSurvey(answers, questions) {
 }
 
 function getSkinType(scores) {
-  const { dryness, oiliness, dehydrated, sensitivity } = scores;
+  const dryness = scores.dryness || 0;
+  const oiliness = scores.oiliness || 0;
+  const dehydrated = scores.dehydrated || 0;
+  const sensitivity = scores.sensitivity || 0;
 
-  if (sensitivity >= 2) {
+  // 수부지: 건조감 + 유분감 + 속당김 느낌이 같이 높을 때
+  if (dehydrated >= 5 && dryness >= 3 && oiliness >= 4) {
+    return sensitivity >= 5 ? "민감 수부지" : "수부지";
+  }
+
+  // 건성: 건조 점수가 유분 점수보다 확실히 높을 때
+  if (dryness - oiliness >= 5) {
+    return sensitivity >= 5 ? "민감 건성" : "건성";
+  }
+
+  // 지성: 유분 점수가 건조 점수보다 확실히 높을 때
+  if (oiliness - dryness >= 5) {
+    return sensitivity >= 5 ? "민감 지성" : "지성";
+  }
+
+  // 둘 다 어느 정도 있으면 복합성
+  if (dryness >= 3 && oiliness >= 3) {
+    return sensitivity >= 5 ? "민감 복합성" : "복합성";
+  }
+
+  // 민감 점수만 높은 경우
+  if (sensitivity >= 5) {
     return "민감성";
-  }
-
-  if (dehydrated >= 2 && oiliness >= 1) {
-    return "수부지";
-  }
-
-  if (dryness >= 3 && oiliness <= 1) {
-    return "건성";
-  }
-
-  if (oiliness >= 3 && dryness <= 1) {
-    return "지성";
-  }
-
-  if (oiliness >= 1 && dryness >= 1) {
-    return "복합성";
   }
 
   return "중성";
 }
 
+function clamp(num, min, max) {
+  return Math.min(max, Math.max(min, num));
+}
+
 function getHydrationLevel(scores) {
-  const { dryness, oiliness, dehydrated } = scores;
+  const dryness = scores.dryness || 0;
+  const oiliness = scores.oiliness || 0;
+  const dehydrated = scores.dehydrated || 0;
 
-  // 낮을수록 촉촉한 루틴, 높을수록 가벼운 루틴
-  let level = 5;
+  // 수부지는 너무 건성/지성으로 튀지 않게 5~7단계 안에서 잡음
+  if (dehydrated >= 5 && dryness >= 3 && oiliness >= 4) {
+    const level = 6 + (oiliness - dryness) / 10;
+    return clamp(Math.round(level), 5, 7);
+  }
 
-  level -= dryness;
-  level += oiliness;
-  level += Math.floor(dehydrated / 2);
+  // 점수를 그대로 더하지 않고 완만하게 반영
+  let level = 5 + (oiliness - dryness) / 5;
 
-  if (level < 1) return 1;
-  if (level > 10) return 10;
+  // 확실한 건성/지성만 살짝 보정
+  if (dryness >= 9 && oiliness <= 2) {
+    level -= 0.5;
+  }
 
-  return level;
+  if (oiliness >= 9 && dryness <= 2) {
+    level += 0.5;
+  }
+
+  // 설문 결과에서는 1단계/10단계가 너무 쉽게 나오지 않게 제한
+  return clamp(Math.round(level), 2, 9);
 }
 
 function getIssueLabel(issue) {
@@ -209,5 +240,8 @@ function getLifestyleAdvice(tags) {
     advice.push("운동이나 땀을 흘린 뒤에는 가능한 늦지 않게 세안하는 것이 좋습니다.");
   }
 
+  if (tags.includes("low_water")) {
+  advice.push("물을 너무 적게 마신다면 피부 컨디션과 속건조 느낌에 영향을 줄 수 있어 섭취량을 함께 점검해보세요.");
+}
   return advice;
 }
