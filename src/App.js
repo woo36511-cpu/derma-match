@@ -1089,6 +1089,7 @@ const handleNextSurvey = () => {
   if (!isCurrentSurveyAnswered) return;
 
   if (isLastSurveyQuestion) {
+    saveSurveyResult();
     setStep("surveyResult");
     return;
   }
