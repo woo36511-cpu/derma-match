@@ -58,48 +58,108 @@ const feedbackQuestions = [
     options: [
       { label: "여전히 많이 당김", value: -2 },
       { label: "조금 당김", value: -1 },
-      { label: "괜찮음", value: 0 }
-    ]
+      { label: "거의 당기지 않음", value: 0 },
+      { label: "오히려 촉촉함이 오래 감", value: 0 },
+    ],
   },
   {
     id: "oil",
     q: "시간이 지나면서 번들거림은 어떤가요?",
     options: [
-      { label: "거의 없음", value: -1 },
+      { label: "거의 없음", value: 0 },
       { label: "적당함", value: 0 },
-      { label: "많이 올라옴", value: 2 }
-    ]
+      { label: "조금 많이 올라옴", value: 1 },
+      { label: "많이 번들거림", value: 2 },
+    ],
   },
   {
     id: "feel",
     q: "제품을 바른 직후 느낌은 어땠나요?",
     options: [
-      { label: "건조함", value: -2 },
+      { label: "건조하거나 부족함", value: -2 },
       { label: "편안함", value: 0 },
-      { label: "답답함", value: 2 }
-    ]
+      { label: "조금 무거움", value: 1 },
+      { label: "답답하고 부담스러움", value: 2 },
+    ],
   },
   {
     id: "trouble",
-    q: "사용 후 트러블 변화는 어땠나요?",
+    q: "사용 후 붉은 트러블 변화는 어땠나요?",
     options: [
       { label: "없음", value: 0 },
       { label: "조금 생김", value: 1 },
-      { label: "많이 생김", value: 2 }
-    ]
-  }
+      { label: "많이 생김", value: 2 },
+      { label: "원래 있던 트러블이 더 심해짐", value: 2 },
+    ],
+  },
+  {
+    id: "irritation",
+    q: "따가움이나 붉어짐은 있었나요?",
+    options: [
+      { label: "거의 없음", value: 0 },
+      { label: "가끔 따가움", value: 0 },
+      { label: "자주 따갑거나 붉어짐", value: 0 },
+      { label: "바르면 바로 불편함", value: 0 },
+    ],
+  },
+  {
+    id: "clogged",
+    q: "좁쌀이나 오돌토돌한 느낌은 어땠나요?",
+    options: [
+      { label: "거의 없음", value: 0 },
+      { label: "조금 늘어난 느낌", value: 1 },
+      { label: "확실히 늘어남", value: 2 },
+      { label: "크림이나 오일 바르면 더 심한 느낌", value: 2 },
+    ],
+  },
+  {
+    id: "satisfaction",
+    q: "이 루틴을 계속 쓰고 싶은 느낌인가요?",
+    options: [
+      { label: "계속 써보고 싶음", value: 0 },
+      { label: "나쁘진 않은데 애매함", value: 0 },
+      { label: "제품이 나랑 안 맞는 느낌", value: 0 },
+      { label: "잘 모르겠음", value: 0 },
+    ],
+  },
 ];
 
 function clamp(num, min, max) {
   return Math.min(Math.max(num, min), max);
 }
 
+function getFeedbackValue(answers, id) {
+  const answer = answers[id];
+
+  if (typeof answer === "number") {
+    return answer;
+  }
+
+  if (answer && typeof answer.value === "number") {
+    return answer.value;
+  }
+
+  return 0;
+}
+
 function calculateNextLevel(currentLevel, answers) {
-  let next = currentLevel;
-  Object.values(answers).forEach((value) => {
-    next += value;
+  let adjustment = 0;
+
+  Object.values(answers).forEach((answer) => {
+    if (typeof answer === "number") {
+      adjustment += answer;
+      return;
+    }
+
+    if (answer && typeof answer.value === "number") {
+      adjustment += answer.value;
+    }
   });
-  return clamp(next, 1, 10);
+
+  // 피드백 한 번으로 단계가 너무 크게 튀지 않게 제한
+  adjustment = clamp(adjustment, -3, 3);
+
+  return clamp(currentLevel + adjustment, 1, 10);
 }
 
 function getRecommendedIngredients(level, troubleScore) {
@@ -283,6 +343,56 @@ function getLevelChangeMessage(starterLevel, nextLevel) {
   }
 
   return "현재 반응 기준으로는 지금 단계의 밸런스가 가장 무난해 보여요.";
+}
+function getFeedbackAdvice(answers) {
+  const dry = getFeedbackValue(answers, "dry");
+  const oil = getFeedbackValue(answers, "oil");
+  const feel = getFeedbackValue(answers, "feel");
+  const trouble = getFeedbackValue(answers, "trouble");
+  const clogged = getFeedbackValue(answers, "clogged");
+
+  const irritationLabel = answers.irritation?.label || "";
+  const satisfactionLabel = answers.satisfaction?.label || "";
+
+  const advice = [];
+
+  if (dry <= -1) {
+    advice.push("아직 당김이 남아 있어 다음 루틴은 조금 더 촉촉한 보습 쪽으로 조정하는 게 좋아요.");
+  }
+
+  if (oil >= 1) {
+    advice.push("번들거림이 느껴졌다면 무거운 제품보다 산뜻한 토너, 세럼, 젤크림 위주가 더 잘 맞을 수 있어요.");
+  }
+
+  if (feel >= 1) {
+    advice.push("바른 직후 답답했다면 크림 양을 줄이거나 더 가벼운 제형으로 바꿔보는 게 좋아요.");
+  }
+
+  if (trouble >= 1) {
+    advice.push("붉은 트러블이 생겼다면 새 제품을 한 번에 여러 개 쓰기보다 루틴을 단순하게 줄여서 확인해보세요.");
+  }
+
+  if (clogged >= 1) {
+    advice.push("좁쌀이나 오돌토돌함이 늘었다면 오일, 무거운 크림, 과한 레이어링을 먼저 의심해볼 수 있어요.");
+  }
+
+  if (
+    irritationLabel.includes("따가움") ||
+    irritationLabel.includes("붉어짐") ||
+    irritationLabel.includes("불편함")
+  ) {
+    advice.push("따가움이나 붉어짐이 있었다면 BHA, 레티놀, 고함량 기능성 제품은 잠시 줄이고 진정·장벽 제품 위주로 가는 게 안전해요.");
+  }
+
+  if (satisfactionLabel.includes("안 맞는")) {
+    advice.push("제품이 전체적으로 안 맞는 느낌이라면 같은 단계 안에서도 제형이나 성분을 바꿔보는 방향이 좋아요.");
+  }
+
+  if (advice.length === 0) {
+    advice.push("전체적으로 큰 불편감이 없다면 현재 단계의 루틴을 조금 더 유지해도 괜찮아 보여요.");
+  }
+
+  return advice.slice(0, 5);
 }
 function buildUserTags(context) {
   const tags = [];
@@ -877,6 +987,31 @@ function SurveyResultOverview({ result }) {
   );
 }
 
+function FeedbackAdviceCard({ advice }) {
+  if (!advice || advice.length === 0) return null;
+
+  return (
+    <div className="max-w-3xl mx-auto mb-8">
+      <div className="bg-emerald-50 rounded-3xl p-5 sm:p-6 border border-emerald-100">
+        <p className="text-sm font-semibold text-emerald-800 mb-3">
+          피드백 분석
+        </p>
+
+        <ul className="space-y-2">
+          {advice.map((item) => (
+            <li
+              key={item}
+              className="text-sm sm:text-base text-emerald-900 leading-relaxed break-keep"
+            >
+              · {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const starterLevel = 5;
 
@@ -983,20 +1118,28 @@ const surveyUserContext = {
   goal: surveyResult.issueLabel,
 };
 
-  const ingredients = getRecommendedIngredients(nextLevel, answers.trouble ?? 0);
+  const ingredients = getRecommendedIngredients(
+  nextLevel,
+  getFeedbackValue(answers, "trouble")
+);
   const levelChangeMessage = getLevelChangeMessage(baseLevel, nextLevel);
+  const feedbackAdvice = getFeedbackAdvice(answers);
 const userContext = {
   level: nextLevel,
-  isSensitive: (answers.dry ?? 0) <= -1 || (answers.trouble ?? 0) >= 1,
-  troubleScore: answers.trouble ?? 0,
+  isSensitive:
+    getFeedbackValue(answers, "dry") <= -1 ||
+    getFeedbackValue(answers, "trouble") >= 1 ||
+    (answers.irritation?.label || "").includes("따가움") ||
+    (answers.irritation?.label || "").includes("붉어짐"),
+  troubleScore: getFeedbackValue(answers, "trouble"),
   skinType: nextLevel <= 4 ? "건성" : nextLevel <= 6 ? "수부지" : "지성",
   season: "spring",
-  goal:
-    (answers.trouble ?? 0) >= 1
-      ? "트러블 관리"
-      : nextLevel <= 4
-      ? "보습"
-      : "유분 밸런스"
+goal:
+  getFeedbackValue(answers, "trouble") >= 1
+    ? "트러블 관리"
+    : nextLevel <= 4
+    ? "보습"
+    : "유분 밸런스"
 };
 const routineReason = buildRoutineReason(nextLevel);
   const handleAnswer = (id, value) => {
@@ -1569,12 +1712,12 @@ const handleNextSurvey = () => {
 
                   <div className="flex flex-wrap gap-2">
                     {q.options.map((option) => {
-                      const active = answers[q.id] === option.value;
+                      const active = answers[q.id]?.label === option.label;
 
                       return (
                         <button
                           key={option.label}
-                          onClick={() => handleAnswer(q.id, option.value)}
+                          onClick={() => handleAnswer(q.id, option)}
                           className={`px-4 py-2 rounded-2xl text-sm border transition active:scale-95 ${
                             active
                               ? "bg-black text-white border-black shadow-sm"
@@ -1636,6 +1779,9 @@ const handleNextSurvey = () => {
                 </p>
               </div>
             </div>
+
+<FeedbackAdviceCard advice={feedbackAdvice} />
+            
 <div className="max-w-3xl mx-auto mb-8">
   <div className="bg-gray-50 rounded-3xl p-5 sm:p-6">
     <p className="text-sm text-gray-500 mb-3">추천 루틴 설명</p>
