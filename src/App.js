@@ -123,6 +123,128 @@ const feedbackQuestions = [
     ],
   },
 ];
+const skinConcernOptions = [
+  {
+    id: "inflammatory_acne",
+    label: "염증성 여드름",
+    desc: "붉고 아프거나 고름이 있는 트러블이 반복돼요.",
+  },
+  {
+    id: "closed_comedones",
+    label: "좁쌀 / 오돌토돌함",
+    desc: "작은 좁쌀이나 피부결이 오돌토돌하게 느껴져요.",
+  },
+  {
+    id: "blackhead_sebum",
+    label: "블랙헤드 / 피지",
+    desc: "코나 T존의 블랙헤드, 피지, 번들거림이 신경 쓰여요.",
+  },
+  {
+    id: "dehydration",
+    label: "속당김 / 건조함",
+    desc: "겉은 괜찮거나 번들거리는데 피부 속이 당기는 느낌이 있어요.",
+  },
+  {
+    id: "sensitivity_redness",
+    label: "민감 / 붉어짐",
+    desc: "화장품을 바르면 따갑거나 쉽게 붉어져요.",
+  },
+  {
+    id: "oiliness",
+    label: "번들거림",
+    desc: "시간이 지나면 얼굴에 유분이 많이 올라와요.",
+  },
+  {
+    id: "none",
+    label: "특별한 고민 없음",
+    desc: "현재 큰 피부 문제 없이 기본 루틴을 찾고 싶어요.",
+  },
+];
+
+const inflammatoryAcneQuestions = [
+  {
+    id: "area",
+    q: "염증성 여드름이 주로 어디에 생기나요?",
+    options: [
+      { label: "이마", value: "forehead" },
+      { label: "볼", value: "cheek" },
+      { label: "코 주변", value: "nose" },
+      { label: "턱 / 턱선", value: "chin_jaw" },
+      { label: "여러 부위", value: "multiple" },
+    ],
+  },
+  {
+    id: "form",
+    q: "트러블은 어떤 형태에 가장 가까운가요?",
+    options: [
+      { label: "붉게 올라오기만 함", value: "red" },
+      { label: "노란 고름이 보임", value: "pustule" },
+      { label: "속에서 딱딱하고 크게 만져짐", value: "nodule" },
+      { label: "여러 개가 몰려서 올라옴", value: "cluster" },
+    ],
+  },
+  {
+    id: "pain",
+    q: "트러블 부위에 통증이 있나요?",
+    showIf: (answers) =>
+      ["pustule", "nodule", "cluster"].includes(
+        answers.form?.value
+      ),
+    options: [
+      { label: "거의 아프지 않음", value: "none" },
+      { label: "누르면 조금 아픔", value: "mild" },
+      { label: "가만히 있어도 아픔", value: "strong" },
+    ],
+  },
+  {
+    id: "recurring",
+    q: "이런 트러블이 얼마나 자주 반복되나요?",
+    options: [
+      { label: "가끔 한두 개 생김", value: "sometimes" },
+      { label: "같은 부위에 반복됨", value: "recurring" },
+      { label: "거의 계속 새로운 트러블이 생김", value: "continuous" },
+    ],
+  },
+  {
+    id: "recentProduct",
+    q: "최근 2~4주 안에 새로 사용한 화장품이 있나요?",
+    options: [
+      { label: "없음", value: "none" },
+      { label: "클렌저를 바꿈", value: "cleanser" },
+      { label: "토너 / 세럼을 바꿈", value: "serum" },
+      { label: "크림을 바꿈", value: "cream" },
+      { label: "여러 제품을 한꺼번에 바꿈", value: "multiple" },
+    ],
+  },
+  {
+    id: "shaving",
+    q: "트러블이 나는 턱이나 턱선을 면도하나요?",
+    showIf: (answers) =>
+      answers.area?.value === "chin_jaw",
+    options: [
+      { label: "거의 매일 면도함", value: "daily" },
+      { label: "가끔 면도함", value: "sometimes" },
+      { label: "면도하지 않음", value: "none" },
+    ],
+  },
+  {
+    id: "touching",
+    q: "트러블 부위를 손으로 만지거나 짜는 편인가요?",
+    options: [
+      { label: "거의 안 만짐", value: "rare" },
+      { label: "무의식적으로 자주 만짐", value: "often" },
+      { label: "고름이 보이면 짜는 편", value: "squeeze" },
+    ],
+  },
+];
+
+function getVisibleInflammatoryAcneQuestions(answers) {
+  return inflammatoryAcneQuestions.filter((question) => {
+    if (!question.showIf) return true;
+
+    return question.showIf(answers);
+  });
+}
 
 function clamp(num, min, max) {
   return Math.min(Math.max(num, min), max);
@@ -864,7 +986,153 @@ function getResultCautions(result) {
 
   return cautions;
 }
+function analyzeInflammatoryAcneGuide(answers = {}) {
+  const area = answers.area?.value || "";
+  const form = answers.form?.value || "";
+  const pain = answers.pain?.value || "";
+  const recurring = answers.recurring?.value || "";
+  const recentProduct = answers.recentProduct?.value || "";
+  const shaving = answers.shaving?.value || "";
+  const touching = answers.touching?.value || "";
 
+  const reasons = [];
+
+  if (area === "chin_jaw") {
+    reasons.push("턱·턱선 중심으로 트러블이 나타남");
+  }
+
+  if (area === "multiple") {
+    reasons.push("여러 부위에서 동시에 트러블이 나타남");
+  }
+
+  if (form === "pustule") {
+    reasons.push("노란 고름이 보이는 염증성 형태");
+  }
+
+  if (form === "nodule") {
+    reasons.push("속에서 딱딱하고 크게 만져지는 형태");
+  }
+
+  if (form === "cluster") {
+    reasons.push("여러 개의 염증이 몰려서 나타나는 형태");
+  }
+
+  if (pain === "mild") {
+    reasons.push("누르면 통증이 있음");
+  }
+
+  if (pain === "strong") {
+    reasons.push("가만히 있어도 통증이 있음");
+  }
+
+  if (recurring === "recurring") {
+    reasons.push("같은 부위에 반복적으로 발생함");
+  }
+
+  if (recurring === "continuous") {
+    reasons.push("새로운 트러블이 거의 계속 발생함");
+  }
+
+  if (recentProduct !== "" && recentProduct !== "none") {
+    reasons.push("최근 2~4주 사이 화장품 변경이 있었음");
+  }
+
+  if (shaving === "daily") {
+    reasons.push("트러블 부위를 거의 매일 면도함");
+  }
+
+  if (touching === "often") {
+    reasons.push("트러블 부위를 자주 만지는 편");
+  }
+
+  if (touching === "squeeze") {
+    reasons.push("고름이 보이면 직접 짜는 편");
+  }
+
+  // 진료를 우선해서 생각할 신호
+  const clinicPriority =
+    (form === "nodule" && pain === "strong") ||
+    (form === "cluster" && pain === "strong") ||
+    (
+      recurring === "continuous" &&
+      ["nodule", "cluster"].includes(form)
+    ) ||
+    (
+      recurring === "continuous" &&
+      area === "multiple"
+    );
+
+  if (clinicPriority) {
+    return {
+      careLevel: "clinic_priority",
+      badge: "🔴 진료 우선",
+      title: "자가 관리만 계속하기보다 진료를 우선해서 고려해보세요.",
+      summary:
+        "깊은 형태, 강한 통증, 넓은 범위 또는 지속적인 염증이 함께 나타나는 경우 화장품이나 약국 제품만 추가하기보다 현재 상태를 정확히 확인하는 편이 좋아요.",
+      reasons,
+      pharmacyGuide: null,
+    };
+  }
+
+  // 약국 일반의약품을 고려해볼 수 있는 신호
+  const pharmacyConsider =
+    form === "pustule" ||
+    pain === "mild" ||
+    recurring === "recurring" ||
+    recurring === "continuous";
+
+  if (pharmacyConsider) {
+    return {
+      careLevel: "pharmacy_consider",
+      badge: "🟡 약국 관리 고려",
+      title: "기본 루틴과 함께 여드름 일반의약품을 고려해볼 수 있어요.",
+      summary:
+        "현재 답변에서는 단순 보습 관리만 하기보다 염증성 여드름에 사용되는 일반의약품을 추가로 알아볼 수 있는 상태로 보여요.",
+      reasons,
+
+      pharmacyGuide: {
+        ingredient: "과산화벤조일 2.5%",
+        example: "벤작에이씨겔 2.5%",
+        type: "일반의약품",
+
+        purpose:
+          "보통여드름 치료에 사용하는 외용 일반의약품이에요.",
+
+        directions: [
+          "환부를 깨끗이 씻은 뒤 사용하는 외용제예요.",
+          "치료를 시작할 때는 보통 취침 전 하루 1회부터 사용해 적응 여부를 확인해요.",
+          "잘 적응하는 경우 허가사항에서는 아침·저녁 하루 2회까지 늘릴 수 있도록 안내하고 있어요.",
+          "민감한 피부는 하루 1회 취침 전 사용이 권장돼요.",
+        ],
+
+        routineExample: [
+          "순한 세안",
+          "피부가 편안한 상태인지 확인",
+          "과산화벤조일 제품 사용",
+          "필요하면 자극이 적은 보습제로 마무리",
+        ],
+
+        cautions: [
+          "눈에 들어가지 않도록 주의하고 사용 후 손을 씻어주세요.",
+          "외용으로만 사용해야 해요.",
+          "처음 사용할 때 건조함이나 자극감이 생길 수 있어요.",
+          "자극이 지속되거나 심해지면 사용을 중단하고 상태를 확인하세요.",
+          "깊고 심하게 아픈 트러블이나 넓게 반복되는 염증에는 약국 제품만 계속 추가하지 않는 편이 좋아요.",
+        ],
+      },
+    };
+  }
+
+  return {
+    careLevel: "basic_care",
+    badge: "🟢 기본 관리 우선",
+    title: "우선은 기본 루틴을 단순하게 유지하면서 변화를 확인해보세요.",
+    summary:
+      "현재 답변에서는 강한 통증이나 지속적으로 악화되는 신호가 두드러지지 않아 기본적인 세안·보습과 생활 습관부터 정리해보는 방향이 좋아 보여요.",
+    reasons,
+    pharmacyGuide: null,
+  };
+}
 function SurveyResultOverview({ result }) {
   if (!result) return null;
 
@@ -984,6 +1252,160 @@ function SurveyResultOverview({ result }) {
         </div>
       </div>
     </section>
+  );
+}
+
+function InflammatoryAcneGuideCard({ guide }) {
+  if (!guide) return null;
+
+  const theme =
+    guide.careLevel === "clinic_priority"
+      ? {
+          box: "bg-rose-50 border-rose-200",
+          badge: "text-rose-700 bg-rose-100",
+          title: "text-rose-950",
+        }
+      : guide.careLevel === "pharmacy_consider"
+      ? {
+          box: "bg-amber-50 border-amber-200",
+          badge: "text-amber-700 bg-amber-100",
+          title: "text-amber-950",
+        }
+      : {
+          box: "bg-emerald-50 border-emerald-200",
+          badge: "text-emerald-700 bg-emerald-100",
+          title: "text-emerald-950",
+        };
+
+  return (
+    <div className="max-w-3xl mx-auto space-y-5">
+      <div
+        className={`rounded-[2rem] border p-5 sm:p-7 ${theme.box}`}
+      >
+        <span
+          className={`inline-flex rounded-full px-3 py-2 text-sm font-bold mb-4 ${theme.badge}`}
+        >
+          {guide.badge}
+        </span>
+
+        <h3
+          className={`text-xl sm:text-2xl font-black leading-relaxed break-keep ${theme.title}`}
+        >
+          {guide.title}
+        </h3>
+
+        <p className="mt-3 text-sm sm:text-base text-gray-700 leading-relaxed break-keep">
+          {guide.summary}
+        </p>
+
+        {guide.reasons.length > 0 && (
+          <div className="mt-5">
+            <p className="text-sm font-bold text-gray-700 mb-3">
+              이렇게 판단한 이유
+            </p>
+
+            <div className="flex flex-wrap gap-2">
+              {guide.reasons.map((reason) => (
+                <span
+                  key={reason}
+                  className="rounded-full bg-white/80 border border-white px-3 py-2 text-xs sm:text-sm text-gray-700"
+                >
+                  {reason}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {guide.pharmacyGuide && (
+        <div className="rounded-[2rem] bg-white border border-gray-100 shadow-sm p-5 sm:p-7">
+          <p className="text-sm font-bold text-blue-600 mb-2">
+            약국에서 알아볼 수 있는 선택지
+          </p>
+
+          <h3 className="text-2xl font-black text-gray-900 break-keep">
+            {guide.pharmacyGuide.ingredient}
+          </h3>
+
+          <div className="flex flex-wrap gap-2 mt-3">
+            <span className="rounded-full bg-blue-50 text-blue-700 px-3 py-1 text-xs font-semibold">
+              {guide.pharmacyGuide.type}
+            </span>
+
+            <span className="rounded-full bg-gray-100 text-gray-600 px-3 py-1 text-xs font-semibold">
+              예: {guide.pharmacyGuide.example}
+            </span>
+          </div>
+
+          <p className="mt-4 text-sm sm:text-base text-gray-600 leading-relaxed">
+            {guide.pharmacyGuide.purpose}
+          </p>
+
+          <div className="mt-6">
+            <p className="text-sm font-bold text-gray-900 mb-3">
+              허가사항 기준 사용법
+            </p>
+
+            <div className="space-y-2">
+              {guide.pharmacyGuide.directions.map((item) => (
+                <p
+                  key={item}
+                  className="text-sm sm:text-base text-gray-700 leading-relaxed break-keep"
+                >
+                  · {item}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 rounded-2xl bg-gray-50 p-4">
+            <p className="text-sm font-bold text-gray-900 mb-3">
+              루틴에 넣는다면
+            </p>
+
+            <div className="flex flex-wrap items-center gap-2">
+              {guide.pharmacyGuide.routineExample.map(
+                (item, index) => (
+                  <React.Fragment key={item}>
+                    <span className="rounded-full bg-white border border-gray-200 px-3 py-2 text-xs sm:text-sm">
+                      {item}
+                    </span>
+
+                    {index <
+                      guide.pharmacyGuide.routineExample.length -
+                        1 && (
+                      <span className="text-gray-400">→</span>
+                    )}
+                  </React.Fragment>
+                )
+              )}
+            </div>
+          </div>
+
+          <div className="mt-6 rounded-2xl bg-amber-50 border border-amber-100 p-4">
+            <p className="text-sm font-bold text-amber-800 mb-3">
+              사용 전 꼭 확인
+            </p>
+
+            <div className="space-y-2">
+              {guide.pharmacyGuide.cautions.map((item) => (
+                <p
+                  key={item}
+                  className="text-sm text-amber-900 leading-relaxed break-keep"
+                >
+                  · {item}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          <p className="mt-4 text-xs text-gray-400 leading-relaxed break-keep">
+            의약품의 실제 사용은 제품 설명서의 최신 허가사항을 우선해서 확인해주세요.
+          </p>
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -1132,8 +1554,11 @@ const [baseLevel, setBaseLevel] = useState(5);
 const [surveyAnswers, setSurveyAnswers] = useState({});
 const [surveyIndex, setSurveyIndex] = useState(0);
 const [savedSurvey, setSavedSurvey] = useState(null);
-
-  const isComplete = feedbackQuestions.every((q) => answers[q.id] !== undefined);
+const [mainConcern, setMainConcern] = useState("");
+const [issueAnswers, setIssueAnswers] = useState({});
+const [issueIndex, setIssueIndex] = useState(0);
+ 
+const isComplete = feedbackQuestions.every((q) => answers[q.id] !== undefined);
 
   useEffect(() => {
   window.history.replaceState({ step: "start" }, "", window.location.href);
@@ -1192,6 +1617,35 @@ const surveyResult = useMemo(() => {
   return analyzeSkinSurvey(surveyAnswers, skinSurveyQuestions);
 }, [surveyAnswers]);
 
+const acneGuide = useMemo(() => {
+  if (mainConcern !== "inflammatory_acne") {
+    return null;
+  }
+
+  return analyzeInflammatoryAcneGuide(issueAnswers);
+}, [mainConcern, issueAnswers]);
+
+const selectedConcern =
+  skinConcernOptions.find(
+    (concern) => concern.id === mainConcern
+  );
+
+const finalSkinProfile = {
+  ...surveyResult,
+
+  mainIssue:
+    mainConcern ||
+    surveyResult.mainIssue,
+
+  issueLabel:
+    selectedConcern?.label ||
+    surveyResult.issueLabel,
+
+  issueAnswers,
+
+  acneGuide,
+};
+
 const surveyRoutine = buildDynamicRoutine(surveyResult.hydrationLevel);
 const savedSurveyResult = useMemo(() => {
   if (!savedSurvey?.surveyAnswers) return null;
@@ -1217,14 +1671,38 @@ const isCurrentSurveyAnswered = currentSurveyQuestion
 const surveyProgress =
   ((surveyIndex + 1) / skinSurveyQuestions.length) * 100;
 
+  const activeIssueQuestions =
+  mainConcern === "inflammatory_acne"
+    ? getVisibleInflammatoryAcneQuestions(issueAnswers)
+    : [];
+
+const currentIssueQuestion =
+  activeIssueQuestions[issueIndex] || null;
+
+const currentIssueAnswer = currentIssueQuestion
+  ? issueAnswers[currentIssueQuestion.id]
+  : null;
+
+const isLastIssueQuestion =
+  activeIssueQuestions.length > 0 &&
+  issueIndex === activeIssueQuestions.length - 1;
+
+const issueProgress =
+  activeIssueQuestions.length > 0
+    ? ((issueIndex + 1) / activeIssueQuestions.length) * 100
+    : 0;
+
 const surveyUserContext = {
   level: surveyResult.hydrationLevel,
   isSensitive:
     surveyResult.skinType === "민감성" || surveyResult.scores.sensitivity >= 2,
-  troubleScore: surveyResult.scores.acne ?? 0,
+  troubleScore:
+  mainConcern === "inflammatory_acne"
+    ? Math.max(surveyResult.scores.acne ?? 0, 1)
+    : surveyResult.scores.acne ?? 0,
   skinType: surveyResult.skinType,
   season: "spring",
-  goal: surveyResult.issueLabel,
+  goal: finalSkinProfile.issueLabel,
 };
 
   const ingredients = getRecommendedIngredients(
@@ -1290,12 +1768,66 @@ const handleSurveyAnswer = (question, option) => {
     };
   });
 };
+const handleIssueAnswer = (question, option) => {
+  setIssueAnswers((prev) => {
+    const next = {
+      ...prev,
+      [question.id]: option,
+    };
+
+    // 턱/턱선이 아니게 바꾸면 예전 면도 답변 제거
+    if (
+      question.id === "area" &&
+      option.value !== "chin_jaw"
+    ) {
+      delete next.shaving;
+    }
+
+    // 단순 붉은 트러블로 바꾸면 예전 통증 답변 제거
+    if (
+      question.id === "form" &&
+      !["pustule", "nodule", "cluster"].includes(option.value)
+    ) {
+      delete next.pain;
+    }
+
+    return next;
+  });
+};
+
+const handlePrevIssue = () => {
+  if (issueIndex === 0) {
+    setStep("issueSelect");
+    return;
+  }
+
+  setIssueIndex((prev) => Math.max(prev - 1, 0));
+};
+
+const handleNextIssue = () => {
+  if (!currentIssueAnswer) return;
+
+  if (isLastIssueQuestion) {
+    saveSurveyResult();
+    setStep("surveyResult");
+    return;
+  }
+
+  setIssueIndex((prev) =>
+    Math.min(
+      prev + 1,
+      activeIssueQuestions.length - 1
+    )
+  );
+};
 
 const saveSurveyResult = () => {
   const data = {
-    surveyAnswers,
-    savedAt: new Date().toISOString(),
-  };
+  surveyAnswers,
+  mainConcern,
+  issueAnswers,
+  savedAt: new Date().toISOString(),
+};
 
   try {
     localStorage.setItem(SAVED_SURVEY_KEY, JSON.stringify(data));
@@ -1309,8 +1841,11 @@ const openSavedSurveyResult = () => {
   if (!savedSurvey?.surveyAnswers) return;
 
   setSurveyAnswers(savedSurvey.surveyAnswers);
-  setSurveyIndex(0);
-  setStep("surveyResult");
+setMainConcern(savedSurvey.mainConcern || "");
+setIssueAnswers(savedSurvey.issueAnswers || {});
+setSurveyIndex(0);
+setIssueIndex(0);
+setStep("surveyResult");
 };
 
 const startSavedFeedback = () => {
@@ -1326,6 +1861,9 @@ const resetFlow = () => {
   setSurveyAnswers({});
   setBaseLevel(5);
   setSurveyIndex(0);
+  setMainConcern("");
+  setIssueAnswers({});
+  setIssueIndex(0);
   setStep("start");
 };
 const handlePrevSurvey = () => {
@@ -1340,11 +1878,11 @@ const handlePrevSurvey = () => {
 const handleNextSurvey = () => {
   if (!isCurrentSurveyAnswered) return;
 
-  if (isLastSurveyQuestion) {
-    saveSurveyResult();
-    setStep("surveyResult");
-    return;
-  }
+if (isLastSurveyQuestion) {
+  saveSurveyResult();
+  setStep("issueSelect");
+  return;
+}
 
   setSurveyIndex((prev) =>
     Math.min(prev + 1, skinSurveyQuestions.length - 1)
@@ -1654,15 +2192,202 @@ const handleNextSurvey = () => {
           onClick={handleNextSurvey}
           disabled={!isCurrentSurveyAnswered}
         >
-          {isLastSurveyQuestion ? "결과 보기" : "다음"}
+          {isLastSurveyQuestion ? "피부 고민 선택" : "다음"}
         </PrimaryButton>
       </div>
     </div>
   </section>
 )}
+
+{step === "issueSelect" && (
+  <section>
+    <SectionTitle
+      title="지금 가장 신경 쓰이는 피부 고민은?"
+      desc="기본 피부 상태와 별개로, 현재 가장 먼저 관리하고 싶은 문제를 하나 선택해주세요."
+    />
+
+    <div className="max-w-3xl mx-auto">
+      <div className="mb-6 bg-white border border-gray-100 rounded-3xl shadow-sm p-5 sm:p-6">
+        <p className="text-sm text-gray-400 mb-2">
+          기본 피부 분석
+        </p>
+
+        <div className="flex flex-wrap gap-2">
+          <span className="px-3 py-2 bg-gray-100 rounded-full text-sm font-semibold">
+            {surveyResult.skinType}
+          </span>
+
+          <span className="px-3 py-2 bg-gray-100 rounded-full text-sm font-semibold">
+            수분감 {surveyResult.hydrationLevel}단계
+          </span>
+        </div>
+
+        <p className="mt-4 text-sm text-gray-500 leading-relaxed break-keep">
+          기본 피부 상태는 확인했어요. 이제 현재 가장 신경 쓰이는 문제를
+          확인해서 추천 방향을 더 구체적으로 좁혀볼게요.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {skinConcernOptions.map((concern) => {
+          const active = mainConcern === concern.id;
+
+          return (
+            <button
+              key={concern.id}
+              onClick={() => {
+  if (mainConcern !== concern.id) {
+    setIssueAnswers({});
+    setIssueIndex(0);
+  }
+
+  setMainConcern(concern.id);
+}}
+              className={`rounded-3xl border p-5 text-left transition active:scale-[0.98] ${
+                active
+                  ? "bg-black text-white border-black shadow-md"
+                  : "bg-white border-gray-100 hover:shadow-md"
+              }`}
+            >
+              <h3 className="text-lg font-bold mb-2 break-keep">
+                {concern.label}
+              </h3>
+
+              <p
+                className={`text-sm leading-relaxed break-keep ${
+                  active ? "text-white/70" : "text-gray-500"
+                }`}
+              >
+                {concern.desc}
+              </p>
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="mt-8 flex justify-between gap-3">
+        <button
+          onClick={() => {
+            setSurveyIndex(skinSurveyQuestions.length - 1);
+            setStep("survey");
+          }}
+          className="px-6 py-3 rounded-2xl text-sm sm:text-base font-medium border border-gray-300 bg-white hover:bg-gray-100 transition"
+        >
+          이전
+        </button>
+
+<PrimaryButton
+  disabled={!mainConcern}
+  onClick={() => {
+    if (mainConcern === "inflammatory_acne") {
+      setIssueIndex(0);
+      setStep("issueDetail");
+      return;
+    }
+
+    setStep("surveyResult");
+  }}
+>
+  다음
+</PrimaryButton>
+      </div>
+    </div>
+  </section>
+)}
+
+{step === "issueDetail" && currentIssueQuestion && (
+  <section>
+    <SectionTitle
+      title="염증성 여드름 상태를 조금 더 확인할게요"
+      desc="현재 상태를 더 구체적으로 확인하면 피부 루틴을 더 정확하게 조정할 수 있어요."
+    />
+
+    <div className="max-w-3xl mx-auto">
+      <div className="mb-5">
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-sm font-semibold text-gray-500">
+            {issueIndex + 1} / {activeIssueQuestions.length}
+          </p>
+
+          <p className="text-sm text-gray-400">
+            {Math.round(issueProgress)}%
+          </p>
+        </div>
+
+        <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+          <div
+            className="h-full bg-black rounded-full transition-all duration-300"
+            style={{ width: `${issueProgress}%` }}
+          />
+        </div>
+      </div>
+
+      <div className="bg-white border border-gray-100 rounded-[2rem] shadow-sm p-6 sm:p-8">
+        <p className="text-sm text-gray-400 mb-3">
+          현재 고민 · 염증성 여드름
+        </p>
+
+        <h2 className="text-2xl sm:text-3xl font-black leading-relaxed break-keep mb-6">
+          {currentIssueQuestion.q}
+        </h2>
+
+        <div className="space-y-3">
+          {currentIssueQuestion.options.map((option) => {
+            const active =
+              currentIssueAnswer?.value === option.value;
+
+            return (
+              <button
+                key={option.value}
+                onClick={() =>
+                  handleIssueAnswer(
+                    currentIssueQuestion,
+                    option
+                  )
+                }
+                className={`w-full text-left px-5 py-4 rounded-2xl text-sm sm:text-base border transition active:scale-[0.98] break-keep ${
+                  active
+                    ? "bg-black text-white border-black shadow-sm"
+                    : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"
+                }`}
+              >
+                {option.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="mt-8 flex gap-3 justify-between">
+        <button
+          onClick={handlePrevIssue}
+          className="px-6 py-3 rounded-2xl text-sm sm:text-base font-medium border border-gray-300 bg-white hover:bg-gray-100 transition"
+        >
+          이전
+        </button>
+
+        <PrimaryButton
+          onClick={handleNextIssue}
+          disabled={!currentIssueAnswer}
+        >
+          {isLastIssueQuestion
+            ? "분석 결과 보기"
+            : "다음"}
+        </PrimaryButton>
+      </div>
+    </div>
+  </section>
+)}
+
 {step === "surveyResult" && (
   <section className="space-y-10">
-    <SurveyResultOverview result={surveyResult} />
+    <SurveyResultOverview result={finalSkinProfile} />
+
+    {mainConcern === "inflammatory_acne" && (
+      <InflammatoryAcneGuideCard
+        guide={acneGuide}
+      />
+    )}
 
     <div className="mb-10">
       <SectionTitle
