@@ -245,6 +245,192 @@ function getVisibleInflammatoryAcneQuestions(answers) {
     return question.showIf(answers);
   });
 }
+const closedComedoneQuestions = [
+  {
+    id: "area",
+    q: "좁쌀이나 오돌토돌함이 주로 어디에 생기나요?",
+    options: [
+      { label: "이마", value: "forehead" },
+      { label: "볼", value: "cheek" },
+      { label: "턱 / 턱선", value: "chin_jaw" },
+      { label: "코 주변", value: "nose" },
+      { label: "여러 부위", value: "multiple" },
+    ],
+  },
+
+  {
+    id: "appearance",
+    q: "가장 가까운 형태는 어떤가요?",
+    options: [
+      { label: "피부색 작은 돌기가 만져짐", value: "skin_colored" },
+      { label: "하얗게 작은 알갱이처럼 보임", value: "white_bumps" },
+      { label: "작은 피지가 촘촘하게 보임", value: "sebum_bumps" },
+      { label: "붉은 트러블도 같이 섞여 있음", value: "mixed_inflammation" },
+    ],
+  },
+
+  {
+    id: "inflammation",
+    q: "좁쌀 부위가 붉거나 아프기도 하나요?",
+    options: [
+      { label: "거의 붉지 않고 아프지도 않음", value: "none" },
+      { label: "가끔 붉게 변함", value: "sometimes_red" },
+      { label: "자주 붉어지고 누르면 아픔", value: "painful" },
+    ],
+  },
+
+  {
+    id: "duration",
+    q: "이 상태가 얼마나 지속되고 있나요?",
+    options: [
+      { label: "최근 1~2주 사이 생김", value: "recent" },
+      { label: "2~6주 정도", value: "weeks" },
+      { label: "6주 이상 계속됨", value: "long" },
+      { label: "몇 달째 반복됨", value: "chronic" },
+    ],
+  },
+
+  {
+    id: "recentProduct",
+    q: "좁쌀이 늘기 전 새로 추가한 제품이 있나요?",
+    options: [
+      { label: "특별히 없음", value: "none" },
+      { label: "크림 / 보습제를 바꿈", value: "cream" },
+      { label: "선크림을 바꿈", value: "sunscreen" },
+      { label: "오일류 제품을 추가함", value: "oil" },
+      { label: "여러 제품을 한꺼번에 바꿈", value: "multiple" },
+    ],
+  },
+
+  {
+    id: "exfoliation",
+    q: "현재 BHA나 각질 관리 제품을 사용하고 있나요?",
+    options: [
+      { label: "사용하지 않음", value: "none" },
+      { label: "일주일에 1~2회", value: "low" },
+      { label: "일주일에 3회 이상", value: "frequent" },
+      { label: "여러 각질 관리 제품을 같이 사용함", value: "multiple" },
+    ],
+  },
+
+  {
+    id: "touching",
+    q: "좁쌀을 손이나 도구로 짜는 편인가요?",
+    options: [
+      { label: "거의 건드리지 않음", value: "rare" },
+      { label: "손으로 자주 짬", value: "squeeze" },
+      { label: "압출기나 도구를 사용함", value: "tool" },
+    ],
+  },
+];
+
+function getVisibleClosedComedoneQuestions() {
+  return closedComedoneQuestions;
+}
+
+const blackheadSebumQuestions = [
+  {
+    id: "area",
+    q: "블랙헤드나 피지가 주로 어디에 보이나요?",
+    options: [
+      { label: "코", value: "nose" },
+      { label: "코 주변 / 나비존", value: "nose_cheek" },
+      { label: "이마 / T존", value: "tzone" },
+      { label: "턱", value: "chin" },
+      { label: "여러 부위", value: "multiple" },
+    ],
+  },
+
+  {
+    id: "appearance",
+    q: "가장 신경 쓰이는 모습은 어떤가요?",
+    options: [
+      { label: "검은 점처럼 막힌 피지가 보임", value: "black_plug" },
+      { label: "회색·노란 피지가 촘촘하게 보임", value: "sebaceous_filament" },
+      { label: "하얀 피지가 올라옴", value: "white_sebum" },
+      { label: "모공이 넓고 피지가 많이 차 보임", value: "pore_sebum" },
+    ],
+  },
+
+  {
+    id: "returnSpeed",
+    q: "피지를 제거하거나 세안한 뒤 얼마나 빨리 다시 보여요?",
+    options: [
+      { label: "며칠 동안은 크게 안 보임", value: "slow" },
+      { label: "1~2일이면 다시 보임", value: "fast" },
+      { label: "세안 직후에도 금방 다시 보여요", value: "very_fast" },
+      { label: "제거해본 적 없어서 모르겠어요", value: "unknown" },
+    ],
+  },
+
+  {
+    id: "oiliness",
+    q: "시간이 지나면 해당 부위의 유분은 어떤가요?",
+    options: [
+      { label: "유분이 거의 없음", value: "low" },
+      { label: "적당히 올라옴", value: "normal" },
+      { label: "번들거림이 많은 편", value: "high" },
+      { label: "금방 기름져짐", value: "very_high" },
+    ],
+  },
+
+  {
+    id: "afterWash",
+    q: "세안 직후 피부 느낌은 어떤가요?",
+    options: [
+      { label: "편안함", value: "comfortable" },
+      { label: "조금 당김", value: "mild_tight" },
+      { label: "많이 당기거나 건조함", value: "tight" },
+    ],
+  },
+
+  {
+    id: "cleansingOil",
+    q: "클렌징오일이나 클렌징밤을 사용하나요?",
+    options: [
+      { label: "사용하지 않음", value: "none" },
+      { label: "사용하고 유화도 충분히 함", value: "proper" },
+      { label: "사용하지만 유화는 잘 모르겠음", value: "unsure" },
+      { label: "오래 마사지하는 편", value: "long_massage" },
+    ],
+  },
+
+  {
+    id: "exfoliation",
+    q: "현재 BHA나 각질 관리 제품을 얼마나 사용하나요?",
+    options: [
+      { label: "사용하지 않음", value: "none" },
+      { label: "일주일에 1~2회", value: "low" },
+      { label: "일주일에 3회 이상", value: "frequent" },
+      { label: "여러 각질 제품을 같이 사용함", value: "multiple" },
+    ],
+  },
+
+  {
+    id: "squeezing",
+    q: "블랙헤드나 피지를 직접 짜거나 압출하나요?",
+    options: [
+      { label: "거의 안 건드림", value: "rare" },
+      { label: "손으로 가끔 짬", value: "sometimes" },
+      { label: "자주 짜는 편", value: "often" },
+      { label: "압출기나 도구를 사용함", value: "tool" },
+    ],
+  },
+
+  {
+    id: "inflammation",
+    q: "해당 부위에 붉거나 아픈 트러블도 같이 생기나요?",
+    options: [
+      { label: "거의 없음", value: "none" },
+      { label: "가끔 붉은 트러블이 생김", value: "sometimes" },
+      { label: "자주 붉고 아픈 트러블이 생김", value: "frequent" },
+    ],
+  },
+];
+
+function getVisibleBlackheadSebumQuestions() {
+  return blackheadSebumQuestions;
+}
 
 function clamp(num, min, max) {
   return Math.min(Math.max(num, min), max);
@@ -1123,6 +1309,8 @@ function analyzeInflammatoryAcneGuide(answers = {}) {
     };
   }
 
+
+
   return {
     careLevel: "basic_care",
     badge: "🟢 기본 관리 우선",
@@ -1133,6 +1321,544 @@ function analyzeInflammatoryAcneGuide(answers = {}) {
     pharmacyGuide: null,
   };
 }
+function analyzeClosedComedoneGuide(
+  answers = {},
+  skinResult = {}
+) {
+  const area = answers.area?.value || "";
+  const appearance = answers.appearance?.value || "";
+  const inflammation = answers.inflammation?.value || "";
+  const duration = answers.duration?.value || "";
+  const recentProduct = answers.recentProduct?.value || "";
+  const exfoliation = answers.exfoliation?.value || "";
+  const touching = answers.touching?.value || "";
+
+  const reasons = [];
+
+  if (area === "forehead") {
+    reasons.push("이마 중심으로 좁쌀이 나타남");
+  }
+
+  if (area === "cheek") {
+    reasons.push("볼 중심으로 오돌토돌함이 나타남");
+  }
+
+  if (area === "chin_jaw") {
+    reasons.push("턱·턱선 중심으로 좁쌀이 나타남");
+  }
+
+  if (area === "multiple") {
+    reasons.push("여러 부위에서 동시에 나타남");
+  }
+
+  if (appearance === "skin_colored") {
+    reasons.push("피부색의 작은 돌기 형태");
+  }
+
+  if (appearance === "white_bumps") {
+    reasons.push("하얀 작은 돌기 형태");
+  }
+
+  if (appearance === "mixed_inflammation") {
+    reasons.push("좁쌀과 붉은 트러블이 함께 나타남");
+  }
+
+  if (inflammation === "sometimes_red") {
+    reasons.push("일부가 가끔 붉게 변함");
+  }
+
+  if (inflammation === "painful") {
+    reasons.push("붉어짐과 통증이 함께 나타남");
+  }
+
+  if (duration === "long") {
+    reasons.push("6주 이상 지속되고 있음");
+  }
+
+  if (duration === "chronic") {
+    reasons.push("몇 달째 반복되고 있음");
+  }
+
+  if (
+    ["cream", "sunscreen", "oil", "multiple"].includes(
+      recentProduct
+    )
+  ) {
+    reasons.push("좁쌀이 늘기 전 제품 변경이 있었음");
+  }
+
+  if (exfoliation === "frequent") {
+    reasons.push("각질 관리 제품을 자주 사용 중");
+  }
+
+  if (exfoliation === "multiple") {
+    reasons.push("여러 각질 관리 제품을 동시에 사용 중");
+  }
+
+  if (touching === "squeeze" || touching === "tool") {
+    reasons.push("좁쌀을 직접 압출하는 편");
+  }
+
+  const sensitive =
+    skinResult.skinType?.includes("민감") ||
+    (skinResult.scores?.sensitivity ?? 0) >= 2;
+
+  // 🔴 진료 우선
+  const clinicPriority =
+    (
+      inflammation === "painful" &&
+      ["long", "chronic"].includes(duration)
+    ) ||
+    (
+      inflammation === "painful" &&
+      area === "multiple"
+    );
+
+  if (clinicPriority) {
+    return {
+      careLevel: "clinic_priority",
+
+      badge: "🔴 진료 우선",
+
+      title:
+        "단순한 좁쌀 관리보다 염증성 트러블 여부를 먼저 확인하는 게 좋아요.",
+
+      summary:
+        "좁쌀처럼 보이는 병변에 붉어짐과 통증이 반복되거나 여러 부위에서 오래 지속된다면 단순한 각질·피지 문제만으로 보기 어려울 수 있어요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 각질 관리 과사용
+  const overExfoliating =
+    exfoliation === "frequent" ||
+    exfoliation === "multiple";
+
+  if (overExfoliating) {
+    return {
+      careLevel: "basic_care",
+
+      badge: "🟢 루틴 정리 우선",
+
+      title:
+        "각질 관리 제품을 더 추가하기보다 현재 사용 빈도를 먼저 줄여보세요.",
+
+      summary:
+        "이미 BHA나 각질 관리 제품을 자주 사용하고 있다면 추가적인 살리실산 사용보다 피부 자극과 건조 여부를 먼저 확인하는 편이 좋아요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 새 제품 추가 직후 발생
+  const productChange =
+    ["cream", "sunscreen", "oil", "multiple"].includes(
+      recentProduct
+    );
+
+  if (
+    productChange &&
+    duration === "recent"
+  ) {
+    return {
+      careLevel: "basic_care",
+
+      badge: "🟢 루틴 조정 우선",
+
+      title:
+        "최근 추가한 제품과 발생 시점의 관계부터 확인해보세요.",
+
+      summary:
+        "최근 제품을 바꾼 뒤 좁쌀이 늘었다면 새 기능성 제품을 바로 추가하기보다 변경한 제품을 하나씩 확인하는 편이 원인을 좁히기 쉬워요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 민감 + 붉어짐
+  if (
+    sensitive &&
+    inflammation !== "none"
+  ) {
+    return {
+      careLevel: "basic_care",
+
+      badge: "🟢 자극 최소화 우선",
+
+      title:
+        "현재는 각질 제거보다 피부를 편안하게 만드는 게 먼저예요.",
+
+      summary:
+        "민감도가 높은 피부에서 붉어짐까지 있다면 살리실산 같은 각질 관리 제품을 바로 추가하기보다 자극을 줄이고 피부 상태를 먼저 안정시키는 방향이 좋아요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 🟡 살리실산 고려
+  const pharmacyConsider =
+    inflammation === "none" &&
+    (
+      duration === "weeks" ||
+      duration === "long" ||
+      duration === "chronic"
+    );
+
+  if (pharmacyConsider) {
+    return {
+      careLevel: "pharmacy_consider",
+
+      badge: "🟡 약국 관리 고려",
+
+      title:
+        "막힘과 좁쌀이 지속된다면 살리실산 계열 일반의약품을 알아볼 수 있어요.",
+
+      summary:
+        "붉거나 아픈 염증보다는 피부색 또는 하얀 좁쌀이 지속되는 형태라면 각질화된 피부를 연화시키는 살리실산 계열 여드름 치료제를 고려할 수 있어요.",
+
+      reasons,
+
+      pharmacyGuide: {
+        ingredient: "살리실산 2%",
+
+        example: "애크린겔",
+
+        type: "일반의약품",
+
+        purpose:
+          "각질화된 피부를 연화시켜 여드름 치료에 사용하는 외용 일반의약품이에요.",
+
+        directions: [
+          "환부와 주변을 깨끗하게 한 뒤 외용으로 사용해요.",
+          "허가사항상 아침·저녁 하루 2회 사용하도록 되어 있어요.",
+          "과도한 피부 건조를 줄이기 위해 처음에는 하루 1회로 시작하도록 안내돼 있어요.",
+          "건조하거나 피부가 벗겨지면 이틀에 한 번으로 사용 횟수를 줄일 수 있어요.",
+        ],
+
+        routineExample: [
+          "순한 세안",
+          "피부를 편안하게 건조",
+          "살리실산 제품",
+          "가벼운 보습",
+        ],
+
+        cautions: [
+          "눈 주위와 점막에는 사용하지 않아요.",
+          "붉거나 염증·자극이 있는 부위에는 사용하지 않아요.",
+          "외용으로만 사용하고 사용 후에는 손을 씻어주세요.",
+          "건조, 벗겨짐 또는 자극이 지속되면 사용을 줄이거나 중단하세요.",
+          "이미 BHA나 다른 각질 제거 제품을 많이 사용 중이라면 겹쳐서 추가하지 않는 편이 좋아요.",
+        ],
+      },
+    };
+  }
+
+  return {
+    careLevel: "basic_care",
+
+    badge: "🟢 기본 관리 우선",
+
+    title:
+      "우선은 제품 수와 사용량을 단순하게 유지하면서 피부 반응을 확인해보세요.",
+
+    summary:
+      "최근 발생한 가벼운 오돌토돌함이라면 바로 각질 제거제를 추가하기보다 현재 루틴을 단순하게 유지하면서 변화를 확인하는 방향이 좋아요.",
+
+    reasons,
+
+    pharmacyGuide: null,
+  };
+}
+
+function analyzeBlackheadSebumGuide(
+  answers = {},
+  skinResult = {}
+) {
+  const area = answers.area?.value || "";
+  const appearance = answers.appearance?.value || "";
+  const returnSpeed = answers.returnSpeed?.value || "";
+  const oiliness = answers.oiliness?.value || "";
+  const afterWash = answers.afterWash?.value || "";
+  const cleansingOil = answers.cleansingOil?.value || "";
+  const exfoliation = answers.exfoliation?.value || "";
+  const squeezing = answers.squeezing?.value || "";
+  const inflammation = answers.inflammation?.value || "";
+
+  const reasons = [];
+
+  if (area === "nose") {
+    reasons.push("코 중심으로 피지가 보임");
+  }
+
+  if (area === "nose_cheek") {
+    reasons.push("코와 나비존 중심으로 피지가 보임");
+  }
+
+  if (area === "tzone") {
+    reasons.push("T존 중심으로 피지가 많음");
+  }
+
+  if (area === "multiple") {
+    reasons.push("여러 부위에서 피지가 신경 쓰임");
+  }
+
+  if (appearance === "black_plug") {
+    reasons.push("검은 점처럼 막힌 형태가 보임");
+  }
+
+  if (appearance === "sebaceous_filament") {
+    reasons.push("촘촘한 회색·노란 피지 형태가 보임");
+  }
+
+  if (appearance === "pore_sebum") {
+    reasons.push("모공과 피지가 함께 신경 쓰임");
+  }
+
+  if (
+    returnSpeed === "fast" ||
+    returnSpeed === "very_fast"
+  ) {
+    reasons.push("제거하거나 세안해도 피지가 빠르게 다시 보임");
+  }
+
+  if (
+    oiliness === "high" ||
+    oiliness === "very_high"
+  ) {
+    reasons.push("유분이 빠르게 올라오는 편");
+  }
+
+  if (
+    afterWash === "mild_tight" ||
+    afterWash === "tight"
+  ) {
+    reasons.push("세안 후 당김이 있음");
+  }
+
+  if (cleansingOil === "unsure") {
+    reasons.push("클렌징오일 유화 방법이 불확실함");
+  }
+
+  if (cleansingOil === "long_massage") {
+    reasons.push("클렌징오일을 오래 마사지하는 편");
+  }
+
+  if (exfoliation === "frequent") {
+    reasons.push("각질 관리 빈도가 높은 편");
+  }
+
+  if (exfoliation === "multiple") {
+    reasons.push("여러 각질 관리 제품을 동시에 사용함");
+  }
+
+  if (
+    squeezing === "often" ||
+    squeezing === "tool"
+  ) {
+    reasons.push("피지를 자주 직접 압출하는 편");
+  }
+
+  if (inflammation === "frequent") {
+    reasons.push("붉고 아픈 트러블이 자주 동반됨");
+  }
+
+  const sensitive =
+    skinResult.skinType?.includes("민감") ||
+    (skinResult.scores?.sensitivity ?? 0) >= 2;
+
+  // 🔴 블랙헤드보다 염증 문제가 우선
+  if (inflammation === "frequent") {
+    return {
+      careLevel: "clinic_priority",
+
+      badge: "🔴 염증 관리 우선",
+
+      title:
+        "현재는 블랙헤드보다 반복되는 염증성 트러블을 먼저 확인하는 게 좋아요.",
+
+      summary:
+        "피지나 모공 문제와 함께 붉고 아픈 트러블이 자주 생긴다면 각질 제거 제품을 계속 추가하기보다 염증 상태를 먼저 관리하는 방향이 좋아요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 과한 각질 관리
+  if (
+    exfoliation === "frequent" ||
+    exfoliation === "multiple"
+  ) {
+    return {
+      careLevel: "basic_care",
+
+      badge: "🟢 각질 관리 줄이기",
+
+      title:
+        "BHA를 더 추가하기보다 현재 각질 관리 빈도를 먼저 줄여보세요.",
+
+      summary:
+        "각질 관리 제품을 이미 자주 사용하고 있다면 추가적인 산 성분보다 건조함과 자극 여부를 먼저 확인하는 게 좋아요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 세안 후 심한 당김
+  if (
+    afterWash === "tight" ||
+    (
+      sensitive &&
+      afterWash === "mild_tight"
+    )
+  ) {
+    return {
+      careLevel: "basic_care",
+
+      badge: "🟢 세안·보습 조정 우선",
+
+      title:
+        "피지를 더 제거하기보다 세안 후 당김부터 줄이는 게 좋아요.",
+
+      summary:
+        "피지가 보여도 세안 후 피부가 많이 당긴다면 강한 세정이나 각질 관리를 추가하기 전에 세안 강도와 보습 밸런스를 먼저 조정해보세요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 피지실에 가까운 패턴
+  const filamentPattern =
+    appearance === "sebaceous_filament" &&
+    (
+      returnSpeed === "fast" ||
+      returnSpeed === "very_fast"
+    );
+
+  if (filamentPattern) {
+    return {
+      careLevel: "basic_care",
+
+      badge: "🟢 피지 관리 우선",
+
+      title:
+        "완전히 제거하려 하기보다 눈에 덜 띄게 관리하는 방향이 좋아 보여요.",
+
+      summary:
+        "촘촘한 피지가 제거 후 빠르게 다시 보이는 패턴은 피지실에 가까울 가능성도 있어요. 반복 압출보다는 과도한 피지를 줄이고 피부를 자극하지 않는 관리가 더 적합할 수 있어요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 클렌징오일 사용법 조정
+  if (
+    cleansingOil === "unsure" ||
+    cleansingOil === "long_massage"
+  ) {
+    return {
+      careLevel: "basic_care",
+
+      badge: "🟢 클렌징 방법 점검",
+
+      title:
+        "새 제품을 추가하기 전에 클렌징오일 사용 방법부터 조정해보세요.",
+
+      summary:
+        "클렌징오일은 오래 문지르기보다 짧게 사용하고, 물을 묻혀 충분히 유화한 뒤 헹구는 방식으로 사용하는 편이 좋아요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 🟡 막힌 블랙헤드가 지속될 때 살리실산 고려
+  const salicylicConsider =
+    appearance === "black_plug" &&
+    inflammation === "none" &&
+    exfoliation === "none";
+
+  if (salicylicConsider) {
+    return {
+      careLevel: "pharmacy_consider",
+
+      badge: "🟡 약국 관리 고려",
+
+      title:
+        "막힌 형태의 블랙헤드가 지속된다면 살리실산 계열 여드름 치료제를 알아볼 수 있어요.",
+
+      summary:
+        "검은 점처럼 막힌 피지가 반복되고 붉거나 아픈 염증은 없다면 살리실산 계열 외용 일반의약품을 하나의 선택지로 볼 수 있어요.",
+
+      reasons,
+
+      pharmacyGuide: {
+        ingredient: "살리실산 2%",
+        example: "애크린겔",
+        type: "일반의약품",
+
+        purpose:
+          "각질화된 피부를 연화시켜 여드름 치료에 사용하는 외용 일반의약품이에요.",
+
+        directions: [
+          "환부와 주변을 깨끗하게 한 뒤 외용으로 사용해요.",
+          "허가사항상 아침·저녁 하루 2회 사용하도록 되어 있어요.",
+          "과도한 건조 가능성 때문에 처음에는 하루 1회로 시작하도록 안내돼 있어요.",
+          "피부 건조나 벗겨짐이 나타나면 이틀에 한 번으로 사용 횟수를 줄일 수 있어요.",
+        ],
+
+        routineExample: [
+          "순한 세안",
+          "피부를 편안하게 건조",
+          "살리실산 제품",
+          "가벼운 보습",
+        ],
+
+        cautions: [
+          "눈 주위와 점막에는 사용하지 않아요.",
+          "붉거나 염증·자극이 있는 부위에는 사용하지 않아요.",
+          "다른 BHA나 강한 각질 제거 제품과 겹쳐 쓰는 것은 피하는 편이 좋아요.",
+          "건조함이나 자극이 지속되면 사용을 줄이거나 중단하세요.",
+          "증상이 계속 악화되면 블랙헤드만의 문제인지 다시 확인하는 게 좋아요.",
+        ],
+      },
+    };
+  }
+
+  return {
+    careLevel: "basic_care",
+
+    badge: "🟢 기본 피지 관리",
+
+    title:
+      "우선은 과하게 제거하지 않고 피지와 수분 밸런스를 맞춰보세요.",
+
+    summary:
+      "현재 답변에서는 강한 각질 관리나 반복적인 압출보다 순한 세안, 적절한 보습, 피지 관리 습관부터 조정하는 방향이 좋아 보여요.",
+
+    reasons,
+
+    pharmacyGuide: null,
+  };
+}
+
 function SurveyResultOverview({ result }) {
   if (!result) return null;
 
@@ -1255,7 +1981,7 @@ function SurveyResultOverview({ result }) {
   );
 }
 
-function InflammatoryAcneGuideCard({ guide }) {
+function SkinIssueGuideCard({ guide }) {
   if (!guide) return null;
 
   const theme =
@@ -1625,6 +2351,45 @@ const acneGuide = useMemo(() => {
   return analyzeInflammatoryAcneGuide(issueAnswers);
 }, [mainConcern, issueAnswers]);
 
+const closedComedoneGuide = useMemo(() => {
+  if (mainConcern !== "closed_comedones") {
+    return null;
+  }
+
+  return analyzeClosedComedoneGuide(
+    issueAnswers,
+    surveyResult
+  );
+}, [
+  mainConcern,
+  issueAnswers,
+  surveyResult,
+]);
+
+const blackheadGuide = useMemo(() => {
+  if (mainConcern !== "blackhead_sebum") {
+    return null;
+  }
+
+  return analyzeBlackheadSebumGuide(
+    issueAnswers,
+    surveyResult
+  );
+}, [
+  mainConcern,
+  issueAnswers,
+  surveyResult,
+]);
+
+const activeIssueGuide =
+  mainConcern === "inflammatory_acne"
+    ? acneGuide
+    : mainConcern === "closed_comedones"
+    ? closedComedoneGuide
+    : mainConcern === "blackhead_sebum"
+    ? blackheadGuide
+    : null;
+
 const selectedConcern =
   skinConcernOptions.find(
     (concern) => concern.id === mainConcern
@@ -1644,6 +2409,7 @@ const finalSkinProfile = {
   issueAnswers,
 
   acneGuide,
+  issueGuide: activeIssueGuide,
 };
 
 const surveyRoutine = buildDynamicRoutine(surveyResult.hydrationLevel);
@@ -1671,9 +2437,13 @@ const isCurrentSurveyAnswered = currentSurveyQuestion
 const surveyProgress =
   ((surveyIndex + 1) / skinSurveyQuestions.length) * 100;
 
-  const activeIssueQuestions =
+const activeIssueQuestions =
   mainConcern === "inflammatory_acne"
     ? getVisibleInflammatoryAcneQuestions(issueAnswers)
+    : mainConcern === "closed_comedones"
+    ? getVisibleClosedComedoneQuestions(issueAnswers)
+    : mainConcern === "blackhead_sebum"
+    ? getVisibleBlackheadSebumQuestions(issueAnswers)
     : [];
 
 const currentIssueQuestion =
@@ -2279,11 +3049,15 @@ if (isLastSurveyQuestion) {
 <PrimaryButton
   disabled={!mainConcern}
   onClick={() => {
-    if (mainConcern === "inflammatory_acne") {
-      setIssueIndex(0);
-      setStep("issueDetail");
-      return;
-    }
+if (
+  mainConcern === "inflammatory_acne" ||
+  mainConcern === "closed_comedones" ||
+  mainConcern === "blackhead_sebum"
+) {
+  setIssueIndex(0);
+  setStep("issueDetail");
+  return;
+}
 
     setStep("surveyResult");
   }}
@@ -2297,10 +3071,10 @@ if (isLastSurveyQuestion) {
 
 {step === "issueDetail" && currentIssueQuestion && (
   <section>
-    <SectionTitle
-      title="염증성 여드름 상태를 조금 더 확인할게요"
-      desc="현재 상태를 더 구체적으로 확인하면 피부 루틴을 더 정확하게 조정할 수 있어요."
-    />
+<SectionTitle
+  title={`${selectedConcern?.label || "피부 고민"} 상태를 조금 더 확인할게요`}
+  desc="현재 상태를 더 구체적으로 확인하면 피부 루틴과 관리 방향을 더 정확하게 조정할 수 있어요."
+/>
 
     <div className="max-w-3xl mx-auto">
       <div className="mb-5">
@@ -2324,8 +3098,8 @@ if (isLastSurveyQuestion) {
 
       <div className="bg-white border border-gray-100 rounded-[2rem] shadow-sm p-6 sm:p-8">
         <p className="text-sm text-gray-400 mb-3">
-          현재 고민 · 염증성 여드름
-        </p>
+  현재 고민 · {selectedConcern?.label}
+</p>
 
         <h2 className="text-2xl sm:text-3xl font-black leading-relaxed break-keep mb-6">
           {currentIssueQuestion.q}
@@ -2383,12 +3157,11 @@ if (isLastSurveyQuestion) {
   <section className="space-y-10">
     <SurveyResultOverview result={finalSkinProfile} />
 
-    {mainConcern === "inflammatory_acne" && (
-      <InflammatoryAcneGuideCard
-        guide={acneGuide}
-      />
-    )}
-
+{activeIssueGuide && (
+  <SkinIssueGuideCard
+    guide={activeIssueGuide}
+  />
+)}
     <div className="mb-10">
       <SectionTitle
         title="추천 루틴"
