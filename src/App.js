@@ -525,6 +525,196 @@ function getVisibleDehydrationQuestions() {
   return dehydrationQuestions;
 }
 
+const sensitivityRednessQuestions = [
+  {
+    id: "trigger",
+    q: "붉어짐이나 따가움은 주로 언제 생기나요?",
+    options: [
+      { label: "새 화장품을 쓴 뒤 생김", value: "new_product" },
+      { label: "세안 후 잘 생김", value: "after_wash" },
+      { label: "기능성 제품을 바른 뒤 생김", value: "active_product" },
+      { label: "특정 계기 없이 자주 생김", value: "random" },
+    ],
+  },
+
+  {
+    id: "sensation",
+    q: "가장 가까운 느낌은 어떤가요?",
+    options: [
+      { label: "붉어지기만 함", value: "redness" },
+      { label: "따끔거리거나 따가움", value: "stinging" },
+      { label: "화끈거리거나 열감이 남", value: "burning" },
+      { label: "가렵기도 함", value: "itching" },
+    ],
+  },
+
+  {
+    id: "duration",
+    q: "붉어짐이나 불편감은 얼마나 지속되나요?",
+    options: [
+      { label: "몇 분 안에 금방 가라앉음", value: "minutes" },
+      { label: "30분~몇 시간 정도", value: "hours" },
+      { label: "반나절 이상 지속됨", value: "half_day" },
+      { label: "며칠씩 계속되거나 반복됨", value: "days" },
+    ],
+  },
+
+  {
+    id: "skinDamage",
+    q: "피부 표면에도 변화가 있나요?",
+    options: [
+      { label: "붉은 것 외에는 거의 없음", value: "none" },
+      { label: "건조하고 거칠어짐", value: "dry" },
+      { label: "각질이 일어나거나 갈라짐", value: "flaking" },
+      { label: "물집·진물·벗겨진 부위가 있음", value: "blister_oozing" },
+    ],
+  },
+
+  {
+    id: "swelling",
+    q: "붓기가 같이 나타나나요?",
+    options: [
+      { label: "붓기는 없음", value: "none" },
+      { label: "피부가 약간 부어 보임", value: "mild" },
+      { label: "눈 주변이나 입술까지 붓기도 함", value: "eyes_lips" },
+    ],
+  },
+
+  {
+    id: "breathing",
+    q: "붓기와 함께 숨쉬기나 삼키기가 불편했던 적이 있나요?",
+    showIf: (answers) =>
+      answers.swelling?.value === "eyes_lips",
+    options: [
+      { label: "없음", value: "none" },
+      { label: "숨쉬기 또는 삼키기가 불편했던 적 있음", value: "difficulty" },
+    ],
+  },
+
+  {
+    id: "recentProduct",
+    q: "최근 2~4주 안에 새로 추가한 제품이 있나요?",
+    options: [
+      { label: "없음", value: "none" },
+      { label: "클렌저", value: "cleanser" },
+      { label: "토너 / 세럼 / 크림", value: "skincare" },
+      { label: "선크림", value: "sunscreen" },
+      { label: "여러 제품을 한꺼번에 바꿈", value: "multiple" },
+    ],
+  },
+
+  {
+    id: "actives",
+    q: "현재 자극 가능성이 있는 기능성 제품을 사용하나요?",
+    options: [
+      { label: "사용하지 않음", value: "none" },
+      { label: "BHA / AHA 각질 관리", value: "acid" },
+      { label: "레티놀 / 레티노이드 계열", value: "retinoid" },
+      { label: "여드름 기능성 제품", value: "acne_active" },
+      { label: "여러 기능성 제품을 같이 사용함", value: "multiple" },
+    ],
+  },
+
+  {
+    id: "moisturizerSting",
+    q: "평소 쓰던 순한 보습제를 발라도 따갑나요?",
+    options: [
+      { label: "보습제는 편안함", value: "none" },
+      { label: "가끔 따가움", value: "sometimes" },
+      { label: "보습제도 자주 따가움", value: "frequent" },
+    ],
+  },
+];
+
+function getVisibleSensitivityRednessQuestions(answers) {
+  return sensitivityRednessQuestions.filter((question) => {
+    if (!question.showIf) return true;
+    return question.showIf(answers);
+  });
+}
+
+const oilinessQuestions = [
+  {
+    id: "area",
+    q: "번들거림이 주로 어디에 나타나나요?",
+    options: [
+      { label: "이마 / 코 같은 T존 위주", value: "tzone" },
+      { label: "코 주변 위주", value: "nose" },
+      { label: "볼까지 전체적으로 번들거림", value: "whole_face" },
+      { label: "부위마다 차이가 큼", value: "combination" },
+    ],
+  },
+
+  {
+    id: "timing",
+    q: "세안 후 얼마나 지나면 번들거림이 느껴지나요?",
+    options: [
+      { label: "오후쯤 조금 올라옴", value: "late" },
+      { label: "3~4시간 안에 번들거림", value: "medium" },
+      { label: "1~2시간 안에 금방 번들거림", value: "fast" },
+      { label: "세안 직후부터 유분감이 느껴짐", value: "very_fast" },
+    ],
+  },
+
+  {
+    id: "afterWash",
+    q: "세안 직후 피부는 어떤 느낌인가요?",
+    options: [
+      { label: "편안함", value: "comfortable" },
+      { label: "약간 당기지만 금방 괜찮아짐", value: "mild_tight" },
+      { label: "속은 꽤 당기는데 나중에 번들거림", value: "tight_oily" },
+      { label: "많이 건조하고 당김", value: "very_tight" },
+    ],
+  },
+
+  {
+    id: "moisturizer",
+    q: "보습제를 바른 뒤 느낌은 어떤가요?",
+    options: [
+      { label: "적당하고 편안함", value: "comfortable" },
+      { label: "조금 무겁게 느껴짐", value: "heavy" },
+      { label: "금방 번들거리거나 답답함", value: "very_heavy" },
+      { label: "보습제를 거의 사용하지 않음", value: "none" },
+    ],
+  },
+
+  {
+    id: "cleansing",
+    q: "유분 때문에 세안을 강하게 하는 편인가요?",
+    options: [
+      { label: "순한 세안제로 짧게 세안", value: "gentle" },
+      { label: "뽀득한 느낌이 날 때까지 세안", value: "strong" },
+      { label: "하루 3번 이상 세안하기도 함", value: "frequent" },
+      { label: "스크럽이나 강한 클렌징도 같이 함", value: "harsh" },
+    ],
+  },
+
+  {
+    id: "clogged",
+    q: "번들거림과 함께 모공 막힘이나 좁쌀도 느껴지나요?",
+    options: [
+      { label: "거의 없음", value: "none" },
+      { label: "가끔 좁쌀이나 피지가 보임", value: "mild" },
+      { label: "좁쌀이나 막힘이 자주 생김", value: "frequent" },
+      { label: "블랙헤드와 피지가 많이 신경 쓰임", value: "blackhead" },
+    ],
+  },
+
+  {
+    id: "inflammation",
+    q: "붉거나 아픈 트러블도 같이 생기나요?",
+    options: [
+      { label: "거의 없음", value: "none" },
+      { label: "가끔 한두 개 생김", value: "sometimes" },
+      { label: "자주 붉은 트러블이 생김", value: "frequent" },
+    ],
+  },
+];
+
+function getVisibleOilinessQuestions() {
+  return oilinessQuestions;
+}
+
 function clamp(num, min, max) {
   return Math.min(Math.max(num, min), max);
 }
@@ -1234,6 +1424,12 @@ function getCareDirections(result) {
   if (mainIssue === "sensitivity_redness") {
     directions.push("붉어짐과 따가움이 있으면 BHA, 레티놀, 고함량 기능성은 잠시 줄이는 편이 안전해요.");
   }
+  if (mainIssue === "oiliness") {
+  directions.push(
+    "번들거림이 많아도 세안을 지나치게 강하게 하기보다 가벼운 수분과 산뜻한 제형으로 유수분 밸런스를 맞춰보세요."
+  );
+}
+
 
   if (directions.length === 0) {
     directions.push("현재는 큰 문제보다 기본 루틴을 안정적으로 유지하는 게 좋아 보여요.");
@@ -2168,6 +2364,455 @@ function analyzeDehydrationGuide(
     pharmacyGuide: null,
   };
 }
+
+function analyzeOilinessGuide(
+  answers = {},
+  skinResult = {}
+) {
+  const area = answers.area?.value || "";
+  const timing = answers.timing?.value || "";
+  const afterWash = answers.afterWash?.value || "";
+  const moisturizer = answers.moisturizer?.value || "";
+  const cleansing = answers.cleansing?.value || "";
+  const clogged = answers.clogged?.value || "";
+  const inflammation = answers.inflammation?.value || "";
+
+  const reasons = [];
+
+  if (area === "tzone") {
+    reasons.push("T존 중심으로 번들거림이 나타남");
+  }
+
+  if (area === "whole_face") {
+    reasons.push("얼굴 전체적으로 유분이 많이 올라옴");
+  }
+
+  if (
+    timing === "fast" ||
+    timing === "very_fast"
+  ) {
+    reasons.push("세안 후 비교적 빠르게 유분이 올라옴");
+  }
+
+  if (
+    afterWash === "tight_oily" ||
+    afterWash === "very_tight"
+  ) {
+    reasons.push("세안 직후에는 당기는데 이후 번들거림이 나타남");
+  }
+
+  if (
+    moisturizer === "heavy" ||
+    moisturizer === "very_heavy"
+  ) {
+    reasons.push("현재 보습제가 무겁거나 답답하게 느껴짐");
+  }
+
+  if (
+    cleansing === "strong" ||
+    cleansing === "frequent" ||
+    cleansing === "harsh"
+  ) {
+    reasons.push("유분 때문에 세안을 강하게 하는 편");
+  }
+
+  if (clogged === "frequent") {
+    reasons.push("번들거림과 함께 좁쌀·막힘이 자주 생김");
+  }
+
+  if (clogged === "blackhead") {
+    reasons.push("블랙헤드와 피지도 함께 신경 쓰임");
+  }
+
+  if (inflammation === "frequent") {
+    reasons.push("붉은 트러블도 자주 동반됨");
+  }
+
+  const baselineSensitive =
+    skinResult.skinType?.includes("민감") ||
+    (skinResult.scores?.sensitivity ?? 0) >= 2;
+
+  // 염증성 트러블이 더 중요한 경우
+  if (inflammation === "frequent") {
+    return {
+      careLevel: "basic_care",
+
+      badge: "🟢 트러블 상태 확인 우선",
+
+      title:
+        "현재는 단순한 유분 조절보다 반복되는 붉은 트러블을 함께 확인하는 게 좋아요.",
+
+      summary:
+        "번들거림과 함께 붉은 트러블이 자주 생긴다면 무조건 피지를 제거하는 방향보다 염증성 여드름 상태를 별도로 확인하고 루틴을 조정하는 편이 좋아요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 과도한 세안
+  const overCleansing =
+    cleansing === "strong" ||
+    cleansing === "frequent" ||
+    cleansing === "harsh";
+
+  if (overCleansing) {
+    return {
+      careLevel: "basic_care",
+
+      badge: "🟢 세안 강도 조정",
+
+      title:
+        "유분을 줄이려고 너무 강하게 세안하고 있지는 않은지 먼저 확인해보세요.",
+
+      summary:
+        "뽀득한 세안이나 지나치게 잦은 세안은 피부를 불편하게 만들 수 있어요. 순한 세안제로 짧게 씻고 이후 번들거림이 어떻게 변하는지 보는 방향이 좋아요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 속건조 + 유분
+  const dehydratedOiliness =
+    (
+      afterWash === "tight_oily" ||
+      afterWash === "very_tight"
+    ) &&
+    (
+      timing === "fast" ||
+      timing === "very_fast"
+    );
+
+  if (dehydratedOiliness) {
+    return {
+      careLevel: "basic_care",
+
+      badge: "🟢 수분 밸런스 우선",
+
+      title:
+        "유분은 많지만 속당김도 함께 있는 패턴이에요.",
+
+      summary:
+        "유분 때문에 보습을 완전히 줄이기보다 가벼운 수분 제품을 사용하고, 무거운 크림의 양을 줄이는 식으로 유수분 밸런스를 맞춰보세요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 보습제가 너무 무거움
+  if (
+    moisturizer === "heavy" ||
+    moisturizer === "very_heavy"
+  ) {
+    return {
+      careLevel: "basic_care",
+
+      badge: "🟢 제형 가볍게 조정",
+
+      title:
+        "현재 사용하는 보습 제품이 피부에 조금 무거울 수 있어요.",
+
+      summary:
+        "크림을 아예 빼기보다 사용량을 줄이거나 더 가벼운 젤크림·로션 제형으로 바꾸면서 번들거림 변화를 확인해보세요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 모공 막힘/블랙헤드 쪽이 더 뚜렷함
+  if (
+    clogged === "frequent" ||
+    clogged === "blackhead"
+  ) {
+    return {
+      careLevel: "basic_care",
+
+      badge: "🟢 피지·막힘 관리",
+
+      title:
+        "단순 번들거림보다 피지와 모공 막힘을 함께 관리하는 방향이 좋아 보여요.",
+
+      summary:
+        "강한 세안이나 반복 압출보다는 가벼운 보습을 유지하면서 블랙헤드·피지 관리 방향을 함께 확인해보세요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 민감 피부
+  if (baselineSensitive) {
+    return {
+      careLevel: "basic_care",
+
+      badge: "🟢 산뜻한 진정 관리",
+
+      title:
+        "유분을 줄이더라도 피부 자극을 최소화하는 방향이 중요해요.",
+
+      summary:
+        "민감 경향이 있다면 강한 피지 제거 제품보다 순한 세안과 가벼운 수분·진정 제품으로 번들거림을 조절해보세요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  return {
+    careLevel: "basic_care",
+
+    badge: "🟢 기본 유분 밸런스 관리",
+
+    title:
+      "현재는 제품 제형과 사용량을 가볍게 조정하는 것부터 시작해보세요.",
+
+    summary:
+      "유분이 많다고 보습을 완전히 없애기보다 산뜻한 수분 제품을 유지하고, 무거운 제품과 과도한 세안을 줄이면서 피부 반응을 확인해보세요.",
+
+    reasons,
+
+    pharmacyGuide: null,
+  };
+}
+
+function analyzeSensitivityRednessGuide(
+  answers = {}
+) {
+  const trigger = answers.trigger?.value || "";
+  const sensation = answers.sensation?.value || "";
+  const duration = answers.duration?.value || "";
+  const skinDamage = answers.skinDamage?.value || "";
+  const swelling = answers.swelling?.value || "";
+  const breathing = answers.breathing?.value || "";
+  const recentProduct = answers.recentProduct?.value || "";
+  const actives = answers.actives?.value || "";
+  const moisturizerSting =
+    answers.moisturizerSting?.value || "";
+
+  const reasons = [];
+
+  if (trigger === "new_product") {
+    reasons.push("새 제품 사용 후 증상이 시작됨");
+  }
+
+  if (trigger === "after_wash") {
+    reasons.push("세안 후 붉어짐이나 따가움이 나타남");
+  }
+
+  if (trigger === "active_product") {
+    reasons.push("기능성 제품 사용 후 불편감이 나타남");
+  }
+
+  if (sensation === "stinging") {
+    reasons.push("따끔거리거나 따가운 느낌이 있음");
+  }
+
+  if (sensation === "burning") {
+    reasons.push("화끈거림이나 열감이 있음");
+  }
+
+  if (sensation === "itching") {
+    reasons.push("가려움이 함께 나타남");
+  }
+
+  if (
+    duration === "half_day" ||
+    duration === "days"
+  ) {
+    reasons.push("붉어짐이나 불편감이 오래 지속됨");
+  }
+
+  if (skinDamage === "dry") {
+    reasons.push("피부가 건조하고 거칠어짐");
+  }
+
+  if (skinDamage === "flaking") {
+    reasons.push("각질이나 갈라짐이 동반됨");
+  }
+
+  if (skinDamage === "blister_oozing") {
+    reasons.push("물집·진물·벗겨짐이 동반됨");
+  }
+
+  if (swelling === "mild") {
+    reasons.push("붓기가 동반됨");
+  }
+
+  if (swelling === "eyes_lips") {
+    reasons.push("눈 주변 또는 입술 붓기가 동반됨");
+  }
+
+  if (breathing === "difficulty") {
+    reasons.push("호흡 또는 삼킴 불편감이 있었음");
+  }
+
+  if (recentProduct !== "" && recentProduct !== "none") {
+    reasons.push("최근 새 화장품을 추가함");
+  }
+
+  if (actives === "multiple") {
+    reasons.push("여러 기능성 제품을 함께 사용 중");
+  }
+
+  if (moisturizerSting === "frequent") {
+    reasons.push("순한 보습제도 자주 따가움");
+  }
+
+  // 🚨 응급 평가가 필요한 신호
+  if (breathing === "difficulty") {
+    return {
+      careLevel: "clinic_priority",
+
+      badge: "🚨 즉시 진료 필요",
+
+      title:
+        "화장품 사용을 계속하면서 지켜볼 상황은 아니에요.",
+
+      summary:
+        "눈이나 입술의 붓기와 함께 숨쉬기 또는 삼키기가 불편했다면 심한 알레르기 반응 가능성을 포함해 즉시 의료 평가가 필요한 신호예요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 🔴 피부과 진료 우선
+  const clinicPriority =
+    skinDamage === "blister_oozing" ||
+    (
+      swelling === "eyes_lips" &&
+      duration !== "minutes"
+    ) ||
+    (
+      sensation === "burning" &&
+      duration === "days"
+    );
+
+  if (clinicPriority) {
+    return {
+      careLevel: "clinic_priority",
+
+      badge: "🔴 진료 우선",
+
+      title:
+        "단순한 민감 피부 관리보다 피부 상태를 먼저 확인하는 편이 좋아요.",
+
+      summary:
+        "물집, 진물, 벗겨진 피부, 지속적인 심한 화끈거림 또는 눈·입술 주변 붓기가 있다면 새 기능성 제품을 추가하기보다 현재 상태를 확인하는 게 우선이에요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 새 제품 이후 증상
+  const recentProductReaction =
+    trigger === "new_product" ||
+    recentProduct === "multiple" ||
+    (
+      recentProduct !== "none" &&
+      duration !== "minutes"
+    );
+
+  if (recentProductReaction) {
+    return {
+      careLevel: "basic_care",
+
+      badge: "🟢 새 제품 점검 우선",
+
+      title:
+        "최근 추가한 제품부터 하나씩 확인하는 게 좋아요.",
+
+      summary:
+        "새 제품을 사용한 뒤 붉어짐이나 따가움이 시작됐다면 기능성 제품을 추가하기보다 최근 변경한 제품을 우선 중단하고, 피부가 편안해진 뒤 제품을 하나씩 다시 확인하는 방향이 원인을 좁히기 쉬워요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 기능성 과사용
+  const activeOverload =
+    actives === "multiple" ||
+    (
+      ["acid", "retinoid", "acne_active"].includes(actives) &&
+      ["stinging", "burning"].includes(sensation)
+    );
+
+  if (activeOverload) {
+    return {
+      careLevel: "basic_care",
+
+      badge: "🟢 기능성 줄이기",
+
+      title:
+        "현재는 기능성 제품을 더 추가하기보다 자극을 줄이는 게 먼저예요.",
+
+      summary:
+        "각질 관리, 레티놀, 여드름 기능성 제품을 사용하는 중 따가움이나 화끈거림이 있다면 기능성 사용을 잠시 줄이고 순한 세안과 보습 중심으로 루틴을 단순하게 만들어보세요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  // 장벽 자극 가능성
+  const barrierIrritation =
+    moisturizerSting === "frequent" ||
+    skinDamage === "flaking" ||
+    (
+      sensation === "stinging" &&
+      duration !== "minutes"
+    );
+
+  if (barrierIrritation) {
+    return {
+      careLevel: "basic_care",
+
+      badge: "🟢 진정·장벽 관리 우선",
+
+      title:
+        "현재는 기능성보다 피부가 편안해지는 기본 루틴이 더 중요해 보여요.",
+
+      summary:
+        "평소 사용하던 보습제까지 따갑거나 각질·갈라짐이 함께 있다면 자극적인 성분을 줄이고 순한 세안, 보습, 자외선 차단 중심으로 단순하게 관리해보세요.",
+
+      reasons,
+
+      pharmacyGuide: null,
+    };
+  }
+
+  return {
+    careLevel: "basic_care",
+
+    badge: "🟢 민감 자극 최소화",
+
+    title:
+      "현재는 자극 요소를 줄이면서 피부 반응을 관찰해보세요.",
+
+    summary:
+      "일시적인 붉어짐 위주라면 새 제품을 한꺼번에 여러 개 추가하지 말고 순한 세안과 보습 중심으로 유지하면서 어떤 상황에서 붉어지는지 확인해보는 게 좋아요.",
+
+    reasons,
+
+    pharmacyGuide: null,
+  };
+}
+
 function SurveyResultOverview({ result }) {
   if (!result) return null;
 
@@ -2528,6 +3173,7 @@ function SeoContentSection() {
           추천하는 서비스입니다. 건성, 수부지, 지성, 민감성 피부처럼
           자신의 피부 상태를 정확히 모르더라도 간단한 설문으로 시작할 수
           있어요.
+        
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -2705,6 +3351,34 @@ const dehydrationGuide = useMemo(() => {
   surveyResult,
 ]);
 
+const sensitivityGuide = useMemo(() => {
+  if (mainConcern !== "sensitivity_redness") {
+    return null;
+  }
+
+  return analyzeSensitivityRednessGuide(
+    issueAnswers
+  );
+}, [
+  mainConcern,
+  issueAnswers,
+]);
+
+const oilinessGuide = useMemo(() => {
+  if (mainConcern !== "oiliness") {
+    return null;
+  }
+
+  return analyzeOilinessGuide(
+    issueAnswers,
+    surveyResult
+  );
+}, [
+  mainConcern,
+  issueAnswers,
+  surveyResult,
+]);
+
 const activeIssueGuide =
   mainConcern === "inflammatory_acne"
     ? acneGuide
@@ -2714,7 +3388,11 @@ const activeIssueGuide =
     ? blackheadGuide
     : mainConcern === "dehydration"
     ? dehydrationGuide
-    : null;
+: mainConcern === "sensitivity_redness"
+? sensitivityGuide
+: mainConcern === "oiliness"
+? oilinessGuide
+: null;
 
 const selectedConcern =
   skinConcernOptions.find(
@@ -2772,6 +3450,10 @@ const activeIssueQuestions =
     ? getVisibleBlackheadSebumQuestions(issueAnswers)
     : mainConcern === "dehydration"
     ? getVisibleDehydrationQuestions(issueAnswers)
+    : mainConcern === "sensitivity_redness"
+    ? getVisibleSensitivityRednessQuestions(issueAnswers)
+    : mainConcern === "oiliness"
+    ? getVisibleOilinessQuestions(issueAnswers)
     : [];
 
 const currentIssueQuestion =
@@ -2887,6 +3569,14 @@ const handleIssueAnswer = (question, option) => {
       !["pustule", "nodule", "cluster"].includes(option.value)
     ) {
       delete next.pain;
+    }
+
+ // 눈/입술 붓기가 아니라면 호흡 질문의 예전 답변 삭제
+    if (
+      question.id === "swelling" &&
+      option.value !== "eyes_lips"
+    ) {
+      delete next.breathing;
     }
 
     return next;
@@ -3381,7 +4071,9 @@ if (
   mainConcern === "inflammatory_acne" ||
   mainConcern === "closed_comedones" ||
   mainConcern === "blackhead_sebum" ||
-  mainConcern === "dehydration"
+  mainConcern === "dehydration" ||
+  mainConcern === "sensitivity_redness" || 
+  mainConcern === "oiliness"
 ) {
   setIssueIndex(0);
   setStep("issueDetail");
@@ -3503,25 +4195,27 @@ if (
       />
     </div>
 
-    <div className="max-w-3xl mx-auto mb-8">
-      <SectionTitle
-        title="피부 고민 관리 방향"
-        desc="선택한 피부 고민에 맞춘 기본 관리 가이드입니다."
-      />
+{!activeIssueGuide && (
+  <div className="max-w-3xl mx-auto mb-8">
+    <SectionTitle
+      title="피부 고민 관리 방향"
+      desc="선택한 피부 고민에 맞춘 기본 관리 가이드입니다."
+    />
 
-      <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-5 sm:p-6">
-        <ul className="space-y-2">
-          {surveyResult.solution.map((text) => (
-            <li
-              key={text}
-              className="text-sm sm:text-base text-gray-700 leading-relaxed break-keep"
-            >
-              · {text}
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-5 sm:p-6">
+      <ul className="space-y-2">
+        {surveyResult.solution.map((text) => (
+          <li
+            key={text}
+            className="text-sm sm:text-base text-gray-700 leading-relaxed break-keep"
+          >
+            · {text}
+          </li>
+        ))}
+      </ul>
     </div>
+  </div>
+)}
 
     {surveyResult.lifestyleAdvice.length > 0 && (
       <div className="max-w-3xl mx-auto mb-8">
