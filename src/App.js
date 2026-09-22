@@ -818,34 +818,69 @@ function isValidProductLink(link) {
 
 function getConcernMatchScore(product, mainConcern) {
   const concerns = product.concerns || [];
+
+  const has = (...tags) =>
+    tags.some((tag) => concerns.includes(tag));
+
   let score = 0;
 
+  // 염증성 여드름
   if (mainConcern === "inflammatory_acne") {
-    if (concerns.includes("acne")) score += 4;
-    if (concerns.includes("soothing")) score += 2;
-    if (concerns.includes("barrier")) score += 1;
+    if (has("acne")) score += 6;
+    if (has("soothing")) score += 3;
+    if (has("redness", "sensitive")) score += 2;
+    if (has("barrier")) score += 1;
   }
 
+  // 좁쌀 / 막힘
   if (mainConcern === "closed_comedones") {
-    if (concerns.includes("acne")) score += 4;
-    if (concerns.includes("soothing")) score += 1;
+    if (has("closed_comedones")) score += 6;
+
+    // 기존 products.js 태그 호환
+    if (has("pores")) score += 4;
+    if (has("sebum")) score += 2;
+    if (has("lightweight", "light")) score += 3;
+    if (has("acne")) score += 1;
   }
 
+  // 블랙헤드 / 피지
   if (mainConcern === "blackhead_sebum") {
-    if (concerns.includes("acne")) score += 3;
-    if (concerns.includes("soothing")) score += 1;
+    if (has("blackhead")) score += 6;
+
+    // 기존 태그 호환
+    if (has("pores")) score += 5;
+    if (has("sebum", "oil_control")) score += 4;
+    if (has("lightweight", "light")) score += 2;
   }
 
+  // 속당김 / 건조함
   if (mainConcern === "dehydration") {
-    if (concerns.includes("hydration")) score += 4;
-    if (concerns.includes("barrier")) score += 3;
-    if (concerns.includes("soothing")) score += 1;
+    if (has("hydration")) score += 6;
+    if (has("barrier")) score += 4;
+    if (has("soothing")) score += 1;
+
+    // 기존 건성 태그
+    if (has("dry")) score += 2;
   }
 
+  // 민감 / 붉어짐
   if (mainConcern === "sensitivity_redness") {
-    if (concerns.includes("soothing")) score += 4;
-    if (concerns.includes("barrier")) score += 3;
-    if (concerns.includes("hydration")) score += 1;
+    if (has("redness")) score += 6;
+    if (has("soothing")) score += 5;
+    if (has("sensitive")) score += 4;
+    if (has("barrier")) score += 3;
+    if (has("hydration")) score += 1;
+  }
+
+  // 번들거림
+  if (mainConcern === "oiliness") {
+    if (has("oil_control")) score += 6;
+
+    // 기존 products.js의 핵심 태그
+    if (has("sebum")) score += 6;
+    if (has("lightweight", "light")) score += 5;
+    if (has("pores")) score += 2;
+    if (has("blackhead")) score += 1;
   }
 
   return score;
@@ -1175,6 +1210,41 @@ function buildRecommendationReasons(product, currentLevel) {
   if (product.category === "cleanser") {
     reasons.push("루틴 시작 단계에서 부담이 적은 세안용 제품");
   }
+  
+const productConcerns = product.concerns || [];
+
+const hasConcern = (...tags) =>
+  tags.some((tag) => productConcerns.includes(tag));
+
+if (hasConcern("closed_comedones", "pores")) {
+  reasons.push(
+    "좁쌀이나 모공 막힘이 신경 쓰일 때 보기 좋은 제품"
+  );
+}
+
+if (hasConcern("blackhead", "pores")) {
+  reasons.push(
+    "블랙헤드와 피지가 신경 쓰일 때 활용하기 좋은 제품"
+  );
+}
+
+if (hasConcern("oil_control", "sebum")) {
+  reasons.push(
+    "번들거림과 과도한 유분감 관리에 잘 맞는 편"
+  );
+}
+
+if (hasConcern("lightweight", "light")) {
+  reasons.push(
+    "무겁고 답답한 제형이 부담스러운 피부에 적합한 편"
+  );
+}
+
+if (hasConcern("redness", "sensitive")) {
+  reasons.push(
+    "붉어짐이나 예민함이 신경 쓰일 때 보기 좋은 제품"
+  );
+}
 
   return reasons.slice(0, 3);
 }
