@@ -816,6 +816,97 @@ function isValidProductLink(link) {
   return !!link && link !== "#";
 }
 
+function getConcernMatchScore(product, mainConcern) {
+  const concerns = product.concerns || [];
+  let score = 0;
+
+  if (mainConcern === "inflammatory_acne") {
+    if (concerns.includes("acne")) score += 4;
+    if (concerns.includes("soothing")) score += 2;
+    if (concerns.includes("barrier")) score += 1;
+  }
+
+  if (mainConcern === "closed_comedones") {
+    if (concerns.includes("acne")) score += 4;
+    if (concerns.includes("soothing")) score += 1;
+  }
+
+  if (mainConcern === "blackhead_sebum") {
+    if (concerns.includes("acne")) score += 3;
+    if (concerns.includes("soothing")) score += 1;
+  }
+
+  if (mainConcern === "dehydration") {
+    if (concerns.includes("hydration")) score += 4;
+    if (concerns.includes("barrier")) score += 3;
+    if (concerns.includes("soothing")) score += 1;
+  }
+
+  if (mainConcern === "sensitivity_redness") {
+    if (concerns.includes("soothing")) score += 4;
+    if (concerns.includes("barrier")) score += 3;
+    if (concerns.includes("hydration")) score += 1;
+  }
+
+  return score;
+}
+
+function sortProductsForRecommendation(
+  productList,
+  currentLevel,
+  userContext = {}
+) {
+  return [...productList].sort((a, b) => {
+    const aConcernScore = getConcernMatchScore(
+      a,
+      userContext.mainConcern
+    );
+
+    const bConcernScore = getConcernMatchScore(
+      b,
+      userContext.mainConcern
+    );
+
+    // 1순위: 현재 피부 고민과 얼마나 잘 맞는지
+    if (aConcernScore !== bConcernScore) {
+      return bConcernScore - aConcernScore;
+    }
+
+    const aDiff = Math.abs(
+      (a.hydrationLevel ?? 5) - currentLevel
+    );
+
+    const bDiff = Math.abs(
+      (b.hydrationLevel ?? 5) - currentLevel
+    );
+
+    // 2순위: 현재 수분감 단계와 가까운 제품
+    if (aDiff !== bDiff) {
+      return aDiff - bDiff;
+    }
+
+    // 3순위: 민감 피부라면 sensitivitySafe 우선
+    if (userContext.isSensitive) {
+      const aSensitive = a.sensitivitySafe ? 1 : 0;
+      const bSensitive = b.sensitivitySafe ? 1 : 0;
+
+      if (aSensitive !== bSensitive) {
+        return bSensitive - aSensitive;
+      }
+    }
+
+    // 4순위: 초보자 친화 제품
+    const aBeginner = a.beginnerFriendly ? 1 : 0;
+    const bBeginner = b.beginnerFriendly ? 1 : 0;
+
+    if (aBeginner !== bBeginner) {
+      return bBeginner - aBeginner;
+    }
+
+    return 0;
+  });
+}
+
 function sortProductsForDisplay(productList, currentLevel) {
   return [...productList].sort((a, b) => {
     const aBeginner = a.beginnerFriendly ? 1 : 0;
@@ -858,7 +949,12 @@ function filterByLevel(productList, level) {
 
   return filtered;
 }
-function pickBestProductByCategory(category, level) {
+
+function pickBestProductByCategory(
+  category,
+  level,
+  userContext = {}
+) {
   let targetCategory = category;
 
   // 클렌저는 피부 단계에 따라 세부 카테고리로 자동 분기
@@ -884,23 +980,52 @@ function pickBestProductByCategory(category, level) {
   }
 
   const levelMatchedProducts = filterByLevel(categoryProducts, level);
-  const sortedProducts = sortProductsForDisplay(levelMatchedProducts, level);
+  const sortedProducts = sortProductsForRecommendation(
+  levelMatchedProducts,
+  level,
+  userContext
+);
 
   return sortedProducts[0] || null;
 }
 
-function buildDynamicRoutine(level) {
+function buildDynamicRoutine(
+  level,
+  userContext = {}
+) {
   return {
     label: `${level}단계 맞춤 루틴`,
-    description: "현재 수분감 단계에 맞춰 자동으로 구성한 추천 루틴입니다.",
+    description:
+      "현재 피부 상태와 주요 고민을 반영해 구성한 추천 루틴입니다.",
+
     products: {
-      cleanser: pickBestProductByCategory("cleanser", level),
-      toner: pickBestProductByCategory("toner", level),
-      serum: pickBestProductByCategory("serum", level),
-      cream: pickBestProductByCategory("cream", level),
+      cleanser: pickBestProductByCategory(
+        "cleanser",
+        level,
+        userContext
+      ),
+
+      toner: pickBestProductByCategory(
+        "toner",
+        level,
+        userContext
+      ),
+
+      serum: pickBestProductByCategory(
+        "serum",
+        level,
+        userContext
+      ),
+
+      cream: pickBestProductByCategory(
+        "cream",
+        level,
+        userContext
+      ),
     },
   };
 }
+
 function buildRoutineReason(level) {
   if (level <= 3) {
     return [
@@ -3416,7 +3541,16 @@ const finalSkinProfile = {
   issueGuide: activeIssueGuide,
 };
 
-const surveyRoutine = buildDynamicRoutine(surveyResult.hydrationLevel);
+const surveyRoutine = buildDynamicRoutine(
+  surveyResult.hydrationLevel,
+  {
+    mainConcern,
+    isSensitive:
+      surveyResult.skinType?.includes("민감") ||
+      (surveyResult.scores?.sensitivity ?? 0) >= 2,
+  }
+);
+
 const savedSurveyResult = useMemo(() => {
   if (!savedSurvey?.surveyAnswers) return null;
 
