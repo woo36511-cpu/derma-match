@@ -3677,6 +3677,7 @@ const issueProgress =
     : 0;
 
 const surveyUserContext = {
+  mainConcern,
   level: surveyResult.hydrationLevel,
   isSensitive:
     surveyResult.skinType === "민감성" || surveyResult.scores.sensitivity >= 2,
