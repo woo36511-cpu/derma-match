@@ -1050,11 +1050,23 @@ const sensitiveSafeProducts = userContext.isSensitive
     )
   : levelMatchedProducts;
 
-// 민감 안전성을 먼저 적용
-const safePool =
-  sensitiveSafeProducts.length > 0
+// 현재 수분 단계 안에 민감 안전 제품이 없다면
+// 같은 카테고리 전체에서 민감 안전 제품을 다시 탐색
+const broaderSensitiveProducts =
+  userContext.isSensitive &&
+  sensitiveSafeProducts.length === 0
+    ? categoryProducts.filter(
+        (product) => product.sensitivitySafe
+      )
+    : [];
+
+const safePool = userContext.isSensitive
+  ? sensitiveSafeProducts.length > 0
     ? sensitiveSafeProducts
-    : levelMatchedProducts;
+    : broaderSensitiveProducts.length > 0
+    ? broaderSensitiveProducts
+    : levelMatchedProducts
+  : levelMatchedProducts;
 
 // 실제 구매 링크가 있는 제품 우선
 const linkedProducts = safePool.filter(
