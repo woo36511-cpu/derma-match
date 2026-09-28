@@ -753,20 +753,44 @@ function calculateNextLevel(currentLevel, answers) {
   return clamp(currentLevel + adjustment, 1, 10);
 }
 
-function getRecommendedIngredients(level, troubleScore) {
+function getRecommendedIngredients(
+  level,
+  feedbackContext = {}
+) {
   const list = [];
 
   if (level <= 3) {
-    list.push("세라마이드", "판테놀", "히알루론산");
+    list.push(
+      "세라마이드",
+      "판테놀",
+      "히알루론산"
+    );
   } else if (level <= 5) {
-    list.push("히알루론산", "판테놀");
+    list.push(
+      "히알루론산",
+      "판테놀"
+    );
   } else if (level <= 7) {
-    list.push("판테놀", "나이아신아마이드");
+    list.push(
+      "판테놀",
+      "나이아신아마이드"
+    );
   } else {
     list.push("나이아신아마이드");
   }
 
-  if (troubleScore >= 1 && !list.includes("BHA")) {
+  const clogged = feedbackContext.clogged ?? 0;
+  const trouble = feedbackContext.trouble ?? 0;
+  const irritated = feedbackContext.irritated ?? false;
+
+  // 좁쌀·막힘이 늘었지만
+  // 붉은 트러블이나 자극은 없는 경우에만 BHA 고려
+  if (
+    clogged >= 1 &&
+    trouble === 0 &&
+    !irritated &&
+    !list.includes("BHA")
+  ) {
     list.push("BHA");
   }
 
@@ -1014,14 +1038,42 @@ function pickBestProductByCategory(
     );
   }
 
-  const levelMatchedProducts = filterByLevel(categoryProducts, level);
-  const sortedProducts = sortProductsForRecommendation(
-  levelMatchedProducts,
+const levelMatchedProducts = filterByLevel(
+  categoryProducts,
+  level
+);
+
+// 민감 피부라면 sensitivitySafe 제품을 먼저 후보군으로 제한
+const sensitiveSafeProducts = userContext.isSensitive
+  ? levelMatchedProducts.filter(
+      (product) => product.sensitivitySafe
+    )
+  : levelMatchedProducts;
+
+// 민감 안전성을 먼저 적용
+const safePool =
+  sensitiveSafeProducts.length > 0
+    ? sensitiveSafeProducts
+    : levelMatchedProducts;
+
+// 실제 구매 링크가 있는 제품 우선
+const linkedProducts = safePool.filter(
+  (product) => isValidProductLink(product.link)
+);
+
+// 링크 있는 제품이 하나라도 있으면 그 안에서 추천
+const recommendationPool =
+  linkedProducts.length > 0
+    ? linkedProducts
+    : safePool;
+
+const sortedProducts = sortProductsForRecommendation(
+  recommendationPool,
   level,
   userContext
 );
 
-  return sortedProducts[0] || null;
+return sortedProducts[0] || null;
 }
 
 function buildDynamicRoutine(
@@ -1095,6 +1147,44 @@ function getLevelChangeMessage(starterLevel, nextLevel) {
 
   return "현재 반응 기준으로는 지금 단계의 밸런스가 가장 무난해 보여요.";
 }
+
+function getFeedbackMainConcern(
+  answers = {},
+  fallbackConcern = ""
+) {
+  const irritationLabel =
+    answers.irritation?.label || "";
+
+  const trouble =
+    getFeedbackValue(answers, "trouble");
+
+  const clogged =
+    getFeedbackValue(answers, "clogged");
+
+  const irritated =
+    irritationLabel.includes("따가움") ||
+    irritationLabel.includes("붉어짐") ||
+    irritationLabel.includes("불편함");
+
+  // 1순위: 자극 반응
+  if (irritated) {
+    return "sensitivity_redness";
+  }
+
+  // 2순위: 새로 생기거나 악화된 붉은 트러블
+  if (trouble >= 1) {
+    return "inflammatory_acne";
+  }
+
+  // 3순위: 좁쌀 / 막힘 증가
+  if (clogged >= 1) {
+    return "closed_comedones";
+  }
+
+  // 새 문제가 없으면 기존 고민 유지
+  return fallbackConcern || "none";
+}
+
 function getFeedbackAdvice(answers) {
   const dry = getFeedbackValue(answers, "dry");
   const oil = getFeedbackValue(answers, "oil");
@@ -1172,92 +1262,129 @@ function buildUserTags(context) {
   return tags;
 }
 
-function buildRecommendationReasons(product, currentLevel) {
+function buildRecommendationReasons(product, userContext = {}) {
   const reasons = [];
 
-  const hydrationDiff = Math.abs((product.hydrationLevel ?? 5) - currentLevel);
+  const currentLevel = userContext.level ?? 5;
+  const mainConcern = userContext.mainConcern;
+
+  const productConcerns = product.concerns || [];
+
+  const hasConcern = (...tags) =>
+    tags.some((tag) => productConcerns.includes(tag));
+
+  // ===== 1순위: 현재 피부 고민과 직접 연결된 이유 =====
+
+  if (mainConcern === "inflammatory_acne") {
+    if (hasConcern("acne")) {
+      reasons.push("현재 고민인 염증성 트러블 관리 방향과 잘 맞는 제품");
+    }
+
+    if (hasConcern("soothing")) {
+      reasons.push("붉고 예민해진 피부를 진정시키는 방향으로 보기 좋음");
+    }
+  }
+
+  if (mainConcern === "closed_comedones") {
+    if (hasConcern("closed_comedones", "pores")) {
+      reasons.push("현재 고민인 좁쌀·모공 막힘 관리 방향과 잘 맞는 제품");
+    }
+
+    if (hasConcern("lightweight", "light")) {
+      reasons.push("무겁고 답답한 제형을 줄이고 싶을 때 보기 좋은 편");
+    }
+  }
+
+  if (mainConcern === "blackhead_sebum") {
+    if (hasConcern("blackhead", "pores")) {
+      reasons.push("현재 고민인 블랙헤드와 모공 관리 방향에 잘 맞는 제품");
+    }
+
+    if (hasConcern("oil_control", "sebum")) {
+      reasons.push("피지와 번들거림 관리가 필요한 피부에 잘 맞는 편");
+    }
+  }
+
+  if (mainConcern === "dehydration") {
+    if (hasConcern("hydration")) {
+      reasons.push("현재 고민인 속당김을 줄이기 위한 수분 보충에 잘 맞는 제품");
+    }
+
+    if (hasConcern("barrier")) {
+      reasons.push("수분이 쉽게 날아가는 피부의 장벽 보완에 보기 좋은 제품");
+    }
+  }
+
+  if (mainConcern === "sensitivity_redness") {
+    if (hasConcern("soothing", "redness", "sensitive")) {
+      reasons.push("현재 고민인 붉어짐과 예민함을 고려한 진정 제품");
+    }
+
+    if (hasConcern("barrier")) {
+      reasons.push("자극받은 피부의 장벽 관리 방향과 잘 맞는 편");
+    }
+  }
+
+  if (mainConcern === "oiliness") {
+    if (hasConcern("oil_control", "sebum")) {
+      reasons.push("현재 고민인 번들거림과 유분 관리에 잘 맞는 제품");
+    }
+
+    if (hasConcern("lightweight", "light")) {
+      reasons.push("무겁고 답답한 사용감을 피하고 싶은 피부에 적합한 편");
+    }
+  }
+
+  // ===== 2순위: 수분감 단계 =====
+
+  const hydrationDiff = Math.abs(
+    (product.hydrationLevel ?? 5) - currentLevel
+  );
 
   if (hydrationDiff === 0) {
     reasons.push("현재 수분감 단계와 잘 맞음");
   } else if (hydrationDiff === 1) {
-    reasons.push("현재 단계와 크게 벗어나지 않아 무난하게 쓰기 좋음");
+    reasons.push("현재 수분감 단계와 크게 벗어나지 않는 제품");
+  }
+
+  // ===== 3순위: 추가 적합성 =====
+
+  if (userContext.isSensitive && product.sensitivitySafe) {
+    reasons.push("민감 경향을 고려했을 때 비교적 부담이 적은 편");
   }
 
   if (product.beginnerFriendly) {
     reasons.push("초보자도 시작하기 부담이 적은 제품");
   }
 
-  if (product.sensitivitySafe) {
-    reasons.push("민감한 피부도 비교적 편하게 쓰기 쉬운 편");
-  }
-
-  if (product.concerns?.includes("hydration")) {
+  if (hasConcern("hydration")) {
     reasons.push("기본 수분 보충용으로 활용하기 좋음");
   }
 
-  if (product.concerns?.includes("soothing")) {
-    reasons.push("예민함이나 붉어짐이 신경 쓰일 때 진정용으로 보기 좋음");
+  if (hasConcern("soothing")) {
+    reasons.push("진정 관리가 필요할 때 같이 보기 좋음");
   }
 
-  if (product.concerns?.includes("barrier")) {
-    reasons.push("장벽 보완이 필요한 피부에 잘 맞는 편");
+  if (hasConcern("barrier")) {
+    reasons.push("장벽 보완이 필요한 피부에 보기 좋은 편");
   }
 
-  if (product.concerns?.includes("acne")) {
-    reasons.push("트러블이나 막힘 관리가 필요한 경우 같이 보기 좋음");
-  }
-
-  if (product.category === "cleanser") {
-    reasons.push("루틴 시작 단계에서 부담이 적은 세안용 제품");
-  }
-  
-const productConcerns = product.concerns || [];
-
-const hasConcern = (...tags) =>
-  tags.some((tag) => productConcerns.includes(tag));
-
-if (hasConcern("closed_comedones", "pores")) {
-  reasons.push(
-    "좁쌀이나 모공 막힘이 신경 쓰일 때 보기 좋은 제품"
-  );
+  return [...new Set(reasons)].slice(0, 3);
 }
 
-if (hasConcern("blackhead", "pores")) {
-  reasons.push(
-    "블랙헤드와 피지가 신경 쓰일 때 활용하기 좋은 제품"
-  );
-}
-
-if (hasConcern("oil_control", "sebum")) {
-  reasons.push(
-    "번들거림과 과도한 유분감 관리에 잘 맞는 편"
-  );
-}
-
-if (hasConcern("lightweight", "light")) {
-  reasons.push(
-    "무겁고 답답한 제형이 부담스러운 피부에 적합한 편"
-  );
-}
-
-if (hasConcern("redness", "sensitive")) {
-  reasons.push(
-    "붉어짐이나 예민함이 신경 쓰일 때 보기 좋은 제품"
-  );
-}
-
-  return reasons.slice(0, 3);
-}
 function getRecommendedAmount(product, userContext) {
   if (!product?.usageAmount || !userContext) return null;
 
-  const skinType = userContext.skinType;
+  const skinType = userContext.skinType || "";
 
-  if (skinType === "지성" || skinType === "수부지") {
+  if (
+    skinType.includes("지성") ||
+    skinType.includes("수부지")
+  ) {
     return product.usageAmount.oily;
   }
 
-  if (skinType === "건성") {
+  if (skinType.includes("건성")) {
     return product.usageAmount.dry;
   }
 
@@ -1312,9 +1439,9 @@ function ProductCard({ product, categoryKey, userContext }) {
 
   const clickable = isValidProductLink(product.link);
   const tags = userContext ? buildUserTags(userContext) : [];
-  const reasons = userContext
-    ? buildRecommendationReasons(product, userContext.level)
-    : [];
+const reasons = userContext
+  ? buildRecommendationReasons(product, userContext)
+  : [];
     
 const recommendedAmount = getRecommendedAmount(product, userContext);
 const cardInner = (
@@ -3014,7 +3141,12 @@ function SurveyResultOverview({ result }) {
   const levelInfo = getLevelDescription(result.hydrationLevel);
   const directions = getCareDirections(result);
   const cautions = getResultCautions(result);
-  const reasons = Array.isArray(result.reasons) ? result.reasons.slice(0, 6) : [];
+ const reasons =
+  result.issueGuide?.reasons?.length
+    ? result.issueGuide.reasons.slice(0, 6)
+    : Array.isArray(result.reasons)
+    ? result.reasons.slice(0, 6)
+    : [];
 
   return (
     <section className="space-y-5">
@@ -3482,16 +3614,34 @@ useEffect(() => {
   return calculateNextLevel(baseLevel, answers);
 }, [baseLevel, answers]);
 
+const surveyResult = useMemo(() => {
+  return analyzeSkinSurvey(surveyAnswers, skinSurveyQuestions);
+}, [surveyAnswers]);
+
+const feedbackMainConcern =
+  getFeedbackMainConcern(
+    answers,
+    mainConcern
+  );
+
   const starterRoutineInfo = routineMap[starterLevel];
   const nextRoutineInfo = routineMap[nextLevel];
 
   const starterRoutine = getRoutineProducts(starterLevel);
-  const nextRoutine = buildDynamicRoutine(nextLevel);
+const nextRoutine = buildDynamicRoutine(
+  nextLevel,
+  {
+    mainConcern: feedbackMainConcern,
+
+    isSensitive:
+      surveyResult.skinType?.includes("민감") ||
+      (surveyResult.scores?.sensitivity ?? 0) >= 2 ||
+      feedbackMainConcern === "sensitivity_redness",
+  }
+);
 const quickRoutine = buildDynamicRoutine(quickLevel);
 const quickRoutineReason = buildRoutineReason(quickLevel);
-const surveyResult = useMemo(() => {
-  return analyzeSkinSurvey(surveyAnswers, skinSurveyQuestions);
-}, [surveyAnswers]);
+
 
 const acneGuide = useMemo(() => {
   if (mainConcern !== "inflammatory_acne") {
@@ -3679,8 +3829,9 @@ const issueProgress =
 const surveyUserContext = {
   mainConcern,
   level: surveyResult.hydrationLevel,
-  isSensitive:
-    surveyResult.skinType === "민감성" || surveyResult.scores.sensitivity >= 2,
+isSensitive:
+  surveyResult.skinType?.includes("민감") ||
+  (surveyResult.scores?.sensitivity ?? 0) >= 2,
   troubleScore:
   mainConcern === "inflammatory_acne"
     ? Math.max(surveyResult.scores.acne ?? 0, 1)
@@ -3690,13 +3841,32 @@ const surveyUserContext = {
   goal: finalSkinProfile.issueLabel,
 };
 
-  const ingredients = getRecommendedIngredients(
+  const irritationLabel =
+  answers.irritation?.label || "";
+
+const ingredients = getRecommendedIngredients(
   nextLevel,
-  getFeedbackValue(answers, "trouble")
+  {
+    clogged: getFeedbackValue(
+      answers,
+      "clogged"
+    ),
+
+    trouble: getFeedbackValue(
+      answers,
+      "trouble"
+    ),
+
+    irritated:
+      irritationLabel.includes("따가움") ||
+      irritationLabel.includes("붉어짐") ||
+      irritationLabel.includes("불편함"),
+  }
 );
   const levelChangeMessage = getLevelChangeMessage(baseLevel, nextLevel);
   const feedbackAdvice = getFeedbackAdvice(answers);
 const userContext = {
+  mainConcern: feedbackMainConcern,
   level: nextLevel,
   isSensitive:
     getFeedbackValue(answers, "dry") <= -1 ||
@@ -3845,6 +4015,9 @@ const startSavedFeedback = () => {
   if (!savedSurvey?.surveyAnswers || !savedSurveyResult) return;
 
   setSurveyAnswers(savedSurvey.surveyAnswers);
+  setMainConcern(savedSurvey.mainConcern || "");
+  setIssueAnswers(savedSurvey.issueAnswers || {});
+
   setBaseLevel(savedSurveyResult.hydrationLevel);
   setAnswers({});
   setStep("feedback");
@@ -3872,7 +4045,6 @@ const handleNextSurvey = () => {
   if (!isCurrentSurveyAnswered) return;
 
 if (isLastSurveyQuestion) {
-  saveSurveyResult();
   setStep("issueSelect");
   return;
 }
@@ -4285,7 +4457,8 @@ if (
   return;
 }
 
-    setStep("surveyResult");
+  saveSurveyResult();
+setStep("surveyResult");
   }}
 >
   다음
