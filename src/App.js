@@ -1038,6 +1038,21 @@ function pickBestProductByCategory(
     );
   }
 
+  // 단순 번들거림이 고민일 때는
+// BHA / 살리실산 같은 각질 기능성 세럼·크림을 기본 추천에서 제외
+if (
+  userContext.mainConcern === "oiliness" &&
+  (targetCategory === "serum" || targetCategory === "cream")
+) {
+  const nonExfoliatingProducts = categoryProducts.filter(
+    (product) => !hasExfoliatingActive(product)
+  );
+
+  if (nonExfoliatingProducts.length > 0) {
+    categoryProducts = nonExfoliatingProducts;
+  }
+}
+
 const levelMatchedProducts = filterByLevel(
   categoryProducts,
   level
