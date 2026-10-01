@@ -846,35 +846,39 @@ function getConcernMatchScore(product, mainConcern) {
   const has = (...tags) =>
     tags.some((tag) => concerns.includes(tag));
 
+  const texture = String(product.texture || "").toLowerCase();
+
+  const isLightTexture = [
+    "light",
+    "gel",
+    "watery",
+    "fresh",
+  ].includes(texture);
+
   let score = 0;
 
   // 염증성 여드름
   if (mainConcern === "inflammatory_acne") {
     if (has("acne")) score += 6;
     if (has("soothing")) score += 3;
-    if (has("redness", "sensitive")) score += 2;
     if (has("barrier")) score += 1;
   }
 
   // 좁쌀 / 막힘
   if (mainConcern === "closed_comedones") {
     if (has("closed_comedones")) score += 6;
-
-    // 기존 products.js 태그 호환
     if (has("pores")) score += 4;
     if (has("sebum")) score += 2;
-    if (has("lightweight", "light")) score += 3;
+    if (isLightTexture) score += 3;
     if (has("acne")) score += 1;
   }
 
   // 블랙헤드 / 피지
   if (mainConcern === "blackhead_sebum") {
     if (has("blackhead")) score += 6;
-
-    // 기존 태그 호환
     if (has("pores")) score += 5;
-    if (has("sebum", "oil_control")) score += 4;
-    if (has("lightweight", "light")) score += 2;
+    if (has("sebum")) score += 4;
+    if (isLightTexture) score += 2;
   }
 
   // 속당김 / 건조함
@@ -882,27 +886,21 @@ function getConcernMatchScore(product, mainConcern) {
     if (has("hydration")) score += 6;
     if (has("barrier")) score += 4;
     if (has("soothing")) score += 1;
-
-    // 기존 건성 태그
-    if (has("dry")) score += 2;
   }
 
   // 민감 / 붉어짐
   if (mainConcern === "sensitivity_redness") {
     if (has("redness")) score += 6;
     if (has("soothing")) score += 5;
-    if (has("sensitive")) score += 4;
+    if (product.sensitivitySafe) score += 4;
     if (has("barrier")) score += 3;
     if (has("hydration")) score += 1;
   }
 
   // 번들거림
   if (mainConcern === "oiliness") {
-    if (has("oil_control")) score += 6;
-
-    // 기존 products.js의 핵심 태그
     if (has("sebum")) score += 6;
-    if (has("lightweight", "light")) score += 5;
+    if (isLightTexture) score += 5;
     if (has("pores")) score += 2;
     if (has("blackhead")) score += 1;
   }
@@ -1459,65 +1457,101 @@ function buildRecommendationReasons(product, userContext = {}) {
   const hasConcern = (...tags) =>
     tags.some((tag) => productConcerns.includes(tag));
 
+  const texture = String(product.texture || "").toLowerCase();
+
+  const isLightTexture = [
+    "light",
+    "gel",
+    "watery",
+    "fresh",
+  ].includes(texture);
+
   // ===== 1순위: 현재 피부 고민과 직접 연결된 이유 =====
 
   if (mainConcern === "inflammatory_acne") {
     if (hasConcern("acne")) {
-      reasons.push("현재 고민인 염증성 트러블 관리 방향과 잘 맞는 제품");
+      reasons.push(
+        "현재 고민인 염증성 트러블 관리 방향과 잘 맞는 제품"
+      );
     }
 
     if (hasConcern("soothing")) {
-      reasons.push("붉고 예민해진 피부를 진정시키는 방향으로 보기 좋음");
+      reasons.push(
+        "붉고 예민해진 피부를 진정시키는 방향으로 보기 좋음"
+      );
     }
   }
 
   if (mainConcern === "closed_comedones") {
     if (hasConcern("closed_comedones", "pores")) {
-      reasons.push("현재 고민인 좁쌀·모공 막힘 관리 방향과 잘 맞는 제품");
+      reasons.push(
+        "현재 고민인 좁쌀·모공 막힘 관리 방향과 잘 맞는 제품"
+      );
     }
 
-    if (hasConcern("lightweight", "light")) {
-      reasons.push("무겁고 답답한 제형을 줄이고 싶을 때 보기 좋은 편");
+    if (isLightTexture) {
+      reasons.push(
+        "무겁고 답답한 제형을 줄이고 싶을 때 보기 좋은 편"
+      );
     }
   }
 
   if (mainConcern === "blackhead_sebum") {
     if (hasConcern("blackhead", "pores")) {
-      reasons.push("현재 고민인 블랙헤드와 모공 관리 방향에 잘 맞는 제품");
+      reasons.push(
+        "현재 고민인 블랙헤드와 모공 관리 방향에 잘 맞는 제품"
+      );
     }
 
-    if (hasConcern("oil_control", "sebum")) {
-      reasons.push("피지와 번들거림 관리가 필요한 피부에 잘 맞는 편");
+    if (hasConcern("sebum")) {
+      reasons.push(
+        "피지와 번들거림 관리가 필요한 피부에 잘 맞는 편"
+      );
     }
   }
 
   if (mainConcern === "dehydration") {
     if (hasConcern("hydration")) {
-      reasons.push("현재 고민인 속당김을 줄이기 위한 수분 보충에 잘 맞는 제품");
+      reasons.push(
+        "현재 고민인 속당김을 줄이기 위한 수분 보충에 잘 맞는 제품"
+      );
     }
 
     if (hasConcern("barrier")) {
-      reasons.push("수분이 쉽게 날아가는 피부의 장벽 보완에 보기 좋은 제품");
+      reasons.push(
+        "수분이 쉽게 날아가는 피부의 장벽 보완에 보기 좋은 제품"
+      );
     }
   }
 
   if (mainConcern === "sensitivity_redness") {
-    if (hasConcern("soothing", "redness", "sensitive")) {
-      reasons.push("현재 고민인 붉어짐과 예민함을 고려한 진정 제품");
+    if (
+      hasConcern("soothing", "redness") ||
+      product.sensitivitySafe
+    ) {
+      reasons.push(
+        "현재 고민인 붉어짐과 예민함을 고려한 진정 제품"
+      );
     }
 
     if (hasConcern("barrier")) {
-      reasons.push("자극받은 피부의 장벽 관리 방향과 잘 맞는 편");
+      reasons.push(
+        "자극받은 피부의 장벽 관리 방향과 잘 맞는 편"
+      );
     }
   }
 
   if (mainConcern === "oiliness") {
-    if (hasConcern("oil_control", "sebum")) {
-      reasons.push("현재 고민인 번들거림과 유분 관리에 잘 맞는 제품");
+    if (hasConcern("sebum")) {
+      reasons.push(
+        "현재 고민인 번들거림과 유분 관리에 잘 맞는 제품"
+      );
     }
 
-    if (hasConcern("lightweight", "light")) {
-      reasons.push("무겁고 답답한 사용감을 피하고 싶은 피부에 적합한 편");
+    if (isLightTexture) {
+      reasons.push(
+        "무겁고 답답한 사용감을 피하고 싶은 피부에 적합한 편"
+      );
     }
   }
 
@@ -1530,29 +1564,44 @@ function buildRecommendationReasons(product, userContext = {}) {
   if (hydrationDiff === 0) {
     reasons.push("현재 수분감 단계와 잘 맞음");
   } else if (hydrationDiff === 1) {
-    reasons.push("현재 수분감 단계와 크게 벗어나지 않는 제품");
+    reasons.push(
+      "현재 수분감 단계와 크게 벗어나지 않는 제품"
+    );
   }
 
   // ===== 3순위: 추가 적합성 =====
 
-  if (userContext.isSensitive && product.sensitivitySafe) {
-    reasons.push("민감 경향을 고려했을 때 비교적 부담이 적은 편");
+  if (
+    userContext.isSensitive &&
+    product.sensitivitySafe
+  ) {
+    reasons.push(
+      "민감 경향을 고려했을 때 비교적 부담이 적은 편"
+    );
   }
 
   if (product.beginnerFriendly) {
-    reasons.push("초보자도 시작하기 부담이 적은 제품");
+    reasons.push(
+      "초보자도 시작하기 부담이 적은 제품"
+    );
   }
 
   if (hasConcern("hydration")) {
-    reasons.push("기본 수분 보충용으로 활용하기 좋음");
+    reasons.push(
+      "기본 수분 보충용으로 활용하기 좋음"
+    );
   }
 
   if (hasConcern("soothing")) {
-    reasons.push("진정 관리가 필요할 때 같이 보기 좋음");
+    reasons.push(
+      "진정 관리가 필요할 때 같이 보기 좋음"
+    );
   }
 
   if (hasConcern("barrier")) {
-    reasons.push("장벽 보완이 필요한 피부에 보기 좋은 편");
+    reasons.push(
+      "장벽 보완이 필요한 피부에 보기 좋은 편"
+    );
   }
 
   return [...new Set(reasons)].slice(0, 3);
