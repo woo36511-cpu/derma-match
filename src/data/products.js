@@ -6,7 +6,7 @@ export const products = [
     category: "toner",
     hydrationLevel: 5,
     texture: "light",
-    concerns: ["daily", "hydration", "soothing"],
+    concerns: [, "hydration", "soothing"],
     ingredients: ["히알루론산", "판테놀"],
     skinTypes: ["중성", "복합성", "수부지"],
     description: "가볍고 무난하게 시작하기 좋은 수분 토너",
@@ -49,7 +49,7 @@ usage: {
     category: "serum",
     hydrationLevel: 4,
     texture: "light",
-    concerns: ["hydration", "daily"],
+    concerns: ["hydration",],
     ingredients: ["히알루론산", "판테놀"],
     skinTypes: ["건성", "중성", "수부지"],
     description: "기본 보습용으로 쓰기 좋은 가벼운 세럼",
@@ -91,7 +91,7 @@ usage: {
     category: "cream",
     hydrationLevel: 3,
     texture: "rich",
-    concerns: ["barrier", "hydration", "daily"],
+    concerns: ["barrier", "hydration",],
     ingredients: ["세라마이드", "스쿠알란"],
     skinTypes: ["건성", "민감성"],
     description: "건조하고 예민할 때 장벽 보습용으로 무난한 크림",
@@ -133,7 +133,7 @@ usage: {
     category: "cleanser",
     hydrationLevel: 5,
     texture: "mild",
-    concerns: ["daily", "sensitive"],
+    concerns: ["sensitive"],
     ingredients: ["글리세린"],
     skinTypes: ["건성", "중성", "민감성"],
     description: "처음 시작하는 사람도 쓰기 쉬운 순한 클렌저",
@@ -221,7 +221,7 @@ usage: {
     category: "serum",
     hydrationLevel: 5,
     texture: "light",
-    concerns: ["hydration", "daily"],
+    concerns: ["hydration",],
     ingredients: ["녹차", "히알루론산"],
     skinTypes: ["중성", "복합성"],
     description: "기본 수분 보충용으로 무난한 세럼",
@@ -305,7 +305,7 @@ usage: {
     category: "cream",
     hydrationLevel: 6,
     texture: "gel",
-    concerns: ["soothing", "light", "daily"],
+    concerns: ["soothing",],
     ingredients: ["병풀", "판테놀"],
     skinTypes: ["수부지", "복합성", "민감성"],
     description: "가볍고 진정용으로 시작하기 좋은 젤크림",
@@ -347,7 +347,7 @@ usage: {
     category: "toner",
     hydrationLevel: 6,
     texture: "light",
-    concerns: ["soothing", "acne", "daily"],
+    concerns: ["soothing", "acne",],
     ingredients: ["어성초", "판테놀"],
     skinTypes: ["수부지", "지성", "민감성"],
     description: "가볍고 진정 위주로 보기 좋은 토너",
@@ -391,7 +391,7 @@ usage: {
     category: "cleanser",
     hydrationLevel: 4,
     texture: "mild",
-    concerns: ["daily", "barrier", "sensitive"],
+    concerns: [, "barrier", "sensitive"],
     ingredients: ["판테놀"],
     skinTypes: ["건성", "민감성", "중성"],
     description: "세정 후 자극 부담을 줄이기 쉬운 클렌저",
@@ -476,7 +476,7 @@ usage: {
     category: "cream",
     hydrationLevel: 3,
     texture: "mid",
-    concerns: ["barrier", "hydration", "daily"],
+    concerns: ["barrier", "hydration",],
     ingredients: ["세라마이드"],
     skinTypes: ["건성", "중성", "민감성"],
     description: "무난하게 오래 쓰기 쉬운 보습 로션",
@@ -600,7 +600,7 @@ usage: {
   category: "toner",
   hydrationLevel: 4,
   texture: "light",
-  concerns: ["hydration", "soothing", "daily"],
+  concerns: ["hydration", "soothing",],
   ingredients: ["히알루론산", "판테놀"],
   skinTypes: ["건성", "중성", "수부지"],
   description: "가볍게 수분을 채우기 좋은 수분 토너",
@@ -642,11 +642,11 @@ usage: {
   name: "토리든 다이브인 저분자 히알루론산 수딩 크림",
   brand: "토리든",
   category: "cream",
-  hydrationLevel: 5,
+  hydrationLevel: 7,
   texture: "gel",
-  concerns: ["hydration", "soothing", "daily"],
+  concerns: ["hydration", "soothing"],
   ingredients: ["히알루론산", "판테놀"],
-  skinTypes: ["중성", "수부지", "복합성"],
+  skinTypes: ["중성", "수부지", "복합성", "지성"],
   description: "가볍게 수분을 잠가주는 젤크림",
   image: "https://t3c.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/71993950971424-62de1ae8-f5cc-46ab-bcb2-b13e35cd9c69.jpg",
   link: "https://link.coupang.com/a/gmSpgkU1yS",
@@ -686,7 +686,7 @@ usage: {
   category: "cream",
   hydrationLevel: 4,
   texture: "mid",
-  concerns: ["hydration", "soothing", "daily"],
+  concerns: ["hydration", "soothing"],
   ingredients: ["히알루론산", "판테놀"],
   skinTypes: ["건성", "중성", "수부지"],
   description: "수분감 중심의 데일리 크림",
@@ -771,7 +771,7 @@ usage: {
   category: "toner",
   hydrationLevel: 6,
   texture: "light",
-  concerns: ["soothing", "daily", "sensitive"],
+  concerns: ["soothing", "sensitive"],
   ingredients: ["판테놀"],
   skinTypes: ["수부지", "민감성", "복합성"],
   description: "진정과 가벼운 수분 정돈용으로 쓰기 좋은 패드",
@@ -814,7 +814,7 @@ usage: {
   category: "toner",
   hydrationLevel: 6,
   texture: "light",
-  concerns: ["soothing", "daily", "acne"],
+  concerns: ["soothing", "acne"],
   ingredients: ["판테놀"],
   skinTypes: ["수부지", "지성", "민감성"],
   description: "가볍게 피부를 진정시키는 데일리 토너",
@@ -857,7 +857,7 @@ usage: {
   category: "serum",
   hydrationLevel: 5,
   texture: "mid",
-  concerns: ["barrier", "hydration", "daily"],
+  concerns: ["barrier", "hydration"],
   ingredients: ["판테놀"],
   skinTypes: ["중성", "건성", "수부지"],
   description: "피부 컨디션과 장벽 보조용으로 보기 좋은 앰플",
@@ -941,7 +941,7 @@ usage: {
   category: "serum",
   hydrationLevel: 6,
   texture: "light",
-  concerns: ["soothing", "daily", "sensitive"],
+  concerns: ["soothing", "sensitive"],
   ingredients: ["병풀", "판테놀"],
   skinTypes: ["수부지", "민감성", "복합성"],
   description: "예민하고 붉어진 피부를 편안하게 진정시키기 좋은 앰플",
@@ -1029,7 +1029,7 @@ usage: {
   category: "cleanser",
   hydrationLevel: 7,
   texture: "fresh",
-  concerns: ["daily", "sebum", "light"],
+  concerns: [ "sebum",],
   ingredients: ["판테놀"],
   skinTypes: ["수부지", "지성", "복합성"],
   description: "번들거림 부담을 줄이면서 세정하기 좋은 젤 클렌저",
@@ -1119,7 +1119,7 @@ usage: {
   category: "serum",
   hydrationLevel: 6,
   texture: "light",
-  concerns: ["soothing", "hydration", "daily"],
+  concerns: ["soothing", "hydration"],
   ingredients: ["어성초", "판테놀"],
   skinTypes: ["수부지", "민감성", "복합성"],
   description: "열감과 붉어짐 진정용으로 보기 좋은 수분 앰플",
@@ -1163,7 +1163,7 @@ usage: {
   category: "cleansing_oil",
   hydrationLevel: 5,
   texture: "oil",
-  concerns: ["daily", "sensitive", "hydration"],
+  concerns: [ "sensitive", "hydration"],
   ingredients: ["호호바오일"],
   skinTypes: ["건성", "중성", "수부지"],
   description: "선크림과 메이크업 세정을 부드럽게 도와주는 클렌징 오일",
@@ -1211,7 +1211,7 @@ usage: {
   category: "cleansing_milk",
   hydrationLevel: 2,
   texture: "milk",
-  concerns: ["sensitive", "dry"],
+  concerns: ["sensitive"],
   ingredients: ["판테놀"],
   skinTypes: ["건성", "민감성"],
   description: "건조하고 민감한 피부를 위한 순한 클렌징 밀크",
@@ -1299,7 +1299,7 @@ usage: {
   category: "gel_cleanser",
   hydrationLevel: 7,
   texture: "gel",
-  concerns: ["daily", "sebum"],
+  concerns: ["sebum"],
   ingredients: ["판테놀"],
   skinTypes: ["수부지", "복합성"],
   description: "산뜻하면서도 자극이 적은 젤 타입 클렌저",
@@ -1395,7 +1395,7 @@ usage: {
   link: "https://link.coupang.com/a/gmT9a2Oudw",
 
   sensitivitySafe: false,
-  beginnerFriendly: true,
+  beginnerFriendly: false,
   seasons: ["spring", "summer", "autumn", "winter"],
   price: 22000,
   volume: "32개입",
@@ -1468,46 +1468,7 @@ usage: {
     ]
   }
 },
-{
-  id: 37,
-  name: "아누아 어성초 77 수딩 토너",
-  brand: "아누아",
-  category: "toner",
-  hydrationLevel: 10,
-  texture: "light",
-  concerns: ["hydration", "soothing", "sebum"],
-  ingredients: ["판테놀"],
-  skinTypes: ["지성", "수부지", "복합성"],
-  description: "유분감이 많은 피부도 부담 없이 쓰기 좋은 산뜻한 진정 토너입니다.",
-  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/retail/images/2026/05/08/12/6/08849224-1456-4486-bdfc-ed59ea2b6777.png",
-  link: "https://link.coupang.com/a/gtjYdxeBR6",
-  sensitivitySafe: true,
-  beginnerFriendly: true,
-  seasons: ["spring", "summer"],
-  price: 0,
-  volume: "250ml",
-  shortReason: "10단계처럼 유분감이 강한 피부에 산뜻하게 쓰기 좋은 토너입니다.",
-  caution: [],
-  ratingTags: ["산뜻함", "진정", "지성 추천"],
 
-  usageType: "toner",
-  usageAmount: {
-    oily: "손바닥에 500원 동전보다 적게",
-    normal: "500원 동전 크기 정도",
-    dry: "500원 동전 크기 정도를 1~2번"
-  },
-  usage: {
-    when: "세안 후 첫 단계 / 아침·저녁",
-    howToUse: [
-      "세안 후 손바닥에 적당량을 덜어냅니다.",
-      "얼굴 전체에 가볍게 눌러 흡수시킵니다.",
-      "번들거림이 많은 부위는 여러 번 덧바르지 않습니다."
-    ],
-    caution: [
-      "화장솜으로 강하게 닦아내면 자극이 될 수 있어요."
-    ]
-  }
-},
 {
   id: 38,
   name: "이즈앤트리 그린티 프레시 토너",
@@ -1588,86 +1549,7 @@ usage: {
     ]
   }
 },
-{
-  id: 40,
-  name: "닥터지 레드 블레미쉬 클리어 수딩 크림",
-  brand: "닥터지",
-  category: "cream",
-  hydrationLevel: 10,
-  texture: "gel",
-  concerns: ["hydration", "soothing", "acne"],
-  ingredients: ["판테놀"],
-  skinTypes: ["지성", "수부지", "복합성"],
-  description: "무겁지 않은 젤 타입 수딩 크림으로 유분감이 많은 피부도 부담을 줄여 사용할 수 있습니다.",
-  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/vendor_inventory/ab1a/76f2e97a0ef85816e86836fa9fd9e0ce51947b0c55ed5921d732525425c6.jpg",
-  link: "https://www.coupang.com/np/search?component=&q=%EB%8B%A5%ED%84%B0%EC%A7%80+%EB%A0%88%EB%93%9C+%EB%B8%94%EB%A0%88%EB%AF%B8%EC%89%AC+%ED%81%B4%EB%A6%AC%EC%96%B4+%EC%88%98%EB%94%A9+%ED%81%AC%EB%A6%BC&traceId=mt6wqkf5&channel=user",
-  sensitivitySafe: true,
-  beginnerFriendly: true,
-  seasons: ["spring", "summer"],
-  price: 0,
-  volume: "70ml",
-  shortReason: "10단계 피부에 무거운 크림 대신 넣기 좋은 산뜻한 젤크림입니다.",
-  caution: [],
-  ratingTags: ["젤크림", "산뜻함", "트러블 피부"],
 
-  usageType: "cream",
-  usageAmount: {
-    oily: "완두콩 1개 정도",
-    normal: "완두콩 1~2개 정도",
-    dry: "완두콩 2개 정도"
-  },
-  usage: {
-    when: "세럼 다음 단계 / 아침·저녁",
-    howToUse: [
-      "세럼이 흡수된 뒤 소량을 덜어냅니다.",
-      "볼과 턱 위주로 얇게 펴 바릅니다.",
-      "T존은 남은 양만 가볍게 발라줍니다."
-    ],
-    caution: [
-      "번들거림이 심하면 아침에는 양을 줄여 사용하세요."
-    ]
-  }
-},
-{
-  id: 41,
-  name: "토리든 다이브인 수딩 크림",
-  brand: "토리든",
-  category: "cream",
-  hydrationLevel: 9,
-  texture: "gel",
-  concerns: ["hydration", "soothing"],
-  ingredients: ["히알루론산", "판테놀"],
-  skinTypes: ["지성", "수부지", "복합성"],
-  description: "수분감은 주되 마무리가 무겁지 않아 수부지와 지성 피부가 쓰기 좋은 수딩 크림입니다.",
-  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/497x497q90trim/image/retail/images/211098647448173-7032c962-4b4a-48d3-8871-d6f269dc3dc2.jpg",
-  link: "https://www.coupang.com/np/search?component=&q=%ED%86%A0%EB%A6%AC%EB%93%A0+%EB%8B%A4%EC%9D%B4%EB%B8%8C%EC%9D%B8+%EC%88%98%EB%94%A9+%ED%81%AC%EB%A6%BC&traceId=mt6wua5d&channel=user",
-  sensitivitySafe: true,
-  beginnerFriendly: true,
-  seasons: ["spring", "summer", "autumn"],
-  price: 0,
-  volume: "100ml",
-  shortReason: "속당김은 있지만 무거운 크림이 답답한 피부에 맞는 가벼운 수분 크림입니다.",
-  caution: [],
-  ratingTags: ["수분", "수부지 추천", "가벼운 크림"],
-
-  usageType: "cream",
-  usageAmount: {
-    oily: "완두콩 1개 정도",
-    normal: "완두콩 1~2개 정도",
-    dry: "완두콩 2개 정도"
-  },
-  usage: {
-    when: "세럼 다음 단계 / 아침·저녁",
-    howToUse: [
-      "세럼 사용 후 적당량을 덜어냅니다.",
-      "건조한 부위부터 얇게 펴 바릅니다.",
-      "유분이 많은 부위는 적은 양만 사용합니다."
-    ],
-    caution: [
-      "피부가 많이 번들거리면 밤 위주로 먼저 사용해보세요."
-    ]
-  }
-},
 {
   id: 42,
   name: "에스트라 테라크네365 하이드레이션 수딩 크림",
@@ -1720,7 +1602,7 @@ usage: {
   texture: "watery",
   concerns: ["hydration", "soothing"],
   ingredients: ["히알루론산", "판테놀"],
-  skinTypes: ["건성", "수부건성", "민감성"],
+  skinTypes: ["건성", "민감성"],
   description: "속당김이 느껴지는 피부에 가볍게 수분을 여러 번 채우기 좋은 수분 토너입니다.",
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/vendor_inventory/c9d2/991f837bda30447b064f67677810e24a4d1019b7e369c2158d61a3cc0981.png",
   link: "https://link.coupang.com/a/hpv6j4CjQW",
@@ -1801,7 +1683,7 @@ usage: {
   texture: "ampoule",
   concerns: ["hydration", "soothing"],
   ingredients: ["히알루론산"],
-  skinTypes: ["건성", "수부건성", "중성"],
+  skinTypes: ["건성", "중성"],
   description: "건조함이 강하고 수분감이 빨리 사라지는 피부에 맞춘 보습 앰플입니다.",
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/retail/images/23109275375806-66e0449b-a752-47ae-af83-e535209617b9.jpg",
   link: "https://link.coupang.com/a/hpwv7OCCzc",
@@ -1909,7 +1791,7 @@ usage: {
 
   link: "https://link.coupang.com/a/hubSfuGY2e",
 
-  sensitivitySafe: true,
+  sensitivitySafe: false,
   beginnerFriendly: true,
 
   seasons: [
@@ -1987,10 +1869,9 @@ usage: {
   ],
 
   skinTypes: [
-    "건성",
-    "중성",
-    "수부건성"
-  ],
+  "건성",
+  "중성"
+],
 
   description:
     "건조하면서 피부결과 좁쌀이 신경 쓰이는 피부가 비교적 부드럽게 각질 관리를 시작하기 좋은 만델산 토너",

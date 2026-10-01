@@ -99,7 +99,7 @@ export const starterRoutineByLevel = {
     cleanser: 34,
     toner: 20,
     serum: 29,
-    cream: 41,
+    cream: 18,
   },
 },
 
@@ -112,7 +112,7 @@ export const starterRoutineByLevel = {
     cleanser: 28,
     toner: 39,
     serum: 25,
-    cream: 41,
+    cream: 18,
   },
 },
 
