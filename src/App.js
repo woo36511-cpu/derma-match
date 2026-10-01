@@ -1088,39 +1088,130 @@ const sortedProducts = sortProductsForRecommendation(
 return sortedProducts[0] || null;
 }
 
+function hasExfoliatingActive(product) {
+  if (!product) return false;
+
+  const ingredients = product.ingredients || [];
+
+  return ingredients.some((ingredient) => {
+    const normalized = String(ingredient).toLowerCase();
+
+    return (
+      normalized.includes("bha") ||
+      normalized.includes("살리실산")
+    );
+  });
+}
+
+function pickAlternativeCream(
+  level,
+  userContext = {},
+  excludedIds = []
+) {
+  // BHA / 살리실산이 없는 크림만 후보
+  let candidates = products.filter(
+    (product) =>
+      product.category === "cream" &&
+      !excludedIds.includes(product.id) &&
+      !hasExfoliatingActive(product)
+  );
+
+  // 현재 단계와 가까운 제품 우선
+  let levelMatched = filterByLevel(
+    candidates,
+    level
+  );
+
+  // 가까운 단계에 없으면 전체 크림 후보 사용
+  if (levelMatched.length === 0) {
+    levelMatched = candidates;
+  }
+
+  // 민감 피부라면 민감 안전 제품 우선
+  if (userContext.isSensitive) {
+    const sensitiveSafe = levelMatched.filter(
+      (product) => product.sensitivitySafe
+    );
+
+    if (sensitiveSafe.length > 0) {
+      levelMatched = sensitiveSafe;
+    }
+  }
+
+  // 실제 링크가 있는 제품 우선
+  const linkedProducts = levelMatched.filter(
+    (product) =>
+      isValidProductLink(product.link)
+  );
+
+  if (linkedProducts.length > 0) {
+    levelMatched = linkedProducts;
+  }
+
+  const sorted = sortProductsForRecommendation(
+    levelMatched,
+    level,
+    userContext
+  );
+
+  return sorted[0] || null;
+}
+
 function buildDynamicRoutine(
   level,
   userContext = {}
 ) {
+  const cleanser = pickBestProductByCategory(
+    "cleanser",
+    level,
+    userContext
+  );
+
+  const toner = pickBestProductByCategory(
+    "toner",
+    level,
+    userContext
+  );
+
+  const serum = pickBestProductByCategory(
+    "serum",
+    level,
+    userContext
+  );
+
+  let cream = pickBestProductByCategory(
+    "cream",
+    level,
+    userContext
+  );
+
+  // 세럼과 크림에 BHA / 살리실산 계열이 동시에 들어가면
+  // 크림을 더 순한 대체 제품으로 변경
+  if (
+    hasExfoliatingActive(serum) &&
+    hasExfoliatingActive(cream)
+  ) {
+    const alternativeCream = pickAlternativeCream(
+      level,
+      userContext,
+      [cream.id]
+    );
+
+    if (alternativeCream) {
+      cream = alternativeCream;
+    }
+  }
+
   return {
     label: `${level}단계 맞춤 루틴`,
     description:
       "현재 피부 상태와 주요 고민을 반영해 구성한 추천 루틴입니다.",
 
     products: {
-      cleanser: pickBestProductByCategory(
-        "cleanser",
-        level,
-        userContext
-      ),
-
-      toner: pickBestProductByCategory(
-        "toner",
-        level,
-        userContext
-      ),
-
-      serum: pickBestProductByCategory(
-        "serum",
-        level,
-        userContext
-      ),
-
-      cream: pickBestProductByCategory(
-        "cream",
-        level,
-        userContext
-      ),
+      cleanser,
+      toner,
+      serum,
+      cream,
     },
   };
 }
