@@ -636,90 +636,7 @@ usage: {
   ]
 }
 },
-{
-  id: 16,
-  name: "에스트라 아토베리어365 하이드로 에센스",
-  brand: "에스트라",
-  category: "serum",
-  hydrationLevel: 4,
-  texture: "mid",
-  concerns: ["hydration", "barrier", "sensitive"],
-  ingredients: ["히알루론산", "세라마이드"],
-  skinTypes: ["건성", "중성", "민감성", "수부지"],
-  description: "속수분과 장벽 보습을 같이 보기 좋은 에센스",
-  image: "https://thumbnail7.coupangcdn.com/thumbnails/remote/492x492ex/image/1025_amir_coupang_oct_80k/02ea/6c19ed5d20b7ba47ef2312a32faabc6b065f55a519cd7dbf60c3b62a970e.jpg",
-  link: "https://link.coupang.com/a/gmSingQDeK",
 
-  sensitivitySafe: true,
-  beginnerFriendly: true,
-  seasons: ["spring", "autumn", "winter"],
-  price: 32000,
-  volume: "200ml",
-  shortReason: "민감한 피부도 부담 적게 수분과 장벽 보습을 같이 챙기기 좋음",
-  caution: ["지성 피부는 양을 적게 시작하는 편이 좋음"],
-  ratingTags: ["속수분", "장벽", "민감성"],
-  usageType: "serum",
-
-usageAmount: {
-  oily: "1~2방울 정도",
-  normal: "2~3방울 정도",
-  dry: "3~4방울 정도"
-},
-
-usage: {
-  when: "토너 다음 단계 / 아침·저녁",
-  howToUse: [
-    "토너 사용 후 적당량을 덜어냅니다.",
-    "얼굴 전체에 얇게 펴 바릅니다.",
-    "흡수될 때까지 손바닥으로 가볍게 눌러줍니다."
-  ],
-  caution: [
-    "처음에는 적은 양부터 시작하세요."
-  ]
-}
-},
-{
-  id: 17,
-  name: "웰라쥬 리얼 히알루로닉 블루 100 앰플",
-  brand: "웰라쥬",
-  category: "serum",
-  hydrationLevel: 5,
-  texture: "light",
-  concerns: ["hydration", "daily"],
-  ingredients: ["히알루론산"],
-  skinTypes: ["건성", "중성", "수부지"],
-  description: "히알루론산 중심의 수분 앰플",
-  image: "https://thumbnail13.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/23109275375806-66e0449b-a752-47ae-af83-e535209617b9.jpg",
-  link: "https://link.coupang.com/a/gmSlhSQBnE",
-
-  sensitivitySafe: true,
-  beginnerFriendly: true,
-  seasons: ["spring", "summer", "autumn", "winter"],
-  price: 25000,
-  volume: "100ml",
-  shortReason: "끈적임 적은 수분 앰플로 수부지와 중성 피부가 쓰기 쉬움",
-  caution: ["건성은 단독보다 크림과 함께 사용하는 편이 좋음"],
-  ratingTags: ["히알루론산", "수분앰플", "가벼움"],
-  usageType: "serum",
-
-usageAmount: {
-  oily: "1~2방울 정도",
-  normal: "2~3방울 정도",
-  dry: "3~4방울 정도"
-},
-
-usage: {
-  when: "토너 다음 단계 / 아침·저녁",
-  howToUse: [
-    "토너 사용 후 적당량을 덜어냅니다.",
-    "얼굴 전체에 얇게 펴 바릅니다.",
-    "흡수될 때까지 손바닥으로 가볍게 눌러줍니다."
-  ],
-  caution: [
-    "처음에는 적은 양부터 시작하세요."
-  ]
-}
-},
 {
   id: 18,
   name: "토리든 다이브인 저분자 히알루론산 수딩 크림",
@@ -1793,46 +1710,7 @@ usage: {
     ]
   }
 },
-{
-  id: 43,
-  name: "라운드랩 독도 토너",
-  brand: "라운드랩",
-  category: "toner",
-  hydrationLevel: 3,
-  texture: "watery",
-  concerns: ["hydration", "soothing", "barrier"],
-  ingredients: ["히알루론산", "판테놀"],
-  skinTypes: ["건성", "민감성", "중성"],
-  description: "세안 후 당김이 있는 피부에 부담 없이 수분을 채워주는 기본 보습 토너입니다.",
-  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/retail/images/581308560461789-ca0fdb7d-e6ab-42ea-9c4c-632f97d22537.jpg",
-  link: "https://link.coupang.com/a/hpvZwynBPo",
-  sensitivitySafe: true,
-  beginnerFriendly: true,
-  seasons: ["spring", "autumn", "winter"],
-  price: 0,
-  volume: "500ml",
-  shortReason: "건조하고 예민한 피부가 처음 쓰기 좋은 기본 수분 토너입니다.",
-  caution: [],
-  ratingTags: ["기본 토너", "수분", "민감피부"],
 
-  usageType: "toner",
-  usageAmount: {
-    oily: "손바닥에 소량",
-    normal: "500원 동전 크기 정도",
-    dry: "500원 동전 크기 정도를 1~2번"
-  },
-  usage: {
-    when: "세안 후 첫 단계 / 아침·저녁",
-    howToUse: [
-      "세안 후 물기를 가볍게 닦아냅니다.",
-      "손바닥에 적당량을 덜어 얼굴 전체에 눌러 흡수시킵니다.",
-      "건조함이 심한 부위는 한 번 더 얇게 덧발라줍니다."
-    ],
-    caution: [
-      "화장솜으로 강하게 닦아내기보다 손으로 눌러 흡수시키는 것이 좋아요."
-    ]
-  }
-},
 {
   id: 44,
   name: "토리든 다이브인 저분자 히알루론산 토너",
@@ -1877,13 +1755,13 @@ usage: {
   id: 45,
   name: "에스트라 아토베리어365 하이드로 에센스",
   brand: "에스트라",
-  category: "toner",
+  category: "serum",
   hydrationLevel: 2,
   texture: "essence",
   concerns: ["hydration", "barrier", "soothing"],
   ingredients: ["세라마이드", "판테놀", "히알루론산"],
   skinTypes: ["건성", "민감성"],
-  description: "건조함과 장벽 약화가 함께 신경 쓰이는 피부에 맞춘 촉촉한 에센스 토너입니다.",
+  description:"건조함과 속당김이 신경 쓰이는 피부에 수분을 보충하기 좋은 에센스 타입 제품입니다.",
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/1025_amir_coupang_oct_80k/02ea/6c19ed5d20b7ba47ef2312a32faabc6b065f55a519cd7dbf60c3b62a970e.jpg",
   link: "https://link.coupang.com/a/hpwkEOhMfQ",
   sensitivitySafe: true,
@@ -1895,14 +1773,14 @@ usage: {
   caution: [],
   ratingTags: ["장벽", "고보습", "건성"],
 
-  usageType: "toner",
+  usageType: "serum",
   usageAmount: {
     oily: "손바닥에 소량",
     normal: "500원 동전 크기 정도",
     dry: "500원 동전 크기 정도를 1~2번"
   },
   usage: {
-    when: "세안 후 첫 단계 / 아침·저녁",
+    when: "토너 다음 단계 / 아침·저녁",
     howToUse: [
       "세안 후 손바닥에 적당량을 덜어냅니다.",
       "얼굴 전체에 문지르지 말고 눌러 흡수시킵니다.",
@@ -1913,46 +1791,7 @@ usage: {
     ]
   }
 },
-{
-  id: 46,
-  name: "토리든 다이브인 저분자 히알루론산 세럼",
-  brand: "토리든",
-  category: "serum",
-  hydrationLevel: 3,
-  texture: "serum",
-  concerns: ["hydration", "soothing"],
-  ingredients: ["히알루론산", "판테놀"],
-  skinTypes: ["건성", "수부건성", "민감성", "중성"],
-  description: "속당김이 있는 피부에 수분감을 보충해주는 기본 수분 세럼입니다.",
-  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/vendor_inventory/a557/7132211374f7c52c0f7a556de79013238f3b4684c3621a8dfb0d2be28b28.png",
-  link: "https://link.coupang.com/a/hpwruTN4do",
-  sensitivitySafe: true,
-  beginnerFriendly: true,
-  seasons: ["spring", "autumn", "winter"],
-  price: 0,
-  volume: "50ml",
-  shortReason: "건조한 피부가 첫 세럼으로 쓰기 좋은 수분 중심 제품입니다.",
-  caution: [],
-  ratingTags: ["수분 세럼", "속당김", "초보자"],
 
-  usageType: "serum",
-  usageAmount: {
-    oily: "1~2방울 정도",
-    normal: "2~3방울 정도",
-    dry: "3~4방울 정도"
-  },
-  usage: {
-    when: "토너 다음 단계 / 아침·저녁",
-    howToUse: [
-      "토너가 흡수된 뒤 적당량을 덜어냅니다.",
-      "볼과 입가처럼 당김이 있는 부위부터 펴 바릅니다.",
-      "얼굴 전체를 손바닥으로 가볍게 눌러 흡수시킵니다."
-    ],
-    caution: [
-      "끈적임이 느껴지면 사용량을 줄여보세요."
-    ]
-  }
-},
 {
   id: 47,
   name: "웰라쥬 리얼 히알루로닉 블루 앰플",
@@ -2030,6 +1869,185 @@ usage: {
     ],
     caution: [
       "지성 피부에는 무겁게 느껴질 수 있어 건성 루틴 위주로 추천합니다."
+    ]
+  }
+},
+{
+  id: 49,
+  name: "코스알엑스 AHA/BHA 클래리파잉 트리트먼트 토너",
+  brand: "코스알엑스",
+  category: "toner",
+
+  hydrationLevel: 4,
+  texture: "light",
+
+  concerns: [
+    "closed_comedones",
+    "blackhead",
+    "pores",
+    "deadskin"
+  ],
+
+  ingredients: [
+    "글라이콜릭애씨드",
+    "베타인살리실레이트",
+    "판테놀",
+    "알란토인"
+  ],
+
+  skinTypes: [
+    "건성",
+    "중성",
+    "복합성",
+    "수부지"
+  ],
+
+  description:
+    "건조함은 있지만 좁쌀·블랙헤드·거친 피부결이 신경 쓰일 때 가볍게 시작하기 좋은 각질 정돈 토너",
+
+  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/retail/images/80755316256044-ba3f756a-81ac-4183-85bb-9a14b24708f5.jpg",
+
+  link: "https://link.coupang.com/a/hubSfuGY2e",
+
+  sensitivitySafe: true,
+  beginnerFriendly: true,
+
+  seasons: [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+  ],
+
+  price: 0,
+  volume: "150ml",
+
+  shortReason:
+    "강한 피지 제거 제품보다 부담을 낮춰 좁쌀·블랙헤드 관리를 시작하기 좋은 입문용 토너",
+
+  caution: [
+    "처음에는 주 2~3회부터 시작하세요.",
+    "따가움이나 붉어짐이 생기면 사용 빈도를 줄이세요.",
+    "다른 AHA·BHA·레티놀 제품과 같은 날 겹쳐 사용하지 마세요."
+  ],
+
+  ratingTags: [
+    "좁쌀",
+    "블랙헤드",
+    "입문용 각질관리"
+  ],
+
+  usageType: "exfoliating_toner",
+
+  usageAmount: {
+    oily: "화장솜 또는 손바닥에 소량",
+    normal: "화장솜 또는 손바닥에 소량",
+    dry: "건조한 부위를 피해서 소량"
+  },
+
+  usage: {
+    when: "저녁 / 주 2~3회부터",
+
+    howToUse: [
+      "세안 후 피부를 가볍게 말립니다.",
+      "소량을 얼굴 전체 또는 막힘이 신경 쓰이는 부위에 사용합니다.",
+      "문지르지 말고 부드럽게 흡수시킵니다.",
+      "이후 수분 세럼과 보습 크림을 사용합니다."
+    ],
+
+    caution: [
+      "처음부터 매일 사용하지 마세요.",
+      "자극이 느껴지면 즉시 사용 빈도를 줄이세요.",
+      "낮에는 자외선 차단제를 사용하세요."
+    ]
+  }
+},
+{
+  id: 50,
+  name: "바이위시트렌드 만델릭 애씨드 5% 스킨 프렙 워터",
+  brand: "바이위시트렌드",
+  category: "toner",
+
+  hydrationLevel: 3,
+  texture: "watery",
+
+  concerns: [
+    "closed_comedones",
+    "deadskin",
+    "texture",
+    "soothing"
+  ],
+
+  ingredients: [
+    "만델릭애씨드",
+    "병풀",
+    "판테놀",
+    "히알루론산",
+    "베타글루칸"
+  ],
+
+  skinTypes: [
+    "건성",
+    "중성",
+    "수부건성"
+  ],
+
+  description:
+    "건조하면서 피부결과 좁쌀이 신경 쓰이는 피부가 비교적 부드럽게 각질 관리를 시작하기 좋은 만델산 토너",
+
+  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/vendor_inventory/0e35/5c88b0a83350961760875b2693c24519d4e416998bcc128ba0b9630d9b7a.jpg",
+
+  link: "https://link.coupang.com/a/hub2adwZxI",
+
+  sensitivitySafe: false,
+  beginnerFriendly: true,
+
+  seasons: [
+    "spring",
+    "autumn",
+    "winter"
+  ],
+
+  price: 0,
+  volume: "120ml",
+
+  shortReason:
+    "건조한 피부에서 강한 BHA 대신 피부결과 좁쌀 관리용으로 고려하기 좋은 저강도 AHA 제품",
+
+  caution: [
+    "민감하거나 장벽이 약한 상태에서는 먼저 소량 테스트하세요.",
+    "처음에는 주 1~2회부터 시작하세요.",
+    "다른 각질제거 성분과 같은 날 겹쳐 사용하지 마세요."
+  ],
+
+  ratingTags: [
+    "좁쌀",
+    "피부결",
+    "건성 각질관리"
+  ],
+
+  usageType: "exfoliating_toner",
+
+  usageAmount: {
+    oily: "소량",
+    normal: "화장솜 또는 손바닥에 소량",
+    dry: "건조하지 않은 부위 위주로 소량"
+  },
+
+  usage: {
+    when: "저녁 / 주 1~2회부터",
+
+    howToUse: [
+      "세안 후 피부를 가볍게 말립니다.",
+      "소량을 피부결이나 좁쌀이 신경 쓰이는 부위부터 사용합니다.",
+      "강하게 닦지 말고 부드럽게 흡수시킵니다.",
+      "이후 수분 세럼과 보습 크림을 사용합니다."
+    ],
+
+    caution: [
+      "피부가 따갑거나 붉어지면 사용을 중단하세요.",
+      "BHA나 다른 AHA 제품과 같은 날 사용하지 마세요.",
+      "낮에는 자외선 차단제를 사용하세요."
     ]
   }
 }

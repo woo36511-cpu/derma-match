@@ -1039,10 +1039,14 @@ function pickBestProductByCategory(
   }
 
   // 단순 번들거림이 고민일 때는
-// BHA / 살리실산 같은 각질 기능성 세럼·크림을 기본 추천에서 제외
+// AHA / BHA / 살리실산 같은 각질 기능성 제품을 기본 추천에서 제외
 if (
   userContext.mainConcern === "oiliness" &&
-  (targetCategory === "serum" || targetCategory === "cream")
+  (
+    targetCategory === "toner" ||
+    targetCategory === "serum" ||
+    targetCategory === "cream"
+  )
 ) {
   const nonExfoliatingProducts = categoryProducts.filter(
     (product) => !hasExfoliatingActive(product)
@@ -1058,12 +1062,47 @@ const levelMatchedProducts = filterByLevel(
   level
 );
 
+// 현재 고민과 잘 맞는 제품은
+// 수분 단계가 최대 3단계 정도 차이나도 추가 후보로 허용
+const concernMatchedProducts =
+  userContext.mainConcern &&
+  targetCategory !== "cleanser" &&
+  targetCategory !== "cleansing_milk" &&
+  targetCategory !== "gel_cleanser"
+    ? categoryProducts.filter((product) => {
+        const concernScore = getConcernMatchScore(
+          product,
+          userContext.mainConcern
+        );
+
+        const levelDifference = Math.abs(
+          (product.hydrationLevel ?? level) - level
+        );
+
+        return (
+          concernScore >= 5 &&
+          levelDifference <= 3
+        );
+      })
+    : [];
+
+// 기존 수분 단계 후보 + 고민 적합 후보 합치기
+const candidateProducts = [
+  ...levelMatchedProducts,
+  ...concernMatchedProducts.filter(
+    (product) =>
+      !levelMatchedProducts.some(
+        (matched) => matched.id === product.id
+      )
+  ),
+];
+
 // 민감 피부라면 sensitivitySafe 제품을 먼저 후보군으로 제한
 const sensitiveSafeProducts = userContext.isSensitive
-  ? levelMatchedProducts.filter(
+  ? candidateProducts.filter(
       (product) => product.sensitivitySafe
     )
-  : levelMatchedProducts;
+  : candidateProducts;
 
 // 현재 수분 단계 안에 민감 안전 제품이 없다면
 // 같은 카테고리 전체에서 민감 안전 제품을 다시 탐색
@@ -1080,8 +1119,8 @@ const safePool = userContext.isSensitive
     ? sensitiveSafeProducts
     : broaderSensitiveProducts.length > 0
     ? broaderSensitiveProducts
-    : levelMatchedProducts
-  : levelMatchedProducts;
+    : candidateProducts
+  : candidateProducts;
 
 // 실제 구매 링크가 있는 제품 우선
 const linkedProducts = safePool.filter(
@@ -1113,31 +1152,36 @@ function hasExfoliatingActive(product) {
 
     return (
       normalized.includes("bha") ||
-      normalized.includes("살리실산")
+      normalized.includes("살리실산") ||
+      normalized.includes("베타인살리실레이트") ||
+      normalized.includes("aha") ||
+      normalized.includes("글라이콜릭애씨드") ||
+      normalized.includes("만델릭애씨드")
     );
   });
 }
 
-function pickAlternativeCream(
+function pickAlternativeNonExfoliatingProduct(
+  category,
   level,
   userContext = {},
   excludedIds = []
 ) {
-  // BHA / 살리실산이 없는 크림만 후보
+  // 각질 기능성이 없는 같은 카테고리 제품만 후보
   let candidates = products.filter(
     (product) =>
-      product.category === "cream" &&
+      product.category === category &&
       !excludedIds.includes(product.id) &&
       !hasExfoliatingActive(product)
   );
 
-  // 현재 단계와 가까운 제품 우선
+  // 현재 수분 단계와 가까운 제품 우선
   let levelMatched = filterByLevel(
     candidates,
     level
   );
 
-  // 가까운 단계에 없으면 전체 크림 후보 사용
+  // 가까운 단계에 제품이 없으면 전체 후보 사용
   if (levelMatched.length === 0) {
     levelMatched = candidates;
   }
@@ -1188,11 +1232,11 @@ function buildDynamicRoutine(
     userContext
   );
 
-  const serum = pickBestProductByCategory(
-    "serum",
-    level,
-    userContext
-  );
+let serum = pickBestProductByCategory(
+  "serum",
+  level,
+  userContext
+);
 
   let cream = pickBestProductByCategory(
     "cream",
@@ -1200,22 +1244,46 @@ function buildDynamicRoutine(
     userContext
   );
 
-  // 세럼과 크림에 BHA / 살리실산 계열이 동시에 들어가면
-  // 크림을 더 순한 대체 제품으로 변경
-  if (
-    hasExfoliatingActive(serum) &&
-    hasExfoliatingActive(cream)
-  ) {
-    const alternativeCream = pickAlternativeCream(
+ // 토너와 세럼에 각질 기능성이 동시에 들어가면
+// 세럼을 순한 대체 제품으로 변경
+if (
+  hasExfoliatingActive(toner) &&
+  hasExfoliatingActive(serum)
+) {
+  const alternativeSerum =
+    pickAlternativeNonExfoliatingProduct(
+      "serum",
+      level,
+      userContext,
+      [serum.id]
+    );
+
+  if (alternativeSerum) {
+    serum = alternativeSerum;
+  }
+}
+
+// 토너 또는 세럼에 이미 각질 기능성이 있다면
+// 크림까지 각질 기능성이 겹치지 않도록 변경
+if (
+  (
+    hasExfoliatingActive(toner) ||
+    hasExfoliatingActive(serum)
+  ) &&
+  hasExfoliatingActive(cream)
+) {
+  const alternativeCream =
+    pickAlternativeNonExfoliatingProduct(
+      "cream",
       level,
       userContext,
       [cream.id]
     );
 
-    if (alternativeCream) {
-      cream = alternativeCream;
-    }
+  if (alternativeCream) {
+    cream = alternativeCream;
   }
+}
 
   return {
     label: `${level}단계 맞춤 루틴`,
