@@ -1085,7 +1085,7 @@ const concernMatchedProducts =
     : [];
 
 // 기존 수분 단계 후보 + 고민 적합 후보 합치기
-const candidateProducts = [
+let candidateProducts = [
   ...levelMatchedProducts,
   ...concernMatchedProducts.filter(
     (product) =>
@@ -1094,6 +1094,36 @@ const candidateProducts = [
       )
   ),
 ];
+
+// 특별한 고민이 없거나 빠른 추천일 때는
+// 초보자용 + 각질 기능성이 없는 제품을 우선
+const isDefaultMode =
+  !userContext.mainConcern ||
+  userContext.mainConcern === "none";
+
+if (isDefaultMode) {
+  const beginnerSafeCandidates =
+    candidateProducts.filter(
+      (product) =>
+        product.beginnerFriendly &&
+        !hasExfoliatingActive(product)
+    );
+
+  if (beginnerSafeCandidates.length > 0) {
+    candidateProducts = beginnerSafeCandidates;
+  } else {
+    const broaderBeginnerSafe =
+      categoryProducts.filter(
+        (product) =>
+          product.beginnerFriendly &&
+          !hasExfoliatingActive(product)
+      );
+
+    if (broaderBeginnerSafe.length > 0) {
+      candidateProducts = broaderBeginnerSafe;
+    }
+  }
+}
 
 // 민감 피부라면 sensitivitySafe 제품을 먼저 후보군으로 제한
 const sensitiveSafeProducts = userContext.isSensitive
