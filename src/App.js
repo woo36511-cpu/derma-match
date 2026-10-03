@@ -1561,6 +1561,150 @@ function getJourneyChangeReasons(
 
   return reasons.slice(0, 3);
 }
+function getFeedbackConditionSnapshot(
+  feedbackAnswers = {}
+) {
+  const dry =
+    getFeedbackValue(
+      feedbackAnswers,
+      "dry"
+    );
+
+  const oil =
+    getFeedbackValue(
+      feedbackAnswers,
+      "oil"
+    );
+
+  const trouble =
+    getFeedbackValue(
+      feedbackAnswers,
+      "trouble"
+    );
+
+  const clogged =
+    getFeedbackValue(
+      feedbackAnswers,
+      "clogged"
+    );
+
+  const irritationLabel =
+    feedbackAnswers.irritation?.label || "";
+
+  let irritationSeverity = 0;
+
+  if (
+    irritationLabel.includes("자주") ||
+    irritationLabel.includes("바르면 바로") ||
+    irritationLabel.includes("불편함")
+  ) {
+    irritationSeverity = 2;
+  } else if (
+    irritationLabel.includes("가끔")
+  ) {
+    irritationSeverity = 1;
+  }
+
+  const drynessSeverity =
+    dry <= -2
+      ? 2
+      : dry <= -1
+      ? 1
+      : 0;
+
+  return [
+    {
+      id: "dryness",
+      label: "속당김",
+      severity: drynessSeverity,
+    },
+    {
+      id: "oiliness",
+      label: "번들거림",
+      severity: Math.max(
+        0,
+        Math.min(oil, 2)
+      ),
+    },
+    {
+      id: "trouble",
+      label: "붉은 트러블",
+      severity: Math.max(
+        0,
+        Math.min(trouble, 2)
+      ),
+    },
+    {
+      id: "clogged",
+      label: "좁쌀 · 막힘",
+      severity: Math.max(
+        0,
+        Math.min(clogged, 2)
+      ),
+    },
+    {
+      id: "irritation",
+      label: "따가움 · 붉어짐",
+      severity: irritationSeverity,
+    },
+  ];
+}
+
+function compareFeedbackConditions(
+  currentAnswers = {},
+  previousAnswers = null
+) {
+  const current =
+    getFeedbackConditionSnapshot(
+      currentAnswers
+    );
+
+  const previous = previousAnswers
+    ? getFeedbackConditionSnapshot(
+        previousAnswers
+      )
+    : [];
+
+  return current.map((currentItem) => {
+    const previousItem =
+      previous.find(
+        (item) =>
+          item.id === currentItem.id
+      );
+
+    const stateLabel =
+      currentItem.severity === 0
+        ? "거의 없음"
+        : currentItem.severity === 1
+        ? "약간 있음"
+        : "뚜렷함";
+
+    if (!previousItem) {
+      return {
+        ...currentItem,
+        status: "현재",
+        stateLabel,
+      };
+    }
+
+    const difference =
+      currentItem.severity -
+      previousItem.severity;
+
+    return {
+      ...currentItem,
+
+      status:
+        difference < 0
+          ? "개선"
+          : difference > 0
+          ? "악화"
+          : "유지",
+
+      stateLabel,
+    };
+  });
+}
 function buildUserTags(context) {
   const tags = [];
 
@@ -5160,7 +5304,28 @@ const feedbackRound = isSurvey
       .filter(
         (record) => record.type === "feedback"
       ).length;
+const previousFeedbackRecord =
+  !isSurvey
+    ? journeyHistory
+        .slice(
+          journeyStartIndex,
+          originalIndex
+        )
+        .reverse()
+        .find(
+          (record) =>
+            record.type === "feedback"
+        ) || null
+    : null;
 
+const conditionChanges =
+  !isSurvey
+    ? compareFeedbackConditions(
+        item.feedbackAnswers || {},
+        previousFeedbackRecord
+          ?.feedbackAnswers || null
+      )
+    : [];
               const level = isSurvey
                 ? item.result?.hydrationLevel
                 : item.nextState?.hydrationLevel;
@@ -5352,6 +5517,64 @@ const changedRoutineCount =
       </div>
     </div>
 
+{/* 피부 고민 변화 */}
+<div className="rounded-2xl bg-white border border-gray-200 p-4">
+  <div className="mb-4">
+    <p className="text-xs text-gray-400 mb-1">
+      피부 반응 변화
+    </p>
+
+    <p className="text-sm font-bold text-gray-900">
+      이전 체크와 비교했어요
+    </p>
+  </div>
+
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+    {conditionChanges.map(
+      (condition) => {
+        const statusClass =
+          condition.status === "개선"
+            ? "bg-emerald-100 text-emerald-700"
+            : condition.status === "악화"
+            ? "bg-rose-100 text-rose-700"
+            : condition.status === "유지"
+            ? "bg-gray-100 text-gray-600"
+            : "bg-blue-100 text-blue-700";
+
+        return (
+          <div
+            key={condition.id}
+            className="rounded-2xl bg-gray-50 p-4"
+          >
+            <div className="flex items-center justify-between gap-3 mb-2">
+              <p className="text-sm font-bold text-gray-800">
+                {condition.label}
+              </p>
+
+              <span
+                className={`text-xs font-bold px-2 py-1 rounded-full ${statusClass}`}
+              >
+                {condition.status}
+              </span>
+            </div>
+
+            <p className="text-xs text-gray-500">
+              현재 상태 ·{" "}
+              {condition.stateLabel}
+            </p>
+          </div>
+        );
+      }
+    )}
+  </div>
+
+  {!previousFeedbackRecord && (
+    <p className="mt-4 text-xs text-gray-400 leading-relaxed">
+      첫 체크는 비교할 이전 기록이 없어
+      현재 상태만 표시해요.
+    </p>
+  )}
+</div>
     {/* 제품 변화 */}
     {previousRecord && (
       <div className="rounded-2xl bg-white border border-gray-200 p-4">
