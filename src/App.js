@@ -4906,6 +4906,31 @@ const feedbackCount =
               const isSurvey =
                 item.type === "initial_survey";
 
+const originalIndex =
+  journeyHistory.length - 1 - index;
+
+let journeyStartIndex = 0;
+
+for (let i = originalIndex; i >= 0; i -= 1) {
+  if (
+    journeyHistory[i]?.type === "initial_survey"
+  ) {
+    journeyStartIndex = i;
+    break;
+  }
+}
+
+const feedbackRound = isSurvey
+  ? 0
+  : journeyHistory
+      .slice(
+        journeyStartIndex,
+        originalIndex + 1
+      )
+      .filter(
+        (record) => record.type === "feedback"
+      ).length;
+
               const level = isSurvey
                 ? item.result?.hydrationLevel
                 : item.nextState?.hydrationLevel;
@@ -4981,9 +5006,10 @@ const changedRoutineCount =
                             : "bg-emerald-100 text-emerald-700"
                         }`}
                       >
-                        {isSurvey
-                          ? "첫 피부 진단"
-                          : "2주 피드백"}
+                        
+                          {isSurvey
+  ? "첫 피부 진단"
+  : `${feedbackRound}차 체크`}
                       </span>
 
                       <h3 className="text-xl font-black">
@@ -5014,8 +5040,8 @@ const changedRoutineCount =
 
                       <p className="text-sm font-bold">
                         {isSurvey
-                          ? "초기 분석"
-                          : "루틴 재조정"}
+  ? "초기 분석"
+  : `${feedbackRound}차 루틴 재조정`}
                       </p>
                     </div>
                   </div>
