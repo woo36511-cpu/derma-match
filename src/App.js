@@ -4698,6 +4698,137 @@ const feedbackCount =
   journeyHistory.filter(
     (item) => item.type === "feedback"
   ).length;
+  const latestSurveyIndex = (() => {
+  for (
+    let i = journeyHistory.length - 1;
+    i >= 0;
+    i -= 1
+  ) {
+    if (
+      journeyHistory[i]?.type ===
+      "initial_survey"
+    ) {
+      return i;
+    }
+  }
+
+  return 0;
+})();
+
+const currentJourneyRecords =
+  journeyHistory.length > 0
+    ? journeyHistory.slice(latestSurveyIndex)
+    : [];
+
+const journeyRoundSummaries =
+  currentJourneyRecords
+    .map((record, recordIndex) => {
+      if (record.type !== "feedback") {
+        return null;
+      }
+
+      const previousRecord =
+        recordIndex > 0
+          ? currentJourneyRecords[
+              recordIndex - 1
+            ]
+          : null;
+
+      const previousLevel =
+        record.previousState
+          ?.hydrationLevel ??
+        getJourneyLevel(previousRecord);
+
+      const currentLevel =
+        record.nextState
+          ?.hydrationLevel ??
+        getJourneyLevel(record);
+
+      const concernLabel =
+        skinConcernOptions.find(
+          (concern) =>
+            concern.id ===
+            (record.nextState?.mainConcern ||
+              "none")
+        )?.label ||
+        "특별한 고민 없음";
+
+      const previousRoutine =
+        previousRecord?.routine || {};
+
+      const currentRoutine =
+        record.routine || {};
+
+      const allCategories = [
+        ...new Set([
+          ...Object.keys(previousRoutine),
+          ...Object.keys(currentRoutine),
+        ]),
+      ];
+
+      const changedProductCount =
+        allCategories.filter(
+          (category) =>
+            (previousRoutine[category] ??
+              null) !==
+            (currentRoutine[category] ??
+              null)
+        ).length;
+
+      const reasons =
+        record.changeReasons?.length > 0
+          ? record.changeReasons
+          : getJourneyChangeReasons(
+              record.feedbackAnswers || {},
+              record.previousState || {},
+              record.nextState || {}
+            );
+
+      const round =
+        currentJourneyRecords
+          .slice(0, recordIndex + 1)
+          .filter(
+            (item) =>
+              item.type === "feedback"
+          ).length;
+
+      let direction = "단계 유지";
+
+      if (
+        previousLevel !== null &&
+        currentLevel !== null
+      ) {
+        if (currentLevel > previousLevel) {
+          direction = "더 가볍게";
+        }
+
+        if (currentLevel < previousLevel) {
+          direction = "더 촉촉하게";
+        }
+      }
+
+      return {
+        id:
+          record.id ||
+          `summary-${recordIndex}`,
+
+        round,
+
+        previousLevel,
+        currentLevel,
+
+        direction,
+
+        concernLabel,
+
+        changedProductCount,
+
+        reason:
+          reasons[0] ||
+          "피드백을 반영해 루틴을 조정했어요.",
+      };
+    })
+    .filter(Boolean);
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
       <header className="sticky top-0 z-10 border-b border-gray-200 bg-white/90 backdrop-blur">
@@ -4884,6 +5015,105 @@ const feedbackCount =
               journeyLevelChange
             )}단계 촉촉한 루틴 쪽으로 조정됐어요.`}
       </p>
+    </div>
+  </div>
+)}
+{journeyRoundSummaries.length > 0 && (
+  <div className="max-w-4xl mx-auto mb-10">
+    <div className="mb-5">
+      <p className="text-sm font-bold text-emerald-600 mb-2">
+        변화 기록
+      </p>
+
+      <h3 className="text-2xl font-black text-gray-900">
+        회차별로 어떻게 달라졌을까요?
+      </h3>
+
+      <p className="mt-2 text-sm text-gray-500 leading-relaxed break-keep">
+        각 체크에서 피부 반응과 추천 루틴이
+        어떻게 바뀌었는지 간단하게 정리했어요.
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {[...journeyRoundSummaries]
+        .reverse()
+        .map((summary) => (
+          <div
+            key={summary.id}
+            className="rounded-[1.7rem] bg-white border border-gray-100 shadow-sm p-5"
+          >
+            <div className="flex items-center justify-between gap-3 mb-5">
+              <span className="inline-flex rounded-full bg-emerald-100 text-emerald-700 px-3 py-1 text-xs font-bold">
+                {summary.round}차 체크
+              </span>
+
+              <span className="text-xs font-bold text-gray-400">
+                {summary.direction}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-3 mb-5">
+              <div className="flex-1 rounded-2xl bg-gray-50 p-4 text-center">
+                <p className="text-xs text-gray-400 mb-1">
+                  이전
+                </p>
+
+                <p className="text-xl font-black text-gray-700">
+                  {summary.previousLevel ?? "-"}
+                  단계
+                </p>
+              </div>
+
+              <span className="font-bold text-gray-400">
+                →
+              </span>
+
+              <div className="flex-1 rounded-2xl bg-emerald-50 p-4 text-center">
+                <p className="text-xs text-emerald-600 mb-1">
+                  조정 후
+                </p>
+
+                <p className="text-xl font-black text-emerald-800">
+                  {summary.currentLevel ?? "-"}
+                  단계
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3 mb-4">
+              <div className="rounded-2xl bg-gray-50 p-3">
+                <p className="text-xs text-gray-400 mb-1">
+                  주요 고민
+                </p>
+
+                <p className="text-sm font-bold text-gray-800 break-keep">
+                  {summary.concernLabel}
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-gray-50 p-3">
+                <p className="text-xs text-gray-400 mb-1">
+                  제품 변화
+                </p>
+
+                <p className="text-sm font-bold text-gray-800">
+                  {summary.changedProductCount}개 변경
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-gray-100 p-4">
+              <p className="text-xs text-gray-400 mb-2">
+                핵심 변화 이유
+              </p>
+
+              <p className="text-sm text-gray-700 leading-relaxed break-keep">
+                {summary.reason}
+              </p>
+            </div>
+          </div>
+        ))}
     </div>
   </div>
 )}
