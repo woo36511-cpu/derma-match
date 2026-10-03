@@ -6,6 +6,7 @@ import { starterRoutineByLevel } from "./data/routines";
 import { ingredientsInfo } from "./data/ingredients";
 
 const SAVED_SURVEY_KEY = "dearsince_saved_survey_result";
+const JOURNEY_HISTORY_KEY = "dearsince_skin_journey_history";
 
 // ===== 단계별 설명용 정보 =====
 const routineMap = {
@@ -1448,6 +1449,117 @@ function getFeedbackAdvice(answers) {
   }
 
   return advice.slice(0, 5);
+}
+function getJourneyChangeReasons(
+  feedbackAnswers = {},
+  previousState = {},
+  nextState = {}
+) {
+  const reasons = [];
+
+  const dry = getFeedbackValue(
+    feedbackAnswers,
+    "dry"
+  );
+
+  const oil = getFeedbackValue(
+    feedbackAnswers,
+    "oil"
+  );
+
+  const feel = getFeedbackValue(
+    feedbackAnswers,
+    "feel"
+  );
+
+  const trouble = getFeedbackValue(
+    feedbackAnswers,
+    "trouble"
+  );
+
+  const clogged = getFeedbackValue(
+    feedbackAnswers,
+    "clogged"
+  );
+
+  const irritationLabel =
+    feedbackAnswers.irritation?.label || "";
+
+  if (dry <= -1) {
+    reasons.push(
+      "사용 후에도 피부 당김이 남아 더 촉촉한 방향을 고려했어요."
+    );
+  }
+
+  if (oil >= 1) {
+    reasons.push(
+      "시간이 지나면서 번들거림이 올라와 조금 더 가벼운 방향을 고려했어요."
+    );
+  }
+
+  if (feel >= 1) {
+    reasons.push(
+      "제품을 바른 뒤 무겁거나 답답한 느낌이 있어 제형을 가볍게 조정했어요."
+    );
+  }
+
+  if (trouble >= 1) {
+    reasons.push(
+      "붉은 트러블이 새로 생기거나 심해져 트러블 관리 비중을 높였어요."
+    );
+  }
+
+  if (clogged >= 1) {
+    reasons.push(
+      "좁쌀이나 오돌토돌함이 늘어 모공 막힘을 고려해 루틴을 조정했어요."
+    );
+  }
+
+  if (
+    irritationLabel.includes("따가움") ||
+    irritationLabel.includes("붉어짐") ||
+    irritationLabel.includes("불편함")
+  ) {
+    reasons.push(
+      "따가움이나 붉어짐 반응이 있어 자극을 줄이는 방향을 우선했어요."
+    );
+  }
+
+  if (
+    previousState.mainConcern &&
+    nextState.mainConcern &&
+    previousState.mainConcern !==
+      nextState.mainConcern
+  ) {
+    const nextConcernLabel =
+      skinConcernOptions.find(
+        (concern) =>
+          concern.id === nextState.mainConcern
+      )?.label;
+
+    if (nextConcernLabel) {
+      reasons.push(
+        `피드백을 반영해 현재 주요 고민을 '${nextConcernLabel}' 쪽으로 다시 잡았어요.`
+      );
+    }
+  }
+
+  if (reasons.length === 0) {
+    if (
+      previousState.hydrationLevel ===
+      nextState.hydrationLevel
+    ) {
+      reasons.push(
+        "큰 불편감이 없어 현재 수분감 단계를 유지했어요."
+      );
+    } else {
+      reasons.push(
+        "전체 피드백을 반영해 현재 피부 반응에 가까운 단계로 조정했어요."
+      );
+    }
+  }
+
+  return reasons.slice(0, 3);
 }
 function buildUserTags(context) {
   const tags = [];
@@ -3827,6 +3939,7 @@ const [baseLevel, setBaseLevel] = useState(5);
 const [surveyAnswers, setSurveyAnswers] = useState({});
 const [surveyIndex, setSurveyIndex] = useState(0);
 const [savedSurvey, setSavedSurvey] = useState(null);
+const [journeyHistory, setJourneyHistory] = useState([]);
 const [mainConcern, setMainConcern] = useState("");
 const [issueAnswers, setIssueAnswers] = useState({});
 const [issueIndex, setIssueIndex] = useState(0);
@@ -3869,8 +3982,22 @@ useEffect(() => {
     if (saved) {
       setSavedSurvey(JSON.parse(saved));
     }
+
+    const savedJourney =
+      localStorage.getItem(JOURNEY_HISTORY_KEY);
+
+    if (savedJourney) {
+      const parsedJourney = JSON.parse(savedJourney);
+
+      if (Array.isArray(parsedJourney)) {
+        setJourneyHistory(parsedJourney);
+      }
+    }
   } catch (error) {
-    console.error("저장된 설문 결과를 불러오지 못했어요.", error);
+    console.error(
+      "저장된 피부 기록을 불러오지 못했어요.",
+      error
+    );
   }
 }, []);
 
@@ -4250,18 +4377,150 @@ const handleNextIssue = () => {
 };
 
 const saveSurveyResult = () => {
+  const savedAt = new Date().toISOString();
+
   const data = {
-  surveyAnswers,
-  mainConcern,
-  issueAnswers,
-  savedAt: new Date().toISOString(),
-};
+    id: `survey-${Date.now()}`,
+    type: "initial_survey",
+
+    surveyAnswers,
+    mainConcern,
+    issueAnswers,
+
+    result: {
+      skinType: surveyResult.skinType,
+      hydrationLevel: surveyResult.hydrationLevel,
+      scores: surveyResult.scores,
+    },
+
+    routine: {
+      cleanser: surveyRoutine.products.cleanser?.id ?? null,
+      toner: surveyRoutine.products.toner?.id ?? null,
+      serum: surveyRoutine.products.serum?.id ?? null,
+      cream: surveyRoutine.products.cream?.id ?? null,
+    },
+
+    savedAt,
+  };
 
   try {
-    localStorage.setItem(SAVED_SURVEY_KEY, JSON.stringify(data));
+    // 가장 최근 설문 결과 저장
+    localStorage.setItem(
+      SAVED_SURVEY_KEY,
+      JSON.stringify(data)
+    );
+
     setSavedSurvey(data);
+
+    // Skin Journey 누적
+    const savedHistory =
+      localStorage.getItem(JOURNEY_HISTORY_KEY);
+
+    let history = [];
+
+    if (savedHistory) {
+      const parsedHistory = JSON.parse(savedHistory);
+
+      if (Array.isArray(parsedHistory)) {
+        history = parsedHistory;
+      }
+    }
+
+    const updatedHistory = [
+      ...history,
+      data,
+    ];
+
+    localStorage.setItem(
+      JOURNEY_HISTORY_KEY,
+      JSON.stringify(updatedHistory)
+    );
+
+    setJourneyHistory(updatedHistory);
+
   } catch (error) {
-    console.error("설문 결과를 저장하지 못했어요.", error);
+    console.error(
+      "설문 결과를 저장하지 못했어요.",
+      error
+    );
+  }
+};
+
+const saveFeedbackResult = () => {
+  const savedAt = new Date().toISOString();
+
+  const feedbackData = {
+    id: `feedback-${Date.now()}`,
+    type: "feedback",
+
+    feedbackAnswers: answers,
+
+    changeReasons: getJourneyChangeReasons(
+  answers,
+  {
+    hydrationLevel: baseLevel,
+    mainConcern,
+  },
+  {
+    hydrationLevel: nextLevel,
+    mainConcern: feedbackMainConcern,
+  }
+),
+
+    previousState: {
+      hydrationLevel: baseLevel,
+      mainConcern,
+    },
+
+    nextState: {
+      hydrationLevel: nextLevel,
+      mainConcern: feedbackMainConcern,
+    },
+
+    routine: {
+      cleanser: nextRoutine.products.cleanser?.id ?? null,
+      toner: nextRoutine.products.toner?.id ?? null,
+      serum: nextRoutine.products.serum?.id ?? null,
+      cream: nextRoutine.products.cream?.id ?? null,
+    },
+
+    savedAt,
+  };
+
+  try {
+    const savedHistory =
+      localStorage.getItem(JOURNEY_HISTORY_KEY);
+
+    let history = [];
+
+    if (savedHistory) {
+      const parsedHistory = JSON.parse(savedHistory);
+
+      if (Array.isArray(parsedHistory)) {
+        history = parsedHistory;
+      }
+    }
+
+    const updatedHistory = [
+      ...history,
+      feedbackData,
+    ];
+
+    localStorage.setItem(
+      JOURNEY_HISTORY_KEY,
+      JSON.stringify(updatedHistory)
+    );
+    
+    setJourneyHistory(updatedHistory);
+
+    setStep("result");
+  } catch (error) {
+    console.error(
+      "피드백 결과를 저장하지 못했어요.",
+      error
+    );
+
+    setStep("result");
   }
 };
 
@@ -4269,24 +4528,77 @@ const openSavedSurveyResult = () => {
   if (!savedSurvey?.surveyAnswers) return;
 
   setSurveyAnswers(savedSurvey.surveyAnswers);
-setMainConcern(savedSurvey.mainConcern || "");
-setIssueAnswers(savedSurvey.issueAnswers || {});
-setSurveyIndex(0);
-setIssueIndex(0);
-setStep("surveyResult");
+  setMainConcern(savedSurvey.mainConcern || "");
+  setIssueAnswers(savedSurvey.issueAnswers || {});
+  setSurveyIndex(0);
+  setIssueIndex(0);
+  setStep("surveyResult");
 };
 
 const startSavedFeedback = () => {
-  if (!savedSurvey?.surveyAnswers || !savedSurveyResult) return;
+  if (!savedSurvey?.surveyAnswers || !savedSurveyResult) {
+    return;
+  }
+
+  // 현재 저장된 설문이 Journey에서 시작된 위치 찾기
+  const savedSurveyIndex =
+    journeyHistory.findIndex(
+      (item) => item.id === savedSurvey.id
+    );
+
+  // 다른 설문/빠른 추천 기록과 섞이지 않게
+  // 현재 설문 이후의 기록만 사용
+  const currentJourney =
+    savedSurveyIndex >= 0
+      ? journeyHistory.slice(savedSurveyIndex)
+      : [];
+
+  const latestRecord =
+    currentJourney.length > 0
+      ? currentJourney[currentJourney.length - 1]
+      : null;
+
+  let latestLevel =
+    savedSurveyResult.hydrationLevel;
+
+  let latestConcern =
+    savedSurvey.mainConcern || "";
+
+  if (latestRecord?.type === "feedback") {
+    latestLevel =
+      latestRecord.nextState?.hydrationLevel ??
+      latestLevel;
+
+    latestConcern =
+      latestRecord.nextState?.mainConcern ??
+      latestConcern;
+  }
+
+  if (latestRecord?.type === "initial_survey") {
+    latestLevel =
+      latestRecord.result?.hydrationLevel ??
+      latestLevel;
+
+    latestConcern =
+      latestRecord.mainConcern ??
+      latestConcern;
+  }
 
   setSurveyAnswers(savedSurvey.surveyAnswers);
-  setMainConcern(savedSurvey.mainConcern || "");
-  setIssueAnswers(savedSurvey.issueAnswers || {});
 
-  setBaseLevel(savedSurveyResult.hydrationLevel);
+  setMainConcern(latestConcern);
+
+  setIssueAnswers(
+    savedSurvey.issueAnswers || {}
+  );
+
+  setBaseLevel(latestLevel);
+
   setAnswers({});
+
   setStep("feedback");
 };
+
 const resetFlow = () => {
   setAnswers({});
   setSurveyAnswers({});
@@ -4297,28 +4609,95 @@ const resetFlow = () => {
   setIssueIndex(0);
   setStep("start");
 };
+
 const handlePrevSurvey = () => {
   if (surveyIndex === 0) {
     setStep("start");
     return;
   }
 
-  setSurveyIndex((prev) => Math.max(prev - 1, 0));
+  setSurveyIndex((prev) =>
+    Math.max(prev - 1, 0)
+  );
 };
 
 const handleNextSurvey = () => {
   if (!isCurrentSurveyAnswered) return;
 
-if (isLastSurveyQuestion) {
-  setStep("issueSelect");
-  return;
-}
+  if (isLastSurveyQuestion) {
+    setStep("issueSelect");
+    return;
+  }
 
   setSurveyIndex((prev) =>
-    Math.min(prev + 1, skinSurveyQuestions.length - 1)
+    Math.min(
+      prev + 1,
+      skinSurveyQuestions.length - 1
+    )
   );
 };
 
+const firstJourneyRecord =
+  journeyHistory.length > 0
+    ? journeyHistory[0]
+    : null;
+
+const latestJourneyRecord =
+  journeyHistory.length > 0
+    ? journeyHistory[journeyHistory.length - 1]
+    : null;
+
+const getJourneyLevel = (item) => {
+  if (!item) return null;
+
+  if (item.type === "initial_survey") {
+    return item.result?.hydrationLevel ?? null;
+  }
+
+  if (item.type === "feedback") {
+    return item.nextState?.hydrationLevel ?? null;
+  }
+
+  return null;
+};
+
+const getJourneyConcern = (item) => {
+  if (!item) return "none";
+
+  if (item.type === "initial_survey") {
+    return item.mainConcern || "none";
+  }
+
+  if (item.type === "feedback") {
+    return item.nextState?.mainConcern || "none";
+  }
+
+  return "none";
+};
+
+const firstJourneyLevel =
+  getJourneyLevel(firstJourneyRecord);
+
+const latestJourneyLevel =
+  getJourneyLevel(latestJourneyRecord);
+
+const journeyLevelChange =
+  firstJourneyLevel !== null &&
+  latestJourneyLevel !== null
+    ? latestJourneyLevel - firstJourneyLevel
+    : 0;
+
+const latestJourneyConcern =
+  skinConcernOptions.find(
+    (item) =>
+      item.id ===
+      getJourneyConcern(latestJourneyRecord)
+  )?.label || "특별한 고민 없음";
+
+const feedbackCount =
+  journeyHistory.filter(
+    (item) => item.type === "feedback"
+  ).length;
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
       <header className="sticky top-0 z-10 border-b border-gray-200 bg-white/90 backdrop-blur">
@@ -4418,6 +4797,12 @@ if (isLastSurveyQuestion) {
         <PrimaryButton onClick={startSavedFeedback}>
           2주 후 체크하기
         </PrimaryButton>
+        <button
+  onClick={() => setStep("journey")}
+  className="px-5 py-3 rounded-2xl text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-100 hover:bg-emerald-100 transition"
+>
+  내 피부 변화 보기
+</button>
       </div>
     </div>
   </div>
@@ -4425,6 +4810,384 @@ if (isLastSurveyQuestion) {
 <SeoContentSection />
 </section>
         )}
+
+        {step === "journey" && (
+  <section>
+    <SectionTitle
+      title="내 피부 변화"
+      desc="처음 진단부터 2주 피드백까지 피부 상태와 추천 루틴이 어떻게 바뀌었는지 확인할 수 있어요."
+    />
+
+{journeyHistory.length > 0 && (
+  <div className="mb-8 rounded-[2rem] bg-slate-950 text-white p-6 sm:p-8 shadow-lg">
+    <p className="text-sm text-slate-400 mb-2">
+      Skin Journey
+    </p>
+
+    <h3 className="text-2xl sm:text-3xl font-black mb-6">
+      처음과 지금을 비교했어요
+    </h3>
+
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="rounded-2xl bg-white/10 p-4">
+        <p className="text-xs text-slate-400 mb-1">
+          처음 단계
+        </p>
+
+        <p className="text-xl font-bold">
+          {firstJourneyLevel ?? "-"}단계
+        </p>
+      </div>
+
+      <div className="rounded-2xl bg-white/10 p-4">
+        <p className="text-xs text-slate-400 mb-1">
+          현재 단계
+        </p>
+
+        <p className="text-xl font-bold text-emerald-300">
+          {latestJourneyLevel ?? "-"}단계
+        </p>
+      </div>
+
+      <div className="rounded-2xl bg-white/10 p-4">
+        <p className="text-xs text-slate-400 mb-1">
+          현재 고민
+        </p>
+
+        <p className="text-sm font-bold break-keep">
+          {latestJourneyConcern}
+        </p>
+      </div>
+
+      <div className="rounded-2xl bg-white/10 p-4">
+        <p className="text-xs text-slate-400 mb-1">
+          체크 횟수
+        </p>
+
+        <p className="text-xl font-bold">
+          {feedbackCount}회
+        </p>
+      </div>
+    </div>
+
+    <div className="mt-5 rounded-2xl bg-white/10 p-4">
+      <p className="text-xs text-slate-400 mb-2">
+        변화 요약
+      </p>
+
+      <p className="text-sm sm:text-base font-semibold leading-relaxed break-keep">
+        {journeyLevelChange === 0
+          ? "처음과 현재의 수분감 단계가 같아요. 현재 루틴의 밸런스를 조금 더 지켜볼 수 있어요."
+          : journeyLevelChange > 0
+          ? `처음보다 ${journeyLevelChange}단계 가벼운 루틴 쪽으로 조정됐어요.`
+          : `처음보다 ${Math.abs(
+              journeyLevelChange
+            )}단계 촉촉한 루틴 쪽으로 조정됐어요.`}
+      </p>
+    </div>
+  </div>
+)}
+    <div className="max-w-3xl mx-auto">
+      {journeyHistory.length === 0 ? (
+        <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-8 text-center">
+          <p className="text-lg font-bold mb-2">
+            아직 피부 기록이 없어요
+          </p>
+
+          <p className="text-sm text-gray-500 leading-relaxed">
+            설문을 완료하면 첫 피부 기록이 여기에 저장돼요.
+          </p>
+        </div>
+      ) : (
+        <div className="space-y-5">
+          {[...journeyHistory]
+            .reverse()
+            .map((item, index) => {
+              const isSurvey =
+                item.type === "initial_survey";
+
+              const level = isSurvey
+                ? item.result?.hydrationLevel
+                : item.nextState?.hydrationLevel;
+
+              const concernId = isSurvey
+                ? item.mainConcern
+                : item.nextState?.mainConcern;
+
+              const concernLabel =
+                skinConcernOptions.find(
+                  (concern) =>
+                    concern.id === concernId
+                )?.label || "기본 관리";
+
+              const routineEntries =
+                Object.entries(item.routine || {});
+const changeReasons =
+  item.changeReasons?.length > 0
+    ? item.changeReasons
+    : getJourneyChangeReasons(
+        item.feedbackAnswers || {},
+        item.previousState || {},
+        item.nextState || {}
+      );
+      const previousRecord =
+  index < journeyHistory.length - 1
+    ? journeyHistory[
+        journeyHistory.length - 2 - index
+      ]
+    : null;
+
+const previousRoutine =
+  previousRecord?.routine || {};
+
+const routineChanges = Object.entries(
+  item.routine || {}
+)
+  .map(([category, currentProductId]) => {
+    const previousProductId =
+      previousRoutine[category] ?? null;
+
+    return {
+      category,
+      previousProduct:
+        getProductById(previousProductId),
+      currentProduct:
+        getProductById(currentProductId),
+      changed:
+        previousProductId !== currentProductId,
+    };
+  })
+  .filter(
+    (item) =>
+      item.previousProduct ||
+      item.currentProduct
+  );
+
+const changedRoutineCount =
+  routineChanges.filter(
+    (item) => item.changed
+  ).length;
+              return (
+                <div
+                  key={item.id || index}
+                  className="bg-white rounded-3xl border border-gray-100 shadow-sm p-5 sm:p-6"
+                >
+                  <div className="flex items-start justify-between gap-3 mb-5">
+                    <div>
+                      <span
+                        className={`inline-flex rounded-full px-3 py-1 text-xs font-bold mb-3 ${
+                          isSurvey
+                            ? "bg-black text-white"
+                            : "bg-emerald-100 text-emerald-700"
+                        }`}
+                      >
+                        {isSurvey
+                          ? "첫 피부 진단"
+                          : "2주 피드백"}
+                      </span>
+
+                      <h3 className="text-xl font-black">
+                        수분감 {level ?? "-"}단계
+                      </h3>
+                    </div>
+
+                    <p className="text-xs text-gray-400">
+                      {formatSavedAt(item.savedAt)}
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3 mb-5">
+                    <div className="rounded-2xl bg-gray-50 p-4">
+                      <p className="text-xs text-gray-400 mb-1">
+                        주요 고민
+                      </p>
+
+                      <p className="text-sm font-bold">
+                        {concernLabel}
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl bg-gray-50 p-4">
+                      <p className="text-xs text-gray-400 mb-1">
+                        기록 종류
+                      </p>
+
+                      <p className="text-sm font-bold">
+                        {isSurvey
+                          ? "초기 분석"
+                          : "루틴 재조정"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {routineEntries.length > 0 && (
+                    <div>
+                      <p className="text-sm font-bold mb-3">
+                        추천 루틴
+                      </p>
+
+                      <div className="space-y-2">
+                        {routineEntries.map(
+                          ([category, productId]) => {
+                            const product =
+                              getProductById(
+                                productId
+                              );
+
+                            if (!product) {
+                              return null;
+                            }
+
+                            return (
+                              <div
+                                key={category}
+                                className="flex items-center justify-between gap-3 rounded-2xl border border-gray-100 px-4 py-3"
+                              >
+                                <span className="text-xs text-gray-400">
+                                  {getCategoryLabel(
+                                    category
+                                  )}
+                                </span>
+
+                                <span className="text-sm font-semibold text-right">
+                                  {product.name}
+                                </span>
+                              </div>
+                            );
+                          }
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+{!isSurvey && (
+  <div className="mt-5 space-y-3">
+
+    {/* 단계 변화 */}
+    <div className="rounded-2xl bg-emerald-50 p-4">
+      <p className="text-xs text-emerald-600 mb-1">
+        단계 변화
+      </p>
+
+      <p className="text-sm font-bold text-emerald-900">
+        {item.previousState?.hydrationLevel ?? "-"}
+        단계
+        {" → "}
+        {item.nextState?.hydrationLevel ?? "-"}
+        단계
+      </p>
+    </div>
+
+    {/* 변화 이유 */}
+    <div className="rounded-2xl bg-gray-50 border border-gray-100 p-4">
+      <p className="text-xs text-gray-400 mb-3">
+        왜 이렇게 바뀌었나요?
+      </p>
+
+      <div className="space-y-2">
+        {changeReasons.map((reason) => (
+          <p
+            key={reason}
+            className="text-sm text-gray-700 leading-relaxed break-keep"
+          >
+            · {reason}
+          </p>
+        ))}
+      </div>
+    </div>
+
+    {/* 제품 변화 */}
+    {previousRecord && (
+      <div className="rounded-2xl bg-white border border-gray-200 p-4">
+        <div className="flex items-center justify-between gap-3 mb-4">
+          <div>
+            <p className="text-xs text-gray-400 mb-1">
+              루틴 변경
+            </p>
+
+            <p className="text-sm font-bold text-gray-900">
+              이번 체크에서 바뀐 제품
+            </p>
+          </div>
+
+          <span className="text-xs font-bold bg-gray-100 text-gray-600 px-3 py-1 rounded-full">
+            {changedRoutineCount}개 변경
+          </span>
+        </div>
+
+        <div className="space-y-3">
+          {routineChanges.map((change) => (
+            <div
+              key={change.category}
+              className="rounded-2xl bg-gray-50 p-4"
+            >
+              <div className="flex items-center justify-between gap-3 mb-2">
+                <p className="text-xs font-bold text-gray-500">
+                  {getCategoryLabel(
+                    change.category
+                  )}
+                </p>
+
+                <span
+                  className={`text-xs font-bold px-2 py-1 rounded-full ${
+                    change.changed
+                      ? "bg-amber-100 text-amber-700"
+                      : "bg-emerald-100 text-emerald-700"
+                  }`}
+                >
+                  {change.changed
+                    ? "변경"
+                    : "유지"}
+                </span>
+              </div>
+
+              {change.changed ? (
+                <div className="space-y-2">
+                  <p className="text-sm text-gray-500 line-through">
+                    {change.previousProduct?.name ||
+                      "이전 제품 없음"}
+                  </p>
+
+                  <p className="text-sm font-bold text-gray-900">
+                    ↓
+                  </p>
+
+                  <p className="text-sm font-bold text-gray-900">
+                    {change.currentProduct?.name ||
+                      "추천 제품 없음"}
+                  </p>
+                </div>
+              ) : (
+                <p className="text-sm font-semibold text-gray-700">
+                  {change.currentProduct?.name ||
+                    change.previousProduct?.name ||
+                    "제품 정보 없음"}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+)}
+                </div>
+              );
+            })}
+        </div>
+      )}
+      <div className="mt-8 flex justify-center">
+        <button
+          onClick={() => setStep("start")}
+          className="px-6 py-3 rounded-2xl text-sm font-medium border border-gray-300 bg-white hover:bg-gray-100 transition"
+        >
+          시작 화면으로 돌아가기
+        </button>
+      </div>
+    </div>
+  </section>
+)}
+
 {step === "quickRecommend" && (
   <section>
     <SectionTitle
@@ -4917,17 +5680,11 @@ setStep("surveyResult");
         설문 다시 하기
       </button>
 
-      <PrimaryButton
-        onClick={() => {
-          setBaseLevel(surveyResult.hydrationLevel);
-          setAnswers({});
-          setStep("feedback");
-        }}
-      >
-        2주 사용 후 피드백 입력
-      </PrimaryButton>
-    </div>
-  </section>
+<PrimaryButton onClick={startSavedFeedback}>
+  2주 사용 후 피드백 입력
+</PrimaryButton>
+</div>
+</section>
 )}
         {step === "starter" && starterRoutine && (
           <section>
@@ -4988,6 +5745,7 @@ setStep("surveyResult");
                     {q.options.map((option) => {
                       const active = answers[q.id]?.label === option.label;
 
+
                       return (
                         <button
                           key={option.label}
@@ -5018,9 +5776,12 @@ setStep("surveyResult");
             </div>
 
             <div className="mt-10 flex justify-center">
-              <PrimaryButton onClick={() => setStep("result")} disabled={!isComplete}>
-                다음 추천 보기
-              </PrimaryButton>
+              <PrimaryButton
+  onClick={saveFeedbackResult}
+  disabled={!isComplete}
+>
+  다음 추천 보기
+</PrimaryButton>
             </div>
           </section>
         )}
