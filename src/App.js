@@ -4084,6 +4084,8 @@ const [surveyAnswers, setSurveyAnswers] = useState({});
 const [surveyIndex, setSurveyIndex] = useState(0);
 const [savedSurvey, setSavedSurvey] = useState(null);
 const [journeyHistory, setJourneyHistory] = useState([]);
+const [activeJourneyId, setActiveJourneyId] =
+  useState(null);
 const [mainConcern, setMainConcern] = useState("");
 const [issueAnswers, setIssueAnswers] = useState({});
 const [issueIndex, setIssueIndex] = useState(0);
@@ -4521,10 +4523,15 @@ const handleNextIssue = () => {
 };
 
 const saveSurveyResult = () => {
+  const timestamp = Date.now();
   const savedAt = new Date().toISOString();
 
+  const journeyId =
+    `journey-${timestamp}`;
+
   const data = {
-    id: `survey-${Date.now()}`,
+    id: `survey-${timestamp}`,
+    journeyId,
     type: "initial_survey",
 
     surveyAnswers,
@@ -4555,6 +4562,7 @@ const saveSurveyResult = () => {
     );
 
     setSavedSurvey(data);
+    setActiveJourneyId(journeyId);
 
     // Skin Journey 누적
     const savedHistory =
@@ -4598,6 +4606,8 @@ const saveFeedbackResult = () => {
     type: "feedback",
 
     feedbackAnswers: answers,
+    
+    journeyId: activeJourneyId,
 
     changeReasons: getJourneyChangeReasons(
   answers,
@@ -4684,18 +4694,33 @@ const startSavedFeedback = () => {
     return;
   }
 
-  // 현재 저장된 설문이 Journey에서 시작된 위치 찾기
-  const savedSurveyIndex =
-    journeyHistory.findIndex(
-      (item) => item.id === savedSurvey.id
-    );
+const savedJourneyId =
+  savedSurvey.journeyId ||
+  savedSurvey.id;
 
-  // 다른 설문/빠른 추천 기록과 섞이지 않게
-  // 현재 설문 이후의 기록만 사용
-  const currentJourney =
-    savedSurveyIndex >= 0
-      ? journeyHistory.slice(savedSurveyIndex)
-      : [];
+setActiveJourneyId(savedJourneyId);
+
+// 예전 기록은 journeyId가 없을 수 있으므로
+// 기존 위치 기반 방식도 유지
+const savedSurveyIndex =
+  journeyHistory.findIndex(
+    (item) =>
+      item.id === savedSurvey.id
+  );
+
+const currentJourney =
+  savedSurvey.journeyId
+    ? journeyHistory.filter(
+        (item) =>
+          item.journeyId ===
+            savedSurvey.journeyId ||
+          item.id === savedSurvey.id
+      )
+    : savedSurveyIndex >= 0
+    ? journeyHistory.slice(
+        savedSurveyIndex
+      )
+    : [];
 
   const latestRecord =
     currentJourney.length > 0
@@ -4751,6 +4776,7 @@ const resetFlow = () => {
   setMainConcern("");
   setIssueAnswers({});
   setIssueIndex(0);
+  setActiveJourneyId(null);
   setStep("start");
 };
 
@@ -4780,15 +4806,53 @@ const handleNextSurvey = () => {
     )
   );
 };
+const latestSurveyRecord =
+  [...journeyHistory]
+    .reverse()
+    .find(
+      (item) =>
+        item.type === "initial_survey"
+    ) || null;
+
+const activeJourneyRecords = (() => {
+  if (!latestSurveyRecord) {
+    return [];
+  }
+
+  if (latestSurveyRecord.journeyId) {
+    return journeyHistory.filter(
+      (item) =>
+        item.journeyId ===
+          latestSurveyRecord.journeyId ||
+        item.id === latestSurveyRecord.id
+    );
+  }
+
+  // 기존 journeyId 없는 데이터 호환
+  const legacyStartIndex =
+    journeyHistory.findIndex(
+      (item) =>
+        item.id ===
+        latestSurveyRecord.id
+    );
+
+  return legacyStartIndex >= 0
+    ? journeyHistory.slice(
+        legacyStartIndex
+      )
+    : [];
+})();
 
 const firstJourneyRecord =
-  journeyHistory.length > 0
-    ? journeyHistory[0]
+  activeJourneyRecords.length > 0
+    ? activeJourneyRecords[0]
     : null;
 
 const latestJourneyRecord =
-  journeyHistory.length > 0
-    ? journeyHistory[journeyHistory.length - 1]
+  activeJourneyRecords.length > 0
+    ? activeJourneyRecords[
+        activeJourneyRecords.length - 1
+      ]
     : null;
 
 const getJourneyLevel = (item) => {
@@ -4839,8 +4903,9 @@ const latestJourneyConcern =
   )?.label || "특별한 고민 없음";
 
 const feedbackCount =
-  journeyHistory.filter(
-    (item) => item.type === "feedback"
+  activeJourneyRecords.filter(
+    (item) =>
+      item.type === "feedback"
   ).length;
   const latestSurveyIndex = (() => {
   for (
@@ -5013,7 +5078,10 @@ const journeyRoundSummaries =
 
   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-4xl w-full">
     <button
-      onClick={() => setStep("quickRecommend")}
+      onClick={() => {
+  setActiveJourneyId(null);
+  setStep("quickRecommend");
+}}
       className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 text-left hover:shadow-lg hover:-translate-y-1 transition active:scale-[0.98]"
     >
       <p className="text-sm text-gray-400 mb-3">이미 알고 있어요</p>
@@ -5029,7 +5097,10 @@ const journeyRoundSummaries =
     </button>
 
     <button
-  onClick={() => setStep("survey")}
+  onClick={() => {
+  setActiveJourneyId(null);
+  setStep("survey");
+}}
       className="bg-black text-white rounded-3xl shadow-sm p-6 sm:p-8 text-left hover:opacity-90 hover:-translate-y-1 transition active:scale-[0.98]"
     >
       <p className="text-sm text-white/60 mb-3">처음 시작해요</p>
