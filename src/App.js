@@ -4907,27 +4907,9 @@ const feedbackCount =
     (item) =>
       item.type === "feedback"
   ).length;
-  const latestSurveyIndex = (() => {
-  for (
-    let i = journeyHistory.length - 1;
-    i >= 0;
-    i -= 1
-  ) {
-    if (
-      journeyHistory[i]?.type ===
-      "initial_survey"
-    ) {
-      return i;
-    }
-  }
 
-  return 0;
-})();
-
-const currentJourneyRecords =
-  journeyHistory.length > 0
-    ? journeyHistory.slice(latestSurveyIndex)
-    : [];
+  const currentJourneyRecords =
+  activeJourneyRecords;
 
 const journeyRoundSummaries =
   currentJourneyRecords
@@ -5164,7 +5146,7 @@ const journeyRoundSummaries =
       desc="처음 진단부터 2주 피드백까지 피부 상태와 추천 루틴이 어떻게 바뀌었는지 확인할 수 있어요."
     />
 
-{journeyHistory.length > 0 && (
+{activeJourneyRecords.length > 0 && (
   <div className="mb-8 rounded-[2rem] bg-slate-950 text-white p-6 sm:p-8 shadow-lg">
     <p className="text-sm text-slate-400 mb-2">
       Skin Journey
@@ -5333,7 +5315,7 @@ const journeyRoundSummaries =
   </div>
 )}
     <div className="max-w-3xl mx-auto">
-      {journeyHistory.length === 0 ? (
+      {activeJourneyRecords.length === 0 ? (
         <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-8 text-center">
           <p className="text-lg font-bold mb-2">
             아직 피부 기록이 없어요
@@ -5345,43 +5327,28 @@ const journeyRoundSummaries =
         </div>
       ) : (
         <div className="space-y-5">
-          {[...journeyHistory]
-            .reverse()
-            .map((item, index) => {
+          {[...activeJourneyRecords]
+  .reverse()
+  .map((item, index) => {
               const isSurvey =
                 item.type === "initial_survey";
 
 const originalIndex =
-  journeyHistory.length - 1 - index;
-
-let journeyStartIndex = 0;
-
-for (let i = originalIndex; i >= 0; i -= 1) {
-  if (
-    journeyHistory[i]?.type === "initial_survey"
-  ) {
-    journeyStartIndex = i;
-    break;
-  }
-}
+  activeJourneyRecords.length - 1 - index;
 
 const feedbackRound = isSurvey
   ? 0
-  : journeyHistory
-      .slice(
-        journeyStartIndex,
-        originalIndex + 1
-      )
+  : activeJourneyRecords
+      .slice(0, originalIndex + 1)
       .filter(
-        (record) => record.type === "feedback"
+        (record) =>
+          record.type === "feedback"
       ).length;
+
 const previousFeedbackRecord =
   !isSurvey
-    ? journeyHistory
-        .slice(
-          journeyStartIndex,
-          originalIndex
-        )
+    ? activeJourneyRecords
+        .slice(0, originalIndex)
         .reverse()
         .find(
           (record) =>
@@ -5422,9 +5389,9 @@ const changeReasons =
         item.nextState || {}
       );
       const previousRecord =
-  index < journeyHistory.length - 1
-    ? journeyHistory[
-        journeyHistory.length - 2 - index
+  originalIndex > 0
+    ? activeJourneyRecords[
+        originalIndex - 1
       ]
     : null;
 
