@@ -4598,6 +4598,107 @@ const saveSurveyResult = () => {
   }
 };
 
+const startQuickJourneyFeedback = () => {
+  const timestamp = Date.now();
+  const savedAt = new Date().toISOString();
+
+  const journeyId =
+    `journey-quick-${timestamp}`;
+
+  const quickSkinType =
+    quickLevel <= 4
+      ? "건성"
+      : quickLevel <= 6
+      ? "수부지 / 복합성"
+      : "지성";
+
+  const quickStartData = {
+    id: `quick-${timestamp}`,
+    journeyId,
+
+    type: "initial_survey",
+    source: "quick",
+
+    mainConcern: "none",
+
+    result: {
+      skinType: quickSkinType,
+      hydrationLevel: quickLevel,
+      scores: {},
+    },
+
+    routine: {
+      cleanser:
+        quickRoutine.products.cleanser?.id ??
+        null,
+
+      toner:
+        quickRoutine.products.toner?.id ??
+        null,
+
+      serum:
+        quickRoutine.products.serum?.id ??
+        null,
+
+      cream:
+        quickRoutine.products.cream?.id ??
+        null,
+    },
+
+    savedAt,
+  };
+
+  try {
+    const savedHistory =
+      localStorage.getItem(
+        JOURNEY_HISTORY_KEY
+      );
+
+    let history = [];
+
+    if (savedHistory) {
+      const parsedHistory =
+        JSON.parse(savedHistory);
+
+      if (Array.isArray(parsedHistory)) {
+        history = parsedHistory;
+      }
+    }
+
+    const updatedHistory = [
+      ...history,
+      quickStartData,
+    ];
+
+    localStorage.setItem(
+      JOURNEY_HISTORY_KEY,
+      JSON.stringify(updatedHistory)
+    );
+
+    setJourneyHistory(updatedHistory);
+
+    setActiveJourneyId(journeyId);
+
+    setMainConcern("none");
+    setBaseLevel(quickLevel);
+    setAnswers({});
+
+    setStep("feedback");
+  } catch (error) {
+    console.error(
+      "빠른 추천 Journey를 저장하지 못했어요.",
+      error
+    );
+
+    setActiveJourneyId(journeyId);
+    setMainConcern("none");
+    setBaseLevel(quickLevel);
+    setAnswers({});
+
+    setStep("feedback");
+  }
+};
+
 const saveFeedbackResult = () => {
   const savedAt = new Date().toISOString();
 
@@ -4908,6 +5009,72 @@ const feedbackCount =
       item.type === "feedback"
   ).length;
 
+  const isQuickJourney =
+  latestSurveyRecord?.source === "quick";
+
+const quickJourneyCurrentLevel =
+  isQuickJourney
+    ? getJourneyLevel(latestJourneyRecord)
+    : null;
+
+const quickJourneySkinType =
+  isQuickJourney
+    ? latestSurveyRecord?.result?.skinType ||
+      "피부타입 직접 선택"
+    : null;
+
+    const resumeQuickJourneyFeedback = () => {
+  if (
+    !isQuickJourney ||
+    !latestSurveyRecord
+  ) {
+    return;
+  }
+
+  const journeyId =
+    latestSurveyRecord.journeyId ||
+    latestSurveyRecord.id;
+
+  const latestRecord =
+    activeJourneyRecords.length > 0
+      ? activeJourneyRecords[
+          activeJourneyRecords.length - 1
+        ]
+      : latestSurveyRecord;
+
+  let latestLevel =
+    latestSurveyRecord.result
+      ?.hydrationLevel ?? 5;
+
+  let latestConcern =
+    latestSurveyRecord.mainConcern ||
+    "none";
+
+  if (latestRecord?.type === "feedback") {
+    latestLevel =
+      latestRecord.nextState
+        ?.hydrationLevel ??
+      latestLevel;
+
+    latestConcern =
+      latestRecord.nextState
+        ?.mainConcern ??
+      latestConcern;
+  }
+
+  setActiveJourneyId(journeyId);
+
+  // 빠른 추천이므로 예전 설문 상태 제거
+  setSurveyAnswers({});
+  setIssueAnswers({});
+
+  setMainConcern(latestConcern);
+  setBaseLevel(latestLevel);
+  setAnswers({});
+
+  setStep("feedback");
+};
+
   const currentJourneyRecords =
   activeJourneyRecords;
 
@@ -5097,7 +5264,55 @@ const journeyRoundSummaries =
       </span>
     </button>
   </div>
-  {hasSavedSurvey && (
+  {isQuickJourney && (
+  <div className="mt-6 max-w-4xl w-full bg-white border border-emerald-100 rounded-3xl shadow-sm p-5 sm:p-6 text-left">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+      <div>
+        <p className="text-sm font-bold text-emerald-600 mb-2">
+          진행 중인 Skin Journey
+        </p>
+
+        <h3 className="text-xl font-black text-gray-900 mb-2 break-keep">
+          {quickJourneySkinType} · 수분감{" "}
+          {quickJourneyCurrentLevel ?? "-"}단계
+        </h3>
+
+        <p className="text-sm text-gray-500 leading-relaxed break-keep">
+          빠른 추천으로 시작한 루틴을
+          계속 추적하고 있어요.
+          지금까지 {feedbackCount}번 체크했어요.
+        </p>
+
+        <p className="mt-2 text-xs text-gray-400">
+          최근 기록 ·{" "}
+          {formatSavedAt(
+            latestJourneyRecord?.savedAt
+          )}
+        </p>
+      </div>
+
+      <div className="flex flex-col sm:flex-row gap-2 sm:flex-shrink-0">
+        <PrimaryButton
+          onClick={resumeQuickJourneyFeedback}
+        >
+          {feedbackCount === 0
+            ? "첫 체크하기"
+            : `${feedbackCount + 1}차 체크하기`}
+        </PrimaryButton>
+
+        <button
+          onClick={() =>
+            setStep("journey")
+          }
+          className="px-5 py-3 rounded-2xl text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-100 hover:bg-emerald-100 transition"
+        >
+          변화 기록 보기
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+  {hasSavedSurvey && !isQuickJourney && (
   <div className="mt-6 max-w-4xl w-full bg-white border border-gray-100 rounded-3xl shadow-sm p-5 sm:p-6 text-left">
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <div>
@@ -5810,14 +6025,10 @@ const changedRoutineCount =
   </button>
 
   <PrimaryButton
-    onClick={() => {
-      setBaseLevel(quickLevel);
-      setAnswers({});
-      setStep("feedback");
-    }}
-  >
-    2주 사용 후 피드백 입력
-  </PrimaryButton>
+  onClick={startQuickJourneyFeedback}
+>
+  이 루틴으로 시작하기
+</PrimaryButton>
 </div>
   </section>
 )}
