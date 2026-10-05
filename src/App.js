@@ -4086,6 +4086,8 @@ const [savedSurvey, setSavedSurvey] = useState(null);
 const [journeyHistory, setJourneyHistory] = useState([]);
 const [activeJourneyId, setActiveJourneyId] =
   useState(null);
+  const [viewJourneyId, setViewJourneyId] =
+  useState(null);
 const [mainConcern, setMainConcern] = useState("");
 const [issueAnswers, setIssueAnswers] = useState({});
 const [issueIndex, setIssueIndex] = useState(0);
@@ -4563,6 +4565,7 @@ const saveSurveyResult = () => {
 
     setSavedSurvey(data);
     setActiveJourneyId(journeyId);
+    setViewJourneyId(null);
 
     // Skin Journey 누적
     const savedHistory =
@@ -4678,6 +4681,7 @@ const startQuickJourneyFeedback = () => {
     setJourneyHistory(updatedHistory);
 
     setActiveJourneyId(journeyId);
+    setViewJourneyId(null);
 
     setMainConcern("none");
     setBaseLevel(quickLevel);
@@ -4691,6 +4695,7 @@ const startQuickJourneyFeedback = () => {
     );
 
     setActiveJourneyId(journeyId);
+    setViewJourneyId(null);
     setMainConcern("none");
     setBaseLevel(quickLevel);
     setAnswers({});
@@ -4878,6 +4883,7 @@ const resetFlow = () => {
   setIssueAnswers({});
   setIssueIndex(0);
   setActiveJourneyId(null);
+  setViewJourneyId(null);
   setStep("start");
 };
 
@@ -4915,34 +4921,132 @@ const latestSurveyRecord =
         item.type === "initial_survey"
     ) || null;
 
-const activeJourneyRecords = (() => {
-  if (!latestSurveyRecord) {
+    const journeyStartRecords =
+  journeyHistory.filter(
+    (item) =>
+      item.type === "initial_survey"
+  );
+
+const getRecordsForJourney = (
+  startRecord
+) => {
+  if (!startRecord) {
     return [];
   }
 
-  if (latestSurveyRecord.journeyId) {
+  // journeyId가 있는 신규 기록
+  if (startRecord.journeyId) {
     return journeyHistory.filter(
       (item) =>
         item.journeyId ===
-          latestSurveyRecord.journeyId ||
-        item.id === latestSurveyRecord.id
+          startRecord.journeyId ||
+        item.id === startRecord.id
     );
   }
 
-  // 기존 journeyId 없는 데이터 호환
-  const legacyStartIndex =
+  // 예전 journeyId 없는 기록 호환
+  const startIndex =
     journeyHistory.findIndex(
       (item) =>
-        item.id ===
-        latestSurveyRecord.id
+        item.id === startRecord.id
     );
 
-  return legacyStartIndex >= 0
+  if (startIndex < 0) {
+    return [];
+  }
+
+  const nextJourneyIndex =
+    journeyHistory.findIndex(
+      (item, index) =>
+        index > startIndex &&
+        item.type === "initial_survey"
+    );
+
+  return nextJourneyIndex >= 0
     ? journeyHistory.slice(
-        legacyStartIndex
+        startIndex,
+        nextJourneyIndex
       )
-    : [];
-})();
+    : journeyHistory.slice(startIndex);
+};
+
+const viewedJourneyStartRecord =
+  step === "journey" &&
+  viewJourneyId
+    ? journeyStartRecords.find(
+        (item) =>
+          (item.journeyId || item.id) ===
+          viewJourneyId
+      ) || latestSurveyRecord
+    : latestSurveyRecord;
+
+const activeJourneyRecords =
+  getRecordsForJourney(
+    viewedJourneyStartRecord
+  );
+
+  const journeyOptions =
+  [...journeyStartRecords]
+    .reverse()
+    .map(
+      (startRecord, index) => {
+        const records =
+          getRecordsForJourney(
+            startRecord
+          );
+
+        const latestRecord =
+          records.length > 0
+            ? records[
+                records.length - 1
+              ]
+            : startRecord;
+
+        const currentLevel =
+          latestRecord?.type ===
+          "feedback"
+            ? latestRecord.nextState
+                ?.hydrationLevel
+            : startRecord.result
+                ?.hydrationLevel;
+
+        const checkCount =
+          records.filter(
+            (item) =>
+              item.type ===
+              "feedback"
+          ).length;
+
+        return {
+          id:
+            startRecord.journeyId ||
+            startRecord.id,
+
+          number:
+            journeyStartRecords.length -
+            index,
+
+          isLatest: index === 0,
+
+          source:
+            startRecord.source === "quick"
+              ? "빠른 추천"
+              : "피부 설문",
+
+          skinType:
+            startRecord.result
+              ?.skinType ||
+            "피부 기록",
+
+          currentLevel,
+
+          checkCount,
+
+          savedAt:
+            startRecord.savedAt,
+        };
+      }
+    );
 
 const firstJourneyRecord =
   activeJourneyRecords.length > 0
@@ -5357,9 +5461,110 @@ const journeyRoundSummaries =
         {step === "journey" && (
   <section>
     <SectionTitle
+    
       title="내 피부 변화"
       desc="처음 진단부터 2주 피드백까지 피부 상태와 추천 루틴이 어떻게 바뀌었는지 확인할 수 있어요."
     />
+    {journeyOptions.length > 1 && (
+  <div className="max-w-4xl mx-auto mb-8">
+    <div className="mb-4">
+      <p className="text-sm font-bold text-gray-900">
+        Skin Journey 기록
+      </p>
+
+      <p className="mt-1 text-sm text-gray-500">
+        이전에 시작했던 피부 관리 기록을
+        다시 확인할 수 있어요.
+      </p>
+    </div>
+
+    <div className="flex gap-3 overflow-x-auto pb-3">
+      {journeyOptions.map(
+        (journey) => {
+          const viewedId =
+            viewedJourneyStartRecord
+              ?.journeyId ||
+            viewedJourneyStartRecord?.id;
+
+          const active =
+            viewedId === journey.id;
+
+          return (
+            <button
+              key={journey.id}
+              type="button"
+              onClick={() =>
+                setViewJourneyId(
+                  journey.id
+                )
+              }
+              className={`min-w-[260px] text-left rounded-3xl border p-5 transition ${
+                active
+                  ? "bg-slate-950 text-white border-slate-950 shadow-md"
+                  : "bg-white text-gray-900 border-gray-100 hover:border-gray-300"
+              }`}
+            >
+              <div className="flex items-center justify-between gap-3 mb-3">
+                <span
+                  className={`text-xs font-bold ${
+                    active
+                      ? "text-emerald-300"
+                      : "text-emerald-600"
+                  }`}
+                >
+                  Journey {journey.number}
+                </span>
+
+                {journey.isLatest && (
+                  <span
+                    className={`text-[11px] font-bold px-2 py-1 rounded-full ${
+                      active
+                        ? "bg-white/10 text-white"
+                        : "bg-emerald-50 text-emerald-700"
+                    }`}
+                  >
+                    현재
+                  </span>
+                )}
+              </div>
+
+              <p
+                className={`text-xs mb-2 ${
+                  active
+                    ? "text-slate-400"
+                    : "text-gray-400"
+                }`}
+              >
+                {journey.source} ·{" "}
+                {formatSavedAt(
+                  journey.savedAt
+                )}
+              </p>
+
+              <h3 className="text-lg font-black break-keep">
+                {journey.skinType}
+                {" · "}
+                {journey.currentLevel ??
+                  "-"}
+                단계
+              </h3>
+
+              <p
+                className={`mt-3 text-sm ${
+                  active
+                    ? "text-slate-300"
+                    : "text-gray-500"
+                }`}
+              >
+                {journey.checkCount}회 체크
+              </p>
+            </button>
+          );
+        }
+      )}
+    </div>
+  </div>
+)}
 
 {activeJourneyRecords.length > 0 && (
   <div className="mb-8 rounded-[2rem] bg-slate-950 text-white p-6 sm:p-8 shadow-lg">
