@@ -5107,6 +5107,89 @@ const latestJourneyConcern =
       getJourneyConcern(latestJourneyRecord)
   )?.label || "특별한 고민 없음";
 
+  const viewedJourneyKey =
+  viewedJourneyStartRecord?.journeyId ||
+  viewedJourneyStartRecord?.id ||
+  null;
+
+const viewedJourneyIndex =
+  journeyStartRecords.findIndex(
+    (item) =>
+      (item.journeyId || item.id) ===
+      viewedJourneyKey
+  );
+
+const previousJourneyStartRecord =
+  viewedJourneyIndex > 0
+    ? journeyStartRecords[
+        viewedJourneyIndex - 1
+      ]
+    : null;
+
+const previousJourneyRecords =
+  getRecordsForJourney(
+    previousJourneyStartRecord
+  );
+
+const previousJourneyLatestRecord =
+  previousJourneyRecords.length > 0
+    ? previousJourneyRecords[
+        previousJourneyRecords.length - 1
+      ]
+    : null;
+
+const previousJourneyEndLevel =
+  getJourneyLevel(
+    previousJourneyLatestRecord
+  );
+
+const previousJourneyConcern =
+  skinConcernOptions.find(
+    (item) =>
+      item.id ===
+      getJourneyConcern(
+        previousJourneyLatestRecord
+      )
+  )?.label || "특별한 고민 없음";
+
+const currentJourneyStartConcern =
+  skinConcernOptions.find(
+    (item) =>
+      item.id ===
+      getJourneyConcern(
+        firstJourneyRecord
+      )
+  )?.label || "특별한 고민 없음";
+
+const previousJourneySkinType =
+  previousJourneyStartRecord
+    ?.result?.skinType ||
+  "피부 기록";
+
+const currentJourneySkinType =
+  viewedJourneyStartRecord
+    ?.result?.skinType ||
+  "피부 기록";
+
+const journeyTransitionChange =
+  previousJourneyEndLevel !== null &&
+  firstJourneyLevel !== null
+    ? firstJourneyLevel -
+      previousJourneyEndLevel
+    : 0;
+
+const journeyTransitionMessage =
+  previousJourneyEndLevel === null ||
+  firstJourneyLevel === null
+    ? "두 Journey의 단계 정보를 비교하기 어려워요."
+    : journeyTransitionChange === 0
+    ? "이전 Journey 마지막과 이번 Journey 시작 단계가 같아요."
+    : journeyTransitionChange > 0
+    ? `이전 Journey 마지막보다 이번 시작이 ${journeyTransitionChange}단계 더 가벼운 루틴 방향이에요.`
+    : `이전 Journey 마지막보다 이번 시작이 ${Math.abs(
+        journeyTransitionChange
+      )}단계 더 촉촉한 루틴 방향이에요.`;
+
 const feedbackCount =
   activeJourneyRecords.filter(
     (item) =>
@@ -5562,6 +5645,103 @@ const journeyRoundSummaries =
           );
         }
       )}
+    </div>
+  </div>
+)}
+
+{previousJourneyStartRecord && (
+  <div className="max-w-4xl mx-auto mb-8">
+    <div className="rounded-[2rem] bg-white border border-emerald-100 shadow-sm p-5 sm:p-7">
+      <div className="mb-6">
+        <p className="text-sm font-bold text-emerald-600 mb-2">
+          장기 변화
+        </p>
+
+        <h3 className="text-xl sm:text-2xl font-black text-gray-900 break-keep">
+          이전 Journey와 비교했어요
+        </h3>
+
+        <p className="mt-2 text-sm text-gray-500 leading-relaxed break-keep">
+          이전 관리 기록의 마지막 상태와
+          이번 관리 기록의 시작 상태를 비교해요.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+        <div className="rounded-2xl bg-gray-50 p-4">
+          <p className="text-xs text-gray-400 mb-2">
+            이전 Journey 마지막
+          </p>
+
+          <p className="text-xl font-black text-gray-800">
+            {previousJourneyEndLevel ?? "-"}단계
+          </p>
+
+          <p className="mt-2 text-xs text-gray-500 break-keep">
+            {previousJourneySkinType}
+          </p>
+        </div>
+
+        <div className="rounded-2xl bg-emerald-50 p-4">
+          <p className="text-xs text-emerald-600 mb-2">
+            이번 Journey 시작
+          </p>
+
+          <p className="text-xl font-black text-emerald-800">
+            {firstJourneyLevel ?? "-"}단계
+          </p>
+
+          <p className="mt-2 text-xs text-emerald-700 break-keep">
+            {currentJourneySkinType}
+          </p>
+        </div>
+
+        <div className="rounded-2xl bg-slate-950 p-4 text-white">
+          <p className="text-xs text-slate-400 mb-2">
+            이번 Journey 현재
+          </p>
+
+          <p className="text-xl font-black text-emerald-300">
+            {latestJourneyLevel ?? "-"}단계
+          </p>
+
+          <p className="mt-2 text-xs text-slate-300">
+            {feedbackCount}회 체크
+          </p>
+        </div>
+      </div>
+
+      <div className="rounded-2xl border border-gray-100 p-4 mb-3">
+        <p className="text-xs text-gray-400 mb-2">
+          루틴 방향 변화
+        </p>
+
+        <p className="text-sm font-bold text-gray-800 leading-relaxed break-keep">
+          {journeyTransitionMessage}
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="rounded-2xl bg-gray-50 p-4">
+          <p className="text-xs text-gray-400 mb-1">
+            이전 Journey 마지막 고민
+          </p>
+
+          <p className="text-sm font-bold text-gray-800 break-keep">
+            {previousJourneyConcern}
+          </p>
+        </div>
+
+        <div className="rounded-2xl bg-emerald-50 p-4">
+          <p className="text-xs text-emerald-600 mb-1">
+            이번 Journey 시작 고민
+          </p>
+
+          <p className="text-sm font-bold text-emerald-800 break-keep">
+            {currentJourneyStartConcern}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 )}
