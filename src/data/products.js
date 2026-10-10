@@ -865,28 +865,99 @@ usage: {
   category: "toner",
   hydrationLevel: 7,
   texture: "light",
-  concerns: ["soothing", "acne", "sebum"],
-  ingredients: ["병풀", "판테놀"],
+
+  concerns: [
+    "soothing",
+    "sebum"
+  ],
+
+  ingredients: [
+    "티트리",
+    "병풀",
+    "판테놀"
+  ],
+
+  ingredientEvidence: {
+    officiallyVerifiedKeyIngredients: [
+      "티트리",
+      "시카"
+    ],
+    secondaryReportedIngredients: [
+      "판테놀",
+      "티트리잎오일",
+      "베타인살리실레이트"
+    ],
+    officialFullIngredientListVerified: false
+  },
+
+  activeIngredients: [
+    {
+      name: "티트리 성분",
+      concentration: null,
+      unit: "%",
+      concentrationVerified: false,
+      sourceType: "official_product_positioning"
+    },
+    {
+      name: "베타인살리실레이트",
+      concentration: null,
+      unit: "%",
+      concentrationVerified: false,
+      sourceType: "secondary_ingredient_database"
+    }
+  ],
+
   careProfile: {
-  hydrationSupport: 5,
-  lightweightFit: 10,
-  soothingSupport: 7,
-  congestionSupport: 3,
-  barrierSupport: 2,
-},
-  skinTypes: ["수부지", "지성", "민감성"],
-  description: "예민함과 유분 고민을 같이 보기 좋은 진정 토너",
+    hydrationSupport: 5,
+    lightweightFit: 10,
+    soothingSupport: 6,
+    congestionSupport: 3,
+    barrierSupport: 1,
+  },
+
+  evidence: {
+    evidenceLevel: "C",
+    officialProductVerified: true,
+    fullIngredientsVerified: false,
+    concentrationDisclosure: "not_disclosed",
+    purchaseLinkVerified: false,
+    lastVerifiedAt: "2026-10-10",
+  },
+
+  skinTypes: [
+    "수부지",
+    "지성",
+    "복합성"
+  ],
+
+  description:
+    "유분감이 많은 피부가 가볍게 사용하기 좋은 티트리·시카 중심의 수딩 토너. 전체 성분과 핵심 성분 함량은 공식 텍스트 자료로 완전히 검증되지 않아 민감 피부에는 보수적으로 추천합니다.",
+
   image: "https://thumbnail2.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/2a60/b58ba28c8a0e23a5df8f520587c6c04d7195b89fec5bed02b2b98af3fac2.png",
   link: "https://link.coupang.com/a/gmSu4mfZRY",
 
-  sensitivitySafe: true,
+  sensitivitySafe: false,
   beginnerFriendly: true,
   seasons: ["spring", "summer", "autumn"],
   price: 18000,
   volume: "250ml",
-  shortReason: "번들거림이 있으면서 예민한 피부가 진정용으로 쓰기 좋음",
-  caution: ["건성 피부는 보습감이 부족할 수 있음"],
-  ratingTags: ["진정", "지성", "산뜻함"],
+
+  shortReason:
+    "번들거림이 많은 지성·수부지 피부가 산뜻한 진정 토너를 원할 때 고려할 수 있지만, 민감 피부에는 우선 추천하지 않습니다.",
+
+  caution: [
+    "공식 페이지에서 현재 전성분과 핵심 성분 함량을 텍스트로 완전히 검증하지 못했습니다.",
+    "최신 성분 데이터베이스에는 티트리잎오일과 베타인살리실레이트가 보고되어 민감 피부는 자극 여부를 확인하는 편이 좋습니다.",
+    "건성 피부는 보습감이 부족할 수 있습니다."
+  ],
+
+  ratingTags: [
+    "진정",
+    "지성",
+    "산뜻함",
+    "민감주의"
+  ],
+
   usageType: "toner",
 
 usageAmount: {
