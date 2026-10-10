@@ -840,6 +840,349 @@ enzyme_cleanser: "효소 클렌저"
 function isValidProductLink(link) {
   return !!link && link !== "#";
 }
+function clampProductCareScore(value) {
+  return Math.max(
+    0,
+    Math.min(
+      10,
+      Math.round(value)
+    )
+  );
+}
+
+function getProductCareProfile(product) {
+  if (!product) {
+    return {
+      hydrationSupport: 0,
+      lightweightFit: 0,
+      soothingSupport: 0,
+      congestionSupport: 0,
+      barrierSupport: 0,
+    };
+  }
+
+  const concerns =
+    product.concerns || [];
+
+  const texture =
+    String(
+      product.texture || ""
+    ).toLowerCase();
+
+  const ingredientText =
+    (product.ingredients || [])
+      .join(" ")
+      .toLowerCase();
+
+  const hasConcern = (...tags) =>
+    tags.some((tag) =>
+      concerns.includes(tag)
+    );
+
+  const hasIngredient = (
+    ...keywords
+  ) =>
+    keywords.some((keyword) =>
+      ingredientText.includes(
+        String(keyword).toLowerCase()
+      )
+    );
+
+  // =========================
+  // 1. 수분 / 보습 지원
+  // =========================
+
+  let hydrationSupport = 0;
+
+  if (hasConcern("hydration")) {
+    hydrationSupport += 5;
+  }
+
+  if (hasConcern("barrier")) {
+    hydrationSupport += 2;
+  }
+
+  if (
+    hasIngredient(
+      "히알루론산",
+      "hyaluronic"
+    )
+  ) {
+    hydrationSupport += 1;
+  }
+
+  if (
+    hasIngredient(
+      "글리세린",
+      "glycerin"
+    )
+  ) {
+    hydrationSupport += 1;
+  }
+
+  if (
+    hasIngredient(
+      "판테놀",
+      "panthenol"
+    )
+  ) {
+    hydrationSupport += 1;
+  }
+
+  // =========================
+  // 2. 가벼운 제형 적합도
+  // =========================
+
+  let lightweightFit = 5;
+
+  if (
+    [
+      "light",
+      "gel",
+      "watery",
+      "fresh",
+    ].includes(texture)
+  ) {
+    lightweightFit = 9;
+  }
+
+  if (
+    [
+      "lotion",
+      "emulsion",
+    ].includes(texture)
+  ) {
+    lightweightFit = 6;
+  }
+
+  if (
+    [
+      "rich",
+      "heavy",
+      "balm",
+    ].includes(texture)
+  ) {
+    lightweightFit = 2;
+  }
+
+  // =========================
+  // 3. 진정 지원
+  // =========================
+
+  let soothingSupport = 0;
+
+  if (hasConcern("soothing")) {
+    soothingSupport += 5;
+  }
+
+  if (product.sensitivitySafe) {
+    soothingSupport += 2;
+  }
+
+  if (
+    hasIngredient(
+      "판테놀",
+      "panthenol",
+      "병풀",
+      "시카",
+      "centella",
+      "마데카소사이드",
+      "알란토인"
+    )
+  ) {
+    soothingSupport += 2;
+  }
+
+  if (hasConcern("barrier")) {
+    soothingSupport += 1;
+  }
+
+  // =========================
+  // 4. 피지 / 모공 막힘 지원
+  // =========================
+
+  let congestionSupport = 0;
+
+  if (
+    hasConcern(
+      "closed_comedones"
+    )
+  ) {
+    congestionSupport += 7;
+  }
+
+  if (hasConcern("blackhead")) {
+    congestionSupport += 7;
+  }
+
+  if (hasConcern("pores")) {
+    congestionSupport += 5;
+  }
+
+  if (hasConcern("sebum")) {
+    congestionSupport += 4;
+  }
+
+  if (hasConcern("acne")) {
+    congestionSupport += 2;
+  }
+
+  if (
+    hasIngredient(
+      "bha",
+      "살리실산",
+      "베타인살리실레이트"
+    )
+  ) {
+    congestionSupport += 2;
+  }
+
+  // =========================
+  // 5. 장벽 지원
+  // =========================
+
+  let barrierSupport = 0;
+
+  if (hasConcern("barrier")) {
+    barrierSupport += 6;
+  }
+
+  if (
+    hasIngredient(
+      "세라마이드",
+      "ceramide"
+    )
+  ) {
+    barrierSupport += 2;
+  }
+
+  if (
+    hasIngredient(
+      "스쿠알란",
+      "squalane"
+    )
+  ) {
+    barrierSupport += 1;
+  }
+
+  if (
+    hasIngredient(
+      "판테놀",
+      "panthenol"
+    )
+  ) {
+    barrierSupport += 1;
+  }
+
+  const inferredProfile = {
+    hydrationSupport:
+      clampProductCareScore(
+        hydrationSupport
+      ),
+
+    lightweightFit:
+      clampProductCareScore(
+        lightweightFit
+      ),
+
+    soothingSupport:
+      clampProductCareScore(
+        soothingSupport
+      ),
+
+    congestionSupport:
+      clampProductCareScore(
+        congestionSupport
+      ),
+
+    barrierSupport:
+      clampProductCareScore(
+        barrierSupport
+      ),
+  };
+
+  // 나중에 products.js에서
+  // 제품별 수동 보정 가능
+  return {
+    ...inferredProfile,
+    ...(product.careProfile || {}),
+  };
+}
+function getCareNeedMatchScore(
+  product,
+  careNeeds = {}
+) {
+  if (!product) return 0;
+
+  const {
+    hydrationNeed = 0,
+    lightTextureNeed = 0,
+    soothingNeed = 0,
+    congestionCareNeed = 0,
+    inflammationCareNeed = 0,
+  } = careNeeds || {};
+
+  const profile =
+    getProductCareProfile(product);
+
+  const recoveryNeed =
+    Math.max(
+      soothingNeed,
+      inflammationCareNeed
+    );
+
+  let score = 0;
+
+  // 필요한 정도가 높을수록
+  // 해당 제품 능력치의 영향도도 커짐
+  score +=
+    hydrationNeed *
+    profile.hydrationSupport *
+    0.28;
+
+  score +=
+    lightTextureNeed *
+    profile.lightweightFit *
+    0.22;
+
+  score +=
+    soothingNeed *
+    profile.soothingSupport *
+    0.2;
+
+  score +=
+    congestionCareNeed *
+    profile.congestionSupport *
+    0.2;
+
+  // 피부가 예민하거나 염증 신호가 높으면
+  // 장벽 지원 능력도 중요하게 반영
+  score +=
+    recoveryNeed *
+    profile.barrierSupport *
+    0.1;
+
+  // 염증 신호가 높은 사람에게
+  // 각질 기능성 제품을 화장품 기본 루틴으로
+  // 과하게 밀어주지 않도록 패널티
+  if (
+    inflammationCareNeed >= 6 &&
+    hasExfoliatingActive(product)
+  ) {
+    score -= 25;
+  }
+
+  // 염증/민감 신호가 높은데
+  // 민감 안전 제품이 아니라면 추가 패널티
+  if (
+    inflammationCareNeed >= 6 &&
+    !product.sensitivitySafe
+  ) {
+    score -= 15;
+  }
+
+  return score;
+}
 
 function getConcernMatchScore(product, mainConcern) {
   const concerns = product.concerns || [];
@@ -919,6 +1262,21 @@ function sortProductsForRecommendation(
       a,
       userContext.mainConcern
     );
+    const aCareScore =
+  getCareNeedMatchScore(
+    a,
+    userContext.careNeeds
+  );
+
+const bCareScore =
+  getCareNeedMatchScore(
+    b,
+    userContext.careNeeds
+  );
+
+if (aCareScore !== bCareScore) {
+  return bCareScore - aCareScore;
+}
 
     const bConcernScore = getConcernMatchScore(
       b,
@@ -4173,6 +4531,9 @@ const nextRoutine = buildDynamicRoutine(
   {
     mainConcern: feedbackMainConcern,
 
+    careNeeds:
+  surveyResult.careNeeds,
+  
     isSensitive:
       surveyResult.skinType?.includes("민감") ||
       (surveyResult.scores?.sensitivity ?? 0) >= 2 ||
@@ -4305,6 +4666,10 @@ const surveyRoutine = buildDynamicRoutine(
   surveyResult.hydrationLevel,
   {
     mainConcern,
+
+    careNeeds:
+  surveyResult.careNeeds,
+
     isSensitive:
       surveyResult.skinType?.includes("민감") ||
       (surveyResult.scores?.sensitivity ?? 0) >= 2,
