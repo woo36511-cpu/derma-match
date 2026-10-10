@@ -1162,6 +1162,37 @@ function buildFeedbackDataQuality(
   };
 }
 
+function buildSkinStateDelta(
+  baseline = null,
+  followUp = null
+) {
+  if (!baseline || !followUp) {
+    return null;
+  }
+
+  const keys = [
+    "dryness",
+    "oiliness",
+    "dehydration",
+    "sensitivity",
+    "barrierStress",
+    "cloggedPores",
+    "acneActivity",
+    "inflammation",
+  ];
+
+  return keys.reduce(
+    (result, key) => {
+      result[key] =
+        (followUp[key] ?? 0) -
+        (baseline[key] ?? 0);
+
+      return result;
+    },
+    {}
+  );
+}
+
 function getProductById(id) {
   return products.find((product) => product.id === id);
 }
@@ -4985,8 +5016,109 @@ const [activeJourneyId, setActiveJourneyId] =
 const [mainConcern, setMainConcern] = useState("");
 const [issueAnswers, setIssueAnswers] = useState({});
 const [issueIndex, setIssueIndex] = useState(0);
- 
-const isComplete = feedbackQuestions.every((q) => answers[q.id] !== undefined);
+
+const [
+  productUsageFeedback,
+  setProductUsageFeedback,
+] = useState({});
+
+const [
+  feedbackSurveyAnswers,
+  setFeedbackSurveyAnswers,
+] = useState({});
+
+const activeJourneyRecords =
+  useMemo(
+    () =>
+      journeyHistory.filter(
+        (item) =>
+          item.journeyId ===
+            activeJourneyId ||
+          item.id ===
+            activeJourneyId
+      ),
+    [
+      journeyHistory,
+      activeJourneyId,
+    ]
+  );
+
+const feedbackTargetRecord =
+  activeJourneyRecords.length > 0
+    ? activeJourneyRecords[
+        activeJourneyRecords.length - 1
+      ]
+    : null;
+
+const feedbackTargetProducts =
+  useMemo(() => {
+    const routine =
+      feedbackTargetRecord?.routine;
+
+    if (!routine) return [];
+
+    return Object.entries(routine)
+      .map(([category, productId]) => {
+        const product =
+          getProductById(productId);
+
+        if (!product) return null;
+
+        return {
+          category,
+          product,
+        };
+      })
+      .filter(Boolean);
+  }, [feedbackTargetRecord]);
+
+const isProductUsageComplete =
+  feedbackTargetProducts.length === 0 ||
+  feedbackTargetProducts.every(
+    ({ product }) =>
+      !!productUsageFeedback[
+        product.id
+      ]
+  );
+
+const isComplete =
+  feedbackQuestions.every(
+    (q) =>
+      answers[q.id] !==
+      undefined
+  ) &&
+  isProductUsageComplete;
+
+const feedbackSurveyComplete =
+  skinSurveyQuestions.every(
+    (question) => {
+      const answer =
+        feedbackSurveyAnswers[
+          question.id
+        ];
+
+      if (
+        question.type === "multi"
+      ) {
+        return (
+          Array.isArray(answer) &&
+          answer.length > 0
+        );
+      }
+
+      return !!answer;
+    }
+  );
+
+const followUpSurveyResult =
+  useMemo(
+    () =>
+      analyzeSkinSurvey(
+        feedbackSurveyAnswers,
+        skinSurveyQuestions
+      ),
+    [feedbackSurveyAnswers]
+  );
 
   useEffect(() => {
   window.history.replaceState({ step: "start" }, "", window.location.href);
@@ -5045,8 +5177,23 @@ useEffect(() => {
 
 
   const nextLevel = useMemo(() => {
-  return calculateNextLevel(baseLevel, answers);
-}, [baseLevel, answers]);
+  if (feedbackSurveyComplete) {
+    return (
+      followUpSurveyResult
+        .hydrationLevel
+    );
+  }
+
+  return calculateNextLevel(
+    baseLevel,
+    answers
+  );
+}, [
+  baseLevel,
+  answers,
+  feedbackSurveyComplete,
+  followUpSurveyResult,
+]);
 
 const surveyResult = useMemo(() => {
   return analyzeSkinSurvey(
@@ -5071,10 +5218,12 @@ const adjustedSurveyCareNeeds =
   );
 
 const feedbackMainConcern =
-  getFeedbackMainConcern(
-    answers,
-    mainConcern
-  );
+  feedbackSurveyComplete
+    ? followUpSurveyResult.mainIssue
+    : getFeedbackMainConcern(
+        answers,
+        mainConcern
+      );
 
   const starterRoutineInfo = routineMap[starterLevel];
   const nextRoutineInfo = routineMap[nextLevel];
@@ -5086,12 +5235,36 @@ const nextRoutine = buildDynamicRoutine(
     mainConcern: feedbackMainConcern,
 
     careNeeds:
-      adjustedSurveyCareNeeds,
+      feedbackSurveyComplete
+        ? followUpSurveyResult
+            .careNeeds
+        : adjustedSurveyCareNeeds,
 
     isSensitive:
-      surveyResult.skinType?.includes("민감") ||
-      (surveyResult.scores?.sensitivity ?? 0) >= 2 ||
-      feedbackMainConcern === "sensitivity_redness",
+      feedbackSurveyComplete
+        ? (
+            followUpSurveyResult
+              .skinType?.includes(
+                "민감"
+              ) ||
+            (
+              followUpSurveyResult
+                .scores
+                ?.sensitivity ??
+              0
+            ) >= 2
+          )
+        : (
+            surveyResult.skinType
+              ?.includes("민감") ||
+            (
+              surveyResult.scores
+                ?.sensitivity ??
+              0
+            ) >= 2 ||
+            feedbackMainConcern ===
+              "sensitivity_redness"
+          ),
   }
 );
 const quickRoutine = buildDynamicRoutine(quickLevel);
@@ -5354,6 +5527,91 @@ const routineReason = buildRoutineReason(nextLevel);
       [id]: value
     }));
   };
+
+const handleProductUsageAnswer = (
+  productId,
+  value
+) => {
+  setProductUsageFeedback(
+    (prev) => ({
+      ...prev,
+      [productId]: value,
+    })
+  );
+};
+
+const handleFeedbackSurveyAnswer = (
+  question,
+  option
+) => {
+  setFeedbackSurveyAnswers(
+    (prev) => {
+      const currentAnswer =
+        prev[question.id];
+
+      if (
+        question.type ===
+        "multi"
+      ) {
+        const currentList =
+          Array.isArray(
+            currentAnswer
+          )
+            ? currentAnswer
+            : [];
+
+        if (
+          option.lifestyle ===
+            "none" ||
+          option.lifestyle ===
+            "unknown"
+        ) {
+          return {
+            ...prev,
+            [question.id]: [
+              option.label,
+            ],
+          };
+        }
+
+        const withoutNone =
+          currentList.filter(
+            (item) =>
+              item !==
+                "딱히 해당되는 게 없다" &&
+              item !==
+                "잘 모르겠어요"
+          );
+
+        const alreadySelected =
+          withoutNone.includes(
+            option.label
+          );
+
+        return {
+          ...prev,
+          [question.id]:
+            alreadySelected
+              ? withoutNone.filter(
+                  (item) =>
+                    item !==
+                    option.label
+                )
+              : [
+                  ...withoutNone,
+                  option.label,
+                ],
+        };
+      }
+
+      return {
+        ...prev,
+        [question.id]:
+          option.label,
+      };
+    }
+  );
+};
 const handleSurveyAnswer = (question, option) => {
   setSurveyAnswers((prev) => {
     const currentAnswer = prev[question.id];
@@ -5480,6 +5738,9 @@ const saveSurveyResult = () => {
 
       careNeeds:
         adjustedSurveyCareNeeds,
+
+      lifestyleTags:
+        surveyResult.lifestyleTags,
     },
 
     routine: {
@@ -5657,6 +5918,8 @@ const startQuickJourneyFeedback = () => {
     setMainConcern("none");
     setBaseLevel(quickLevel);
     setAnswers({});
+    setProductUsageFeedback({});
+    setFeedbackSurveyAnswers({});
 
     setStep("feedback");
   } catch (error) {
@@ -5670,6 +5933,8 @@ const startQuickJourneyFeedback = () => {
     setMainConcern("none");
     setBaseLevel(quickLevel);
     setAnswers({});
+    setProductUsageFeedback({});
+    setFeedbackSurveyAnswers({});
 
     setStep("feedback");
   }
@@ -5693,6 +5958,49 @@ const saveFeedbackResult = () => {
           currentJourneyRecords.length - 1
         ]
       : null;
+
+  const baselineRecord =
+    activeJourneyRecords.find(
+      (item) =>
+        item.type ===
+        "initial_survey"
+    ) || null;
+
+  const baselineSkinState =
+    baselineRecord?.result
+      ?.skinState ??
+    null;
+
+  const followUpSkinState =
+    feedbackSurveyComplete
+      ? followUpSurveyResult
+          .skinState
+      : null;
+
+  const skinStateDelta =
+    buildSkinStateDelta(
+      baselineSkinState,
+      followUpSkinState
+    );
+
+  const actualProductUsage =
+    feedbackTargetProducts.map(
+      ({ category, product }) => ({
+        productId:
+          product.id,
+
+        productNameSnapshot:
+          product.name,
+
+        category,
+
+        usageStatus:
+          productUsageFeedback[
+            product.id
+          ]?.status ??
+          "unknown",
+      })
+    );
 
   const confounders =
     buildFeedbackConfounders(
@@ -5730,15 +6038,54 @@ const saveFeedbackResult = () => {
         ?.productUsagePlan ??
       null,
 
+    actualProductUsage,
+
     usageReport,
     confounders,
-    dataQuality,
+    dataQuality: {
+      ...dataQuality,
+
+      usedProductCount:
+        actualProductUsage.filter(
+          (item) =>
+            item.usageStatus ===
+              "consistent" ||
+            item.usageStatus ===
+              "occasional"
+        ).length,
+
+      productAttributionReady:
+        actualProductUsage.filter(
+          (item) =>
+            item.usageStatus ===
+              "consistent"
+        ).length === 1 &&
+        dataQuality.confidenceLevel ===
+          "high",
+    },
 
     outcome: {
       conditionSnapshot:
         getFeedbackConditionSnapshot(
           answers
         ),
+
+      baselineSkinState,
+      followUpSkinState,
+      skinStateDelta,
+
+      baselineLifestyleTags:
+        baselineRecord?.result
+          ?.lifestyleTags ??
+        baselineRecord
+          ?.lifestyleTags ??
+        [],
+
+      followUpLifestyleTags:
+        feedbackSurveyComplete
+          ? followUpSurveyResult
+              .lifestyleTags
+          : [],
     },
 
     changeReasons:
@@ -5930,6 +6277,8 @@ const currentJourney =
   setBaseLevel(latestLevel);
 
   setAnswers({});
+  setProductUsageFeedback({});
+  setFeedbackSurveyAnswers({});
 
   setStep("feedback");
 };
@@ -5937,6 +6286,8 @@ const currentJourney =
 const resetFlow = () => {
   setAnswers({});
   setSurveyAnswers({});
+  setProductUsageFeedback({});
+  setFeedbackSurveyAnswers({});
   setBaseLevel(5);
   setSurveyIndex(0);
   setMainConcern("");
@@ -7905,6 +8256,91 @@ setStep("surveyResult");
             />
 
             <div className="max-w-3xl mx-auto space-y-5">
+              {feedbackTargetProducts.length > 0 && (
+                <div className="bg-gray-50 border border-gray-100 rounded-3xl p-5 sm:p-6">
+                  <p className="text-base sm:text-lg font-semibold mb-2">
+                    실제로 사용한 제품을 확인해주세요
+                  </p>
+                  <p className="text-sm text-gray-600 leading-relaxed break-keep mb-5">
+                    추천만 받은 제품과 실제 사용한 제품을 구분해야 제품 효과 데이터를 정확하게 분석할 수 있어요.
+                  </p>
+
+                  <div className="space-y-5">
+                    {feedbackTargetProducts.map(
+                      ({ category, product }) => {
+                        const current =
+                          productUsageFeedback[
+                            product.id
+                          ]?.status;
+
+                        const options = [
+                          {
+                            label:
+                              "꾸준히 사용함",
+                            status:
+                              "consistent",
+                          },
+                          {
+                            label:
+                              "가끔 사용함",
+                            status:
+                              "occasional",
+                          },
+                          {
+                            label:
+                              "중단함 / 거의 안 씀",
+                            status:
+                              "stopped",
+                          },
+                        ];
+
+                        return (
+                          <div
+                            key={product.id}
+                            className="bg-white border border-gray-100 rounded-2xl p-4"
+                          >
+                            <p className="font-semibold mb-1">
+                              {getCategoryLabel(
+                                category
+                              )} ·{" "}
+                              {product.name}
+                            </p>
+
+                            <div className="flex flex-wrap gap-2 mt-3">
+                              {options.map(
+                                (option) => (
+                                  <button
+                                    key={
+                                      option.status
+                                    }
+                                    onClick={() =>
+                                      handleProductUsageAnswer(
+                                        product.id,
+                                        option
+                                      )
+                                    }
+                                    className={`px-3 py-2 rounded-xl text-sm border transition ${
+                                      current ===
+                                      option.status
+                                        ? "bg-black text-white border-black"
+                                        : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+                                    }`}
+                                  >
+                                    {
+                                      option.label
+                                    }
+                                  </button>
+                                )
+                              )}
+                            </div>
+                          </div>
+                        );
+                      }
+                    )}
+                  </div>
+                </div>
+              )}
+
               {feedbackQuestions.map((q) => (
                 <div
                   key={q.id}
@@ -7950,16 +8386,111 @@ setStep("surveyResult");
 
             <div className="mt-10 flex justify-center">
               <PrimaryButton
-  onClick={saveFeedbackResult}
+  onClick={() =>
+    setStep("recheck")
+  }
   disabled={!isComplete}
 >
-  다음 추천 보기
+  피부 상태 다시 확인하기
 </PrimaryButton>
             </div>
           </section>
         )}
         
         
+
+        {step === "recheck" && (
+          <section>
+            <SectionTitle
+              title="현재 피부 상태 다시 확인"
+              desc="처음과 같은 질문으로 다시 측정해 Before / After를 같은 기준으로 비교합니다."
+            />
+
+            <div className="max-w-3xl mx-auto mb-6">
+              <div className="bg-gray-50 rounded-3xl p-5 sm:p-6">
+                <p className="text-sm text-gray-600 leading-relaxed break-keep">
+                  이 단계는 제품 효과를 단정하기 위한 검사가 아니라, 처음과 동일한 기준으로 현재 피부 상태 변화를 기록하기 위한 재체크예요.
+                </p>
+              </div>
+            </div>
+
+            <div className="max-w-3xl mx-auto space-y-5">
+              {skinSurveyQuestions.map(
+                (question) => {
+                  const currentAnswer =
+                    feedbackSurveyAnswers[
+                      question.id
+                    ];
+
+                  return (
+                    <div
+                      key={question.id}
+                      className="bg-white border border-gray-100 rounded-3xl shadow-sm p-5 sm:p-6"
+                    >
+                      <p className="text-base sm:text-lg font-semibold leading-relaxed break-keep mb-4">
+                        {question.q}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2">
+                        {question.options.map(
+                          (option) => {
+                            const active =
+                              question.type ===
+                              "multi"
+                                ? Array.isArray(
+                                    currentAnswer
+                                  ) &&
+                                  currentAnswer.includes(
+                                    option.label
+                                  )
+                                : currentAnswer ===
+                                  option.label;
+
+                            return (
+                              <button
+                                key={
+                                  option.label
+                                }
+                                onClick={() =>
+                                  handleFeedbackSurveyAnswer(
+                                    question,
+                                    option
+                                  )
+                                }
+                                className={`px-4 py-2 rounded-2xl text-sm border transition active:scale-95 ${
+                                  active
+                                    ? "bg-black text-white border-black shadow-sm"
+                                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+                                }`}
+                              >
+                                {
+                                  option.label
+                                }
+                              </button>
+                            );
+                          }
+                        )}
+                      </div>
+                    </div>
+                  );
+                }
+              )}
+            </div>
+
+            <div className="mt-10 flex justify-center">
+              <PrimaryButton
+                onClick={
+                  saveFeedbackResult
+                }
+                disabled={
+                  !feedbackSurveyComplete
+                }
+              >
+                변화 저장하고 다음 추천 보기
+              </PrimaryButton>
+            </div>
+          </section>
+        )}
 
         {step === "result" && nextRoutine && (
           <section>
