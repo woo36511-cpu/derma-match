@@ -1538,15 +1538,38 @@ usage: {
 
 {
   id: 38,
-  name: "이즈앤트리 그린티 프레시 토너",
+  name: "이즈앤트리 그린티 프레쉬 토너",
   brand: "이즈앤트리",
   category: "toner",
   hydrationLevel: 10,
   texture: "light",
-  concerns: ["hydration", "sebum", "soothing"],
-  ingredients: ["히알루론산", "판테놀"],
+
+  concerns: [
+    "hydration",
+    "sebum",
+    "soothing"
+  ],
+
+  ingredients: [
+    "녹차",
+    "히알루론산",
+    "병풀",
+    "알란토인",
+    "감초",
+    "베타글루칸",
+    "버드나무껍질"
+  ],
+
+  careProfile: {
+    hydrationSupport: 5,
+    lightweightFit: 10,
+    soothingSupport: 6,
+    congestionSupport: 4,
+    barrierSupport: 1,
+  },
   skinTypes: ["지성", "수부지", "복합성"],
-  description: "가볍고 산뜻한 사용감으로 유분감이 많은 피부의 수분 밸런스에 맞춘 토너입니다.",
+  shortReason:
+  "유분감은 많지만 무거운 보습이 부담스러운 지성·수부지 피부에 산뜻하게 쓰기 좋습니다.",
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/retail/images/1157158040067497-679aa743-9a4f-41ac-ace0-b734210fc477.jpg",
   link: "https://link.coupang.com/a/gtkyAwlxGD",
   sensitivitySafe: true,
