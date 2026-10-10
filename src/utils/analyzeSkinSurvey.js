@@ -134,6 +134,276 @@ function buildCareNeeds(skinState) {
   };
 }
 
+export function adjustCareNeedsForIssue(
+  baseCareNeeds = {},
+  mainConcern = "",
+  issueAnswers = {}
+) {
+  const next = {
+    hydrationNeed: baseCareNeeds.hydrationNeed ?? 0,
+    lightTextureNeed: baseCareNeeds.lightTextureNeed ?? 0,
+    soothingNeed: baseCareNeeds.soothingNeed ?? 0,
+    congestionCareNeed: baseCareNeeds.congestionCareNeed ?? 0,
+    inflammationCareNeed: baseCareNeeds.inflammationCareNeed ?? 0,
+  };
+
+  const valueOf = (key) =>
+    issueAnswers[key]?.value ?? "";
+
+  const add = (key, amount) => {
+    next[key] = clampCareNeed(
+      (next[key] ?? 0) + amount
+    );
+  };
+
+  if (mainConcern === "inflammatory_acne") {
+    const form = valueOf("form");
+    const pain = valueOf("pain");
+    const recurring = valueOf("recurring");
+    const area = valueOf("area");
+
+    if (["pustule", "cluster"].includes(form)) {
+      add("inflammationCareNeed", 2);
+      add("soothingNeed", 1);
+    }
+
+    if (form === "nodule") {
+      add("inflammationCareNeed", 3);
+      add("soothingNeed", 2);
+    }
+
+    if (pain === "strong") {
+      add("inflammationCareNeed", 2);
+      add("soothingNeed", 1);
+    } else if (pain === "mild") {
+      add("inflammationCareNeed", 1);
+    }
+
+    if (recurring === "continuous") {
+      add("inflammationCareNeed", 2);
+    } else if (recurring === "recurring") {
+      add("inflammationCareNeed", 1);
+    }
+
+    if (area === "multiple") {
+      add("inflammationCareNeed", 1);
+    }
+  }
+
+  if (mainConcern === "closed_comedones") {
+    const inflammation = valueOf("inflammation");
+    const duration = valueOf("duration");
+
+    add("congestionCareNeed", 2);
+
+    if (["long", "chronic"].includes(duration)) {
+      add("congestionCareNeed", 1);
+    }
+
+    if (inflammation === "sometimes_red") {
+      add("soothingNeed", 1);
+      add("inflammationCareNeed", 1);
+    }
+
+    if (inflammation === "painful") {
+      add("soothingNeed", 2);
+      add("inflammationCareNeed", 2);
+    }
+  }
+
+  if (mainConcern === "blackhead_sebum") {
+    const appearance = valueOf("appearance");
+    const returnSpeed = valueOf("returnSpeed");
+    const oiliness = valueOf("oiliness");
+    const inflammation = valueOf("inflammation");
+    const afterWash = valueOf("afterWash");
+
+    add("congestionCareNeed", 2);
+
+    if (
+      ["black_plug", "pore_sebum"].includes(
+        appearance
+      )
+    ) {
+      add("congestionCareNeed", 1);
+    }
+
+    if (
+      ["fast", "very_fast"].includes(
+        returnSpeed
+      )
+    ) {
+      add("congestionCareNeed", 1);
+    }
+
+    if (["high", "very_high"].includes(oiliness)) {
+      add("lightTextureNeed", 2);
+    }
+
+    if (inflammation === "frequent") {
+      add("inflammationCareNeed", 2);
+      add("soothingNeed", 1);
+    }
+
+    if (
+      ["mild_tight", "tight"].includes(
+        afterWash
+      )
+    ) {
+      add("hydrationNeed", 1);
+    }
+  }
+
+  if (mainConcern === "dehydration") {
+    const afterWash = valueOf("afterWash");
+    const daytimeTightness =
+      valueOf("daytimeTightness");
+    const moisturizerResponse =
+      valueOf("moisturizerResponse");
+    const flaking = valueOf("flaking");
+    const irritation = valueOf("irritation");
+    const oiliness = valueOf("oiliness");
+
+    add("hydrationNeed", 2);
+
+    if (
+      ["strong", "very_strong"].includes(
+        afterWash
+      )
+    ) {
+      add("hydrationNeed", 2);
+    }
+
+    if (
+      ["often", "continuous"].includes(
+        daytimeTightness
+      )
+    ) {
+      add("hydrationNeed", 2);
+    }
+
+    if (
+      ["short", "poor"].includes(
+        moisturizerResponse
+      )
+    ) {
+      add("hydrationNeed", 1);
+      add("soothingNeed", 1);
+    }
+
+    if (["visible", "severe"].includes(flaking)) {
+      add("hydrationNeed", 1);
+      add("soothingNeed", 1);
+    }
+
+    if (
+      ["frequent", "strong"].includes(
+        irritation
+      )
+    ) {
+      add("soothingNeed", 2);
+      add("inflammationCareNeed", 1);
+    }
+
+    if (["high", "very_high"].includes(oiliness)) {
+      add("lightTextureNeed", 2);
+    }
+  }
+
+  if (mainConcern === "sensitivity_redness") {
+    const sensation = valueOf("sensation");
+    const duration = valueOf("duration");
+    const skinDamage = valueOf("skinDamage");
+    const swelling = valueOf("swelling");
+    const moisturizerSting =
+      valueOf("moisturizerSting");
+
+    add("soothingNeed", 3);
+
+    if (
+      ["stinging", "burning", "itching"].includes(
+        sensation
+      )
+    ) {
+      add("soothingNeed", 1);
+    }
+
+    if (
+      ["half_day", "days"].includes(
+        duration
+      )
+    ) {
+      add("inflammationCareNeed", 2);
+    }
+
+    if (
+      ["dry", "flaking"].includes(
+        skinDamage
+      )
+    ) {
+      add("hydrationNeed", 1);
+      add("soothingNeed", 1);
+    }
+
+    if (skinDamage === "blister_oozing") {
+      add("inflammationCareNeed", 3);
+    }
+
+    if (["mild", "eyes_lips"].includes(swelling)) {
+      add("inflammationCareNeed", 2);
+    }
+
+    if (moisturizerSting === "frequent") {
+      add("soothingNeed", 2);
+    }
+  }
+
+  if (mainConcern === "oiliness") {
+    const timing = valueOf("timing");
+    const afterWash = valueOf("afterWash");
+    const moisturizer = valueOf("moisturizer");
+    const clogged = valueOf("clogged");
+    const inflammation = valueOf("inflammation");
+
+    add("lightTextureNeed", 2);
+
+    if (["fast", "very_fast"].includes(timing)) {
+      add("lightTextureNeed", 2);
+    }
+
+    if (
+      ["frequent", "blackhead"].includes(
+        clogged
+      )
+    ) {
+      add("congestionCareNeed", 2);
+    }
+
+    if (
+      ["tight_oily", "very_tight"].includes(
+        afterWash
+      )
+    ) {
+      add("hydrationNeed", 2);
+    }
+
+    if (
+      ["heavy", "very_heavy"].includes(
+        moisturizer
+      )
+    ) {
+      add("lightTextureNeed", 1);
+    }
+
+    if (inflammation === "frequent") {
+      add("inflammationCareNeed", 2);
+      add("soothingNeed", 1);
+    }
+  }
+
+  return next;
+}
+
 export function analyzeSkinSurvey(answers, questions) {
   const totalScores = {
     dryness: 0,
