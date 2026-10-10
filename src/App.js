@@ -837,6 +837,12 @@ enzyme_cleanser: "효소 클렌저"
   return map[key] || key;
 }
 
+function isProductAvailable(product) {
+  return (
+    !!product &&
+    product.isAvailable !== false
+  );
+}
 function isValidProductLink(link) {
   return !!link && link !== "#";
 }
@@ -1385,14 +1391,19 @@ function pickBestProductByCategory(
   }
 
   let categoryProducts = products.filter(
-    (product) => product.category === targetCategory
-  );
+  (product) =>
+    product.category ===
+      targetCategory &&
+    isProductAvailable(product)
+);
 
   // 세부 카테고리에 제품이 없으면 기본 클렌저로 fallback
   if (categoryProducts.length === 0 && category === "cleanser") {
     categoryProducts = products.filter(
-      (product) => product.category === "cleanser"
-    );
+  (product) =>
+    product.category === "cleanser" &&
+    isProductAvailable(product)
+);
   }
 
   // 단순 번들거림이 고민일 때는
@@ -1556,11 +1567,12 @@ function pickAlternativeNonExfoliatingProduct(
 ) {
   // 각질 기능성이 없는 같은 카테고리 제품만 후보
   let candidates = products.filter(
-    (product) =>
-      product.category === category &&
-      !excludedIds.includes(product.id) &&
-      !hasExfoliatingActive(product)
-  );
+  (product) =>
+    product.category === category &&
+    isProductAvailable(product) &&
+    !excludedIds.includes(product.id) &&
+    !hasExfoliatingActive(product)
+);
 
   // 현재 수분 단계와 가까운 제품 우선
   let levelMatched = filterByLevel(
@@ -4533,7 +4545,7 @@ const nextRoutine = buildDynamicRoutine(
 
     careNeeds:
   surveyResult.careNeeds,
-  
+
     isSensitive:
       surveyResult.skinType?.includes("민감") ||
       (surveyResult.scores?.sensitivity ?? 0) >= 2 ||
@@ -7360,8 +7372,13 @@ setStep("surveyResult");
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {sortProductsForDisplay(
                         filterByLevel(
-  products.filter((product) => product.ingredients.includes(ingredient)),
-  nextLevel
+products.filter(
+  (product) =>
+    isProductAvailable(product) &&
+    product.ingredients.includes(
+      ingredient
+    )
+)
 ),
                         nextLevel
                       ).map((product) => (

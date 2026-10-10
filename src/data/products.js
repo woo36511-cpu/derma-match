@@ -1040,6 +1040,9 @@ usage: {
   texture: "light",
   concerns: ["acne", "soothing", "sebum"],
   ingredients: ["티트리", "판테놀"],
+  isAvailable: false,
+availabilityReason:
+  "current_product_identity_needs_review",
   skinTypes: ["지성", "수부지"],
   description: "트러블과 번들거림 관리용으로 가볍게 쓰기 좋은 세럼",
   image: "https://t1a.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/9390/b4dd4be4e3d66b66878b74e1da43fa4bcfc0e211c144bc981d58f9bf6385.jpg",
@@ -1411,9 +1414,22 @@ usage: {
   hydrationLevel: 8,
   texture: "gel",
   concerns: ["sebum", "pores"],
-  ingredients: ["녹차"],
+  ingredients: [
+  "녹차",
+  "글리세린",
+  "히알루론산"
+],
+
+careProfile: {
+  hydrationSupport: 4,
+  lightweightFit: 9,
+  soothingSupport: 3,
+  congestionSupport: 3,
+  barrierSupport: 1,
+},
   skinTypes: ["지성", "수부지"],
-  description: "번들거림 관리에 좋은 산뜻한 젤 클렌저",
+  description:
+  "과잉 유분과 노폐물을 부드럽게 씻어내면서 과도한 세정감을 줄인 산뜻한 젤 클렌저",
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/212x212q90trim/image/retail/images/616346333160917-47e1143a-f8a2-453a-a4d0-e1e57405e3fa.jpg",
   link: "https://link.coupang.com/a/gmT6f2WXmu",
 
@@ -1423,7 +1439,8 @@ usage: {
   price: 15000,
   volume: "120ml",
 
-  shortReason: "지성 피부의 유분 관리용",
+  shortReason:
+  "번들거림이 많은 지성·수부지 피부가 산뜻하게 데일리 세안하기 좋은 젤 클렌저",
 
   ratingTags: ["지성", "녹차", "피지"],
 
