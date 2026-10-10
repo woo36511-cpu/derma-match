@@ -1768,10 +1768,30 @@ seasons: ["spring", "summer"],
   category: "serum",
   hydrationLevel: 2,
   texture: "essence",
-  concerns: ["hydration", "barrier", "soothing"],
-  ingredients: ["세라마이드", "판테놀", "히알루론산"],
+
+  concerns: [
+    "hydration",
+    "barrier"
+  ],
+
+  ingredients: [
+    "글리세린",
+    "스쿠알란",
+    "천연보습인자",
+    "유사 세라마이드",
+    "콜레스테롤"
+  ],
+
+  careProfile: {
+    hydrationSupport: 9,
+    lightweightFit: 6,
+    soothingSupport: 3,
+    congestionSupport: 0,
+    barrierSupport: 7,
+  },
   skinTypes: ["건성", "민감성"],
-  description:"건조함과 속당김이 신경 쓰이는 피부에 수분을 보충하기 좋은 에센스 타입 제품입니다.",
+  description:
+  "속당김이 신경 쓰이는 피부에 수분과 보습 성분을 공급해 피부 장벽의 수분 유지에 도움을 주는 에센스",
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/1025_amir_coupang_oct_80k/02ea/6c19ed5d20b7ba47ef2312a32faabc6b065f55a519cd7dbf60c3b62a970e.jpg",
   link: "https://link.coupang.com/a/hpwkEOhMfQ",
   sensitivitySafe: true,
@@ -1779,7 +1799,8 @@ seasons: ["spring", "summer"],
   seasons: ["autumn", "winter"],
   price: 0,
   volume: "200ml",
-  shortReason: "1~3단계처럼 당김이 강한 피부에 수분과 장벽 보완을 같이 도와줍니다.",
+  shortReason:
+  "당김이 강한 피부에 수분을 충분히 공급하면서 장벽 보습도 함께 챙기기 좋은 에센스",
   caution: [],
   ratingTags: ["장벽", "고보습", "건성"],
 
