@@ -8428,7 +8428,7 @@ setStep("surveyResult");
                       className="bg-white border border-gray-100 rounded-3xl shadow-sm p-5 sm:p-6"
                     >
                       <p className="text-base sm:text-lg font-semibold leading-relaxed break-keep mb-4">
-                        {question.q}
+                        {question.question}
                       </p>
 
                       <div className="flex flex-wrap gap-2">
