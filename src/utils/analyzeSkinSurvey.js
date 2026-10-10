@@ -1,3 +1,78 @@
+const SKIN_STATE_MAX_SCORES = {
+  dryness: 19,
+  oiliness: 20,
+
+  // 생활습관 / 현재 루틴 같은
+  // 간접 요인을 제외한 직접 피부 신호 기준
+  sensitivity: 7,
+  barrier: 7,
+  dehydrated: 12,
+  clogged: 8,
+  acne: 4,
+  inflammation: 3,
+};
+
+function normalizeSkinScore(
+  value,
+  maxValue
+) {
+  if (!maxValue) return 0;
+
+  const normalized =
+    (value / maxValue) * 10;
+
+  return Math.max(
+    0,
+    Math.min(
+      10,
+      Math.round(normalized)
+    )
+  );
+}
+
+function buildSkinState(rawScores) {
+  return {
+    dryness: normalizeSkinScore(
+      rawScores.dryness,
+      SKIN_STATE_MAX_SCORES.dryness
+    ),
+
+    oiliness: normalizeSkinScore(
+      rawScores.oiliness,
+      SKIN_STATE_MAX_SCORES.oiliness
+    ),
+
+    dehydration: normalizeSkinScore(
+      rawScores.dehydrated,
+      SKIN_STATE_MAX_SCORES.dehydrated
+    ),
+
+    sensitivity: normalizeSkinScore(
+      rawScores.sensitivity,
+      SKIN_STATE_MAX_SCORES.sensitivity
+    ),
+
+    barrierStress: normalizeSkinScore(
+      rawScores.barrier,
+      SKIN_STATE_MAX_SCORES.barrier
+    ),
+
+    cloggedPores: normalizeSkinScore(
+      rawScores.clogged,
+      SKIN_STATE_MAX_SCORES.clogged
+    ),
+
+    acneActivity: normalizeSkinScore(
+      rawScores.acne,
+      SKIN_STATE_MAX_SCORES.acne
+    ),
+
+    inflammation: normalizeSkinScore(
+      rawScores.inflammation,
+      SKIN_STATE_MAX_SCORES.inflammation
+    ),
+  };
+}
 export function analyzeSkinSurvey(answers, questions) {
   const totalScores = {
     dryness: 0,
@@ -9,6 +84,17 @@ export function analyzeSkinSurvey(answers, questions) {
     acne: 0,
     inflammation: 0,
   };
+
+  const skinStateRawScores = {
+  dryness: 0,
+  oiliness: 0,
+  sensitivity: 0,
+  barrier: 0,
+  dehydrated: 0,
+  clogged: 0,
+  acne: 0,
+  inflammation: 0,
+};
 
   let mainIssue = "none";
   const lifestyleTags = [];
@@ -36,8 +122,12 @@ if (
 }
 
 if (selectedOption.scores) {
-  Object.entries(selectedOption.scores).forEach(([key, value]) => {
-    totalScores[key] = (totalScores[key] || 0) + value;
+  Object.entries(
+    selectedOption.scores
+  ).forEach(([key, value]) => {
+    totalScores[key] =
+      (totalScores[key] || 0) +
+      value;
   });
 }
       });
@@ -52,11 +142,26 @@ if (selectedOption.scores) {
 
     if (!selectedOption) return;
 
-    if (selectedOption.scores) {
-      Object.entries(selectedOption.scores).forEach(([key, value]) => {
-        totalScores[key] = (totalScores[key] || 0) + value;
-      });
+if (selectedOption.scores) {
+  Object.entries(
+    selectedOption.scores
+  ).forEach(([key, value]) => {
+    totalScores[key] =
+      (totalScores[key] || 0) +
+      value;
+
+    // 현재 사용 중인 루틴 수준은
+    // 실제 피부 상태 점수에서 제외
+    if (
+      question.id !==
+      "routineLevel"
+    ) {
+      skinStateRawScores[key] =
+        (skinStateRawScores[key] ||
+          0) + value;
     }
+  });
+}
 
     if (selectedOption.issue) {
       mainIssue = selectedOption.issue;
@@ -65,14 +170,23 @@ if (selectedOption.scores) {
     reasons.push(selectedOption.label);
   });
 
+  const skinState =
+  buildSkinState(
+    skinStateRawScores
+  );
+
   const skinType = getSkinType(totalScores);
   const hydrationLevel = getHydrationLevel(totalScores);
   const issueLabel = getIssueLabel(mainIssue);
   const lifestyleAdvice = getLifestyleAdvice(lifestyleTags);
   const solution = getSolutionByIssue(mainIssue);
 
-  return {
-    scores: totalScores,
+ return {
+  scores: totalScores,
+
+  skinStateRawScores,
+  skinState,
+
     skinType,
     hydrationLevel,
     mainIssue,
