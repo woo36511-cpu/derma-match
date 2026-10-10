@@ -1371,6 +1371,13 @@ usage: {
   texture: "gel",
   concerns: ["sebum"],
   ingredients: ["판테놀"],
+  careProfile: {
+  hydrationSupport: 4,
+  lightweightFit: 7,
+  soothingSupport: 7,
+  congestionSupport: 0,
+  barrierSupport: 5,
+},
   skinTypes: ["수부지", "복합성"],
   description: "산뜻하면서도 자극이 적은 젤 타입 클렌저",
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/212x212q90trim/image/vendor_inventory/a443/a4a04525b7b8af639640d2beb7ffe5d1884403bcd066d8bfada430219e62.png",
