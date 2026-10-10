@@ -1644,8 +1644,10 @@ evidence: {
     barrierSupport: 1,
   },
   skinTypes: ["지성", "수부지", "복합성"],
-  shortReason:
-  "유분감은 많지만 무거운 보습이 부담스러운 지성·수부지 피부에 산뜻하게 쓰기 좋습니다.",
+
+  description:
+    "유분과 번들거림이 신경 쓰이는 피부에 가볍게 수분을 보충하며 피지 밸런스를 관리하기 좋은 토너",
+
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/retail/images/1157158040067497-679aa743-9a4f-41ac-ace0-b734210fc477.jpg",
   link: "https://link.coupang.com/a/gtkyAwlxGD",
   sensitivitySafe: true,
@@ -1653,7 +1655,8 @@ evidence: {
   seasons: ["spring", "summer"],
   price: 0,
   volume: "200ml",
-  shortReason: "번들거림이 신경 쓰이는 피부에 무겁지 않게 수분을 보충하기 좋습니다.",
+  shortReason:
+    "유분감은 많지만 무거운 보습이 부담스러운 지성·수부지 피부에 산뜻하게 쓰기 좋습니다.",
   caution: [],
   ratingTags: ["가벼움", "피지 밸런스", "수부지 추천"],
 
