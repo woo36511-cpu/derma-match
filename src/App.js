@@ -2017,6 +2017,7 @@ function isSpecializedTreatmentProduct(
     "closed_comedones",
     "blackhead",
     "pores",
+    "sebum",
     "deadskin",
   ];
 
@@ -2049,15 +2050,24 @@ function isProductAllowedForContext(
     "cream",
   ].includes(category);
 
-  // 염증/민감 신호가 높은 경우
-  // 기본 루틴에서는 강한 각질 기능성을 제외
+  // AHA/BHA 같은 각질 기능성은
+  // 기본 루틴이 아니라 별도 치료/옵션 단계에서 다룸
   if (
     isLeaveOn &&
-    hasExfoliatingActive(product) &&
+    hasExfoliatingActive(product)
+  ) {
+    return false;
+  }
+
+  // 염증/민감 필요도가 매우 높은 경우에는
+  // 민감 안전 표기가 없는 leave-on 제품도 기본 후보에서 제외
+  if (
+    isLeaveOn &&
     (
-      inflammationCareNeed >= 6 ||
-      soothingNeed >= 8
-    )
+      inflammationCareNeed >= 8 ||
+      soothingNeed >= 9
+    ) &&
+    !product.sensitivitySafe
   ) {
     return false;
   }
