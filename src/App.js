@@ -1892,6 +1892,14 @@ let candidateProducts = [
   ),
 ];
 
+// 가까운 단계나 고민 적합 후보가 하나도 없으면
+// 안전 게이트를 통과한 같은 카테고리 전체로 fallback
+if (candidateProducts.length === 0) {
+  candidateProducts = [
+    ...categoryProducts,
+  ];
+}
+
 // 특별한 고민이 없거나 빠른 추천일 때는
 // 초보자용 + 각질 기능성이 없는 제품을 우선
 const isDefaultMode =
