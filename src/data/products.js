@@ -1652,18 +1652,17 @@ usage: {
     "복합성"
   ],
 
-  description:
-    "여드름성 피부의 유수분 밸런스와 트러블 관리에 초점을 둔 산뜻한 수분 모이스처라이저",
+description:
+  "여드름성 피부의 유수분 밸런스와 트러블 관리에 초점을 둔 산뜻한 수분 모이스처라이저",
 
-  // image와 link는 기존 값 그대로
+image: "https://thumbnail6.coupangcdn.com/thumbnails/remote/492x492q90trim/image/vendor_inventory/9276/4bed48ca6753310a5aeb166677ff815f4dd0356dc15ec568e7d8884dffa6.jpg",
 
-  sensitivitySafe: false,
-  beginnerFriendly: false,
-  image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/vendor_inventory/9276/4bed48ca6753310a5aeb166677ff815f4dd0356dc15ec568e7d8884dffa6.jpg",
-  link: "https://link.coupang.com/a/gtk9l8COtg",
-  sensitivitySafe: true,
-  beginnerFriendly: true,
-  seasons: ["spring", "summer"],
+link: "https://link.coupang.com/a/gtk9l8COtg",
+
+sensitivitySafe: false,
+beginnerFriendly: false,
+
+seasons: ["spring", "summer"],
   price: 0,
   volume: "60ml",
   shortReason: "유분감이 강하고 트러블이 신경 쓰이는 10단계 피부에 맞춘 가벼운 크림입니다.",
