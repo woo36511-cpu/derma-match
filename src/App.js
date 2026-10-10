@@ -5967,6 +5967,10 @@ const saveFeedbackResult = () => {
     ) || null;
 
   const baselineSkinState =
+    latestJourneyRecord?.outcome
+      ?.followUpSkinState ??
+    latestJourneyRecord?.result
+      ?.skinState ??
     baselineRecord?.result
       ?.skinState ??
     null;
@@ -6058,6 +6062,13 @@ const saveFeedbackResult = () => {
         actualProductUsage.filter(
           (item) =>
             item.usageStatus ===
+              "consistent" ||
+            item.usageStatus ===
+              "occasional"
+        ).length === 1 &&
+        actualProductUsage.filter(
+          (item) =>
+            item.usageStatus ===
               "consistent"
         ).length === 1 &&
         dataQuality.confidenceLevel ===
@@ -6075,6 +6086,10 @@ const saveFeedbackResult = () => {
       skinStateDelta,
 
       baselineLifestyleTags:
+        latestJourneyRecord?.outcome
+          ?.followUpLifestyleTags ??
+        latestJourneyRecord?.result
+          ?.lifestyleTags ??
         baselineRecord?.result
           ?.lifestyleTags ??
         baselineRecord
