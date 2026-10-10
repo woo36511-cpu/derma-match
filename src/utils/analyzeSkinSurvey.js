@@ -73,6 +73,67 @@ function buildSkinState(rawScores) {
     ),
   };
 }
+
+function clampCareNeed(value) {
+  return Math.max(
+    0,
+    Math.min(
+      10,
+      Math.round(value)
+    )
+  );
+}
+
+function buildCareNeeds(skinState) {
+  const {
+    dryness = 0,
+    oiliness = 0,
+    dehydration = 0,
+    sensitivity = 0,
+    barrierStress = 0,
+    cloggedPores = 0,
+    acneActivity = 0,
+    inflammation = 0,
+  } = skinState || {};
+
+  return {
+    // 수분/보습이 얼마나 필요한지
+    hydrationNeed: clampCareNeed(
+      dryness * 0.35 +
+      dehydration * 0.45 +
+      barrierStress * 0.2
+    ),
+
+    // 무거운 제품보다 가벼운 제형이 필요한 정도
+    lightTextureNeed: clampCareNeed(
+      oiliness * 0.45 +
+      cloggedPores * 0.35 +
+      acneActivity * 0.2
+    ),
+
+    // 피부를 진정시키는 방향의 필요도
+    soothingNeed: clampCareNeed(
+      sensitivity * 0.45 +
+      barrierStress * 0.35 +
+      inflammation * 0.2
+    ),
+
+    // 피지·좁쌀·모공 막힘 관리 필요도
+    congestionCareNeed: clampCareNeed(
+      cloggedPores * 0.55 +
+      oiliness * 0.25 +
+      acneActivity * 0.2
+    ),
+
+    // 붉고 염증성인 문제를 우선 관리할 필요도
+    inflammationCareNeed: clampCareNeed(
+      inflammation * 0.55 +
+      acneActivity * 0.35 +
+      sensitivity * 0.1
+    ),
+  };
+}
+
 export function analyzeSkinSurvey(answers, questions) {
   const totalScores = {
     dryness: 0,
@@ -175,6 +236,11 @@ if (selectedOption.scores) {
     skinStateRawScores
   );
 
+  const careNeeds =
+  buildCareNeeds(
+    skinState
+  );
+
   const skinType = getSkinType(totalScores);
   const hydrationLevel = getHydrationLevel(totalScores);
   const issueLabel = getIssueLabel(mainIssue);
@@ -186,6 +252,7 @@ if (selectedOption.scores) {
 
   skinStateRawScores,
   skinState,
+  careNeeds,
 
     skinType,
     hydrationLevel,
