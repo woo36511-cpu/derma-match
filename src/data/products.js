@@ -1041,8 +1041,18 @@ usage: {
   concerns: ["acne", "soothing", "sebum"],
   ingredients: ["티트리", "판테놀"],
   isAvailable: false,
-availabilityReason:
-  "current_product_identity_needs_review",
+  availabilityReason:
+    "current_product_identity_needs_review",
+
+  evidence: {
+    evidenceLevel: "D",
+    officialProductVerified: false,
+    fullIngredientsVerified: false,
+    concentrationDisclosure: "unknown",
+    purchaseLinkVerified: false,
+    lastVerifiedAt: "2026-10-10",
+  },
+
   skinTypes: ["지성", "수부지"],
   description: "트러블과 번들거림 관리용으로 가볍게 쓰기 좋은 세럼",
   image: "https://t1a.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/9390/b4dd4be4e3d66b66878b74e1da43fa4bcfc0e211c144bc981d58f9bf6385.jpg",
@@ -1401,6 +1411,16 @@ usage: {
   isAvailable: false,
   availabilityReason:
     "purchase_link_and_product_identity_need_review",
+
+  evidence: {
+    evidenceLevel: "C",
+    officialProductVerified: true,
+    fullIngredientsVerified: false,
+    concentrationDisclosure: "unknown",
+    purchaseLinkVerified: false,
+    lastVerifiedAt: "2026-10-10",
+  },
+
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/212x212q90trim/image/vendor_inventory/a443/a4a04525b7b8af639640d2beb7ffe5d1884403bcd066d8bfada430219e62.png",
   link: "https://link.coupang.com/a/gmT1RLGyd2",
 
@@ -1456,6 +1476,16 @@ careProfile: {
   congestionSupport: 3,
   barrierSupport: 1,
 },
+
+evidence: {
+  evidenceLevel: "B",
+  officialProductVerified: true,
+  fullIngredientsVerified: false,
+  concentrationDisclosure: "unknown",
+  purchaseLinkVerified: false,
+  lastVerifiedAt: "2026-10-10",
+},
+
   skinTypes: ["지성", "수부지"],
   description:
   "과잉 유분과 노폐물을 부드럽게 씻어내면서 과도한 세정감을 줄인 산뜻한 젤 클렌저",
