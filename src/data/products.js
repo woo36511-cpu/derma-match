@@ -672,17 +672,106 @@ usage: {
   category: "cream",
   hydrationLevel: 7,
   texture: "gel",
-  concerns: ["hydration", "soothing"],
-  ingredients: ["히알루론산", "판테놀"],
+
+  concerns: [
+    "hydration",
+    "soothing"
+  ],
+
+  ingredients: [
+    "히알루론산",
+    "판테놀",
+    "알란토인",
+    "글리세린",
+    "트레할로오스"
+  ],
+
+  activeIngredients: [
+    {
+      name: "5종 히알루론산 복합체",
+      concentration: null,
+      unit: "%",
+      concentrationVerified: false,
+      sourceType: "official_global_product_page"
+    },
+    {
+      name: "판테놀",
+      concentration: null,
+      unit: "%",
+      concentrationVerified: false,
+      sourceType: "official_global_full_ingredient_list"
+    },
+    {
+      name: "알란토인",
+      concentration: null,
+      unit: "%",
+      concentrationVerified: false,
+      sourceType: "official_global_full_ingredient_list"
+    }
+  ],
+
   careProfile: {
-  hydrationSupport: 8,
-  lightweightFit: 9,
-  soothingSupport: 6,
-  congestionSupport: 0,
-  barrierSupport: 2,
-},
-  skinTypes: ["중성", "수부지", "복합성", "지성"],
-  description: "가볍게 수분을 잠가주는 젤크림",
+    hydrationSupport: 9,
+    lightweightFit: 9,
+    soothingSupport: 7,
+    congestionSupport: 0,
+    barrierSupport: 2,
+  },
+
+  evidence: {
+    evidenceLevel: "B",
+    officialProductVerified: true,
+    fullIngredientsVerified: true,
+    fullIngredientsMarket: "global_official",
+    domesticFormulaVerified: false,
+    concentrationDisclosure: "not_disclosed",
+    purchaseLinkVerified: false,
+    lastVerifiedAt: "2026-10-10",
+  },
+
+  clinicalEvidence: {
+    sourceType: "brand_reported",
+    humanStudyAvailable: true,
+    studies: [
+      {
+        endpoint: "repeat_insult_patch_test",
+        sampleSize: 50,
+        duration: "6_weeks",
+        result: "non_irritant"
+      },
+      {
+        endpoint: "skin_water_content",
+        sampleSize: 20,
+        duration: "4_weeks",
+        resultPercent: 30.85
+      },
+      {
+        endpoint: "immediate_moisturizing",
+        sampleSize: 20,
+        duration: "immediate",
+        resultPercent: 145.02
+      },
+      {
+        endpoint: "physical_irritation_soothing",
+        sampleSize: 20,
+        duration: "immediate",
+        resultPercent: 109.77
+      }
+    ],
+    note:
+      "브랜드 공식 페이지에 공개된 인체적용시험 결과이며 독립 임상 근거와 동일하게 취급하지 않습니다."
+  },
+
+  skinTypes: [
+    "중성",
+    "수부지",
+    "복합성",
+    "민감성"
+  ],
+
+  description:
+    "5종 히알루론산과 판테놀·알란토인을 중심으로 수분 공급과 진정을 돕는 가벼운 젤 타입 수딩 크림",
+
   image: "https://t3c.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/71993950971424-62de1ae8-f5cc-46ab-bcb2-b13e35cd9c69.jpg",
   link: "https://link.coupang.com/a/gmSpgkU1yS",
 
@@ -691,9 +780,22 @@ usage: {
   seasons: ["spring", "summer", "autumn"],
   price: 21000,
   volume: "100ml",
-  shortReason: "무겁지 않은 젤크림이라 수부지와 복합성 피부에 잘 맞기 쉬움",
-  caution: ["겨울 건성 피부에는 보습감이 부족할 수 있음"],
-  ratingTags: ["젤크림", "수분", "수부지"],
+
+  shortReason:
+    "속당김은 있지만 무거운 크림이 부담스러운 중성·복합성·수부지·민감 피부에 가볍게 수분과 진정을 보충하기 좋은 젤 크림",
+
+  caution: [
+    "정확한 핵심 성분 함량은 공식적으로 공개되지 않아 함량 기반 평가는 하지 않습니다.",
+    "겨울철 강한 건조 피부에는 단독 보습이 부족할 수 있습니다."
+  ],
+
+  ratingTags: [
+    "젤크림",
+    "수분",
+    "진정",
+    "민감"
+  ],
+
   usageType: "cream",
 
 usageAmount: {
