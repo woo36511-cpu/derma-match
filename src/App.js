@@ -126,6 +126,69 @@ const feedbackQuestions = [
       { label: "잘 모르겠음", value: 0 },
     ],
   },
+  {
+    id: "routineUsage",
+    q: "추천받은 루틴을 실제로 어느 정도 사용했나요?",
+    options: [
+      { label: "대부분의 제품을 꾸준히 사용함", value: "consistent" },
+      { label: "대부분 사용했지만 빠뜨린 날이 있음", value: "mostly" },
+      { label: "일부 제품만 사용함", value: "partial" },
+      { label: "거의 사용하지 못함", value: "rare" },
+    ],
+  },
+  {
+    id: "usageDuration",
+    q: "이번 루틴을 실제로 사용한 기간은 어느 정도인가요?",
+    options: [
+      { label: "7일 미만", value: "under_7" },
+      { label: "7~13일", value: "7_13" },
+      { label: "14~27일", value: "14_27" },
+      { label: "28일 이상", value: "28_plus" },
+    ],
+  },
+  {
+    id: "otherSkincareChange",
+    q: "루틴을 사용하는 동안 다른 화장품도 새로 추가하거나 바꿨나요?",
+    options: [
+      { label: "바꾸지 않음", value: "none" },
+      { label: "1개 정도 바꿈", value: "one" },
+      { label: "여러 제품을 바꿈", value: "multiple" },
+    ],
+  },
+  {
+    id: "sleepStressChange",
+    q: "최근 수면이나 스트레스 상태가 평소와 많이 달랐나요?",
+    options: [
+      { label: "평소와 비슷함", value: "stable" },
+      { label: "조금 달라짐", value: "mild" },
+      { label: "수면 부족이나 스트레스가 크게 늘어남", value: "major" },
+    ],
+  },
+  {
+    id: "dietChange",
+    q: "최근 식사 패턴이나 음주 등 식생활이 평소와 달랐나요?",
+    options: [
+      { label: "평소와 비슷함", value: "stable" },
+      { label: "조금 달라짐", value: "mild" },
+      { label: "크게 달라짐", value: "major" },
+    ],
+  },
+  {
+    id: "medicationSupplementChange",
+    q: "최근 새로 시작하거나 중단한 약 또는 영양제가 있나요?",
+    options: [
+      { label: "없음", value: "none" },
+      { label: "있음", value: "changed" },
+    ],
+  },
+  {
+    id: "environmentChange",
+    q: "여행, 계절 변화, 운동·땀 노출처럼 환경 변화가 컸나요?",
+    options: [
+      { label: "큰 변화 없음", value: "stable" },
+      { label: "변화가 있었음", value: "changed" },
+    ],
+  },
 ];
 const skinConcernOptions = [
   {
@@ -799,6 +862,304 @@ function getRecommendedIngredients(
   }
 
   return list;
+}
+
+function getProductEvidenceSnapshot(
+  product
+) {
+  const evidence =
+    product?.evidence || {};
+
+  return {
+    evidenceLevel:
+      evidence.evidenceLevel ??
+      "unverified",
+
+    officialProductVerified:
+      evidence.officialProductVerified ??
+      false,
+
+    fullIngredientsVerified:
+      evidence.fullIngredientsVerified ??
+      false,
+
+    concentrationDisclosure:
+      evidence.concentrationDisclosure ??
+      "unknown",
+
+    lastVerifiedAt:
+      evidence.lastVerifiedAt ??
+      null,
+  };
+}
+
+function buildProductUsagePlan(
+  productsByCategory = {},
+  skinType = "",
+  startedAt = null
+) {
+  return Object.entries(
+    productsByCategory
+  )
+    .filter(([, product]) => !!product)
+    .map(([category, product]) => {
+      let recommendedAmount =
+        product.usageAmount?.normal ??
+        null;
+
+      if (
+        skinType.includes("지성") ||
+        skinType.includes("수부지")
+      ) {
+        recommendedAmount =
+          product.usageAmount?.oily ??
+          recommendedAmount;
+      } else if (
+        skinType.includes("건성")
+      ) {
+        recommendedAmount =
+          product.usageAmount?.dry ??
+          recommendedAmount;
+      }
+
+      return {
+        productId: product.id,
+
+        productNameSnapshot:
+          product.name,
+
+        category,
+        startedAt,
+
+        recommendationSnapshot: {
+          hydrationLevel:
+            product.hydrationLevel ??
+            null,
+
+          careProfile:
+            getProductCareProfile(
+              product
+            ),
+
+          evidence:
+            getProductEvidenceSnapshot(
+              product
+            ),
+
+          recommendedAmount,
+
+          recommendedTiming:
+            product.usage?.when ??
+            null,
+        },
+
+        // 실제 사용 데이터는
+        // 사용자가 답하기 전까지 추정하지 않음
+        actualUsage: {
+          amount: null,
+          frequency: null,
+          stoppedEarly: null,
+          stopReason: null,
+        },
+      };
+    });
+}
+
+function getFeedbackOptionValue(
+  feedbackAnswers = {},
+  id
+) {
+  return (
+    feedbackAnswers[id]?.value ??
+    null
+  );
+}
+
+function buildFeedbackConfounders(
+  feedbackAnswers = {}
+) {
+  return {
+    otherSkincareChange:
+      getFeedbackOptionValue(
+        feedbackAnswers,
+        "otherSkincareChange"
+      ),
+
+    sleepStressChange:
+      getFeedbackOptionValue(
+        feedbackAnswers,
+        "sleepStressChange"
+      ),
+
+    dietChange:
+      getFeedbackOptionValue(
+        feedbackAnswers,
+        "dietChange"
+      ),
+
+    medicationSupplementChange:
+      getFeedbackOptionValue(
+        feedbackAnswers,
+        "medicationSupplementChange"
+      ),
+
+    environmentChange:
+      getFeedbackOptionValue(
+        feedbackAnswers,
+        "environmentChange"
+      ),
+  };
+}
+
+function buildFeedbackUsageReport(
+  feedbackAnswers = {}
+) {
+  return {
+    routineUsage:
+      getFeedbackOptionValue(
+        feedbackAnswers,
+        "routineUsage"
+      ),
+
+    usageDuration:
+      getFeedbackOptionValue(
+        feedbackAnswers,
+        "usageDuration"
+      ),
+  };
+}
+
+function buildFeedbackDataQuality(
+  feedbackAnswers = {}
+) {
+  const confounders =
+    buildFeedbackConfounders(
+      feedbackAnswers
+    );
+
+  const usage =
+    buildFeedbackUsageReport(
+      feedbackAnswers
+    );
+
+  let score = 1;
+
+  if (usage.routineUsage === "mostly") {
+    score -= 0.1;
+  }
+
+  if (usage.routineUsage === "partial") {
+    score -= 0.3;
+  }
+
+  if (usage.routineUsage === "rare") {
+    score -= 0.55;
+  }
+
+  if (usage.usageDuration === "under_7") {
+    score -= 0.35;
+  } else if (
+    usage.usageDuration === "7_13"
+  ) {
+    score -= 0.2;
+  } else if (
+    usage.usageDuration === "14_27"
+  ) {
+    score -= 0.05;
+  }
+
+  if (
+    confounders.otherSkincareChange ===
+    "one"
+  ) {
+    score -= 0.15;
+  }
+
+  if (
+    confounders.otherSkincareChange ===
+    "multiple"
+  ) {
+    score -= 0.3;
+  }
+
+  if (
+    confounders.sleepStressChange ===
+    "mild"
+  ) {
+    score -= 0.08;
+  }
+
+  if (
+    confounders.sleepStressChange ===
+    "major"
+  ) {
+    score -= 0.2;
+  }
+
+  if (
+    confounders.dietChange === "mild"
+  ) {
+    score -= 0.05;
+  }
+
+  if (
+    confounders.dietChange === "major"
+  ) {
+    score -= 0.12;
+  }
+
+  if (
+    confounders
+      .medicationSupplementChange ===
+    "changed"
+  ) {
+    score -= 0.2;
+  }
+
+  if (
+    confounders.environmentChange ===
+    "changed"
+  ) {
+    score -= 0.1;
+  }
+
+  score = Math.max(
+    0,
+    Math.min(1, score)
+  );
+
+  const majorConfounderCount = [
+    confounders.otherSkincareChange ===
+      "multiple",
+    confounders.sleepStressChange ===
+      "major",
+    confounders.dietChange ===
+      "major",
+    confounders
+      .medicationSupplementChange ===
+      "changed",
+    confounders.environmentChange ===
+      "changed",
+  ].filter(Boolean).length;
+
+  return {
+    confidenceScore:
+      Number(score.toFixed(2)),
+
+    confidenceLevel:
+      score >= 0.8
+        ? "high"
+        : score >= 0.55
+        ? "medium"
+        : "low",
+
+    majorConfounderCount,
+
+    // 아직 제품별 실제 사용 여부를
+    // 구분해서 받지 않으므로 개별 제품의
+    // 인과 효과를 단정하는 데이터로는 사용하지 않음
+    productAttributionReady: false,
+  };
 }
 
 function getProductById(id) {
@@ -5079,6 +5440,7 @@ const saveSurveyResult = () => {
   const data = {
     id: `survey-${timestamp}`,
     journeyId,
+    journeySchemaVersion: 2,
     type: "initial_survey",
 
     surveyAnswers,
@@ -5086,17 +5448,46 @@ const saveSurveyResult = () => {
     issueAnswers,
 
     result: {
-      skinType: surveyResult.skinType,
-      hydrationLevel: surveyResult.hydrationLevel,
-      scores: surveyResult.scores,
+      skinType:
+        surveyResult.skinType,
+
+      hydrationLevel:
+        surveyResult.hydrationLevel,
+
+      scores:
+        surveyResult.scores,
+
+      skinState:
+        surveyResult.skinState,
+
+      careNeeds:
+        adjustedSurveyCareNeeds,
     },
 
     routine: {
-      cleanser: surveyRoutine.products.cleanser?.id ?? null,
-      toner: surveyRoutine.products.toner?.id ?? null,
-      serum: surveyRoutine.products.serum?.id ?? null,
-      cream: surveyRoutine.products.cream?.id ?? null,
+      cleanser:
+        surveyRoutine.products.cleanser?.id ??
+        null,
+
+      toner:
+        surveyRoutine.products.toner?.id ??
+        null,
+
+      serum:
+        surveyRoutine.products.serum?.id ??
+        null,
+
+      cream:
+        surveyRoutine.products.cream?.id ??
+        null,
     },
+
+    productUsagePlan:
+      buildProductUsagePlan(
+        surveyRoutine.products,
+        surveyResult.skinType,
+        savedAt
+      ),
 
     savedAt,
   };
@@ -5163,6 +5554,7 @@ const startQuickJourneyFeedback = () => {
   const quickStartData = {
     id: `quick-${timestamp}`,
     journeyId,
+    journeySchemaVersion: 2,
 
     type: "initial_survey",
     source: "quick",
@@ -5170,9 +5562,18 @@ const startQuickJourneyFeedback = () => {
     mainConcern: "none",
 
     result: {
-      skinType: quickSkinType,
-      hydrationLevel: quickLevel,
+      skinType:
+        quickSkinType,
+
+      hydrationLevel:
+        quickLevel,
+
       scores: {},
+
+      // 빠른 추천은 정식 설문을 거치지 않으므로
+      // 피부 상태를 임의로 만들어내지 않음
+      skinState: null,
+      careNeeds: null,
     },
 
     routine: {
@@ -5192,6 +5593,13 @@ const startQuickJourneyFeedback = () => {
         quickRoutine.products.cream?.id ??
         null,
     },
+
+    productUsagePlan:
+      buildProductUsagePlan(
+        quickRoutine.products,
+        quickSkinType,
+        savedAt
+      ),
 
     savedAt,
   };
@@ -5250,58 +5658,143 @@ const startQuickJourneyFeedback = () => {
 };
 
 const saveFeedbackResult = () => {
-  const savedAt = new Date().toISOString();
+  const savedAt =
+    new Date().toISOString();
+
+  const currentJourneyRecords =
+    journeyHistory.filter(
+      (item) =>
+        item.journeyId ===
+          activeJourneyId ||
+        item.id === activeJourneyId
+    );
+
+  const latestJourneyRecord =
+    currentJourneyRecords.length > 0
+      ? currentJourneyRecords[
+          currentJourneyRecords.length - 1
+        ]
+      : null;
+
+  const confounders =
+    buildFeedbackConfounders(
+      answers
+    );
+
+  const usageReport =
+    buildFeedbackUsageReport(
+      answers
+    );
+
+  const dataQuality =
+    buildFeedbackDataQuality(
+      answers
+    );
 
   const feedbackData = {
     id: `feedback-${Date.now()}`,
     type: "feedback",
+    journeySchemaVersion: 2,
 
     feedbackAnswers: answers,
-    
-    journeyId: activeJourneyId,
 
-    changeReasons: getJourneyChangeReasons(
-  answers,
-  {
-    hydrationLevel: baseLevel,
-    mainConcern,
-  },
-  {
-    hydrationLevel: nextLevel,
-    mainConcern: feedbackMainConcern,
-  }
-),
+    journeyId:
+      activeJourneyId,
+
+    // 이번 피드백이 실제로 평가한
+    // 이전 루틴을 함께 보존
+    evaluatedRoutine:
+      latestJourneyRecord?.routine ??
+      null,
+
+    evaluatedProductUsagePlan:
+      latestJourneyRecord
+        ?.productUsagePlan ??
+      null,
+
+    usageReport,
+    confounders,
+    dataQuality,
+
+    outcome: {
+      conditionSnapshot:
+        getFeedbackConditionSnapshot(
+          answers
+        ),
+    },
+
+    changeReasons:
+      getJourneyChangeReasons(
+        answers,
+        {
+          hydrationLevel:
+            baseLevel,
+          mainConcern,
+        },
+        {
+          hydrationLevel:
+            nextLevel,
+          mainConcern:
+            feedbackMainConcern,
+        }
+      ),
 
     previousState: {
-      hydrationLevel: baseLevel,
+      hydrationLevel:
+        baseLevel,
       mainConcern,
     },
 
     nextState: {
-      hydrationLevel: nextLevel,
-      mainConcern: feedbackMainConcern,
+      hydrationLevel:
+        nextLevel,
+      mainConcern:
+        feedbackMainConcern,
     },
 
     routine: {
-      cleanser: nextRoutine.products.cleanser?.id ?? null,
-      toner: nextRoutine.products.toner?.id ?? null,
-      serum: nextRoutine.products.serum?.id ?? null,
-      cream: nextRoutine.products.cream?.id ?? null,
+      cleanser:
+        nextRoutine.products.cleanser?.id ??
+        null,
+
+      toner:
+        nextRoutine.products.toner?.id ??
+        null,
+
+      serum:
+        nextRoutine.products.serum?.id ??
+        null,
+
+      cream:
+        nextRoutine.products.cream?.id ??
+        null,
     },
+
+    productUsagePlan:
+      buildProductUsagePlan(
+        nextRoutine.products,
+        userContext.skinType,
+        savedAt
+      ),
 
     savedAt,
   };
 
   try {
     const savedHistory =
-      localStorage.getItem(JOURNEY_HISTORY_KEY);
+      localStorage.getItem(
+        JOURNEY_HISTORY_KEY
+      );
 
     let history = [];
 
     if (savedHistory) {
-      const parsedHistory = JSON.parse(savedHistory);
+      const parsedHistory =
+        JSON.parse(savedHistory);
 
-      if (Array.isArray(parsedHistory)) {
+      if (
+        Array.isArray(parsedHistory)
+      ) {
         history = parsedHistory;
       }
     }
@@ -5313,10 +5806,14 @@ const saveFeedbackResult = () => {
 
     localStorage.setItem(
       JOURNEY_HISTORY_KEY,
-      JSON.stringify(updatedHistory)
+      JSON.stringify(
+        updatedHistory
+      )
     );
-    
-    setJourneyHistory(updatedHistory);
+
+    setJourneyHistory(
+      updatedHistory
+    );
 
     setStep("result");
   } catch (error) {
