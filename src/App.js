@@ -5027,7 +5027,7 @@ const [
   setFeedbackSurveyAnswers,
 ] = useState({});
 
-const activeJourneyRecords =
+const feedbackJourneyRecords =
   useMemo(
     () =>
       journeyHistory.filter(
@@ -5044,9 +5044,9 @@ const activeJourneyRecords =
   );
 
 const feedbackTargetRecord =
-  activeJourneyRecords.length > 0
-    ? activeJourneyRecords[
-        activeJourneyRecords.length - 1
+  feedbackJourneyRecords.length > 0
+    ? feedbackJourneyRecords[
+        feedbackJourneyRecords.length - 1
       ]
     : null;
 
@@ -5960,7 +5960,7 @@ const saveFeedbackResult = () => {
       : null;
 
   const baselineRecord =
-    activeJourneyRecords.find(
+    feedbackJourneyRecords.find(
       (item) =>
         item.type ===
         "initial_survey"
