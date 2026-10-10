@@ -1364,22 +1364,43 @@ usage: {
 },
 {
   id: 33,
-  name: "에스트라 아토베리어 젤 클렌저",
+  name: "에스트라 아토베리어 클렌저",
   brand: "에스트라",
   category: "gel_cleanser",
-  hydrationLevel: 7,
+
+  hydrationLevel: 4,
   texture: "gel",
-  concerns: ["sebum"],
-  ingredients: ["판테놀"],
+
+  concerns: [
+    "hydration",
+    "soothing"
+  ],
+
+  ingredients: [
+    "히알루론산",
+    "알란토인",
+    "녹차"
+  ],
+
   careProfile: {
-  hydrationSupport: 4,
-  lightweightFit: 7,
-  soothingSupport: 7,
-  congestionSupport: 0,
-  barrierSupport: 5,
-},
-  skinTypes: ["수부지", "복합성"],
-  description: "산뜻하면서도 자극이 적은 젤 타입 클렌저",
+    hydrationSupport: 4,
+    lightweightFit: 5,
+    soothingSupport: 6,
+    congestionSupport: 0,
+    barrierSupport: 4,
+  },
+
+  skinTypes: [
+    "건성",
+    "민감성"
+  ],
+
+  description:
+    "건조하고 연약한 피부의 노폐물을 부드럽게 씻어내고 세안 후 보습감을 유지하는 젤 타입 약산성 클렌저",
+
+  isAvailable: false,
+  availabilityReason:
+    "purchase_link_and_product_identity_need_review",
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/212x212q90trim/image/vendor_inventory/a443/a4a04525b7b8af639640d2beb7ffe5d1884403bcd066d8bfada430219e62.png",
   link: "https://link.coupang.com/a/gmT1RLGyd2",
 
@@ -1387,9 +1408,10 @@ usage: {
   beginnerFriendly: true,
   seasons: ["spring", "summer", "autumn"],
   price: 18000,
-  volume: "200ml",
+  volume: "250ml",
 
-  shortReason: "수부지 피부 데일리 세안용",
+  shortReason:
+  "세안 후 당김이 신경 쓰이는 건조·민감 피부가 순하게 세안하기 좋은 젤 클렌저",
 
   ratingTags: ["젤클렌저", "수부지", "저자극"],
 
