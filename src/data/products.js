@@ -1619,15 +1619,46 @@ usage: {
 
 {
   id: 42,
-  name: "에스트라 테라크네365 하이드레이션 수딩 크림",
+  name: "에스트라 테라크네365 수딩 액티브 모이스처라이저",
   brand: "에스트라",
   category: "cream",
   hydrationLevel: 10,
   texture: "gel",
-  concerns: ["hydration", "soothing", "sebum", "acne"],
-  ingredients: ["나이아신아마이드", "판테놀"],
-  skinTypes: ["지성", "수부지", "복합성"],
-  description: "피지와 트러블이 신경 쓰이는 피부를 위한 산뜻한 수분 진정 크림입니다.",
+
+  concerns: [
+    "hydration",
+    "soothing",
+    "sebum",
+    "acne"
+  ],
+
+  ingredients: [
+    "나이아신아마이드",
+    "살리실산",
+    "히알루론산"
+  ],
+
+  careProfile: {
+    hydrationSupport: 6,
+    lightweightFit: 8,
+    soothingSupport: 4,
+    congestionSupport: 6,
+    barrierSupport: 1,
+  },
+
+  skinTypes: [
+    "지성",
+    "수부지",
+    "복합성"
+  ],
+
+  description:
+    "여드름성 피부의 유수분 밸런스와 트러블 관리에 초점을 둔 산뜻한 수분 모이스처라이저",
+
+  // image와 link는 기존 값 그대로
+
+  sensitivitySafe: false,
+  beginnerFriendly: false,
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/vendor_inventory/9276/4bed48ca6753310a5aeb166677ff815f4dd0356dc15ec568e7d8884dffa6.jpg",
   link: "https://link.coupang.com/a/gtk9l8COtg",
   sensitivitySafe: true,
@@ -1637,8 +1668,9 @@ usage: {
   volume: "60ml",
   shortReason: "유분감이 강하고 트러블이 신경 쓰이는 10단계 피부에 맞춘 가벼운 크림입니다.",
   caution: [
-    "나이아신아마이드에 예민한 피부는 소량부터 테스트하세요."
-  ],
+  "살리실산이 포함되어 있어 다른 BHA·AHA 각질 관리 제품과 겹쳐 사용하지 않도록 주의하세요.",
+  "민감하거나 자극받은 피부는 적은 양부터 피부 반응을 확인하세요."
+],
   ratingTags: ["지성 추천", "피지 관리", "수딩 크림"],
 
   usageType: "cream",
