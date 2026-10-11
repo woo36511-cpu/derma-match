@@ -3560,6 +3560,48 @@ evidence: {
     "히알루론산"
   ],
 
+  // 공식 출처 기준 전성분이며 대표 성분(ingredients)과 구분합니다.
+  fullIngredients: [
+    "정제수",
+    "부틸렌글라이콜",
+    "카프릴릭/카프릭트라이글리세라이드",
+    "나이아신아마이드",
+    "아이소펜틸다이올",
+    "세테아릴알코올",
+    "다이메티콘",
+    "폴리글리세릴-10스테아레이트",
+    "베헤닐알코올",
+    "카보머",
+    "다이포타슘글리시리제이트",
+    "포타슘하이드록사이드",
+    "살리실릭애씨드",
+    "다이소듐이디티에이",
+    "에틸헥실글리세린",
+    "소듐하이알루로네이트",
+    "징크클로라이드",
+    "토코페롤",
+  ],
+
+  evidence: {
+    evidenceLevel: "C",
+    officialProductVerified: true,
+    fullIngredientsVerified: true,
+    fullIngredientsMarket: "domestic_official",
+    domesticFormulaVerified: true,
+    concentrationDisclosure: "not_disclosed",
+    purchaseLinkVerified: false,
+    priceVerified: false,
+    currentOfficialProductVerified: true,
+    lastVerifiedAt: "2026-10-11",
+    sources: [
+      {
+        sourceType: "official_domestic_product_page",
+        url: "https://www.aestura.com/m/product/view.do?prdSeq=1110",
+      },
+    ],
+  },
+
+
   careProfile: {
     hydrationSupport: 6,
     lightweightFit: 8,
@@ -4408,6 +4450,41 @@ seasons: ["spring", "summer"],
     "알란토인"
   ],
 
+  // 공식 출처 기준 전성분이며 대표 성분(ingredients)과 구분합니다.
+  fullIngredients: [
+    "미네랄워터",
+    "흰버드나무껍질수",
+    "사과수",
+    "부틸렌글라이콜",
+    "1,2-헥산다이올",
+    "소듐락테이트",
+    "글라이콜릭애씨드",
+    "베타인살리실레이트",
+    "알란토인",
+    "판테놀",
+    "에틸헥산다이올",
+  ],
+
+  evidence: {
+    evidenceLevel: "C",
+    officialProductVerified: true,
+    fullIngredientsVerified: true,
+    fullIngredientsMarket: "domestic_official",
+    domesticFormulaVerified: true,
+    concentrationDisclosure: "not_disclosed",
+    purchaseLinkVerified: false,
+    priceVerified: false,
+    currentOfficialProductVerified: true,
+    lastVerifiedAt: "2026-10-11",
+    sources: [
+      {
+        sourceType: "official_domestic_product_page",
+        url: "https://cosrx.co.kr/shop/shopdetail.html?branduid=191",
+      },
+    ],
+  },
+
+
   skinTypes: [
     "건성",
     "중성",
@@ -4416,14 +4493,14 @@ seasons: ["spring", "summer"],
   ],
 
   description:
-    "건조함은 있지만 좁쌀·블랙헤드·거친 피부결이 신경 쓰일 때 가볍게 시작하기 좋은 각질 정돈 토너",
+    "건조함은 있지만 좁쌀·블랙헤드·거친 피부결이 신경 쓰일 때 피부 반응을 확인하며 사용해야 하는 각질 정돈 토너",
 
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/retail/images/80755316256044-ba3f756a-81ac-4183-85bb-9a14b24708f5.jpg",
 
   link: "https://link.coupang.com/a/hubSfuGY2e",
 
   sensitivitySafe: false,
-  beginnerFriendly: true,
+  beginnerFriendly: false,
 
   seasons: [
     "spring",
@@ -4436,7 +4513,7 @@ seasons: ["spring", "summer"],
   volume: "150ml",
 
   shortReason:
-    "강한 피지 제거 제품보다 부담을 낮춰 좁쌀·블랙헤드 관리를 시작하기 좋은 입문용 토너",
+    "AHA·BHA 성분을 포함한 각질 관리용 토너로 사용 간격과 자극 반응을 확인하면서 사용해야 합니다.",
 
   caution: [
     "처음에는 주 2~3회부터 시작하세요.",
@@ -4447,7 +4524,7 @@ seasons: ["spring", "summer"],
   ratingTags: [
     "좁쌀",
     "블랙헤드",
-    "입문용 각질관리"
+    "AHA/BHA 각질관리"
   ],
 
   usageType: "exfoliating_toner",
@@ -4499,20 +4576,68 @@ seasons: ["spring", "summer"],
     "베타글루칸"
   ],
 
+  // 공식 출처 기준 전성분이며 대표 성분(ingredients)과 구분합니다.
+  fullIngredients: [
+    "Water (Aqua)",
+    "Mandelic Acid",
+    "Butylene Glycol",
+    "Panthenol",
+    "Glycyrrhiza Glabra (Licorice) Root Extract",
+    "Prunus Amygdalus Dulcis (Sweet Almond) Fruit Extract",
+    "Sorbitan Sesquioleate",
+    "Centella Asiatica Extract",
+    "Houttuynia Cordata Extract",
+    "Sorbitol",
+    "Glycerin",
+    "Dimethyl Sulfone",
+    "Beta-Glucan",
+    "Chlorphenesin",
+    "Sodium Citrate",
+    "Arginine",
+    "1,2-Hexanediol",
+    "Ethylhexylglycerin",
+    "Carbomer",
+    "PEG-60 Hydrogenated Castor Oil",
+    "Sodium Hyaluronate",
+    "Natto Gum",
+  ],
+
+  evidence: {
+    evidenceLevel: "C",
+    officialProductVerified: true,
+    fullIngredientsVerified: true,
+    fullIngredientsMarket: "global_official",
+    domesticFormulaVerified: false,
+    concentrationDisclosure: "partially_disclosed",
+    purchaseLinkVerified: false,
+    priceVerified: false,
+    currentOfficialProductVerified: true,
+    lastVerifiedAt: "2026-10-11",
+    sources: [
+      {
+        sourceType: "official_global_product_page",
+        url: "https://www.klairs.com/products/mandelic-acid-5-skin-prep-water",
+      },
+    ],
+  },
+  activeIngredients: [
+    { name: "만델릭애씨드", concentration: 5, unit: "%", concentrationVerified: true, concentrationBasis: "ingredient_fraction", sourceType: "official_global_product_page" },
+  ],
+
   skinTypes: [
   "건성",
   "중성"
 ],
 
   description:
-    "건조하면서 피부결과 좁쌀이 신경 쓰이는 피부가 비교적 부드럽게 각질 관리를 시작하기 좋은 만델산 토너",
+    "건조하면서 피부결과 좁쌀이 신경 쓰이는 피부가 5% 만델산으로 각질·피부결 관리에 사용하는 토너",
 
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/vendor_inventory/0e35/5c88b0a83350961760875b2693c24519d4e416998bcc128ba0b9630d9b7a.jpg",
 
   link: "https://link.coupang.com/a/hub2adwZxI",
 
   sensitivitySafe: false,
-  beginnerFriendly: true,
+  beginnerFriendly: false,
 
   seasons: [
     "spring",
@@ -4524,7 +4649,7 @@ seasons: ["spring", "summer"],
   volume: "120ml",
 
   shortReason:
-    "건조한 피부에서 강한 BHA 대신 피부결과 좁쌀 관리용으로 고려하기 좋은 저강도 AHA 제품",
+    "5% 만델산을 함유한 각질 관리용 제품으로 피부 자극 반응을 확인하면서 사용해야 합니다.",
 
   caution: [
     "민감하거나 장벽이 약한 상태에서는 먼저 소량 테스트하세요.",
