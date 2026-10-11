@@ -189,3 +189,46 @@ test("legacy records without journeyId remain bounded by the next initial survey
     }).activeJourneyRecords,
   ).toEqual([]);
 });
+
+
+test("420 synthetic skin contexts retain four safe available routine slots", () => {
+  const concerns = [
+    "none",
+    "inflammatory_acne",
+    "closed_comedones",
+    "blackhead_sebum",
+    "dehydration",
+    "sensitivity_redness",
+    "oiliness",
+  ];
+  const states = [
+    { careNeeds: {} },
+    { careNeeds: { hydrationNeed: 9, lightTextureNeed: 2 } },
+    { careNeeds: { lightTextureNeed: 9, congestionCareNeed: 7 } },
+    { careNeeds: { soothingNeed: 9, inflammationCareNeed: 8 } },
+    { isSensitive: true, careNeeds: { soothingNeed: 9, hydrationNeed: 7 } },
+    { isSensitive: true, careNeeds: { inflammationCareNeed: 9, soothingNeed: 9 } },
+  ];
+  let scenarios = 0;
+  for (let level = 1; level <= 10; level += 1) {
+    for (const mainConcern of concerns) {
+      for (const state of states) {
+        const routine = buildDynamicRoutine(level, { mainConcern, ...state });
+        expect(Object.keys(routine.products)).toEqual([
+          "cleanser",
+          "toner",
+          "serum",
+          "cream",
+        ]);
+        for (const product of Object.values(routine.products)) {
+          expect(isProductAvailable(product)).toBe(true);
+        }
+        for (const category of ["toner", "serum", "cream"]) {
+          expect(hasExfoliatingActive(routine.products[category])).toBe(false);
+        }
+        scenarios += 1;
+      }
+    }
+  }
+  expect(scenarios).toBe(420);
+});
