@@ -296,3 +296,34 @@ test.each([
   expect(Object.values(routine).every(isProductAvailable)).toBe(true);
   expect(routine.cream.id).not.toBe(24);
 });
+
+
+test("toner audit separates verified retailer list from incompatible product versions", () => {
+  const birchToner = getProductById(15);
+  expect(birchToner.fullIngredients).toHaveLength(21);
+  expect(birchToner.activeIngredients[0]).toMatchObject({
+    name: "자작나무수액",
+    concentration: 10000,
+    unit: "ppm",
+  });
+  expect(birchToner.evidence.domesticFormulaVerified).toBe(false);
+  expect(birchToner.evidence.fullIngredientsMarket).toBe("domestic_retailer");
+
+  const oldAnua = getProductById(9);
+  const birchCream = getProductById(19);
+  expect(isProductAvailable(oldAnua)).toBe(false);
+  expect(isProductAvailable(birchCream)).toBe(false);
+  expect(oldAnua.evidence.fullIngredientsVerified).toBe(false);
+  expect(birchCream.evidence.fullIngredientsVerified).toBe(false);
+});
+
+test("default routines never include unverifiable ID9 and ID19", () => {
+  for (let level = 1; level <= 10; level += 1) {
+    const products = Object.values(
+      buildDynamicRoutine(level, { mainConcern: "none" }).products,
+    );
+    expect(products.map((p) => p.id)).not.toContain(9);
+    expect(products.map((p) => p.id)).not.toContain(19);
+    expect(products.every(isProductAvailable)).toBe(true);
+  }
+});
