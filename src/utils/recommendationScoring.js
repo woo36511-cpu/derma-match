@@ -10,27 +10,68 @@ export function getCareNeedMatchScore(product, careNeeds = {}) {
     soothingNeed = 0,
     congestionCareNeed = 0,
     inflammationCareNeed = 0,
+    barrierCareNeed = 0,
   } = careNeeds || {};
 
   const profile = getProductCareProfile(product);
 
   const recoveryNeed = Math.max(soothingNeed, inflammationCareNeed);
+  const category = product.category || "";
+  const isCleanser = [
+    "cleanser",
+    "cleansing_oil",
+    "cleansing_milk",
+    "gel_cleanser",
+    "bha_cleanser",
+    "enzyme_cleanser",
+  ].includes(category);
+
+  const isLeaveOn = ["toner", "serum", "cream"].includes(category);
+
+  const categoryWeights = isCleanser
+    ? {
+        hydration: 0.12,
+        lightweight: 0.28,
+        soothing: 0.12,
+        congestion: 0.26,
+        barrier: 0.12,
+      }
+    : category === "cream"
+      ? {
+          hydration: 0.26,
+          lightweight: 0.16,
+          soothing: 0.18,
+          congestion: 0.12,
+          barrier: 0.28,
+        }
+      : {
+          hydration: 0.24,
+          lightweight: 0.22,
+          soothing: 0.2,
+          congestion: 0.22,
+          barrier: 0.12,
+        };
 
   let score = 0;
 
   // 필요한 정도가 높을수록
   // 해당 제품 능력치의 영향도도 커짐
-  score += hydrationNeed * profile.hydrationSupport * 0.28;
+  score += hydrationNeed * profile.hydrationSupport * categoryWeights.hydration;
 
-  score += lightTextureNeed * profile.lightweightFit * 0.22;
+  score +=
+    lightTextureNeed * profile.lightweightFit * categoryWeights.lightweight;
 
-  score += soothingNeed * profile.soothingSupport * 0.2;
+  score += soothingNeed * profile.soothingSupport * categoryWeights.soothing;
 
-  score += congestionCareNeed * profile.congestionSupport * 0.2;
+  score +=
+    congestionCareNeed * profile.congestionSupport * categoryWeights.congestion;
 
   // 피부가 예민하거나 염증 신호가 높으면
   // 장벽 지원 능력도 중요하게 반영
-  score += recoveryNeed * profile.barrierSupport * 0.1;
+  score +=
+    Math.max(recoveryNeed, barrierCareNeed) *
+    profile.barrierSupport *
+    categoryWeights.barrier;
 
   // 염증 신호가 높은 사람에게
   // 각질 기능성 제품을 화장품 기본 루틴으로
@@ -43,6 +84,14 @@ export function getCareNeedMatchScore(product, careNeeds = {}) {
   // 민감 안전 제품이 아니라면 추가 패널티
   if (inflammationCareNeed >= 6 && !product.sensitivitySafe) {
     score -= 15;
+  }
+
+  if (isLeaveOn && barrierCareNeed >= 7 && profile.barrierSupport <= 2) {
+    score -= 8;
+  }
+
+  if (isCleanser && hydrationNeed >= 7 && profile.lightweightFit <= 3) {
+    score -= 5;
   }
 
   return score;

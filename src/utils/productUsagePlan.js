@@ -20,6 +20,51 @@ export function getProductEvidenceSnapshot(product) {
   };
 }
 
+export function buildActualUsagePlaceholder() {
+  return {
+    status: "unknown",
+    amount: null,
+    frequency: null,
+    durationDays: null,
+    stoppedEarly: null,
+    stopReason: null,
+    irritationObserved: null,
+    usedAsDirected: null,
+  };
+}
+
+export function buildProductUsageRecord(
+  product,
+  category,
+  usageFeedback = {},
+) {
+  const feedback = usageFeedback?.[product.id] || {};
+
+  return {
+    productId: product.id,
+
+    productNameSnapshot: product.name,
+
+    productVolumeSnapshot: product.volume ?? null,
+
+    category,
+
+    usageStatus: feedback.status ?? "unknown",
+
+    actualUsage: {
+      ...buildActualUsagePlaceholder(),
+      status: feedback.status ?? "unknown",
+      amount: feedback.amount ?? null,
+      frequency: feedback.frequency ?? null,
+      durationDays: feedback.durationDays ?? null,
+      stoppedEarly: feedback.stoppedEarly ?? null,
+      stopReason: feedback.stopReason ?? null,
+      irritationObserved: feedback.irritationObserved ?? null,
+      usedAsDirected: feedback.usedAsDirected ?? null,
+    },
+  };
+}
+
 export function buildProductUsagePlan(
   productsByCategory = {},
   skinType = "",
@@ -65,10 +110,7 @@ export function buildProductUsagePlan(
         // 실제 사용 데이터는
         // 사용자가 답하기 전까지 추정하지 않음
         actualUsage: {
-          amount: null,
-          frequency: null,
-          stoppedEarly: null,
-          stopReason: null,
+          ...buildActualUsagePlaceholder(),
         },
       };
     });

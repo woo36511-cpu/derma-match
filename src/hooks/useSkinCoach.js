@@ -394,6 +394,9 @@ export function useSkinCoach() {
   const userContext = {
     mainConcern: feedbackMainConcern,
     level: nextLevel,
+    careNeeds: feedbackSurveyComplete
+      ? followUpSurveyResult.careNeeds
+      : adjustedSurveyCareNeeds,
     isSensitive:
       getFeedbackValue(answers, "dry") <= -1 ||
       getFeedbackValue(answers, "trouble") >= 1 ||
