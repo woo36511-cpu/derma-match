@@ -7,7 +7,7 @@ export const starterRoutineByLevel = {
   products: {
     cleanser: 32,
     toner: 44,
-    serum: 48,
+    serum: 45,
     cream: 7,
   },
 },
