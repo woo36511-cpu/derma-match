@@ -309,93 +309,553 @@ usage: {
 }
   },
   {
-    id: 5,
-    name: "코스알엑스 BHA 블랙헤드 파워 리퀴드",
-    brand: "코스알엑스",
-    category: "serum",
-    hydrationLevel: 8,
-    texture: "light",
-    concerns: ["acne", "sebum", "pores"],
-    ingredients: ["BHA", "나이아신아마이드"],
-    skinTypes: ["지성", "수부지"],
-    description: "피지와 막힘 관리 보조용으로 보기 좋은 제품",
-    image: "https://thumbnail13.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/e9fb/8effc1bb3005666fa6c031616cf281e7c20366f39bfbaeb2cf70c764ddae.jpg",
-    link: "https://link.coupang.com/a/gmRy1ZCQ2v",
-
-    sensitivitySafe: false,
-    beginnerFriendly: false,
-    seasons: ["spring", "summer", "autumn"],
-    price: 14900,
-    volume: "100ml",
-    shortReason: "피지·각질·블랙헤드 관리가 필요한 지성 피부 쪽에 맞는 편",
-    caution: ["초보자는 매일 사용보다 주 2~3회로 시작하는 편이 안전함", "민감 피부는 자극 가능성 있음"],
-    ratingTags: ["각질관리", "피지관리", "트러블"],
-    usageType: "exfoliating_serum",
-
-usageAmount: {
-  oily: "얇게 1회",
-  normal: "소량만 사용",
-  dry: "국소 부위 위주로 소량"
-},
-
-usage: {
-  when: "저녁 / 주 2~3회부터",
-  howToUse: [
-    "세안 후 피부를 완전히 말립니다.",
-    "피지와 막힘이 고민되는 부위에 얇게 바릅니다.",
-    "처음에는 주 2~3회 정도로 시작합니다.",
-    "사용 후에는 보습제를 충분히 발라줍니다."
+  id: 5,
+  name: "코스알엑스 BHA 블랙헤드 파워 리퀴드",
+  brand: "코스알엑스",
+  category: "serum",
+  hydrationLevel: 8,
+  texture: "light",
+  concerns: [
+    "sebum",
+    "blackhead"
   ],
-  caution: [
-    "매일 사용하면 자극이 생길 수 있습니다.",
-    "눈가와 입가에는 피해서 사용하세요.",
-    "낮에 사용할 경우 자외선 차단제를 꼭 바르세요."
-  ]
-}
-  },
-  {
-    id: 6,
-    name: "이니스프리 그린티 씨드 세럼",
-    brand: "이니스프리",
-    category: "serum",
-    hydrationLevel: 5,
-    texture: "light",
-    concerns: ["hydration"],
-    ingredients: ["녹차", "히알루론산"],
-    skinTypes: ["중성", "복합성"],
-    description: "기본 수분 보충용으로 무난한 세럼",
-    image: "https://thumbnail6.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2025/01/03/14/4/95bab02b-e604-4e03-b452-81e999a0a36b.jpg",
-    link: "https://link.coupang.com/a/gmRDP3XfEG",
-
-    sensitivitySafe: false,
-    beginnerFriendly: true,
-    seasons: ["spring", "summer", "autumn"],
-    price: 18900,
-    volume: "80ml",
-    shortReason: "무난한 수분 보충용으로 중성·복합성 데일리 세럼으로 쓰기 쉬움",
-    caution: ["향에 민감하면 체크 필요"],
-    ratingTags: ["데일리", "수분세럼", "복합성"],
-    usageType: "serum",
-
-usageAmount: {
-  oily: "1~2방울 정도",
-  normal: "2~3방울 정도",
-  dry: "3~4방울 정도"
-},
-
-usage: {
-  when: "토너 다음 단계 / 아침·저녁",
-  howToUse: [
-    "토너 사용 후 적당량을 덜어냅니다.",
-    "얼굴 전체에 얇게 펴 바릅니다.",
-    "흡수될 때까지 손바닥으로 가볍게 눌러줍니다."
+  ingredients: [
+    "베타인살리실레이트(BHA)",
+    "나이아신아마이드",
+    "판테놀",
+    "히알루론산"
   ],
+  skinTypes: [
+    "지성",
+    "수부지"
+  ],
+  description: "국내 베타인살리실레이트 0.9% 처방의 각질·피지·블랙헤드 관리 보조 리퀴드",
+  image: "https://thumbnail13.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/e9fb/8effc1bb3005666fa6c031616cf281e7c20366f39bfbaeb2cf70c764ddae.jpg",
+  link: "https://link.coupang.com/a/gmRy1ZCQ2v",
+  sensitivitySafe: false,
+  beginnerFriendly: false,
+  seasons: [
+    "spring",
+    "summer",
+    "autumn"
+  ],
+  price: 14900,
+  volume: "100ml",
+  shortReason: "각질·피지와 블랙헤드 관리 목적의 리퀴드로, 민감 피부와 입문자의 기본 세럼에는 우선 추천하지 않음",
   caution: [
-    "기능성 성분이 강한 제품은 처음부터 많은 양을 바르지 마세요."
-  ]
-}
+    "국내 공식 베타인살리실레이트 함량은 0.9%로, 글로벌 4% 제품 설명과 구분해야 합니다.",
+    "민감 피부는 자극 가능성이 있어 작은 부위에 소량부터 확인하세요.",
+    "저자극 표기가 무자극이나 염증성 여드름 치료 효과를 보장하지 않습니다."
+  ],
+  ratingTags: [
+    "각질관리",
+    "피지관리",
+    "블랙헤드"
+  ],
+  usageType: "exfoliating_serum",
+  usageAmount: {
+    "oily": "얇게 1회",
+    "normal": "소량만 사용",
+    "dry": "국소 부위 위주로 소량"
   },
-  {
+  usage: {
+    "when": "저녁 / 주 2~3회 이내에서 소량부터 반응 확인",
+    "howToUse": [
+      "세안 후 토너 또는 에센스 단계에서 소량을 사용합니다.",
+      "토너와 함께 사용하면 토너를 충분히 흡수시킨 뒤 고민 부위에 얇게 펴 바릅니다.",
+      "피부 반응에 따라 빈도를 조절하고 사용 후 보습제를 바릅니다."
+    ],
+    "caution": [
+      "처음에는 작은 부위에 소량부터 반응을 확인하세요.",
+      "상처가 있는 부위는 피하고 붉어짐·부어오름·가려움 등 이상 반응이 있으면 중단하고 상담하세요.",
+      "눈가·입가와 자극받은 부위는 피하세요.",
+      "다른 각질 제거제·레티놀·고함량 비타민C 제품과 같은 단계에 겹쳐 바르지 않는 편이 좋습니다.",
+      "낮에는 자외선 차단제를 사용하세요."
+    ]
+  },
+  fullIngredients: [
+    "흰버드나무껍질수",
+    "부틸렌글라이콜",
+    "베타인",
+    "나이아신아마이드",
+    "베타인살리실레이트",
+    "1,2-헥산다이올",
+    "소듐하이드록사이드",
+    "소듐하이알루로네이트",
+    "판테놀",
+    "잔탄검",
+    "에틸헥산다이올"
+  ],
+  activeIngredients: [
+    {
+      "name": "베타인살리실레이트",
+      "concentration": 0.9,
+      "unit": "%",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_product_page"
+    },
+    {
+      "name": "흰버드나무껍질수",
+      "concentration": 65,
+      "unit": "%",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_product_page"
+    },
+    {
+      "name": "나이아신아마이드",
+      "concentration": null,
+      "unit": "%",
+      "concentrationVerified": false,
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "판테놀",
+      "concentration": null,
+      "unit": "%",
+      "concentrationVerified": false,
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "소듐하이알루로네이트",
+      "concentration": null,
+      "unit": "%",
+      "concentrationVerified": false,
+      "sourceType": "official_domestic_full_ingredient_list"
+    }
+  ],
+  careProfile: {
+    "hydrationSupport": 3,
+    "lightweightFit": 9,
+    "soothingSupport": 2,
+    "congestionSupport": 7,
+    "barrierSupport": 1
+  },
+  evidence: {
+    "evidenceLevel": "C",
+    "officialProductVerified": true,
+    "fullIngredientsVerified": true,
+    "fullIngredientsMarket": "domestic_official",
+    "domesticFormulaVerified": true,
+    "concentrationDisclosure": "partially_disclosed",
+    "purchaseLinkVerified": false,
+    "priceVerified": false,
+    "lastVerifiedAt": "2026-10-11",
+    "sources": [
+      {
+        "sourceType": "official_domestic_product_page",
+        "url": "https://www.cosrx.co.kr/m/product_detail.html?brand_uid=1173596"
+      },
+      {
+        "sourceType": "official_global_formula_comparison",
+        "url": "https://www.cosrx.com/products/bha-blackhead-power-liquid"
+      },
+      {
+        "sourceType": "official_global_concentration_comparison",
+        "url": "https://www.cosrx.com/blogs/skinsights/all-about-exfoliation"
+      }
+    ],
+    "marketFormulaDifferenceVerified": true
+  },
+  clinicalEvidence: {
+    "sourceType": "official_material_review",
+    "humanStudyAvailable": false,
+    "brandLowIrritationTestClaimAvailable": true,
+    "studies": [],
+    "note": "국내 공식 저자극 테스트 완료 표기는 확인했으나 시험 방법·표본·기간·기관·정량 결과와 인체시험 여부를 이번 자료에서 확정하지 못했습니다. 후기·원료 특성·글로벌 처방의 설명을 국내 완제품 임상 결과로 옮기지 않습니다."
+  }
+},
+{
+  id: 6,
+  name: "이니스프리 그린티 히알루론산 수분 세럼",
+  brand: "이니스프리",
+  category: "serum",
+  hydrationLevel: 5,
+  texture: "light",
+  concerns: [
+    "hydration"
+  ],
+  ingredients: [
+    "녹차씨오일",
+    "녹차추출물",
+    "히알루론산",
+    "글리세린",
+    "판테놀",
+    "스쿠알란"
+  ],
+  skinTypes: [
+    "중성",
+    "복합성"
+  ],
+  description: "녹차씨오일·히알루론산·글리세린과 판테놀·스쿠알란을 담은 가벼운 수분 보조 세럼",
+  image: "https://thumbnail6.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2025/01/03/14/4/95bab02b-e604-4e03-b452-81e999a0a36b.jpg",
+  link: "https://link.coupang.com/a/gmRDP3XfEG",
+  sensitivitySafe: false,
+  beginnerFriendly: true,
+  seasons: [
+    "spring",
+    "summer",
+    "autumn"
+  ],
+  price: 18900,
+  volume: "80ml",
+  shortReason: "산뜻한 수분 보충이 필요한 중성·복합성 피부에서 고려할 수 있지만 향 성분 반응은 확인이 필요함",
+  caution: [
+    "리모넨·시트랄과 향을 내는 식물 오일이 있어 향 성분에 민감하면 확인하세요.",
+    "저자극·논코메도제닉 시험 표기가 모든 피부의 무자극을 보장하지 않습니다.",
+    "외부 열 자극 시험과 사용감 설문을 홍조·여드름 질환 치료 근거로 해석하지 않습니다."
+  ],
+  ratingTags: [
+    "데일리",
+    "수분세럼",
+    "복합성"
+  ],
+  usageType: "serum",
+  usageAmount: {
+    "oily": "적당량을 얇게 / 소량부터",
+    "normal": "적당량을 골고루",
+    "dry": "적당량 사용 후 건조한 부위만 필요 시 덧바르기"
+  },
+  usage: {
+    "when": "세안 후 첫 단계 또는 에센스 단계 / 아침·저녁",
+    "howToUse": [
+      "세안 후 또는 에센스 단계에서 적당량을 덜어냅니다.",
+      "얼굴에 부드럽게 펴 바르고 가볍게 흡수시킵니다.",
+      "건조한 부위는 피부 반응을 확인하고 소량만 덧바릅니다.",
+      "수분이 부족하면 크림으로 마무리합니다."
+    ],
+    "caution": [
+      "처음에는 작은 부위에 소량부터 반응을 확인하세요.",
+      "상처가 있는 부위는 피하고 붉어짐·부어오름·가려움 등 이상 반응이 있으면 중단하고 상담하세요."
+    ]
+  },
+  fullIngredients: [
+    "정제수*",
+    "프로판다이올*",
+    "글리세린*",
+    "1,2-헥산다이올*",
+    "나이아신아마이드",
+    "베타인",
+    "사카라이드아이소머레이트",
+    "녹차씨오일(2,609 ppm)",
+    "자일리톨",
+    "세테아릴올리베이트",
+    "하이드로제네이티드레시틴",
+    "부틸렌글라이콜*",
+    "솔비탄올리베이트",
+    "락토바실러스발효용해물",
+    "아크릴레이트/C10-30알킬아크릴레이트크로스폴리머",
+    "스쿠알란",
+    "판테놀",
+    "알란토인",
+    "하이드록시에틸아크릴레이트/소듐아크릴로일다이메틸타우레이트코폴리머",
+    "트로메타민",
+    "트라이에틸시트레이트",
+    "에틸헥실글리세린*",
+    "캐롭검",
+    "다이소듐이디티에이*",
+    "리모넨",
+    "녹차추출물(366 ppm)*",
+    "다이포타슘글리시리제이트",
+    "레몬껍질오일",
+    "소듐하이알루로네이트(103 ppm)",
+    "하이알루로닉애씨드(100 ppm)*",
+    "덱스트린",
+    "카카오추출물",
+    "3-O-에틸아스코빅애씨드",
+    "소듐시트레이트",
+    "시트릭애씨드",
+    "솔비탄아이소스테아레이트",
+    "마테잎추출물",
+    "글리세릴올리에이트*",
+    "시트랄",
+    "소두구씨오일",
+    "토코페롤*",
+    "레시틴*",
+    "수크로오스",
+    "라우릴글루코사이드*",
+    "폴리글리세릴-6라우레이트*",
+    "미리스틸글루코사이드*",
+    "스피어민트잎오일",
+    "시트로넬라오일",
+    "갈바눔수지오일",
+    "잔탄검*",
+    "락틱애씨드",
+    "하이드롤라이즈드하이알루로닉애씨드(0.5 ppm)",
+    "소듐하이알루로네이트크로스폴리머(0.2 ppm)",
+    "소듐아세틸레이티드하이알루로네이트(0.01 ppm)"
+  ],
+  activeIngredients: [
+    {
+      "name": "녹차씨오일",
+      "concentration": 2609,
+      "unit": "ppm",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "녹차추출물",
+      "concentration": 366,
+      "unit": "ppm",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "소듐하이알루로네이트",
+      "concentration": 103,
+      "unit": "ppm",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "하이알루로닉애씨드",
+      "concentration": 100,
+      "unit": "ppm",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "하이드롤라이즈드하이알루로닉애씨드",
+      "concentration": 0.5,
+      "unit": "ppm",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "소듐하이알루로네이트크로스폴리머",
+      "concentration": 0.2,
+      "unit": "ppm",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "소듐아세틸레이티드하이알루로네이트",
+      "concentration": 0.01,
+      "unit": "ppm",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "나이아신아마이드",
+      "concentration": null,
+      "unit": "%",
+      "concentrationVerified": false,
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "판테놀",
+      "concentration": null,
+      "unit": "%",
+      "concentrationVerified": false,
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "스쿠알란",
+      "concentration": null,
+      "unit": "%",
+      "concentrationVerified": false,
+      "sourceType": "official_domestic_full_ingredient_list"
+    }
+  ],
+  careProfile: {
+    "hydrationSupport": 8,
+    "lightweightFit": 9,
+    "soothingSupport": 4,
+    "congestionSupport": 0,
+    "barrierSupport": 3
+  },
+  evidence: {
+    "evidenceLevel": "B",
+    "officialProductVerified": true,
+    "fullIngredientsVerified": true,
+    "fullIngredientsMarket": "domestic_official",
+    "domesticFormulaVerified": true,
+    "concentrationDisclosure": "partially_disclosed",
+    "purchaseLinkVerified": false,
+    "priceVerified": false,
+    "lastVerifiedAt": "2026-10-11",
+    "sources": [
+      {
+        "sourceType": "official_domestic_product_page_and_embedded_product_information",
+        "url": "https://www.innisfree.com/kr/ko/dp/product/34116"
+      },
+      {
+        "sourceType": "official_domestic_brand_reported_study",
+        "url": "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img23_250519.png"
+      },
+      {
+        "sourceType": "official_domestic_brand_reported_study",
+        "url": "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img09_250519.png"
+      },
+      {
+        "sourceType": "official_domestic_brand_reported_study",
+        "url": "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img11_250519.png"
+      },
+      {
+        "sourceType": "official_domestic_brand_reported_study",
+        "url": "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img12_250519.png"
+      },
+      {
+        "sourceType": "official_domestic_brand_reported_study",
+        "url": "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img03_250519.png"
+      },
+      {
+        "sourceType": "official_domestic_brand_reported_study",
+        "url": "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img14_250519.png"
+      }
+    ]
+  },
+  clinicalEvidence: {
+    "sourceType": "brand_reported",
+    "humanStudyAvailable": true,
+    "currentFormulaStudyMatchVerified": false,
+    "studies": [
+      {
+        "sampleSize": 30,
+        "studyPeriod": "2022-12-05~2022-12-26",
+        "institute": "(주)글로벌의학연구센터",
+        "populationScope": "성인 여성",
+        "endpoint": "absorption_speed_comparison",
+        "duration": null,
+        "resultRatio": 1.4,
+        "comparator": "GREENTEA+HA 희석액",
+        "note": "공식 헤드라인의 물보다 1.4배는 각주에서 GREENTEA+HA 희석액과 세럼의 비교로 설명합니다. 순수 물 대비 일반적 우위로 확대하지 않습니다."
+      },
+      {
+        "sampleSize": 30,
+        "studyPeriod": "2022-12-05~2022-12-26",
+        "institute": "(주)글로벌의학연구센터",
+        "populationScope": "만 20~49세 성인 여성",
+        "endpoint": "facial_moisture_and_stratum_corneum_distribution",
+        "duration": "after application; timing unspecified",
+        "result": "안면 26개 부위 수분량 증가·각질층 15층까지 보습 성분 관찰 표기",
+        "note": "각질층 관찰을 진피 침투나 전신 수분 공급으로 해석하지 않습니다."
+      },
+      {
+        "sampleSize": 30,
+        "studyPeriod": "2022-12-05~2022-12-26",
+        "institute": "(주)글로벌의학연구센터",
+        "populationScope": "만 20~49세 성인 여성",
+        "endpoint": "temporary_redness_after_heat_irritation",
+        "duration": "after heat irritation; timing unspecified",
+        "resultPercent": 48,
+        "direction": "improvement",
+        "resultScope": "second_highest_improvement_participant",
+        "note": "상위 두 번째 개선율 시험자의 수치라는 각주를 보존합니다. 30명 평균이나 일상 홍조 질환 개선율로 쓰지 않습니다."
+      },
+      {
+        "sampleSize": 30,
+        "studyPeriod": "2022-12-05~2022-12-26",
+        "institute": "(주)글로벌의학연구센터",
+        "populationScope": "만 20~49세 성인 여성",
+        "endpoint": "skin_barrier_damage_improvement",
+        "duration": "3 days",
+        "outcomes": [
+          {
+            "timePoint": "after application",
+            "resultPercent": 67,
+            "direction": "improvement"
+          },
+          {
+            "timePoint": "3 days",
+            "resultPercent": 85.4,
+            "direction": "improvement"
+          }
+        ],
+        "note": "동일 상세에서 그래프는 85%, 아래 요약은 85.4%로 표시합니다. 더 정밀한 표시를 저장하고 정밀도 차이를 기록합니다. 측정 지표를 TEWL로 추정하지 않습니다."
+      },
+      {
+        "sampleSize": 30,
+        "studyPeriod": "2022-12-05~2022-12-26",
+        "institute": "(주)글로벌의학연구센터",
+        "populationScope": "만 20~49세 성인 여성",
+        "endpoint": "moisture_retention",
+        "duration": "72 hours",
+        "result": "브랜드 72시간 보습 지속 표기"
+      },
+      {
+        "sampleSize": null,
+        "studyPeriod": null,
+        "endpoint": "sensitive_skin_primary_irritation",
+        "duration": null,
+        "institute": null,
+        "resultScore": 0,
+        "result": "브랜드 민감 피부 자극지수 0.00·피부과 테스트 완료 표기",
+        "note": "보고서 이미지의 흐린 표본·기간·기관은 확정하지 않았습니다."
+      },
+      {
+        "sampleSize": null,
+        "studyPeriod": null,
+        "endpoint": "non_comedogenic_and_hypoallergy_test",
+        "duration": null,
+        "institute": null,
+        "result": "브랜드 논코메도제닉·하이포알러지 테스트 완료 표기",
+        "note": "모든 피부의 무자극·알레르기 없음·면포 발생 없음 보장은 아닙니다."
+      }
+    ],
+    "note": "브랜드가 공개한 시험 요약입니다. 전체 보고서·대조군·통계와 시험 당시 처방의 현재 처방 동일성은 미확인입니다. 개인의 기대 개선량·질환 치료율·타 제품 대비 효능으로 쓰지 않습니다."
+  },
+  consumerEvidence: {
+    "sourceType": "brand_reported_self_assessment",
+    "studies": [
+      {
+        "sampleSize": 30,
+        "duration": "2 weeks",
+        "studyPeriod": "2023-05-04~2023-05-18",
+        "institute": "(주)ACORN",
+        "populationScope": "만 20~35세 성인 여성",
+        "responseThreshold": null,
+        "outcomes": [
+          {
+            "endpoint": "feeling_of_relief_from_inner_dryness",
+            "agreementPercent": 100
+          }
+        ]
+      },
+      {
+        "sampleSize": 31,
+        "duration": null,
+        "studyPeriod": "2024-05-20~2024-05-31",
+        "institute": "(주)글로벌의학연구센터",
+        "populationScope": "스스로 민감하다고 느끼고 건조 고민이 있는 평균 20대 여성",
+        "responseThreshold": null,
+        "outcomes": [
+          {
+            "endpoint": "makeup_breakdown_feeling",
+            "agreementPercent": 90
+          },
+          {
+            "endpoint": "oiliness_feeling",
+            "agreementPercent": 100
+          },
+          {
+            "endpoint": "immediate_hydration_feeling",
+            "agreementPercent": 100
+          },
+          {
+            "endpoint": "moisture_glow_feeling",
+            "agreementPercent": 100
+          },
+          {
+            "endpoint": "texture_feeling",
+            "agreementPercent": 100
+          }
+        ],
+        "note": "일시적 사용감 설문. 시험 진행 기간을 개인별 사용 기간으로 추정하지 않습니다."
+      }
+    ],
+    "note": "주관적 응답률은 정량 피부 개선율이 아닙니다. 응답 임계값은 미확인입니다. 판매·재구매 순위, 일반 후기, 메타데이터의 과장된 100% 개선 문구는 임상 근거로 쓰지 않습니다."
+  }
+},
+{
     id: 7,
     name: "에스트라 아토베리어 365 크림",
     brand: "에스트라",
@@ -3535,42 +3995,336 @@ seasons: ["spring", "summer"],
 
 {
   id: 47,
-  name: "웰라쥬 리얼 히알루로닉 블루 앰플",
+  name: "웰라쥬 리얼 히알루로닉 블루 100 앰플",
   brand: "웰라쥬",
   category: "serum",
   hydrationLevel: 2,
   texture: "ampoule",
-  concerns: ["hydration", "soothing"],
-  ingredients: ["히알루론산"],
-  skinTypes: ["건성", "중성"],
-  description: "건조함이 강하고 수분감이 빨리 사라지는 피부에 맞춘 보습 앰플입니다.",
+  concerns: [
+    "hydration",
+    "soothing"
+  ],
+  ingredients: [
+    "히알루론산",
+    "글리세린",
+    "판테놀",
+    "베타-글루칸"
+  ],
+  skinTypes: [
+    "건성",
+    "중성"
+  ],
+  description: "글리세린·판테놀과 여러 히알루론산 원료를 담은 가벼운 수분 보조 앰플",
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/retail/images/23109275375806-66e0449b-a752-47ae-af83-e535209617b9.jpg",
   link: "https://link.coupang.com/a/hpwv7OCCzc",
   sensitivitySafe: true,
   beginnerFriendly: true,
-  seasons: ["autumn", "winter", "spring"],
+  seasons: [
+    "autumn",
+    "winter",
+    "spring"
+  ],
   price: 0,
   volume: "100ml",
-  shortReason: "건성 피부의 속당김과 수분 부족을 보완하기 좋은 앰플입니다.",
-  caution: [],
-  ratingTags: ["앰플", "고수분", "건성"],
-
+  shortReason: "건조함과 속당김의 수분 보충용 앰플로 고려할 수 있으며, 브랜드가 보습 관련 인체시험 요약을 공개함",
+  caution: [
+    "제품명의 100과 원료 순도 100%는 앰플 전체가 히알루론산 100%라는 뜻이 아닙니다.",
+    "저자극 시험 표기가 모든 민감 피부의 무자극을 보장하지 않습니다.",
+    "수분 세럼만으로 건조함이 남으면 크림을 함께 사용하세요."
+  ],
+  ratingTags: [
+    "수분앰플",
+    "가벼운보습",
+    "속당김"
+  ],
   usageType: "serum",
   usageAmount: {
-    oily: "1방울 정도",
-    normal: "2~3방울 정도",
-    dry: "3~4방울 정도"
+    "oily": "적당량을 얇게 / 소량부터",
+    "normal": "적당량을 골고루",
+    "dry": "적당량 사용 후 건조한 부위만 필요 시 덧바르기"
   },
   usage: {
-    when: "토너 다음 단계 / 아침·저녁",
-    howToUse: [
-      "토너 사용 후 2~4방울 정도 덜어냅니다.",
-      "건조함이 큰 부위 위주로 먼저 발라줍니다.",
-      "얼굴 전체에 얇게 펴 바르고 충분히 흡수시킵니다."
+    "when": "토너 다음·크림 전 단계 / 아침·저녁",
+    "howToUse": [
+      "토너 사용 후 적당량을 덜어냅니다.",
+      "얼굴에 얇게 펴 바르고 가볍게 흡수시킵니다.",
+      "피부 반응에 따라 건조한 부위만 덧바르고 크림으로 마무리합니다."
     ],
-    caution: [
-      "한 번에 많이 바르면 밀림이 생길 수 있어요."
+    "caution": [
+      "처음에는 작은 부위에 소량부터 반응을 확인하세요.",
+      "상처가 있는 부위는 피하고 붉어짐·부어오름·가려움 등 이상 반응이 있으면 중단하고 상담하세요."
     ]
+  },
+  fullIngredients: [
+    "정제수",
+    "프로판다이올",
+    "펜틸렌글라이콜",
+    "글리세린",
+    "1,2-헥산다이올",
+    "판테놀",
+    "메틸프로판다이올",
+    "소듐아크릴릭애씨드/엠에이코폴리머",
+    "부틸렌글라이콜",
+    "참마뿌리추출물",
+    "잔탄검",
+    "소듐시트레이트",
+    "에틸헥실글리세린",
+    "소듐하이알루로네이트(1,000ppm)",
+    "글라이코실트레할로오스",
+    "하이드로제네이티드스타치하이드롤리세이트",
+    "시트릭애씨드",
+    "라피노오스",
+    "아데노신",
+    "레시틴",
+    "트라이소듐에틸렌다이아민다이석시네이트",
+    "카프릴릴글라이콜",
+    "사카라이드아이소머레이트",
+    "폴리쿼터늄-51",
+    "말라카이트추출물",
+    "알지닌",
+    "소듐디엔에이",
+    "갈랑가갈랑갈추출물",
+    "바이오사카라이드검-1",
+    "사이아노코발아민",
+    "토코페롤",
+    "카프릴릭/카프릭트라이글리세라이드",
+    "하이드로제네이티드레시틴",
+    "하이드롤라이즈드하이알루로닉애씨드(0.100052ppm)",
+    "하이드롤라이즈드소듐하이알루로네이트(0.1ppm)",
+    "수크로오스라우레이트",
+    "소듐스테아로일글루타메이트",
+    "암모늄아크릴로일다이메틸타우레이트/브이피코폴리머",
+    "글라이신",
+    "세린",
+    "히스티딘",
+    "돌콩추출물",
+    "라이소레시틴",
+    "플로레틴",
+    "테트라하이드로피페린",
+    "다이메틸아이소소바이드",
+    "소듐하이알루로네이트크로스폴리머(2.08ppb)",
+    "벤질글라이콜",
+    "하이드롤라이즈드글라이코사미노글리칸",
+    "올레일알코올",
+    "베타-글루칸",
+    "하이드록시프로필트라이모늄하이알루로네이트(0.012ppb)",
+    "하이알루로닉애씨드(0.001ppb)",
+    "소듐아세틸레이티드하이알루로네이트(0.0002ppb)"
+  ],
+  activeIngredients: [
+    {
+      "name": "소듐하이알루로네이트",
+      "concentration": 1000,
+      "unit": "ppm",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "하이드롤라이즈드하이알루로닉애씨드",
+      "concentration": 0.100052,
+      "unit": "ppm",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "하이드롤라이즈드소듐하이알루로네이트",
+      "concentration": 0.1,
+      "unit": "ppm",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "소듐하이알루로네이트크로스폴리머",
+      "concentration": 2.08,
+      "unit": "ppb",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "하이드록시프로필트라이모늄하이알루로네이트",
+      "concentration": 0.012,
+      "unit": "ppb",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "하이알루로닉애씨드",
+      "concentration": 0.001,
+      "unit": "ppb",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "소듐아세틸레이티드하이알루로네이트",
+      "concentration": 0.0002,
+      "unit": "ppb",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "판테놀",
+      "concentration": null,
+      "unit": "%",
+      "concentrationVerified": false,
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "소듐디엔에이",
+      "concentration": null,
+      "unit": "%",
+      "concentrationVerified": false,
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "베타-글루칸",
+      "concentration": null,
+      "unit": "%",
+      "concentrationVerified": false,
+      "sourceType": "official_domestic_full_ingredient_list"
+    }
+  ],
+  careProfile: {
+    "hydrationSupport": 9,
+    "lightweightFit": 8,
+    "soothingSupport": 6,
+    "congestionSupport": 0,
+    "barrierSupport": 2
+  },
+  evidence: {
+    "evidenceLevel": "B",
+    "officialProductVerified": true,
+    "fullIngredientsVerified": true,
+    "fullIngredientsMarket": "domestic_official",
+    "domesticFormulaVerified": true,
+    "concentrationDisclosure": "partially_disclosed",
+    "purchaseLinkVerified": false,
+    "priceVerified": false,
+    "lastVerifiedAt": "2026-10-11",
+    "sources": [
+      {
+        "sourceType": "official_domestic_product_page",
+        "url": "https://www.wellage.co.kr/product/detail.html?product_no=1010"
+      },
+      {
+        "sourceType": "official_domestic_brand_material",
+        "url": "https://www.wellage.co.kr/detail/ha_ample_100_06_04.gif"
+      },
+      {
+        "sourceType": "official_domestic_brand_material",
+        "url": "https://www.wellage.co.kr/detail/ha_ample_100_08_03.gif"
+      },
+      {
+        "sourceType": "official_domestic_brand_material",
+        "url": "https://www.wellage.co.kr/detail/ha_ample_100_13_04.jpg"
+      },
+      {
+        "sourceType": "official_domestic_brand_material",
+        "url": "https://www.wellage.co.kr/detail/ha_ample_100_17_01.gif"
+      },
+      {
+        "sourceType": "official_domestic_brand_material",
+        "url": "https://www.wellage.co.kr/detail/ha_ample_100_20_04.jpg"
+      },
+      {
+        "sourceType": "official_domestic_brand_material",
+        "url": "https://www.wellage.co.kr/detail/ha_ample_100_13_02.jpg"
+      }
+    ],
+    "officialStoreStockStatus": "sold_out_at_verification"
+  },
+  clinicalEvidence: {
+    "sourceType": "brand_reported",
+    "humanStudyAvailable": true,
+    "currentFormulaStudyMatchVerified": false,
+    "studies": [
+      {
+        "sampleSize": null,
+        "studyPeriod": null,
+        "institute": "피엔케이피부임상연구센타(주)",
+        "endpoint": "instant_moisture_density_comparison",
+        "duration": "immediate",
+        "reportedComparisonPercent": 521.9,
+        "comparator": "자사 리얼 히알루로닉 블루 앰플 1세대 100%",
+        "note": "자사 이전 제품을 100%로 둔 비교 홍보 수치입니다. 사용 전 대비 증가율이나 시장 전체 대비 5배 효능으로 해석하지 않습니다. 계산식은 미확인입니다."
+      },
+      {
+        "sampleSize": null,
+        "studyPeriod": null,
+        "institute": "피엔케이피부임상연구센타(주)",
+        "endpoint": "stratum_corneum_moisture_to_30_layers",
+        "duration": "10 seconds after use",
+        "resultPercent": 195.7,
+        "direction": "improvement",
+        "note": "피부 표면 각질층 30층 관련 시험 표기를 보존합니다. 진피 침투·전신 수분·개인의 속당김 개선율로 확대하지 않습니다."
+      },
+      {
+        "sampleSize": null,
+        "studyPeriod": null,
+        "institute": "피엔케이피부임상연구센타(주)",
+        "endpoint": "moisture_retention",
+        "duration": "100 hours after one use",
+        "result": "브랜드 100시간 피부 속 보습 지속력 시험 표기",
+        "note": "상세 정량값·표본·기간은 미확인입니다."
+      },
+      {
+        "sampleSize": null,
+        "studyPeriod": null,
+        "institute": "피엔케이피부임상연구센타(주)",
+        "endpoint": "instant_surface_skin_moisture",
+        "duration": "immediate after one use",
+        "resultPercent": 111,
+        "direction": "increase",
+        "note": "원문 사용 전 33.906·직후 71.545 표기, 즉각적·일시적 결과입니다."
+      },
+      {
+        "sampleSize": null,
+        "studyPeriod": null,
+        "institute": "피엔케이피부임상연구센타(주)",
+        "endpoint": "sensitive_skin_primary_irritation",
+        "duration": null,
+        "result": "브랜드 실제 민감 피부 대상 저자극 표기",
+        "note": "자극지수·표본·기간·부착 및 관찰 방법은 미확인입니다."
+      }
+    ],
+    "note": "브랜드가 공개한 시험 요약입니다. 전체 보고서·대조군·통계와 시험 당시 처방의 현재 처방 동일성은 미확인입니다. 개인의 기대 개선량·질환 치료율·타 제품 대비 효능으로 쓰지 않습니다."
+  },
+  consumerEvidence: {
+    "sourceType": "brand_reported_self_assessment",
+    "sampleSize": null,
+    "duration": null,
+    "studyPeriod": null,
+    "institute": "피엔케이피부임상연구센타(주)",
+    "responseThreshold": "at_least_neutral",
+    "outcomes": [
+      {
+        "endpoint": "inner_dryness_feeling",
+        "agreementPercent": 100
+      },
+      {
+        "endpoint": "layered_hydration_feeling",
+        "agreementPercent": 100
+      },
+      {
+        "endpoint": "plumping_feeling",
+        "agreementPercent": 100
+      },
+      {
+        "endpoint": "lasting_moisture_feeling",
+        "agreementPercent": 100
+      },
+      {
+        "endpoint": "fast_non_sticky_absorption_feeling",
+        "agreementPercent": 100
+      }
+    ],
+    "note": "브랜드 설문에서 보통 이상 응답을 긍정으로 계산한 비율입니다. 척도 전체·표본·기간 미확인. 치료 성공률·수분 개선율이나 엄격한 동의율로 해석하지 않습니다."
   }
 },
 {
