@@ -50,16 +50,141 @@ usage: {
     hydrationLevel: 4,
     texture: "light",
     concerns: ["hydration"],
-    ingredients: ["히알루론산", "판테놀"],
+    ingredients: [
+      "히알루론산",
+      "판테놀",
+      "알란토인",
+      "글리세린",
+      "베타인",
+      "세라마이드엔피",
+      "베타글루칸"
+    ],
+
+    fullIngredients: [
+      "Water",
+      "Butylene Glycol",
+      "Glycerin",
+      "Dipropylene Glycol",
+      "1,2-Hexanediol",
+      "Panthenol",
+      "Sodium Hyaluronate",
+      "Hydrolyzed Hyaluronic Acid",
+      "Sodium Acetylated Hyaluronate",
+      "Sodium Hyaluronate Crosspolymer",
+      "Hydrolyzed Sodium Hyaluronate",
+      "Allantoin",
+      "Trehalose",
+      "Betaine",
+      "Propanediol",
+      "Portulaca Oleracea Extract",
+      "Hamamelis Virginiana (Witch Hazel) Leaf Extract",
+      "Madecassoside",
+      "Madecassic Acid",
+      "Ceramide NP",
+      "Beta-Glucan",
+      "Malachite Extract",
+      "Cholesterol",
+      "Pentylene Glycol",
+      "Glyceryl Acrylate/Acrylic Acid Copolymer",
+      "PVM/MA Copolymer",
+      "Polyglyceryl-10 Laurate",
+      "Xanthan Gum",
+      "Tromethamine",
+      "Carbomer",
+      "Ethylhexylglycerin",
+      "Scutellaria Baicalensis Root Extract",
+      "Paeonia Suffruticosa Root Extract"
+    ],
+
+    activeIngredients: [
+      {
+        name: "5종 히알루론산 복합체",
+        concentration: null,
+        unit: "%",
+        concentrationVerified: false,
+        sourceType: "official_global_product_page"
+      },
+      {
+        name: "판테놀",
+        concentration: null,
+        unit: "%",
+        concentrationVerified: false,
+        sourceType: "official_global_full_ingredient_list"
+      },
+      {
+        name: "알란토인",
+        concentration: null,
+        unit: "%",
+        concentrationVerified: false,
+        sourceType: "official_global_full_ingredient_list"
+      }
+    ],
+
     careProfile: {
-  hydrationSupport: 9,
-  lightweightFit: 10,
-  soothingSupport: 5,
-  congestionSupport: 0,
-  barrierSupport: 3,
-},
+      hydrationSupport: 9,
+      lightweightFit: 10,
+      soothingSupport: 5,
+      congestionSupport: 0,
+      barrierSupport: 3,
+    },
+
+    evidence: {
+      evidenceLevel: "B",
+      officialProductVerified: true,
+      fullIngredientsVerified: true,
+      fullIngredientsMarket: "global_official",
+      domesticFormulaVerified: false,
+      concentrationDisclosure: "not_disclosed",
+      purchaseLinkVerified: false,
+      currentOfficialProductVerified: true,
+      lastVerifiedAt: "2026-10-11",
+      sources: [
+        {
+          sourceType: "official_domestic_product_listing",
+          url: "https://www.torriden.com/goods/goods_list.php?cateCd=001007",
+        },
+        {
+          sourceType: "official_global_product_page",
+          url: "https://torriden.us/products/dive-in-serum",
+        },
+      ],
+    },
+
+    clinicalEvidence: {
+      sourceType: "brand_reported",
+      humanStudyAvailable: true,
+      studies: [
+        {
+          endpoint: "repeat_insult_patch_test",
+          sampleSize: 50,
+          duration: "6_weeks",
+          result: "non_irritant"
+        },
+        {
+          endpoint: "outer_skin_moisture",
+          sampleSize: 20,
+          duration: "immediate",
+          resultPercent: 88.87
+        },
+        {
+          endpoint: "inner_skin_moisture",
+          sampleSize: 20,
+          duration: "immediate",
+          resultPercent: 10.09
+        },
+        {
+          endpoint: "lower_stratum_corneum_moisture",
+          sampleSize: 22,
+          duration: "4_weeks",
+          resultPercent: 14.94
+        }
+      ],
+      note:
+        "토리든 글로벌 공식 페이지의 브랜드 공개 인체적용시험 요약입니다. 독립 임상시험과 동일하게 취급하지 않으며 국내 판매 처방과 시험 처방의 완전한 동일성은 별도 확인이 필요합니다."
+    },
     skinTypes: ["건성", "중성", "수부지"],
-    description: "기본 보습용으로 쓰기 좋은 가벼운 세럼",
+    description:
+      "5종 히알루론산과 판테놀·알란토인을 중심으로 가볍게 수분을 보충하는 저점도 수분 세럼",
     image: "https://thumbnail5.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/076a/53c053161aa6834869885e94909f50b87e42b050165af8bc153b7eaf327d.jpg",
     link: "https://link.coupang.com/a/gmRbsjXonA",
 
@@ -278,16 +403,88 @@ usage: {
     hydrationLevel: 2,
     texture: "rich",
     concerns: ["barrier","hydration"],
-    ingredients: ["세라마이드", "콜레스테롤"],
+    ingredients: [
+      "세라마이드엔피",
+      "콜레스테롤",
+      "스쿠알란",
+      "지방산",
+      "알란토인",
+      "나이아신아마이드"
+    ],
+
+    fullIngredients: [
+      "정제수",
+      "부틸렌글라이콜",
+      "글리세린",
+      "부틸렌글라이콜다이카프릴레이트/다이카프레이트",
+      "세틸에틸헥사노에이트",
+      "스쿠알란",
+      "펜타에리스리틸테트라아이소스테아레이트",
+      "다이카프릴릴카보네이트",
+      "베헤닐알코올",
+      "다이메티콘",
+      "하이드록시프로필비스팔미타마이드엠이에이",
+      "스테아릭애씨드",
+      "베타인",
+      "만니톨",
+      "C14-22알코올",
+      "팔미틱애씨드",
+      "하이드록시프로필비스라우라마이드엠이에이",
+      "아라키딜알코올",
+      "콜레스테롤",
+      "폴리아크릴레이트-13",
+      "C12-20알킬글루코사이드",
+      "알란토인",
+      "아라키딜글루코사이드",
+      "나이아신아마이드",
+      "세라마이드엔피",
+      "글리세릴카프릴레이트",
+      "에틸헥실글리세린",
+      "하이드로제네이티드폴리아이소부텐",
+      "카보머",
+      "트로메타민",
+      "다이메티콘올",
+      "폴리글리세릴-10라우레이트",
+      "하이드로제네이티드레시틴",
+      "에틸헥실팔미테이트",
+      "아크릴레이트/암모늄메타크릴레이트코폴리머",
+      "솔비탄아이소스테아레이트",
+      "실리카",
+      "피토스핑고신",
+      "스핑고리피드",
+      "아라키딕애씨드",
+      "토코페롤",
+      "올레익애씨드"
+    ],
+
     careProfile: {
-  hydrationSupport: 9,
-  lightweightFit: 2,
-  soothingSupport: 5,
-  congestionSupport: 0,
-  barrierSupport: 10,
-},
+      hydrationSupport: 9,
+      lightweightFit: 2,
+      soothingSupport: 5,
+      congestionSupport: 0,
+      barrierSupport: 10,
+    },
+
+    evidence: {
+      evidenceLevel: "B",
+      officialProductVerified: true,
+      fullIngredientsVerified: true,
+      fullIngredientsMarket: "domestic_official",
+      domesticFormulaVerified: true,
+      concentrationDisclosure: "not_disclosed",
+      purchaseLinkVerified: false,
+      currentOfficialProductVerified: true,
+      lastVerifiedAt: "2026-10-11",
+      sources: [
+        {
+          sourceType: "official_domestic_product_page",
+          url: "https://www.aestura.com/m/product/view.do?prdSeq=1021",
+        },
+      ],
+    },
     skinTypes: ["건성", "민감성"],
-    description: "건조하고 장벽이 약할 때 보기 좋은 크림",
+    description:
+      "세라마이드·콜레스테롤·지방산 계열과 보습 성분을 포함해 건조하고 민감한 피부의 장벽 보습에 초점을 둔 고보습 크림",
     image: "https://thumbnail9.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/8222/2abf1f5fb2c41c432e0355b8df2d92a4c106ab1d17af9826382045b53b02.jpg",
     link: "https://link.coupang.com/a/gmRG4mejdc",
 
@@ -327,14 +524,47 @@ usage: {
     hydrationLevel: 6,
     texture: "gel",
     concerns: ["soothing"],
-    ingredients: ["병풀", "판테놀"],
+    ingredients: [
+      "판테놀",
+      "병풀",
+      "나이아신아마이드",
+      "알란토인",
+      "베타글루칸"
+    ],
+
+    ingredientEvidence: {
+      officialProductIdentityVerified: true,
+      secondaryFullIngredientListVerified: true,
+      officialFullIngredientListVerified: false
+    },
+
     careProfile: {
-  hydrationSupport: 7,
-  lightweightFit: 8,
-  soothingSupport: 9,
-  congestionSupport: 0,
-  barrierSupport: 3,
-},
+      hydrationSupport: 7,
+      lightweightFit: 8,
+      soothingSupport: 9,
+      congestionSupport: 0,
+      barrierSupport: 3,
+    },
+
+    evidence: {
+      evidenceLevel: "C",
+      officialProductVerified: true,
+      fullIngredientsVerified: false,
+      concentrationDisclosure: "not_disclosed",
+      purchaseLinkVerified: false,
+      currentOfficialProductVerified: true,
+      lastVerifiedAt: "2026-10-11",
+      sources: [
+        {
+          sourceType: "official_domestic_product_page",
+          url: "https://www.dr-g.co.kr/item/9826",
+        },
+        {
+          sourceType: "secondary_retail_full_ingredient_list",
+          url: "https://www.kurly.com/goods/1001428282",
+        },
+      ],
+    },
     skinTypes: ["수부지", "복합성", "민감성"],
     description: "가볍고 진정용으로 시작하기 좋은 젤크림",
     image: "https://thumbnail3.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/711411626878446-f5a03ad2-1be3-4c58-87f2-3cb245512016.jpg",
@@ -414,15 +644,74 @@ usage: {
   },
   {
     id: 10,
-    name: "셀퓨전씨 약산성 패리어 클렌저",
+    name: "셀퓨전씨 약산성 패리어 클렌징폼",
     brand: "셀퓨전씨",
     category: "cleanser",
     hydrationLevel: 4,
     texture: "mild",
-    concerns: ["barrier"],
-    ingredients: ["판테놀"],
+    concerns: ["hydration", "soothing"],
+
+    ingredients: [
+      "글리세린",
+      "레몬밤잎추출물",
+      "로즈마리닉애씨드",
+      "락토코쿠스발효용해물",
+      "석시닉애씨드"
+    ],
+
+    fullIngredients: [
+      "정제수",
+      "소듐코코일이세티오네이트",
+      "글리세린",
+      "스테아릴알코올",
+      "글리세릴스테아레이트에스이",
+      "코코-베타인",
+      "소듐메틸코코일타우레이트",
+      "레몬밤잎추출물",
+      "로즈마리닉애씨드",
+      "락토코쿠스발효용해물",
+      "석시닉애씨드",
+      "포타슘코코일글리시네이트",
+      "시트릭애씨드",
+      "소듐클로라이드",
+      "카프릴릴글라이콜",
+      "소듐파이테이트",
+      "폴리쿼터늄-67",
+      "부틸렌글라이콜",
+      "페닐프로판올",
+      "레불리닉애씨드",
+      "소듐레불리네이트"
+    ],
+
+    careProfile: {
+      hydrationSupport: 4,
+      lightweightFit: 5,
+      soothingSupport: 5,
+      congestionSupport: 0,
+      barrierSupport: 2,
+    },
+
+    evidence: {
+      evidenceLevel: "B",
+      officialProductVerified: true,
+      fullIngredientsVerified: true,
+      fullIngredientsMarket: "domestic_official",
+      domesticFormulaVerified: true,
+      concentrationDisclosure: "not_disclosed",
+      purchaseLinkVerified: false,
+      currentOfficialProductVerified: true,
+      lastVerifiedAt: "2026-10-11",
+      sources: [
+        {
+          sourceType: "official_domestic_product_page",
+          url: "https://www.cellfusionc.co.kr/product/%EC%95%BD%EC%82%B0%EC%84%B1-%ED%8C%A8%EB%A6%AC%EC%96%B4-%ED%81%B4%EB%A0%8C%EC%A7%95%ED%8F%BC-165ml/267/",
+        },
+      ],
+    },
+
     skinTypes: ["건성", "민감성", "중성"],
-    description: "세정 후 자극 부담을 줄이기 쉬운 클렌저",
+    description:
+      "세안 후 피부 pH 밸런스를 유지하면서 과도한 당김을 줄이는 데 초점을 둔 약산성 클렌징폼",
     image: "https://thumbnail10.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/323292401994452-6ee66fe4-f38d-4633-8fea-f164540d3b76.jpg",
     link: "https://link.coupang.com/a/gmRSF74qaW",
 
@@ -431,7 +720,8 @@ usage: {
     seasons: ["spring", "summer", "autumn", "winter"],
     price: 15900,
     volume: "165ml",
-    shortReason: "세안 후 당김과 자극 부담을 줄이고 싶은 피부에 무난함",
+    shortReason:
+      "세안 후 당김이 신경 쓰이거나 순한 약산성 세안을 원하는 피부에 고려하기 좋은 클렌징폼",
     caution: ["진한 메이크업은 2차 세안이 필요할 수 있음"],
     ratingTags: ["약산성", "민감성", "장벽"],
     usageType: "cleanser",
@@ -2552,8 +2842,26 @@ seasons: ["spring", "summer"],
   texture: "serum",
   concerns: ["hydration", "barrier", "soothing"],
   ingredients: ["세라마이드", "판테놀"],
+
+  isAvailable: false,
+  availabilityReason:
+    "current_product_identity_not_verified",
+
+  evidence: {
+    evidenceLevel: "D",
+    officialProductVerified: false,
+    fullIngredientsVerified: false,
+    concentrationDisclosure: "unknown",
+    purchaseLinkVerified: false,
+    currentOfficialProductVerified: false,
+    lastVerifiedAt: "2026-10-11",
+    note:
+      "현재 에스트라 공식/공식 유통 라인업에서 '아토베리어365 세럼 40ml'과 동일한 현행 제품 신원을 확인하지 못했습니다. 유사 이름 제품으로 덮어쓰지 않고 과거 기록 보존용으로 격리합니다."
+  },
+
   skinTypes: ["건성", "민감성"],
-  description: "피부 장벽이 약하고 쉽게 건조해지는 피부를 위한 장벽 보습 세럼입니다.",
+  description:
+    "현재 제품 신원 재검증이 필요해 신규 추천에서는 제외한 과거 제품 데이터",
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/657x657q90trim/image/vendor_inventory/ee29/5d1491fe3223b17a5dc3d3ca089e1a2ad6fedbe3e43ce30c4ad7d07b93b4.jpg",
   link: "https://link.coupang.com/a/hpwy2BjV0e",
   sensitivitySafe: true,
