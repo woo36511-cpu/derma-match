@@ -1694,40 +1694,353 @@ usage: {
   category: "serum",
   hydrationLevel: 5,
   texture: "mid",
-  concerns: ["barrier", "hydration"],
-  ingredients: ["판테놀"],
-  skinTypes: ["중성", "건성", "수부지"],
-  description: "피부 컨디션과 장벽 보조용으로 보기 좋은 앰플",
+  concerns: [
+    "barrier",
+    "hydration"
+  ],
+  ingredients: [
+    "비피다발효용해물",
+    "글리세린",
+    "나이아신아마이드",
+    "스쿠알란",
+    "히알루론산"
+  ],
+  skinTypes: [
+    "중성",
+    "건성",
+    "수부지"
+  ],
+  description: "비피다 발효 원료·글리세린·히알루론산과 스쿠알란을 담은 수분·장벽 보조 앰플",
   image: "https://thumbnail13.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2026/04/07/17/5/fb583be9-5bd3-4cb5-aaac-daa1e24238d5.png",
   link: "https://link.coupang.com/a/gmS2u5vPNc",
-
   sensitivitySafe: true,
   beginnerFriendly: true,
-  seasons: ["spring", "autumn", "winter"],
+  seasons: [
+    "spring",
+    "autumn",
+    "winter"
+  ],
   price: 28000,
   volume: "50ml",
-  shortReason: "피부 컨디션이 떨어졌을 때 장벽 보조용 세럼으로 보기 좋음",
-  caution: ["아주 가벼운 사용감을 원하는 지성 피부에는 무겁게 느껴질 수 있음"],
-  ratingTags: ["장벽", "앰플", "컨디션"],
-  usageType: "serum",
-
-usageAmount: {
-  oily: "1~2방울 정도",
-  normal: "2~3방울 정도",
-  dry: "3~4방울 정도"
-},
-
-usage: {
-  when: "토너 다음 단계 / 아침·저녁",
-  howToUse: [
-    "토너 사용 후 적당량을 덜어냅니다.",
-    "얼굴 전체에 얇게 펴 바릅니다.",
-    "흡수될 때까지 손바닥으로 가볍게 눌러줍니다."
-  ],
+  shortReason: "건조함과 장벽 보조가 필요할 때 고려할 수 있는 앰플로, 브랜드가 수분·장벽 관련 인체시험 요약을 공개함",
   caution: [
-    "처음에는 적은 양부터 시작하세요."
-  ]
-}
+    "발효 원료·나이아신아마이드 등에 대한 반응은 개인차가 있어 처음에는 작은 부위에 소량부터 확인하세요.",
+    "저자극·민감 피부 시험 완료 표기가 모든 피부의 무자극을 보장하지 않습니다.",
+    "피지·면포나 염증성 트러블 치료용으로 검증된 제품은 아닙니다.",
+    "건조함이 남으면 크림을 함께 사용하세요."
+  ],
+  ratingTags: [
+    "수분",
+    "장벽",
+    "발효앰플"
+  ],
+  usageType: "serum",
+  usageAmount: {
+    "oily": "적당량을 얇게 / 소량부터",
+    "normal": "적당량을 골고루",
+    "dry": "적당량 사용 후 건조한 부위만 필요 시 덧바르기"
+  },
+  usage: {
+    "when": "토너 다음·크림 전 단계 / 아침·저녁",
+    "howToUse": [
+      "토너 사용 후 적당량을 덜어냅니다.",
+      "피부 결을 따라 골고루 펴 바릅니다.",
+      "가볍게 두드려 흡수시킵니다.",
+      "건조함과 피부 반응을 확인하고 필요한 부위에만 덧바릅니다."
+    ],
+    "caution": [
+      "처음에는 작은 부위에 소량부터 사용하세요.",
+      "상처가 있는 부위에는 사용을 피하세요.",
+      "붉어짐·부어오름·가려움 등 이상 반응이 생기면 사용을 중단하고 상담하세요."
+    ]
+  },
+  fullIngredients: [
+    "정제수",
+    "부틸렌글라이콜",
+    "비피다발효용해물(30,000ppm)",
+    "글리세린",
+    "나이아신아마이드",
+    "1,2-헥산다이올",
+    "펜틸렌글라이콜",
+    "스쿠알란",
+    "폴리글리세릴-10라우레이트",
+    "비피다발효여과물(2,046ppm)",
+    "락토바실러스발효용해물",
+    "락토코쿠스발효용해물",
+    "효모발효여과물",
+    "카보머",
+    "하이드로제네이티드레시틴",
+    "트로메타민",
+    "잔탄검",
+    "프로판다이올",
+    "에틸헥실글리세린",
+    "아데노신",
+    "덱스트린",
+    "카카오씨추출물",
+    "소듐하이알루로네이트",
+    "소듐파이테이트",
+    "락토바실러스/호박열매발효여과물",
+    "쿠티박테리움 그라눌로숨발효추출여과물(5ppm)",
+    "카페인",
+    "에델바이스캘러스배양추출물",
+    "꽈리꽃받침추출물",
+    "하이드롤라이즈드알진",
+    "흑효모발효물",
+    "에피갈로카테킨갈레이트",
+    "벤질글라이콜",
+    "하이드롤라이즈드글라이코사미노글리칸",
+    "아시아티코사이드",
+    "아시아틱애씨드",
+    "마데카식애씨드",
+    "하이드록시프로필트라이모늄하이알루로네이트",
+    "소듐하이알루로네이트크로스폴리머",
+    "하이드롤라이즈드하이알루로닉애씨드",
+    "소듐아세틸레이티드하이알루로네이트",
+    "하이알루로닉애씨드",
+    "카퍼트라이펩타이드-1",
+    "하이드롤라이즈드소듐하이알루로네이트",
+    "아세틸헥사펩타이드-8",
+    "포타슘하이알루로네이트"
+  ],
+  activeIngredients: [
+    {
+      "name": "비피다발효용해물",
+      "concentration": 30000,
+      "unit": "ppm",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "비피다발효여과물",
+      "concentration": 2046,
+      "unit": "ppm",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "쿠티박테리움 그라눌로숨발효추출여과물",
+      "concentration": 5,
+      "unit": "ppm",
+      "concentrationVerified": true,
+      "concentrationBasis": "ingredient_fraction",
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "나이아신아마이드",
+      "concentration": null,
+      "unit": "%",
+      "concentrationVerified": false,
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "스쿠알란",
+      "concentration": null,
+      "unit": "%",
+      "concentrationVerified": false,
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "소듐하이알루로네이트",
+      "concentration": null,
+      "unit": "%",
+      "concentrationVerified": false,
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "아데노신",
+      "concentration": null,
+      "unit": "%",
+      "concentrationVerified": false,
+      "sourceType": "official_domestic_full_ingredient_list"
+    }
+  ],
+  careProfile: {
+    "hydrationSupport": 8,
+    "lightweightFit": 7,
+    "soothingSupport": 5,
+    "congestionSupport": 0,
+    "barrierSupport": 7
+  },
+  evidence: {
+    "evidenceLevel": "B",
+    "officialProductVerified": true,
+    "fullIngredientsVerified": true,
+    "fullIngredientsMarket": "domestic_official",
+    "domesticFormulaVerified": true,
+    "concentrationDisclosure": "partially_disclosed",
+    "purchaseLinkVerified": false,
+    "priceVerified": false,
+    "lastVerifiedAt": "2026-10-11",
+    "sources": [
+      {
+        "sourceType": "official_domestic_product_page",
+        "url": "https://manyo.co.kr/goods/goods_view.php?goodsNo=1709"
+      },
+      {
+        "sourceType": "official_domestic_formula_cross_check",
+        "url": "https://www.manyo.co.kr/goods/goods_view.php?goodsNo=1000000499"
+      },
+      {
+        "sourceType": "official_domestic_brand_reported_study",
+        "url": "https://img.manyo.co.kr/page/260618_bifida_ampoule/Bifida_Biome_Complex_Ampoule_1000_03.jpg"
+      },
+      {
+        "sourceType": "official_domestic_texture_and_usage",
+        "url": "https://img.manyo.co.kr/page/260618_bifida_ampoule/Bifida_Biome_Complex_Ampoule_1000_05.jpg"
+      },
+      {
+        "sourceType": "official_us_product_page",
+        "url": "https://manyo.us/products/bifida-biome-complex-ampoule"
+      }
+    ]
+  },
+  clinicalEvidence: {
+    "sourceType": "brand_reported",
+    "humanStudyAvailable": true,
+    "currentFormulaStudyMatchVerified": false,
+    "studies": [
+      {
+        "endpoint": "skin_barrier_and_chemical_irritation_improvement",
+        "sampleSize": 21,
+        "duration": "3 weeks",
+        "studyPeriod": "2020-01-20~2020-03-11",
+        "institute": "(주)한국피부과학연구원",
+        "populationScope": "20~60세 성인 여성",
+        "outcomes": [
+          {
+            "endpoint": "skin_barrier_improvement",
+            "resultPercent": 83.45,
+            "direction": "improvement"
+          },
+          {
+            "endpoint": "chemical_irritation_and_soothing_improvement",
+            "resultPercent": 21.79,
+            "direction": "improvement"
+          }
+        ],
+        "note": "외부 화학적 자극 시험 요약. 측정 지표·계산식은 미확인으로 TEWL 감소율이나 질환 치료율로 해석하지 않습니다."
+      },
+      {
+        "endpoint": "hydration_wrinkles_elasticity_lifting_and_density",
+        "sampleSize": 21,
+        "duration": "4 weeks",
+        "studyPeriod": "2020-11-09~2020-12-08",
+        "institute": "(주)KC피부임상연구센터",
+        "populationScope": "만 30~60세 성인 여성",
+        "outcomes": [
+          {
+            "endpoint": "skin_moisture_content",
+            "resultPercent": 18.551,
+            "direction": "improvement"
+          },
+          {
+            "endpoint": "eye_area_wrinkle_appearance",
+            "resultPercent": 6.526,
+            "direction": "improvement"
+          },
+          {
+            "endpoint": "skin_elasticity",
+            "resultPercent": 4.1814,
+            "direction": "improvement"
+          },
+          {
+            "endpoint": "facial_lifting",
+            "resultPercent": 0.932,
+            "direction": "improvement"
+          },
+          {
+            "endpoint": "skin_density",
+            "resultPercent": 6.402,
+            "direction": "improvement"
+          }
+        ]
+      },
+      {
+        "endpoint": "primary_skin_irritation_patch_test",
+        "sampleSize": 33,
+        "duration": "patch removal then 1 hour and 24 hours follow-up",
+        "studyPeriod": "2020-02-12~2020-02-14",
+        "institute": "(주)KC피부임상연구센터",
+        "populationScope": "만 19~59세 성인 여성",
+        "result": "브랜드 피부 일차자극 테스트 완료·저자극 표기",
+        "note": "패치 부착 시간·정량 자극지수는 미확인입니다."
+      },
+      {
+        "endpoint": "sensitive_skin_primary_irritation_patch_test",
+        "sampleSize": 31,
+        "duration": "patch removal then 1 hour and 24 hours follow-up",
+        "studyPeriod": "2020-02-26~2020-02-28",
+        "institute": "(주)KC피부임상연구센터",
+        "populationScope": "만 19~59세 성인 여성·민감 피부 시험",
+        "result": "브랜드 민감성 피부 사용 적합 테스트 완료 표기",
+        "note": "모든 민감 피부의 무자극·알레르기 없음·논코메도제닉을 보장하지 않습니다."
+      }
+    ],
+    "note": "현재 국내 상세가 공개하는 2020년 브랜드 시험 요약입니다. 전체 보고서·대조군·통계·시험 당시 처방과 현재 전성분의 동일성은 미확인입니다. 수치를 타 제품 대비 효능이나 개인의 기대 개선량으로 쓰지 않습니다."
+  },
+  consumerEvidence: {
+    "sourceType": "brand_reported_self_assessment",
+    "studies": [
+      {
+        "sampleSize": 21,
+        "duration": "4 weeks",
+        "studyPeriod": "2020-11-09~2020-12-08",
+        "institute": "(주)KC피부임상연구센터",
+        "populationScope": "만 30~60세 성인 여성",
+        "responseThreshold": "score_at_least_3",
+        "outcomes": [
+          {
+            "endpoint": "feeling_of_use",
+            "agreementPercent": 100
+          },
+          {
+            "endpoint": "willingness_to_recommend",
+            "agreementPercent": 100
+          },
+          {
+            "endpoint": "overall_satisfaction",
+            "agreementPercent": 100
+          }
+        ],
+        "note": "3점 이상 응답한 사람의 비율이며 척도 전체와 선택지 문구는 미확인입니다."
+      },
+      {
+        "sampleSize": 100,
+        "duration": null,
+        "studyPeriod": "2025-03-17~2025-03-24",
+        "institute": null,
+        "responseThreshold": null,
+        "outcomes": [
+          {
+            "endpoint": "glowpick_evaluation_panel_product_satisfaction",
+            "agreementPercent": 100
+          }
+        ],
+        "note": "글로우픽 평가단의 만족도 홍보이며 임상시험이나 독립 효능 검증으로 취급하지 않습니다."
+      },
+      {
+        "sampleSize": null,
+        "duration": "3 weeks",
+        "studyPeriod": null,
+        "institute": "Korea Research Institution of Dermatology",
+        "responseThreshold": null,
+        "outcomes": [
+          {
+            "endpoint": "overall_feeling_of_use",
+            "agreementPercent": 95.2
+          },
+          {
+            "endpoint": "reported_calming_of_externally_irritated_skin",
+            "agreementPercent": 100
+          }
+        ],
+        "note": "미국 공식 페이지 설문 표기. 국내 시험의 표본·기간을 추정해 옮기거나 국내 만족도 수치와 합치지 않습니다."
+      }
+    ],
+    "note": "주관적 응답률은 정량 피부 개선율·치료 성공률이 아닙니다. 판매 후기·AI 리뷰 요약은 시험 근거에서 제외했습니다."
+  }
 },
 {
   id: 24,
