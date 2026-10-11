@@ -1156,21 +1156,101 @@ usage: {
   category: "serum",
   hydrationLevel: 6,
   texture: "light",
-  concerns: ["soothing"],
-  ingredients: [
-  "병풀",
-  "글리세린",
-],
+  concerns: ["soothing", "hydration"],
+  ingredients: ["병풀", "글리세린", "부틸렌글라이콜"],
 
-careProfile: {
-  hydrationSupport: 5,
-  lightweightFit: 10,
-  soothingSupport: 9,
-  congestionSupport: 0,
-  barrierSupport: 2,
-},
+  // 국내 공식 100ml 상세 이미지와 글로벌 공식 INCI를 대조했습니다.
+  // 대표 성분 목록과 전성분을 구분하며 성분 함량은 추정하지 않습니다.
+  fullIngredients: [
+    "Water",
+    "Glycerin",
+    "Butylene Glycol",
+    "Centella Asiatica Extract",
+    "1,2-Hexanediol",
+    "Cellulose Gum",
+    "Ethylhexylglycerin",
+  ],
+  activeIngredients: [
+    {
+      name: "병풀추출물",
+      concentration: null,
+      unit: "%",
+      concentrationVerified: false,
+      sourceType: "official_domestic_full_ingredient_list",
+    },
+  ],
+
+  // 추천용 내부 평가값이며 임상 효과의 크기나 안전성 확률이 아닙니다.
+  careProfile: {
+    hydrationSupport: 5,
+    lightweightFit: 9,
+    soothingSupport: 7,
+    congestionSupport: 0,
+    barrierSupport: 2,
+  },
+  evidence: {
+    evidenceLevel: "B",
+    officialProductVerified: true,
+    fullIngredientsVerified: true,
+    fullIngredientsMarket: "domestic_official",
+    domesticFormulaVerified: true,
+    concentrationDisclosure: "not_disclosed",
+    purchaseLinkVerified: false,
+    priceVerified: false,
+    lastVerifiedAt: "2026-10-11",
+    sources: [
+      {
+        sourceType: "official_domestic_product_page",
+        url: "https://skin1004korea.com/product/detail.html?product_no=275",
+      },
+      {
+        sourceType: "official_domestic_full_ingredient_list",
+        url: "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777506000-5.jpg",
+      },
+      {
+        sourceType: "official_domestic_brand_reported_study",
+        url: "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777505991-3.jpg",
+      },
+      {
+        sourceType: "official_domestic_brand_reported_study",
+        url: "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777505995-4.jpg",
+      },
+      {
+        sourceType: "official_global_product_page",
+        url: "https://www.skin1004.com/products/skin1004-madagascar-centella-ampoule",
+      },
+    ],
+  },
+  clinicalEvidence: {
+    sourceType: "brand_reported",
+    humanStudyAvailable: true,
+    studies: [
+      {
+        endpoint: "skin_irritation_test",
+        sampleSize: 32,
+        studyPeriod: "2019-01-22/2019-01-25",
+        institute: "대한피부과학연구원",
+        result: "test_completed",
+      },
+      {
+        endpoint: "non_comedogenic_test",
+        sampleSize: 20,
+        studyPeriod: "2020-04-13/2020-06-05",
+        institute: "한방바이오산업 임상지원센터",
+        result: "brand_reported_suitable_for_acne_prone_skin",
+      },
+      {
+        endpoint: "sebum_improvement",
+        sampleSize: 20,
+        duration: "2_weeks",
+        resultPercent: 19.3,
+      },
+    ],
+    note:
+      "국내 공식 상세 이미지의 브랜드 공개 시험 요약입니다. 전체 보고서·대조군·통계 정보와 현재 판매 처방의 시험 당시 동일성은 확인하지 못했습니다. 피부자극 시험 완료를 무자극 보장으로, 논코메도제닉·피지 결과를 여드름 치료 효과로 해석하지 않습니다.",
+  },
   skinTypes: ["수부지", "민감성", "복합성"],
-  description: "예민하고 붉어진 피부를 편안하게 진정시키기 좋은 앰플",
+  description: "병풀추출물과 글리세린·부틸렌글라이콜을 포함한 가벼운 워터 제형의 수분·진정 보조 앰플",
   image: "https://t5a.coupangcdn.com/thumbnails/remote/212x212ex/image/vendor_inventory/image_audit/prod/662b1b6e-a846-4bda-8855-8ff7a366823f_fixing_v2.png",
   link: "https://link.coupang.com/a/gmTeWUCFqK",
 
@@ -1179,8 +1259,13 @@ careProfile: {
   seasons: ["spring", "summer", "autumn"],
   price: 18900,
   volume: "100ml",
-  shortReason: "가볍고 순한 진정 앰플이라 수부지·민감 피부 입문용으로 무난함",
-  caution: ["건성 피부는 단독 사용 시 보습이 부족할 수 있음"],
+  shortReason: "가벼운 수분·진정 보조용으로 고려할 수 있으며, 병풀 함량과 진정 효과의 크기는 확인되지 않았습니다.",
+  caution: [
+    "병풀추출물과 개별 유효성분의 함량은 공개되지 않았습니다.",
+    "피부자극·논코메도제닉 시험은 모든 사람의 무자극이나 여드름 치료 효과를 보장하지 않습니다.",
+    "식물 추출물에 민감한 경우 적은 양부터 반응을 확인하세요.",
+    "건성 피부는 단독 사용 시 보습이 부족할 수 있습니다.",
+  ],
   ratingTags: ["진정", "병풀", "민감성"]
   ,
 
