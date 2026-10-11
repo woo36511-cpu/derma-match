@@ -836,10 +836,108 @@ usage: {
   category: "serum",
   hydrationLevel: 8,
   texture: "light",
-  concerns: ["sebum","pores"],
-  ingredients: ["나이아신아마이드"],
+  concerns: ["sebum"],
+  ingredients: ["나이아신아마이드", "징크PCA", "글리세린", "히알루론산", "판테놀", "알란토인"],
+  fullIngredients: [
+    "정제수",
+    "프로판다이올",
+    "나이아신아마이드(10%)",
+    "베타인",
+    "글리세린",
+    "1,2-헥산다이올",
+    "징크피씨에이",
+    "소듐하이알루로네이트",
+    "알로에베라잎추출물",
+    "알란토인",
+    "다이포타슘글리시리제이트",
+    "판테놀",
+    "녹차추출물",
+    "엘더꽃추출물",
+    "여주열매추출물",
+    "에델바이스추출물",
+  ],
+  activeIngredients: [
+    {
+      name: "나이아신아마이드",
+      concentration: 10,
+      unit: "%",
+      concentrationVerified: true,
+      concentrationBasis: "ingredient_fraction",
+      sourceType: "official_domestic_product_detail",
+    },
+    {
+      name: "징크피씨에이",
+      concentration: 1,
+      unit: "%",
+      concentrationVerified: true,
+      concentrationBasis: "ingredient_fraction",
+      sourceType: "official_domestic_product_detail",
+    },
+    {
+      name: "소듐하이알루로네이트",
+      concentration: null,
+      unit: "%",
+      concentrationVerified: false,
+      sourceType: "official_domestic_product_detail",
+    },
+    {
+      name: "판테놀",
+      concentration: null,
+      unit: "%",
+      concentrationVerified: false,
+      sourceType: "official_domestic_product_detail",
+    },
+  ],
+  // 내부 휴리스틱입니다. 10%·1%나 브랜드 효능 그래프를 완제품 개선율로 환산하지 않습니다.
+  careProfile: {
+    hydrationSupport: 3,
+    lightweightFit: 8,
+    soothingSupport: 2,
+    congestionSupport: 3,
+    barrierSupport: 1,
+  },
+  evidence: {
+    evidenceLevel: "C",
+    officialProductVerified: true,
+    fullIngredientsVerified: true,
+    fullIngredientsMarket: "domestic_official",
+    domesticFormulaVerified: true,
+    concentrationDisclosure: "partially_disclosed",
+    purchaseLinkVerified: false,
+    priceVerified: false,
+    lastVerifiedAt: "2026-10-11",
+    sources: [
+      {
+        sourceType: "official_domestic_product_page",
+        url: "https://www.cosdebaha.co.kr/product/n-세럼-30ml/70/",
+      },
+      {
+        sourceType: "official_domestic_full_ingredient_list",
+        url: "https://ecimg.cafe24img.com/pg2348b91183604049/jainaface/web/upload/NNEditor/20260909/N_02.jpg",
+      },
+      {
+        sourceType: "official_domestic_concentration_claim",
+        url: "https://ecimg.cafe24img.com/pg2348b91183604049/jainaface/web/upload/NNEditor/20260909/N_01.jpg",
+      },
+      {
+        sourceType: "official_global_product_page",
+        url: "https://cosdebahaofficial.com/products/niacinamide-serum-30ml",
+      },
+      {
+        sourceType: "official_brand_usage_guidance",
+        url: "https://www.cosdebaha.com/blogs/news/niacinamide-serum-important-information",
+      },
+    ],
+  },
+  clinicalEvidence: {
+    sourceType: "official_material_review",
+    humanStudyAvailable: false,
+    studies: [],
+    note:
+      "확인한 공식 자료에서 이 완제품의 인체시험 표본·방법·기간·결과를 찾지 못했습니다. 원료 특성에 한정된 효능 설명과 마케팅 그래프는 임상 측정값이 아닙니다. 시험 부재를 확정하는 기록은 아니며 피지·모공 관리 설명을 여드름 치료나 직접적인 막힘 제거 근거로 확대하지 않습니다.",
+  },
   skinTypes: ["지성", "수부지"],
-  description: "유분 밸런스와 모공 관리용 세럼",
+  description: "나이아신아마이드 10%·징크PCA 1%와 보습 성분을 포함한 유분·피부 톤 관리 보조 세럼",
   image: "https://thumbnail8.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/f305/1e9c347b53760f6700536ed4988c0bc515792e70d082a0db853506d31283.png",
   link: "https://link.coupang.com/a/gmR8QVtMya",
   sensitivitySafe: false,
@@ -847,26 +945,33 @@ usage: {
   seasons: ["spring", "summer", "autumn"],
   price: 21000,
   volume: "30ml",
-  shortReason: "피지와 모공 관리용으로 보기 좋은 세럼",
-  caution: ["초보자는 소량부터 시작"],
-  ratingTags: ["유분관리", "모공"],
+  shortReason: "번들거림 관리 보조용으로 고려할 수 있는 고함량 세럼으로, 처음에는 1~2방울부터 사용하세요.",
+  caution: [
+    "고함량 나이아신아마이드 제품으로 개인에 따라 따가움이나 눈시림이 생길 수 있습니다.",
+    "처음에는 작은 부위에 소량으로 반응을 확인하고, 자극이 생기면 사용을 중단하세요.",
+    "징크PCA 1%는 징크PCA 원료의 함량이며 순수 아연 1%를 뜻하지 않습니다.",
+    "여드름 치료나 모공 막힘 제거 효과가 확인된 제품으로 해석하지 않습니다.",
+  ],
+  ratingTags: ["유분관리", "피부톤"],
   usageType: "serum",
 
 usageAmount: {
   oily: "1~2방울 정도",
-  normal: "2~3방울 정도",
-  dry: "3~4방울 정도"
+  normal: "1~2방울부터 시작",
+  dry: "1~2방울부터 시작, 건조하면 보습 크림으로 보완"
 },
 
 usage: {
-  when: "토너 다음 단계 / 아침·저녁",
+  when: "토너 다음, 크림 전 / 아침 또는 저녁, 피부 반응에 따라 조절",
   howToUse: [
-    "토너 사용 후 적당량을 덜어냅니다.",
+    "사용 전 작은 부위에 소량을 발라 피부 반응을 확인합니다.",
+    "토너 사용 후 세럼 1~2방울을 덜어냅니다.",
     "얼굴 전체에 얇게 펴 바릅니다.",
-    "흡수될 때까지 손바닥으로 가볍게 눌러줍니다."
+    "흡수 후 보습 크림을 바르고, 낮에는 자외선 차단제로 마무리합니다."
   ],
   caution: [
-    "기능성 성분이 강한 제품은 처음부터 많은 양을 바르지 마세요."
+    "눈 주위를 피하고, 따가움이나 눈시림 등 자극이 생기면 사용을 중단하세요.",
+    "많이 바르면 끈적일 수 있으니 한 번에 사용량을 늘리지 마세요."
   ]
 }
 },
