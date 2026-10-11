@@ -309,7 +309,34 @@ usage: {
     hydrationLevel: 5,
     texture: "mild",
     concerns: [],
-    ingredients: ["글리세린","판테놀","나이아신아마이드",],
+    ingredients: ["글리세린", "판테놀", "나이아신아마이드"],
+    fullIngredients: [
+      "Aqua",
+      "Glycerin",
+      "Cetearyl Alcohol",
+      "Panthenol",
+      "Niacinamide",
+      "Pantolactone",
+      "Xanthan Gum",
+      "Sodium Cocoyl Isethionate",
+      "Sodium Benzoate",
+      "Citric Acid",
+    ],
+    evidence: {
+      evidenceLevel: "C",
+      officialProductVerified: true,
+      fullIngredientsVerified: true,
+      fullIngredientsMarket: "domestic_official_other_volume",
+      domesticFormulaVerified: false,
+      concentrationDisclosure: "not_disclosed",
+      purchaseLinkVerified: false,
+      priceVerified: false,
+      lastVerifiedAt: "2026-10-11",
+      sources: [
+        { sourceType: "official_domestic_product_page", url: "https://www.cetaphil.co.kr/cleansers/%EC%A0%A0%ED%8B%80-%EC%8A%A4%ED%82%A8-%ED%81%B4%EB%A0%8C%EC%A0%80/KR_302990110227.html" },
+      ],
+      note: "국내 공식 젠틀 스킨 클렌저 페이지의 10개 INCI를 기록했습니다. 해당 공식 페이지의 연관 용량은 473ml이며 DB 500ml 쿠팡 옵션의 처방/용량 동일성은 미확인입니다. 브랜드 94% 소비자 응답은 피부 개선율로 저장하지 않았습니다.",
+    },
 careProfile: {
   hydrationSupport: 4,
   lightweightFit: 5,
@@ -3157,7 +3184,32 @@ usage: {
   hydrationLevel: 1,
   texture: "milk",
   concerns: [ "barrier"],
-  ingredients: ["판테놀"],
+  ingredients: ["스쿠알란", "글리세린"],
+  fullIngredients: [
+      "WATER (AVÈNE THERMAL SPRING WATER)",
+      "SQUALANE",
+      "CAPRYLIC / CAPRIC TRIGLYCERIDE",
+      "GLYCERIN",
+      "BEHENYL ALCOHOL",
+      "SODIUM ACRYLATES/C10-30-ALKYL ACRYLATE CROSSPOLYMER",
+      "CARBOMER",
+    ],
+  isAvailable: false,
+  evidence: {
+    evidenceLevel: "D",
+    officialProductVerified: true,
+    fullIngredientsVerified: true,
+    fullIngredientsMarket: "us_official_discontinued",
+    domesticFormulaVerified: false,
+    concentrationDisclosure: "not_disclosed",
+    purchaseLinkVerified: false,
+    priceVerified: false,
+    lastVerifiedAt: "2026-10-11",
+    sources: [
+      { sourceType: "official_us_discontinued_product_page", url: "https://www.aveneusa.com/tolerance-extreme-cleansing-lotion" },
+    ],
+    note: "미국 공식몰에서 해당 7성분 로션이 단종으로 안내됩니다. 미국 단종은 한국 판매 중단을 확정하지 않으며, 현재 등록된 200ml 국내/쿠팡 옵션의 처방 동일성은 미확인입니다. 기존 판테놀 표기가 미국 공식 7종에 없어 제거하고 매칭 확인 전 추천을 중단합니다.",
+  },
   skinTypes: ["민감성", "건성"],
   description: "극민감 피부를 위한 저자극 클렌징",
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/212x212q90trim/image/vendor_inventory/2599/84580b2bf08fa177039b211c6b3f7373b0d606fabea0fe50b253a7751611.jpg",
@@ -3169,7 +3221,7 @@ usage: {
   price: 28000,
   volume: "200ml",
 
-  shortReason: "예민한 피부도 부담 없이 사용 가능",
+  shortReason: "과거 민감성 피부용 클렌징 로션으로 판매되었으나 현재 구매 제품 확인이 필요합니다.",
 
   ratingTags: ["장벽", "민감성", "저자극"],
 
@@ -3186,7 +3238,7 @@ usage: {
     howToUse: [
       "얼굴 전체에 펴 바릅니다.",
       "부드럽게 마사지합니다.",
-      "미온수로 헹궈냅니다."
+      "화장솜을 사용해 부드럽게 닦아냅니다."
     ],
     caution: [
       "워터프루프 제품 제거에는 적합하지 않습니다."
