@@ -686,6 +686,53 @@ usage: {
     "트레할로오스"
   ],
 
+  fullIngredients: [
+    "Water",
+    "Butylene Glycol",
+    "Glycerin",
+    "1,2-Hexanediol",
+    "Hydrogenated Didecene",
+    "Allantoin",
+    "Trehalose",
+    "Hamamelis Virginiana (Witch Hazel) Extract",
+    "Panthenol",
+    "Hydrolyzed Hyaluronic Acid",
+    "Sodium Hyaluronate",
+    "Sodium Hyaluronate Crosspolymer",
+    "Sodium Acetylated Hyaluronate",
+    "Hydrolyzed Sodium Hyaluronate",
+    "Glyceryl Acrylate/Acrylic Acid Copolymer",
+    "PVM/MA Copolymer",
+    "Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer",
+    "2,3-Butanediol",
+    "Cetearyl Alcohol",
+    "C14-22 Alcohols",
+    "C12-20 Alkyl Glucoside",
+    "Pentylene Glycol",
+    "Sorbitan Isostearate",
+    "Caprylic/Capric Triglyceride",
+    "Melia Azadirachta Leaf Extract",
+    "Melia Azadirachta Flower Extract",
+    "Coccinia Indica Fruit Extract",
+    "Solanum Melongena (Eggplant) Fruit Extract",
+    "Ocimum Sanctum Leaf Extract",
+    "Curcuma Longa (Turmeric) Root Extract",
+    "Corallina Officinalis Extract",
+    "Salvia Sclarea (Clary) Extract",
+    "Lavandula Angustifolia (Lavender) Flower Extract",
+    "Hyacinthus Orientalis (Hyacinth) Extract",
+    "Chamomilla Recutita (Matricaria) Flower Extract",
+    "Centaurea Cyanus Flower Extract",
+    "Borago Officinalis Extract",
+    "Disodium EDTA",
+    "Carbomer",
+    "Tromethamine",
+    "Xanthan Gum",
+    "Glutathione",
+    "Malachite Extract",
+    "Ethylhexylglycerin",
+  ],
+
   activeIngredients: [
     {
       name: "5종 히알루론산 복합체",
@@ -726,7 +773,18 @@ usage: {
     domesticFormulaVerified: false,
     concentrationDisclosure: "not_disclosed",
     purchaseLinkVerified: false,
-    lastVerifiedAt: "2026-10-10",
+    currentOfficialProductVerified: true,
+    lastVerifiedAt: "2026-10-11",
+    sources: [
+      {
+        sourceType: "official_domestic_product_page",
+        url: "https://www.torriden.com/goods/goods_view.php?goodsNo=439",
+      },
+      {
+        sourceType: "official_global_product_page",
+        url: "https://torriden.us/products/dive-in-soothing-cream",
+      },
+    ],
   },
 
   clinicalEvidence: {
@@ -918,10 +976,17 @@ usage: {
   evidence: {
     evidenceLevel: "C",
     officialProductVerified: true,
+    currentRetailListingVerified: true,
     fullIngredientsVerified: false,
     concentrationDisclosure: "not_disclosed",
     purchaseLinkVerified: false,
-    lastVerifiedAt: "2026-10-10",
+    lastVerifiedAt: "2026-10-11",
+    sources: [
+      {
+        sourceType: "official_retail_product_page",
+        url: "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000189181",
+      },
+    ],
   },
 
   skinTypes: [
@@ -1727,6 +1792,56 @@ usage: {
   "히알루론산"
 ],
 
+fullIngredients: [
+  "Water",
+  "Glycerin",
+  "Sodium Cocoyl Alaninate",
+  "Disodium Cocoamphodiacetate",
+  "Butylene Glycol",
+  "Sodium Methyl Cocoyl Taurate",
+  "1,2-Hexanediol",
+  "Lauryl Hydroxysultaine",
+  "Xanthan Gum",
+  "Sodium Chloride",
+  "Caprylyl Glycol",
+  "Acrylates/C10-30 Alkyl Acrylate Crosspolymer",
+  "Camellia Sinensis Leaf Powder",
+  "Camellia Sinensis Leaf",
+  "Camellia Sinensis Leaf Extract",
+  "Sodium Phytate",
+  "Malt Extract",
+  "Hexylene Glycol",
+  "Oenothera Biennis (Evening Primrose) Flower Extract",
+  "Pinus Palustris Leaf Extract",
+  "Pueraria Thunbergiana Root Extract",
+  "Ulmus Davidiana Root Extract",
+  "Ethylhexylglycerin",
+  "Hydrolyzed Glycosaminoglycans",
+  "Propanediol",
+  "Sodium Hyaluronate Crosspolymer",
+  "Sodium Hyaluronate",
+  "Benzyl Glycol",
+  "Hydrolyzed Hyaluronic Acid",
+  "Hyaluronic Acid",
+],
+
+activeIngredients: [
+  {
+    name: "녹차 성분",
+    concentration: null,
+    unit: "%",
+    concentrationVerified: false,
+    sourceType: "official_global_full_ingredient_list",
+  },
+  {
+    name: "히알루론산 복합 성분",
+    concentration: null,
+    unit: "%",
+    concentrationVerified: false,
+    sourceType: "official_global_full_ingredient_list",
+  },
+],
+
 careProfile: {
   hydrationSupport: 4,
   lightweightFit: 9,
@@ -1738,10 +1853,18 @@ careProfile: {
 evidence: {
   evidenceLevel: "B",
   officialProductVerified: true,
-  fullIngredientsVerified: false,
-  concentrationDisclosure: "unknown",
+  fullIngredientsVerified: true,
+  fullIngredientsMarket: "global_official",
+  domesticFormulaVerified: false,
+  concentrationDisclosure: "not_disclosed",
   purchaseLinkVerified: false,
-  lastVerifiedAt: "2026-10-10",
+  lastVerifiedAt: "2026-10-11",
+  sources: [
+    {
+      sourceType: "official_global_product_page",
+      url: "https://isntree-global.com/products/isntree-green-tea-fresh-cleanser-120ml",
+    },
+  ],
 },
 
   skinTypes: ["지성", "수부지"],
@@ -2059,14 +2182,125 @@ seasons: ["spring", "summer"],
   hydrationLevel: 2,
   texture: "watery",
   concerns: ["hydration", "soothing"],
-  ingredients: ["히알루론산", "판테놀"],
+  ingredients: [
+    "히알루론산",
+    "판테놀",
+    "알란토인",
+    "글리세린",
+    "베타인",
+    "트레할로오스",
+    "쇠비름추출물"
+  ],
+
+  fullIngredients: [
+    "Water",
+    "Butylene Glycol",
+    "Dipropylene Glycol",
+    "1,2-Hexanediol",
+    "Glycerin",
+    "Betaine",
+    "Allantoin",
+    "Panthenol",
+    "Portulaca Oleracea Extract",
+    "Trehalose",
+    "Sodium Hyaluronate",
+    "Hydrolyzed Hyaluronic Acid",
+    "Sodium Hyaluronate Crosspolymer",
+    "Hydrolyzed Sodium Hyaluronate",
+    "Sodium Acetylated Hyaluronate",
+    "2,3-Butanediol",
+    "Pentylene Glycol",
+    "Malachite Extract",
+    "Disodium EDTA",
+    "Ethylhexylglycerin"
+  ],
+
+  activeIngredients: [
+    {
+      name: "5종 히알루론산 복합체",
+      concentration: null,
+      unit: "%",
+      concentrationVerified: false,
+      sourceType: "official_global_product_page"
+    },
+    {
+      name: "판테놀",
+      concentration: null,
+      unit: "%",
+      concentrationVerified: false,
+      sourceType: "official_global_full_ingredient_list"
+    },
+    {
+      name: "알란토인",
+      concentration: null,
+      unit: "%",
+      concentrationVerified: false,
+      sourceType: "official_global_full_ingredient_list"
+    }
+  ],
+
   careProfile: {
-  hydrationSupport: 8,
-  lightweightFit: 10,
-  soothingSupport: 6,
-  congestionSupport: 0,
-  barrierSupport: 3,
-},
+    hydrationSupport: 8,
+    lightweightFit: 10,
+    soothingSupport: 6,
+    congestionSupport: 0,
+    barrierSupport: 3,
+  },
+
+  evidence: {
+    evidenceLevel: "B",
+    officialProductVerified: true,
+    fullIngredientsVerified: true,
+    fullIngredientsMarket: "global_official",
+    domesticFormulaVerified: false,
+    concentrationDisclosure: "not_disclosed",
+    purchaseLinkVerified: false,
+    currentOfficialProductVerified: true,
+    lastVerifiedAt: "2026-10-11",
+    sources: [
+      {
+        sourceType: "official_domestic_product_page",
+        url: "https://www.torriden.com/goods/goods_view.php?goodsNo=2269",
+      },
+      {
+        sourceType: "official_global_product_page",
+        url: "https://torriden.us/products/dive-in-toner",
+      },
+    ],
+  },
+
+  clinicalEvidence: {
+    sourceType: "brand_reported",
+    humanStudyAvailable: true,
+    studies: [
+      {
+        endpoint: "repeat_insult_patch_test",
+        sampleSize: 50,
+        duration: "6_weeks",
+        result: "non_irritant"
+      },
+      {
+        endpoint: "skin_smoothness",
+        sampleSize: 22,
+        duration: "immediate",
+        resultPercent: 13.24
+      },
+      {
+        endpoint: "lower_stratum_corneum_hydration",
+        sampleSize: 20,
+        duration: "immediate",
+        resultPercent: 112.5
+      },
+      {
+        endpoint: "sebum_reduction",
+        sampleSize: 20,
+        duration: "immediate",
+        resultPercent: 80.76
+      }
+    ],
+    note:
+      "토리든 글로벌 공식 페이지의 브랜드 공개 인체적용시험 요약입니다. 독립 임상시험과 동일하게 취급하지 않으며 국내 판매 처방과 시험 처방의 완전한 동일성은 별도 확인이 필요합니다."
+  },
   skinTypes: ["건성", "민감성"],
   description: "속당김이 느껴지는 피부에 가볍게 수분을 여러 번 채우기 좋은 수분 토너입니다.",
   image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/vendor_inventory/c9d2/991f837bda30447b064f67677810e24a4d1019b7e369c2158d61a3cc0981.png",
