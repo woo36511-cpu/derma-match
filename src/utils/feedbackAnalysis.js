@@ -40,7 +40,7 @@ export function getFeedbackOptionValue(feedbackAnswers = {}, id) {
 }
 
 export function buildFeedbackConfounders(feedbackAnswers = {}) {
-  return {
+  const confounders = {
     otherSkincareChange: getFeedbackOptionValue(
       feedbackAnswers,
       "otherSkincareChange",
@@ -62,6 +62,38 @@ export function buildFeedbackConfounders(feedbackAnswers = {}) {
       feedbackAnswers,
       "environmentChange",
     ),
+  };
+
+  const majorFlags = [
+    confounders.otherSkincareChange === "multiple",
+    confounders.sleepStressChange === "major",
+    confounders.dietChange === "major",
+    confounders.medicationSupplementChange === "changed",
+    confounders.environmentChange === "changed",
+  ];
+
+  const moderateFlags = [
+    confounders.otherSkincareChange === "one",
+    confounders.sleepStressChange === "mild",
+    confounders.dietChange === "mild",
+  ];
+
+  const majorCount = majorFlags.filter(Boolean).length;
+  const moderateCount = moderateFlags.filter(Boolean).length;
+
+  return {
+    ...confounders,
+
+    confounderCount: majorCount + moderateCount,
+
+    majorConfounderCount: majorCount,
+
+    confounderLevel:
+      majorCount >= 2 || majorCount + moderateCount >= 4
+        ? "high"
+        : majorCount >= 1 || majorCount + moderateCount >= 2
+          ? "medium"
+          : "low",
   };
 }
 
@@ -134,20 +166,14 @@ export function buildFeedbackDataQuality(feedbackAnswers = {}) {
 
   score = Math.max(0, Math.min(1, score));
 
-  const majorConfounderCount = [
-    confounders.otherSkincareChange === "multiple",
-    confounders.sleepStressChange === "major",
-    confounders.dietChange === "major",
-    confounders.medicationSupplementChange === "changed",
-    confounders.environmentChange === "changed",
-  ].filter(Boolean).length;
-
   return {
     confidenceScore: Number(score.toFixed(2)),
 
     confidenceLevel: score >= 0.8 ? "high" : score >= 0.55 ? "medium" : "low",
 
-    majorConfounderCount,
+    majorConfounderCount: confounders.majorConfounderCount,
+
+    confounderLevel: confounders.confounderLevel,
 
     // 아직 제품별 실제 사용 여부를
     // 구분해서 받지 않으므로 개별 제품의

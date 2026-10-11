@@ -84,6 +84,65 @@ function clampCareNeed(value) {
   );
 }
 
+function getCareNeedConfidence(skinState = {}, lifestyleTags = []) {
+  const knownStateSignals = Object.values(skinState).filter(
+    (value) => Number(value) > 0
+  ).length;
+
+  const lifestyleSignalCount = lifestyleTags.filter(
+    (tag) => tag !== "none" && tag !== "unknown"
+  ).length;
+
+  if (knownStateSignals >= 4 && lifestyleSignalCount <= 2) {
+    return "high";
+  }
+
+  if (knownStateSignals >= 2) {
+    return "medium";
+  }
+
+  return "low";
+}
+
+export function buildLifestyleConfounderProfile(lifestyleTags = []) {
+  const uniqueTags = [...new Set(lifestyleTags)];
+
+  const inflammationTriggers = [
+    "sleep_lack",
+    "stress",
+    "high_glycemic_food",
+    "dairy",
+  ].filter((tag) => uniqueTags.includes(tag));
+
+  const congestionTriggers = ["sweat_delay"].filter((tag) =>
+    uniqueTags.includes(tag)
+  );
+
+  const hydrationTriggers = ["low_water", "low_vegetable"].filter((tag) =>
+    uniqueTags.includes(tag)
+  );
+
+  const signalCount =
+    inflammationTriggers.length +
+    congestionTriggers.length +
+    hydrationTriggers.length;
+
+  return {
+    tags: uniqueTags,
+
+    inflammationTriggers,
+
+    congestionTriggers,
+
+    hydrationTriggers,
+
+    confounderCount: signalCount,
+
+    confounderLevel:
+      signalCount >= 4 ? "high" : signalCount >= 2 ? "medium" : "low",
+  };
+}
+
 function buildCareNeeds(skinState) {
   const {
     dryness = 0,
@@ -131,6 +190,14 @@ function buildCareNeeds(skinState) {
       acneActivity * 0.35 +
       sensitivity * 0.1
     ),
+
+    // 장벽 보완 필요도는 추천 점수와 저장 데이터에서
+    // 수분 필요도와 별도로 추적한다.
+    barrierCareNeed: clampCareNeed(
+      barrierStress * 0.5 +
+      dryness * 0.25 +
+      sensitivity * 0.25
+    ),
   };
 }
 
@@ -145,6 +212,7 @@ export function adjustCareNeedsForIssue(
     soothingNeed: baseCareNeeds.soothingNeed ?? 0,
     congestionCareNeed: baseCareNeeds.congestionCareNeed ?? 0,
     inflammationCareNeed: baseCareNeeds.inflammationCareNeed ?? 0,
+    barrierCareNeed: baseCareNeeds.barrierCareNeed ?? 0,
   };
 
   const valueOf = (key) =>
@@ -165,11 +233,13 @@ export function adjustCareNeedsForIssue(
     if (["pustule", "cluster"].includes(form)) {
       add("inflammationCareNeed", 2);
       add("soothingNeed", 1);
+      add("barrierCareNeed", 1);
     }
 
     if (form === "nodule") {
       add("inflammationCareNeed", 3);
       add("soothingNeed", 2);
+      add("barrierCareNeed", 1);
     }
 
     if (pain === "strong") {
@@ -208,6 +278,7 @@ export function adjustCareNeedsForIssue(
     if (inflammation === "painful") {
       add("soothingNeed", 2);
       add("inflammationCareNeed", 2);
+      add("barrierCareNeed", 1);
     }
   }
 
@@ -289,6 +360,7 @@ export function adjustCareNeedsForIssue(
     ) {
       add("hydrationNeed", 1);
       add("soothingNeed", 1);
+      add("barrierCareNeed", 1);
     }
 
     if (["visible", "severe"].includes(flaking)) {
@@ -343,6 +415,7 @@ export function adjustCareNeedsForIssue(
     ) {
       add("hydrationNeed", 1);
       add("soothingNeed", 1);
+      add("barrierCareNeed", 2);
     }
 
     if (skinDamage === "blister_oozing") {
@@ -355,6 +428,7 @@ export function adjustCareNeedsForIssue(
 
     if (moisturizerSting === "frequent") {
       add("soothingNeed", 2);
+      add("barrierCareNeed", 1);
     }
   }
 
@@ -506,10 +580,19 @@ if (selectedOption.scores) {
     skinStateRawScores
   );
 
-  const careNeeds =
-  buildCareNeeds(
-    skinState
-  );
+  const lifestyleConfounders =
+  buildLifestyleConfounderProfile(lifestyleTags);
+
+  const careNeeds = {
+    ...buildCareNeeds(
+      skinState
+    ),
+
+    confidence: getCareNeedConfidence(
+      skinState,
+      lifestyleTags
+    ),
+  };
 
   const skinType = getSkinType(totalScores);
   const hydrationLevel = getHydrationLevel(totalScores);
@@ -529,6 +612,7 @@ if (selectedOption.scores) {
     mainIssue,
     issueLabel,
     lifestyleTags,
+    lifestyleConfounders,
     lifestyleAdvice,
     solution,
     reasons,

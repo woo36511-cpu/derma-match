@@ -1,4 +1,7 @@
-import { buildProductUsagePlan } from "../utils/productUsagePlan";
+import {
+  buildProductUsagePlan,
+  buildProductUsageRecord,
+} from "../utils/productUsagePlan";
 import { SAVED_SURVEY_KEY, JOURNEY_HISTORY_KEY } from "../data/storageKeys";
 import {
   buildSkinStateDelta,
@@ -76,6 +79,8 @@ export function useJourneyActions({
         careNeeds: adjustedSurveyCareNeeds,
 
         lifestyleTags: surveyResult.lifestyleTags,
+
+        lifestyleConfounders: surveyResult.lifestyleConfounders,
       },
 
       routine: {
@@ -158,6 +163,7 @@ export function useJourneyActions({
         // 피부 상태를 임의로 만들어내지 않음
         skinState: null,
         careNeeds: null,
+        lifestyleConfounders: null,
       },
 
       routine: {
@@ -256,15 +262,8 @@ export function useJourneyActions({
     );
 
     const actualProductUsage = feedbackTargetProducts.map(
-      ({ category, product }) => ({
-        productId: product.id,
-
-        productNameSnapshot: product.name,
-
-        category,
-
-        usageStatus: productUsageFeedback[product.id]?.status ?? "unknown",
-      }),
+      ({ category, product }) =>
+        buildProductUsageRecord(product, category, productUsageFeedback),
     );
 
     const confounders = buildFeedbackConfounders(answers);
@@ -329,6 +328,10 @@ export function useJourneyActions({
         followUpLifestyleTags: feedbackSurveyComplete
           ? followUpSurveyResult.lifestyleTags
           : [],
+
+        followUpLifestyleConfounders: feedbackSurveyComplete
+          ? followUpSurveyResult.lifestyleConfounders
+          : null,
       },
 
       changeReasons: getJourneyChangeReasons(

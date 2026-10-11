@@ -1,8 +1,13 @@
 import {
   calculateNextLevel,
+  buildFeedbackConfounders,
   buildFeedbackDataQuality,
   buildSkinStateDelta,
 } from "./feedbackAnalysis";
+import {
+  adjustCareNeedsForIssue,
+  analyzeSkinSurvey,
+} from "./analyzeSkinSurvey";
 import {
   buildDynamicRoutine,
   getRecommendedIngredients,
@@ -12,9 +17,13 @@ import {
   hasExfoliatingActive,
   isProductAvailable,
 } from "./productCatalog";
-import { buildProductUsagePlan } from "./productUsagePlan";
+import {
+  buildProductUsagePlan,
+  buildProductUsageRecord,
+} from "./productUsagePlan";
 import { buildJourneySummary } from "./journeySummary";
 import { products } from "../data/products";
+import { skinSurveyQuestions } from "../data/skinSurvey";
 
 test("hydration feedback accepts numeric and option answers, limits each change and stays within 1–10", () => {
   expect(
@@ -90,10 +99,41 @@ test("usage snapshots retain evidence and recommended amount without assuming ac
   expect(plan.recommendationSnapshot.catalogAuditDate).toBeNull();
   expect(plan.recommendationSnapshot.formulaStatus).toBeNull();
   expect(plan.actualUsage).toEqual({
+    status: "unknown",
     amount: null,
     frequency: null,
+    durationDays: null,
     stoppedEarly: null,
     stopReason: null,
+    irritationObserved: null,
+    usedAsDirected: null,
+  });
+});
+
+test("product usage records preserve per-product actual usage fields", () => {
+  const product = products.find((item) => item.id === 24);
+  const record = buildProductUsageRecord(product, "cream", {
+    24: {
+      status: "consistent",
+      amount: "pea",
+      frequency: "daily",
+      durationDays: 21,
+      stoppedEarly: false,
+      irritationObserved: false,
+      usedAsDirected: true,
+    },
+  });
+
+  expect(record.productVolumeSnapshot).toBe("100ml");
+  expect(record.usageStatus).toBe("consistent");
+  expect(record.actualUsage).toMatchObject({
+    status: "consistent",
+    amount: "pea",
+    frequency: "daily",
+    durationDays: 21,
+    stoppedEarly: false,
+    irritationObserved: false,
+    usedAsDirected: true,
   });
 });
 
@@ -112,8 +152,72 @@ test("short or inconsistent use and confounding changes lower feedback confidenc
   expect(low.confidenceLevel).toBe("low");
   expect(low.confidenceScore).toBeGreaterThanOrEqual(0);
   expect(low.majorConfounderCount).toBe(2);
+  expect(low.confounderLevel).toBe("high");
   expect(low.productAttributionReady).toBe(false);
   expect(buildSkinStateDelta(null, {})).toBeNull();
+});
+
+test("survey analysis stores care need confidence and lifestyle confounder profile", () => {
+  const result = analyzeSkinSurvey(
+    {
+      afterWash: "많이 당기고 건조하다",
+      afternoonFeel: "기름은 올라오는데 피부는 편하지 않고 당긴다",
+      areaDifference: "볼은 건조한데 코나 이마는 번들거린다",
+      creamFeel: "발라도 금방 다시 건조해진다",
+      innerDryness: "자주 그렇다",
+      sensitivity: "자주 따갑고 붉어진다",
+      mainIssue: "붉어짐이나 따가움",
+      poreSebum: "조금 신경 쓰인다",
+      routineLevel: "각질제거제, BHA, 레티놀 같은 기능성도 쓴다",
+      lifestyle: ["잠을 부족하게 잔다", "스트레스를 많이 받는다"],
+    },
+    skinSurveyQuestions,
+  );
+
+  expect(result.careNeeds.barrierCareNeed).toBeGreaterThanOrEqual(6);
+  expect(result.careNeeds.confidence).toBe("high");
+  expect(result.lifestyleConfounders.confounderLevel).toBe("medium");
+  expect(result.lifestyleConfounders.inflammationTriggers).toEqual([
+    "sleep_lack",
+    "stress",
+  ]);
+});
+
+test("issue answers refine barrier and inflammation care needs", () => {
+  const adjusted = adjustCareNeedsForIssue(
+    {
+      hydrationNeed: 4,
+      lightTextureNeed: 2,
+      soothingNeed: 5,
+      congestionCareNeed: 1,
+      inflammationCareNeed: 4,
+      barrierCareNeed: 4,
+    },
+    "sensitivity_redness",
+    {
+      skinDamage: { value: "flaking" },
+      moisturizerSting: { value: "frequent" },
+      duration: { value: "days" },
+    },
+  );
+
+  expect(adjusted.soothingNeed).toBe(10);
+  expect(adjusted.inflammationCareNeed).toBe(6);
+  expect(adjusted.barrierCareNeed).toBe(7);
+});
+
+test("feedback confounders carry summary counts and severity", () => {
+  expect(
+    buildFeedbackConfounders({
+      otherSkincareChange: { value: "one" },
+      sleepStressChange: { value: "major" },
+      dietChange: { value: "mild" },
+    }),
+  ).toMatchObject({
+    confounderCount: 3,
+    majorConfounderCount: 1,
+    confounderLevel: "medium",
+  });
 });
 
 test("journey summaries group version 2 records by journeyId and allow viewing older journeys", () => {
