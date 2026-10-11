@@ -327,3 +327,46 @@ test("default routines never include unverifiable ID9 and ID19", () => {
     expect(products.every(isProductAvailable)).toBe(true);
   }
 });
+
+
+test("ID8 and ID22 domestic official formula audits preserve their exact lists", () => {
+  const drg = getProductById(8);
+  const numbuzin = getProductById(22);
+  expect(drg.fullIngredients).toHaveLength(37);
+  expect(drg.evidence.fullIngredientsMarket).toBe("domestic_official");
+  expect(drg.evidence.domesticFormulaVerified).toBe(true);
+  expect(drg.ingredientEvidence.officialFullIngredientListVerified).toBe(true);
+  expect(numbuzin.fullIngredients).toHaveLength(19);
+  expect(numbuzin.evidence.domesticFormulaVerified).toBe(true);
+  expect(numbuzin.concerns).not.toContain("acne");
+});
+
+test("ID20 BHA toner is kept out of every default routine", () => {
+  const teaTree = getProductById(20);
+  expect(teaTree.fullIngredients).toHaveLength(17);
+  expect(teaTree.evidence.domesticFormulaVerified).toBe(false);
+  expect(teaTree.ingredients).toContain("베타인살리실레이트");
+  expect(hasExfoliatingActive(teaTree)).toBe(true);
+  expect(teaTree.beginnerFriendly).toBe(false);
+  for (let level = 1; level <= 10; level += 1) {
+    for (const concern of ["none", "oiliness", "blackhead_sebum", "inflammatory_acne"]) {
+      const { products: routine } = buildDynamicRoutine(level, { mainConcern: concern });
+      expect(routine.toner?.id).not.toBe(20);
+      expect(Object.values(routine).every(isProductAvailable)).toBe(true);
+    }
+  }
+});
+
+test("ID21 carrot pad retains official 735ppm and 10000ppb separately from unsupported panthenol", () => {
+  const pad = getProductById(21);
+  expect(pad.fullIngredients).toHaveLength(25);
+  expect(pad.evidence.fullIngredientsMarket).toBe("domestic_official");
+  expect(pad.ingredients).not.toContain("판테놀");
+  expect(pad.activeIngredients.map((a) => [a.name, a.concentration, a.unit])).toEqual([
+    ["당근추출물", 735, "ppm"],
+    ["당근씨오일", 10000, "ppb"],
+  ]);
+  expect(pad.sensitivitySafe).toBe(false);
+  expect(pad.usageAmount.normal).toBe("패드 1장");
+  expect(pad.usage.howToUse).toHaveLength(3);
+});
