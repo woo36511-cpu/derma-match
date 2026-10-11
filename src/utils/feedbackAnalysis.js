@@ -1,5 +1,16 @@
 import { clamp } from "./clamp";
 import { skinConcernOptions } from "../data/skinIssueQuestions";
+import { SKIN_STATE_AXES, normalizeSkinState } from "./skinStateMeasurement";
+
+const QUALITY_ANSWER_VALUES = {
+  routineUsage: ["consistent", "mostly", "partial", "rare"],
+  usageDuration: ["under_7", "7_13", "14_27", "28_plus"],
+  otherSkincareChange: ["none", "one", "multiple"],
+  sleepStressChange: ["stable", "mild", "major"],
+  dietChange: ["stable", "mild", "major"],
+  medicationSupplementChange: ["none", "changed"],
+  environmentChange: ["stable", "changed"],
+};
 
 export function getFeedbackValue(answers, id) {
   const answer = answers[id];
@@ -110,7 +121,11 @@ export function buildFeedbackDataQuality(feedbackAnswers = {}) {
 
   const usage = buildFeedbackUsageReport(feedbackAnswers);
 
-  let score = 1;
+  const missingFields = Object.entries(QUALITY_ANSWER_VALUES)
+    .filter(([key, values]) => !values.includes(getFeedbackOptionValue(feedbackAnswers, key)))
+    .map(([key]) => key);
+
+  let score = 1 - missingFields.length * 0.15;
 
   if (usage.routineUsage === "mostly") {
     score -= 0.1;
@@ -165,6 +180,7 @@ export function buildFeedbackDataQuality(feedbackAnswers = {}) {
   }
 
   score = Math.max(0, Math.min(1, score));
+  if (missingFields.length > 0) score = Math.min(score, 0.5);
 
   return {
     confidenceScore: Number(score.toFixed(2)),
@@ -174,6 +190,10 @@ export function buildFeedbackDataQuality(feedbackAnswers = {}) {
     majorConfounderCount: confounders.majorConfounderCount,
 
     confounderLevel: confounders.confounderLevel,
+
+    missingFields,
+
+    complete: missingFields.length === 0,
 
     // 아직 제품별 실제 사용 여부를
     // 구분해서 받지 않으므로 개별 제품의
@@ -187,19 +207,11 @@ export function buildSkinStateDelta(baseline = null, followUp = null) {
     return null;
   }
 
-  const keys = [
-    "dryness",
-    "oiliness",
-    "dehydration",
-    "sensitivity",
-    "barrierStress",
-    "cloggedPores",
-    "acneActivity",
-    "inflammation",
-  ];
-
-  return keys.reduce((result, key) => {
-    result[key] = (followUp[key] ?? 0) - (baseline[key] ?? 0);
+  const before = normalizeSkinState(baseline);
+  const after = normalizeSkinState(followUp);
+  return SKIN_STATE_AXES.reduce((result, { key }) => {
+    result[key] = before[key] === null || after[key] === null
+      ? null : after[key] - before[key];
 
     return result;
   }, {});

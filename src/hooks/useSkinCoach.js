@@ -59,6 +59,7 @@ export function useSkinCoach() {
   const [productUsageFeedback, setProductUsageFeedback] = useState({});
 
   const [feedbackSurveyAnswers, setFeedbackSurveyAnswers] = useState({});
+  const [feedbackDraft, setFeedbackDraft] = useState(null);
 
   const feedbackJourneyRecords = useMemo(
     () =>
@@ -70,9 +71,10 @@ export function useSkinCoach() {
   );
 
   const feedbackTargetRecord =
-    feedbackJourneyRecords.length > 0
+    feedbackJourneyRecords.find((record) => record.id === feedbackDraft?.evaluatedRecordId) ||
+    (feedbackJourneyRecords.length > 0
       ? feedbackJourneyRecords[feedbackJourneyRecords.length - 1]
-      : null;
+      : null);
 
   const feedbackTargetProducts = useMemo(() => {
     const routine = feedbackTargetRecord?.routine;
@@ -96,7 +98,7 @@ export function useSkinCoach() {
   const isProductUsageComplete =
     feedbackTargetProducts.length === 0 ||
     feedbackTargetProducts.every(
-      ({ product }) => !!productUsageFeedback[product.id],
+      ({ product }) => ["consistent", "occasional", "stopped", "never_used"].includes(productUsageFeedback[product.id]?.status),
     );
 
   const isComplete =
@@ -423,7 +425,7 @@ export function useSkinCoach() {
   const handleProductUsageAnswer = (productId, value) => {
     setProductUsageFeedback((prev) => ({
       ...prev,
-      [productId]: value,
+      [productId]: { ...prev[productId], ...value },
     }));
   };
 
@@ -549,6 +551,7 @@ export function useSkinCoach() {
   };
 
   const resetFlow = () => {
+    setFeedbackDraft(null);
     setAnswers({});
     setSurveyAnswers({});
     setProductUsageFeedback({});
@@ -639,6 +642,9 @@ export function useSkinCoach() {
     setMainConcern(latestConcern);
     setBaseLevel(latestLevel);
     setAnswers({});
+    setProductUsageFeedback({});
+    setFeedbackSurveyAnswers({});
+    setFeedbackDraft(null);
 
     setStep("feedback");
   };
@@ -671,7 +677,11 @@ export function useSkinCoach() {
     journeyHistory,
     activeJourneyId,
     feedbackJourneyRecords,
+    feedbackTargetRecord,
+    feedbackDraft,
+    setFeedbackDraft,
     feedbackSurveyComplete,
+    feedbackSurveyAnswers,
     followUpSurveyResult,
     feedbackTargetProducts,
     productUsageFeedback,
@@ -775,6 +785,7 @@ export function useSkinCoach() {
     handleFeedbackSurveyAnswer,
     saveFeedbackResult,
     feedbackSurveyComplete,
+    feedbackResultRecord: [...feedbackJourneyRecords].reverse().find((record) => record.type === "feedback") || null,
     nextRoutine,
     baseLevel,
     levelChangeMessage,
