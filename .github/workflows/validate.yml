@@ -1,0 +1,29 @@
+name: Product and app regression checks
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install
+        run: npm ci
+      - name: Run React and recommendation tests
+        run: CI=true npm test -- --watchAll=false --runInBand
+      - name: Check ESLint
+        run: npx eslint src --max-warnings 0
+      - name: Build production bundle
+        run: npm run build
