@@ -982,10 +982,166 @@ usage: {
   category: "serum",
   hydrationLevel: 9,
   texture: "light",
-  concerns: ["acne","sebum"],
-  ingredients: ["나이아신아마이드"],
-  skinTypes: ["지성"],
-  description: "피지와 트러블 관리 중심 세럼",
+  concerns: ["sebum", "pores"],
+  ingredients: ["나이아신아마이드", "징크PCA", "아세틸글루코사민", "트레할로오스", "알란토인"],
+  fullIngredients: [
+    "정제수",
+    "펜틸렌글라이콜",
+    "나이아신아마이드(15%)",
+    "부틸렌글라이콜",
+    "아세틸글루코사민",
+    "1,2-헥산다이올",
+    "징크피씨에이",
+    "트레할로오스",
+    "잔탄검",
+    "풀루란",
+    "알란토인",
+    "에틸헥실글리세린",
+    "소듐파이테이트",
+    "시트릭애씨드",
+    "토코페롤",
+  ],
+  activeIngredients: [
+    {
+      name: "나이아신아마이드",
+      concentration: 15,
+      unit: "%",
+      concentrationVerified: true,
+      concentrationBasis: "ingredient_fraction",
+      sourceType: "official_domestic_full_ingredient_list",
+    },
+    {
+      name: "징크피씨에이",
+      concentration: null,
+      unit: "%",
+      concentrationVerified: false,
+      sourceType: "official_domestic_full_ingredient_list",
+    },
+    {
+      name: "아세틸글루코사민",
+      concentration: null,
+      unit: "%",
+      concentrationVerified: false,
+      sourceType: "official_domestic_full_ingredient_list",
+    },
+    {
+      name: "알란토인",
+      concentration: null,
+      unit: "%",
+      concentrationVerified: false,
+      sourceType: "official_domestic_full_ingredient_list",
+    },
+  ],
+  // 내부 휴리스틱입니다. 원료 15%·브랜드 시험 변화율·100% 설문을 점수로 직접 환산하지 않습니다.
+  careProfile: {
+    hydrationSupport: 2,
+    lightweightFit: 9,
+    soothingSupport: 2,
+    congestionSupport: 6,
+    barrierSupport: 0,
+  },
+  evidence: {
+    evidenceLevel: "B",
+    officialProductVerified: true,
+    fullIngredientsVerified: true,
+    fullIngredientsMarket: "domestic_official",
+    domesticFormulaVerified: true,
+    concentrationDisclosure: "partially_disclosed",
+    purchaseLinkVerified: false,
+    priceVerified: false,
+    lastVerifiedAt: "2026-10-11",
+    sources: [
+      {
+        sourceType: "official_domestic_product_page",
+        url: "https://www.cosrx.co.kr/shop/shopdetail.html?branduid=1177564",
+      },
+      {
+        sourceType: "official_domestic_brand_reported_study",
+        url: "https://cosrxinc.jpg3.kr/cosrximg/cosrx/product/The-Niacinamide15-Serum/1000_Niacinamide-15-Serum_03.jpg",
+      },
+      {
+        sourceType: "official_domestic_consumer_survey",
+        url: "https://cosrxinc.jpg3.kr/cosrximg/cosrx/product/The-Niacinamide15-Serum/1000_Niacinamide-15-Serum_02.gif",
+      },
+      {
+        sourceType: "official_global_product_page",
+        url: "https://www.cosrx.com/products/the-niacinamide-15-serum-%EB%B2%88%EB%93%A4",
+      },
+    ],
+  },
+  clinicalEvidence: {
+    sourceType: "brand_reported",
+    humanStudyAvailable: true,
+    studies: [
+      {
+        endpoint: "sebum_oil_and_comedone_count_change",
+        sampleSize: null,
+        duration: "4_weeks",
+        studyPeriod: null,
+        institute: null,
+        outcomes: [
+          { endpoint: "sebum_amount", resultPercent: 45, direction: "decrease" },
+          { endpoint: "oil_amount", resultPercent: 48, direction: "decrease" },
+          { endpoint: "blackhead_count", resultPercent: 42, direction: "decrease" },
+          { endpoint: "whitehead_count", resultPercent: 50, direction: "decrease" },
+        ],
+        note: "국내 Test 01에 표시된 정밀도 그대로 저장합니다. 인접 Test 02·03이나 설문의 표본·기간을 이 항목의 정보로 추정하지 않습니다.",
+      },
+      {
+        endpoint: "pigmentation_and_post_blemish_mark_change",
+        sampleSize: 20,
+        duration: "4_weeks",
+        studyPeriod: "2022-09-03/2022-10-04",
+        institute: "(주)더마코스메틱 피부과학연구소",
+        populationScope: "brand_stated_ages_14_to_50",
+        outcomes: [
+          { endpoint: "pigmentation", resultPercent: 15, direction: "decrease" },
+          { endpoint: "post_blemish_marks", resultPercent: 19, direction: "decrease" },
+        ],
+        photoScope: "top_five_improvement_examples",
+      },
+      {
+        endpoint: "skin_tone_change",
+        sampleSize: 20,
+        duration: "4_weeks",
+        studyPeriod: "2022-09-03/2022-10-04",
+        institute: "(주)더마코스메틱 피부과학연구소",
+        populationScope: "brand_stated_ages_14_to_50",
+        outcomes: [
+          { endpoint: "redness", resultPercent: 24.8, direction: "decrease" },
+          { endpoint: "yellowness", resultPercent: 11.7, direction: "decrease" },
+          { endpoint: "brightness", resultPercent: 2.5, direction: "increase" },
+        ],
+        photoScope: "top_five_improvement_examples",
+      },
+      {
+        endpoint: "non_comedogenic_test",
+        sampleSize: null,
+        duration: null,
+        result: "brand_reported_tested",
+        sourceMarket: "global_official",
+      },
+    ],
+    note:
+      "브랜드가 공개한 시험 요약입니다. 전체 보고서·대조군·통계·시험 처방과 현재 처방의 동일성은 미확인입니다. 정량 결과·선별 사진·주관적 설문을 구분하며 변화율을 사용자의 예상 개선량이나 여드름·홍조 질환 치료 효과로 사용하지 않습니다. 논코메도제닉 시험은 모든 피부에서 막힘 없음을 보장하지 않습니다.",
+  },
+  consumerEvidence: {
+    sourceType: "brand_reported_self_assessment",
+    sampleSize: 20,
+    duration: "approximately_4_weeks",
+    studyPeriod: "2022-09-03/2022-10-04",
+    institute: "(주)더마코스메틱 피부과학연구소",
+    populationScope: "brand_stated_ages_14_to_50",
+    responseThreshold: "at_least_neutral_on_5_point_scale",
+    outcomes: [
+      { endpoint: "post_blemish_mark_feeling", agreementPercent: 100 },
+      { endpoint: "sebum_and_blemish_improvement_feeling", agreementPercent: 100 },
+      { endpoint: "oiliness_improvement_feeling", agreementPercent: 100 },
+    ],
+    note: "5점 척도에서 보통 이상을 긍정 답변으로 계산한 브랜드 표기입니다. 보통 응답을 포함하며 100% 치료 성공률이나 100% 개선율이 아닙니다.",
+  },
+  skinTypes: ["지성", "복합성"],
+  description: "나이아신아마이드 15%·징크PCA·아세틸글루코사민을 포함한 피지·모공 외관 관리 보조 세럼",
   image: "https://t1c.coupangcdn.com/thumbnails/remote/492x492ex/image/1025_amir_coupang_oct_80k/145d/4cd6ffbf602d22c4dc267895124106da27d3797ff766b96628e7eae6a85b.jpg",
   link: "https://link.coupang.com/a/gmSbUPpoQe",
   sensitivitySafe: false,
@@ -993,26 +1149,32 @@ usage: {
   seasons: ["spring", "summer"],
   price: 19000,
   volume: "20ml",
-  shortReason: "트러블과 피지 관리용 고함량 세럼",
-  caution: ["민감 피부 주의"],
-  ratingTags: ["트러블", "피지"],
+  shortReason: "피지·모공 관리 목적이 분명할 때 고려하는 15% 고함량 세럼으로, 소량부터 피부 반응을 확인하세요.",
+  caution: [
+    "고함량 제품으로 따가움·붉어짐·가려움 등이 생길 수 있으며, 자극이 생기면 사용을 중단하세요.",
+    "처음에는 작은 부위에 소량으로 반응을 확인하고 상처가 있는 부위와 눈 주위를 피하세요.",
+    "브랜드 시험의 변화율과 만족도는 개인의 예상 개선량이나 여드름 치료 효과를 뜻하지 않습니다.",
+    "징크PCA·아세틸글루코사민·알란토인의 함량은 미공개입니다.",
+  ],
+  ratingTags: ["피지", "모공", "고함량"],
   usageType: "serum",
 
 usageAmount: {
-  oily: "1~2방울 정도",
-  normal: "2~3방울 정도",
-  dry: "3~4방울 정도"
+  oily: "소량부터 시작해 피부 반응에 따라 조절",
+  normal: "소량부터 시작해 피부 반응에 따라 조절",
+  dry: "소량부터 시작, 건조하면 보습 크림으로 보완"
 },
 
 usage: {
-  when: "토너 다음 단계 / 아침·저녁",
+  when: "토너 다음, 크림 전 / 아침 또는 저녁, 피부 반응에 따라 조절",
   howToUse: [
-    "토너 사용 후 적당량을 덜어냅니다.",
+    "사용 전 작은 부위에 소량을 발라 피부 반응을 확인합니다.",
+    "토너 다음 세럼 단계에서 소량을 덜어냅니다.",
     "얼굴 전체에 얇게 펴 바릅니다.",
-    "흡수될 때까지 손바닥으로 가볍게 눌러줍니다."
+    "흡수 후 보습 크림을 바르고, 낮에는 SPF 30 이상의 자외선 차단제로 마무리합니다."
   ],
   caution: [
-    "기능성 성분이 강한 제품은 처음부터 많은 양을 바르지 마세요."
+    "처음부터 많은 양을 사용하지 말고, 따가움·붉어짐·가려움이 생기면 사용을 중단하세요."
   ]
 }
 },
