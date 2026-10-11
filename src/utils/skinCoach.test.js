@@ -243,3 +243,17 @@ test("catalog review excludes unmatched ID11 cream and distinguishes ID1 retaile
   expect(dokdoToner.evidence.fullIngredientsMarket).toBe("domestic_retailer");
   expect(dokdoToner.evidence.domesticFormulaVerified).toBe(false);
 });
+
+
+test("cleanser evidence retains volume uncertainty and avoids discontinued ID32", () => {
+  const cetaphil = getProductById(4);
+  expect(cetaphil.fullIngredients).toHaveLength(10);
+  expect(cetaphil.evidence.domesticFormulaVerified).toBe(false);
+  expect(cetaphil.evidence.fullIngredientsMarket).toBe("domestic_official_other_volume");
+
+  const avene = getProductById(32);
+  expect(avene.fullIngredients).toHaveLength(7);
+  expect(avene.ingredients).not.toContain("판테놀");
+  expect(isProductAvailable(avene)).toBe(false);
+  expect(avene.evidence.fullIngredientsMarket).toBe("us_official_discontinued");
+});
