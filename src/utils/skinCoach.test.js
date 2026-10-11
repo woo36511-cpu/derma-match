@@ -7,9 +7,14 @@ import {
   buildDynamicRoutine,
   getRecommendedIngredients,
 } from "./routineRecommendation";
-import { getProductById, hasExfoliatingActive, isProductAvailable } from "./productCatalog";
+import {
+  getProductById,
+  hasExfoliatingActive,
+  isProductAvailable,
+} from "./productCatalog";
 import { buildProductUsagePlan } from "./productUsagePlan";
 import { buildJourneySummary } from "./journeySummary";
+import { products } from "../data/products";
 
 test("hydration feedback accepts numeric and option answers, limits each change and stays within 1–10", () => {
   expect(
@@ -73,8 +78,17 @@ test("usage snapshots retain evidence and recommended amount without assuming ac
   );
   expect(plan.startedAt).toBe("2026-10-10");
   expect(plan.productNameSnapshot).toBe("test cream");
+  expect(plan.productVolumeSnapshot).toBeNull();
   expect(plan.recommendationSnapshot.recommendedAmount).toBe("small");
   expect(plan.recommendationSnapshot.evidence.evidenceLevel).toBe("unverified");
+  expect(plan.recommendationSnapshot.evidence.domesticFormulaVerified).toBe(
+    false,
+  );
+  expect(plan.recommendationSnapshot.evidence.fullIngredientsMarket).toBe(
+    "unknown",
+  );
+  expect(plan.recommendationSnapshot.catalogAuditDate).toBeNull();
+  expect(plan.recommendationSnapshot.formulaStatus).toBeNull();
   expect(plan.actualUsage).toEqual({
     amount: null,
     frequency: null,
@@ -234,96 +248,121 @@ test("420 synthetic skin contexts retain four safe available routine slots", () 
 });
 
 
-test("catalog review excludes unmatched ID11 cream and distinguishes ID1 retailer formula", () => {
-  const outdatedCream = getProductById(11);
-  expect(isProductAvailable(outdatedCream)).toBe(false);
-  const dokdoToner = getProductById(1);
-  expect(dokdoToner.ingredients).not.toContain("히알루론산");
-  expect(dokdoToner.fullIngredients).toHaveLength(16);
-  expect(dokdoToner.evidence.fullIngredientsMarket).toBe("domestic_retailer");
-  expect(dokdoToner.evidence.domesticFormulaVerified).toBe(false);
-});
+test("full catalog audit has explicit care profiles and conservative verification gaps", () => {
+  expect(products).toHaveLength(43);
 
+  const inactiveIds = products
+    .filter((product) => product.isAvailable === false)
+    .map((product) => product.id);
+  expect(inactiveIds).toEqual([26, 32, 33, 36, 48]);
 
-test("cleanser evidence retains volume uncertainty and avoids discontinued ID32", () => {
-  const cetaphil = getProductById(4);
-  expect(cetaphil.fullIngredients).toHaveLength(10);
-  expect(cetaphil.evidence.domesticFormulaVerified).toBe(false);
-  expect(cetaphil.evidence.fullIngredientsMarket).toBe("domestic_official_other_volume");
+  const missingFullIngredientIds = products
+    .filter((product) => !product.evidence?.fullIngredientsVerified)
+    .map((product) => product.id);
+  expect(missingFullIngredientIds).toEqual([8, 20, 26, 27, 36, 48]);
 
-  const avene = getProductById(32);
-  expect(avene.fullIngredients).toHaveLength(7);
-  expect(avene.ingredients).not.toContain("판테놀");
-  expect(isProductAvailable(avene)).toBe(false);
-  expect(avene.evidence.fullIngredientsMarket).toBe("us_official_discontinued");
-});
-
-
-test("cream audit records provenance and disclosed ppm without treating legacy B5 as B5+", () => {
-  const physiogel = getProductById(3);
-  expect(physiogel.fullIngredients).toHaveLength(13);
-  expect(physiogel.fullIngredients).toContain("세라마이드엔피");
-  expect(physiogel.evidence.fullIngredientsMarket).toBe("domestic_retailer");
-  expect(physiogel.evidence.domesticFormulaVerified).toBe(false);
-
-  const illiyoon = getProductById(12);
-  expect(illiyoon.fullIngredients).toHaveLength(45);
-  expect(illiyoon.evidence.fullIngredientsMarket).toBe("domestic_official");
-  expect(illiyoon.evidence.domesticFormulaVerified).toBe(true);
-  expect(illiyoon.activeIngredients.map((i) => i.concentration)).toEqual([
-    65.5, 4.04,
-  ]);
-  expect(illiyoon.activeIngredients.every((i) => i.unit === "ppm")).toBe(true);
-  expect(illiyoon.careProfile.barrierSupport).toBeGreaterThan(0);
-
-  const oldB5 = getProductById(24);
-  expect(oldB5.name).toBe("라로슈포제 시카플라스트 밤 B5");
-  expect(isProductAvailable(oldB5)).toBe(false);
-  expect(oldB5.evidence.fullIngredientsVerified).toBe(false);
-});
-
-test.each([
-  { level: 2, mainConcern: "dehydration" },
-  { level: 3, mainConcern: "sensitivity_redness" },
-  { level: 5, mainConcern: "none" },
-])("cream audit keeps active available four-step routine at level $level", (state) => {
-  const { products: routine } = buildDynamicRoutine(state.level, {
-    mainConcern: state.mainConcern,
-    isSensitive: true,
-    careNeeds: { hydrationNeed: 7, soothingNeed: 7 },
-  });
-  expect(Object.keys(routine)).toEqual(["cleanser", "toner", "serum", "cream"]);
-  expect(Object.values(routine).every(isProductAvailable)).toBe(true);
-  expect(routine.cream.id).not.toBe(24);
-});
-
-
-test("toner audit separates verified retailer list from incompatible product versions", () => {
-  const birchToner = getProductById(15);
-  expect(birchToner.fullIngredients).toHaveLength(21);
-  expect(birchToner.activeIngredients[0]).toMatchObject({
-    name: "자작나무수액",
-    concentration: 10000,
-    unit: "ppm",
-  });
-  expect(birchToner.evidence.domesticFormulaVerified).toBe(false);
-  expect(birchToner.evidence.fullIngredientsMarket).toBe("domestic_retailer");
-
-  const oldAnua = getProductById(9);
-  const birchCream = getProductById(19);
-  expect(isProductAvailable(oldAnua)).toBe(false);
-  expect(isProductAvailable(birchCream)).toBe(false);
-  expect(oldAnua.evidence.fullIngredientsVerified).toBe(false);
-  expect(birchCream.evidence.fullIngredientsVerified).toBe(false);
-});
-
-test("default routines never include unverifiable ID9 and ID19", () => {
-  for (let level = 1; level <= 10; level += 1) {
-    const products = Object.values(
-      buildDynamicRoutine(level, { mainConcern: "none" }).products,
+  for (const product of products) {
+    expect(product.catalogAudit?.reviewedAt).toBe("2026-10-11");
+    expect(product.catalogAudit?.careProfileSource).toBe(
+      "internal_conservative_assessment",
     );
-    expect(products.map((p) => p.id)).not.toContain(9);
-    expect(products.map((p) => p.id)).not.toContain(19);
-    expect(products.every(isProductAvailable)).toBe(true);
+    expect(product.evidence?.priceVerified).toBe(false);
+
+    for (const value of Object.values(product.careProfile)) {
+      expect(value).toBeGreaterThanOrEqual(0);
+      expect(value).toBeLessThanOrEqual(10);
+    }
   }
+});
+
+test("catalog audit preserves product identity corrections without borrowing formulas", () => {
+  const physiogel = getProductById(3);
+  expect(physiogel.volume).toBe("150ml");
+  expect(physiogel.fullIngredients).toHaveLength(13);
+  expect(physiogel.fullIngredients).not.toContain("다이소듐포스페이트");
+
+  const anua = getProductById(9);
+  expect(isProductAvailable(anua)).toBe(true);
+  expect(anua.name).toContain("히알루론산");
+  expect(anua.fullIngredients).toContain("1,2-산다이올");
+  expect(anua.evidence.note).toContain("원문 그대로 보존");
+
+  const b5Plus = getProductById(24);
+  expect(isProductAvailable(b5Plus)).toBe(true);
+  expect(b5Plus.name).toContain("B5+");
+  expect(b5Plus.activeIngredients).toContainEqual(
+    expect.objectContaining({
+      name: "판테놀",
+      concentration: 5,
+      unit: "%",
+      concentrationVerified: true,
+    }),
+  );
+
+  const quarantinedPowder = getProductById(36);
+  expect(quarantinedPowder.isAvailable).toBe(false);
+  expect(quarantinedPowder.fullIngredients).toBeUndefined();
+  expect(quarantinedPowder.activeIngredients).toEqual([]);
+});
+
+test("formula audit keeps concentration units separate", () => {
+  const illiyoon = getProductById(12);
+  expect(illiyoon.activeIngredients).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({ name: "세라마이드 CPP-40", concentration: 65.5, unit: "ppm" }),
+      expect.objectContaining({ name: "세라마이드엔피", concentration: 4.04, unit: "ppm" }),
+    ]),
+  );
+
+  const carrotPad = getProductById(21);
+  expect(carrotPad.activeIngredients).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({ name: "당근추출물", concentration: 735, unit: "ppm" }),
+      expect.objectContaining({ name: "당근씨오일", concentration: 10000, unit: "ppb" }),
+    ]),
+  );
+  expect(carrotPad.activeIngredients.map((ingredient) => ingredient.name)).not.toContain(
+    "베타카로틴",
+  );
+
+  const bioturm = getProductById(31);
+  expect(bioturm.fullIngredients).toHaveLength(19);
+  expect(bioturm.fullIngredients).toContain(
+    "Citrus Aurantium Bergamia Fruit Oil",
+  );
+});
+
+test("exfoliating leave-on products include PHA and LHA detection", () => {
+  const pineToner = getProductById(39);
+  expect(hasExfoliatingActive(pineToner)).toBe(true);
+
+  const aesturaCream = getProductById(7);
+  expect(hasExfoliatingActive(aesturaCream)).toBe(false);
+
+  const lastIngredient = {
+    ingredients: ["Alpha Bisabolol", "Sodium Hyaluronate"],
+    activeIngredients: [],
+  };
+  expect(hasExfoliatingActive(lastIngredient)).toBe(false);
+});
+
+test("usage guidance distinguishes cleanser forms and internal conservative starts", () => {
+  const cetaphil = getProductById(4);
+  expect(cetaphil.usage.howToUse.join(" ")).toContain("억지로 내지 않고");
+  expect(cetaphil.usage.howToUse.join(" ")).not.toContain("충분히 거품");
+
+  const carrotPad = getProductById(21);
+  expect(carrotPad.usageAmount.normal).toBe("패드 1장");
+  expect(carrotPad.usage.howToUse.join(" ")).toContain("5~10분");
+
+  const enzymePowder = getProductById(35);
+  expect(enzymePowder.usage.guidanceType).toBe(
+    "official_directions_with_conservative_starting_frequency",
+  );
+
+  const mandelicToner = getProductById(50);
+  expect(mandelicToner.beginnerFriendly).toBe(false);
+  expect(mandelicToner.usage.guidanceType).toBe(
+    "internal_conservative_starting_frequency",
+  );
 });
