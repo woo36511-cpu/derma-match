@@ -13,6 +13,10 @@ export function getProductEvidenceSnapshot(product) {
     concentrationDisclosure: evidence.concentrationDisclosure ?? "unknown",
 
     lastVerifiedAt: evidence.lastVerifiedAt ?? null,
+
+    fullIngredientsMarket: evidence.fullIngredientsMarket ?? "unknown",
+
+    domesticFormulaVerified: evidence.domesticFormulaVerified ?? false,
   };
 }
 
@@ -37,6 +41,8 @@ export function buildProductUsagePlan(
 
         productNameSnapshot: product.name,
 
+        productVolumeSnapshot: product.volume ?? null,
+
         category,
         startedAt,
 
@@ -50,6 +56,10 @@ export function buildProductUsagePlan(
           recommendedAmount,
 
           recommendedTiming: product.usage?.when ?? null,
+
+          catalogAuditDate: product.catalogAudit?.reviewedAt ?? null,
+
+          formulaStatus: product.catalogAudit?.formulaStatus ?? null,
         },
 
         // 실제 사용 데이터는

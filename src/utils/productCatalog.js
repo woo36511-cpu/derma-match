@@ -53,17 +53,34 @@ export function hasExfoliatingActive(product) {
   if (!product) return false;
 
   const ingredients = product.ingredients || [];
+  const activeIngredients = product.activeIngredients || [];
+  const shortKeywordPattern = /(^|[^a-z])(aha|bha|pha|lha)([^a-z]|$)/;
+  const exfoliatingKeywords = [
+    "베타인살리실레이트",
+    "salicylic acid",
+    "살리실릭애씨드",
+    "살리실산",
+    "glycolic acid",
+    "글라이콜릭애씨드",
+    "mandelic acid",
+    "만델릭애씨드",
+    "gluconolactone",
+    "글루코노락톤",
+    "capryloyl salicylic acid",
+    "카프릴로일살리실릭애씨드",
+  ];
 
-  return ingredients.some((ingredient) => {
+  const names = [
+    ...ingredients,
+    ...activeIngredients.map((ingredient) => ingredient.name),
+  ];
+
+  return names.some((ingredient) => {
     const normalized = String(ingredient).toLowerCase();
 
     return (
-      normalized.includes("bha") ||
-      normalized.includes("살리실산") ||
-      normalized.includes("베타인살리실레이트") ||
-      normalized.includes("aha") ||
-      normalized.includes("글라이콜릭애씨드") ||
-      normalized.includes("만델릭애씨드")
+      shortKeywordPattern.test(normalized) ||
+      exfoliatingKeywords.some((keyword) => normalized.includes(keyword))
     );
   });
 }
