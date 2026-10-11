@@ -257,3 +257,42 @@ test("cleanser evidence retains volume uncertainty and avoids discontinued ID32"
   expect(isProductAvailable(avene)).toBe(false);
   expect(avene.evidence.fullIngredientsMarket).toBe("us_official_discontinued");
 });
+
+
+test("cream audit records provenance and disclosed ppm without treating legacy B5 as B5+", () => {
+  const physiogel = getProductById(3);
+  expect(physiogel.fullIngredients).toHaveLength(13);
+  expect(physiogel.fullIngredients).toContain("세라마이드엔피");
+  expect(physiogel.evidence.fullIngredientsMarket).toBe("domestic_retailer");
+  expect(physiogel.evidence.domesticFormulaVerified).toBe(false);
+
+  const illiyoon = getProductById(12);
+  expect(illiyoon.fullIngredients).toHaveLength(45);
+  expect(illiyoon.evidence.fullIngredientsMarket).toBe("domestic_official");
+  expect(illiyoon.evidence.domesticFormulaVerified).toBe(true);
+  expect(illiyoon.activeIngredients.map((i) => i.concentration)).toEqual([
+    65.5, 4.04,
+  ]);
+  expect(illiyoon.activeIngredients.every((i) => i.unit === "ppm")).toBe(true);
+  expect(illiyoon.careProfile.barrierSupport).toBeGreaterThan(0);
+
+  const oldB5 = getProductById(24);
+  expect(oldB5.name).toBe("라로슈포제 시카플라스트 밤 B5");
+  expect(isProductAvailable(oldB5)).toBe(false);
+  expect(oldB5.evidence.fullIngredientsVerified).toBe(false);
+});
+
+test.each([
+  { level: 2, mainConcern: "dehydration" },
+  { level: 3, mainConcern: "sensitivity_redness" },
+  { level: 5, mainConcern: "none" },
+])("cream audit keeps active available four-step routine at level $level", (state) => {
+  const { products: routine } = buildDynamicRoutine(state.level, {
+    mainConcern: state.mainConcern,
+    isSensitive: true,
+    careNeeds: { hydrationNeed: 7, soothingNeed: 7 },
+  });
+  expect(Object.keys(routine)).toEqual(["cleanser", "toner", "serum", "cream"]);
+  expect(Object.values(routine).every(isProductAvailable)).toBe(true);
+  expect(routine.cream.id).not.toBe(24);
+});
