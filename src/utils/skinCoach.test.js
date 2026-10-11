@@ -7,7 +7,7 @@ import {
   buildDynamicRoutine,
   getRecommendedIngredients,
 } from "./routineRecommendation";
-import { hasExfoliatingActive, isProductAvailable } from "./productCatalog";
+import { getProductById, hasExfoliatingActive, isProductAvailable } from "./productCatalog";
 import { buildProductUsagePlan } from "./productUsagePlan";
 import { buildJourneySummary } from "./journeySummary";
 
@@ -231,4 +231,15 @@ test("420 synthetic skin contexts retain four safe available routine slots", () 
     }
   }
   expect(scenarios).toBe(420);
+});
+
+
+test("catalog review excludes unmatched ID11 cream and distinguishes ID1 retailer formula", () => {
+  const outdatedCream = getProductById(11);
+  expect(isProductAvailable(outdatedCream)).toBe(false);
+  const dokdoToner = getProductById(1);
+  expect(dokdoToner.ingredients).not.toContain("히알루론산");
+  expect(dokdoToner.fullIngredients).toHaveLength(16);
+  expect(dokdoToner.evidence.fullIngredientsMarket).toBe("domestic_retailer");
+  expect(dokdoToner.evidence.domesticFormulaVerified).toBe(false);
 });
