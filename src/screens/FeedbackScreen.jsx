@@ -3,6 +3,7 @@ import { getCategoryLabel } from "../utils/productCatalog";
 import { feedbackQuestions } from "../data/feedbackQuestions";
 import { PrimaryButton } from "../components/PrimaryButton";
 import React from "react";
+import { ProductUsageFields } from "../components/ProductUsageFields";
 
 export function FeedbackScreen({
   feedbackTargetProducts,
@@ -31,6 +32,7 @@ export function FeedbackScreen({
             <p className="text-sm text-gray-600 leading-relaxed break-keep mb-5">
               추천만 받은 제품과 실제 사용한 제품을 구분해야 제품 효과 데이터를
               정확하게 분석할 수 있어요.
+              사용 세부정보는 아는 항목만 입력해도 돼요. 빠진 정보는 기록 신뢰도에 반영돼요.
             </p>
 
             <div className="space-y-5">
@@ -47,9 +49,10 @@ export function FeedbackScreen({
                     status: "occasional",
                   },
                   {
-                    label: "중단함 / 거의 안 씀",
+                    label: "사용하다 중단함",
                     status: "stopped",
                   },
+                  { label: "전혀 사용하지 않음", status: "never_used" },
                 ];
 
                 return (
@@ -66,7 +69,11 @@ export function FeedbackScreen({
                         <button
                           key={option.status}
                           onClick={() =>
-                            handleProductUsageAnswer(product.id, option)
+                            handleProductUsageAnswer(product.id, {
+                              ...option,
+                              stoppedEarly: option.status === "stopped" ? true : null,
+                              stopReason: null,
+                            })
                           }
                           className={`px-3 py-2 rounded-xl text-sm border transition ${
                             current === option.status
@@ -78,6 +85,7 @@ export function FeedbackScreen({
                         </button>
                       ))}
                     </div>
+                    <ProductUsageFields productId={product.id} usage={productUsageFeedback[product.id]} onChange={handleProductUsageAnswer} />
                   </div>
                 );
               })}

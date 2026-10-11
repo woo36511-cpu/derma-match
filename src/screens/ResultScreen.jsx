@@ -11,6 +11,7 @@ import { isProductAvailable } from "../utils/productCatalog";
 import { ProductCard } from "../components/ProductCard";
 import { PrimaryButton } from "../components/PrimaryButton";
 import React from "react";
+import { JourneyOutcomeCard } from "../components/JourneyOutcomeCard";
 
 export function ResultScreen({
   nextRoutineInfo,
@@ -24,6 +25,7 @@ export function ResultScreen({
   ingredients,
   setStep,
   resetFlow,
+  feedbackResultRecord,
 }) {
   return (
     <section>
@@ -54,6 +56,10 @@ export function ResultScreen({
       </div>
 
       <FeedbackAdviceCard advice={feedbackAdvice} />
+
+      <div className="max-w-3xl mx-auto mb-8">
+        <JourneyOutcomeCard record={feedbackResultRecord} />
+      </div>
 
       <div className="max-w-3xl mx-auto mb-8">
         <div className="bg-gray-50 rounded-3xl p-5 sm:p-6">

@@ -4,13 +4,17 @@ import {
 } from "../utils/productUsagePlan";
 import { SAVED_SURVEY_KEY, JOURNEY_HISTORY_KEY } from "../data/storageKeys";
 import {
-  buildSkinStateDelta,
   buildFeedbackConfounders,
   buildFeedbackUsageReport,
-  buildFeedbackDataQuality,
   getFeedbackConditionSnapshot,
   getJourneyChangeReasons,
 } from "../utils/feedbackAnalysis";
+import {
+  buildSkinMeasurement,
+  getRecordSkinMeasurement,
+  buildSkinComparison,
+} from "../utils/skinStateMeasurement";
+import { buildUsageReliability } from "../utils/usageReliability";
 
 export function useJourneyActions({
   surveyAnswers,
@@ -34,7 +38,11 @@ export function useJourneyActions({
   journeyHistory,
   activeJourneyId,
   feedbackJourneyRecords,
+  feedbackTargetRecord,
+  feedbackDraft,
+  setFeedbackDraft,
   feedbackSurveyComplete,
+  feedbackSurveyAnswers,
   followUpSurveyResult,
   feedbackTargetProducts,
   productUsageFeedback,
@@ -52,6 +60,7 @@ export function useJourneyActions({
   savedSurveyResult,
 }) {
   const saveSurveyResult = () => {
+    setFeedbackDraft(null);
     const timestamp = Date.now();
     const savedAt = new Date().toISOString();
 
@@ -60,12 +69,14 @@ export function useJourneyActions({
     const data = {
       id: `survey-${timestamp}`,
       journeyId,
-      journeySchemaVersion: 2,
+      journeySchemaVersion: 3,
       type: "initial_survey",
 
       surveyAnswers,
       mainConcern,
       issueAnswers,
+
+      skinMeasurement: buildSkinMeasurement(surveyResult.skinState, savedAt),
 
       result: {
         skinType: surveyResult.skinType,
@@ -134,6 +145,7 @@ export function useJourneyActions({
   };
 
   const startQuickJourneyFeedback = () => {
+    setFeedbackDraft(null);
     const timestamp = Date.now();
     const savedAt = new Date().toISOString();
 
@@ -145,12 +157,14 @@ export function useJourneyActions({
     const quickStartData = {
       id: `quick-${timestamp}`,
       journeyId,
-      journeySchemaVersion: 2,
+      journeySchemaVersion: 3,
 
       type: "initial_survey",
       source: "quick",
 
       mainConcern: "none",
+
+      skinMeasurement: buildSkinMeasurement(null, savedAt, "unmeasured"),
 
       result: {
         skinType: quickSkinType,
@@ -230,6 +244,7 @@ export function useJourneyActions({
   };
 
   const saveFeedbackResult = () => {
+    if (!feedbackSurveyComplete) return;
     const savedAt = new Date().toISOString();
 
     const currentJourneyRecords = journeyHistory.filter(
@@ -238,28 +253,27 @@ export function useJourneyActions({
     );
 
     const latestJourneyRecord =
-      currentJourneyRecords.length > 0
+      feedbackTargetRecord || (currentJourneyRecords.length > 0
         ? currentJourneyRecords[currentJourneyRecords.length - 1]
-        : null;
+        : null);
 
     const baselineRecord =
       feedbackJourneyRecords.find((item) => item.type === "initial_survey") ||
       null;
 
-    const baselineSkinState =
-      latestJourneyRecord?.outcome?.followUpSkinState ??
-      latestJourneyRecord?.result?.skinState ??
-      baselineRecord?.result?.skinState ??
-      null;
+    const before = getRecordSkinMeasurement(latestJourneyRecord);
+    const baselineSkinState = before.source === "unmeasured" ? null : before.values;
 
     const followUpSkinState = feedbackSurveyComplete
       ? followUpSurveyResult.skinState
       : null;
 
-    const skinStateDelta = buildSkinStateDelta(
-      baselineSkinState,
-      followUpSkinState,
+    const skinComparison = buildSkinComparison(
+      before,
+      buildSkinMeasurement(followUpSkinState, savedAt, "recheck"),
+      latestJourneyRecord?.id ?? null,
     );
+    const skinStateDelta = skinComparison.comparableAxisCount > 0 ? skinComparison.delta : null;
 
     const actualProductUsage = feedbackTargetProducts.map(
       ({ category, product }) =>
@@ -270,16 +284,23 @@ export function useJourneyActions({
 
     const usageReport = buildFeedbackUsageReport(answers);
 
-    const dataQuality = buildFeedbackDataQuality(answers);
+    const dataReliability = buildUsageReliability({
+      feedbackAnswers: answers,
+      actualProductUsage,
+      skinComparison,
+    });
 
     const feedbackData = {
-      id: `feedback-${Date.now()}`,
+      id: feedbackDraft?.savedRecordId || `feedback-${Date.now()}`,
       type: "feedback",
-      journeySchemaVersion: 2,
+      journeySchemaVersion: 3,
 
       feedbackAnswers: answers,
 
+      followUpSurveyAnswers: feedbackSurveyAnswers,
+
       journeyId: activeJourneyId,
+      evaluatedRecordId: latestJourneyRecord?.id ?? null,
 
       // 이번 피드백이 실제로 평가한
       // 이전 루틴을 함께 보존
@@ -291,24 +312,14 @@ export function useJourneyActions({
 
       usageReport,
       confounders,
+      dataReliability,
       dataQuality: {
-        ...dataQuality,
-
-        usedProductCount: actualProductUsage.filter(
-          (item) =>
-            item.usageStatus === "consistent" ||
-            item.usageStatus === "occasional",
-        ).length,
-
-        productAttributionReady:
-          actualProductUsage.filter(
-            (item) =>
-              item.usageStatus === "consistent" ||
-              item.usageStatus === "occasional",
-          ).length === 1 &&
-          actualProductUsage.filter((item) => item.usageStatus === "consistent")
-            .length === 1 &&
-          dataQuality.confidenceLevel === "high",
+        confidenceScore: dataReliability.score,
+        confidenceLevel: dataReliability.level,
+        usedProductCount: dataReliability.usedProductCount,
+        majorConfounderCount: confounders.majorConfounderCount,
+        confounderLevel: confounders.confounderLevel,
+        productAttributionReady: dataReliability.productAttributionReady,
       },
 
       outcome: {
@@ -317,6 +328,7 @@ export function useJourneyActions({
         baselineSkinState,
         followUpSkinState,
         skinStateDelta,
+        skinComparison,
 
         baselineLifestyleTags:
           latestJourneyRecord?.outcome?.followUpLifestyleTags ??
@@ -388,11 +400,14 @@ export function useJourneyActions({
         }
       }
 
-      const updatedHistory = [...history, feedbackData];
+      const updatedHistory = feedbackDraft?.savedRecordId
+        ? history.map((record) => record.id === feedbackDraft.savedRecordId ? feedbackData : record)
+        : [...history, feedbackData];
 
       localStorage.setItem(JOURNEY_HISTORY_KEY, JSON.stringify(updatedHistory));
 
       setJourneyHistory(updatedHistory);
+      setFeedbackDraft({ evaluatedRecordId: latestJourneyRecord?.id, savedRecordId: feedbackData.id });
 
       setStep("result");
     } catch (error) {
@@ -417,6 +432,7 @@ export function useJourneyActions({
     if (!savedSurvey?.surveyAnswers || !savedSurveyResult) {
       return;
     }
+    setFeedbackDraft(null);
 
     const savedJourneyId = savedSurvey.journeyId || savedSurvey.id;
 

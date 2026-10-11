@@ -141,6 +141,11 @@ test("short or inconsistent use and confounding changes lower feedback confidenc
   const high = buildFeedbackDataQuality({
     routineUsage: { value: "consistent" },
     usageDuration: { value: "28_plus" },
+    otherSkincareChange: { value: "none" },
+    sleepStressChange: { value: "stable" },
+    dietChange: { value: "stable" },
+    medicationSupplementChange: { value: "none" },
+    environmentChange: { value: "stable" },
   });
   const low = buildFeedbackDataQuality({
     routineUsage: { value: "rare" },

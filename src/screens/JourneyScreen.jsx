@@ -7,6 +7,7 @@ import {
 import { skinConcernOptions } from "../data/skinIssueQuestions";
 import { getProductById, getCategoryLabel } from "../utils/productCatalog";
 import React from "react";
+import { JourneyOutcomeCard } from "../components/JourneyOutcomeCard";
 
 export function JourneyScreen({
   journeyOptions,
@@ -502,6 +503,7 @@ export function JourneyScreen({
 
                   {!isSurvey && (
                     <div className="mt-5 space-y-3">
+                      <JourneyOutcomeCard record={item} previousRecord={previousRecord} />
                       {/* 단계 변화 */}
                       <div className="rounded-2xl bg-emerald-50 p-4">
                         <p className="text-xs text-emerald-600 mb-1">

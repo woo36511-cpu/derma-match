@@ -100,6 +100,7 @@ export default function App() {
     handleFeedbackSurveyAnswer,
     saveFeedbackResult,
     feedbackSurveyComplete,
+    feedbackResultRecord,
     nextRoutine,
     baseLevel,
     levelChangeMessage,
@@ -255,6 +256,7 @@ export default function App() {
 
         {step === "result" && nextRoutine && (
           <ResultScreen
+            feedbackResultRecord={feedbackResultRecord}
             nextRoutineInfo={nextRoutineInfo}
             nextLevel={nextLevel}
             baseLevel={baseLevel}

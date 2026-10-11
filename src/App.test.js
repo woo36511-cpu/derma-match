@@ -27,13 +27,23 @@ function completeSurvey() {
   }
 }
 
-function completeFeedback() {
+function completeFeedback({ usageDetails = false } = {}) {
   screen
     .getAllByRole("button", { name: "꾸준히 사용함", exact: true })
     .forEach((button) => fireEvent.click(button));
+  if (usageDetails) {
+    for (const [label, value] of [
+      ["실제 사용한 날 수", "14"], ["사용 빈도", "daily"],
+      ["권장량과 비교한 사용량", "recommended"], ["사용 중 쉬거나 중단했나요?", "false"],
+      ["사용할 때 따가움·붉어짐이 있었나요?", "false"], ["안내한 사용법대로 사용했나요?", "true"],
+    ]) {
+      screen.getAllByLabelText(label).forEach((input) => fireEvent.change(input, { target: { value } }));
+    }
+  }
   for (const question of feedbackQuestions) {
+    const option = usageDetails && question.id === "usageDuration" ? question.options[2] : question.options[0];
     screen
-      .getAllByRole("button", { name: question.options[0].label, exact: true })
+      .getAllByRole("button", { name: option.label, exact: true })
       .forEach((button) => fireEvent.click(button));
   }
   click("피부 상태 다시 확인하기");
@@ -57,22 +67,38 @@ test("quick recommendation survives reload and saves two feedback rounds in the 
   expect(initial.source).toBe("quick");
   expect(initial.result.hydrationLevel).toBe(8);
   expect(initial.productUsagePlan).toHaveLength(4);
+  expect(initial.journeySchemaVersion).toBe(3);
+  expect(initial.skinMeasurement.values.dryness).toBeNull();
   expect(
     screen.getByRole("button", { name: "피부 상태 다시 확인하기" }),
   ).toBeDisabled();
   unmount();
   render(<App />);
   click("첫 체크하기");
-  completeFeedback();
+  completeFeedback({ usageDetails: true });
   expect(history()).toHaveLength(2);
   expect(history()[1].journeyId).toBe(initial.journeyId);
   expect(history()[1].outcome.followUpSkinState).toBeTruthy();
   expect(history()[1].evaluatedRoutine).toEqual(initial.routine);
+  expect(history()[1].outcome.skinComparison.comparableAxisCount).toBe(0);
+  expect(history()[1].dataReliability.level).toBe("low");
+  expect(history()[1].actualProductUsage[0].actualUsage).toMatchObject({ durationDays: 14, frequency: "daily", usedAsDirected: true });
+  expect(history()[1].followUpSurveyAnswers).toBeTruthy();
+  expect(screen.getByText(/비교할 이전 8축 측정이 없어요/)).toBeInTheDocument();
+  const firstFeedbackId = history()[1].id;
+  click("피드백 다시 선택");
+  completeFeedback({ usageDetails: true });
+  expect(history()).toHaveLength(2);
+  expect(history()[1].id).toBe(firstFeedbackId);
+  expect(history()[1].evaluatedRecordId).toBe(initial.id);
+  expect(history()[1].evaluatedRoutine).toEqual(initial.routine);
   click("처음부터 다시");
   click("2차 체크하기");
-  completeFeedback();
+  completeFeedback({ usageDetails: true });
   expect(history()).toHaveLength(3);
   expect(new Set(history().map((record) => record.journeyId)).size).toBe(1);
+  expect(history()[2].outcome.skinComparison).toMatchObject({ baselineRecordId: firstFeedbackId, complete: true });
+  expect(history()[2].dataReliability).toMatchObject({ level: "high", productAttributionReady: false });
   click("처음부터 다시");
   click("변화 기록 보기");
   expect(
@@ -98,8 +124,11 @@ test("survey answers gate progression and a saved result can be reopened", () =>
     screen.getByRole("heading", { name: "추천 루틴" }),
   ).toBeInTheDocument();
   click("2주 사용 후 피드백 입력");
-  completeFeedback();
+  completeFeedback({ usageDetails: true });
   expect(history()[1].journeyId).toBe(history()[0].journeyId);
+  expect(history()[1].outcome.skinComparison).toMatchObject({ complete: true, baselineRecordId: history()[0].id });
+  expect(screen.getByRole("heading", { name: "Before / After · 피부 상태 8축" })).toBeInTheDocument();
+  expect(screen.getByText("기록 충분")).toBeInTheDocument();
 });
 
 const concerns = [
