@@ -1144,7 +1144,7 @@ usage: {
     ingredientEvidence: {
       officialProductIdentityVerified: true,
       secondaryFullIngredientListVerified: true,
-      officialFullIngredientListVerified: false
+      officialFullIngredientListVerified: true
     },
 
     careProfile: {
@@ -2497,7 +2497,7 @@ usage: {
     "세안 후 패드 한 장을 꺼내 진정이 필요한 부위에 부착합니다.",
     "5~10분 정도 사용한 뒤 패드를 제거합니다.",
     "남은 에센스는 문지르지 말고 가볍게 두드려 흡수시킵니다."
-  ]
+  ],
   caution: [
     "향 성분·식물성 오일에 자극이나 알레르기 반응이 나타나면 사용을 중단하세요."
   ]
