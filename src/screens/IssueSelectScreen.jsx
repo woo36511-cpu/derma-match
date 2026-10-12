@@ -105,8 +105,7 @@ export function IssueSelectScreen({
                 return;
               }
 
-              saveSurveyResult();
-              setStep("surveyResult");
+              if (saveSurveyResult()) setStep("surveyResult");
             }}
           >
             다음

@@ -12,9 +12,11 @@ import { FeedbackScreen } from "./screens/FeedbackScreen";
 import { RecheckScreen } from "./screens/RecheckScreen";
 import { ResultScreen } from "./screens/ResultScreen";
 import { Footer } from "./components/Footer";
+import { AccountPanel } from "./components/AccountPanel";
 
 export default function App() {
   const {
+    account,
     resetFlow,
     step,
     setActiveJourneyId,
@@ -111,6 +113,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
       <Header resetFlow={resetFlow} />
+      <AccountPanel account={account} />
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
         {step === "start" && (

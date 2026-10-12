@@ -6,7 +6,6 @@ import {
   analyzeSkinSurvey,
   adjustCareNeedsForIssue,
 } from "../utils/analyzeSkinSurvey";
-import { SAVED_SURVEY_KEY, JOURNEY_HISTORY_KEY } from "../data/storageKeys";
 import {
   calculateNextLevel,
   getFeedbackMainConcern,
@@ -37,9 +36,11 @@ import {
 } from "../data/skinIssueQuestions";
 import { buildJourneySummary } from "../utils/journeySummary";
 import { useJourneyActions } from "./useJourneyActions";
+import { useJourneyAccount } from "./useJourneyAccount";
 
 export function useSkinCoach() {
   const starterLevel = 5;
+  const { savedSurvey, journeyHistory, persistRecord, account, ownerId } = useJourneyAccount();
 
   const [step, setStep] = useState("start");
   const [answers, setAnswers] = useState({});
@@ -48,8 +49,6 @@ export function useSkinCoach() {
   const [baseLevel, setBaseLevel] = useState(5);
   const [surveyAnswers, setSurveyAnswers] = useState({});
   const [surveyIndex, setSurveyIndex] = useState(0);
-  const [savedSurvey, setSavedSurvey] = useState(null);
-  const [journeyHistory, setJourneyHistory] = useState([]);
   const [activeJourneyId, setActiveJourneyId] = useState(null);
   const [viewJourneyId, setViewJourneyId] = useState(null);
   const [mainConcern, setMainConcern] = useState("");
@@ -150,26 +149,20 @@ export function useSkinCoach() {
     }
   }, [step]);
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem(SAVED_SURVEY_KEY);
-
-      if (saved) {
-        setSavedSurvey(JSON.parse(saved));
-      }
-
-      const savedJourney = localStorage.getItem(JOURNEY_HISTORY_KEY);
-
-      if (savedJourney) {
-        const parsedJourney = JSON.parse(savedJourney);
-
-        if (Array.isArray(parsedJourney)) {
-          setJourneyHistory(parsedJourney);
-        }
-      }
-    } catch (error) {
-      console.error("저장된 피부 기록을 불러오지 못했어요.", error);
-    }
-  }, []);
+    setStep("start");
+    setActiveJourneyId(null);
+    setViewJourneyId(null);
+    setSurveyAnswers({});
+    setIssueAnswers({});
+    setAnswers({});
+    setProductUsageFeedback({});
+    setFeedbackSurveyAnswers({});
+    setFeedbackDraft(null);
+    setMainConcern("");
+    setSurveyIndex(0);
+    setIssueIndex(0);
+    setBaseLevel(5);
+  }, [ownerId]);
 
   const nextLevel = useMemo(() => {
     if (feedbackSurveyComplete) {
@@ -540,8 +533,7 @@ export function useSkinCoach() {
     if (!currentIssueAnswer) return;
 
     if (isLastIssueQuestion) {
-      saveSurveyResult();
-      setStep("surveyResult");
+      if (saveSurveyResult()) setStep("surveyResult");
       return;
     }
 
@@ -662,10 +654,8 @@ export function useSkinCoach() {
     surveyResult,
     adjustedSurveyCareNeeds,
     surveyRoutine,
-    setSavedSurvey,
     setActiveJourneyId,
     setViewJourneyId,
-    setJourneyHistory,
     quickLevel,
     quickRoutine,
     setMainConcern,
@@ -675,6 +665,7 @@ export function useSkinCoach() {
     setFeedbackSurveyAnswers,
     setStep,
     journeyHistory,
+    persistRecord,
     activeJourneyId,
     feedbackJourneyRecords,
     feedbackTargetRecord,
@@ -700,6 +691,7 @@ export function useSkinCoach() {
   });
 
   return {
+    account,
     resetFlow,
     step,
     setActiveJourneyId,

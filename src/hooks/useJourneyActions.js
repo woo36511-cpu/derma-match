@@ -2,7 +2,7 @@ import {
   buildProductUsagePlan,
   buildProductUsageRecord,
 } from "../utils/productUsagePlan";
-import { SAVED_SURVEY_KEY, JOURNEY_HISTORY_KEY } from "../data/storageKeys";
+import { createJourneyRecordId } from "../utils/journeyStorage";
 import {
   buildFeedbackConfounders,
   buildFeedbackUsageReport,
@@ -23,10 +23,8 @@ export function useJourneyActions({
   surveyResult,
   adjustedSurveyCareNeeds,
   surveyRoutine,
-  setSavedSurvey,
   setActiveJourneyId,
   setViewJourneyId,
-  setJourneyHistory,
   quickLevel,
   quickRoutine,
   setMainConcern,
@@ -36,6 +34,7 @@ export function useJourneyActions({
   setFeedbackSurveyAnswers,
   setStep,
   journeyHistory,
+  persistRecord,
   activeJourneyId,
   feedbackJourneyRecords,
   feedbackTargetRecord,
@@ -61,13 +60,12 @@ export function useJourneyActions({
 }) {
   const saveSurveyResult = () => {
     setFeedbackDraft(null);
-    const timestamp = Date.now();
     const savedAt = new Date().toISOString();
 
-    const journeyId = `journey-${timestamp}`;
+    const journeyId = createJourneyRecordId("journey");
 
     const data = {
-      id: `survey-${timestamp}`,
+      id: createJourneyRecordId("survey"),
       journeyId,
       journeySchemaVersion: 3,
       type: "initial_survey",
@@ -114,48 +112,27 @@ export function useJourneyActions({
     };
 
     try {
-      // 가장 최근 설문 결과 저장
-      localStorage.setItem(SAVED_SURVEY_KEY, JSON.stringify(data));
-
-      setSavedSurvey(data);
+      persistRecord(data);
       setActiveJourneyId(journeyId);
       setViewJourneyId(null);
-
-      // Skin Journey 누적
-      const savedHistory = localStorage.getItem(JOURNEY_HISTORY_KEY);
-
-      let history = [];
-
-      if (savedHistory) {
-        const parsedHistory = JSON.parse(savedHistory);
-
-        if (Array.isArray(parsedHistory)) {
-          history = parsedHistory;
-        }
-      }
-
-      const updatedHistory = [...history, data];
-
-      localStorage.setItem(JOURNEY_HISTORY_KEY, JSON.stringify(updatedHistory));
-
-      setJourneyHistory(updatedHistory);
+      return true;
     } catch (error) {
       console.error("설문 결과를 저장하지 못했어요.", error);
+      return false;
     }
   };
 
   const startQuickJourneyFeedback = () => {
     setFeedbackDraft(null);
-    const timestamp = Date.now();
     const savedAt = new Date().toISOString();
 
-    const journeyId = `journey-quick-${timestamp}`;
+    const journeyId = createJourneyRecordId("journey-quick");
 
     const quickSkinType =
       quickLevel <= 4 ? "건성" : quickLevel <= 6 ? "수부지 / 복합성" : "지성";
 
     const quickStartData = {
-      id: `quick-${timestamp}`,
+      id: createJourneyRecordId("quick"),
       journeyId,
       journeySchemaVersion: 3,
 
@@ -200,23 +177,7 @@ export function useJourneyActions({
     };
 
     try {
-      const savedHistory = localStorage.getItem(JOURNEY_HISTORY_KEY);
-
-      let history = [];
-
-      if (savedHistory) {
-        const parsedHistory = JSON.parse(savedHistory);
-
-        if (Array.isArray(parsedHistory)) {
-          history = parsedHistory;
-        }
-      }
-
-      const updatedHistory = [...history, quickStartData];
-
-      localStorage.setItem(JOURNEY_HISTORY_KEY, JSON.stringify(updatedHistory));
-
-      setJourneyHistory(updatedHistory);
+      persistRecord(quickStartData);
 
       setActiveJourneyId(journeyId);
       setViewJourneyId(null);
@@ -230,16 +191,6 @@ export function useJourneyActions({
       setStep("feedback");
     } catch (error) {
       console.error("빠른 추천 Journey를 저장하지 못했어요.", error);
-
-      setActiveJourneyId(journeyId);
-      setViewJourneyId(null);
-      setMainConcern("none");
-      setBaseLevel(quickLevel);
-      setAnswers({});
-      setProductUsageFeedback({});
-      setFeedbackSurveyAnswers({});
-
-      setStep("feedback");
     }
   };
 
@@ -291,7 +242,7 @@ export function useJourneyActions({
     });
 
     const feedbackData = {
-      id: feedbackDraft?.savedRecordId || `feedback-${Date.now()}`,
+      id: feedbackDraft?.savedRecordId || createJourneyRecordId("feedback"),
       type: "feedback",
       journeySchemaVersion: 3,
 
@@ -388,32 +339,12 @@ export function useJourneyActions({
     };
 
     try {
-      const savedHistory = localStorage.getItem(JOURNEY_HISTORY_KEY);
-
-      let history = [];
-
-      if (savedHistory) {
-        const parsedHistory = JSON.parse(savedHistory);
-
-        if (Array.isArray(parsedHistory)) {
-          history = parsedHistory;
-        }
-      }
-
-      const updatedHistory = feedbackDraft?.savedRecordId
-        ? history.map((record) => record.id === feedbackDraft.savedRecordId ? feedbackData : record)
-        : [...history, feedbackData];
-
-      localStorage.setItem(JOURNEY_HISTORY_KEY, JSON.stringify(updatedHistory));
-
-      setJourneyHistory(updatedHistory);
+      persistRecord(feedbackData);
       setFeedbackDraft({ evaluatedRecordId: latestJourneyRecord?.id, savedRecordId: feedbackData.id });
 
       setStep("result");
     } catch (error) {
       console.error("피드백 결과를 저장하지 못했어요.", error);
-
-      setStep("result");
     }
   };
 
