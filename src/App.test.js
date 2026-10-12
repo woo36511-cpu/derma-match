@@ -184,3 +184,16 @@ test("browser popstate restores the prior screen", () => {
     screen.getByRole("button", { name: /처음 시작해요/ }),
   ).toBeInTheDocument();
 });
+
+test("a failed device write keeps the user on the current routine instead of creating an unsaved journey", () => {
+  render(<App />);
+  click(/피부타입 알고 있어요/);
+  const disk = jest.spyOn(Storage.prototype, "setItem").mockImplementation(() => { throw new Error("quota"); });
+  const log = jest.spyOn(console, "error").mockImplementation(() => {});
+  try {
+    click("이 루틴으로 시작하기");
+    expect(screen.getByRole("button", { name: "이 루틴으로 시작하기" })).toBeInTheDocument();
+    expect(screen.getByRole("alert")).toHaveTextContent("저장하지 못했어요");
+    expect(history()).toBeNull();
+  } finally { disk.mockRestore(); log.mockRestore(); }
+});
