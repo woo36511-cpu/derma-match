@@ -47,6 +47,32 @@ test("no cloud config keeps guest storage usable", () => {
   expect(JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY))).toHaveLength(1);
 });
 
+test.each([
+  [{ code: "invalid_credentials", status: 400 }, /이메일과 비밀번호가 일치하지/],
+  [{ code: "email_not_confirmed", status: 400 }, /이메일 인증이 아직/],
+  [{ status: 429 }, /요청이 너무 많/],
+  [{ status: 503 }, /인증 서버가 일시적으로/],
+])("sign-in failures preserve the reason without blaming credentials for service errors", async (error, message) => {
+  const client = mockClient();
+  client.auth.signInWithPassword = jest.fn().mockResolvedValue({ data: null, error });
+  const { result } = renderHook(() => useJourneyAccount(client));
+  await waitFor(() => expect(result.current.account.authLoading).toBe(false));
+  await expect(result.current.account.signIn("person@example.test", "example-password")).rejects.toThrow(message);
+  expect(result.current.ownerId).toBeNull();
+});
+
+test("auth transport exceptions and mail configuration errors have safe actionable guidance", async () => {
+  const client = mockClient();
+  client.auth.signInWithPassword = jest.fn().mockRejectedValue({ name: "AuthRetryableFetchError", message: "private diagnostics" });
+  client.auth.resetPasswordForEmail = jest.fn().mockResolvedValue({ error: { code: "email_address_not_authorized" } });
+  const { result } = renderHook(() => useJourneyAccount(client));
+  await waitFor(() => expect(result.current.account.authLoading).toBe(false));
+  await expect(result.current.account.signIn("person@example.test", "example-password")).rejects.toThrow(/인증 서버에 연결하지 못/);
+  await expect(result.current.account.resetPassword("person@example.test")).rejects.toThrow(/운영자의 이메일 발송 설정/);
+  client.auth.signInWithPassword.mockResolvedValueOnce({ error: { code: "unrecognized", message: "private diagnostics" } });
+  await expect(result.current.account.signIn("person@example.test", "example-password")).rejects.toThrow(/^인증 요청을 처리하지 못했어요/);
+});
+
 test("sign-in loads account records, imports guests explicitly, and sign-out returns to guest records", async () => {
   localStorage.setItem(JOURNEY_HISTORY_KEY, JSON.stringify([record("guest")]));
   const client = mockClient(user("alice"), { alice: [{ record_id: "remote", revision: 1, payload: record("remote") }] });
