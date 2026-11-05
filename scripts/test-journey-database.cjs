@@ -17,7 +17,7 @@ async function main() {
       grant usage on schema auth to authenticated;
       insert into auth.users values ('${alice}'), ('${bob}');
     `);
-    await db.exec(fs.readFileSync("supabase/migrations/202610120001_journey_records.sql", "utf8"));
+    await db.exec(fs.readFileSync("supabase/migrations/20261105052119_journey_records.sql", "utf8"));
     const asUser = async (id) => {
       await db.exec("reset role; set role authenticated;");
       await db.query("select set_config('request.jwt.claim.sub', $1, false)", [id]);

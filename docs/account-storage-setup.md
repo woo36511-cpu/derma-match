@@ -1,9 +1,26 @@
 # 계정·서버 저장 연결
 
-이 문서는 2026-10-12 구현한 Supabase 연결 코드의 설정 안내다. 코드와 마이그레이션은
-준비되어 있지만 실제 Supabase 프로젝트·인증 이메일·Vercel 환경변수 설정이 없으면
-운영 사이트는 계속 기기 저장 모드로 동작한다. 실제 계정/서버 검증을 마치기 전에는
-서버 저장 완료로 운영 안내하지 않는다.
+이 문서는 2026-10-12 구현한 Supabase 연결 코드의 설정 안내다.
+2026-11-05 서울 프로젝트 `dearsince-seoul`에 DB 마이그레이션을 적용하고 실제 DB에서
+권한·동기화 검증을 마쳤다. Vercel 환경변수·인증 URL·운영 이메일 및 실제 로그인
+검증은 남아 있다. 이 단계가 끝나기 전에는 운영 사이트의 서버 저장 완료로 안내하지 않는다.
+
+## 2026-11-05 적용 확인
+
+- 프로젝트: `rtbbugpndlvxhnbewxhh`, 서울 `ap-northeast-2`, 상태 `ACTIVE_HEALTHY`.
+- 서버 마이그레이션: `20261105052119_journey_records`. 저장소의 기존 준비 SQL을
+  내용 변경 없이 이 서버 버전에 맞춰 이름을 정리했다.
+- 생성: `public.journey_records`, 소유 계정별 SELECT/INSERT/UPDATE RLS,
+  `public.sync_journey_records(uuid, jsonb)` 동기화 함수.
+- 실제 PostgreSQL에서 임시 사용자·기록을 한 트랜잭션 안에서 만들고 저장/수정,
+  동일 요청 재시도, 오래된 revision 거부, 충돌 배치 전체 취소, 잘못된 payload 거부,
+  계정 간 읽기/수정/소유자 위조 차단, 비로그인 접근 거부를 확인했다.
+  검증 트랜잭션은 ROLLBACK했고 이후 Journey 행 수는 0개다.
+- HTTP Data API에서도 공개 키만 보낸 비로그인 테이블 조회와 RPC 호출이
+  모두 HTTP 401 / SQLSTATE 42501로 차단됨을 확인했다.
+- Supabase 보안·성능 Advisor 모두 지적 사항 없음.
+- 공개 Auth 설정에서 이메일 가입 허용과 이메일 인증 활성화를 확인했다.
+  실제 이메일 발송/로그인/다른 브라우저 기록 복원은 아직 검증하지 않았다.
 
 ## 구현된 동작
 
@@ -27,9 +44,10 @@
 ## 운영 연결 순서
 
 1. Supabase 프로젝트를 만든다. 기존 프로젝트가 있으면 해당 프로젝트를 사용한다.
-2. SQL Editor에서 `supabase/migrations/202610120001_journey_records.sql`을 한 번 실행한다.
-   프로젝트의 `auth.users`를 사용하며 `public.journey_records`와 동기화 RPC를 만든다.
-   이미 적용한 마이그레이션을 SQL Editor에서 반복 실행하지 않는다.
+2. 현재 서울 프로젝트에는 `supabase/migrations/20261105052119_journey_records.sql`이 이미 적용됐다.
+   이 프로젝트에서 SQL을 다시 실행하지 않는다. 새 빈 프로젝트를 설정할 때만 이 파일을
+   한 번 적용한다. 프로젝트의 `auth.users`를 사용해 `public.journey_records`와
+   동기화 RPC를 만든다.
 3. Supabase Auth에서 Email 로그인과 이메일 인증을 켠다. 사이트 코드의 회원가입·
    비밀번호 변경 입력은 최소 8자를 요구한다. Auth 설정의 비밀번호 기준도 맞춘다.
 4. URL Configuration의 Site URL을 `https://dearsince.vercel.app`로 설정한다.
@@ -71,7 +89,9 @@ DB 비밀번호, `sb_secret_`/service-role 키, SMTP 비밀번호는 이 파일�
 지연 응답·충돌·재시도·게스트 가져오기와 기존 추천 흐름을 검사한다.
 `npm run test:db`는 PGlite PostgreSQL에서 실제 SQL을 실행해 RLS, 소유 계정 검사,
 revision, 재시도 멱등성, 충돌 배치의 전체 롤백, payload 제약, 비로그인 거부를
-검사한다. 이는 설정된 운영 Supabase의 인증 이메일·네트워크·DB 검증을 대신하지 않는다.
+검사한다. 이는 운영 Supabase의 실제 검증을 대신하지 않는다. 위 적용 확인에 기록한
+실제 DB·비로그인 HTTP 검사는 별도로 통과했지만, 인증 이메일과 사용자 로그인부터
+다른 기기 기록 복원까지의 검증은 여전히 남아 있다.
 
 저장은 현재 계정 또는 로그인 전 기기 범위로 나뉜다. 직접 수정 가능한 브라우저
 데이터이므로 향후 추천 점수 자동보정 전에 서버에서 데이터 신뢰도와 입력값을 다시
