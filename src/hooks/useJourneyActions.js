@@ -17,6 +17,7 @@ import {
 import { buildUsageReliability } from "../utils/usageReliability";
 
 export function useJourneyActions({
+  symptomAssessment, beginSymptomCheck, clearSymptomAssessment,
   surveyAnswers,
   mainConcern,
   issueAnswers,
@@ -59,6 +60,7 @@ export function useJourneyActions({
   savedSurveyResult,
 }) {
   const saveSurveyResult = () => {
+    if (!symptomAssessment?.complete) return false;
     setFeedbackDraft(null);
     const savedAt = new Date().toISOString();
 
@@ -68,6 +70,7 @@ export function useJourneyActions({
       id: createJourneyRecordId("survey"),
       journeyId,
       journeySchemaVersion: 3,
+      symptomAssessment,
       type: "initial_survey",
 
       surveyAnswers,
@@ -123,6 +126,7 @@ export function useJourneyActions({
   };
 
   const startQuickJourneyFeedback = () => {
+    if (!symptomAssessment?.complete || symptomAssessment.blockRoutine) return;
     setFeedbackDraft(null);
     const savedAt = new Date().toISOString();
 
@@ -135,6 +139,7 @@ export function useJourneyActions({
       id: createJourneyRecordId("quick"),
       journeyId,
       journeySchemaVersion: 3,
+      symptomAssessment,
 
       type: "initial_survey",
       source: "quick",
@@ -195,7 +200,7 @@ export function useJourneyActions({
   };
 
   const saveFeedbackResult = () => {
-    if (!feedbackSurveyComplete) return;
+    if (!feedbackSurveyComplete || !symptomAssessment?.complete) return;
     const savedAt = new Date().toISOString();
 
     const currentJourneyRecords = journeyHistory.filter(
@@ -239,12 +244,14 @@ export function useJourneyActions({
       feedbackAnswers: answers,
       actualProductUsage,
       skinComparison,
+      symptomAssessment,
     });
 
     const feedbackData = {
       id: feedbackDraft?.savedRecordId || createJourneyRecordId("feedback"),
       type: "feedback",
       journeySchemaVersion: 3,
+      symptomAssessment,
 
       feedbackAnswers: answers,
 
@@ -349,6 +356,7 @@ export function useJourneyActions({
   };
 
   const openSavedSurveyResult = () => {
+    clearSymptomAssessment();
     if (!savedSurvey?.surveyAnswers) return;
 
     setSurveyAnswers(savedSurvey.surveyAnswers);
@@ -356,7 +364,7 @@ export function useJourneyActions({
     setIssueAnswers(savedSurvey.issueAnswers || {});
     setSurveyIndex(0);
     setIssueIndex(0);
-    setStep("surveyResult");
+    beginSymptomCheck("surveyResult");
   };
 
   const startSavedFeedback = () => {
@@ -418,7 +426,7 @@ export function useJourneyActions({
     setProductUsageFeedback({});
     setFeedbackSurveyAnswers({});
 
-    setStep("feedback");
+    beginSymptomCheck("feedback");
   };
 
   return {

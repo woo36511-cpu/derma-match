@@ -11,9 +11,13 @@ import { isProductAvailable } from "../utils/productCatalog";
 import { ProductCard } from "../components/ProductCard";
 import { PrimaryButton } from "../components/PrimaryButton";
 import React from "react";
+import { RoutineSafetyNotice } from "../components/RoutineSafetyNotice";
+import { SymptomAssessmentCard } from "../components/SymptomAssessmentCard";
+import { SelfCarePlan } from "../components/SelfCarePlan";
 import { JourneyOutcomeCard } from "../components/JourneyOutcomeCard";
 
 export function ResultScreen({
+  safety, symptomAssessment, onSymptomRecheck,
   nextRoutineInfo,
   nextLevel,
   baseLevel,
@@ -27,6 +31,13 @@ export function ResultScreen({
   resetFlow,
   feedbackResultRecord,
 }) {
+  if (safety?.blocked) return <section className="max-w-3xl mx-auto space-y-6">
+    <SymptomAssessmentCard assessment={symptomAssessment} />
+    <RoutineSafetyNotice safety={safety} onRecheck={onSymptomRecheck} />
+    <SelfCarePlan assessment={symptomAssessment} />
+    <JourneyOutcomeCard record={feedbackResultRecord} />
+    <PrimaryButton onClick={resetFlow}>처음부터 다시</PrimaryButton>
+  </section>;
   return (
     <section>
       <SectionTitle
@@ -55,6 +66,7 @@ export function ResultScreen({
         </div>
       </div>
 
+      <div className="max-w-3xl mx-auto mb-8 space-y-5"><SymptomAssessmentCard assessment={symptomAssessment} /><SelfCarePlan assessment={symptomAssessment} /><button onClick={onSymptomRecheck} className="underline text-sm">증상 변화·악화 재설문</button></div>
       <FeedbackAdviceCard advice={feedbackAdvice} />
 
       <div className="max-w-3xl mx-auto mb-8">

@@ -37,13 +37,19 @@ import {
 import { buildJourneySummary } from "../utils/journeySummary";
 import { useJourneyActions } from "./useJourneyActions";
 import { useJourneyAccount } from "./useJourneyAccount";
+import { useSymptomCheck, isSymptomCheckRecord } from "./useSymptomCheck";
+import { applyRoutineSafety, getRoutineSafety, getFeedbackRoutineSafety, feedbackNeedsSymptomReview } from "../utils/symptomAssessment";
 
 export function useSkinCoach() {
   const starterLevel = 5;
-  const { savedSurvey, journeyHistory, persistRecord, account, ownerId } = useJourneyAccount();
+  const { savedSurvey, journeyHistory: storedHistory, persistRecord, account, ownerId } = useJourneyAccount();
+  // Symptom-only checks have no 8-axis measurement or product-effect attribution.
+  const journeyHistory = useMemo(() => storedHistory.filter(record => !isSymptomCheckRecord(record)), [storedHistory]);
 
   const [step, setStep] = useState("start");
+  const symptomCheck = useSymptomCheck({ ownerId, storedHistory, persistRecord, setStep });
   const [answers, setAnswers] = useState({});
+  const feedbackSafety = getFeedbackRoutineSafety(symptomCheck.assessment, answers);
   const [quickLevel, setQuickLevel] = useState(5);
   const isBrowserBackRef = useRef(false);
   const [baseLevel, setBaseLevel] = useState(5);
@@ -194,7 +200,7 @@ export function useSkinCoach() {
   const nextRoutineInfo = routineMap[nextLevel];
 
   const starterRoutine = getRoutineProducts(starterLevel);
-  const nextRoutine = buildDynamicRoutine(nextLevel, {
+  const nextRoutine = applyRoutineSafety(buildDynamicRoutine(nextLevel, {
     mainConcern: feedbackMainConcern,
 
     careNeeds: feedbackSurveyComplete
@@ -207,8 +213,9 @@ export function useSkinCoach() {
       : surveyResult.skinType?.includes("민감") ||
         (surveyResult.scores?.sensitivity ?? 0) >= 2 ||
         feedbackMainConcern === "sensitivity_redness",
-  });
-  const quickRoutine = buildDynamicRoutine(quickLevel);
+  }), feedbackSafety);
+  const quickSafety = getRoutineSafety(symptomCheck.assessment);
+  const quickRoutine = applyRoutineSafety(buildDynamicRoutine(quickLevel), quickSafety);
   const quickRoutineReason = buildRoutineReason(quickLevel);
 
   const acneGuide = useMemo(() => {
@@ -293,7 +300,8 @@ export function useSkinCoach() {
     issueGuide: activeIssueGuide,
   };
 
-  const surveyRoutine = buildDynamicRoutine(surveyResult.hydrationLevel, {
+  const routineSafety = getRoutineSafety(symptomCheck.assessment, activeIssueGuide);
+  const surveyRoutine = applyRoutineSafety(buildDynamicRoutine(surveyResult.hydrationLevel, {
     mainConcern,
 
     careNeeds: adjustedSurveyCareNeeds,
@@ -301,7 +309,7 @@ export function useSkinCoach() {
     isSensitive:
       surveyResult.skinType?.includes("민감") ||
       (surveyResult.scores?.sensitivity ?? 0) >= 2,
-  });
+  }), routineSafety);
 
   const savedSurveyResult = useMemo(() => {
     if (!savedSurvey?.surveyAnswers) return null;
@@ -638,7 +646,7 @@ export function useSkinCoach() {
     setFeedbackSurveyAnswers({});
     setFeedbackDraft(null);
 
-    setStep("feedback");
+    symptomCheck.begin("feedback");
   };
 
   const {
@@ -648,6 +656,9 @@ export function useSkinCoach() {
     openSavedSurveyResult,
     startSavedFeedback,
   } = useJourneyActions({
+    symptomAssessment: symptomCheck.assessment,
+    beginSymptomCheck: symptomCheck.begin,
+    clearSymptomAssessment: symptomCheck.clearAssessment,
     surveyAnswers,
     mainConcern,
     issueAnswers,
@@ -690,7 +701,15 @@ export function useSkinCoach() {
     savedSurveyResult,
   });
 
+  const startSymptomRecheck = () => {
+    if (isQuickJourney) resumeQuickJourneyFeedback();
+    else if (hasSavedSurvey) startSavedFeedback();
+    else symptomCheck.begin("survey");
+  };
+
   return {
+    symptomCheck, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck,
+    continueFeedback: () => feedbackNeedsSymptomReview(answers) ? symptomCheck.begin("recheck") : setStep("recheck"),
     account,
     resetFlow,
     step,

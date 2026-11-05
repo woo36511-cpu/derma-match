@@ -3,17 +3,34 @@ import App from "./App";
 import { skinSurveyQuestions } from "./data/skinSurvey";
 import { feedbackQuestions } from "./data/feedbackQuestions";
 import * as issueQuestions from "./data/skinIssueQuestions";
+import { getVisibleSymptomQuestions } from "./data/symptomQuestions";
 import { SAVED_SURVEY_KEY, JOURNEY_HISTORY_KEY } from "./data/storageKeys";
 
 const click = (name) => fireEvent.click(screen.getByRole("button", { name }));
-const history = () => JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY));
+const history = () => JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY) || "[]").filter(record => !record.assessmentOnly);
 
 beforeEach(() => {
   localStorage.clear();
   window.history.replaceState({}, "", "/");
 });
 
+function completeSymptomCheck(overrides = {}, { continueFlow = true } = {}) {
+  const values = { breathing: "no", infectionWarning: "none", eruption: "no", change: "stable", risk: "no", surface: "intact", barrier: "none", gut: "none", vegetables: "sometimes", probiotic: "none", habit: "observe", area: "face", form: "mixed", comedones: "yes", uniform: "no", itch: "none", follicular: "no", shaving: "no", sweat: "no", exposure: "none", pain: "none", duration: "under_week", treatment: "none", ...overrides };
+  for (const question of getVisibleSymptomQuestions(values)) {
+    expect(screen.getByRole("heading", { name: question.q })).toBeInTheDocument();
+    click(question.options.find(option => option.value === values[question.id]).label);
+    const next = screen.queryByRole("button", { name: "다음", exact: true });
+    if (next) fireEvent.click(next);
+    else {
+      const finish = screen.queryByRole("button", { name: "관리 경로 확인", exact: true });
+      if (finish) fireEvent.click(finish);
+    }
+  }
+  if (continueFlow) click("피부 관리 설문·기록 이어가기");
+}
+
 function completeSurvey() {
+  if (screen.queryByRole("heading", { name: "지금 증상부터 확인할게요" })) completeSymptomCheck();
   for (const question of skinSurveyQuestions) {
     expect(
       screen.getByRole("heading", { name: question.question }),
@@ -59,6 +76,7 @@ function completeFeedback({ usageDetails = false } = {}) {
 test("quick recommendation survives reload and saves two feedback rounds in the same journey", () => {
   const { unmount } = render(<App />);
   click(/피부타입 알고 있어요/);
+  completeSymptomCheck();
   click(/지성 \/ 번들거림/);
   expect(screen.getByText("8단계")).toBeInTheDocument();
   click("이 루틴으로 시작하기");
@@ -75,6 +93,7 @@ test("quick recommendation survives reload and saves two feedback rounds in the 
   unmount();
   render(<App />);
   click("첫 체크하기");
+  completeSymptomCheck();
   completeFeedback({ usageDetails: true });
   expect(history()).toHaveLength(2);
   expect(history()[1].journeyId).toBe(initial.journeyId);
@@ -94,6 +113,7 @@ test("quick recommendation survives reload and saves two feedback rounds in the 
   expect(history()[1].evaluatedRoutine).toEqual(initial.routine);
   click("처음부터 다시");
   click("2차 체크하기");
+  completeSymptomCheck();
   completeFeedback({ usageDetails: true });
   expect(history()).toHaveLength(3);
   expect(new Set(history().map((record) => record.journeyId)).size).toBe(1);
@@ -120,10 +140,12 @@ test("survey answers gate progression and a saved result can be reopened", () =>
   unmount();
   render(<App />);
   click("최근 결과 다시 보기");
+  completeSymptomCheck();
   expect(
     screen.getByRole("heading", { name: "추천 루틴" }),
   ).toBeInTheDocument();
   click("2주 사용 후 피드백 입력");
+  completeSymptomCheck();
   completeFeedback({ usageDetails: true });
   expect(history()[1].journeyId).toBe(history()[0].journeyId);
   expect(history()[1].outcome.skinComparison).toMatchObject({ complete: true, baselineRecordId: history()[0].id });
@@ -188,12 +210,64 @@ test("browser popstate restores the prior screen", () => {
 test("a failed device write keeps the user on the current routine instead of creating an unsaved journey", () => {
   render(<App />);
   click(/피부타입 알고 있어요/);
+  completeSymptomCheck();
+  const beforeFailure = history();
   const disk = jest.spyOn(Storage.prototype, "setItem").mockImplementation(() => { throw new Error("quota"); });
   const log = jest.spyOn(console, "error").mockImplementation(() => {});
   try {
     click("이 루틴으로 시작하기");
     expect(screen.getByRole("button", { name: "이 루틴으로 시작하기" })).toBeInTheDocument();
     expect(screen.getByRole("alert")).toHaveTextContent("저장하지 못했어요");
-    expect(history()).toBeNull();
+    expect(history()).toEqual(beforeFailure);
   } finally { disk.mockRestore(); log.mockRestore(); }
+});
+
+test("urgent symptoms stop immediately, persist independently and cannot expose products through browser back", () => {
+  render(<App />);
+  click(/피부타입 알고 있어요/);
+  click("네");
+  expect(screen.getByRole("alert")).toHaveTextContent("119");
+  expect(screen.queryByRole("button", { name: "피부 관리 설문·기록 이어가기" })).not.toBeInTheDocument();
+  expect(screen.queryByRole("heading", { name: "추천 루틴" })).not.toBeInTheDocument();
+  const records = JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY));
+  expect(records[0]).toMatchObject({ assessmentOnly: true, source: "symptom_check", symptomAssessment: { urgency: "emergency" } });
+  expect(records[0]).not.toHaveProperty("skinMeasurement");
+  fireEvent(window, new PopStateEvent("popstate", { state: { step: "quickRecommend" } }));
+  expect(screen.getByRole("heading", { name: "지금은 새 제품 추천보다 상태 확인이 먼저예요" })).toBeInTheDocument();
+});
+
+test("overlapping folliculitis patterns save evidence and lifestyle observations without automatic medication switching", () => {
+  const { unmount } = render(<App />);
+  click("증상 변화·악화 재설문");
+  completeSymptomCheck({ eruption: "yes", area: "trunk", form: "pustules", comedones: "no", uniform: "yes", itch: "strong", follicular: "yes", change: "worse", habit: "gut", probiotic: "recent", gut: "constipation_bloating", vegetables: "rare" }, { continueFlow: false });
+  expect(screen.getByRole("heading", { name: "말라세지아(효모·진균성) 모낭염 가능성" })).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: "세균성 등을 포함한 모낭염 가능성" })).toBeInTheDocument();
+  expect(screen.queryByRole("button", { name: "피부 관리 설문·기록 이어가기" })).not.toBeInTheDocument();
+  expect(screen.getByText(/유산균을 최근 시작했다면/)).toBeInTheDocument();
+  const records = JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY));
+  expect(records).toHaveLength(1);
+  expect(records[0].symptomAssessment.answers).toMatchObject({ probiotic: "recent", vegetables: "rare", gut: "constipation_bloating", habit: "gut" });
+  unmount();
+  render(<App />);
+  click("지난 증상 확인 기록");
+  expect(screen.getByText(/지난번에 저장한 확인 결과/)).toBeInTheDocument();
+  expect(screen.queryByRole("button", { name: "피부 관리 설문·기록 이어가기" })).not.toBeInTheDocument();
+});
+
+test("worsening reported during feedback triggers a fresh symptom check before any next routine", () => {
+  render(<App />);
+  click(/피부타입 알고 있어요/);
+  completeSymptomCheck();
+  click("이 루틴으로 시작하기");
+  screen.getAllByRole("button", { name: "꾸준히 사용함", exact: true }).forEach(button => fireEvent.click(button));
+  for (const question of feedbackQuestions) {
+    const option = question.id === "trouble" ? question.options[3] : question.options[0];
+    screen.getAllByRole("button", { name: option.label, exact: true }).forEach(button => fireEvent.click(button));
+  }
+  click("원래 있던 트러블이 더 심해짐");
+  click("피부 상태 다시 확인하기");
+  expect(screen.getByRole("heading", { name: "지금 증상부터 확인할게요" })).toBeInTheDocument();
+  completeSymptomCheck({ change: "worse" }, { continueFlow: false });
+  expect(screen.getByRole("heading", { name: "새 제품보다 악화·자극 원인 확인이 먼저예요" })).toBeInTheDocument();
+  expect(screen.queryByRole("heading", { name: "다음 단계 기본 루틴" })).not.toBeInTheDocument();
 });

@@ -4,6 +4,7 @@ import { SeoContentSection } from "../components/SeoContentSection";
 import React from "react";
 
 export function StartScreen({
+  startCheckedFlow, startSymptomRecheck, symptomCheck,
   setActiveJourneyId,
   setStep,
   isQuickJourney,
@@ -40,7 +41,7 @@ export function StartScreen({
         <button
           onClick={() => {
             setActiveJourneyId(null);
-            setStep("quickRecommend");
+            startCheckedFlow("quickRecommend");
           }}
           className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 text-left hover:shadow-lg hover:-translate-y-1 transition active:scale-[0.98]"
         >
@@ -60,7 +61,7 @@ export function StartScreen({
         <button
           onClick={() => {
             setActiveJourneyId(null);
-            setStep("survey");
+            startCheckedFlow("survey");
           }}
           className="bg-black text-white rounded-3xl shadow-sm p-6 sm:p-8 text-left hover:opacity-90 hover:-translate-y-1 transition active:scale-[0.98]"
         >
@@ -76,6 +77,12 @@ export function StartScreen({
             설문 시작하기 →
           </span>
         </button>
+      </div>
+      <div className="mt-6 max-w-4xl w-full rounded-3xl border border-amber-200 bg-amber-50 p-5 text-left">
+        <h3 className="text-lg font-bold">트러블이 달라졌거나 악화했나요?</h3>
+        <p className="text-sm text-slate-700 mt-2">2주를 기다리지 말고 가려움·돌기·고름·면도·사용 약과 자극을 다시 확인하세요. 원인이 다른 비슷한 증상도 함께 살펴봐요.</p>
+        <button onClick={startSymptomRecheck} className="mt-4 rounded-2xl bg-slate-950 text-white px-5 py-3 text-sm font-semibold">증상 변화·악화 재설문</button>
+        {symptomCheck.latestRecord && <button onClick={symptomCheck.openLatest} className="ml-3 mt-3 text-sm underline">지난 증상 확인 기록</button>}
       </div>
       {isQuickJourney && (
         <div className="mt-6 max-w-4xl w-full bg-white border border-emerald-100 rounded-3xl shadow-sm p-5 sm:p-6 text-left">
@@ -131,7 +138,7 @@ export function StartScreen({
               </h3>
 
               <p className="text-sm text-gray-600 leading-relaxed break-keep">
-                이전에 추천받은 루틴을 다시 확인하거나, 2주 사용 후 피부 반응을
+                이전에 추천받은 루틴을 다시 확인하거나, 사용 후 피부 반응을
                 체크할 수 있어요.
               </p>
             </div>
