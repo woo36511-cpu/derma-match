@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { getSupabaseClient, readCloudConfig } from "../services/supabaseClient";
+import { getAuthErrorMessage } from "../services/authErrors";
 import { fetchCloudRecords, saveCloudRecords, getCloudErrorMessage } from "../services/journeyCloud";
 import {
   readJourneyCache, writeJourneyCache, saveLocalRecord, mergeCloudRecords,
@@ -153,8 +154,14 @@ export function useJourneyAccount(client = getSupabaseClient()) {
   };
   const authAction = async (action, ...values) => {
     if (!client) throw new Error("계정 저장은 아직 준비 중이에요.");
-    const { data, error: authError } = await client.auth[action](...values);
-    if (authError) throw new Error(action === "signInWithPassword" ? "이메일·비밀번호 또는 이메일 인증 상태를 확인해주세요." : "요청을 처리하지 못했어요. 입력 정보와 이메일을 확인해주세요.");
+    let response;
+    try {
+      response = await client.auth[action](...values);
+    } catch (authError) {
+      throw new Error(getAuthErrorMessage(authError, action));
+    }
+    const { data, error: authError } = response;
+    if (authError) throw new Error(getAuthErrorMessage(authError, action));
     return data;
   };
   const visible = state.ownerId === ownerId && !authLoading ? state.cache : blank();
