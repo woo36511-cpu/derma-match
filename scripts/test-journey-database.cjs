@@ -10,6 +10,7 @@ async function main() {
     await db.exec(`
       create role anon nologin;
       create role authenticated nologin;
+      create role service_role nologin bypassrls;
       create schema auth;
       create table auth.users(id uuid primary key);
       create function auth.uid() returns uuid language sql stable as
@@ -18,6 +19,7 @@ async function main() {
       insert into auth.users values ('${alice}'), ('${bob}');
     `);
     await db.exec(fs.readFileSync("supabase/migrations/20261105052119_journey_records.sql", "utf8"));
+    await db.exec(fs.readFileSync("supabase/migrations/20261105145141_username_accounts.sql", "utf8"));
     const asUser = async (id) => {
       await db.exec("reset role; set role authenticated;");
       await db.query("select set_config('request.jwt.claim.sub', $1, false)", [id]);
@@ -46,7 +48,23 @@ async function main() {
     await db.exec("reset role; set role anon;");
     await assert.rejects(db.query("select * from public.journey_records"), { code: "42501" });
     await assert.rejects(save(alice, [entry]), { code: "42501" });
-    console.log("Journey SQL checks passed: RLS isolation, ownership guard, revisions, idempotence, atomic rollback, validation and anonymous denial.");
+    await assert.rejects(db.query("select public.username_account_lookup('test_user')"), { code: "42501" });
+    await asUser(alice);
+    await assert.rejects(db.query("select * from dearsince_private.username_accounts"), { code: "42501" });
+    await assert.rejects(db.query("select public.register_username('test_user',$1,$2)", [alice, "a".repeat(64)]), { code: "42501" });
+    await db.exec("reset role; set role service_role;");
+    const a = "a".repeat(64), b = "b".repeat(64), c = "c".repeat(64);
+    assert.equal((await db.query("select public.register_username('test_user',$1,$2) as ok", [alice,a])).rows[0].ok, true);
+    assert.equal((await db.query("select public.register_username('test_user',$1,$2) as ok", [bob,b])).rows[0].ok, false, "username uniqueness");
+    assert.equal((await db.query("select public.register_username('another_user',$1,$2) as ok", [alice,b])).rows[0].ok, false, "one username per account");
+    assert.equal((await db.query("select public.consume_username_recovery('test_user',$1,$2) as owner", [a,b])).rows[0].owner, alice);
+    assert.equal((await db.query("select public.consume_username_recovery('test_user',$1,$2) as owner", [a,c])).rows[0].owner, null, "recovery code is single use");
+    assert.equal((await db.query("select public.restore_username_recovery($1,$2,$3) as ok", [alice,c,a])).rows[0].ok, false, "stale compensation cannot overwrite newer recovery state");
+    assert.equal((await db.query("select public.restore_username_recovery($1,$2,$3) as ok", [alice,b,a])).rows[0].ok, true);
+    for (const expected of [true,true,false]) assert.equal((await db.query("select public.username_auth_limit('qa-bucket',2,60) as ok")).rows[0].ok, expected);
+    await db.exec("update dearsince_private.username_rate_limits set resets_at=now()-interval '1 second' where bucket='qa-bucket'");
+    assert.equal((await db.query("select public.username_auth_limit('qa-bucket',2,60) as ok")).rows[0].ok, true);
+    console.log("Journey SQL checks passed: RLS isolation, ownership guard, revisions, idempotence, atomic rollback, validation, anonymous denial, private username registry, single-use recovery and throttling.");
   } finally { await db.close(); }
 }
 main().catch((error) => { console.error(error); process.exitCode = 1; });

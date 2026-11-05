@@ -20,7 +20,8 @@
     "eject": "react-scripts eject",
     "prebuild": "node scripts/check-cloud-config.cjs",
     "prestart": "node scripts/check-cloud-config.cjs development",
-    "test:db": "node scripts/test-journey-database.cjs"
+    "test:db": "node scripts/test-journey-database.cjs",
+    "test:auth": "node --test scripts/username-auth.test.mjs"
   },
   "eslintConfig": {
     "extends": [

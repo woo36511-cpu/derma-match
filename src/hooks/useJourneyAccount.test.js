@@ -47,6 +47,45 @@ test("no cloud config keeps guest storage usable", () => {
   expect(JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY))).toHaveLength(1);
 });
 
+test("username signup installs the native session, keeps recovery codes out of storage, and isolates them on account changes", async () => {
+  const client = mockClient();
+  client.functions = { invoke: jest.fn(async (_, { body }) => ({ data: body.action === "profile" ? { username: "alice_name" } : {
+    session: { access_token: "test-access", refresh_token: "test-refresh" }, userId: "alice", username: "alice_name", recoveryCode: "one-time-test-recovery",
+  } })) };
+  client.auth.setSession = jest.fn(async () => { const next = user("alice"); client.emit(next); return { data: { user: next }, error: null }; });
+  const { result } = renderHook(() => useJourneyAccount(client));
+  await waitFor(() => expect(result.current.account.authLoading).toBe(false));
+  await act(async () => result.current.account.signUpUsername("alice_name", "fixture-password"));
+  await waitFor(() => expect(result.current.account.syncStatus).toBe("synced"));
+  expect(result.current.ownerId).toBe("alice");
+  expect(result.current.account.username).toBe("alice_name");
+  expect(result.current.account.recoveryCode).toBe("one-time-test-recovery");
+  act(() => result.current.persistRecord(record("username-record")));
+  expect(JSON.stringify({ ...localStorage })).not.toContain("one-time-test-recovery");
+  act(() => client.emit(user("bob")));
+  await waitFor(() => expect(result.current.ownerId).toBe("bob"));
+  expect(result.current.account.recoveryCode).toBeNull();
+  expect(result.current.journeyHistory).toEqual([]);
+});
+
+test("recovery code confirmation installs a session and opens the native password change flow", async () => {
+  const client = mockClient();
+  client.functions = { invoke: jest.fn(async (_, { body }) => ({ data: body.action === "profile" ? { username: "alice_name" } : {
+    session: { access_token: "test-access", refresh_token: "test-refresh" }, userId: "alice", username: "alice_name", recoveryCode: "replacement-test-code", recovery: true,
+  } })) };
+  client.auth.setSession = jest.fn(async () => { const next = user("alice"); client.emit(next); return { data: { user: next }, error: null }; });
+  client.auth.updateUser = jest.fn(async () => ({ data: { user: user("alice") }, error: null }));
+  const { result } = renderHook(() => useJourneyAccount(client));
+  await waitFor(() => expect(result.current.account.authLoading).toBe(false));
+  await act(async () => result.current.account.recoverUsername("alice_name", "old-test-code"));
+  expect(result.current.account.recovery).toBe(true);
+  expect(result.current.account.recoveryCode).toBe("replacement-test-code");
+  act(() => result.current.account.dismissRecoveryCode());
+  await act(async () => result.current.account.updatePassword("new-fixture-password"));
+  expect(result.current.account.recovery).toBe(false);
+  expect(client.auth.updateUser).toHaveBeenCalledWith({ password: "new-fixture-password" });
+});
+
 test.each([
   [{ code: "invalid_credentials", status: 400 }, /이메일과 비밀번호가 일치하지/],
   [{ code: "email_not_confirmed", status: 400 }, /이메일 인증이 아직/],
