@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { getSupabaseClient, readCloudConfig } from "../services/supabaseClient";
 import { getAuthErrorMessage } from "../services/authErrors";
+import { usernameAuth } from "../services/usernameAuth";
 import { fetchCloudRecords, saveCloudRecords, getCloudErrorMessage } from "../services/journeyCloud";
 import {
   readJourneyCache, writeJourneyCache, saveLocalRecord, mergeCloudRecords,
@@ -18,6 +19,8 @@ export function useJourneyAccount(client = getSupabaseClient()) {
   const [syncStatus, setSyncStatus] = useState("device");
   const [error, setError] = useState(readCloudConfig().error || "");
   const [guestCount, setGuestCount] = useState(0);
+  const [usernameState, setUsernameState] = useState({ ownerId: null, value: null, loading: false, error: "" });
+  const [issuedRecovery, setIssuedRecovery] = useState(null);
   const scope = useRef({ ownerId: null, epoch: 0, cache: blank(), readable: false });
   const busy = useRef(null);
   const ownerId = user?.id || null;
@@ -90,6 +93,7 @@ export function useJourneyAccount(client = getSupabaseClient()) {
       setAuthLoading(false);
       if (event === "PASSWORD_RECOVERY") setRecovery(true);
       else if (event === "SIGNED_OUT" || event === "SIGNED_IN") setRecovery(false);
+      if (event === "SIGNED_OUT") setIssuedRecovery(null);
     });
     client.auth.getSession().then(({ data: sessionData, error: sessionError }) => {
       if (!mounted) return;
@@ -101,6 +105,21 @@ export function useJourneyAccount(client = getSupabaseClient()) {
     });
     return () => { mounted = false; data.subscription.unsubscribe(); };
   }, [client]);
+
+  useEffect(() => {
+    let active = true;
+    if (!ownerId || !client?.functions) {
+      setUsernameState({ ownerId, value: null, loading: false, error: "" });
+      return;
+    }
+    setUsernameState(previous => ({ ownerId, value: previous.ownerId === ownerId ? previous.value : null, loading: true, error: "" }));
+    usernameAuth(client, "profile").then(data => {
+      if (active) setUsernameState({ ownerId, value: data.username || null, loading: false, error: "" });
+    }).catch(() => {
+      if (active) setUsernameState(previous => ({ ...previous, loading: false, error: "아이디 정보를 불러오지 못했어요. 다시 로그인해서 확인해주세요." }));
+    });
+    return () => { active = false; };
+  }, [client, ownerId]);
 
   useEffect(() => {
     const epoch = scope.current.epoch + 1;
@@ -165,6 +184,20 @@ export function useJourneyAccount(client = getSupabaseClient()) {
     return data;
   };
   const visible = state.ownerId === ownerId && !authLoading ? state.cache : blank();
+  const usernameAction = async (action, values) => {
+    const data = await usernameAuth(client, action, values);
+    let targetOwner = ownerId;
+    if (data.recoveryCode) setIssuedRecovery({ ownerId: data.userId || ownerId, code: data.recoveryCode });
+    if (data.session) {
+      const installed = await client.auth.setSession(data.session);
+      if (installed.error || !installed.data?.user?.id) throw new Error("로그인 세션을 확인하지 못했어요. 다시 로그인해주세요.");
+      targetOwner = installed.data.user.id;
+    }
+    if (targetOwner && data.username) setUsernameState({ ownerId: targetOwner, value: data.username, loading: false, error: "" });
+    if (targetOwner && data.recoveryCode) setIssuedRecovery({ ownerId: targetOwner, code: data.recoveryCode });
+    if (data.recovery) setRecovery(true);
+    return data;
+  };
   return {
     journeyHistory: visible.records,
     savedSurvey: getSavedSurvey(visible.records),
@@ -172,6 +205,18 @@ export function useJourneyAccount(client = getSupabaseClient()) {
     ownerId,
     account: {
       enabled: !!client, user, authLoading, recovery, syncStatus, error,
+      username: usernameState.ownerId === ownerId ? usernameState.value : null,
+      usernameLoading: usernameState.ownerId === ownerId && usernameState.loading,
+      usernameError: usernameState.ownerId === ownerId ? usernameState.error : "",
+      recoveryCode: issuedRecovery && (!ownerId || issuedRecovery.ownerId === ownerId) ? issuedRecovery.code : null,
+      dismissRecoveryCode: () => setIssuedRecovery(null),
+      signInUsername: (username, password) => usernameAction("signin", { username, password }),
+      signUpUsername: (username, password) => usernameAction("signup", { username, password }),
+      recoverUsername: (username, recoveryCode) => usernameAction("recover", { username, recoveryCode }),
+      claimUsername: (username) => usernameAction("claim", { username }),
+      rotateRecoveryCode: (password) => usernameAction("rotate", { password }),
+      startPasswordChange: () => setRecovery(true),
+      cancelPasswordChange: () => setRecovery(false),
       guestCount, pendingCount: visible.dirtyIds.length,
       conflicts: visible.conflicts.map((row) => ({ ...row, localPayload: visible.records.find((record) => record.id === row.record_id) })),
       syncNow,
@@ -179,7 +224,7 @@ export function useJourneyAccount(client = getSupabaseClient()) {
       signUp: (email, password) => authAction("signUp", { email, password, options: { emailRedirectTo: `${window.location.origin}/` } }),
       resetPassword: (email) => authAction("resetPasswordForEmail", email, { redirectTo: `${window.location.origin}/` }),
       updatePassword: async (password) => { await authAction("updateUser", { password }); setRecovery(false); },
-      signOut: async () => { await authAction("signOut", { scope: "local" }); setRecovery(false); },
+      signOut: async () => { await authAction("signOut", { scope: "local" }); setRecovery(false); setIssuedRecovery(null); },
       importGuest: () => {
         if (!ownerId || scope.current.ownerId !== ownerId) return;
         const records = readJourneyCache(localStorage).records;

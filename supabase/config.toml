@@ -1,0 +1,6 @@
+project_id = "dearsince"
+
+[functions.username-auth]
+# Signup/signin authenticate with a password; recovery with a one-use recovery code.
+# Authenticated profile/link/rotation actions also verify the caller with Auth.getUser.
+verify_jwt = false

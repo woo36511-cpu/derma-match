@@ -25,6 +25,8 @@ jobs:
         run: CI=true npm test -- --watchAll=false --runInBand
       - name: Check database migration and account isolation
         run: npm run test:db
+      - name: Check username authentication server
+        run: npm run test:auth
       - name: Check ESLint
         run: npx eslint src --max-warnings 0
       - name: Build production bundle
