@@ -6,6 +6,8 @@ import React from "react";
 import { ProductUsageFields } from "../components/ProductUsageFields";
 
 export function FeedbackScreen({
+  onSymptomRecheck,
+  continueFeedback,
   feedbackTargetProducts,
   productUsageFeedback,
   handleProductUsageAnswer,
@@ -13,7 +15,6 @@ export function FeedbackScreen({
   handleAnswer,
   nextLevel,
   nextRoutineInfo,
-  setStep,
   isComplete,
 }) {
   return (
@@ -23,6 +24,10 @@ export function FeedbackScreen({
         desc="추천받은 루틴을 약 2주 사용한 후 느낀 피부 변화를 선택해주세요."
       />
 
+      <div className="max-w-3xl mx-auto mb-6 rounded-2xl bg-amber-50 p-4 text-sm">
+        악화하거나 새 증상이 생겼다면 2주를 채우려고 기다리지 마세요.
+        <button onClick={onSymptomRecheck} className="block underline mt-2">증상 변화·악화 재설문</button>
+      </div>
       <div className="max-w-3xl mx-auto space-y-5">
         {feedbackTargetProducts.length > 0 && (
           <div className="bg-gray-50 border border-gray-100 rounded-3xl p-5 sm:p-6">
@@ -139,7 +144,7 @@ export function FeedbackScreen({
 
       <div className="mt-10 flex justify-center">
         <PrimaryButton
-          onClick={() => setStep("recheck")}
+          onClick={continueFeedback}
           disabled={!isComplete}
         >
           피부 상태 다시 확인하기

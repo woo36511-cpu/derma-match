@@ -13,9 +13,13 @@ import { RecheckScreen } from "./screens/RecheckScreen";
 import { ResultScreen } from "./screens/ResultScreen";
 import { Footer } from "./components/Footer";
 import { AccountPanel } from "./components/AccountPanel";
+import { SymptomCheckScreen } from "./screens/SymptomCheckScreen";
+import { SymptomResultScreen } from "./screens/SymptomResultScreen";
+import { RoutineSafetyNotice } from "./components/RoutineSafetyNotice";
 
 export default function App() {
   const {
+    symptomCheck, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck, continueFeedback,
     account,
     resetFlow,
     step,
@@ -116,8 +120,13 @@ export default function App() {
       <AccountPanel account={account} />
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+        {step === "symptomCheck" && <SymptomCheckScreen check={symptomCheck} />}
+        {step === "symptomResult" && <SymptomResultScreen check={symptomCheck} setStep={setStep} />}
         {step === "start" && (
           <StartScreen
+            startCheckedFlow={symptomCheck.begin}
+            startSymptomRecheck={startSymptomRecheck}
+            symptomCheck={symptomCheck}
             setActiveJourneyId={setActiveJourneyId}
             setStep={setStep}
             isQuickJourney={isQuickJourney}
@@ -157,7 +166,7 @@ export default function App() {
           />
         )}
 
-        {step === "quickRecommend" && (
+        {step === "quickRecommend" && (quickSafety.blocked ? <RoutineSafetyNotice safety={quickSafety} onRecheck={() => symptomCheck.begin("quickRecommend")} /> : (
           <QuickRecommendScreen
             setQuickLevel={setQuickLevel}
             quickLevel={quickLevel}
@@ -166,7 +175,7 @@ export default function App() {
             setStep={setStep}
             startQuickJourneyFeedback={startQuickJourneyFeedback}
           />
-        )}
+        ))}
         {step === "survey" && currentSurveyQuestion && (
           <SurveyScreen
             surveyIndex={surveyIndex}
@@ -211,6 +220,9 @@ export default function App() {
 
         {step === "surveyResult" && (
           <SurveyResultScreen
+            safety={routineSafety}
+            symptomAssessment={symptomCheck.assessment}
+            onSymptomRecheck={startSymptomRecheck}
             finalSkinProfile={finalSkinProfile}
             activeIssueGuide={activeIssueGuide}
             surveyRoutine={surveyRoutine}
@@ -222,7 +234,7 @@ export default function App() {
             startSavedFeedback={startSavedFeedback}
           />
         )}
-        {step === "starter" && starterRoutine && (
+        {step === "starter" && starterRoutine && (quickSafety.blocked ? <RoutineSafetyNotice safety={quickSafety} onRecheck={() => symptomCheck.begin("survey")} /> : (
           <StarterScreen
             starterRoutineInfo={starterRoutineInfo}
             starterRoutine={starterRoutine}
@@ -232,10 +244,12 @@ export default function App() {
             setAnswers={setAnswers}
             setStep={setStep}
           />
-        )}
+        ))}
 
         {step === "feedback" && (
           <FeedbackScreen
+            continueFeedback={continueFeedback}
+            onSymptomRecheck={startSymptomRecheck}
             feedbackTargetProducts={feedbackTargetProducts}
             productUsageFeedback={productUsageFeedback}
             handleProductUsageAnswer={handleProductUsageAnswer}
@@ -259,6 +273,9 @@ export default function App() {
 
         {step === "result" && nextRoutine && (
           <ResultScreen
+            safety={feedbackSafety}
+            symptomAssessment={symptomCheck.assessment}
+            onSymptomRecheck={startSymptomRecheck}
             feedbackResultRecord={feedbackResultRecord}
             nextRoutineInfo={nextRoutineInfo}
             nextLevel={nextLevel}

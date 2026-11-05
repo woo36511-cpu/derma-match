@@ -4,8 +4,12 @@ import { SectionTitle } from "../components/SectionTitle";
 import { RoutineProductScroller } from "../components/RoutineProductScroller";
 import { PrimaryButton } from "../components/PrimaryButton";
 import React from "react";
+import { RoutineSafetyNotice } from "../components/RoutineSafetyNotice";
+import { SymptomAssessmentCard } from "../components/SymptomAssessmentCard";
+import { SelfCarePlan } from "../components/SelfCarePlan";
 
 export function SurveyResultScreen({
+  safety, symptomAssessment, onSymptomRecheck,
   finalSkinProfile,
   activeIssueGuide,
   surveyRoutine,
@@ -16,15 +20,23 @@ export function SurveyResultScreen({
   setStep,
   startSavedFeedback,
 }) {
+  if (safety?.blocked) return <section className="max-w-3xl mx-auto space-y-6">
+    <SymptomAssessmentCard assessment={symptomAssessment} />
+    {activeIssueGuide && !["emergency", "urgent"].includes(symptomAssessment?.urgency) && <SkinIssueGuideCard guide={{ ...activeIssueGuide, pharmacyGuide: null }} />}
+    <RoutineSafetyNotice safety={safety} onRecheck={onSymptomRecheck} />
+    <SelfCarePlan assessment={symptomAssessment} />
+    <button onClick={() => setStep("start")} className="underline text-sm">시작 화면으로</button>
+  </section>;
   return (
     <section className="space-y-10">
+      <div className="max-w-3xl mx-auto space-y-5"><SymptomAssessmentCard assessment={symptomAssessment} /><SelfCarePlan assessment={symptomAssessment} /></div>
       <SurveyResultOverview result={finalSkinProfile} />
 
       {activeIssueGuide && <SkinIssueGuideCard guide={activeIssueGuide} />}
       <div className="mb-10">
         <SectionTitle
           title="추천 루틴"
-          desc="설문 결과에 맞춰 클렌저, 토너, 세럼, 크림을 하나씩 추천합니다."
+          desc="필요한 카테고리의 후보를 확인하세요. 기존 제품이 편안하면 바꿀 필요는 없고, 토너·세럼은 필수가 아니에요. 새 제품은 하나씩 확인하세요."
         />
 
         <RoutineProductScroller
@@ -100,6 +112,8 @@ export function SurveyResultScreen({
         </div>
       </div>
 
+      <p className="text-center text-sm text-slate-600">2주 체크는 자극·악화·사용 상태를 확인해요. 악화하면 기다리지 말고 증상을 다시 확인하세요.</p>
+      <button onClick={onSymptomRecheck} className="block mx-auto underline text-sm mt-4">증상 변화·악화 재설문</button>
       <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
         <button
           onClick={() => {

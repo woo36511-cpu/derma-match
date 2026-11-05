@@ -756,7 +756,7 @@ function getLifestyleAdvice(tags) {
   }
 
   if (tags.includes("high_glycemic_food")) {
-    advice.push("단 음식이나 밀가루 섭취가 많다면 2주 정도 줄여보며 피부 변화를 확인해보세요.");
+    advice.push("단 음식에 치우치지 않도록 식사 균형과 피부 반응을 기록해보세요. 특정 식품을 일괄 제한하기보다 지속 가능한 식습관부터 점검하세요.");
   }
 
   if (tags.includes("dairy")) {
@@ -764,7 +764,7 @@ function getLifestyleAdvice(tags) {
   }
 
   if (tags.includes("low_vegetable")) {
-    advice.push("채소 섭취가 부족하다면 식이섬유가 있는 식품이나 동결건조 채소를 보조적으로 활용할 수 있습니다.");
+    advice.push("채소 섭취가 부족하면 손질·냉동·동결건조 채소 등 준비가 쉬운 선택지로 식사를 보완해보세요. 특정 식품의 피부 치료 효과를 뜻하지는 않습니다.");
   }
 
   if (tags.includes("gut_discomfort")) {
@@ -776,7 +776,7 @@ function getLifestyleAdvice(tags) {
   }
 
   if (tags.includes("low_water")) {
-  advice.push("물을 너무 적게 마신다면 피부 컨디션과 속건조 느낌에 영향을 줄 수 있어 섭취량을 함께 점검해보세요.");
+  advice.push("수분 섭취와 갈증·생활 패턴을 함께 점검해보세요. 물을 많이 마시는 것만으로 피부 건조를 치료할 수 있는 것은 아닙니다.");
 }
   return advice;
 }

@@ -85,7 +85,7 @@ export function QuickRecommendScreen({
       <div className="mb-10">
         <SectionTitle
           title="추천 루틴"
-          desc="선택한 피부타입에 맞춰 클렌저, 토너, 세럼, 크림을 하나씩 추천합니다."
+          desc="피부타입에 맞는 후보예요. 기존에 편안한 제품을 모두 바꾸지 않아도 되고 토너·세럼은 필수가 아니에요. 새 제품은 하나씩 확인하세요."
         />
 
         <RoutineProductScroller

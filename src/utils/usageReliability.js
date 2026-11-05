@@ -1,13 +1,13 @@
 import { buildFeedbackDataQuality, buildFeedbackConfounders } from "./feedbackAnalysis";
 
-export const RELIABILITY_RULE_VERSION = "usage-record-v1";
+export const RELIABILITY_RULE_VERSION = "usage-record-v2";
 
 function levelFor(score) {
   return score >= 0.8 ? "high" : score >= 0.55 ? "medium" : "low";
 }
 
 export function buildUsageReliability({
-  feedbackAnswers = {}, actualProductUsage = [], skinComparison = null,
+  feedbackAnswers = {}, actualProductUsage = [], skinComparison = null, symptomAssessment = null,
 } = {}) {
   const quality = buildFeedbackDataQuality(feedbackAnswers);
   const confounders = buildFeedbackConfounders(feedbackAnswers);
@@ -68,14 +68,20 @@ export function buildUsageReliability({
   if (exposed.length > 1) reasons.push("multiple_products");
   if (productReliability.some((item) => item.inconsistent)) reasons.push("inconsistent_usage");
   if (productReliability.some((item) => item.stoppedEarly)) reasons.push("stopped_early");
+  const symptomContext = symptomAssessment?.answers || {};
+  const additionalConfounder = symptomContext.probiotic === "recent" ||
+    ["antibiotic", "steroid", "both"].includes(symptomContext.exposure) ||
+    ["acne", "antibiotic", "antifungal", "other_medicine"].includes(symptomContext.treatment);
+  if (additionalConfounder) reasons.push("concurrent_treatment_or_supplement");
 
   let score = Math.min(quality.confidenceScore,
     ...exposed.map((item) => item.score));
   if (!skinComparison?.complete) score = Math.min(score, 0.4);
   if (exposed.length === 0) score = 0;
+  if (additionalConfounder) score = Math.min(score, 0.5);
   const unknownProduct = productReliability.some((item) => item.status === "unknown");
   const productAttributionReady = exposed.length === 1 && !unknownProduct &&
-    quality.complete && confounders.confounderCount === 0 &&
+    quality.complete && confounders.confounderCount === 0 && !additionalConfounder &&
     skinComparison?.complete === true && exposed[0].level === "high";
 
   return {
