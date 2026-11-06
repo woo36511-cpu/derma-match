@@ -1,7 +1,7 @@
 import { cleanSymptomAnswers, getVisibleSymptomQuestions, hasBreakoutDetails, isSymptomAnswerValid } from "../data/symptomQuestions";
 import { getBreakoutFirstCare } from "./breakoutFirstCare";
 
-export const SYMPTOM_RULE_VERSION = "skin-care-v6";
+export const SYMPTOM_RULE_VERSION = "skin-care-v7";
 export const symptomSources = [
   { label: "AAD · 여드름과 비슷해 보이는 모낭염", url: "https://www.aad.org/public/diseases/a-z/folliculitis/" },
   { label: "DermNet · 말라세지아 모낭염 설명·임상사진", url: "https://dermnetnz.org/topics/malassezia-folliculitis" },

@@ -549,3 +549,21 @@ test("selecting active pimples alongside brown marks asks about the pimples and 
   expect(screen.getByRole("heading", { name: "애크논크림" })).toBeVisible();
   expect(screen.getByText(/번들거리는 곳만 기름종이/)).toBeVisible();
 });
+
+test("non-inflamed closed bumps have their own answer and a localized treatment option", () => {
+  render(<App />);
+  answerGuidedCheck({ form: "closed" });
+  click("내 피부 관리 보기");
+  expect(screen.getByRole("heading", { name: "붉지 않은 좁쌀에는 살리실산 제품 하나를 써볼 수 있어요." })).toBeVisible();
+  expect(screen.getByRole("heading", { name: "클리어틴외용액 2%" })).toBeVisible();
+  expect(screen.queryByRole("heading", { name: "애크논크림" })).not.toBeInTheDocument();
+});
+
+test("pustules with comedones explain what to ask about without recommending a spot medicine", () => {
+  render(<App />);
+  answerGuidedCheck({ form: "pustules", follicular: "no" });
+  click("내 피부 관리 보기");
+  expect(screen.getByText(/막힌 피지와 고름 뾰루지가 함께 난다/)).toBeVisible();
+  expect(screen.getByText("어떤 치료를 확인하면 되나요?")).toBeVisible();
+  expect(screen.queryByText("약국 일반의약품 후보")).not.toBeInTheDocument();
+});

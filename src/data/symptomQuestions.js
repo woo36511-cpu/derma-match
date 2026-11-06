@@ -31,6 +31,9 @@ export const hasMildFacialBumps = a => getCareConcern(a) === "breakouts" &&
   (a.form === "papules" || (a.form === "mixed" && a.follicular === "no")) &&
   a.comedones === "yes" && a.itch === "none" && a.shaving === "no" &&
   a.pain === "none" && ["face", "chin", "hairline"].includes(a.area);
+export const hasCalmClosedBumps = a => getCareConcern(a) === "breakouts" && a.form === "closed" &&
+  a.comedones === "yes" && a.itch === "none" && a.shaving === "no" &&
+  a.pain === "none" && ["face", "chin", "hairline"].includes(a.area);
 export const mayAskAboutFacialRedness = a => ["face", "chin"].includes(a.area) &&
   ["papules", "pustules", "mixed"].includes(a.form) && a.comedones === "no" &&
   ["none", "mild"].includes(a.itch) && a.follicular !== "yes" && a.shaving === "no" &&
@@ -43,7 +46,7 @@ const stableRoutine = a => a.basicRoutine === "both" && a.surface === "intact" &
 export const canPairMildBumpCare = a => stableRoutine(a) && a.barrier === "dry" &&
   a.sensitiveCare !== "irritated" && hasMildFacialBumps(a);
 export const mayAskAboutActives = a => canPairMildBumpCare(a) ||
-  (stableRoutine(a) && a.barrier === "none" && (a.blackheadPattern === "dark" || hasMildFacialBumps(a)));
+  (stableRoutine(a) && a.barrier === "none" && (a.blackheadPattern === "dark" || hasMildFacialBumps(a) || hasCalmClosedBumps(a)));
 
 export const hasBreakoutDetails = a => getCareConcern(a) === "breakouts" ||
   (a.concern === "other" && ["yes", "unknown"].includes(a.eruption));
@@ -158,6 +161,7 @@ export function getVisibleSymptomQuestions(answers = {}, { guided = false } = {}
       if (!guided) return q;
       if (q.id === "secondaryConcerns") return { ...q, options: q.options.filter(option => option.value !== answers.concern) };
       if (q.id === "barrier") return { ...q, q: "세안 후나 평소 보습제를 바를 때 피부가 어때요?" };
+      if (q.id === "form") return { ...q, options: [option("붉거나 아프지 않은 살색·하얀 좁쌀이 주로 보여요", "closed"), ...q.options] };
       if (q.id === "area") return { ...q, options: [
         ...q.options.slice(0, 1), option("턱·턱선", "chin"), option("볼·코 등 얼굴의 다른 부위", "face"), ...q.options.slice(2),
       ] };

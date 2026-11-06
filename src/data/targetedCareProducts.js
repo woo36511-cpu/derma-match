@@ -20,16 +20,19 @@ export const blackheadCosmetics = [
   },
 ];
 
+const salicylicAcidOtc = {
+  name: "클리어틴외용액 2%",
+  ingredients: "살리실산 2%",
+  indication: "붉거나 아프지 않은 검은 면포가 신경 쓰일 때 써볼 수 있는 여드름 치료제예요.",
+  caution: "붉거나 자극이 있는 부위, 감염·염증 부위, 눈가와 점막에는 쓰지 않아요. 성분 과민증·당뇨병·혈액순환장애가 있는 사람은 사용할 수 없어요. 임신·수유 중이거나 약·화장품에 알레르기 병력이 있다면 혼자 시작하지 마세요.",
+  image: "/otc/clearteen.jpg",
+  source: "https://health.kr/drug/2013041100003",
+  sourceLabel: "클리어틴 허가사항 보기",
+};
+
 export const pharmacyOptions = {
-  blackheads: {
-    name: "클리어틴외용액 2%",
-    ingredients: "살리실산 2%",
-    indication: "붉거나 아프지 않은 검은 면포가 신경 쓰일 때 써볼 수 있는 여드름 치료제예요.",
-    caution: "붉거나 자극이 있는 부위, 감염·염증 부위, 눈가와 점막에는 쓰지 않아요. 성분 과민증·당뇨병·혈액순환장애가 있는 사람은 사용할 수 없어요. 임신·수유 중이거나 약·화장품에 알레르기 병력이 있다면 혼자 시작하지 마세요.",
-    image: "/otc/clearteen.jpg",
-    source: "https://health.kr/drug/2013041100003",
-    sourceLabel: "클리어틴 허가사항 보기",
-  },
+  blackheads: salicylicAcidOtc,
+  closedBumps: { ...salicylicAcidOtc, indication: "붉거나 아프지 않은 하얀 면포가 신경 쓰일 때 고려할 수 있는 여드름 치료제예요." },
   breakouts: {
     name: "애크논크림",
     ingredients: "이부프로펜피코놀 30 mg/g · 이소프로필메틸페놀 10 mg/g",

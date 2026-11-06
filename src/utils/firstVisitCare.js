@@ -1,5 +1,5 @@
 import { blackheadCosmetics, pharmacyOptions, sunscreenOption } from "../data/targetedCareProducts";
-import { canPairMildBumpCare, getCareConcern, hasMildFacialBumps, hasRecentCosmetic, mayAskAboutActives } from "../data/symptomQuestions";
+import { canPairMildBumpCare, getCareConcern, hasCalmClosedBumps, hasMildFacialBumps, hasRecentCosmetic, mayAskAboutActives } from "../data/symptomQuestions";
 import { products } from "../data/products";
 import { hasExfoliatingActive, isProductAvailable, isSpecializedTreatmentProduct } from "./productCatalog";
 import { sortProductsForRecommendation } from "./recommendationScoring";
@@ -75,6 +75,8 @@ function catalogOption(id, type, guidance) {
 
 function targetedPlan(answers, priorTrial) {
   const { concern, basicRoutine, barrier, surface, recentProduct } = answers;
+  const closedBumps = hasCalmClosedBumps(answers);
+  const usesSalicylicAcid = concern === "blackheads" || closedBumps;
   if (concern === "blackheads" && answers.blackheadPattern === "even") return {
     action: "고르게 보이는 회색 점에는 코팩과 압출을 쉬어요.",
     actionDetail: "코는 미지근한 물과 순한 세안제로 가볍게 씻어요. 고른 회색 점은 피지선 필라멘트일 수 있어서 억지로 다 빼낼 필요는 없어요.",
@@ -97,7 +99,7 @@ function targetedPlan(answers, priorTrial) {
     return {};
   }
 
-  if ((concern === "blackheads" || hasMildFacialBumps(answers)) && mayAskAboutActives(answers)) {
+  if ((usesSalicylicAcid || hasMildFacialBumps(answers)) && mayAskAboutActives(answers)) {
     if (answers.currentActives === "yes") return {
       action: concern === "blackheads" ? "코팩과 압출은 쉬고, 쓰던 각질 제품에 하나 더 겹치지 않아요." : "턱이나 얼굴의 돌기 위에 스크럽을 쓰지 않아요.",
       actionDetail: "같은 부위에 쓰는 여드름약이나 각질 제품은 새로 겹치지 않아요. 새 화장품이 바를 때마다 따갑다면 그 제품만 쉬어요. 처방약은 기존 안내대로 써요.",
@@ -110,11 +112,18 @@ function targetedPlan(answers, priorTrial) {
       editAnswer: "currentActives",
       reason: "같은 부위에 약이나 기능성 제품을 쓰는지 아직 확실하지 않아요.",
     };
-    const pharmacy = concern === "blackheads" ? pharmacyOptions.blackheads : pharmacyOptions.breakouts;
+    const pharmacy = closedBumps ? pharmacyOptions.closedBumps : usesSalicylicAcid ? pharmacyOptions.blackheads : pharmacyOptions.breakouts;
     if (priorTrial?.reaction === "worse" || priorTrial?.product === pharmacy.name) return {
       action: "이번에는 새 여드름약을 더하지 않아요.",
       actionDetail: "새로 시도한 제품은 쉬고, 당분간 돌기 위 스크럽과 각질 제거도 멈춰요. 세안은 가볍게 하고 잘 맞던 보습만 유지해요.",
       productNote: "같은 문제가 계속되거나 새 고름·통증이 늘면 제품을 바꿔가며 시험하기보다 진료로 원인을 확인해요.",
+    };
+    if (closedBumps) return {
+      action: "붉지 않은 좁쌀에는 살리실산 제품 하나를 써볼 수 있어요.",
+      actionDetail: "붉거나 아픈 곳이 아닌 막힌 좁쌀 부위에만 사용해요. 아래 제품을 고르면 같은 부위에 각질 제거제나 레티놀을 새로 겹치지 않아요.",
+      reason: "살색·하얀 좁쌀과 막힌 피지가 함께 보이고, 가렵거나 아프지 않다고 답했어요.",
+      pharmacy,
+      recheck: "붉어지거나 자극이 생기면 중단해요. 설명서대로 여러 번 사용해도 나아지지 않으면 계속 덧바르지 말고, 막힌 면포인지 확인해 치료 방향을 정해요.",
     };
     if (concern === "blackheads") {
       return {
@@ -136,6 +145,15 @@ function targetedPlan(answers, priorTrial) {
       recheck: "시작일과 새 돌기 수를 기록해요. 더 따갑거나 붉어지거나 좋아지지 않으면 중단하고 피부 상태를 다시 체크해요. 빠르게 번지거나 통증이 심해지면 진료받으세요.",
     };
   }
+  if (concern === "breakouts" && answers.form === "pustules" && answers.comedones === "yes" && answers.follicular === "no" && answers.itch === "none") return {
+    action: "고름 뾰루지가 주라면 염증성 여드름에 맞는 치료인지 확인해요.",
+    actionDetail: "막힌 피지도 있지만 고름 뾰루지가 주된 상태예요. 고름이 있는 부위에 살리실산이나 새 각질 제품을 바르지 말고, 피부과에서는 ‘막힌 피지와 고름 뾰루지가 함께 난다’고 설명하고 염증성 여드름에 쓰는 치료가 맞는지 물어보세요.",
+    reason: "고름과 면포가 함께 있어 염증성 여드름을 살펴볼 수 있지만, 이 답변만으로 원인을 확정할 수 없어요.",
+    treatmentInfo: {
+      text: "염증성 여드름으로 확인되면 벤조일퍼옥사이드가 포함된 치료 등 상태에 맞는 선택지를 검토할 수 있어요. 털구멍 중심의 고름이나 가려움이 뚜렷하다면 먼저 다른 원인을 구분해요.",
+      source: "https://www.aad.org/member/clinical-quality/guidelines/acne",
+    },
+  };
   if (concern === "oily" && basicRoutine === "both" && answers.usesToner === "no") {
     const product = catalogOption(38, "선택 · 가벼운 토너", "세안제와 보습제가 편하다면 그대로 두세요. 가벼운 토너가 필요한 경우에만 보는 선택지예요.");
     return { cosmetics: product ? [product] : [] };

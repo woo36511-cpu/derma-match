@@ -27,6 +27,10 @@ export function FirstVisitCarePlan({ plan, onEditAnswer }) {
         </div>
       </section>}
       <ConcernProductOptions plan={plan} />
+      {plan.treatmentInfo && <DetailDisclosure title="어떤 치료를 확인하면 되나요?">
+        <p>{plan.treatmentInfo.text}</p>
+        <a className="mt-2 inline-block underline" href={plan.treatmentInfo.source} target="_blank" rel="noreferrer">미국피부과학회 여드름 치료 지침</a>
+      </DetailDisclosure>}
       {plan.editAnswer && <button type="button" onClick={() => onEditAnswer?.(plan.editAnswer)}
         className="rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white">이 답변만 다시 선택하기</button>}
       {plan.keep && <p className="text-sm text-slate-700">{plan.keep}</p>}
