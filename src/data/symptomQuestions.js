@@ -12,9 +12,9 @@ export const symptomQuestions = [
     option("해당되는 변화는 없어요", "none"), unknown,
   ] },
   { id: "eruption", q: "지금 오돌토돌한 돌기, 고름이 보이는 트러블, 또는 발진이 있나요?", options: yesNo },
-  { id: "change", q: "이번에 확인하려는 피부 증상은 어떻게 달라졌나요?", options: [
+  { id: "change", q: "평소와 비교해 지금 피부는 어떤가요?", options: [
     option("이번에 처음 생겼어요", "new"),
-    option("원래 있던 증상은 비슷해요", "stable"), option("원래 있던 증상이 줄었어요", "improving"),
+    option("평소와 비슷해요", "stable"), option("원래 있던 증상이 줄었어요", "improving"),
     option("원래 있던 증상이 더 심해졌어요", "worse"),
     option("제품을 쓴 뒤 따갑거나 화끈거리고 벗겨져요", "irritation"),
     option("관리해도 아직 효과를 모르겠어요", "no_effect"), unknown,
