@@ -1,4 +1,5 @@
 import React from "react";
+import { DetailDisclosure } from "./DetailDisclosure";
 
 export function SkinIssueGuideCard({ guide }) {
   if (!guide) return null;
@@ -42,10 +43,7 @@ export function SkinIssueGuideCard({ guide }) {
         </p>
 
         {guide.reasons.length > 0 && (
-          <div className="mt-5">
-            <p className="text-sm font-bold text-gray-700 mb-3">
-              이렇게 판단한 이유
-            </p>
+          <DetailDisclosure title="이 관리 방향을 제안한 이유" className="mt-5">
 
             <div className="flex flex-wrap gap-2">
               {guide.reasons.map((reason) => (
@@ -57,7 +55,7 @@ export function SkinIssueGuideCard({ guide }) {
                 </span>
               ))}
             </div>
-          </div>
+          </DetailDisclosure>
         )}
       </div>
 

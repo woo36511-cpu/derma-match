@@ -4,6 +4,7 @@ import {
   getResultCautions,
 } from "../utils/skinIssueGuides";
 import React from "react";
+import { DetailDisclosure } from "./DetailDisclosure";
 
 export function SurveyResultOverview({ result }) {
   if (!result) return null;
@@ -49,58 +50,61 @@ export function SurveyResultOverview({ result }) {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-5">
-        <div className="rounded-[1.7rem] bg-white p-5 sm:p-6 border border-slate-100 shadow-sm">
-          <p className="text-xs font-bold text-emerald-600 mb-2">
-            현재 단계 해석
-          </p>
-          <h3 className="text-xl font-black text-slate-900">
-            {levelInfo.title}
-          </h3>
-          <p className="mt-3 text-sm text-slate-600 leading-relaxed">
-            {levelInfo.desc}
-          </p>
-        </div>
-
-        <div className="rounded-[1.7rem] bg-white p-5 sm:p-6 border border-slate-100 shadow-sm">
-          <p className="text-xs font-bold text-emerald-600 mb-2">
-            추천 사용 순서
-          </p>
-          <h3 className="text-xl font-black text-slate-900">
-            클렌저 → 토너 → 세럼 → 크림
-          </h3>
-          <p className="mt-3 text-sm text-slate-600 leading-relaxed">
-            처음에는 양을 적게 시작하고, 피부가 편안하면 2~3일 간격으로 사용량을
-            조금씩 맞춰보세요.
-          </p>
-        </div>
-      </div>
-
-      <div className="rounded-[1.7rem] bg-white p-5 sm:p-6 border border-slate-100 shadow-sm">
-        <p className="text-xs font-bold text-emerald-600 mb-2">
-          왜 이렇게 판단했나요?
-        </p>
-        <h3 className="text-xl font-black text-slate-900 mb-4">
-          선택한 답변에서 이런 신호가 보였어요
-        </h3>
-
-        {reasons.length > 0 ? (
-          <div className="flex flex-wrap gap-2">
-            {reasons.map((reason, index) => (
-              <span
-                key={`${index}-${reason}`}
-                className="rounded-full bg-slate-100 px-3 py-2 text-xs sm:text-sm font-semibold text-slate-700"
-              >
-                {reason}
-              </span>
-            ))}
+      <DetailDisclosure title="피부 상태와 추천 이유 자세히 보기">
+        <div className="grid md:grid-cols-2 gap-5">
+          <div className="rounded-[1.7rem] bg-white p-5 sm:p-6 border border-slate-100 shadow-sm">
+            <p className="text-xs font-bold text-emerald-600 mb-2">
+              현재 단계 해석
+            </p>
+            <h3 className="text-xl font-black text-slate-900">
+              {levelInfo.title}
+            </h3>
+            <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+              {levelInfo.desc}
+            </p>
           </div>
-        ) : (
-          <p className="text-sm text-slate-500">
-            선택한 답변이 충분하지 않아 기본 루틴 중심으로 추천했어요.
+
+          <div className="rounded-[1.7rem] bg-white p-5 sm:p-6 border border-slate-100 shadow-sm">
+            <p className="text-xs font-bold text-emerald-600 mb-2">
+              추천 사용 순서
+            </p>
+            <h3 className="text-xl font-black text-slate-900">
+              클렌저 → 토너 → 세럼 → 크림
+            </h3>
+            <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+              처음에는 양을 적게 시작하고, 피부가 편안하면 2~3일 간격으로 사용량을
+              조금씩 맞춰보세요.
+            </p>
+          </div>
+        </div>
+
+        <div className="rounded-[1.7rem] bg-white p-5 sm:p-6 border border-slate-100 shadow-sm">
+          <p className="text-xs font-bold text-emerald-600 mb-2">
+            왜 이렇게 판단했나요?
           </p>
-        )}
-      </div>
+          <h3 className="text-xl font-black text-slate-900 mb-4">
+            선택한 답변에서 이런 신호가 보였어요
+          </h3>
+
+          {reasons.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {reasons.map((reason, index) => (
+                <span
+                  key={`${index}-${reason}`}
+                  className="rounded-full bg-slate-100 px-3 py-2 text-xs sm:text-sm font-semibold text-slate-700"
+                >
+                  {reason}
+                </span>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-slate-500">
+              선택한 답변이 충분하지 않아 기본 루틴 중심으로 추천했어요.
+            </p>
+          )}
+        </div>
+
+      </DetailDisclosure>
 
       <div className="rounded-[1.7rem] bg-emerald-50 p-5 sm:p-6 border border-emerald-100">
         <p className="text-xs font-bold text-emerald-700 mb-2">관리 방향</p>
@@ -109,7 +113,7 @@ export function SurveyResultOverview({ result }) {
         </h3>
 
         <div className="space-y-3">
-          {directions.map((item) => (
+          {directions.slice(0, 1).map((item) => (
             <div key={item} className="flex gap-3">
               <span className="mt-1 h-2 w-2 rounded-full bg-emerald-500 flex-shrink-0" />
               <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
@@ -119,6 +123,12 @@ export function SurveyResultOverview({ result }) {
           ))}
         </div>
       </div>
+
+      {directions.length > 1 && <DetailDisclosure title="추가 관리 방법">
+        <ul className="list-disc pl-5 space-y-2">
+          {directions.slice(1).map(item => <li key={item}>{item}</li>)}
+        </ul>
+      </DetailDisclosure>}
 
       <div className="rounded-[1.7rem] bg-amber-50 p-5 sm:p-6 border border-amber-100">
         <p className="text-xs font-bold text-amber-700 mb-2">주의할 점</p>

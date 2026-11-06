@@ -1,4 +1,5 @@
 import React from "react";
+import { DetailDisclosure } from "./DetailDisclosure";
 
 export function SymptomAssessmentCard({ assessment }) {
   if (!assessment) return null;
@@ -10,9 +11,8 @@ export function SymptomAssessmentCard({ assessment }) {
       <h2 className="text-xl sm:text-2xl font-bold">{assessment.title}</h2>
       <p className="mt-3 text-sm sm:text-base" role={urgent ? "alert" : undefined}>{assessment.nextAction}</p>
     </>}
-    {!urgent && observations.length > 0 && <details className="text-sm mt-2">
-      <summary className="cursor-pointer font-semibold">답변에서 확인한 피부 특징</summary>
-      <ul className="mt-3 list-disc pl-5 space-y-1">{observations.map(reason => <li key={reason}>{reason}</li>)}</ul>
-    </details>}
+    {!urgent && observations.length > 0 && <DetailDisclosure title="답변에서 확인한 피부 특징" className={assessment.blockRoutine ? "mt-4" : ""}>
+      <ul className="list-disc pl-5 space-y-1">{observations.map(reason => <li key={reason}>{reason}</li>)}</ul>
+    </DetailDisclosure>}
   </section>;
 }

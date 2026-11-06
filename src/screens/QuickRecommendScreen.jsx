@@ -2,6 +2,7 @@ import { SectionTitle } from "../components/SectionTitle";
 import { RoutineProductScroller } from "../components/RoutineProductScroller";
 import { PrimaryButton } from "../components/PrimaryButton";
 import React from "react";
+import { DetailDisclosure } from "../components/DetailDisclosure";
 
 export function QuickRecommendScreen({
   setQuickLevel,
@@ -69,16 +70,18 @@ export function QuickRecommendScreen({
         <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-5 sm:p-6">
           <p className="text-sm text-gray-500 mb-2">선택된 수분감 단계</p>
           <div className="text-4xl font-bold mb-3">{quickLevel}단계</div>
-          <ul className="space-y-2">
-            {quickRoutineReason.map((text) => (
-              <li
-                key={text}
-                className="text-sm sm:text-base text-gray-700 leading-relaxed break-keep"
-              >
-                · {text}
-              </li>
-            ))}
-          </ul>
+          <DetailDisclosure title="이 루틴을 추천한 이유" className="mt-4">
+            <ul className="space-y-2">
+              {quickRoutineReason.map((text) => (
+                <li
+                  key={text}
+                  className="text-sm sm:text-base text-gray-700 leading-relaxed break-keep"
+                >
+                  · {text}
+                </li>
+              ))}
+            </ul>
+          </DetailDisclosure>
         </div>
       </div>
 

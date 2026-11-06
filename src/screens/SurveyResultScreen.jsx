@@ -4,6 +4,7 @@ import { SectionTitle } from "../components/SectionTitle";
 import { RoutineProductScroller } from "../components/RoutineProductScroller";
 import { PrimaryButton } from "../components/PrimaryButton";
 import React from "react";
+import { DetailDisclosure } from "../components/DetailDisclosure";
 import { RoutineSafetyNotice } from "../components/RoutineSafetyNotice";
 import { SymptomCareSummary } from "../components/SelfCarePlan";
 
@@ -43,71 +44,29 @@ export function SurveyResultScreen({
         />
       </div>
 
-      {!activeIssueGuide && (
-        <div className="max-w-3xl mx-auto mb-8">
-          <SectionTitle
-            title="피부 고민 관리 방향"
-            desc="선택한 피부 고민에 맞춘 기본 관리 가이드입니다."
-          />
-
-          <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-5 sm:p-6">
-            <ul className="space-y-2">
-              {surveyResult.solution.map((text) => (
-                <li
-                  key={text}
-                  className="text-sm sm:text-base text-gray-700 leading-relaxed break-keep"
-                >
-                  · {text}
-                </li>
-              ))}
+      <div className="max-w-3xl mx-auto space-y-3">
+        {!activeIssueGuide && surveyResult.solution.length > 0 && (
+          <DetailDisclosure title="피부 고민별 관리 설명">
+            <ul className="list-disc pl-5 space-y-2">
+              {surveyResult.solution.map(text => <li key={text}>{text}</li>)}
             </ul>
-          </div>
-        </div>
-      )}
-
-      {surveyResult.lifestyleAdvice.length > 0 && (
-        <div className="max-w-3xl mx-auto mb-8">
-          <SectionTitle
-            title="생활습관 체크"
-            desc="피부 컨디션에 영향을 줄 수 있는 생활 요소입니다."
-          />
-
-          <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-5 sm:p-6">
-            <ul className="space-y-2">
-              {surveyResult.lifestyleAdvice.map((text) => (
-                <li
-                  key={text}
-                  className="text-sm sm:text-base text-gray-700 leading-relaxed break-keep"
-                >
-                  · {text}
-                </li>
-              ))}
+          </DetailDisclosure>
+        )}
+        {surveyResult.lifestyleAdvice.length > 0 && (
+          <DetailDisclosure title="내 답변에 맞춘 생활습관 참고">
+            <ul className="list-disc pl-5 space-y-2">
+              {surveyResult.lifestyleAdvice.map(text => <li key={text}>{text}</li>)}
             </ul>
-          </div>
-        </div>
-      )}
-
-      <div className="max-w-3xl mx-auto mb-8">
-        <details className="bg-amber-50 rounded-3xl p-5 sm:p-6 border border-amber-100">
-          <summary className="cursor-pointer text-sm font-semibold text-amber-800">
-            관리 중 확인할 주의사항
-          </summary>
-
-          <ul className="space-y-1 mt-3">
-            <li className="text-sm text-amber-800 leading-relaxed break-keep">
-              · 붉고 아픈 트러블이 반복될 때
-            </li>
-            <li className="text-sm text-amber-800 leading-relaxed break-keep">
-              · 고름, 결절, 흉터가 생길 때
-            </li>
-            <li className="text-sm text-amber-800 leading-relaxed break-keep">
-              · 따가움, 진물, 심한 각질이 동반될 때
-            </li>
-            <li className="text-sm text-amber-800 leading-relaxed break-keep">
-              · 6~8주 이상 관리해도 변화가 없을 때
-            </li>
+          </DetailDisclosure>
+        )}
+        <DetailDisclosure title="관리 중 확인할 주의사항">
+          <ul className="list-disc pl-5 space-y-1 text-amber-800">
+            <li>붉고 아픈 트러블이 반복될 때</li>
+            <li>고름, 결절, 흉터가 생길 때</li>
+            <li>따가움, 진물, 심한 각질이 동반될 때</li>
+            <li>6~8주 이상 관리해도 변화가 없을 때</li>
           </ul>
-        </details>
+        </DetailDisclosure>
       </div>
 
       <p className="text-center text-sm text-slate-600">2주 체크는 자극·악화·사용 상태를 확인해요. 악화하면 기다리지 말고 증상을 다시 확인하세요.</p>

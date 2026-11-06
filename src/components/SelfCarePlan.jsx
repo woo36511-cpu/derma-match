@@ -1,5 +1,6 @@
 import React from "react";
 import { SymptomAssessmentCard } from "./SymptomAssessmentCard";
+import { DetailDisclosure } from "./DetailDisclosure";
 
 const basicCare = {
   dry: "세안할 때 오래 문지르지 말고, 세안 뒤 당기기 전에 이미 잘 맞던 보습제를 발라보세요.",
@@ -37,15 +38,14 @@ export function SelfCarePlan({ assessment }) {
     <p className="text-sm leading-relaxed">{habits[habit] || habits.observe}</p>
     {["cleanser", "moisturizer", "active", "other"].includes(recentProduct) &&
       <p className="text-sm text-slate-600">새 제품을 쓰기 시작한 날과 피부가 달라진 날을 함께 기록해보세요. 시점이 겹쳐도 그 제품이 원인이라고 단정할 수는 없어요.</p>}
-    <details className="rounded-2xl bg-slate-50 p-4 text-sm space-y-2">
-      <summary className="cursor-pointer font-semibold">생활습관 참고</summary>
+    <DetailDisclosure title="생활습관 참고">
       <p>수면이나 식사가 달라진 날의 피부 반응이 궁금하면 따로 메모해도 좋아요. 간편한 채소는 식사를 보완하는 선택지예요. 유산균이나 특정 식품을 피부관리 필수품으로 권하지 않아요.</p>
-    </details>
+    </DetailDisclosure>
     <p className="text-sm text-slate-600">2주 뒤에는 당김·가려움·새 트러블이 전보다 줄었는지 확인해요. 더 불편해지면 기다리지 말고 다시 체크하세요.</p>
-    <details className="text-xs text-slate-500"><summary className="cursor-pointer">개인 관리 근거 보기</summary><ul className="mt-3 space-y-2">
+    <DetailDisclosure title="개인 관리 근거 보기"><ul className="space-y-2">
       <li><a className="underline" target="_blank" rel="noreferrer" href="https://www.aad.org/public/diseases/acne/skin-care/tips/">AAD · 자극을 줄이는 기본 피부 관리</a></li>
       <li><a className="underline" target="_blank" rel="noreferrer" href="https://www.nice.org.uk/guidance/ng198/chapter/Recommendations">NICE · 특정 식단의 여드름 치료 근거는 충분하지 않음</a></li>
       <li><a className="underline" target="_blank" rel="noreferrer" href="https://www.nccih.nih.gov/health/probiotics-usefulness-and-safety">NCCIH · 유산균의 용도별 근거와 안전성</a></li>
-    </ul></details>
+    </ul></DetailDisclosure>
   </section>;
 }

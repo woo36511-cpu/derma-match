@@ -11,6 +11,7 @@ import { isProductAvailable } from "../utils/productCatalog";
 import { ProductCard } from "../components/ProductCard";
 import { PrimaryButton } from "../components/PrimaryButton";
 import React from "react";
+import { DetailDisclosure } from "../components/DetailDisclosure";
 import { RoutineSafetyNotice } from "../components/RoutineSafetyNotice";
 import { SymptomCareSummary } from "../components/SelfCarePlan";
 import { JourneyOutcomeCard } from "../components/JourneyOutcomeCard";
@@ -72,9 +73,7 @@ export function ResultScreen({
       </div>
 
       <div className="max-w-3xl mx-auto mb-8">
-        <div className="bg-gray-50 rounded-3xl p-5 sm:p-6">
-          <p className="text-sm text-gray-500 mb-3">추천 루틴 설명</p>
-
+        <DetailDisclosure title="다음 루틴을 추천한 이유">
           <ul className="space-y-2">
             {routineReason.map((text) => (
               <li
@@ -85,7 +84,7 @@ export function ResultScreen({
               </li>
             ))}
           </ul>
-        </div>
+        </DetailDisclosure>
       </div>
       <div className="mb-10">
         <SectionTitle
@@ -99,12 +98,8 @@ export function ResultScreen({
         />
       </div>
 
-      <div className="max-w-3xl mx-auto">
-        <SectionTitle
-          title="함께 보기 좋은 성분"
-          desc="수분감 단계와 트러블 반응을 함께 반영한 추천입니다."
-        />
-
+      {ingredients.length > 0 && <DetailDisclosure title="함께 보기 좋은 성분" className="max-w-3xl mx-auto">
+        <p className="mb-4">수분감 단계와 트러블 반응을 함께 반영한 추천입니다.</p>
         <div className="space-y-6">
           {ingredients.map((ingredient) => (
             <div
@@ -166,7 +161,7 @@ export function ResultScreen({
             </div>
           ))}
         </div>
-      </div>
+      </DetailDisclosure>}
 
       <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
         <button
