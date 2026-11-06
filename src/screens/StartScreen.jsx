@@ -1,5 +1,6 @@
 import { formatSavedAt } from "../utils/formatSavedAt";
 import { PrimaryButton } from "../components/PrimaryButton";
+import { DetailDisclosure } from "../components/DetailDisclosure";
 import { SeoContentSection } from "../components/SeoContentSection";
 import React from "react";
 
@@ -22,7 +23,7 @@ export function StartScreen({
   return (
     <section className="min-h-[75vh] flex flex-col items-center justify-center text-center">
       <div className="inline-flex items-center rounded-full border border-gray-200 bg-white px-4 py-2 text-xs sm:text-sm text-gray-600 mb-6 shadow-sm break-keep">
-        피부 상태에 맞춰 시작 방식을 선택하세요
+        가장 신경 쓰이는 피부 고민부터 확인해요
       </div>
 
       <h2 className="text-4xl sm:text-6xl font-bold leading-tight break-keep mb-5">
@@ -32,51 +33,59 @@ export function StartScreen({
       </h2>
 
       <p className="text-sm sm:text-lg text-gray-600 max-w-2xl leading-relaxed break-keep mb-10">
-        몇 가지 질문으로 현재 피부 상태를 파악하고,
+        지금 쓰는 제품과 피부 상태를 짧게 확인하고,
         <br className="hidden sm:block" />
-        맞는 루틴과 사용법을 함께 안내해드릴게요.
+        오늘 먼저 해볼 관리를 알려드릴게요.
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-4xl w-full">
-        <button
-          onClick={() => {
-            setActiveJourneyId(null);
-            startCheckedFlow("quickRecommend");
-          }}
-          className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 text-left hover:shadow-lg hover:-translate-y-1 transition active:scale-[0.98]"
-        >
-          <p className="text-sm text-gray-400 mb-3">이미 알고 있어요</p>
-          <h3 className="text-2xl font-bold mb-3 break-keep">
-            피부타입 알고 있어요
-          </h3>
-          <p className="text-sm sm:text-base text-gray-600 leading-relaxed break-keep mb-5">
-            건성, 수부지, 지성처럼 내 피부타입을 알고 있다면 바로 맞는 루틴을
-            추천받을 수 있어요.
-          </p>
-          <span className="text-sm font-semibold text-black">
-            바로 추천받기 →
-          </span>
-        </button>
+      <div className="w-full max-w-4xl space-y-4">
+        <PrimaryButton onClick={() => {
+          setActiveJourneyId(null);
+          startCheckedFlow("guidedCare");
+        }}>지금 피부 고민 확인하기</PrimaryButton>
+        <DetailDisclosure title="피부타입별 추천·전체 설문 보기" className="text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <button
+              onClick={() => {
+                setActiveJourneyId(null);
+                startCheckedFlow("quickRecommend");
+              }}
+              className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 text-left hover:shadow-lg hover:-translate-y-1 transition active:scale-[0.98]"
+            >
+              <p className="text-sm text-gray-400 mb-3">이미 알고 있어요</p>
+              <h3 className="text-2xl font-bold mb-3 break-keep">
+                피부타입 알고 있어요
+              </h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed break-keep mb-5">
+                건성, 수부지, 지성처럼 내 피부타입을 알고 있다면 바로 맞는 루틴을
+                추천받을 수 있어요.
+              </p>
+              <span className="text-sm font-semibold text-black">
+                바로 추천받기 →
+              </span>
+            </button>
 
-        <button
-          onClick={() => {
-            setActiveJourneyId(null);
-            startCheckedFlow("survey");
-          }}
-          className="bg-black text-white rounded-3xl shadow-sm p-6 sm:p-8 text-left hover:opacity-90 hover:-translate-y-1 transition active:scale-[0.98]"
-        >
-          <p className="text-sm text-white/60 mb-3">처음 시작해요</p>
-          <h3 className="text-2xl font-bold mb-3 break-keep">
-            처음이라 설문으로 시작할래요
-          </h3>
-          <p className="text-sm sm:text-base text-white/75 leading-relaxed break-keep mb-5">
-            피부타입을 몰라도 괜찮아요. 몇 가지 질문에 답하면 현재 상태에 맞는
-            루틴과 관리 방향을 추천해드려요.
-          </p>
-          <span className="text-sm font-semibold text-white">
-            설문 시작하기 →
-          </span>
-        </button>
+            <button
+              onClick={() => {
+                setActiveJourneyId(null);
+                startCheckedFlow("survey");
+              }}
+              className="bg-black text-white rounded-3xl shadow-sm p-6 sm:p-8 text-left hover:opacity-90 hover:-translate-y-1 transition active:scale-[0.98]"
+            >
+              <p className="text-sm text-white/60 mb-3">처음 시작해요</p>
+              <h3 className="text-2xl font-bold mb-3 break-keep">
+                처음이라 설문으로 시작할래요
+              </h3>
+              <p className="text-sm sm:text-base text-white/75 leading-relaxed break-keep mb-5">
+                피부타입을 몰라도 괜찮아요. 몇 가지 질문에 답하면 현재 상태에 맞는
+                루틴과 관리 방향을 추천해드려요.
+              </p>
+              <span className="text-sm font-semibold text-white">
+                설문 시작하기 →
+              </span>
+            </button>
+          </div>
+        </DetailDisclosure>
       </div>
       <div className="mt-6 max-w-4xl w-full rounded-3xl border border-amber-200 bg-amber-50 p-5 text-left">
         <h3 className="text-lg font-bold">트러블이 달라졌거나 악화했나요?</h3>
