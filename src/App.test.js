@@ -79,6 +79,14 @@ test("quick recommendation survives reload and saves two feedback rounds in the 
   completeSymptomCheck();
   click(/지성 \/ 번들거림/);
   expect(screen.getByText("8단계")).toBeInTheDocument();
+  const reasonSummary = screen.getByText("이 루틴을 추천한 이유", { selector: "summary" });
+  const reason = screen.getByText(/유분과 피지 관리가 필요한 상태라/);
+  expect(reason).not.toBeVisible();
+  expect(screen.getByRole("heading", { name: "추천 루틴" })).toBeVisible();
+  fireEvent.click(reasonSummary);
+  expect(reason).toBeVisible();
+  fireEvent.click(reasonSummary);
+  expect(reason).not.toBeVisible();
   click("이 루틴으로 시작하기");
   expect(history()).toHaveLength(1);
   const initial = history()[0];
@@ -151,6 +159,8 @@ test("survey answers gate progression and a saved result can be reopened", () =>
   expect(history()[1].outcome.skinComparison).toMatchObject({ complete: true, baselineRecordId: history()[0].id });
   expect(screen.getByRole("heading", { name: "Before / After · 피부 상태 8축" })).toBeInTheDocument();
   expect(screen.getByText("기록 충분")).toBeInTheDocument();
+  expect(screen.getByRole("table", { hidden: true })).not.toBeVisible();
+  expect(screen.getByRole("heading", { name: "다음 단계 기본 루틴" })).toBeVisible();
 });
 
 const concerns = [
