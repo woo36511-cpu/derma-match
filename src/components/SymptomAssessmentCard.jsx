@@ -1,10 +1,10 @@
 import React from "react";
 import { DetailDisclosure } from "./DetailDisclosure";
 
-export function SymptomAssessmentCard({ assessment }) {
+export function SymptomAssessmentCard({ assessment, hideObservations = false }) {
   if (!assessment) return null;
   const urgent = ["emergency", "urgent"].includes(assessment.urgency);
-  const observations = [...new Set((assessment.candidates ?? []).flatMap(candidate => candidate.reasons ?? []))];
+  const observations = hideObservations ? [] : [...new Set((assessment.candidates ?? []).flatMap(candidate => candidate.reasons ?? []))];
   if (!assessment.blockRoutine && observations.length === 0) return null;
   return <section className={`rounded-3xl border p-5 sm:p-7 text-left ${urgent ? "bg-rose-50 border-rose-300" : "bg-slate-50 border-slate-200"}`} aria-label="증상 확인 결과">
     {assessment.blockRoutine && <>
