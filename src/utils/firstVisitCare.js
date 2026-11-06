@@ -26,11 +26,11 @@ export function needsHydrationQuestion(assessment) {
 
 const concernCare = {
   blackheads: { action: "검은 점을 짜거나 세게 문지르지 않아요.", observation: "막혀 보이는 점이 줄고 자극이 생기지 않는지" },
-  breakouts: { action: "트러블을 짜거나 건드리지 않고 지켜봐요.", observation: "새로 올라오는 트러블이 줄었는지" },
-  oily: { action: "번들거려도 세안을 더 세게 하지 않아요.", observation: "오후에 어느 부위가 얼마나 번들거리는지" },
+  breakouts: { action: "땀을 흘린 뒤에는 순하게 씻고, 돌기는 짜지 않아요.", observation: "새로 올라오는 트러블이 줄었는지" },
+  oily: { action: "번들거리는 부위만 기름종이로 가볍게 눌러 닦아요.", observation: "오후에 어느 부위가 얼마나 번들거리는지" },
   wrinkles: { action: "외출할 때 자외선 차단을 챙겨요.", observation: "외출 전에 자외선 차단을 챙길 수 있었는지" },
   sensitive: { action: "자극이 느껴졌던 제품을 하나씩 확인해요.", observation: "어떤 제품을 썼을 때 불편함이 생기는지" },
-  dry: { action: "세안 뒤 당김이 생기는지 먼저 확인해요.", observation: "당김이 언제 시작되고 얼마나 지속되는지" },
+  dry: { action: "세안 뒤 당김이 있다면 잘 맞던 보습제를 발라요.", observation: "당김이 언제 시작되고 얼마나 지속되는지" },
   none: { action: "지금 편안한 관리를 이어가요.", observation: "당김이나 따가움 없이 편안한지" },
   other: { action: "가장 불편한 부위와 달라진 점을 기록해요.", observation: "같은 부위가 계속 불편한지" },
 };
@@ -83,9 +83,18 @@ function targetedPlan(answers) {
 
   if (concern === "blackheads" || hasMildFacialBumps(answers)) {
     if (!mayAskAboutActives(answers) || answers.currentActives !== "no") {
-      return { productNote: concern === "blackheads" && answers.blackheadPattern !== "dark"
-        ? "검은 점의 종류가 뚜렷하지 않거나 붉은 돌기가 섞여 있어요. 각질 제품을 바로 추가하지 말고 모양과 변화를 먼저 확인해요."
-        : "현재 기초나 기능성 제품이 확인되지 않았거나 이미 사용 중이에요. 같은 부위에 새 기능성 제품을 겹치지 않아요." };
+      if (concern === "blackheads" && answers.blackheadPattern !== "dark") {
+        return {
+          action: "코팩이나 압출은 쉬고, 점의 모양을 먼저 확인해요.",
+          productNote: "점의 종류가 뚜렷하지 않거나 붉은 돌기가 섞여 있어요. 새 각질 제품을 더하기 전에 어느 부위에 어떤 돌기가 늘어나는지 확인해요.",
+        };
+      }
+      return {
+        action: "같은 부위에 쓰는 기능성 제품부터 확인해요.",
+        productNote: answers.currentActives === "yes"
+          ? "쓰고 있는 각질제거제·레티놀·여드름약의 제품명과 시작일을 적어두세요. 새 여드름약이나 각질제거제를 겹쳐 쓰지 않아요."
+          : "지금 쓰는 제품을 약사에게 보여주거나 사용 여부를 확인한 뒤 설문을 다시 진행해요. 그 전에는 새 기능성 제품을 추가하지 않아요.",
+      };
     }
     if (concern === "blackheads") {
       return {
@@ -97,10 +106,11 @@ function targetedPlan(answers) {
       };
     }
     return {
-      action: "붉은 돌기는 현재 상태를 약국에서 먼저 확인해요.",
+      action: answers.area === "chin" ? "턱 트러블에 쓸 여드름약 후보를 약국에서 확인해요." : "트러블에 쓸 여드름약 후보를 약국에서 확인해요.",
       pharmacy: pharmacyOptions.breakouts,
-      productNote: "쓰던 세안·보습은 유지해요. 약사에게 지금 바르는 제품을 보여주고, 사용할 제품을 하나만 정해요.",
-      recheck: "새 붉은 돌기 수와 따가움이 달라지는지 확인해요. 호전이 없거나 더 심해지면 다른 약을 바로 추가하지 말고 다시 상담해요.",
+      reason: "같은 부위에 막힌 피지가 있고, 가려움·통증·면도 자극이나 털구멍 중심 고름을 보고하지 않았어요. 여드름약을 확인할 단서예요.",
+      productNote: "세안제와 보습제는 유지해요. 약사에게 턱이나 얼굴의 현재 상태와 쓰는 제품을 보여주고, 적합하다고 확인된 경우에만 한 가지를 시작해요.",
+      recheck: "시작일과 새 돌기 수를 기록해요. 자극이 심해지거나 트러블이 빠르게 번지면 다른 약을 추가하지 말고 다시 확인해요.",
     };
   }
   if (concern === "oily" && basicRoutine === "both" && answers.usesToner === "no") {
@@ -123,7 +133,7 @@ export function buildFirstVisitPlan(assessment) {
   if (!assessment?.guidedCare || !assessment.complete || assessment.blockRoutine) return null;
   const { concern, area, basicRoutine, afternoonSkin } = assessment.answers;
   const care = concern === "breakouts" && area === "chin"
-    ? { action: "턱 트러블을 짜거나 건드리지 않고 지켜봐요.", observation: "턱에 새로 올라오는 트러블이 줄었는지" }
+    ? { ...concernCare.breakouts, observation: "턱에 새로 올라오는 돌기 수와 따가움이 달라지는지" }
     : concernCare[concern] ?? concernCare.other;
   if (shouldPauseSensitiveCare(assessment.answers)) return {
     ...care,
