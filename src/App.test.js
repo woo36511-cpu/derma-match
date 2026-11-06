@@ -15,14 +15,14 @@ beforeEach(() => {
 });
 
 function completeSymptomCheck(overrides = {}, { continueFlow = true } = {}) {
-  const values = { breathing: "no", infectionWarning: "none", eruption: "no", change: "stable", risk: "no", surface: "intact", barrier: "none", gut: "none", vegetables: "sometimes", probiotic: "none", habit: "observe", area: "face", form: "mixed", comedones: "yes", uniform: "no", itch: "none", follicular: "no", shaving: "no", sweat: "no", exposure: "none", pain: "none", duration: "under_week", treatment: "none", ...overrides };
+  const values = { concern: "none", breathing: "no", infectionWarning: "none", eruption: "no", change: "stable", risk: "no", surface: "intact", barrier: "none", gut: "none", vegetables: "sometimes", probiotic: "none", habit: "observe", area: "face", form: "mixed", comedones: "yes", uniform: "no", itch: "none", follicular: "no", shaving: "no", sweat: "no", exposure: "none", pain: "none", duration: "under_week", treatment: "none", ...overrides };
   for (const question of getVisibleSymptomQuestions(values)) {
     expect(screen.getByRole("heading", { name: question.q })).toBeInTheDocument();
     click(question.options.find(option => option.value === values[question.id]).label);
     const next = screen.queryByRole("button", { name: "다음", exact: true });
     if (next) fireEvent.click(next);
     else {
-      const finish = screen.queryByRole("button", { name: "관리 경로 확인", exact: true });
+      const finish = screen.queryByRole("button", { name: "내 피부 관리 보기", exact: true });
       if (finish) fireEvent.click(finish);
     }
   }
@@ -30,7 +30,7 @@ function completeSymptomCheck(overrides = {}, { continueFlow = true } = {}) {
 }
 
 function completeSurvey() {
-  if (screen.queryByRole("heading", { name: "지금 증상부터 확인할게요" })) completeSymptomCheck();
+  if (screen.queryByRole("heading", { name: "지금 피부 상태부터 확인할게요" })) completeSymptomCheck();
   for (const question of skinSurveyQuestions) {
     expect(
       screen.getByRole("heading", { name: question.question }),
@@ -225,6 +225,8 @@ test("a failed device write keeps the user on the current routine instead of cre
 test("urgent symptoms stop immediately, persist independently and cannot expose products through browser back", () => {
   render(<App />);
   click(/피부타입 알고 있어요/);
+  click("갑자기 붓거나 두드러기가 났어요");
+  click("다음");
   click("네");
   expect(screen.getByRole("alert")).toHaveTextContent("119");
   expect(screen.queryByRole("button", { name: "피부 관리 설문·기록 이어가기" })).not.toBeInTheDocument();
@@ -239,9 +241,10 @@ test("urgent symptoms stop immediately, persist independently and cannot expose 
 test("overlapping folliculitis patterns save evidence and lifestyle observations without automatic medication switching", () => {
   const { unmount } = render(<App />);
   click("증상 변화·악화 재설문");
-  completeSymptomCheck({ eruption: "yes", area: "trunk", form: "pustules", comedones: "no", uniform: "yes", itch: "strong", follicular: "yes", change: "worse", habit: "gut", probiotic: "recent", gut: "constipation_bloating", vegetables: "rare" }, { continueFlow: false });
-  expect(screen.getByRole("heading", { name: "말라세지아(효모·진균성) 모낭염 가능성" })).toBeInTheDocument();
-  expect(screen.getByRole("heading", { name: "세균성 등을 포함한 모낭염 가능성" })).toBeInTheDocument();
+  completeSymptomCheck({ concern: "breakouts", area: "trunk", form: "pustules", comedones: "no", uniform: "yes", itch: "strong", follicular: "yes", change: "worse", habit: "gut", probiotic: "recent", gut: "constipation_bloating", vegetables: "rare" }, { continueFlow: false });
+  expect(screen.getByRole("heading", { name: "오늘 해볼 피부 관리" })).toBeInTheDocument();
+  expect(screen.getByText("답변에서 확인한 피부 특징")).toBeInTheDocument();
+  expect(screen.queryByRole("heading", { name: /모낭염 가능성/ })).not.toBeInTheDocument();
   expect(screen.queryByRole("button", { name: "피부 관리 설문·기록 이어가기" })).not.toBeInTheDocument();
   expect(screen.getByText(/유산균을 최근 시작했다면/)).toBeInTheDocument();
   const records = JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY));
@@ -266,8 +269,8 @@ test("worsening reported during feedback triggers a fresh symptom check before a
   }
   click("원래 있던 트러블이 더 심해졌어요");
   click("피부 상태 다시 확인하기");
-  expect(screen.getByRole("heading", { name: "지금 증상부터 확인할게요" })).toBeInTheDocument();
-  completeSymptomCheck({ change: "worse" }, { continueFlow: false });
+  expect(screen.getByRole("heading", { name: "지금 피부 상태부터 확인할게요" })).toBeInTheDocument();
+  completeSymptomCheck({ concern: "sensitive", change: "worse" }, { continueFlow: false });
   expect(screen.getByRole("heading", { name: "새 제품보다 악화·자극 원인 확인이 먼저예요" })).toBeInTheDocument();
   expect(screen.queryByRole("heading", { name: "다음 단계 기본 루틴" })).not.toBeInTheDocument();
 });

@@ -1,14 +1,14 @@
 # Symptom reassessment and practical self-care
 
-This release adds a conservative symptom triage questionnaire, evidence explanations and low-burden self-care to DearSince. It does **not** diagnose acne, bacterial folliculitis, Malassezia folliculitis, immune deficiency or gut dysbiosis. No diagnostic probabilities, clinical accuracy claims or automatic medication sequences are produced. Rule version: `symptom-triage-v1`; clinical validation: not performed.
+DearSince helps people choose everyday skin care and check whether their skin feels better afterward. The questionnaire starts with the user’s skin concern, and ordinary results lead with cleansing, moisturization and one manageable change. Safety guidance appears where relevant. It does **not** diagnose acne, bacterial folliculitis, Malassezia folliculitis, immune deficiency or gut dysbiosis. No diagnostic probabilities, clinical accuracy claims or automatic medication sequences are produced. Rule version: `skin-care-v2`; clinical validation: not performed.
 
 ## User flow
 
-- Both beginner and quick recommendation paths first ask about current warning signs, symptom change and skin condition. Existing Journey check-ins also start a fresh check.
+- Both beginner and quick recommendation paths first ask what is bothering the user about their skin. Breathing and swallowing are only asked on the sudden swelling or hives branch. Breakout details and food/supplement questions are shown only on the relevant routes. Existing Journey check-ins start a fresh check.
 - A permanent “증상 변화·악화 재설문” entry is available on the start, feedback and result screens. Users do not need to wait two weeks after worsening.
 - Questions branch on the presence of an eruption, shaving and current treatment. They cover comedones, uniformity, itch, follicle-centred lesions, distribution, shaving/ingrown hairs, sweat, recent antibiotics/steroids, pain/scarring, duration, treatment and actual adherence. “Unknown” is an explicit answer.
 - Current breathing/swallowing difficulty or tongue/throat swelling stops the questionnaire immediately with emergency guidance. Rapid spread/pain, systemic infection signs and eye-related symptoms stop with urgent evaluation guidance. Missing/unknown safety information, significant irritation, worsening, persistent folliculitis-like patterns and overlapping possibilities hold new product recommendations.
-- Pattern explanations show the supporting answers and the remaining uncertainty. The list is not ordered by likelihood and multiple possibilities can coexist. Neither improvement nor treatment failure establishes a pathogen.
+- The result shows actionable skin care and optional observations from the answers. Internal pattern candidates are used for safety decisions and stored history; the UI does not present a list of suspected diseases. Neither improvement nor treatment failure establishes a pathogen.
 - Deep lesions, severe pain/scarring, damaged/oozing skin and infection-vulnerable users are routed to clinical review. Appropriate diagnosis starts with clinical assessment; microscopy, culture or biopsy is selected when necessary, rather than presented as a universal first test.
 - Two-week checks assess tolerability, worsening, adherence and changes in discomfort. They are not a two-week deadline for acne efficacy or a prompt to switch to antifungals/antibiotics. NICE describes noticeable benefit after 6–8 weeks and first-line review at 12 weeks. Red flags and worsening take priority over those intervals.
 
