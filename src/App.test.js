@@ -140,7 +140,7 @@ test("quick recommendation survives reload and saves two feedback rounds in the 
 
 test("survey answers gate progression and a saved result can be reopened", () => {
   const { unmount } = render(<App />);
-  openExistingEntry(/처음 시작해요/);
+  openExistingEntry(/처음이라 설문으로 시작할래요/);
   expect(screen.getByRole("button", { name: "다음" })).toBeDisabled();
   completeSurvey();
   click(/특별한 고민 없음/);
@@ -180,7 +180,7 @@ test.each(concerns)(
   "%s follow-up questions reach the guide and save the selected concern",
   (concernId, questions) => {
     render(<App />);
-    openExistingEntry(/처음 시작해요/);
+    openExistingEntry(/처음이라 설문으로 시작할래요/);
     completeSurvey();
     const concern = issueQuestions.skinConcernOptions.find(
       (item) => item.id === concernId,
@@ -217,7 +217,7 @@ test("browser popstate restores the prior screen", () => {
     new PopStateEvent("popstate", { state: { step: "start" } }),
   );
   expect(
-    screen.getByRole("button", { name: "지금 피부 고민 확인하기" }),
+    screen.getByRole("button", { name: "내 피부 관리 순서 찾기" }),
   ).toBeInTheDocument();
 });
 
@@ -295,7 +295,7 @@ const guidedBreakoutBase = {
 };
 
 function answerGuidedCheck(overrides, { hydration = false, recheck = false } = {}) {
-  if (!recheck) click("지금 피부 고민 확인하기");
+  if (!recheck) click("내 피부 관리 순서 찾기");
   const answers = { ...guidedBreakoutBase, ...overrides };
   const questions = getVisibleSymptomQuestions(answers, { guided: true });
   for (const [index, question] of questions.entries()) {
