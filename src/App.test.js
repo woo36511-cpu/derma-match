@@ -264,7 +264,7 @@ test("worsening reported during feedback triggers a fresh symptom check before a
     const option = question.id === "trouble" ? question.options[3] : question.options[0];
     screen.getAllByRole("button", { name: option.label, exact: true }).forEach(button => fireEvent.click(button));
   }
-  click("원래 있던 트러블이 더 심해짐");
+  click("원래 있던 트러블이 더 심해졌어요");
   click("피부 상태 다시 확인하기");
   expect(screen.getByRole("heading", { name: "지금 증상부터 확인할게요" })).toBeInTheDocument();
   completeSymptomCheck({ change: "worse" }, { continueFlow: false });

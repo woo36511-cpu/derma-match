@@ -11,10 +11,11 @@ export const symptomQuestions = [
     option("붉어짐이나 통증이 갑자기 심해지거나 빠르게 번져요", "rapid"),
     option("해당되는 변화는 없어요", "none"), unknown,
   ] },
-  { id: "eruption", q: "지금 붉은 돌기·고름·가려운 발진이 있나요?", options: yesNo },
-  { id: "change", q: "이전 상태와 비교하면 어떤가요?", options: [
-    option("처음 확인하거나 큰 변화가 없어요", "stable"), option("조금씩 나아지고 있어요", "improving"),
-    option("돌기·고름·가려움 등이 더 심해졌어요", "worse"),
+  { id: "eruption", q: "지금 오돌토돌한 돌기, 고름이 보이는 트러블, 또는 발진이 있나요?", options: yesNo },
+  { id: "change", q: "이번에 확인하려는 피부 증상은 어떻게 달라졌나요?", options: [
+    option("이번에 처음 생겼어요", "new"),
+    option("원래 있던 증상은 비슷해요", "stable"), option("원래 있던 증상이 줄었어요", "improving"),
+    option("원래 있던 증상이 더 심해졌어요", "worse"),
     option("제품을 쓴 뒤 따갑거나 화끈거리고 벗겨져요", "irritation"),
     option("관리해도 아직 효과를 모르겠어요", "no_effect"), unknown,
   ] },
@@ -27,23 +28,6 @@ export const symptomQuestions = [
     option("건조하고 당기지만 많이 붉거나 따갑지는 않아요", "dry"),
     option("평소 보습제도 따갑거나 붉어져요", "stinging"),
     option("거의 없어요", "none"), unknown,
-  ] },
-  { id: "gut", q: "최근 장 불편감은 어떤가요?", options: [
-    option("딱히 불편하지 않아요", "none"), option("변비·복부팽만이 신경 쓰여요", "constipation_bloating"),
-    option("묽은 변·설사가 신경 쓰여요", "loose"), option("기록하고 싶지 않거나 잘 모르겠어요", "unknown"),
-  ] },
-  { id: "vegetables", q: "평소 채소·과일을 얼마나 자주 곁들이나요?", options: [
-    option("거의 먹지 않아요", "rare"), option("가끔 곁들여요", "sometimes"), option("대부분의 날에 곁들여요", "regular"), unknown,
-  ] },
-  { id: "probiotic", q: "현재 유산균 제품을 먹고 있나요?", options: [
-    option("먹지 않아요", "none"), option("최근 새로 시작하거나 바꿨어요", "recent"), option("같은 제품을 계속 먹고 있어요", "ongoing"), unknown,
-  ] },
-  { id: "habit", q: "부담을 줄이면서 먼저 해볼 관리 하나를 고른다면?", help: "생활 관리는 보조 관리예요. 특정 식품·유산균으로 피부질환을 치료하거나 면역 상태를 진단하지 않아요.", options: [
-    option("세안·보습을 단순하게 정리하기", "barrier"),
-    option("수면·스트레스와 피부 반응 기록하기", "sleep"),
-    option("간편한 채소를 한 끼에 곁들이기", "vegetables"),
-    option("장 불편감·식사·유산균 사용을 기록하기", "gut"),
-    option("지금은 추가하지 않고 상태만 기록하기", "observe"),
   ] },
   { id: "area", q: "돌기나 발진은 주로 어디에 있나요?", detail: true, options: [
     option("이마·머리카락 경계", "hairline"), option("볼·코·턱 등 얼굴", "face"),
@@ -87,6 +71,23 @@ export const symptomQuestions = [
   ] },
   { id: "adherence", q: "안내받은 사용법과 빈도를 지켰나요?", detail: true, showIf: a => a.treatment !== "none", options: [
     option("대체로 지켰어요", "consistent"), option("쉬거나 양·횟수를 자주 바꿨어요", "inconsistent"), unknown,
+  ] },
+  { id: "gut", q: "최근 장 불편감은 어떤가요?", options: [
+    option("딱히 불편하지 않아요", "none"), option("변비·복부팽만이 신경 쓰여요", "constipation_bloating"),
+    option("묽은 변·설사가 신경 쓰여요", "loose"), option("기록하고 싶지 않거나 잘 모르겠어요", "unknown"),
+  ] },
+  { id: "vegetables", q: "평소 채소·과일을 얼마나 자주 곁들이나요?", options: [
+    option("거의 먹지 않아요", "rare"), option("가끔 곁들여요", "sometimes"), option("대부분의 날에 곁들여요", "regular"), unknown,
+  ] },
+  { id: "probiotic", q: "현재 유산균 제품을 먹고 있나요?", options: [
+    option("먹지 않아요", "none"), option("최근 새로 시작하거나 바꿨어요", "recent"), option("같은 제품을 계속 먹고 있어요", "ongoing"), unknown,
+  ] },
+  { id: "habit", q: "부담을 줄이면서 먼저 해볼 관리 하나를 고른다면?", help: "생활 관리는 보조 관리예요. 특정 식품·유산균으로 피부질환을 치료하거나 면역 상태를 진단하지 않아요.", options: [
+    option("세안·보습을 단순하게 정리하기", "barrier"),
+    option("수면·스트레스와 피부 반응 기록하기", "sleep"),
+    option("간편한 채소를 한 끼에 곁들이기", "vegetables"),
+    option("장 불편감·식사·유산균 사용을 기록하기", "gut"),
+    option("지금은 추가하지 않고 상태만 기록하기", "observe"),
   ] },
 ];
 
