@@ -15,7 +15,7 @@ beforeEach(() => {
 });
 
 function completeSymptomCheck(overrides = {}, { continueFlow = true } = {}) {
-  const values = { concern: "none", breathing: "no", infectionWarning: "none", eruption: "no", change: "stable", risk: "no", surface: "intact", barrier: "none", gut: "none", vegetables: "sometimes", probiotic: "none", habit: "observe", area: "face", form: "mixed", comedones: "yes", uniform: "no", itch: "none", follicular: "no", shaving: "no", sweat: "no", exposure: "none", pain: "none", duration: "under_week", treatment: "none", ...overrides };
+  const values = { concern: "none", breathing: "no", eyeWarning: "no", eruption: "no", change: "stable", surface: "intact", barrier: "none", habit: "observe", area: "face", form: "mixed", comedones: "yes", uniform: "no", itch: "none", follicular: "no", shaving: "no", pain: "none", duration: "under_week", recentProduct: "none", ...overrides };
   for (const question of getVisibleSymptomQuestions(values)) {
     expect(screen.getByRole("heading", { name: question.q })).toBeInTheDocument();
     click(question.options.find(option => option.value === values[question.id]).label);
@@ -238,18 +238,18 @@ test("urgent symptoms stop immediately, persist independently and cannot expose 
   expect(screen.getByRole("heading", { name: "지금은 새 제품 추천보다 상태 확인이 먼저예요" })).toBeInTheDocument();
 });
 
-test("overlapping folliculitis patterns save evidence and lifestyle observations without automatic medication switching", () => {
+test("overlapping breakout patterns save skin and product observations without automatic medication switching", () => {
   const { unmount } = render(<App />);
   click("증상 변화·악화 재설문");
-  completeSymptomCheck({ concern: "breakouts", area: "trunk", form: "pustules", comedones: "no", uniform: "yes", itch: "strong", follicular: "yes", change: "worse", habit: "gut", probiotic: "recent", gut: "constipation_bloating", vegetables: "rare" }, { continueFlow: false });
+  completeSymptomCheck({ concern: "breakouts", area: "trunk", form: "pustules", comedones: "no", uniform: "yes", itch: "strong", follicular: "yes", change: "worse", habit: "products", recentProduct: "active" }, { continueFlow: false });
   expect(screen.getByRole("heading", { name: "오늘 해볼 피부 관리" })).toBeInTheDocument();
   expect(screen.getByText("답변에서 확인한 피부 특징")).toBeInTheDocument();
   expect(screen.queryByRole("heading", { name: /모낭염 가능성/ })).not.toBeInTheDocument();
   expect(screen.queryByRole("button", { name: "피부 관리 설문·기록 이어가기" })).not.toBeInTheDocument();
-  expect(screen.getByText(/유산균을 최근 시작했다면/)).toBeInTheDocument();
+  expect(screen.getByText(/새 제품을 쓰기 시작한 날과 피부가 달라진 날/)).toBeInTheDocument();
   const records = JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY));
   expect(records).toHaveLength(1);
-  expect(records[0].symptomAssessment.answers).toMatchObject({ probiotic: "recent", vegetables: "rare", gut: "constipation_bloating", habit: "gut" });
+  expect(records[0].symptomAssessment.answers).toMatchObject({ recentProduct: "active", habit: "products" });
   unmount();
   render(<App />);
   click("지난 증상 확인 기록");

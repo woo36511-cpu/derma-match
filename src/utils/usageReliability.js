@@ -69,7 +69,8 @@ export function buildUsageReliability({
   if (productReliability.some((item) => item.inconsistent)) reasons.push("inconsistent_usage");
   if (productReliability.some((item) => item.stoppedEarly)) reasons.push("stopped_early");
   const symptomContext = symptomAssessment?.answers || {};
-  const additionalConfounder = symptomContext.probiotic === "recent" ||
+  const additionalConfounder = symptomContext.recentProduct === "prescribed" ||
+    symptomContext.probiotic === "recent" ||
     ["antibiotic", "steroid", "both"].includes(symptomContext.exposure) ||
     ["acne", "antibiotic", "antifungal", "other_medicine"].includes(symptomContext.treatment);
   if (additionalConfounder) reasons.push("concurrent_treatment_or_supplement");
