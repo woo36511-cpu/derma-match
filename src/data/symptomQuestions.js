@@ -1,9 +1,33 @@
 const option = (label, value) => ({ label, value });
 const unknown = option("잘 모르겠어요", "unknown");
 const yesNo = [option("네", "yes"), option("아니요", "no"), unknown];
-const hasActiveConcern = a => ["breakouts", "blackheads", "sensitive", "sudden", "other"].includes(a.concern);
+const hasActiveConcern = (a, { guided }) => ["breakouts", "blackheads", "sensitive", "sudden", "other"].includes(a.concern) ||
+  (guided && ["marks", "wrinkles", "dry", "oily"].includes(a.concern));
 
-export const hasMildFacialBumps = a => a.concern === "breakouts" &&
+export const secondaryConcernOptions = [
+  option("붉은 뾰루지나 좁쌀", "breakouts"),
+  option("블랙헤드나 막힌 모공", "blackheads"),
+  option("건조함·당김", "dry"),
+  option("따가움·붉어짐", "sensitive"),
+  option("트러블 뒤 남은 갈색 자국", "marks"),
+  option("번들거림", "oily"),
+  option("잔주름", "wrinkles"),
+  option("다른 고민은 없어요", "none"),
+];
+
+export const getCareConcern = a =>
+  ["blackheads", "dry", "sensitive", "marks", "oily", "wrinkles"].includes(a.concern) &&
+  Array.isArray(a.secondaryConcerns) && !a.secondaryConcerns.includes("none") && a.secondaryConcerns.includes("breakouts")
+    ? "breakouts" : a.concern;
+
+export function isSymptomAnswerValid(question, value) {
+  if (!question) return false;
+  if (!question.multiple) return question.options.some(option => option.value === value);
+  return Array.isArray(value) && value.length > 0 && new Set(value).size === value.length &&
+    (!value.includes("none") || value.length === 1) && value.every(item => question.options.some(option => option.value === item));
+}
+
+export const hasMildFacialBumps = a => getCareConcern(a) === "breakouts" &&
   (a.form === "papules" || (a.form === "mixed" && a.follicular === "no")) &&
   a.comedones === "yes" && a.itch === "none" && a.shaving === "no" &&
   a.pain === "none" && ["face", "chin", "hairline"].includes(a.area);
@@ -14,12 +38,14 @@ export const mayAskAboutFacialRedness = a => ["face", "chin"].includes(a.area) &
 
 export const hasRecentCosmetic = a => ["cleanser", "moisturizer", "active", "other"].includes(a.recentProduct);
 
-const comfortableRoutine = a => a.basicRoutine === "both" && a.barrier === "none" &&
-  a.surface === "intact" && ["new", "stable", "improving"].includes(a.change) && a.recentProduct === "none";
-export const mayAskAboutActives = a => comfortableRoutine(a) &&
-  (a.blackheadPattern === "dark" || hasMildFacialBumps(a));
+const stableRoutine = a => a.basicRoutine === "both" && a.surface === "intact" &&
+  ["new", "stable", "improving"].includes(a.change) && a.recentProduct === "none";
+export const canPairMildBumpCare = a => stableRoutine(a) && a.barrier === "dry" &&
+  a.sensitiveCare !== "irritated" && hasMildFacialBumps(a);
+export const mayAskAboutActives = a => canPairMildBumpCare(a) ||
+  (stableRoutine(a) && a.barrier === "none" && (a.blackheadPattern === "dark" || hasMildFacialBumps(a)));
 
-export const hasBreakoutDetails = a => a.concern === "breakouts" ||
+export const hasBreakoutDetails = a => getCareConcern(a) === "breakouts" ||
   (a.concern === "other" && ["yes", "unknown"].includes(a.eruption));
 
 // These questions support triage and descriptions, never a microbiological diagnosis.
@@ -56,6 +82,8 @@ export const symptomQuestions = [
     option("평소 보습제도 따갑거나 붉어져요", "stinging"),
     option("거의 없어요", "none"), unknown,
   ] },
+  { id: "secondaryConcerns", guidedOnly: true, multiple: true, q: "같이 관리하고 싶은 얼굴 피부 고민이 있나요?",
+    showIf: a => !!a.concern && !["none", "sudden"].includes(a.concern), help: "해당하는 고민을 모두 골라주세요. 같이 해도 되는 관리와 순서를 미룰 관리를 나눠서 안내해요.", options: secondaryConcernOptions },
   { id: "duration", q: "지금 증상이 얼마나 이어졌나요?", detail: true, options: [
     option("1주 미만", "under_week"), option("1~2주", "one_two_weeks"),
     option("2~6주", "two_six_weeks"), option("6주 이상 또는 자주 재발", "long"), unknown,
@@ -89,7 +117,7 @@ export const symptomQuestions = [
     option("보습제나 선크림", "moisturizer"), option("각질 제거제나 기능성 화장품", "active"),
     option("그 밖의 제품 또는 여러 제품", "other"), option("처방받은 제품을 바르고 있어요", "prescribed"), unknown,
   ] },
-  { id: "blackheadPattern", guidedOnly: true, q: "신경 쓰이는 모공은 어떤 모습인가요?", showIf: a => a.concern === "blackheads", options: [
+  { id: "blackheadPattern", guidedOnly: true, q: "신경 쓰이는 모공은 어떤 모습인가요?", showIf: a => getCareConcern(a) === "blackheads", options: [
     option("붉거나 아프지 않고 검게 막힌 점이 보여요", "dark"),
     option("코에 작은 회색 점이 비슷한 크기로 고르게 보여요", "even"),
     option("붉고 아프거나 고름이 있는 돌기도 있어요", "inflamed"), unknown,
@@ -97,7 +125,7 @@ export const symptomQuestions = [
   { id: "currentActives", guidedOnly: true, q: "트러블 부위에 여드름약·각질 제거제·레티놀을 바르고 있나요?", showIf: mayAskAboutActives, help: "예: 애크논크림·파티마겔·클리어틴 같은 약국 제품, 병원에서 처방받은 여드름 연고, AHA·BHA 토너나 레티놀 세럼. 평소 쓰는 순한 세안제와 보습제만 있다면 ‘쓰지 않아요’를 골라요.", options: [
     option("쓰고 있어요", "yes"), option("쓰지 않아요", "no"), unknown,
   ] },
-  { id: "moisturizerFit", guidedOnly: true, q: "세안 뒤 보습제를 발라도 당김이 이어지나요?", showIf: a => a.concern === "dry" && a.barrier === "dry" && ["both", "moisturizer"].includes(a.basicRoutine) && a.surface === "intact" && a.recentProduct === "none", options: [
+  { id: "moisturizerFit", guidedOnly: true, q: "세안 뒤 보습제를 발라도 당김이 이어지나요?", showIf: a => getCareConcern(a) === "dry" && a.barrier === "dry" && ["both", "moisturizer"].includes(a.basicRoutine) && a.surface === "intact" && a.recentProduct === "none", options: [
     option("바른 뒤에도 금방 다시 당겨요", "insufficient"), option("세안 뒤에는 잘 안 발라요", "irregular"), unknown,
   ] },
   { id: "sensitiveCare", guidedOnly: true, q: "지금 따갑거나 붉은지, 진정 세럼을 쓰는지 확인할게요.", showIf: a => a.concern === "sensitive" && a.barrier === "none" && a.surface === "intact" && a.recentProduct === "none" && ["stable", "improving"].includes(a.change), options: [
@@ -125,9 +153,10 @@ export function isImmediateStopAnswer(id, value) {
 export function getVisibleSymptomQuestions(answers = {}, { guided = false } = {}) {
   const visible = symptomQuestions
     .filter(q => (!q.guidedOnly || guided) && (!q.legacyOnly || !guided) &&
-      (!q.detail || hasBreakoutDetails(answers)) && (!q.showIf || q.showIf(answers)))
+      (!q.detail || hasBreakoutDetails(answers)) && (!q.showIf || q.showIf(answers, { guided })))
     .map(q => {
       if (!guided) return q;
+      if (q.id === "secondaryConcerns") return { ...q, options: q.options.filter(option => option.value !== answers.concern) };
       if (q.id === "barrier") return { ...q, q: "세안 후나 평소 보습제를 바를 때 피부가 어때요?" };
       if (q.id === "area") return { ...q, options: [
         ...q.options.slice(0, 1), option("턱·턱선", "chin"), option("볼·코 등 얼굴의 다른 부위", "face"), ...q.options.slice(2),
@@ -135,7 +164,7 @@ export function getVisibleSymptomQuestions(answers = {}, { guided = false } = {}
       if (q.id !== "concern") return q;
       return { ...q, options: [
         q.options[0], option("블랙헤드처럼 검게 막힌 모공이 신경 쓰여요", "blackheads"),
-        ...q.options.slice(1, 5), option("잔주름이 신경 쓰여요", "wrinkles"), ...q.options.slice(5),
+        ...q.options.slice(1, 5), option("트러블 뒤 남은 갈색 자국이 신경 쓰여요", "marks"), option("잔주름이 신경 쓰여요", "wrinkles"), ...q.options.slice(5),
       ] };
     });
   const stop = visible.findIndex(q => isImmediateStopAnswer(q.id, answers[q.id]));
@@ -144,6 +173,6 @@ export function getVisibleSymptomQuestions(answers = {}, { guided = false } = {}
 
 export function cleanSymptomAnswers(answers, options) {
   return Object.fromEntries(getVisibleSymptomQuestions(answers, options)
-    .filter(q => q.options.some(o => o.value === answers[q.id]))
+    .filter(q => isSymptomAnswerValid(q, answers[q.id]))
     .map(q => [q.id, answers[q.id]]));
 }

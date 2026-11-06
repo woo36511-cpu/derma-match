@@ -291,7 +291,7 @@ const guidedBreakoutBase = {
   concern: "breakouts", change: "stable", surface: "intact", basicRoutine: "both",
   barrier: "none", duration: "under_week", area: "chin", form: "mixed",
   comedones: "yes", itch: "none", follicular: "no", shaving: "no", pain: "none",
-  recentProduct: "none", currentActives: "no", facialRedness: "no",
+  recentProduct: "none", currentActives: "no", facialRedness: "no", secondaryConcerns: ["none"],
 };
 
 function answerGuidedCheck(overrides, { hydration = false, recheck = false } = {}) {
@@ -301,7 +301,12 @@ function answerGuidedCheck(overrides, { hydration = false, recheck = false } = {
   for (const [index, question] of questions.entries()) {
     if (recheck && index === 0) continue;
     expect(screen.getByRole("heading", { name: question.q })).toBeVisible();
-    click(question.options.find(option => option.value === answers[question.id]).label);
+    const picked = question.multiple ? answers[question.id] : [answers[question.id]];
+    for (const value of picked) {
+      const label = question.options.find(option => option.value === value).label;
+      const button = screen.getByRole("button", { name: label });
+      if (!question.multiple || button.getAttribute("aria-pressed") !== "true") fireEvent.click(button);
+    }
     if (index < questions.length - 1 || hydration) click("다음");
   }
 }
@@ -512,4 +517,35 @@ test("an uncertain topical product answer can be corrected without repeating the
   click("쓰지 않아요");
   click("내 피부 관리 보기");
   expect(screen.getByRole("heading", { name: "턱의 작은 붉은 뾰루지에만 애크논크림을 써볼 수 있어요." })).toBeVisible();
+});
+
+
+test("stable breakout, mild tightness and marks are managed together without adding exfoliants", () => {
+  render(<App />);
+  answerGuidedCheck({ barrier: "dry", secondaryConcerns: ["marks", "blackheads"] });
+  click("내 피부 관리 보기");
+  expect(screen.getByText("작은 붉은 뾰루지 관리와 보습을 함께")).toBeVisible();
+  expect(screen.getByRole("heading", { name: "애크논크림" })).toBeVisible();
+  expect(screen.getByText(/SPF 30 이상/)).toBeVisible();
+  expect(screen.getByText(/블랙헤드용 각질 제거/)).toBeVisible();
+  expect(screen.queryByRole("heading", { name: "클리어틴외용액 2%" })).not.toBeInTheDocument();
+});
+
+test("stinging takes priority and holds a new acne treatment while marks get a compatible step", () => {
+  render(<App />);
+  answerGuidedCheck({ barrier: "stinging", secondaryConcerns: ["marks"] });
+  click("내 피부 관리 보기");
+  expect(screen.getByText("따가움·당김을 먼저 줄이고 피부 상태 확인")).toBeVisible();
+  expect(screen.getByText(/새 여드름약·각질 제품 추가/)).toBeVisible();
+  expect(screen.getByText(/SPF 30 이상/)).toBeVisible();
+  expect(screen.queryByRole("heading", { name: "애크논크림" })).not.toBeInTheDocument();
+});
+
+test("selecting active pimples alongside brown marks asks about the pimples and prioritizes them", () => {
+  render(<App />);
+  answerGuidedCheck({ concern: "marks", secondaryConcerns: ["breakouts", "oily"] });
+  click("내 피부 관리 보기");
+  expect(screen.getByText(/갈색 자국도 함께 관리하되/)).toBeVisible();
+  expect(screen.getByRole("heading", { name: "애크논크림" })).toBeVisible();
+  expect(screen.getByText(/번들거리는 곳만 기름종이/)).toBeVisible();
 });

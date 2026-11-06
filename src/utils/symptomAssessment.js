@@ -1,7 +1,7 @@
-import { cleanSymptomAnswers, getVisibleSymptomQuestions, hasBreakoutDetails } from "../data/symptomQuestions";
+import { cleanSymptomAnswers, getVisibleSymptomQuestions, hasBreakoutDetails, isSymptomAnswerValid } from "../data/symptomQuestions";
 import { getBreakoutFirstCare } from "./breakoutFirstCare";
 
-export const SYMPTOM_RULE_VERSION = "skin-care-v5";
+export const SYMPTOM_RULE_VERSION = "skin-care-v6";
 export const symptomSources = [
   { label: "AAD · 여드름과 비슷해 보이는 모낭염", url: "https://www.aad.org/public/diseases/a-z/folliculitis/" },
   { label: "DermNet · 말라세지아 모낭염 설명·임상사진", url: "https://dermnetnz.org/topics/malassezia-folliculitis" },
@@ -12,7 +12,7 @@ export const symptomSources = [
 export function assessSymptoms(input = {}, { guided = false } = {}) {
   const a = cleanSymptomAnswers(input, { guided });
   const questions = getVisibleSymptomQuestions(a, { guided });
-  const complete = questions.every(q => q.options.some(o => o.value === a[q.id]));
+  const complete = questions.every(q => isSymptomAnswerValid(q, a[q.id]));
   const result = {
     ...(guided && { guidedCare: true }),
     ruleVersion: SYMPTOM_RULE_VERSION, answers: a, complete, candidates: [], reasons: [],

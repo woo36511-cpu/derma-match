@@ -3,6 +3,8 @@ import { PrimaryButton } from "../components/PrimaryButton";
 import { BreakoutPatternGuide } from "../components/BreakoutPatternGuide";
 import { hasBreakoutDetails } from "../data/symptomQuestions";
 import { ProductReactionCheck } from "../components/ProductReactionCheck";
+import { CarePrioritySummary } from "../components/CarePrioritySummary";
+import { buildCarePriorities } from "../utils/carePriorities";
 import { RecentProductCheck } from "../components/RecentProductCheck";
 import { FirstVisitCarePlan } from "../components/FirstVisitCarePlan";
 import { SymptomAssessmentCard } from "../components/SymptomAssessmentCard";
@@ -27,9 +29,10 @@ export function SymptomResultScreen({ check, setStep }) {
       <SymptomAssessmentCard assessment={assessment} hideObservations={showBreakoutGuide} />
     </> : assessment.guidedCare ? <SymptomAssessmentCard assessment={assessment} hideObservations={showBreakoutGuide} /> : <SymptomCareSummary assessment={assessment} />}
     {guided && !["emergency", "urgent", "clinic"].includes(assessment.urgency) && <RecentProductCheck answers={assessment.answers} />}
+    {(!check.historical || assessment.ruleVersion === SYMPTOM_RULE_VERSION) && <CarePrioritySummary priorities={buildCarePriorities(assessment, plan)} />}
     {showBreakoutGuide && <BreakoutPatternGuide assessment={assessment} />}
     {plan?.pharmacy && <ProductReactionCheck key={plan.pharmacy.name} productName={plan.pharmacy.name} onRecheck={reaction =>
-      check.begin("guidedCare", { concern: assessment.answers.concern, product: plan.pharmacy.name, reaction })
+      check.begin("guidedCare", { concern: assessment.answers.concern, secondaryConcerns: assessment.answers.secondaryConcerns, product: plan.pharmacy.name, reaction })
     } />}
     <p className="text-sm text-slate-500">{check.saved ? "확인 기록을 저장했어요. 서버 저장 여부는 상단 저장·계정에서 확인하세요." : "현재 결과를 저장하지 못했어요. 화면의 안내는 그대로 확인할 수 있어요."}</p>
     {!check.saved && <button onClick={check.retrySave} className="underline text-sm">확인 기록 다시 저장</button>}

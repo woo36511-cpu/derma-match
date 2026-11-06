@@ -1,5 +1,5 @@
 import { blackheadCosmetics, pharmacyOptions, sunscreenOption } from "../data/targetedCareProducts";
-import { hasMildFacialBumps, hasRecentCosmetic, mayAskAboutActives } from "../data/symptomQuestions";
+import { canPairMildBumpCare, getCareConcern, hasMildFacialBumps, hasRecentCosmetic, mayAskAboutActives } from "../data/symptomQuestions";
 import { products } from "../data/products";
 import { hasExfoliatingActive, isProductAvailable, isSpecializedTreatmentProduct } from "./productCatalog";
 import { sortProductsForRecommendation } from "./recommendationScoring";
@@ -20,7 +20,7 @@ const shouldPauseSensitiveCare = answers => answers.concern === "sensitive" &&
   (["irritated", "unknown"].includes(answers.sensitiveCare) || answers.recentProduct !== "none");
 
 export function needsHydrationQuestion(assessment) {
-  return assessment?.guidedCare && assessment.complete && !assessment.blockRoutine && !shouldPauseSensitiveCare(assessment.answers) && !hasRecentCosmetic(assessment.answers) &&
+  return assessment?.guidedCare && assessment.complete && !assessment.blockRoutine && !shouldPauseSensitiveCare(assessment.answers) && !hasRecentCosmetic(assessment.answers) && !canPairMildBumpCare(assessment.answers) &&
     (assessment.answers.barrier === "dry" || assessment.answers.basicRoutine === "neither");
 }
 
@@ -29,6 +29,7 @@ const concernCare = {
   breakouts: { action: "땀을 흘린 뒤에는 순하게 씻고, 돌기는 짜지 않아요.", actionDetail: "오늘은 돌기 위에 스크럽이나 필링을 쓰지 말고, 세안할 때 손끝으로 가볍게 씻어요.", observation: "새로 올라오는 트러블이 줄었는지" },
   oily: { action: "오후 번들거림은 기름종이로 가볍게 눌러요.", actionDetail: "이마·코처럼 번들거리는 곳에만 기름종이를 잠깐 대고 떼요. 번들거릴 때마다 다시 씻거나 문지르지 않아요.", observation: "오후에 어느 부위가 얼마나 번들거리는지" },
   wrinkles: { action: "아침에 보습하고, 외출 전에 선크림을 발라요.", actionDetail: "건조한 부위에는 잘 맞던 보습제를 바르고, 외출할 때는 노출되는 얼굴과 목에 선크림을 챙겨요.", observation: "건조해서 더 도드라져 보이던 잔주름이나 당김이 줄었는지" },
+  marks: { action: "갈색 자국에는 아침에 자외선 차단부터 해요.", actionDetail: "외출 전에 얼굴의 노출 부위에 잘 맞던 SPF 30 이상 선크림을 발라요. 지금 따갑다면 새 미백 제품이나 필링을 더하지 않아요.", observation: "새 트러블이 생기는지와 기존 갈색 자국이 옅어지는지" },
   sensitive: { action: "따갑던 부위는 스크럽을 쉬고 가볍게 씻어요.", actionDetail: "미지근한 물로 문지르지 않고 씻고, 잘 맞던 보습제가 있다면 그 제품만 사용해요.", observation: "어떤 제품을 썼을 때 불편함이 생기는지" },
   dry: { action: "세안 뒤 피부가 살짝 촉촉할 때 보습제를 발라요.", observation: "당김이 언제 시작되고 얼마나 지속되는지" },
   none: { action: "지금 편안한 관리를 이어가요.", observation: "당김이나 따가움 없이 편안한지" },
@@ -89,7 +90,7 @@ function targetedPlan(answers, priorTrial) {
     actionDetail: "검게 막힌 점인지, 크기가 고른 회색 점인지, 붉고 아픈 돌기인지 봐요. 확인한 답만 바꾸면 그에 맞는 관리를 볼 수 있어요.",
     editAnswer: "blackheadPattern",
   };
-  if (barrier !== "none" || surface !== "intact" || recentProduct !== "none") {
+  if ((barrier !== "none" && !canPairMildBumpCare(answers)) || surface !== "intact" || recentProduct !== "none") {
     if (concern === "blackheads" || concern === "breakouts") return {
       productNote: "각질이 들뜨거나 자극이 있다면 그 부위의 스크럽과 각질 제거는 쉬고, 세안 뒤 잘 맞던 보습제를 발라요.",
     };
@@ -153,7 +154,8 @@ function targetedPlan(answers, priorTrial) {
 
 export function buildFirstVisitPlan(assessment) {
   if (!assessment?.guidedCare || !assessment.complete || assessment.blockRoutine) return null;
-  const { concern, area, basicRoutine, afternoonSkin } = assessment.answers;
+  const { area, basicRoutine, afternoonSkin } = assessment.answers;
+  const concern = getCareConcern(assessment.answers);
   const care = concern === "breakouts" && area === "chin"
     ? { ...concernCare.breakouts, observation: "턱에 새로 올라오는 돌기 수와 따가움이 달라지는지" }
     : concernCare[concern] ?? concernCare.other;
@@ -182,7 +184,7 @@ export function buildFirstVisitPlan(assessment) {
       ...care,
       keep: maintenance[basicRoutine],
       reason: null,
-      ...targetedPlan(assessment.answers, assessment.priorTrial),
+      ...targetedPlan({ ...assessment.answers, concern }, assessment.priorTrial),
     };
   }
 
