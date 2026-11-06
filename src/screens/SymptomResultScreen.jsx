@@ -13,12 +13,19 @@ export function SymptomResultScreen({ check, setStep }) {
   }, [guided]);
   if (!assessment) return null;
   const plan = buildFirstVisitPlan(assessment);
+  const follicularPattern = guided && assessment.blockRoutine && !["emergency", "urgent"].includes(assessment.urgency) &&
+    assessment.candidates?.some(candidate => ["folliculitis", "malassezia"].includes(candidate.key));
   return <section className="max-w-3xl mx-auto space-y-6">
     {check.historical && <p className="rounded-2xl bg-amber-50 p-4 text-sm">지난번에 저장한 확인 결과예요. 지금 상태를 반영하려면 새로 재설문해주세요.</p>}
     {plan ? <>
       <FirstVisitCarePlan plan={plan} />
       <SymptomAssessmentCard assessment={assessment} />
     </> : assessment.guidedCare ? <SymptomAssessmentCard assessment={assessment} /> : <SymptomCareSummary assessment={assessment} />}
+    {follicularPattern && <section className="rounded-2xl border border-slate-200 bg-white p-4 text-sm">
+      <h3 className="font-semibold">모낭염처럼 보이는 돌기가 있다면</h3>
+      <p className="mt-2">여드름과 겉모습이 비슷해 설문으로 원인균이나 진균을 확인할 수 없어요. 항생제·항진균제를 번갈아 시험하지 말고, 지금 쓰는 제품과 가려움·고름·번지는 범위의 변화를 보여주고 확인해요.</p>
+      <a href="https://dermnetnz.org/topics/investigations-in-acne" target="_blank" rel="noreferrer" className="mt-2 inline-block underline">왜 구분해서 확인하나요?</a>
+    </section>}
     <p className="text-sm text-slate-500">{check.saved ? "확인 기록을 저장했어요. 서버 저장 여부는 상단 저장·계정에서 확인하세요." : "현재 결과를 저장하지 못했어요. 화면의 안내는 그대로 확인할 수 있어요."}</p>
     {!check.saved && <button onClick={check.retrySave} className="underline text-sm">확인 기록 다시 저장</button>}
     <div className="flex flex-wrap gap-3">

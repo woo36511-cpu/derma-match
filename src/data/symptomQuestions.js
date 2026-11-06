@@ -1,7 +1,15 @@
 const option = (label, value) => ({ label, value });
 const unknown = option("잘 모르겠어요", "unknown");
 const yesNo = [option("네", "yes"), option("아니요", "no"), unknown];
-const hasActiveConcern = a => ["breakouts", "sensitive", "sudden", "other"].includes(a.concern);
+const hasActiveConcern = a => ["breakouts", "blackheads", "sensitive", "sudden", "other"].includes(a.concern);
+
+export const hasMildFacialBumps = a => a.concern === "breakouts" &&
+  a.form === "papules" && a.comedones === "yes" && a.itch === "none" &&
+  a.shaving === "no" && a.pain === "none" && ["face", "chin", "hairline"].includes(a.area);
+const comfortableRoutine = a => a.basicRoutine === "both" && a.barrier === "none" &&
+  a.surface === "intact" && ["new", "stable", "improving"].includes(a.change) && a.recentProduct === "none";
+export const mayAskAboutActives = a => comfortableRoutine(a) &&
+  (a.blackheadPattern === "dark" || hasMildFacialBumps(a));
 
 export const hasBreakoutDetails = a => a.concern === "breakouts" ||
   (a.concern === "other" && ["yes", "unknown"].includes(a.eruption));
@@ -74,6 +82,27 @@ export const symptomQuestions = [
     option("보습제나 선크림", "moisturizer"), option("각질 제거제나 기능성 화장품", "active"),
     option("그 밖의 제품 또는 여러 제품", "other"), option("처방받은 제품을 바르고 있어요", "prescribed"), unknown,
   ] },
+  { id: "blackheadPattern", guidedOnly: true, q: "신경 쓰이는 모공은 어떤 모습인가요?", showIf: a => a.concern === "blackheads", options: [
+    option("붉거나 아프지 않고 검게 막힌 점이 보여요", "dark"),
+    option("코에 작은 회색 점이 비슷한 크기로 고르게 보여요", "even"),
+    option("붉고 아프거나 고름이 있는 돌기도 있어요", "inflamed"), unknown,
+  ] },
+  { id: "currentActives", guidedOnly: true, q: "그 부위에 각질 제거제, 레티놀, 여드름 약을 이미 쓰고 있나요?", showIf: mayAskAboutActives, options: [
+    option("쓰고 있어요", "yes"), option("쓰지 않아요", "no"), unknown,
+  ] },
+  { id: "moisturizerFit", guidedOnly: true, q: "세안 뒤 보습제를 발라도 당김이 이어지나요?", showIf: a => a.concern === "dry" && a.barrier === "dry" && ["both", "moisturizer"].includes(a.basicRoutine) && a.surface === "intact" && a.recentProduct === "none", options: [
+    option("바른 뒤에도 금방 다시 당겨요", "insufficient"), option("세안 뒤에는 잘 안 발라요", "irregular"), unknown,
+  ] },
+  { id: "sensitiveCare", guidedOnly: true, q: "지금 따갑거나 붉은지, 진정 세럼을 쓰는지 확인할게요.", showIf: a => a.concern === "sensitive" && a.barrier === "none" && a.surface === "intact" && a.recentProduct === "none" && ["stable", "improving"].includes(a.change), options: [
+    option("지금은 편안하고 진정 세럼을 안 써요", "comfortable_no_serum"),
+    option("지금은 편안하고 쓰는 진정 세럼이 있어요", "comfortable_with_serum"),
+    option("지금도 따갑거나 붉어요", "irritated"), unknown,
+  ] },
+  { id: "usesToner", guidedOnly: true, q: "이미 쓰고 있는 토너가 있나요?", showIf: a => a.concern === "oily" && a.barrier === "none" && a.basicRoutine === "both" && a.surface === "intact" && a.recentProduct === "none", options: yesNo },
+  { id: "usesSunscreen", guidedOnly: true, q: "외출할 때 잘 맞는 선크림을 쓰고 있나요?", showIf: a => a.concern === "wrinkles" && a.barrier === "none" && a.basicRoutine !== "neither" && a.surface === "intact" && a.recentProduct === "none", options: [
+    option("잘 맞는 선크림을 쓰고 있어요", "yes"), option("쓰는 선크림이 없어요", "no"),
+    option("쓰는 제품이 있지만 따갑거나 불편해요", "uncomfortable"), unknown,
+  ] },
   { id: "habit", legacyOnly: true, q: "부담을 줄이면서 먼저 해볼 관리 하나를 고른다면?", options: [
     option("세안·보습을 단순하게 정리하기", "barrier"),
     option("최근 바꾼 화장품을 하나씩 점검하기", "products"),
@@ -98,7 +127,8 @@ export function getVisibleSymptomQuestions(answers = {}, { guided = false } = {}
       ] };
       if (q.id !== "concern") return q;
       return { ...q, options: [
-        ...q.options.slice(0, 5), option("잔주름이 신경 쓰여요", "wrinkles"), ...q.options.slice(5),
+        q.options[0], option("블랙헤드처럼 검게 막힌 모공이 신경 쓰여요", "blackheads"),
+        ...q.options.slice(1, 5), option("잔주름이 신경 쓰여요", "wrinkles"), ...q.options.slice(5),
       ] };
     });
   const stop = visible.findIndex(q => isImmediateStopAnswer(q.id, answers[q.id]));
