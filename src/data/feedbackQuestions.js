@@ -31,12 +31,14 @@ export const feedbackQuestions = [
   },
   {
     id: "trouble",
-    q: "사용 후 붉은 트러블 변화는 어땠나요?",
+    q: "전에 비해 붉거나 고름이 있는 트러블은 어떻게 달라졌나요?",
     options: [
-      { label: "없음", value: 0 },
-      { label: "조금 생김", value: 1 },
-      { label: "많이 생김", value: 2 },
-      { label: "원래 있던 트러블이 더 심해짐", value: 2 },
+      { label: "전에 없었고 새로 생기지도 않았어요", value: 0 },
+      { label: "새로 1~2개 생겼어요", value: 1 },
+      { label: "새로 3개 이상 생겼어요", value: 2 },
+      { label: "원래 있던 트러블이 더 심해졌어요", value: 2 },
+      { label: "원래 있던 트러블이 줄었어요", value: 0 },
+      { label: "원래 있던 트러블은 비슷해요", value: 0 },
     ],
   },
   {
