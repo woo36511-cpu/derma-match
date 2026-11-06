@@ -4,8 +4,9 @@ const yesNo = [option("네", "yes"), option("아니요", "no"), unknown];
 const hasActiveConcern = a => ["breakouts", "blackheads", "sensitive", "sudden", "other"].includes(a.concern);
 
 export const hasMildFacialBumps = a => a.concern === "breakouts" &&
-  a.form === "papules" && a.comedones === "yes" && a.itch === "none" &&
-  a.shaving === "no" && a.pain === "none" && ["face", "chin", "hairline"].includes(a.area);
+  (a.form === "papules" || (a.form === "mixed" && a.follicular === "no")) &&
+  a.comedones === "yes" && a.itch === "none" && a.shaving === "no" &&
+  a.pain === "none" && ["face", "chin", "hairline"].includes(a.area);
 const comfortableRoutine = a => a.basicRoutine === "both" && a.barrier === "none" &&
   a.surface === "intact" && ["new", "stable", "improving"].includes(a.change) && a.recentProduct === "none";
 export const mayAskAboutActives = a => comfortableRoutine(a) &&

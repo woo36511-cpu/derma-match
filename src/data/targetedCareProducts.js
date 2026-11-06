@@ -29,11 +29,12 @@ export const pharmacyOptions = {
     source: "https://nedrug.mfds.go.kr/pbp/CCBBB01/getItemDetail?itemSeq=201306847",
   },
   breakouts: {
-    name: "애크논크림",
-    ingredients: "이부프로펜피코놀 30 mg/g · 이소프로필메틸페놀 10 mg/g",
-    indication: "여드름·뾰루지에 허가된 일반의약품이에요. 지금 돌기가 여드름인지, 이미 바르는 제품과 같이 써도 되는지 약사에게 먼저 확인해요.",
-    caution: "눈 주위나 깊은 상처에 쓰지 않아요. 성분 과민증이 있거나 임신 3기에는 사용하지 않아요. 임신 중이거나 약·화장품에 알레르기 반응이 있었다면 먼저 알리세요.",
-    source: "https://nedrug.mfds.go.kr/pbp/CCBBB01/getItemDetail?itemSeq=201901721",
+    name: "파티마겔 2.5%",
+    ingredients: "과산화벤조일 2.5% (가수과산화벤조일)",
+    indication: "보통여드름 치료용 일반의약품이에요. 현재 부위가 이 제품을 쓸 수 있는 상태인지 약사에게 보여주고 확인해요.",
+    caution: "제품 설명서에 염증 환자와 성분 과민증이 있는 사람은 사용하지 말라고 적혀 있어요. 상처·짓무름·따가움이 있거나 임신·수유 중이라면 먼저 알리고, 다른 바르는 여드름약이나 각질제거제와 겹치지 않아요.",
+    source: "https://common.health.kr/shared/images/insert_pdf/IN_v1hu9d3ad1elx_00.pdf",
+    sourceLabel: "제품 설명서 보기",
   },
 };
 

@@ -29,7 +29,7 @@ export function ConcernProductOptions({ plan }) {
         <p>{pharmacy.indication}</p>
         <p>{pharmacy.caution}</p>
         <p>사용 여부와 방법은 약사 안내와 제품 설명서를 따르세요. 바른 뒤 자극이 생기면 중단하고 확인하세요.</p>
-        <a className="inline-block underline" href={pharmacy.source} target="_blank" rel="noreferrer">식약처 허가사항 보기</a>
+        <a className="inline-block underline" href={pharmacy.source} target="_blank" rel="noreferrer">{pharmacy.sourceLabel ?? "식약처 허가사항 보기"}</a>
       </div>
     </DetailDisclosure>}
     {plan.recheck && <p className="text-sm text-slate-700">{plan.recheck}</p>}

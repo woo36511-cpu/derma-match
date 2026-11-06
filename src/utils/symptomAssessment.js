@@ -48,7 +48,20 @@ export function assessSymptoms(input = {}, { guided = false } = {}) {
     ? "새 기능성 제품은 추가하지 말고, 편안했던 세안·보습만 유지해요. 최근 추가한 화장품이 따가웠다면 잠시 쉬고, 다음에는 따가움과 붉어짐이 줄었는지 확인해요. 악화가 이어지면 상담받으세요."
     : "최근 추가한 화장품이 따갑게 느껴졌다면 그 제품을 잠시 쉬고 피부가 어떻게 달라지는지 기록해보세요. 악화가 이어지면 상담받으세요." };
   const uncertainFeatures = breakout && ["form", "comedones", "uniform", "itch", "follicular", "shaving", "pain", "duration"].some(k => a[k] === "unknown");
-  if (notClearAcne || uncertainFeatures || (breakout && result.candidates.length === 0)) return { ...result, urgency: "pharmacy", title: "트러블이 가라앉는지 먼저 살펴봐요", nextAction: "각질 제거제나 새 제품을 추가하기 전에 가려움·새 돌기·면도와의 관계를 기록해보세요. 계속 번지거나 호전되지 않으면 상담받으세요." };
+  if (notClearAcne || uncertainFeatures || (breakout && result.candidates.length === 0)) {
+    if (guided) {
+      const shavingClue = result.candidates.some(candidate => candidate.key === "shaving");
+      return {
+        ...result,
+        urgency: "pharmacy",
+        title: shavingClue ? "당분간 트러블 부위를 바짝 면도하지 않아요" : "새 약을 고르기 전에 지금 트러블을 직접 보여주세요",
+        nextAction: shavingClue
+          ? "해당 부위는 면도·제모를 잠시 쉬고, 꼭 해야 한다면 피부에 바짝 깎지 않아요. 면도를 줄인 뒤 새 돌기가 줄어드는지 확인해요. 계속 번지거나 아파지면 진료로 확인해요."
+          : "오늘은 돌기를 짜거나 문지르지 말고, 지금 상태를 같은 조명에서 사진으로 남겨요. 약을 고르고 싶다면 사진과 최근 바른 제품을 약사나 의료진에게 보여주세요. 반복되거나 범위가 넓어지면 진료로 확인해요.",
+      };
+    }
+    return { ...result, urgency: "pharmacy", title: "트러블이 가라앉는지 먼저 살펴봐요", nextAction: "각질 제거제나 새 제품을 추가하기 전에 가려움·새 돌기·면도와의 관계를 기록해보세요. 계속 번지거나 호전되지 않으면 상담받으세요." };
+  }
 
   if (a.recentProduct === "prescribed") return { ...result, urgency: "pharmacy", title: "기존에 바르던 제품 안내를 우선하세요", nextAction: "처방받은 제품을 쓰는 부위에 새 기능성 화장품을 겹쳐 쓰기 전에 기존 안내를 확인하세요." };
   return { ...result, urgency: "self_care", blockRoutine: false, title: "지금 피부에 맞는 기본 관리", nextAction: "새 제품은 한 번에 하나씩 바꾸고, 이미 편안하게 쓰던 제품은 유지해도 좋아요.", reviewTiming: "2주 체크에서는 편안함과 자극, 새 트러블의 변화를 비교해요. 악화하면 날짜를 기다리지 말고 다시 확인하세요." };
