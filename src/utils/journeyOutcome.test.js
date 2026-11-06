@@ -92,7 +92,7 @@ test("confounding changes and an incomplete comparison block attribution", () =>
   expect(reliability([used], { skinComparison: null })).toMatchObject({ level: "low", productAttributionReady: false });
 });
 
-test.each([{ probiotic: "recent" }, { exposure: "steroid" }, { treatment: "acne" }])("additional symptom-check context prevents attributing combined changes to a cosmetic: %j", answers => {
+test.each([{ recentProduct: "prescribed" }, { probiotic: "recent" }, { exposure: "steroid" }, { treatment: "acne" }])("additional symptom-check context prevents attributing combined changes to a cosmetic: %j", answers => {
   const result = reliability([used], { symptomAssessment: { answers } });
   expect(result).toMatchObject({ level: "low", productAttributionReady: false, automaticScoreAdjustmentReady: false });
   expect(result.reasons).toContain("concurrent_treatment_or_supplement");

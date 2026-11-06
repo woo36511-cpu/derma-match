@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { cleanSymptomAnswers, getVisibleSymptomQuestions } from "../data/symptomQuestions";
+import { cleanSymptomAnswers, getVisibleSymptomQuestions, isImmediateStopAnswer } from "../data/symptomQuestions";
 import { assessSymptoms } from "../utils/symptomAssessment";
 import { createJourneyRecordId } from "../utils/journeyStorage";
 
@@ -45,8 +45,7 @@ export function useSymptomCheck({ ownerId, storedHistory, persistRecord, setStep
     const next = cleanSymptomAnswers({ ...answers, [question.id]: value });
     setAnswers(next);
     setIndex(Math.min(index, getVisibleSymptomQuestions(next).length - 1));
-    if (value === "yes" && question.id === "breathing") finish(next);
-    if (question.id === "infectionWarning" && ["spreading_fever", "eye", "rapid"].includes(value)) finish(next);
+    if (isImmediateStopAnswer(question.id, next[question.id])) finish(next);
   };
 
   return {
