@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { FirstVisitCarePlan } from "../components/FirstVisitCarePlan";
 import { SymptomAssessmentCard } from "../components/SymptomAssessmentCard";
@@ -7,6 +7,10 @@ import { SymptomCareSummary } from "../components/SelfCarePlan";
 
 export function SymptomResultScreen({ check, setStep }) {
   const assessment = check.assessment;
+  const guided = assessment?.guidedCare === true;
+  useLayoutEffect(() => {
+    if (guided) window.scrollTo(0, 0);
+  }, [guided]);
   if (!assessment) return null;
   const plan = buildFirstVisitPlan(assessment);
   return <section className="max-w-3xl mx-auto space-y-6">
