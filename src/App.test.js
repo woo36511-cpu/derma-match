@@ -375,7 +375,7 @@ test("mild acne-like bumps and folliculitis-like bumps do not get the same pharm
   click("시작 화면으로");
   answerGuidedCheck({ form: "pustules", comedones: "no", follicular: "yes" });
   click("내 피부 관리 보기");
-  expect(screen.getByRole("heading", { name: "모낭염처럼 보이는 돌기가 있다면" })).toBeVisible();
+  expect(screen.getByRole("heading", { name: "털구멍 주변에 고름이 보이는 양상이에요" })).toBeVisible();
   expect(screen.queryByText(/약사와 확인할 일반의약품/)).not.toBeInTheDocument();
 });
 
@@ -419,4 +419,25 @@ test("an irritated beginner does not get a four-product starter routine", () => 
   click("내 피부 관리 보기");
   expect(screen.getByText("피부 반응이 확인될 때까지 새 제품을 추가하지 않아요.")).toBeVisible();
   expect(screen.queryByRole("heading", { name: "피부에 맞는 기초 제품 네 가지" })).not.toBeInTheDocument();
+});
+
+
+test("overlapping breakout signs stay separate and do not unlock an OTC option", () => {
+  render(<App />);
+  answerGuidedCheck({ follicular: "yes" });
+  click("내 피부 관리 보기");
+  expect(screen.getByRole("heading", { name: "서로 다른 트러블 단서가 함께 보여요" })).toBeVisible();
+  expect(screen.queryByText(/약사와 확인할 일반의약품/)).not.toBeInTheDocument();
+  const compare = screen.getByText("비슷한 트러블 양상 비교하기", { selector: "summary" });
+  expect(screen.getByText("말라세지아 모낭염과 비슷한 양상")).not.toBeVisible();
+  fireEvent.click(compare);
+  expect(screen.getByText("말라세지아 모낭염과 비슷한 양상")).toBeVisible();
+});
+
+test("itchy uniform bumps get a distinct clue without an antifungal suggestion", () => {
+  render(<App />);
+  answerGuidedCheck({ area: "trunk", form: "papules", comedones: "no", itch: "strong", uniform: "yes" });
+  click("내 피부 관리 보기");
+  expect(screen.getByRole("heading", { name: "크기가 비슷하고 가려운 돌기가 보여요" })).toBeVisible();
+  expect(screen.queryByText(/니조랄|약사와 확인할 일반의약품/)).not.toBeInTheDocument();
 });
