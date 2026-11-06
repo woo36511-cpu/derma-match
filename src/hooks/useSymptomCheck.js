@@ -71,6 +71,15 @@ export function useSymptomCheck({ ownerId, storedHistory, persistRecord, setStep
   return {
     answers, questions, index, assessment, saved, historical, latestRecord,
     begin, answer,
+    editGuidedAnswer: (id) => {
+      if (!assessment?.guidedCare) return;
+      const values = assessment.answers;
+      const position = questionsFor(values, true).findIndex(question => question.id === id);
+      if (position === -1) return;
+      setAnswers(values); setIndex(position); setAssessment(null); setRecord(null);
+      setNextStep("guidedCare"); setPriorTrial(assessment.priorTrial ?? null); setSaved(false); setHistorical(false);
+      setStep("symptomCheck");
+    },
     clearAssessment: () => setAssessment(null),
     previous: () => index > 0 ? setIndex(index - 1) : setStep("start"),
     next: () => {

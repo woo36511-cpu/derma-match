@@ -23,7 +23,7 @@ export function SymptomResultScreen({ check, setStep }) {
   return <section className="max-w-3xl mx-auto space-y-6">
     {check.historical && <p className="rounded-2xl bg-amber-50 p-4 text-sm">지난번에 저장한 확인 결과예요. 지금 상태를 반영하려면 새로 재설문해주세요.</p>}
     {plan ? <>
-      <FirstVisitCarePlan plan={plan} />
+      <FirstVisitCarePlan plan={plan} onEditAnswer={check.editGuidedAnswer} />
       <SymptomAssessmentCard assessment={assessment} hideObservations={showBreakoutGuide} />
     </> : assessment.guidedCare ? <SymptomAssessmentCard assessment={assessment} hideObservations={showBreakoutGuide} /> : <SymptomCareSummary assessment={assessment} />}
     {guided && !["emergency", "urgent", "clinic"].includes(assessment.urgency) && <RecentProductCheck answers={assessment.answers} />}

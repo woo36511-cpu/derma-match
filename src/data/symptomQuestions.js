@@ -7,6 +7,11 @@ export const hasMildFacialBumps = a => a.concern === "breakouts" &&
   (a.form === "papules" || (a.form === "mixed" && a.follicular === "no")) &&
   a.comedones === "yes" && a.itch === "none" && a.shaving === "no" &&
   a.pain === "none" && ["face", "chin", "hairline"].includes(a.area);
+export const mayAskAboutFacialRedness = a => ["face", "chin"].includes(a.area) &&
+  ["papules", "pustules", "mixed"].includes(a.form) && a.comedones === "no" &&
+  ["none", "mild"].includes(a.itch) && a.follicular !== "yes" && a.shaving === "no" &&
+  a.pain !== "severe" && a.surface === "intact";
+
 export const hasRecentCosmetic = a => ["cleanser", "moisturizer", "active", "other"].includes(a.recentProduct);
 
 const comfortableRoutine = a => a.basicRoutine === "both" && a.barrier === "none" &&
@@ -78,6 +83,7 @@ export const symptomQuestions = [
     option("거의 아프지 않고 새 흉터도 없어요", "none"), option("누르면 조금 아파요", "mild"),
     option("가만히 있어도 심하게 아프거나 새 흉터가 생겨요", "severe"), unknown,
   ] },
+  { id: "facialRedness", guidedOnly: true, detail: true, q: "돌기와 함께 볼·코 주변이 자주 붉어지거나, 붉은 기가 오래 남나요?", showIf: mayAskAboutFacialRedness, help: "돌기 하나만 붉은 게 아니라 볼이나 코 주변이 넓게 붉어지는 경우를 말해요.", options: yesNo },
   { id: "recentProduct", q: "이 부위에 최근 바꿔 쓰거나 새로 바른 제품이 있나요?", showIf: a => !!a.concern && a.concern !== "none", help: "이미 처방받아 바르는 제품이 있다면 해당 항목을 먼저 골라주세요.", options: [
     option("바꾼 제품은 없어요", "none"), option("세안제나 클렌징 제품", "cleanser"),
     option("보습제나 선크림", "moisturizer"), option("각질 제거제나 기능성 화장품", "active"),

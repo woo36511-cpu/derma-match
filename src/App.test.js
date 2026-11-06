@@ -291,7 +291,7 @@ const guidedBreakoutBase = {
   concern: "breakouts", change: "stable", surface: "intact", basicRoutine: "both",
   barrier: "none", duration: "under_week", area: "chin", form: "mixed",
   comedones: "yes", itch: "none", follicular: "no", shaving: "no", pain: "none",
-  recentProduct: "none", currentActives: "no",
+  recentProduct: "none", currentActives: "no", facialRedness: "no",
 };
 
 function answerGuidedCheck(overrides, { hydration = false, recheck = false } = {}) {
@@ -310,7 +310,7 @@ test("mixed chin acne clues can surface a pharmacy candidate while keeping a com
   render(<App />);
   answerGuidedCheck({});
   click("내 피부 관리 보기");
-  expect(screen.getByRole("heading", { name: "턱의 작은 붉은 뾰루지에 쓸 제품을 안내해요." })).toBeVisible();
+  expect(screen.getByRole("heading", { name: "턱의 작은 붉은 뾰루지에만 애크논크림을 써볼 수 있어요." })).toBeVisible();
   expect(screen.getByText("잘 맞던 세안제와 보습제는 유지해요.")).toBeVisible();
   expect(screen.getByRole("heading", { name: "애크논크림" })).toBeVisible();
   expect(screen.getByRole("img", { name: "애크논크림 제품 포장" })).toBeVisible();
@@ -379,7 +379,8 @@ test("mild acne-like bumps and folliculitis-like bumps do not get the same pharm
   click("시작 화면으로");
   answerGuidedCheck({ form: "pustules", comedones: "no", follicular: "yes" });
   click("내 피부 관리 보기");
-  expect(screen.getByRole("heading", { name: "털구멍 주변에 고름이 보이는 양상이에요" })).toBeVisible();
+  expect(screen.getByRole("heading", { name: "고름 돌기에는 깨끗한 온찜질부터 해봐요" })).toBeVisible();
+  expect(screen.getByText(/깨끗한 수건을 따뜻한 물에 적셔/)).toBeVisible();
   expect(screen.queryByText(/약국 일반의약품 후보/)).not.toBeInTheDocument();
 });
 
@@ -442,7 +443,8 @@ test("itchy uniform bumps get a distinct clue without an antifungal suggestion",
   render(<App />);
   answerGuidedCheck({ area: "trunk", form: "papules", comedones: "no", itch: "strong", uniform: "yes" });
   click("내 피부 관리 보기");
-  expect(screen.getByRole("heading", { name: "크기가 비슷하고 가려운 돌기가 보여요" })).toBeVisible();
+  expect(screen.getByRole("heading", { name: "땀에 젖은 옷을 갈아입고 돌기 부위를 씻어 말려요" })).toBeVisible();
+  expect(screen.getByText(/헐렁한 옷을 입어요/)).toBeVisible();
   expect(screen.queryByText(/니조랄|약국 일반의약품 후보/)).not.toBeInTheDocument();
 });
 
@@ -451,8 +453,8 @@ test("chin breakout does not add a second active and tells the user what to revi
   render(<App />);
   answerGuidedCheck({ currentActives: "yes" });
   click("내 피부 관리 보기");
-  expect(screen.getByRole("heading", { name: "지금 바르는 제품을 두고, 새 여드름약은 더하지 않아요." })).toBeVisible();
-  expect(screen.getByText(/제품의 이름, 시작한 날, 바른 뒤 따가웠는지/)).toBeVisible();
+  expect(screen.getByRole("heading", { name: "턱이나 얼굴의 돌기 위에 스크럽을 쓰지 않아요." })).toBeVisible();
+  expect(screen.getByText(/같은 부위에 쓰는 여드름약이나 각질 제품은 새로 겹치지 않아요/)).toBeVisible();
   expect(screen.queryByRole("heading", { name: "애크논크림" })).not.toBeInTheDocument();
 });
 
@@ -460,7 +462,7 @@ test("an unclear breakout offers a concrete action without using an acne treatme
   render(<App />);
   answerGuidedCheck({ form: "pustules", comedones: "no" });
   click("내 피부 관리 보기");
-  expect(screen.getByText(/같은 조명에서 사진으로 남겨요/)).toBeVisible();
+  expect(screen.getByText(/돌기 위에 쓰는 스크럽·필링부터 쉬어요/)).toBeVisible();
   expect(screen.queryByText(/약국 일반의약품 후보/)).not.toBeInTheDocument();
 });
 
@@ -488,4 +490,26 @@ test("a recently changed cosmetic prompts a concrete review before another produ
   expect(screen.getByText(/피부가 불편해진 날을 적어요/)).toBeVisible();
   expect(screen.getByText(/잘 맞던 세안제·보습제는 유지하고/)).toBeVisible();
   expect(screen.queryByRole("heading", { name: "보습제 후보 한 가지" })).not.toBeInTheDocument();
+});
+
+
+test("facial flushing and acne-like bumps get a gentle facial action with prescription details separated", () => {
+  render(<App />);
+  answerGuidedCheck({ area: "face", form: "papules", comedones: "no", facialRedness: "yes" });
+  click("내 피부 관리 보기");
+  expect(screen.getByRole("heading", { name: "붉은 볼·코에는 스크럽을 쉬고 손끝으로 가볍게 씻어요" })).toBeVisible();
+  expect(screen.queryByText("약국 일반의약품 후보")).not.toBeInTheDocument();
+  fireEvent.click(screen.getByText("원인이 확인되면 쓰는 치료", { selector: "summary" }));
+  expect(screen.getAllByText(/성인 주사의 염증성 돌기에 허가된 처방약/).some(node => node.closest("details").open)).toBe(true);
+});
+
+test("an uncertain topical product answer can be corrected without repeating the survey", () => {
+  render(<App />);
+  answerGuidedCheck({ currentActives: "unknown" });
+  click("내 피부 관리 보기");
+  click("이 답변만 다시 선택하기");
+  expect(screen.getByRole("heading", { name: /트러블 부위에 여드름약/ })).toBeVisible();
+  click("쓰지 않아요");
+  click("내 피부 관리 보기");
+  expect(screen.getByRole("heading", { name: "턱의 작은 붉은 뾰루지에만 애크논크림을 써볼 수 있어요." })).toBeVisible();
 });
