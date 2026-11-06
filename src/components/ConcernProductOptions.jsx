@@ -23,15 +23,24 @@ export function ConcernProductOptions({ plan }) {
         <div className="space-y-2">{alternatives.map(product => <CosmeticOption key={product.name} product={product} />)}</div>
       </DetailDisclosure>}
     </section>}
-    {pharmacy && <DetailDisclosure title={`약사와 확인할 일반의약품 · ${pharmacy.name}`}>
-      <div className="space-y-2">
-        <p><strong>{pharmacy.name}</strong> · {pharmacy.ingredients}</p>
-        <p>{pharmacy.indication}</p>
-        <p>{pharmacy.caution}</p>
-        <p>사용 여부와 방법은 약사 안내와 제품 설명서를 따르세요. 바른 뒤 자극이 생기면 중단하고 확인하세요.</p>
-        <a className="inline-block underline" href={pharmacy.source} target="_blank" rel="noreferrer">{pharmacy.sourceLabel ?? "식약처 허가사항 보기"}</a>
+    {pharmacy && <section className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 space-y-3" aria-label="일반의약품 후보">
+      <div className="flex items-center gap-3">
+        {pharmacy.image && <img src={pharmacy.image} alt={`${pharmacy.name} 제품 포장`} width="88" height="88" className="h-[88px] w-[88px] shrink-0 rounded-lg bg-white object-contain p-1" />}
+        <div>
+          <p className="text-xs font-semibold text-emerald-800">약국 일반의약품 후보</p>
+          <h3 className="font-semibold">{pharmacy.name}</h3>
+          <p className="mt-1 text-sm">{pharmacy.indication}</p>
+        </div>
       </div>
-    </DetailDisclosure>}
+      <p className="text-sm">사용 전 주의사항을 확인해요. 시작한다면 설명서대로 해당 부위에만 바르고, 평소보다 따갑거나 붉어지거나 붓는다면 사용을 중단해요.</p>
+      <DetailDisclosure title="성분·사용 전 주의사항">
+        <div className="space-y-2">
+          <p>{pharmacy.ingredients}</p>
+          <p>{pharmacy.caution}</p>
+          <a className="inline-block underline" href={pharmacy.source} target="_blank" rel="noreferrer">{pharmacy.sourceLabel ?? "식약처 허가사항 보기"}</a>
+        </div>
+      </DetailDisclosure>
+    </section>}
     {plan.recheck && <p className="text-sm text-slate-700">{plan.recheck}</p>}
   </>;
 }

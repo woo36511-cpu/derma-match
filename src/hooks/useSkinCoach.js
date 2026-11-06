@@ -519,11 +519,6 @@ export function useSkinCoach() {
         delete next.pain;
       }
 
-      // 눈/입술 붓기가 아니라면 호흡 질문의 예전 답변 삭제
-      if (question.id === "swelling" && option.value !== "eyes_lips") {
-        delete next.breathing;
-      }
-
       return next;
     });
   };

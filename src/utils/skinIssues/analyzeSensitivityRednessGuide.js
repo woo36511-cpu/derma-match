@@ -76,7 +76,7 @@ export function analyzeSensitivityRednessGuide(answers = {}) {
   }
 
   // 🚨 응급 평가가 필요한 신호
-  if (breathing === "difficulty") {
+  if (breathing === "difficulty" || swelling === "eyes_lips") {
     return {
       careLevel: "clinic_priority",
 
@@ -85,7 +85,7 @@ export function analyzeSensitivityRednessGuide(answers = {}) {
       title: "화장품 사용을 계속하면서 지켜볼 상황은 아니에요.",
 
       summary:
-        "눈이나 입술의 붓기와 함께 숨쉬기 또는 삼키기가 불편했다면 심한 알레르기 반응 가능성을 포함해 즉시 의료 평가가 필요한 신호예요.",
+        "눈 주변이나 입술이 부었다면 새 화장품은 사용하지 마세요. 숨쉬기·삼키기가 어렵거나 혀·목이 붓는다면 즉시 119에 연락하고, 눈 통증이나 시야 변화가 있으면 바로 진료받으세요.",
 
       reasons,
 
@@ -96,7 +96,6 @@ export function analyzeSensitivityRednessGuide(answers = {}) {
   // 🔴 피부과 진료 우선
   const clinicPriority =
     skinDamage === "blister_oozing" ||
-    (swelling === "eyes_lips" && duration !== "minutes") ||
     (sensation === "burning" && duration === "days");
 
   if (clinicPriority) {

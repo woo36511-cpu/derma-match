@@ -7,6 +7,8 @@ export const hasMildFacialBumps = a => a.concern === "breakouts" &&
   (a.form === "papules" || (a.form === "mixed" && a.follicular === "no")) &&
   a.comedones === "yes" && a.itch === "none" && a.shaving === "no" &&
   a.pain === "none" && ["face", "chin", "hairline"].includes(a.area);
+export const hasRecentCosmetic = a => ["cleanser", "moisturizer", "active", "other"].includes(a.recentProduct);
+
 const comfortableRoutine = a => a.basicRoutine === "both" && a.barrier === "none" &&
   a.surface === "intact" && ["new", "stable", "improving"].includes(a.change) && a.recentProduct === "none";
 export const mayAskAboutActives = a => comfortableRoutine(a) &&
@@ -26,8 +28,6 @@ export const symptomQuestions = [
     option("특별한 고민 없이 기본 관리가 궁금해요", "none"),
     option("다른 고민이 있거나 잘 모르겠어요", "other"),
   ] },
-  { id: "breathing", q: "지금 숨쉬기·삼키기가 어렵거나 혀·목이 붓나요?", showIf: a => a.concern === "sudden", options: yesNo },
-  { id: "eyeWarning", q: "눈 주위가 붓고, 눈이 아프거나 시야가 달라졌나요?", showIf: a => a.concern === "sudden", options: yesNo },
   { id: "eruption", q: "지금 오돌토돌한 돌기, 고름이 보이는 트러블, 또는 발진이 있나요?", showIf: a => a.concern === "other", options: yesNo },
   { id: "change", q: "평소와 비교해 지금 피부는 어떤가요?", showIf: hasActiveConcern, options: [
     option("이번에 처음 생겼어요", "new"),
@@ -88,7 +88,7 @@ export const symptomQuestions = [
     option("코에 작은 회색 점이 비슷한 크기로 고르게 보여요", "even"),
     option("붉고 아프거나 고름이 있는 돌기도 있어요", "inflamed"), unknown,
   ] },
-  { id: "currentActives", guidedOnly: true, q: "그 부위에 각질 제거제, 레티놀, 여드름 약을 이미 쓰고 있나요?", showIf: mayAskAboutActives, options: [
+  { id: "currentActives", guidedOnly: true, q: "트러블 부위에 여드름약·각질 제거제·레티놀을 바르고 있나요?", showIf: mayAskAboutActives, help: "예: 애크논크림·파티마겔·클리어틴 같은 약국 제품, 병원에서 처방받은 여드름 연고, AHA·BHA 토너나 레티놀 세럼. 평소 쓰는 순한 세안제와 보습제만 있다면 ‘쓰지 않아요’를 골라요.", options: [
     option("쓰고 있어요", "yes"), option("쓰지 않아요", "no"), unknown,
   ] },
   { id: "moisturizerFit", guidedOnly: true, q: "세안 뒤 보습제를 발라도 당김이 이어지나요?", showIf: a => a.concern === "dry" && a.barrier === "dry" && ["both", "moisturizer"].includes(a.basicRoutine) && a.surface === "intact" && a.recentProduct === "none", options: [
@@ -106,13 +106,13 @@ export const symptomQuestions = [
   ] },
   { id: "habit", legacyOnly: true, q: "부담을 줄이면서 먼저 해볼 관리 하나를 고른다면?", options: [
     option("세안·보습을 단순하게 정리하기", "barrier"),
-    option("최근 바꾼 화장품을 하나씩 점검하기", "products"),
+    option("피부가 달라지기 직전에 추가한 화장품부터 점검하기", "products"),
     option("지금은 추가하지 않고 상태만 기록하기", "observe"),
   ] },
 ];
 
 export function isImmediateStopAnswer(id, value) {
-  return ((id === "breathing" || id === "eyeWarning") && value === "yes") ||
+  return (id === "concern" && value === "sudden") ||
     (id === "change" && value === "rapid");
 }
 

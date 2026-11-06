@@ -1,5 +1,6 @@
 import React from "react";
 import { SymptomAssessmentCard } from "./SymptomAssessmentCard";
+import { RecentProductCheck } from "./RecentProductCheck";
 import { DetailDisclosure } from "./DetailDisclosure";
 
 const basicCare = {
@@ -21,13 +22,13 @@ export function SymptomCareSummary({ assessment }) {
 
 const habits = {
   barrier: "기존에 편안했던 세안·보습을 중심으로 단순하게 유지하고, 새 제품은 한꺼번에 여러 개 추가하지 않아요.",
-  products: "최근 바꾼 화장품의 사용 시작일과 피부 반응을 적어보고, 한 번에 하나씩 점검하세요.",
+  products: "피부가 달라지기 직전에 새로 바른 화장품부터 확인해요.",
   observe: "돈을 더 쓰기 전에 현재 사용 제품과 증상 변화를 기록해요. 한 번에 여러 가지를 바꾸지 않으면 반응을 비교하기 쉬워요.",
 };
 
 export function SelfCarePlan({ assessment }) {
   if (!assessment || ["emergency", "urgent"].includes(assessment.urgency)) return null;
-  const { concern, habit, barrier, recentProduct } = assessment.answers ?? {};
+  const { concern, habit, barrier } = assessment.answers ?? {};
   const tip = barrier === "stinging" ? basicCare.sensitive : basicCare[concern] ?? basicCare.none;
   return <section className="rounded-3xl border border-emerald-100 bg-white p-5 sm:p-7 text-left space-y-4" aria-label="부담을 줄이는 개인 관리">
     <h2 className="text-xl font-bold">오늘 해볼 피부 관리</h2>
@@ -36,8 +37,7 @@ export function SelfCarePlan({ assessment }) {
       <p>{tip}</p>
     </div>
     <p className="text-sm leading-relaxed">{habits[habit] || habits.observe}</p>
-    {["cleanser", "moisturizer", "active", "other"].includes(recentProduct) &&
-      <p className="text-sm text-slate-600">새 제품을 쓰기 시작한 날과 피부가 달라진 날을 함께 기록해보세요. 시점이 겹쳐도 그 제품이 원인이라고 단정할 수는 없어요.</p>}
+    <RecentProductCheck answers={assessment.answers} />
     <DetailDisclosure title="생활습관 참고">
       <p>수면이나 식사가 달라진 날의 피부 반응이 궁금하면 따로 메모해도 좋아요. 간편한 채소는 식사를 보완하는 선택지예요. 유산균이나 특정 식품을 피부관리 필수품으로 권하지 않아요.</p>
     </DetailDisclosure>

@@ -13,6 +13,7 @@ const patterns = {
     meaning: "털구멍 중심의 고름 돌기는 모낭염을 확인할 단서예요. 이 모습만으로 세균 감염이나 원인균을 알 수는 없어요.",
     label: "세균성 모낭염과 비슷한 양상",
     example: "털구멍을 중심으로 고름 돌기가 보일 수 있어요. 다른 원인도 비슷하게 보일 수 있어요.",
+    treatment: "세균성으로 확인되면 범위와 상태에 따라 무피로신 같은 바르는 항생제를 쓰기도 해요.",
     source: "https://dermnetnz.org/topics/bacterial-folliculitis",
   },
   malassezia: {
@@ -20,6 +21,7 @@ const patterns = {
     meaning: "비슷한 크기의 가려운 돌기가 있고 같은 부위에 막힌 피지가 보이지 않는다는 답은 말라세지아 모낭염을 살펴볼 단서예요.",
     label: "말라세지아 모낭염과 비슷한 양상",
     example: "비슷한 크기의 가려운 돌기가 가슴·등이나 이마 쪽에 생길 수 있어요.",
+    treatment: "말라세지아가 원인으로 확인되면 케토코나졸 같은 항진균제를 쓰기도 해요.",
     source: "https://dermnetnz.org/topics/malassezia-folliculitis",
   },
   shaving: {
@@ -62,10 +64,10 @@ export function BreakoutPatternGuide({ assessment }) {
       <dl className="space-y-3">
         {[...Object.values(patterns), demodex].map(item => <div key={item.label}>
           <dt className="font-semibold">{item.label}</dt>
-          <dd>{item.example} <a className="underline" href={item.source} target="_blank" rel="noreferrer">근거 보기</a></dd>
+          <dd>{item.example} {item.treatment && <span>{item.treatment} </span>}<a className="underline" href={item.source} target="_blank" rel="noreferrer">근거 보기</a></dd>
         </div>)}
       </dl>
-      <p className="mt-3">겉모습만으로 원인을 확정하기 어려워요. 반응을 확인하려고 항생제와 항진균제를 번갈아 사용하지 않아요.</p>
+      <p className="mt-3">겉모습이나 약을 써본 반응만으로 원인을 확정할 수 없어요. 좋아지지 않으면 바른 제품과 달라진 증상을 기록하고 다시 확인해요. 항생제와 항진균제를 순서대로 시험하지 않아요.</p>
     </DetailDisclosure>
   </section>;
 }

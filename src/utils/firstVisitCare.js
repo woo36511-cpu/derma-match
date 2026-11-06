@@ -1,5 +1,5 @@
 import { blackheadCosmetics, pharmacyOptions, sunscreenOption } from "../data/targetedCareProducts";
-import { hasMildFacialBumps, mayAskAboutActives } from "../data/symptomQuestions";
+import { hasMildFacialBumps, hasRecentCosmetic, mayAskAboutActives } from "../data/symptomQuestions";
 import { products } from "../data/products";
 import { hasExfoliatingActive, isProductAvailable, isSpecializedTreatmentProduct } from "./productCatalog";
 import { sortProductsForRecommendation } from "./recommendationScoring";
@@ -20,7 +20,7 @@ const shouldPauseSensitiveCare = answers => answers.concern === "sensitive" &&
   (["irritated", "unknown"].includes(answers.sensitiveCare) || answers.recentProduct !== "none");
 
 export function needsHydrationQuestion(assessment) {
-  return assessment?.guidedCare && assessment.complete && !assessment.blockRoutine && !shouldPauseSensitiveCare(assessment.answers) &&
+  return assessment?.guidedCare && assessment.complete && !assessment.blockRoutine && !shouldPauseSensitiveCare(assessment.answers) && !hasRecentCosmetic(assessment.answers) &&
     (assessment.answers.barrier === "dry" || assessment.answers.basicRoutine === "neither");
 }
 
@@ -72,7 +72,7 @@ function catalogOption(id, type, guidance) {
   return { type, name: product.name, guidance, source: product.evidence?.sources?.[0]?.url || product.link };
 }
 
-function targetedPlan(answers) {
+function targetedPlan(answers, priorTrial) {
   const { concern, basicRoutine, barrier, surface, recentProduct } = answers;
   if (barrier !== "none" || surface !== "intact" || recentProduct !== "none") {
     if (concern === "blackheads" || concern === "breakouts") {
@@ -90,27 +90,32 @@ function targetedPlan(answers) {
         };
       }
       return {
-        action: "같은 부위에 쓰는 기능성 제품부터 확인해요.",
+        action: answers.currentActives === "yes" ? "지금 바르는 제품을 두고, 새 여드름약은 더하지 않아요." : "최근 쓰는 제품의 포장부터 확인해요.",
         productNote: answers.currentActives === "yes"
-          ? "쓰고 있는 각질제거제·레티놀·여드름약의 제품명과 시작일을 적어두세요. 새 여드름약이나 각질제거제를 겹쳐 쓰지 않아요."
-          : "지금 쓰는 제품을 약사에게 보여주거나 사용 여부를 확인한 뒤 설문을 다시 진행해요. 그 전에는 새 기능성 제품을 추가하지 않아요.",
+          ? "오늘은 새 제품을 더하지 않아요. 지금 바르는 제품의 이름, 시작한 날, 바른 뒤 따가웠는지를 확인해요. 새로 산 화장품이 바를 때마다 따갑다면 그 제품만 쉬어요. 처방약은 기존 안내대로 사용해요."
+          : "지금 쓰는 제품의 앞면과 성분표에서 여드름약, AHA·BHA, 레티놀 표시를 찾아봐요. 확인 전에는 새 약을 더하지 말고, 확인한 뒤 설문 답을 바꿔보세요.",
       };
     }
+    const pharmacy = concern === "blackheads" ? pharmacyOptions.blackheads : pharmacyOptions.breakouts;
+    if (priorTrial?.reaction === "worse" || priorTrial?.product === pharmacy.name) return {
+      action: "이번에는 새 여드름약을 더하지 않아요.",
+      productNote: "잘 맞던 세안·보습을 유지하고, 전에 쓴 제품과 사용 기간, 새 돌기나 가려움이 어떻게 달라졌는지 기록해요. 같은 문제가 계속되거나 심해지면 진료로 확인해요.",
+    };
     if (concern === "blackheads") {
       return {
         action: "블랙헤드 관리는 제품 한 가지부터 골라요.",
         cosmetics: blackheadCosmetics,
-        pharmacy: pharmacyOptions.blackheads,
+        pharmacy,
         productNote: "세안제·토너·리퀴드·약국 제품은 서로 대안이에요. 동시에 시작하거나 각질 제거제와 겹치지 말고, 따갑거나 붉어지면 새 제품을 중단해요.",
         recheck: "쓴 제품 하나와 시작일을 기록해요. 자극이 생기거나 악화하면 다른 제품을 추가하기 전에 다시 확인해요.",
       };
     }
     return {
-      action: answers.area === "chin" ? "턱 트러블에 쓸 여드름약 후보를 약국에서 확인해요." : "트러블에 쓸 여드름약 후보를 약국에서 확인해요.",
-      pharmacy: pharmacyOptions.breakouts,
-      reason: "같은 부위에 막힌 피지가 있고, 가려움·통증·면도 자극이나 털구멍 중심 고름을 보고하지 않았어요. 여드름약을 확인할 단서예요.",
-      productNote: "세안제와 보습제는 유지해요. 약사에게 턱이나 얼굴의 현재 상태와 쓰는 제품을 보여주고, 적합하다고 확인된 경우에만 한 가지를 시작해요.",
-      recheck: "시작일과 새 돌기 수를 기록해요. 자극이 심해지거나 트러블이 빠르게 번지면 다른 약을 추가하지 말고 다시 확인해요.",
+      action: answers.area === "chin" ? "턱의 작은 붉은 뾰루지에 쓸 제품을 안내해요." : "작은 붉은 뾰루지에 쓸 제품을 안내해요.",
+      pharmacy,
+      reason: "같은 부위에 막힌 피지가 있고, 가려움·통증·면도 자극이나 털구멍 중심 고름을 보고하지 않았어요. 작은 붉은 뾰루지에 쓸 수 있는 후보를 골랐어요.",
+      productNote: "세안제와 보습제는 유지해요. 새 여드름약은 한 가지로 시작하고, 같은 부위에 각질제거제나 다른 여드름약을 더하지 않아요.",
+      recheck: "시작일과 새 돌기 수를 기록해요. 더 따갑거나 붉어지거나 좋아지지 않으면 중단하고 피부 상태를 다시 체크해요. 빠르게 번지거나 통증이 심해지면 진료받으세요.",
     };
   }
   if (concern === "oily" && basicRoutine === "both" && answers.usesToner === "no") {
@@ -135,6 +140,11 @@ export function buildFirstVisitPlan(assessment) {
   const care = concern === "breakouts" && area === "chin"
     ? { ...concernCare.breakouts, observation: "턱에 새로 올라오는 돌기 수와 따가움이 달라지는지" }
     : concernCare[concern] ?? concernCare.other;
+  if (hasRecentCosmetic(assessment.answers)) return {
+    ...care,
+    action: "최근 바꾼 화장품부터 점검해요.",
+    productNote: "새 제품은 더하지 말고, 아래 순서로 바르기 시작한 날과 피부가 달라진 날을 비교해요.",
+  };
   if (shouldPauseSensitiveCare(assessment.answers)) return {
     ...care,
     reason: "새 제품을 고르기 전에 따가움과 붉어짐이 언제 생기는지 확인해야 해요.",
@@ -154,7 +164,7 @@ export function buildFirstVisitPlan(assessment) {
       ...care,
       keep: maintenance[basicRoutine],
       reason: "답변에서 기본 관리를 바꿔야 할 뚜렷한 불편이 확인되지 않았어요.",
-      ...targetedPlan(assessment.answers),
+      ...targetedPlan(assessment.answers, assessment.priorTrial),
     };
   }
 

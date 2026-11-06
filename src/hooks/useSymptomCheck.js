@@ -17,6 +17,7 @@ export function useSymptomCheck({ ownerId, storedHistory, persistRecord, setStep
   const [index, setIndex] = useState(0);
   const [assessment, setAssessment] = useState(null);
   const [nextStep, setNextStep] = useState(null);
+  const [priorTrial, setPriorTrial] = useState(null);
   const [record, setRecord] = useState(null);
   const [saved, setSaved] = useState(false);
   const [historical, setHistorical] = useState(false);
@@ -26,11 +27,12 @@ export function useSymptomCheck({ ownerId, storedHistory, persistRecord, setStep
 
   useEffect(() => {
     setAnswers({}); setIndex(0); setAssessment(null); setRecord(null);
-    setNextStep(null); setSaved(false); setHistorical(false);
+    setNextStep(null); setPriorTrial(null); setSaved(false); setHistorical(false);
   }, [ownerId]);
 
-  const begin = (target = "survey") => {
-    setAnswers({}); setIndex(0); setAssessment(null); setRecord(null);
+  const begin = (target = "survey", trial = null) => {
+    setAnswers(trial ? { concern: trial.concern } : {}); setIndex(trial ? 1 : 0); setAssessment(null); setRecord(null);
+    setPriorTrial(trial);
     setNextStep(target); setSaved(false); setHistorical(false);
     setStep("symptomCheck");
   };
@@ -45,6 +47,7 @@ export function useSymptomCheck({ ownerId, storedHistory, persistRecord, setStep
       result.answers = { ...result.answers, afternoonSkin: values.afternoonSkin };
     }
     if (!result.complete) return;
+    if (priorTrial) result.priorTrial = priorTrial;
     const data = {
       id: createJourneyRecordId("symptom"), type: "feedback", source: "symptom_check",
       assessmentOnly: true, journeySchemaVersion: 3,

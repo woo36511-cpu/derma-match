@@ -24,9 +24,9 @@ test("the survey stays on skin and topical products, including the breakout path
   expect(assess({ concern: "none", breathing: "yes", change: "rapid" })).toMatchObject({ urgency: "self_care", blockRoutine: false });
 });
 
-test("an urgent answer about the skin or eye still stops product recommendations immediately", () => {
-  expect(assessSymptoms({ concern: "sudden", breathing: "yes" })).toMatchObject({ complete: true, urgency: "emergency", blockRoutine: true });
-  for (const answers of [{ concern: "breakouts", change: "rapid" }, { concern: "sudden", breathing: "no", eyeWarning: "yes" }]) {
+test("sudden swelling bypasses follow-up questions and urgent answers stop recommendations", () => {
+  expect(getVisibleSymptomQuestions({ concern: "sudden" }).map(q => q.id)).toEqual(["concern"]);
+  for (const answers of [{ concern: "breakouts", change: "rapid" }, { concern: "sudden" }]) {
     const result = assessSymptoms(answers);
     expect(result).toMatchObject({ complete: true, urgency: "urgent", blockRoutine: true });
     expect(applyRoutineSafety({ products: { serum: { id: 25 } } }, getRoutineSafety(result)).products).toEqual({});

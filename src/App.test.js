@@ -240,13 +240,11 @@ test("urgent symptoms stop immediately, persist independently and cannot expose 
   render(<App />);
   openExistingEntry(/피부타입 알고 있어요/);
   click("갑자기 붓거나 두드러기가 났어요");
-  click("다음");
-  click("네");
   expect(screen.getByRole("alert")).toHaveTextContent("119");
   expect(screen.queryByRole("button", { name: "피부 관리 설문·기록 이어가기" })).not.toBeInTheDocument();
   expect(screen.queryByRole("heading", { name: "추천 루틴" })).not.toBeInTheDocument();
   const records = JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY));
-  expect(records[0]).toMatchObject({ assessmentOnly: true, source: "symptom_check", symptomAssessment: { urgency: "emergency" } });
+  expect(records[0]).toMatchObject({ assessmentOnly: true, source: "symptom_check", symptomAssessment: { urgency: "urgent" } });
   expect(records[0]).not.toHaveProperty("skinMeasurement");
   fireEvent(window, new PopStateEvent("popstate", { state: { step: "quickRecommend" } }));
   expect(screen.getByRole("heading", { name: "지금은 새 제품 추천보다 상태 확인이 먼저예요" })).toBeInTheDocument();
@@ -260,7 +258,7 @@ test("overlapping breakout patterns save skin and product observations without a
   expect(screen.getByText("답변에서 확인한 피부 특징")).toBeInTheDocument();
   expect(screen.queryByRole("heading", { name: /모낭염 가능성/ })).not.toBeInTheDocument();
   expect(screen.queryByRole("button", { name: "피부 관리 설문·기록 이어가기" })).not.toBeInTheDocument();
-  expect(screen.getByText(/새 제품을 쓰기 시작한 날과 피부가 달라진 날/)).toBeInTheDocument();
+  expect(screen.getByText(/처음 바른 날, 피부가 불편해진 날/)).toBeInTheDocument();
   const records = JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY));
   expect(records).toHaveLength(1);
   expect(records[0].symptomAssessment.answers).toMatchObject({ recentProduct: "active", habit: "products" });
@@ -296,11 +294,12 @@ const guidedBreakoutBase = {
   recentProduct: "none", currentActives: "no",
 };
 
-function answerGuidedCheck(overrides, { hydration = false } = {}) {
-  click("지금 피부 고민 확인하기");
+function answerGuidedCheck(overrides, { hydration = false, recheck = false } = {}) {
+  if (!recheck) click("지금 피부 고민 확인하기");
   const answers = { ...guidedBreakoutBase, ...overrides };
   const questions = getVisibleSymptomQuestions(answers, { guided: true });
   for (const [index, question] of questions.entries()) {
+    if (recheck && index === 0) continue;
     expect(screen.getByRole("heading", { name: question.q })).toBeVisible();
     click(question.options.find(option => option.value === answers[question.id]).label);
     if (index < questions.length - 1 || hydration) click("다음");
@@ -311,13 +310,13 @@ test("mixed chin acne clues can surface a pharmacy candidate while keeping a com
   render(<App />);
   answerGuidedCheck({});
   click("내 피부 관리 보기");
-  expect(screen.getByRole("heading", { name: "턱 트러블에 쓸 여드름약 후보를 약국에서 확인해요." })).toBeVisible();
+  expect(screen.getByRole("heading", { name: "턱의 작은 붉은 뾰루지에 쓸 제품을 안내해요." })).toBeVisible();
   expect(screen.getByText("잘 맞던 세안제와 보습제는 유지해요.")).toBeVisible();
-  const pharmacy = screen.getByText("약사와 확인할 일반의약품 · 파티마겔 2.5%", { selector: "summary" });
-  expect(pharmacy).toBeVisible();
-  fireEvent.click(pharmacy);
-  expect(screen.getByText(/염증 환자와 성분 과민증/)).toBeVisible();
-  expect(screen.getByRole("link", { name: "제품 설명서 보기" })).toBeVisible();
+  expect(screen.getByRole("heading", { name: "애크논크림" })).toBeVisible();
+  expect(screen.getByRole("img", { name: "애크논크림 제품 포장" })).toBeVisible();
+  fireEvent.click(screen.getByText("성분·사용 전 주의사항", { selector: "summary" }));
+  expect(screen.getByText(/임신 3기에는 사용하지 마세요/)).toBeVisible();
+  expect(screen.getByRole("link", { name: "식약처 허가사항 보기" })).toBeVisible();
   expect(screen.queryByRole("heading", { name: "보습제 후보 한 가지" })).not.toBeInTheDocument();
   expect(screen.queryByRole("button", { name: "피부 관리 설문·기록 이어가기" })).not.toBeInTheDocument();
 });
@@ -357,7 +356,7 @@ test("blackhead guidance offers one cosmetic at a time and a separate pharmacy d
   expect(screen.getByText("코스알엑스 BHA 블랙헤드 파워 리퀴드")).not.toBeVisible();
   fireEvent.click(screen.getByText("토너·리퀴드 대안 보기", { selector: "summary" }));
   expect(screen.getByText("코스알엑스 BHA 블랙헤드 파워 리퀴드")).toBeVisible();
-  expect(screen.getByText("약사와 확인할 일반의약품 · 클리어틴외용액 2%")).toBeVisible();
+  expect(screen.getByRole("heading", { name: "클리어틴외용액 2%" })).toBeVisible();
 });
 
 test.each([
@@ -376,12 +375,12 @@ test("mild acne-like bumps and folliculitis-like bumps do not get the same pharm
   render(<App />);
   answerGuidedCheck({ form: "papules", currentActives: "no" });
   click("내 피부 관리 보기");
-  expect(screen.getByText("약사와 확인할 일반의약품 · 파티마겔 2.5%")).toBeVisible();
+  expect(screen.getByRole("heading", { name: "애크논크림" })).toBeVisible();
   click("시작 화면으로");
   answerGuidedCheck({ form: "pustules", comedones: "no", follicular: "yes" });
   click("내 피부 관리 보기");
   expect(screen.getByRole("heading", { name: "털구멍 주변에 고름이 보이는 양상이에요" })).toBeVisible();
-  expect(screen.queryByText(/약사와 확인할 일반의약품/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/약국 일반의약품 후보/)).not.toBeInTheDocument();
 });
 
 test.each([
@@ -396,7 +395,7 @@ test.each([
   expect(screen.getAllByRole("img")).toHaveLength(4);
   expect(screen.getByRole("img", { name: cream })).toBeVisible();
   expect(screen.getAllByText("선택", { exact: true })).toHaveLength(2);
-  expect(screen.queryByText(/약사와 확인할 일반의약품/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/약국 일반의약품 후보/)).not.toBeInTheDocument();
 });
 
 test("wrinkle care keeps a well-tolerated sunscreen instead of adding another one", () => {
@@ -432,7 +431,7 @@ test("overlapping breakout signs stay separate and do not unlock an OTC option",
   answerGuidedCheck({ follicular: "yes" });
   click("내 피부 관리 보기");
   expect(screen.getByRole("heading", { name: "서로 다른 트러블 단서가 함께 보여요" })).toBeVisible();
-  expect(screen.queryByText(/약사와 확인할 일반의약품/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/약국 일반의약품 후보/)).not.toBeInTheDocument();
   const compare = screen.getByText("비슷한 트러블 양상 비교하기", { selector: "summary" });
   expect(screen.getByText("말라세지아 모낭염과 비슷한 양상")).not.toBeVisible();
   fireEvent.click(compare);
@@ -444,7 +443,7 @@ test("itchy uniform bumps get a distinct clue without an antifungal suggestion",
   answerGuidedCheck({ area: "trunk", form: "papules", comedones: "no", itch: "strong", uniform: "yes" });
   click("내 피부 관리 보기");
   expect(screen.getByRole("heading", { name: "크기가 비슷하고 가려운 돌기가 보여요" })).toBeVisible();
-  expect(screen.queryByText(/니조랄|약사와 확인할 일반의약품/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/니조랄|약국 일반의약품 후보/)).not.toBeInTheDocument();
 });
 
 
@@ -452,9 +451,9 @@ test("chin breakout does not add a second active and tells the user what to revi
   render(<App />);
   answerGuidedCheck({ currentActives: "yes" });
   click("내 피부 관리 보기");
-  expect(screen.getByRole("heading", { name: "같은 부위에 쓰는 기능성 제품부터 확인해요." })).toBeVisible();
-  expect(screen.getByText(/제품명과 시작일을 적어두세요/)).toBeVisible();
-  expect(screen.queryByText(/파티마겔/)).not.toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: "지금 바르는 제품을 두고, 새 여드름약은 더하지 않아요." })).toBeVisible();
+  expect(screen.getByText(/제품의 이름, 시작한 날, 바른 뒤 따가웠는지/)).toBeVisible();
+  expect(screen.queryByRole("heading", { name: "애크논크림" })).not.toBeInTheDocument();
 });
 
 test("an unclear breakout offers a concrete action without using an acne treatment as a guess", () => {
@@ -462,5 +461,31 @@ test("an unclear breakout offers a concrete action without using an acne treatme
   answerGuidedCheck({ form: "pustules", comedones: "no" });
   click("내 피부 관리 보기");
   expect(screen.getByText(/같은 조명에서 사진으로 남겨요/)).toBeVisible();
-  expect(screen.queryByText(/약사와 확인할 일반의약품/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/약국 일반의약품 후보/)).not.toBeInTheDocument();
+});
+
+
+test("a saved OTC result can start a focused recheck without suggesting the same medicine again", () => {
+  const { unmount } = render(<App />);
+  answerGuidedCheck({});
+  click("내 피부 관리 보기");
+  unmount();
+  render(<App />);
+  click("지난 증상 확인 기록");
+  click("그대로예요");
+  expect(screen.getByText(/좋아지지 않았다면 사용을 중단해요/)).toBeVisible();
+  click("달라진 피부 다시 확인하기");
+  answerGuidedCheck({}, { recheck: true });
+  click("내 피부 관리 보기");
+  expect(screen.getByRole("heading", { name: "이번에는 새 여드름약을 더하지 않아요." })).toBeVisible();
+  expect(screen.queryByRole("heading", { name: "애크논크림" })).not.toBeInTheDocument();
+});
+
+test("a recently changed cosmetic prompts a concrete review before another product", () => {
+  render(<App />);
+  answerGuidedCheck({ concern: "dry", barrier: "dry", recentProduct: "moisturizer" });
+  click("내 피부 관리 보기");
+  expect(screen.getByText(/피부가 불편해진 날을 적어요/)).toBeVisible();
+  expect(screen.getByText(/잘 맞던 세안제·보습제는 유지하고/)).toBeVisible();
+  expect(screen.queryByRole("heading", { name: "보습제 후보 한 가지" })).not.toBeInTheDocument();
 });
