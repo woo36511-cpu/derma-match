@@ -342,3 +342,81 @@ test("guided check prioritizes repeated stinging and does not offer new products
   expect(screen.queryByRole("heading", { name: "보습제 후보 한 가지" })).not.toBeInTheDocument();
   expect(screen.queryByRole("button", { name: "피부 관리 설문·기록 이어가기" })).not.toBeInTheDocument();
 });
+
+test("blackhead guidance offers one cosmetic at a time and a separate pharmacy discussion option", () => {
+  render(<App />);
+  answerGuidedCheck({ concern: "blackheads", blackheadPattern: "dark", currentActives: "no" });
+  click("내 피부 관리 보기");
+  expect(screen.getByText("코스알엑스 살리실산 데일리 젠틀 클렌저")).toBeVisible();
+  expect(screen.getByText("잘 맞던 세안제와 보습제는 유지해요.")).toBeVisible();
+  expect(screen.getByText("코스알엑스 BHA 블랙헤드 파워 리퀴드")).not.toBeVisible();
+  fireEvent.click(screen.getByText("토너·리퀴드 대안 보기", { selector: "summary" }));
+  expect(screen.getByText("코스알엑스 BHA 블랙헤드 파워 리퀴드")).toBeVisible();
+  expect(screen.getByText("약사와 확인할 일반의약품 · 클리어틴외용액 2%")).toBeVisible();
+});
+
+test.each([
+  { blackheadPattern: "dark", currentActives: "yes" },
+  { blackheadPattern: "even" },
+  { blackheadPattern: "dark", barrier: "stinging" },
+])("blackhead check avoids adding exfoliants or OTC products for %j", overrides => {
+  render(<App />);
+  answerGuidedCheck({ concern: "blackheads", ...overrides });
+  click("내 피부 관리 보기");
+  expect(screen.queryByText("코스알엑스 살리실산 데일리 젠틀 클렌저")).not.toBeInTheDocument();
+  expect(screen.queryByText(/클리어틴외용액/)).not.toBeInTheDocument();
+});
+
+test("mild acne-like bumps and folliculitis-like bumps do not get the same pharmacy advice", () => {
+  render(<App />);
+  answerGuidedCheck({ form: "papules", currentActives: "no" });
+  click("내 피부 관리 보기");
+  expect(screen.getByText("약사와 확인할 일반의약품 · 애크논크림")).toBeVisible();
+  click("시작 화면으로");
+  answerGuidedCheck({ form: "pustules", comedones: "no", follicular: "yes" });
+  click("내 피부 관리 보기");
+  expect(screen.getByRole("heading", { name: "모낭염처럼 보이는 돌기가 있다면" })).toBeVisible();
+  expect(screen.queryByText(/약사와 확인할 일반의약품/)).not.toBeInTheDocument();
+});
+
+test.each([
+  ["건조하고 당기는 느낌이 이어져요", /피지오겔|일리윤/],
+  ["번들거림이 더 신경 쓰여요", /토리든 다이브인 저분자 히알루론산 수딩 크림/],
+])("beginner check offers four basic slots matched to %s", (afternoon, cream) => {
+  render(<App />);
+  answerGuidedCheck({ concern: "none", basicRoutine: "neither" }, { hydration: true });
+  click(afternoon);
+  click("내 피부 관리 보기");
+  expect(screen.getByRole("heading", { name: "피부에 맞는 기초 제품 네 가지" })).toBeVisible();
+  expect(screen.getAllByRole("img")).toHaveLength(4);
+  expect(screen.getByRole("img", { name: cream })).toBeVisible();
+  expect(screen.getAllByText("선택", { exact: true })).toHaveLength(2);
+  expect(screen.queryByText(/약사와 확인할 일반의약품/)).not.toBeInTheDocument();
+});
+
+test("wrinkle care keeps a well-tolerated sunscreen instead of adding another one", () => {
+  render(<App />);
+  answerGuidedCheck({ concern: "wrinkles", usesSunscreen: "yes" });
+  click("내 피부 관리 보기");
+  expect(screen.getByText("잘 맞던 선크림과 기초 관리는 유지해요.")).toBeVisible();
+  expect(screen.queryByText("라운드랩 자작나무 수분 선크림")).not.toBeInTheDocument();
+});
+
+test.each([
+  [{ concern: "oily", usesToner: "no" }, "이즈앤트리 그린티 프레쉬 토너"],
+  [{ concern: "sensitive", sensitiveCare: "comfortable_no_serum" }, "스킨1004 마다가스카르 센텔라 앰플"],
+  [{ concern: "wrinkles", usesSunscreen: "no" }, "라운드랩 자작나무 수분 선크림"],
+])("guided care suggests a missing optional product for %j", (answers, name) => {
+  render(<App />);
+  answerGuidedCheck(answers);
+  click("내 피부 관리 보기");
+  expect(screen.getByText(name)).toBeVisible();
+});
+
+test("an irritated beginner does not get a four-product starter routine", () => {
+  render(<App />);
+  answerGuidedCheck({ concern: "sensitive", basicRoutine: "neither", sensitiveCare: "irritated" });
+  click("내 피부 관리 보기");
+  expect(screen.getByText("피부 반응이 확인될 때까지 새 제품을 추가하지 않아요.")).toBeVisible();
+  expect(screen.queryByRole("heading", { name: "피부에 맞는 기초 제품 네 가지" })).not.toBeInTheDocument();
+});
