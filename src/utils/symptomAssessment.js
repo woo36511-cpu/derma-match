@@ -8,11 +8,12 @@ export const symptomSources = [
   { label: "NICE · 여드름 치료 평가 시점", url: "https://www.nice.org.uk/guidance/ng198/chapter/Recommendations" },
 ];
 
-export function assessSymptoms(input = {}) {
-  const a = cleanSymptomAnswers(input);
-  const questions = getVisibleSymptomQuestions(a);
+export function assessSymptoms(input = {}, { guided = false } = {}) {
+  const a = cleanSymptomAnswers(input, { guided });
+  const questions = getVisibleSymptomQuestions(a, { guided });
   const complete = questions.every(q => q.options.some(o => o.value === a[q.id]));
   const result = {
+    ...(guided && { guidedCare: true }),
     ruleVersion: SYMPTOM_RULE_VERSION, answers: a, complete, candidates: [], reasons: [],
     urgency: "review", blockRoutine: true, allowMedicationRecommendation: false,
     title: "답변을 조금 더 확인해야 해요", nextAction: "빠진 답변을 확인하고 결과를 다시 봐주세요.",
@@ -43,7 +44,9 @@ export function assessSymptoms(input = {}) {
   const persistent = ["two_six_weeks", "long"].includes(a.duration);
   if (notClearAcne && persistent) return { ...result, urgency: "clinic", title: "반복·지속되는 증상의 원인을 확인하세요", nextAction: "지속되는 모낭염 의심 증상이나 충분히 관리해도 호전이 없는 경우에는 약을 차례로 바꾸기보다 진료로 원인을 확인하세요. 진료가 곧 배양검사를 뜻하는 것은 아니에요." };
   if (a.concern === "sudden") return { ...result, urgency: "pharmacy", title: "지금은 새 제품을 쉬어가세요", nextAction: "갑자기 붓거나 두드러기가 생긴 상태에서는 새 제품을 시험하지 마세요. 붓기가 심해지거나 숨쉬기·삼키기가 어려워지면 즉시 도움을 받으세요." };
-  if (a.change === "worse" || a.change === "irritation" || a.barrier === "stinging") return { ...result, urgency: "pharmacy", title: "새 제품보다 악화·자극 원인 확인이 먼저예요", nextAction: "최근 추가한 화장품이 따갑게 느껴졌다면 그 제품을 잠시 쉬고 피부가 어떻게 달라지는지 기록해보세요. 악화가 이어지면 상담받으세요." };
+  if (a.change === "worse" || a.change === "irritation" || a.barrier === "stinging") return { ...result, urgency: "pharmacy", title: "새 제품보다 악화·자극 원인 확인이 먼저예요", nextAction: guided && a.barrier === "stinging"
+    ? "새 기능성 제품은 추가하지 말고, 편안했던 세안·보습만 유지해요. 최근 추가한 화장품이 따가웠다면 잠시 쉬고, 다음에는 따가움과 붉어짐이 줄었는지 확인해요. 악화가 이어지면 상담받으세요."
+    : "최근 추가한 화장품이 따갑게 느껴졌다면 그 제품을 잠시 쉬고 피부가 어떻게 달라지는지 기록해보세요. 악화가 이어지면 상담받으세요." };
   const uncertainFeatures = breakout && ["form", "comedones", "uniform", "itch", "follicular", "shaving", "pain", "duration"].some(k => a[k] === "unknown");
   if (notClearAcne || uncertainFeatures || (breakout && result.candidates.length === 0)) return { ...result, urgency: "pharmacy", title: "트러블이 가라앉는지 먼저 살펴봐요", nextAction: "각질 제거제나 새 제품을 추가하기 전에 가려움·새 돌기·면도와의 관계를 기록해보세요. 계속 번지거나 호전되지 않으면 상담받으세요." };
 

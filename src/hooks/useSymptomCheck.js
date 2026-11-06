@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 import { cleanSymptomAnswers, getVisibleSymptomQuestions, isImmediateStopAnswer } from "../data/symptomQuestions";
+import { hydrationQuestion, needsHydrationQuestion } from "../utils/firstVisitCare";
 import { assessSymptoms } from "../utils/symptomAssessment";
 import { createJourneyRecordId } from "../utils/journeyStorage";
 
 export const isSymptomCheckRecord = record => record?.source === "symptom_check" && record?.assessmentOnly === true;
+
+function questionsFor(answers, guided) {
+  const questions = getVisibleSymptomQuestions(answers, { guided });
+  if (guided && needsHydrationQuestion(assessSymptoms(answers, { guided }))) return [...questions, hydrationQuestion];
+  return questions;
+}
 
 export function useSymptomCheck({ ownerId, storedHistory, persistRecord, setStep }) {
   const [answers, setAnswers] = useState({});
@@ -14,7 +21,8 @@ export function useSymptomCheck({ ownerId, storedHistory, persistRecord, setStep
   const [saved, setSaved] = useState(false);
   const [historical, setHistorical] = useState(false);
   const latestRecord = [...storedHistory].reverse().find(isSymptomCheckRecord) || null;
-  const questions = getVisibleSymptomQuestions(answers);
+  const guided = nextStep === "guidedCare";
+  const questions = questionsFor(answers, guided);
 
   useEffect(() => {
     setAnswers({}); setIndex(0); setAssessment(null); setRecord(null);
@@ -31,7 +39,11 @@ export function useSymptomCheck({ ownerId, storedHistory, persistRecord, setStep
     catch { setSaved(false); }
   };
   const finish = values => {
-    const result = assessSymptoms(values);
+    const result = assessSymptoms(values, { guided });
+    if (needsHydrationQuestion(result)) {
+      if (!hydrationQuestion.options.some(option => option.value === values.afternoonSkin)) return;
+      result.answers = { ...result.answers, afternoonSkin: values.afternoonSkin };
+    }
     if (!result.complete) return;
     const data = {
       id: createJourneyRecordId("symptom"), type: "feedback", source: "symptom_check",
@@ -42,9 +54,14 @@ export function useSymptomCheck({ ownerId, storedHistory, persistRecord, setStep
     setAssessment(result); setRecord(data); setHistorical(false); save(data); setStep("symptomResult");
   };
   const answer = (question, value) => {
-    const next = cleanSymptomAnswers({ ...answers, [question.id]: value });
+    const draft = { ...answers, [question.id]: value };
+    const next = cleanSymptomAnswers(draft, { guided });
+    if (guided && hydrationQuestion.options.some(option => option.value === draft.afternoonSkin) &&
+      needsHydrationQuestion(assessSymptoms(next, { guided }))) {
+      next.afternoonSkin = draft.afternoonSkin;
+    }
     setAnswers(next);
-    setIndex(Math.min(index, getVisibleSymptomQuestions(next).length - 1));
+    setIndex(Math.min(index, questionsFor(next, guided).length - 1));
     if (isImmediateStopAnswer(question.id, next[question.id])) finish(next);
   };
 
@@ -59,7 +76,7 @@ export function useSymptomCheck({ ownerId, storedHistory, persistRecord, setStep
       else setIndex(index + 1);
     },
     continueFlow: () => {
-      if (assessment?.complete && !assessment.blockRoutine && !historical && nextStep) setStep(nextStep);
+      if (assessment?.complete && !assessment.blockRoutine && !historical && nextStep && !guided) setStep(nextStep);
     },
     retrySave: () => { if (record && !historical) save(record); },
     openLatest: () => {

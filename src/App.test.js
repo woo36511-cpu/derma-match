@@ -7,6 +7,10 @@ import { getVisibleSymptomQuestions } from "./data/symptomQuestions";
 import { SAVED_SURVEY_KEY, JOURNEY_HISTORY_KEY } from "./data/storageKeys";
 
 const click = (name) => fireEvent.click(screen.getByRole("button", { name }));
+function openExistingEntry(name) {
+  fireEvent.click(screen.getByText("피부타입별 추천·전체 설문 보기", { selector: "summary" }));
+  click(name);
+}
 const history = () => JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY) || "[]").filter(record => !record.assessmentOnly);
 
 beforeEach(() => {
@@ -75,7 +79,7 @@ function completeFeedback({ usageDetails = false } = {}) {
 
 test("quick recommendation survives reload and saves two feedback rounds in the same journey", () => {
   const { unmount } = render(<App />);
-  click(/피부타입 알고 있어요/);
+  openExistingEntry(/피부타입 알고 있어요/);
   completeSymptomCheck();
   click(/지성 \/ 번들거림/);
   expect(screen.getByText("8단계")).toBeInTheDocument();
@@ -136,7 +140,7 @@ test("quick recommendation survives reload and saves two feedback rounds in the 
 
 test("survey answers gate progression and a saved result can be reopened", () => {
   const { unmount } = render(<App />);
-  click(/처음 시작해요/);
+  openExistingEntry(/처음 시작해요/);
   expect(screen.getByRole("button", { name: "다음" })).toBeDisabled();
   completeSurvey();
   click(/특별한 고민 없음/);
@@ -176,7 +180,7 @@ test.each(concerns)(
   "%s follow-up questions reach the guide and save the selected concern",
   (concernId, questions) => {
     render(<App />);
-    click(/처음 시작해요/);
+    openExistingEntry(/처음 시작해요/);
     completeSurvey();
     const concern = issueQuestions.skinConcernOptions.find(
       (item) => item.id === concernId,
@@ -207,19 +211,19 @@ test.each(concerns)(
 
 test("browser popstate restores the prior screen", () => {
   render(<App />);
-  click(/피부타입 알고 있어요/);
+  openExistingEntry(/피부타입 알고 있어요/);
   fireEvent(
     window,
     new PopStateEvent("popstate", { state: { step: "start" } }),
   );
   expect(
-    screen.getByRole("button", { name: /처음 시작해요/ }),
+    screen.getByRole("button", { name: "지금 피부 고민 확인하기" }),
   ).toBeInTheDocument();
 });
 
 test("a failed device write keeps the user on the current routine instead of creating an unsaved journey", () => {
   render(<App />);
-  click(/피부타입 알고 있어요/);
+  openExistingEntry(/피부타입 알고 있어요/);
   completeSymptomCheck();
   const beforeFailure = history();
   const disk = jest.spyOn(Storage.prototype, "setItem").mockImplementation(() => { throw new Error("quota"); });
@@ -234,7 +238,7 @@ test("a failed device write keeps the user on the current routine instead of cre
 
 test("urgent symptoms stop immediately, persist independently and cannot expose products through browser back", () => {
   render(<App />);
-  click(/피부타입 알고 있어요/);
+  openExistingEntry(/피부타입 알고 있어요/);
   click("갑자기 붓거나 두드러기가 났어요");
   click("다음");
   click("네");
@@ -269,7 +273,7 @@ test("overlapping breakout patterns save skin and product observations without a
 
 test("worsening reported during feedback triggers a fresh symptom check before any next routine", () => {
   render(<App />);
-  click(/피부타입 알고 있어요/);
+  openExistingEntry(/피부타입 알고 있어요/);
   completeSymptomCheck();
   click("이 루틴으로 시작하기");
   screen.getAllByRole("button", { name: "꾸준히 사용함", exact: true }).forEach(button => fireEvent.click(button));
@@ -283,4 +287,58 @@ test("worsening reported during feedback triggers a fresh symptom check before a
   completeSymptomCheck({ concern: "sensitive", change: "worse" }, { continueFlow: false });
   expect(screen.getByRole("heading", { name: "새 제품보다 악화·자극 원인 확인이 먼저예요" })).toBeInTheDocument();
   expect(screen.queryByRole("heading", { name: "다음 단계 기본 루틴" })).not.toBeInTheDocument();
+});
+
+const guidedBreakoutBase = {
+  concern: "breakouts", change: "stable", surface: "intact", basicRoutine: "both",
+  barrier: "none", duration: "under_week", area: "chin", form: "mixed",
+  comedones: "yes", itch: "none", follicular: "no", shaving: "no", pain: "none",
+  recentProduct: "none",
+};
+
+function answerGuidedCheck(overrides, { hydration = false } = {}) {
+  click("지금 피부 고민 확인하기");
+  const answers = { ...guidedBreakoutBase, ...overrides };
+  const questions = getVisibleSymptomQuestions(answers, { guided: true });
+  for (const [index, question] of questions.entries()) {
+    expect(screen.getByRole("heading", { name: question.q })).toBeVisible();
+    click(question.options.find(option => option.value === answers[question.id]).label);
+    if (index < questions.length - 1 || hydration) click("다음");
+  }
+}
+
+test("guided check keeps a comfortable routine and gives breakout care without product recommendations", () => {
+  render(<App />);
+  answerGuidedCheck({});
+  click("내 피부 관리 보기");
+  expect(screen.getByRole("heading", { name: "턱 트러블을 짜거나 건드리지 않고 지켜봐요." })).toBeVisible();
+  expect(screen.getByText("잘 맞던 세안제와 보습제는 유지해요.")).toBeVisible();
+  expect(screen.queryByRole("heading", { name: "보습제 후보 한 가지" })).not.toBeInTheDocument();
+  expect(screen.queryByRole("button", { name: "피부 관리 설문·기록 이어가기" })).not.toBeInTheDocument();
+});
+
+test("guided check asks about hydration for tightness and suggests only one basic moisturizer", () => {
+  render(<App />);
+  answerGuidedCheck({ basicRoutine: "cleanser", barrier: "dry" }, { hydration: true });
+  expect(screen.getByRole("heading", { name: "오후가 되면 피부가 보통 어떤가요?" })).toBeVisible();
+  click("건조하고 당기는 느낌이 이어져요");
+  click("내 피부 관리 보기");
+  expect(screen.getByRole("heading", { name: "세안 후 보습제 한 가지만 먼저 써봐요." })).toBeVisible();
+  expect(screen.getByRole("heading", { name: "보습제 후보 한 가지" })).toBeVisible();
+  expect(screen.getAllByRole("img")).toHaveLength(1);
+  expect(screen.getByText(/추정 수분감 3단계/)).not.toBeVisible();
+  fireEvent.click(screen.getByText("왜 이렇게 안내했나요?", { selector: "summary" }));
+  expect(screen.getByText(/추정 수분감 3단계/)).toBeVisible();
+  expect(screen.getByText(/트러블을 짜거나 건드리지 않고 지켜봐요/)).toBeVisible();
+  expect(history()).toHaveLength(0);
+});
+
+test("guided check prioritizes repeated stinging and does not offer new products", () => {
+  render(<App />);
+  answerGuidedCheck({ barrier: "stinging" });
+  click("내 피부 관리 보기");
+  expect(screen.getByRole("heading", { name: "새 제품보다 악화·자극 원인 확인이 먼저예요" })).toBeVisible();
+  expect(screen.getByText(/편안했던 세안·보습만 유지해요/)).toBeVisible();
+  expect(screen.queryByRole("heading", { name: "보습제 후보 한 가지" })).not.toBeInTheDocument();
+  expect(screen.queryByRole("button", { name: "피부 관리 설문·기록 이어가기" })).not.toBeInTheDocument();
 });

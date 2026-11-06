@@ -31,6 +31,12 @@ export const symptomQuestions = [
     option("그런 변화는 없어요", "intact"), option("건조한 각질 정도만 있어요", "dry_flaky"),
     option("물집·진물·벗겨진 상처가 있어요", "damaged"), unknown,
   ] },
+  { id: "basicRoutine", guidedOnly: true, q: "평소에 세안제나 보습제를 쓰나요?", options: [
+    option("세안제와 보습제를 둘 다 써요", "both"),
+    option("세안제만 써요", "cleanser"),
+    option("보습제만 써요", "moisturizer"),
+    option("둘 다 거의 안 써요", "neither"), unknown,
+  ] },
   { id: "barrier", q: "지금 건조함·당김·따가움도 있나요?", options: [
     option("건조하고 당기지만 많이 붉거나 따갑지는 않아요", "dry"),
     option("평소 보습제도 따갑거나 붉어져요", "stinging"),
@@ -68,7 +74,7 @@ export const symptomQuestions = [
     option("보습제나 선크림", "moisturizer"), option("각질 제거제나 기능성 화장품", "active"),
     option("그 밖의 제품 또는 여러 제품", "other"), option("처방받은 제품을 바르고 있어요", "prescribed"), unknown,
   ] },
-  { id: "habit", q: "부담을 줄이면서 먼저 해볼 관리 하나를 고른다면?", options: [
+  { id: "habit", legacyOnly: true, q: "부담을 줄이면서 먼저 해볼 관리 하나를 고른다면?", options: [
     option("세안·보습을 단순하게 정리하기", "barrier"),
     option("최근 바꾼 화장품을 하나씩 점검하기", "products"),
     option("지금은 추가하지 않고 상태만 기록하기", "observe"),
@@ -80,13 +86,27 @@ export function isImmediateStopAnswer(id, value) {
     (id === "change" && value === "rapid");
 }
 
-export function getVisibleSymptomQuestions(answers = {}) {
-  const visible = symptomQuestions.filter(q => (!q.detail || hasBreakoutDetails(answers)) && (!q.showIf || q.showIf(answers)));
+export function getVisibleSymptomQuestions(answers = {}, { guided = false } = {}) {
+  const visible = symptomQuestions
+    .filter(q => (!q.guidedOnly || guided) && (!q.legacyOnly || !guided) &&
+      (!q.detail || hasBreakoutDetails(answers)) && (!q.showIf || q.showIf(answers)))
+    .map(q => {
+      if (!guided) return q;
+      if (q.id === "barrier") return { ...q, q: "세안 후나 평소 보습제를 바를 때 피부가 어때요?" };
+      if (q.id === "area") return { ...q, options: [
+        ...q.options.slice(0, 1), option("턱·턱선", "chin"), option("볼·코 등 얼굴의 다른 부위", "face"), ...q.options.slice(2),
+      ] };
+      if (q.id !== "concern") return q;
+      return { ...q, options: [
+        ...q.options.slice(0, 5), option("잔주름이 신경 쓰여요", "wrinkles"), ...q.options.slice(5),
+      ] };
+    });
   const stop = visible.findIndex(q => isImmediateStopAnswer(q.id, answers[q.id]));
   return stop < 0 ? visible : visible.slice(0, stop + 1);
 }
 
-export function cleanSymptomAnswers(answers) {
-  const allowed = new Set(getVisibleSymptomQuestions(answers).map(q => q.id));
-  return Object.fromEntries(Object.entries(answers).filter(([key, value]) => allowed.has(key) && symptomQuestions.find(q => q.id === key)?.options.some(o => o.value === value)));
+export function cleanSymptomAnswers(answers, options) {
+  return Object.fromEntries(getVisibleSymptomQuestions(answers, options)
+    .filter(q => q.options.some(o => o.value === answers[q.id]))
+    .map(q => [q.id, answers[q.id]]));
 }
