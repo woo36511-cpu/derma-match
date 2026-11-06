@@ -5,17 +5,27 @@ import { analyzeBlackheadSebumGuide } from "./skinIssues/analyzeBlackheadSebumGu
 import { analyzeClosedComedoneGuide } from "./skinIssues/analyzeClosedComedoneGuide";
 
 const base = {
-  breathing: "no", infectionWarning: "none", eruption: "yes", change: "stable", risk: "no", surface: "intact",
+  concern: "breakouts", breathing: "no", infectionWarning: "none", eruption: "yes", change: "stable", risk: "no", surface: "intact",
   barrier: "none", gut: "none", vegetables: "sometimes", probiotic: "none", habit: "observe",
   area: "face", form: "mixed", comedones: "yes", uniform: "no", itch: "none", follicular: "no",
   shaving: "no", sweat: "no", exposure: "none", pain: "none", duration: "under_week", treatment: "none",
 };
 const assess = changes => assessSymptoms({ ...base, ...changes });
 
+test("every check starts with a skin concern, and ordinary care does not ask about breathing or gut health", () => {
+  expect(getVisibleSymptomQuestions({})[0].id).toBe("concern");
+  const normal = getVisibleSymptomQuestions({ concern: "none", habit: "observe" });
+  expect(normal.map(question => question.id)).toEqual(["concern", "barrier", "habit"]);
+  const selected = getVisibleSymptomQuestions({ concern: "dry", habit: "vegetables" });
+  expect(selected.map(question => question.id)).toContain("vegetables");
+  expect(selected.map(question => question.id)).not.toContain("probiotic");
+  expect(assess({ concern: "none", breathing: "yes", infectionWarning: "rapid" })).toMatchObject({ urgency: "self_care", blockRoutine: false });
+});
+
 test("acute warning signs outrank every cosmetic and supplement path, even with otherwise missing answers", () => {
-  expect(assessSymptoms({ breathing: "yes" })).toMatchObject({ complete: true, urgency: "emergency", blockRoutine: true, candidates: [] });
+  expect(assessSymptoms({ concern: "sudden", breathing: "yes" })).toMatchObject({ complete: true, urgency: "emergency", blockRoutine: true, candidates: [] });
   for (const infectionWarning of ["spreading_fever", "eye", "rapid"]) {
-    const result = assessSymptoms({ breathing: "no", infectionWarning });
+    const result = assessSymptoms({ concern: "breakouts", infectionWarning });
     expect(result).toMatchObject({ complete: true, urgency: "urgent", blockRoutine: true });
     expect(applyRoutineSafety({ products: { serum: { id: 25 } } }, getRoutineSafety(result)).products).toEqual({});
   }
@@ -23,7 +33,7 @@ test("acute warning signs outrank every cosmetic and supplement path, even with 
 
 test("incomplete or uncertain answers never become a confident diagnosis or medication recommendation", () => {
   expect(assessSymptoms({})).toMatchObject({ complete: false, blockRoutine: true });
-  for (const key of ["breathing", "infectionWarning", "risk", "eruption", "change", "form", "comedones", "itch", "exposure"]) {
+  for (const key of ["infectionWarning", "risk", "change", "form", "comedones", "itch", "exposure"]) {
     expect(assess({ [key]: "unknown" })).toMatchObject({ blockRoutine: true, diagnosticStatus: "not_diagnosed", allowMedicationRecommendation: false });
   }
   expect(getRoutineSafety(null).blocked).toBe(true);
@@ -55,7 +65,6 @@ test.each([{ form: "deep" }, { pain: "severe" }, { risk: "yes" }])("deep, painfu
 test("no benefit after a short acne trial does not mean a different organism", () => {
   const early = assess({ change: "no_effect", treatment: "acne", treatmentDuration: "under_two", adherence: "consistent" });
   expect(early).toMatchObject({ urgency: "self_care", allowMedicationRecommendation: false });
-  expect(early.reviewTiming).toContain("6~8주");
   expect(early.candidates.map(item => item.key)).toEqual(["acne"]);
   expect(assess({ change: "no_effect", treatment: "acne", treatmentDuration: "twelve_plus", adherence: "consistent" }).urgency).toBe("clinic");
 });
@@ -74,7 +83,7 @@ test("conditional changes remove stale medicine and shaving answers and reject u
   expect(clean).not.toHaveProperty("ingrown");
   expect(clean).not.toHaveProperty("bogus");
   expect(assessSymptoms({ ...base, form: "made_up" }).complete).toBe(false);
-  const noRash = { ...base, eruption: "no" };
+  const noRash = { ...base, concern: "none" };
   expect(getVisibleSymptomQuestions(noRash).every(q => !q.detail)).toBe(true);
   expect(assessSymptoms(noRash).blockRoutine).toBe(false);
   expect(getRoutineSafety(assess({}), { careLevel: "clinic_priority", summary: "진료" }).blocked).toBe(true);

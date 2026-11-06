@@ -5,8 +5,7 @@ import { RoutineProductScroller } from "../components/RoutineProductScroller";
 import { PrimaryButton } from "../components/PrimaryButton";
 import React from "react";
 import { RoutineSafetyNotice } from "../components/RoutineSafetyNotice";
-import { SymptomAssessmentCard } from "../components/SymptomAssessmentCard";
-import { SelfCarePlan } from "../components/SelfCarePlan";
+import { SymptomCareSummary } from "../components/SelfCarePlan";
 
 export function SurveyResultScreen({
   safety, symptomAssessment, onSymptomRecheck,
@@ -21,18 +20,17 @@ export function SurveyResultScreen({
   startSavedFeedback,
 }) {
   if (safety?.blocked) return <section className="max-w-3xl mx-auto space-y-6">
-    <SymptomAssessmentCard assessment={symptomAssessment} />
+    <SymptomCareSummary assessment={symptomAssessment} />
     {activeIssueGuide && !["emergency", "urgent"].includes(symptomAssessment?.urgency) && <SkinIssueGuideCard guide={{ ...activeIssueGuide, pharmacyGuide: null }} />}
     <RoutineSafetyNotice safety={safety} onRecheck={onSymptomRecheck} />
-    <SelfCarePlan assessment={symptomAssessment} />
     <button onClick={() => setStep("start")} className="underline text-sm">시작 화면으로</button>
   </section>;
   return (
     <section className="space-y-10">
-      <div className="max-w-3xl mx-auto space-y-5"><SymptomAssessmentCard assessment={symptomAssessment} /><SelfCarePlan assessment={symptomAssessment} /></div>
+      <div className="max-w-3xl mx-auto space-y-5"><SymptomCareSummary assessment={symptomAssessment} /></div>
       <SurveyResultOverview result={finalSkinProfile} />
 
-      {activeIssueGuide && <SkinIssueGuideCard guide={activeIssueGuide} />}
+      {activeIssueGuide?.careLevel === "basic_care" && <SkinIssueGuideCard guide={activeIssueGuide} />}
       <div className="mb-10">
         <SectionTitle
           title="추천 루틴"
@@ -90,12 +88,12 @@ export function SurveyResultScreen({
       )}
 
       <div className="max-w-3xl mx-auto mb-8">
-        <div className="bg-amber-50 rounded-3xl p-5 sm:p-6 border border-amber-100">
-          <p className="text-sm font-semibold text-amber-800 mb-3">
-            피부과 상담이 필요한 경우
-          </p>
+        <details className="bg-amber-50 rounded-3xl p-5 sm:p-6 border border-amber-100">
+          <summary className="cursor-pointer text-sm font-semibold text-amber-800">
+            관리 중 확인할 주의사항
+          </summary>
 
-          <ul className="space-y-1">
+          <ul className="space-y-1 mt-3">
             <li className="text-sm text-amber-800 leading-relaxed break-keep">
               · 붉고 아픈 트러블이 반복될 때
             </li>
@@ -109,7 +107,7 @@ export function SurveyResultScreen({
               · 6~8주 이상 관리해도 변화가 없을 때
             </li>
           </ul>
-        </div>
+        </details>
       </div>
 
       <p className="text-center text-sm text-slate-600">2주 체크는 자극·악화·사용 상태를 확인해요. 악화하면 기다리지 말고 증상을 다시 확인하세요.</p>

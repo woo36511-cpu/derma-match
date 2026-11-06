@@ -7,7 +7,9 @@ test("urgent instructions are shown even when device persistence fails and canno
   const persistRecord = jest.fn(() => { throw new Error("quota"); });
   const { result } = renderHook(() => useSymptomCheck({ ownerId: null, storedHistory: [], persistRecord, setStep }));
   act(() => result.current.begin("quickRecommend"));
-  act(() => result.current.answer(symptomQuestions[0], "yes"));
+  act(() => result.current.answer(symptomQuestions.find(q => q.id === "concern"), "sudden"));
+  act(() => result.current.next());
+  act(() => result.current.answer(symptomQuestions.find(q => q.id === "breathing"), "yes"));
   expect(result.current.assessment.urgency).toBe("emergency");
   expect(result.current.saved).toBe(false);
   expect(setStep).toHaveBeenLastCalledWith("symptomResult");

@@ -1,26 +1,39 @@
 const option = (label, value) => ({ label, value });
 const unknown = option("잘 모르겠어요", "unknown");
 const yesNo = [option("네", "yes"), option("아니요", "no"), unknown];
+const hasActiveConcern = a => ["breakouts", "sensitive", "sudden", "other"].includes(a.concern);
+
+export const hasBreakoutDetails = a => a.concern === "breakouts" ||
+  (a.concern === "other" && ["yes", "unknown"].includes(a.eruption));
 
 // These questions support triage and descriptions, never a microbiological diagnosis.
 export const symptomQuestions = [
-  { id: "breathing", q: "지금 숨쉬기·삼키기가 어렵거나 혀·목이 붓나요?", options: yesNo },
-  { id: "infectionWarning", q: "지금 다음과 같은 급한 변화가 있나요?", options: [
+  { id: "concern", q: "지금 가장 불편한 피부 상태는 무엇인가요?", options: [
+    option("트러블이나 좁쌀이 올라와요", "breakouts"),
+    option("건조하고 당겨요", "dry"),
+    option("번들거림이나 피지가 신경 쓰여요", "oily"),
+    option("따갑거나 붉어져요", "sensitive"),
+    option("갑자기 붓거나 두드러기가 났어요", "sudden"),
+    option("특별한 고민 없이 기본 관리가 궁금해요", "none"),
+    option("다른 고민이 있거나 잘 모르겠어요", "other"),
+  ] },
+  { id: "breathing", q: "지금 숨쉬기·삼키기가 어렵거나 혀·목이 붓나요?", showIf: a => a.concern === "sudden", options: yesNo },
+  { id: "infectionWarning", q: "지금 다음과 같은 급한 변화가 있나요?", showIf: hasActiveConcern, options: [
     option("붉어짐·통증이 빠르게 번지면서 열·오한·몸살이 있어요", "spreading_fever"),
     option("눈 주위가 심하게 붓고 눈이 아프거나 시야가 달라졌어요", "eye"),
     option("붉어짐이나 통증이 갑자기 심해지거나 빠르게 번져요", "rapid"),
     option("해당되는 변화는 없어요", "none"), unknown,
   ] },
-  { id: "eruption", q: "지금 오돌토돌한 돌기, 고름이 보이는 트러블, 또는 발진이 있나요?", options: yesNo },
-  { id: "change", q: "평소와 비교해 지금 피부는 어떤가요?", options: [
+  { id: "eruption", q: "지금 오돌토돌한 돌기, 고름이 보이는 트러블, 또는 발진이 있나요?", showIf: a => a.concern === "other", options: yesNo },
+  { id: "change", q: "평소와 비교해 지금 피부는 어떤가요?", showIf: hasActiveConcern, options: [
     option("이번에 처음 생겼어요", "new"),
     option("평소와 비슷해요", "stable"), option("원래 있던 증상이 줄었어요", "improving"),
     option("원래 있던 증상이 더 심해졌어요", "worse"),
     option("제품을 쓴 뒤 따갑거나 화끈거리고 벗겨져요", "irritation"),
     option("관리해도 아직 효과를 모르겠어요", "no_effect"), unknown,
   ] },
-  { id: "risk", q: "면역을 낮추는 치료 중이거나 감염 위험이 높다고 들은 적이 있나요?", help: "항암치료·면역억제제 사용, 조절되지 않는 당뇨 등이 해당해요. 잘 모르면 그대로 선택해주세요.", options: yesNo },
-  { id: "surface", q: "피부 표면에 물집·진물·벗겨진 상처가 있나요?", options: [
+  { id: "risk", q: "면역을 낮추는 치료 중이거나 감염 위험이 높다고 들은 적이 있나요?", showIf: hasBreakoutDetails, help: "항암치료·면역억제제 사용, 조절되지 않는 당뇨 등이 해당해요. 잘 모르면 그대로 선택해주세요.", options: yesNo },
+  { id: "surface", q: "피부 표면에 물집·진물·벗겨진 상처가 있나요?", showIf: a => !!a.concern && a.concern !== "none", options: [
     option("그런 변화는 없어요", "intact"), option("건조한 각질 정도만 있어요", "dry_flaky"),
     option("물집·진물·벗겨진 상처가 있어요", "damaged"), unknown,
   ] },
@@ -72,30 +85,33 @@ export const symptomQuestions = [
   { id: "adherence", q: "안내받은 사용법과 빈도를 지켰나요?", detail: true, showIf: a => a.treatment !== "none", options: [
     option("대체로 지켰어요", "consistent"), option("쉬거나 양·횟수를 자주 바꿨어요", "inconsistent"), unknown,
   ] },
-  { id: "gut", q: "최근 장 불편감은 어떤가요?", options: [
-    option("딱히 불편하지 않아요", "none"), option("변비·복부팽만이 신경 쓰여요", "constipation_bloating"),
-    option("묽은 변·설사가 신경 쓰여요", "loose"), option("기록하고 싶지 않거나 잘 모르겠어요", "unknown"),
-  ] },
-  { id: "vegetables", q: "평소 채소·과일을 얼마나 자주 곁들이나요?", options: [
-    option("거의 먹지 않아요", "rare"), option("가끔 곁들여요", "sometimes"), option("대부분의 날에 곁들여요", "regular"), unknown,
-  ] },
-  { id: "probiotic", q: "현재 유산균 제품을 먹고 있나요?", options: [
-    option("먹지 않아요", "none"), option("최근 새로 시작하거나 바꿨어요", "recent"), option("같은 제품을 계속 먹고 있어요", "ongoing"), unknown,
-  ] },
-  { id: "habit", q: "부담을 줄이면서 먼저 해볼 관리 하나를 고른다면?", help: "생활 관리는 보조 관리예요. 특정 식품·유산균으로 피부질환을 치료하거나 면역 상태를 진단하지 않아요.", options: [
+  { id: "habit", q: "부담을 줄이면서 먼저 해볼 관리 하나를 고른다면?", options: [
     option("세안·보습을 단순하게 정리하기", "barrier"),
     option("수면·스트레스와 피부 반응 기록하기", "sleep"),
     option("간편한 채소를 한 끼에 곁들이기", "vegetables"),
     option("장 불편감·식사·유산균 사용을 기록하기", "gut"),
     option("지금은 추가하지 않고 상태만 기록하기", "observe"),
   ] },
+  { id: "gut", q: "최근 장 불편감은 어떤가요?", showIf: a => a.habit === "gut", options: [
+    option("딱히 불편하지 않아요", "none"), option("변비·복부팽만이 신경 쓰여요", "constipation_bloating"),
+    option("묽은 변·설사가 신경 쓰여요", "loose"), option("기록하고 싶지 않거나 잘 모르겠어요", "unknown"),
+  ] },
+  { id: "vegetables", q: "평소 채소·과일을 얼마나 자주 곁들이나요?", showIf: a => ["vegetables", "gut"].includes(a.habit), options: [
+    option("거의 먹지 않아요", "rare"), option("가끔 곁들여요", "sometimes"), option("대부분의 날에 곁들여요", "regular"), unknown,
+  ] },
+  { id: "probiotic", q: "현재 유산균 제품을 먹고 있나요?", showIf: a => a.habit === "gut", options: [
+    option("먹지 않아요", "none"), option("최근 새로 시작하거나 바꿨어요", "recent"), option("같은 제품을 계속 먹고 있어요", "ongoing"), unknown,
+  ] },
 ];
 
 export function getVisibleSymptomQuestions(answers = {}) {
-  // Positive warning answers stop the questionnaire immediately.
-  const stop = answers.breathing === "yes" ? 1 : ["spreading_fever", "eye", "rapid"].includes(answers.infectionWarning) ? 2 : answers.eruption === "yes" && answers.risk === "yes" ? 5 : null;
-  if (stop) return symptomQuestions.slice(0, stop);
-  return symptomQuestions.filter(q => (!q.detail || answers.eruption !== "no") && (!q.showIf || q.showIf(answers)));
+  const visible = symptomQuestions.filter(q => (!q.detail || hasBreakoutDetails(answers)) && (!q.showIf || q.showIf(answers)));
+  const stop = visible.findIndex(q =>
+    (q.id === "breathing" && answers.breathing === "yes") ||
+    (q.id === "infectionWarning" && ["spreading_fever", "eye", "rapid"].includes(answers.infectionWarning)) ||
+    (q.id === "risk" && answers.risk === "yes"),
+  );
+  return stop < 0 ? visible : visible.slice(0, stop + 1);
 }
 
 export function cleanSymptomAnswers(answers) {
