@@ -13,6 +13,7 @@ export function SurveyScreen({
   handleNextSurvey,
   isCurrentSurveyAnswered,
   isLastSurveyQuestion,
+  simpleMode = false,
 }) {
   return (
     <section>
@@ -93,7 +94,7 @@ export function SurveyScreen({
             onClick={handleNextSurvey}
             disabled={!isCurrentSurveyAnswered}
           >
-            {isLastSurveyQuestion ? "피부 고민 선택" : "다음"}
+            {isLastSurveyQuestion ? simpleMode ? "추가 고민 선택" : "피부 고민 선택" : "다음"}
           </PrimaryButton>
         </div>
       </div>

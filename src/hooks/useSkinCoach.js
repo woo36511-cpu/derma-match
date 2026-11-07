@@ -55,6 +55,8 @@ export function useSkinCoach() {
   const [baseLevel, setBaseLevel] = useState(5);
   const [surveyAnswers, setSurveyAnswers] = useState({});
   const [surveyIndex, setSurveyIndex] = useState(0);
+  const [simpleMode, setSimpleMode] = useState(false);
+  const [simpleRecord, setSimpleRecord] = useState(null);
   const [activeJourneyId, setActiveJourneyId] = useState(null);
   const [viewJourneyId, setViewJourneyId] = useState(null);
   const [mainConcern, setMainConcern] = useState("");
@@ -156,6 +158,7 @@ export function useSkinCoach() {
   }, [step]);
   useEffect(() => {
     setStep("start");
+    setSimpleMode(false); setSimpleRecord(null);
     setActiveJourneyId(null);
     setViewJourneyId(null);
     setSurveyAnswers({});
@@ -519,11 +522,6 @@ export function useSkinCoach() {
         delete next.pain;
       }
 
-      // 눈/입술 붓기가 아니라면 호흡 질문의 예전 답변 삭제
-      if (question.id === "swelling" && option.value !== "eyes_lips") {
-        delete next.breathing;
-      }
-
       return next;
     });
   };
@@ -551,6 +549,7 @@ export function useSkinCoach() {
   };
 
   const resetFlow = () => {
+    setSimpleMode(false); setSimpleRecord(null);
     setFeedbackDraft(null);
     setAnswers({});
     setSurveyAnswers({});
@@ -579,7 +578,7 @@ export function useSkinCoach() {
     if (!isCurrentSurveyAnswered) return;
 
     if (isLastSurveyQuestion) {
-      setStep("issueSelect");
+      setStep(simpleMode ? "simpleCare" : "issueSelect");
       return;
     }
 
@@ -653,7 +652,7 @@ export function useSkinCoach() {
     saveSurveyResult,
     startQuickJourneyFeedback,
     saveFeedbackResult,
-    openSavedSurveyResult,
+    openSavedSurveyResult: openLegacySavedSurveyResult,
     startSavedFeedback,
   } = useJourneyActions({
     symptomAssessment: symptomCheck.assessment,
@@ -701,6 +700,27 @@ export function useSkinCoach() {
     savedSurveyResult,
   });
 
+  const startCheckedFlow = destination => {
+    setSimpleMode(false); setSimpleRecord(null);
+    symptomCheck.begin(destination);
+  };
+
+  const startSimpleSkinCare = () => {
+    setSimpleMode(true); setSimpleRecord(null);
+    setSurveyAnswers({}); setSurveyIndex(0); setMainConcern(""); setIssueAnswers({});
+    setActiveJourneyId(null); setStep("survey");
+  };
+  const saveSimpleSkinRecord = record => {
+    persistRecord(record);
+    setSimpleRecord(record); setActiveJourneyId(record.journeyId); setViewJourneyId(null);
+  };
+  const openSavedSurveyResult = () => {
+    if (savedSurvey?.source === "simple") {
+      setSimpleMode(true); setSimpleRecord(savedSurvey); setSurveyAnswers(savedSurvey.surveyAnswers);
+      setActiveJourneyId(savedSurvey.journeyId); setStep("simpleCare");
+    } else { setSimpleMode(false); setSimpleRecord(null); openLegacySavedSurveyResult(); }
+  };
+
   const startSymptomRecheck = () => {
     if (isQuickJourney) resumeQuickJourneyFeedback();
     else if (hasSavedSurvey) startSavedFeedback();
@@ -708,6 +728,7 @@ export function useSkinCoach() {
   };
 
   return {
+    simpleMode, simpleRecord, startSimpleSkinCare, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
     symptomCheck, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck,
     continueFeedback: () => feedbackNeedsSymptomReview(answers) ? symptomCheck.begin("recheck") : setStep("recheck"),
     account,

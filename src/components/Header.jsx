@@ -1,13 +1,14 @@
 import React from "react";
 
-export function Header({ resetFlow }) {
+export function Header({ resetFlow, isStart = false }) {
+  const BrandHeading = isStart ? "p" : "h1";
   return (
     <header className="sticky top-0 z-10 border-b border-gray-200 bg-white/90 backdrop-blur">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
         <div>
-          <h1 className="text-lg sm:text-xl font-bold break-keep">DearSince</h1>
+          <BrandHeading className="text-lg sm:text-xl font-bold break-keep">DearSince</BrandHeading>
           <p className="text-xs sm:text-sm text-gray-500 break-keep">
-            당신을 위한 맞춤 루틴
+            얼굴 피부 관리 가이드
           </p>
         </div>
         <button

@@ -4,8 +4,14 @@ import { DetailDisclosure } from "../components/DetailDisclosure";
 import { SeoContentSection } from "../components/SeoContentSection";
 import React from "react";
 
+const examplePlan = [
+  { number: "01", title: "피부타입 확인", detail: "기존 설문으로 건성·지성·수부지와 필요한 보습감을 살펴봐요." },
+  { number: "02", title: "세안제·기초 화장품", detail: "피부타입에 맞는 세안제·토너·세럼·크림을 추천해요." },
+  { number: "03", title: "고민별 제품 추가", detail: "여드름 같은 추가 고민이 있을 때만 모양과 쓰는 약을 확인해요." },
+];
+
 export function StartScreen({
-  startCheckedFlow, startSymptomRecheck, symptomCheck,
+  startSimpleSkinCare, startCheckedFlow, startSymptomRecheck, symptomCheck,
   setActiveJourneyId,
   setStep,
   isQuickJourney,
@@ -21,78 +27,72 @@ export function StartScreen({
   startSavedFeedback,
 }) {
   return (
-    <section className="min-h-[75vh] flex flex-col items-center justify-center text-center">
-      <div className="inline-flex items-center rounded-full border border-gray-200 bg-white px-4 py-2 text-xs sm:text-sm text-gray-600 mb-6 shadow-sm break-keep">
-        가장 신경 쓰이는 피부 고민부터 확인해요
-      </div>
-
-      <h2 className="text-4xl sm:text-6xl font-bold leading-tight break-keep mb-5">
-        피부를 잘 몰라도
-        <br />
-        괜찮아요
-      </h2>
-
-      <p className="text-sm sm:text-lg text-gray-600 max-w-2xl leading-relaxed break-keep mb-10">
-        지금 쓰는 제품과 피부 상태를 짧게 확인하고,
-        <br className="hidden sm:block" />
-        오늘 먼저 해볼 관리를 알려드릴게요.
-      </p>
-
-      <div className="w-full max-w-4xl space-y-4">
-        <PrimaryButton onClick={() => {
-          setActiveJourneyId(null);
-          startCheckedFlow("guidedCare");
-        }}>지금 피부 고민 확인하기</PrimaryButton>
-        <DetailDisclosure title="피부타입별 추천·전체 설문 보기" className="text-left">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <button
-              onClick={() => {
+    <div className="space-y-7">
+      <section aria-labelledby="start-title" className="overflow-hidden rounded-[2rem] border border-emerald-100 bg-gradient-to-br from-emerald-50 via-white to-amber-50/60 px-5 py-8 sm:p-10 lg:p-12">
+        <div className="grid items-center gap-8 md:grid-cols-[1.15fr_1fr] lg:gap-10">
+          <div>
+            <p className="mb-4 text-xs font-bold tracking-wide text-emerald-800 sm:text-sm">얼굴 피부 고민별 관리 가이드</p>
+            <h1 id="start-title" className="break-keep text-3xl font-extrabold leading-tight tracking-tight text-slate-950 sm:text-5xl md:text-4xl lg:text-5xl">
+              내 피부타입에 맞는 기초,<br />피부 고민에 맞는 관리.
+            </h1>
+            <p className="mt-4 max-w-lg break-keep text-sm leading-relaxed text-slate-700 sm:text-base">
+              먼저 피부타입에 맞는 세안제와 기초 화장품을 찾아요.
+              여드름이나 모낭염 같은 고민이 있다면 모양과 쓰는 약을 확인해 추가 관리 정보를 붙여드려요.
+            </p>
+            <div className="mt-6">
+              <button type="button" onClick={() => {
                 setActiveJourneyId(null);
-                startCheckedFlow("quickRecommend");
-              }}
-              className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8 text-left hover:shadow-lg hover:-translate-y-1 transition active:scale-[0.98]"
-            >
-              <p className="text-sm text-gray-400 mb-3">이미 알고 있어요</p>
-              <h3 className="text-2xl font-bold mb-3 break-keep">
-                피부타입 알고 있어요
-              </h3>
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed break-keep mb-5">
-                건성, 수부지, 지성처럼 내 피부타입을 알고 있다면 바로 맞는 루틴을
-                추천받을 수 있어요.
-              </p>
-              <span className="text-sm font-semibold text-black">
-                바로 추천받기 →
-              </span>
-            </button>
-
-            <button
-              onClick={() => {
-                setActiveJourneyId(null);
-                startCheckedFlow("survey");
-              }}
-              className="bg-black text-white rounded-3xl shadow-sm p-6 sm:p-8 text-left hover:opacity-90 hover:-translate-y-1 transition active:scale-[0.98]"
-            >
-              <p className="text-sm text-white/60 mb-3">처음 시작해요</p>
-              <h3 className="text-2xl font-bold mb-3 break-keep">
-                처음이라 설문으로 시작할래요
-              </h3>
-              <p className="text-sm sm:text-base text-white/75 leading-relaxed break-keep mb-5">
-                피부타입을 몰라도 괜찮아요. 몇 가지 질문에 답하면 현재 상태에 맞는
-                루틴과 관리 방향을 추천해드려요.
-              </p>
-              <span className="text-sm font-semibold text-white">
-                설문 시작하기 →
-              </span>
-            </button>
+                startSimpleSkinCare();
+              }} className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-2xl bg-emerald-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-emerald-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-800 sm:w-auto sm:text-base">
+                피부타입 확인하고 추천받기 <span aria-hidden="true">→</span>
+              </button>
+              <p className="mt-3 text-xs text-slate-600 sm:text-sm">피부타입을 몰라도 괜찮아요. 답변에 맞춰 기본 루틴부터 찾아요.</p>
+            </div>
           </div>
-        </DetailDisclosure>
+          <aside aria-labelledby="example-plan" className="rounded-3xl border border-emerald-100 bg-white p-5 shadow-sm sm:p-6">
+            <p className="text-xs font-bold text-emerald-800">간단한 이용 순서</p>
+            <h2 id="example-plan" className="mt-1 break-keep text-lg font-bold text-slate-950 sm:text-xl">기본 루틴에 필요한 관리만 더해요</h2>
+            <ol className="mt-4 divide-y divide-slate-100">
+              {examplePlan.map(({ number, title, detail }) => (
+                <li key={title} className="flex gap-3 py-3 last:pb-0">
+                  <span aria-hidden="true" className="h-fit rounded-lg bg-emerald-50 px-2 py-1 text-xs font-bold text-emerald-900">{number}</span>
+                  <div>
+                    <h3 className="text-sm font-bold text-slate-950">{title}</h3>
+                    <p className="mt-1 break-keep text-sm leading-relaxed text-slate-600">{detail}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </aside>
+        </div>
+      </section>
+
+      <div className="flex flex-wrap items-center gap-x-5 gap-y-2 px-1 text-sm text-slate-700">
+        <button type="button" onClick={() => { setActiveJourneyId(null); startCheckedFlow("guidedCare"); }} className="min-h-10 font-medium underline underline-offset-4">증상부터 자세히 확인하기</button>
+        <button type="button" onClick={startSymptomRecheck} className="min-h-10 font-medium underline underline-offset-4">증상 변화·악화 재설문</button>
+        {symptomCheck.latestRecord && <button type="button" onClick={symptomCheck.openLatest} className="min-h-10 font-medium underline underline-offset-4">지난 증상 확인 기록</button>}
       </div>
-      <div className="mt-6 max-w-4xl w-full rounded-3xl border border-amber-200 bg-amber-50 p-5 text-left">
-        <h3 className="text-lg font-bold">트러블이 달라졌거나 악화했나요?</h3>
-        <p className="text-sm text-slate-700 mt-2">2주를 기다리지 말고 가려움·돌기·고름·면도·사용 약과 자극을 다시 확인하세요. 원인이 다른 비슷한 증상도 함께 살펴봐요.</p>
-        <button onClick={startSymptomRecheck} className="mt-4 rounded-2xl bg-slate-950 text-white px-5 py-3 text-sm font-semibold">증상 변화·악화 재설문</button>
-        {symptomCheck.latestRecord && <button onClick={symptomCheck.openLatest} className="ml-3 mt-3 text-sm underline">지난 증상 확인 기록</button>}
-      </div>
+
+      <DetailDisclosure title="피부타입별 추천·전체 설문 보기">
+        <p className="mb-3 text-sm text-slate-600">피부타입을 이미 알고 있다면 빠른 추천을, 더 자세히 확인하고 싶다면 전체 설문을 이용해요.</p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <button type="button" onClick={() => {
+            setActiveJourneyId(null);
+            startCheckedFlow("quickRecommend");
+          }} className="rounded-2xl border border-slate-200 p-4 text-left hover:bg-slate-50">
+            <span className="block font-bold text-slate-950">피부타입 알고 있어요</span>
+            <span className="mt-1 block text-sm text-slate-600">알고 있는 피부타입으로 기본 루틴 살펴보기</span>
+          </button>
+          <button type="button" onClick={() => {
+            setActiveJourneyId(null);
+            startCheckedFlow("survey");
+          }} className="rounded-2xl border border-slate-200 p-4 text-left hover:bg-slate-50">
+            <span className="block font-bold text-slate-950">처음이라 설문으로 시작할래요</span>
+            <span className="mt-1 block text-sm text-slate-600">세안 뒤 당김과 번들거림을 확인해 기본 루틴 찾기</span>
+          </button>
+        </div>
+      </DetailDisclosure>
+
       {isQuickJourney && (
         <div className="mt-6 max-w-4xl w-full bg-white border border-emerald-100 rounded-3xl shadow-sm p-5 sm:p-6 text-left">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
@@ -174,6 +174,6 @@ export function StartScreen({
         </div>
       )}
       <SeoContentSection />
-    </section>
+    </div>
   );
 }

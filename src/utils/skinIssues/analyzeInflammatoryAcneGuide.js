@@ -93,7 +93,7 @@ export function analyzeInflammatoryAcneGuide(answers = {}) {
       badge: "🟡 약국 관리 고려",
       title: "약국에서 여드름과 비슷한 증상을 먼저 확인해보세요.",
       summary:
-        "고름·반복·통증만으로 여드름이나 원인균을 확정할 수 없어요. 증상 확인 결과와 사용 이력을 약사에게 보여주고 일반의약품 적합성을 확인하세요.",
+        "지금은 새 약을 겹쳐 바르지 않아요. 고름이 보이는 돌기가 늘었는지, 통증이나 붉은 범위가 커졌는지 기록하고 더 심해지거나 계속 반복되면 진료로 확인해요.",
       reasons,
 
       pharmacyGuide: null,

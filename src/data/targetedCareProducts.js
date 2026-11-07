@@ -20,21 +20,26 @@ export const blackheadCosmetics = [
   },
 ];
 
+const salicylicAcidOtc = {
+  name: "클리어틴외용액 2%",
+  ingredients: "살리실산 2%",
+  indication: "붉거나 아프지 않은 검은 면포가 신경 쓰일 때 써볼 수 있는 여드름 치료제예요.",
+  caution: "붉거나 자극이 있는 부위, 감염·염증 부위, 눈가와 점막에는 쓰지 않아요. 성분 과민증·당뇨병·혈액순환장애가 있는 사람은 사용할 수 없어요. 임신·수유 중이거나 약·화장품에 알레르기 병력이 있다면 혼자 시작하지 마세요.",
+  image: "/otc/clearteen.jpg",
+  source: "https://health.kr/drug/2013041100003",
+  sourceLabel: "클리어틴 허가사항 보기",
+};
+
 export const pharmacyOptions = {
-  blackheads: {
-    name: "클리어틴외용액 2%",
-    ingredients: "살리실산 2%",
-    indication: "여드름 치료용 일반의약품이에요. 검은 점이 면포인지, 이 제품을 써도 되는 부위인지 약사에게 먼저 확인해요.",
-    caution: "붉거나 자극이 있는 부위, 감염·염증 부위, 눈가와 점막에는 쓰지 않아요. 성분 과민증·당뇨병·혈액순환장애가 있는 사람은 사용할 수 없어요. 임신·수유 중이거나 알레르기 병력이 있으면 먼저 알리세요.",
-    source: "https://nedrug.mfds.go.kr/pbp/CCBBB01/getItemDetail?itemSeq=201306847",
-  },
+  blackheads: salicylicAcidOtc,
+  closedBumps: { ...salicylicAcidOtc, indication: "붉거나 아프지 않은 하얀 면포가 신경 쓰일 때 고려할 수 있는 여드름 치료제예요." },
   breakouts: {
-    name: "파티마겔 2.5%",
-    ingredients: "과산화벤조일 2.5% (가수과산화벤조일)",
-    indication: "보통여드름 치료용 일반의약품이에요. 현재 부위가 이 제품을 쓸 수 있는 상태인지 약사에게 보여주고 확인해요.",
-    caution: "제품 설명서에 염증 환자와 성분 과민증이 있는 사람은 사용하지 말라고 적혀 있어요. 상처·짓무름·따가움이 있거나 임신·수유 중이라면 먼저 알리고, 다른 바르는 여드름약이나 각질제거제와 겹치지 않아요.",
-    source: "https://common.health.kr/shared/images/insert_pdf/IN_v1hu9d3ad1elx_00.pdf",
-    sourceLabel: "제품 설명서 보기",
+    name: "애크논크림",
+    ingredients: "이부프로펜피코놀 30 mg/g · 이소프로필메틸페놀 10 mg/g",
+    indication: "작고 붉은 뾰루지가 몇 개 올라왔을 때 해당 부위에만 써볼 수 있는 일반의약품이에요. 고름이 주로 보이거나 어떤 돌기인지 모르겠다면 이 제품부터 시험하지 않아요.",
+    caution: "눈 주위, 상처나 진물이 있는 부위, 턱 전체에 넓게 바르지 않아요. 성분에 알레르기가 있거나 임신 3기에는 사용하지 마세요. 임신 1·2기, 치료 중이거나 약·화장품 알레르기 병력이 있다면 혼자 시작하지 마세요.",
+    image: "/otc/acnon.png",
+    source: "https://nedrug.mfds.go.kr/pbp/CCBBB01/getItemDetail?itemSeq=201901721",
   },
 };
 

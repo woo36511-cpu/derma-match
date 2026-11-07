@@ -1,6 +1,8 @@
-import { cleanSymptomAnswers, getVisibleSymptomQuestions, hasBreakoutDetails } from "../data/symptomQuestions";
+import { cleanSymptomAnswers, getVisibleSymptomQuestions, hasBreakoutDetails, isSymptomAnswerValid, isLocalizedDeepNose } from "../data/symptomQuestions";
+import { getBreakoutFirstCare } from "./breakoutFirstCare";
+import { getLocalNoseCare } from "./localNoseCare";
 
-export const SYMPTOM_RULE_VERSION = "skin-care-v3";
+export const SYMPTOM_RULE_VERSION = "skin-care-v8";
 export const symptomSources = [
   { label: "AAD · 여드름과 비슷해 보이는 모낭염", url: "https://www.aad.org/public/diseases/a-z/folliculitis/" },
   { label: "DermNet · 말라세지아 모낭염 설명·임상사진", url: "https://dermnetnz.org/topics/malassezia-folliculitis" },
@@ -11,7 +13,7 @@ export const symptomSources = [
 export function assessSymptoms(input = {}, { guided = false } = {}) {
   const a = cleanSymptomAnswers(input, { guided });
   const questions = getVisibleSymptomQuestions(a, { guided });
-  const complete = questions.every(q => q.options.some(o => o.value === a[q.id]));
+  const complete = questions.every(q => isSymptomAnswerValid(q, a[q.id]));
   const result = {
     ...(guided && { guidedCare: true }),
     ruleVersion: SYMPTOM_RULE_VERSION, answers: a, complete, candidates: [], reasons: [],
@@ -20,8 +22,9 @@ export function assessSymptoms(input = {}, { guided = false } = {}) {
     reviewTiming: "악화하면 예정된 체크 날짜까지 기다리지 마세요.",
     diagnosticStatus: "not_diagnosed", clinicalValidation: "not_validated",
   };
-  if (a.breathing === "yes") return { ...result, urgency: "emergency", title: "설문보다 응급 도움을 먼저 받으세요", nextAction: "지금 호흡·삼킴 곤란이나 혀·목 붓기가 있다면 119 또는 가까운 응급실에 즉시 도움을 요청하세요." };
-  if (a.eyeWarning === "yes" || a.change === "rapid") return { ...result, urgency: "urgent", title: "오늘 바로 의료 평가가 필요해요", nextAction: "빠르게 번지는 붉어짐, 갑자기 심해진 통증 또는 눈 주위 증상이 있다면 새 제품을 시험하지 말고 바로 진료받으세요." };
+  if (a.concern === "sudden") return { ...result, urgency: "urgent", title: "갑자기 붓거나 두드러기가 나면 새 제품은 쉬어요", nextAction: "방금 새로 바른 화장품은 더 사용하지 마세요. 숨쉬기·삼키기가 어렵거나 혀·목이 붓는다면 즉시 119에 연락하고, 눈 주위 붓기와 함께 눈 통증이나 시야 변화가 있으면 바로 진료받으세요." };
+  if (a.change === "rapid") return { ...result, urgency: "urgent", title: "오늘 바로 의료 평가가 필요해요", nextAction: "붉어짐이 빠르게 번지거나 통증이 갑자기 심해졌다면 새 제품을 시험하지 말고 바로 진료받으세요." };
+  if (a.noseExtent === "spreading") return { ...result, urgency: "urgent", title: "코 주변으로 번지는 붓기는 오늘 확인이 필요해요", nextAction: "여드름약을 덧바르거나 짜지 말고 당일 의료기관에서 확인하세요. 눈 주변이 붓거나 시야가 달라지면 응급실로 가세요." };
   if (!complete) return result;
 
   const add = (key, label, reasons, limitation) => result.candidates.push({ key, label, reasons, limitation });
@@ -32,33 +35,42 @@ export function assessSymptoms(input = {}, { guided = false } = {}) {
   if (itchyUniform) add("malassezia", "말라세지아(효모·진균성) 모낭염 가능성", ["크기·모양이 비슷하고 가려운 돌기라고 답했어요.", "같은 부위의 면포는 보이지 않는다고 답했어요.", ...(["trunk", "hairline"].includes(a.area) ? ["가슴·등 또는 이마·머리카락 경계에 나타나요."] : [])], "세균성 모낭염·약물성 발진도 비슷할 수 있어요. 설문이나 사진만으로 진균을 확인할 수 없어요.");
   if (breakout && follicular && ["pustules", "mixed"].includes(a.form)) add("folliculitis", "세균성 등을 포함한 모낭염 가능성", ["털구멍 중심으로 고름이 있는 돌기가 보인다고 답했어요."], "고름이 있다고 세균성으로 확정할 수 없고, 원인균이나 항생제 적합성도 알 수 없어요.");
   if (breakout && a.shaving === "yes") add("shaving", "면도·제모 자극 / 인그로운 헤어 가능성", ["면도·제모 후 같은 부위에 생기거나 반복돼요.", ...(a.ingrown === "yes" ? ["안으로 말려 들어간 털이 보인다고 답했어요."] : [])], "면도 자극과 감염이 함께 있을 수 있어요. 면도 이력만으로 감염을 배제하지 않아요.");
+  if (a.facialRedness === "yes") add("demodex", "주사 또는 모낭충 관련 상태와 겹치는 단서", ["볼·코 주변이 반복해서 붉어지고 막힌 피지는 없다고 답했어요."], "주사와 모낭충 관련 상태는 설문만으로 구분할 수 없어요.");
   if (a.change === "irritation") add("irritation", "제품 자극 / 피부염 가능성", ["제품 사용 뒤 따가움·화끈거림·벗겨짐이 있다고 답했어요."], "사용 시점이 겹친다는 이유만으로 특정 제품이나 알레르기가 원인이라고 확정할 수 없어요.");
 
+  if (a.area === "nose_inside") return {
+    ...result, urgency: "clinic", title: "콧구멍 안쪽에는 여드름약을 바르지 마세요",
+    nextAction: "파티마겔 같은 여드름약을 콧구멍 안에 바르거나 돌기를 짜지 마세요. 아픔이 계속되거나 노란 딱지·고름이 있으면 코 입구 염증인지 이비인후과에서 확인하세요. 코끝이 아프게 붓거나 붉은기가 번지면 오늘 바로 확인하세요.",
+  };
+  const localizedDeepNoseBump = guided && isLocalizedDeepNose(a) &&
+    a.duration === "under_week" && ["none", "mild"].includes(a.pain) && a.surface === "intact" &&
+    ["new", "stable", "improving"].includes(a.change) && ["none", "dry"].includes(a.barrier) &&
+    a.itch === "none" && a.shaving === "no" && a.recentProduct === "none";
+  if (localizedDeepNoseBump) return { ...result, ...getLocalNoseCare(a) };
   if (a.pain === "severe" || a.form === "deep" || a.surface === "damaged") {
     return { ...result, urgency: "clinic", title: "새 약을 추가하기 전에 진료로 확인하세요", nextAction: "깊은 덩이·심한 통증·흉터·물집·진물이 있다면 자가 관리만 반복하지 말고 가까운 시일 안에 진료받으세요." };
   }
-  const unknownSafety = [a.breathing, a.eyeWarning, a.eruption, a.change, a.surface, a.barrier].includes("unknown");
-  if (unknownSafety) return { ...result, title: "안전 신호가 불확실해 상태 확인이 먼저예요", nextAction: "모르는 답을 억지로 추정하지 마세요. 현재 상태를 약사나 의료진에게 보여주고 확인하세요. 호흡곤란이나 급한 변화가 의심되면 즉시 의료 도움을 받으세요." };
+  const unknownSafety = [a.eruption, a.change, a.surface, a.barrier, a.noseExtent].includes("unknown");
+  if (unknownSafety) return { ...result, title: "안전 신호가 불확실해 상태 확인이 먼저예요", nextAction: "오늘은 새 제품을 바르지 말고, 밝은 곳에서 붉어짐·물집·진물이 있는지 다시 확인해요. 붉어짐이 빠르게 번지거나 통증이 갑자기 심해지면 바로 진료받으세요." };
 
-  const notClearAcne = result.candidates.some(c => ["malassezia", "folliculitis", "shaving"].includes(c.key));
+  const notClearAcne = result.candidates.some(c => ["malassezia", "folliculitis", "shaving", "demodex"].includes(c.key));
   const persistent = ["two_six_weeks", "long"].includes(a.duration);
-  if (notClearAcne && persistent) return { ...result, urgency: "clinic", title: "반복·지속되는 증상의 원인을 확인하세요", nextAction: "지속되는 모낭염 의심 증상이나 충분히 관리해도 호전이 없는 경우에는 약을 차례로 바꾸기보다 진료로 원인을 확인하세요. 진료가 곧 배양검사를 뜻하는 것은 아니에요." };
-  if (a.concern === "sudden") return { ...result, urgency: "pharmacy", title: "지금은 새 제품을 쉬어가세요", nextAction: "갑자기 붓거나 두드러기가 생긴 상태에서는 새 제품을 시험하지 마세요. 붓기가 심해지거나 숨쉬기·삼키기가 어려워지면 즉시 도움을 받으세요." };
+  if (notClearAcne && persistent) return {
+    ...result, urgency: "clinic", title: "반복·지속되는 돌기는 진료로 원인을 확인해요",
+    nextAction: guided
+      ? (a.change === "irritation" || a.barrier === "stinging"
+        ? "따가웠던 새 화장품을 쉬고 자극 부위를 문지르지 않아요. 돌기가 반복되거나 오래 이어졌으니 치료 방향은 진료에서 확인해요."
+        : `오늘은 이렇게 관리해요. ${getBreakoutFirstCare(result.candidates).action} 반복되거나 오래 이어졌으니 치료 방향은 진료에서 확인해요.`)
+      : "지속되는 증상은 약을 차례로 바꾸기보다 진료로 원인을 확인해요.",
+  };
   if (a.change === "worse" || a.change === "irritation" || a.barrier === "stinging") return { ...result, urgency: "pharmacy", title: "새 제품보다 악화·자극 원인 확인이 먼저예요", nextAction: guided && a.barrier === "stinging"
     ? "새 기능성 제품은 추가하지 말고, 편안했던 세안·보습만 유지해요. 최근 추가한 화장품이 따가웠다면 잠시 쉬고, 다음에는 따가움과 붉어짐이 줄었는지 확인해요. 악화가 이어지면 상담받으세요."
-    : "최근 추가한 화장품이 따갑게 느껴졌다면 그 제품을 잠시 쉬고 피부가 어떻게 달라지는지 기록해보세요. 악화가 이어지면 상담받으세요." };
-  const uncertainFeatures = breakout && ["form", "comedones", "uniform", "itch", "follicular", "shaving", "pain", "duration"].some(k => a[k] === "unknown");
+    : "오늘은 최근 추가한 화장품 중 따가웠던 제품과 스크럽을 쉬고, 불편한 부위를 손끝으로 가볍게 씻어요. 붉어짐이 퍼지거나 통증이 늘면 진료받으세요." };
+  const uncertainFeatures = breakout && ["form", "comedones", "uniform", "itch", "follicular", "shaving", "pain", "duration", "facialRedness"].some(k => a[k] === "unknown");
   if (notClearAcne || uncertainFeatures || (breakout && result.candidates.length === 0)) {
     if (guided) {
-      const shavingClue = result.candidates.some(candidate => candidate.key === "shaving");
-      return {
-        ...result,
-        urgency: "pharmacy",
-        title: shavingClue ? "당분간 트러블 부위를 바짝 면도하지 않아요" : "새 약을 고르기 전에 지금 트러블을 직접 보여주세요",
-        nextAction: shavingClue
-          ? "해당 부위는 면도·제모를 잠시 쉬고, 꼭 해야 한다면 피부에 바짝 깎지 않아요. 면도를 줄인 뒤 새 돌기가 줄어드는지 확인해요. 계속 번지거나 아파지면 진료로 확인해요."
-          : "오늘은 돌기를 짜거나 문지르지 말고, 지금 상태를 같은 조명에서 사진으로 남겨요. 약을 고르고 싶다면 사진과 최근 바른 제품을 약사나 의료진에게 보여주세요. 반복되거나 범위가 넓어지면 진료로 확인해요.",
-      };
+      const care = getBreakoutFirstCare(result.candidates);
+      return { ...result, urgency: "pharmacy", title: care.title, nextAction: care.action, breakoutCare: care };
     }
     return { ...result, urgency: "pharmacy", title: "트러블이 가라앉는지 먼저 살펴봐요", nextAction: "각질 제거제나 새 제품을 추가하기 전에 가려움·새 돌기·면도와의 관계를 기록해보세요. 계속 번지거나 호전되지 않으면 상담받으세요." };
   }
@@ -86,6 +98,6 @@ export function feedbackNeedsSymptomReview(answers = {}) {
 export function getFeedbackRoutineSafety(assessment, answers = {}) {
   const safety = getRoutineSafety(assessment);
   return !safety.blocked && feedbackNeedsSymptomReview(answers)
-    ? { blocked: true, reason: "사용 후 피드백에서 트러블 증가·악화 또는 자극 신호를 답했어요. 증상 확인 답변과 함께 약사나 의료진에게 현재 상태와 사용 이력을 보여주고, 새 제품을 자동으로 바꾸기 전에 원인을 확인하세요." }
+    ? { blocked: true, reason: "지금은 새 제품으로 바꾸지 않아요. 새로 추가한 화장품이 따갑거나 붉어졌다면 잠시 쉬고, 언제부터 새 돌기나 자극이 늘었는지 기록해요. 증상 확인에서 변화한 답을 다시 골라주세요." }
     : safety;
 }

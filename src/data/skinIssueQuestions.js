@@ -454,16 +454,6 @@ export const sensitivityRednessQuestions = [
   },
 
   {
-    id: "breathing",
-    q: "붓기와 함께 숨쉬기나 삼키기가 불편했던 적이 있나요?",
-    showIf: (answers) => answers.swelling?.value === "eyes_lips",
-    options: [
-      { label: "없음", value: "none" },
-      { label: "숨쉬기 또는 삼키기가 불편했던 적 있음", value: "difficulty" },
-    ],
-  },
-
-  {
     id: "recentProduct",
     q: "최근 2~4주 안에 새로 추가한 제품이 있나요?",
     options: [
