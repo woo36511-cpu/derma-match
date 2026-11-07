@@ -217,7 +217,7 @@ test("browser popstate restores the prior screen", () => {
     new PopStateEvent("popstate", { state: { step: "start" } }),
   );
   expect(
-    screen.getByRole("button", { name: "내 피부 관리 순서 찾기" }),
+    screen.getByRole("button", { name: "증상부터 자세히 확인하기" }),
   ).toBeInTheDocument();
 });
 
@@ -295,7 +295,7 @@ const guidedBreakoutBase = {
 };
 
 function answerGuidedCheck(overrides, { hydration = false, recheck = false } = {}) {
-  if (!recheck) click("내 피부 관리 순서 찾기");
+  if (!recheck) click("증상부터 자세히 확인하기");
   const answers = { ...guidedBreakoutBase, ...overrides };
   const questions = getVisibleSymptomQuestions(answers, { guided: true });
   for (const [index, question] of questions.entries()) {

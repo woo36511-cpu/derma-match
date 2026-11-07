@@ -15,10 +15,13 @@ import { Footer } from "./components/Footer";
 import { AccountPanel } from "./components/AccountPanel";
 import { SymptomCheckScreen } from "./screens/SymptomCheckScreen";
 import { SymptomResultScreen } from "./screens/SymptomResultScreen";
+import { SimpleCareScreen } from "./screens/SimpleCareScreen";
+import { skinSurveyQuestions } from "./data/skinSurvey";
 import { RoutineSafetyNotice } from "./components/RoutineSafetyNotice";
 
 export default function App() {
   const {
+    simpleMode, simpleRecord, startSimpleSkinCare, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
     symptomCheck, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck, continueFeedback,
     account,
     resetFlow,
@@ -124,7 +127,8 @@ export default function App() {
         {step === "symptomResult" && <SymptomResultScreen check={symptomCheck} setStep={setStep} />}
         {step === "start" && (
           <StartScreen
-            startCheckedFlow={symptomCheck.begin}
+            startCheckedFlow={startCheckedFlow}
+            startSimpleSkinCare={startSimpleSkinCare}
             startSymptomRecheck={startSymptomRecheck}
             symptomCheck={symptomCheck}
             setActiveJourneyId={setActiveJourneyId}
@@ -178,6 +182,7 @@ export default function App() {
         ))}
         {step === "survey" && currentSurveyQuestion && (
           <SurveyScreen
+            simpleMode={simpleMode}
             surveyIndex={surveyIndex}
             surveyProgress={surveyProgress}
             currentSurveyQuestion={currentSurveyQuestion}
@@ -189,6 +194,8 @@ export default function App() {
             isLastSurveyQuestion={isLastSurveyQuestion}
           />
         )}
+
+        {step === "simpleCare" && <SimpleCareScreen key={account.user?.id ?? "guest"} profile={surveyResult} surveyAnswers={surveyAnswers} initialRecord={simpleRecord} onSave={saveSimpleSkinRecord} onBack={() => { setSurveyIndex(skinSurveyQuestions.length - 1); setStep("survey"); }} onHome={() => setStep("start")} />}
 
         {step === "issueSelect" && (
           <IssueSelectScreen

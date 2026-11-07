@@ -5,13 +5,13 @@ import { SeoContentSection } from "../components/SeoContentSection";
 import React from "react";
 
 const examplePlan = [
-  { number: "01", title: "먼저 해결할 문제", detail: "뾰루지와 함께 피부가 따갑다면, 자극을 줄이는 관리부터 안내해요." },
-  { number: "02", title: "오늘 함께 할 관리", detail: "잘 맞던 세안·보습은 이어가고, 자국에는 자외선 차단을 챙겨요." },
-  { number: "03", title: "나중에 추가할 관리", detail: "새 여드름약이나 각질 제품은 따가움이 잦아든 뒤에 살펴봐요." },
+  { number: "01", title: "피부타입 확인", detail: "기존 설문으로 건성·지성·수부지와 필요한 보습감을 살펴봐요." },
+  { number: "02", title: "세안제·기초 화장품", detail: "피부타입에 맞는 세안제·토너·세럼·크림을 추천해요." },
+  { number: "03", title: "고민별 제품 추가", detail: "여드름 같은 추가 고민이 있을 때만 모양과 쓰는 약을 확인해요." },
 ];
 
 export function StartScreen({
-  startCheckedFlow, startSymptomRecheck, symptomCheck,
+  startSimpleSkinCare, startCheckedFlow, startSymptomRecheck, symptomCheck,
   setActiveJourneyId,
   setStep,
   isQuickJourney,
@@ -33,25 +33,25 @@ export function StartScreen({
           <div>
             <p className="mb-4 text-xs font-bold tracking-wide text-emerald-800 sm:text-sm">얼굴 피부 고민별 관리 가이드</p>
             <h1 id="start-title" className="break-keep text-3xl font-extrabold leading-tight tracking-tight text-slate-950 sm:text-5xl md:text-4xl lg:text-5xl">
-              얼굴 피부 고민,<br />무엇부터 해결할까요?
+              내 피부타입에 맞는 기초,<br />피부 고민에 맞는 관리.
             </h1>
             <p className="mt-4 max-w-lg break-keep text-sm leading-relaxed text-slate-700 sm:text-base">
-              여드름, 따가움, 갈색 자국처럼 지금 신경 쓰이는 것부터 골라보세요.
-              피부 상태와 이미 쓰는 제품을 살펴, 오늘 시작할 관리와 함께 해도 되는 관리를 알려드려요.
+              먼저 피부타입에 맞는 세안제와 기초 화장품을 찾아요.
+              여드름이나 모낭염 같은 고민이 있다면 모양과 쓰는 약을 확인해 추가 관리 정보를 붙여드려요.
             </p>
             <div className="mt-6">
               <button type="button" onClick={() => {
                 setActiveJourneyId(null);
-                startCheckedFlow("guidedCare");
+                startSimpleSkinCare();
               }} className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-2xl bg-emerald-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-emerald-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-800 sm:w-auto sm:text-base">
-                내 피부 관리 순서 찾기 <span aria-hidden="true">→</span>
+                피부타입 확인하고 추천받기 <span aria-hidden="true">→</span>
               </button>
-              <p className="mt-3 text-xs text-slate-600 sm:text-sm">피부타입이나 트러블의 이름을 몰라도 시작할 수 있어요.</p>
+              <p className="mt-3 text-xs text-slate-600 sm:text-sm">피부타입을 몰라도 괜찮아요. 답변에 맞춰 기본 루틴부터 찾아요.</p>
             </div>
           </div>
           <aside aria-labelledby="example-plan" className="rounded-3xl border border-emerald-100 bg-white p-5 shadow-sm sm:p-6">
-            <p className="text-xs font-bold text-emerald-800">결과 화면 예시</p>
-            <h2 id="example-plan" className="mt-1 break-keep text-lg font-bold text-slate-950 sm:text-xl">뾰루지와 따가움, 자국이 함께 있다면</h2>
+            <p className="text-xs font-bold text-emerald-800">간단한 이용 순서</p>
+            <h2 id="example-plan" className="mt-1 break-keep text-lg font-bold text-slate-950 sm:text-xl">기본 루틴에 필요한 관리만 더해요</h2>
             <ol className="mt-4 divide-y divide-slate-100">
               {examplePlan.map(({ number, title, detail }) => (
                 <li key={title} className="flex gap-3 py-3 last:pb-0">
@@ -68,12 +68,13 @@ export function StartScreen({
       </section>
 
       <div className="flex flex-wrap items-center gap-x-5 gap-y-2 px-1 text-sm text-slate-700">
+        <button type="button" onClick={() => { setActiveJourneyId(null); startCheckedFlow("guidedCare"); }} className="min-h-10 font-medium underline underline-offset-4">증상부터 자세히 확인하기</button>
         <button type="button" onClick={startSymptomRecheck} className="min-h-10 font-medium underline underline-offset-4">증상 변화·악화 재설문</button>
         {symptomCheck.latestRecord && <button type="button" onClick={symptomCheck.openLatest} className="min-h-10 font-medium underline underline-offset-4">지난 증상 확인 기록</button>}
       </div>
 
       <DetailDisclosure title="피부타입별 추천·전체 설문 보기">
-        <p className="mb-3 text-sm text-slate-600">현재 고민 확인 외에 피부타입이나 기본 화장품 루틴을 살펴볼 수 있어요.</p>
+        <p className="mb-3 text-sm text-slate-600">피부타입을 이미 알고 있다면 빠른 추천을, 더 자세히 확인하고 싶다면 전체 설문을 이용해요.</p>
         <div className="grid gap-3 sm:grid-cols-2">
           <button type="button" onClick={() => {
             setActiveJourneyId(null);
