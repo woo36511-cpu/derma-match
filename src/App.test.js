@@ -567,3 +567,13 @@ test("pustules with comedones explain what to ask about without recommending a s
   expect(screen.getByText("어떤 치료를 확인하면 되나요?")).toBeVisible();
   expect(screen.queryByText("약국 일반의약품 후보")).not.toBeInTheDocument();
 });
+
+test("a deep localized nose bump asks about the medicine and duration then avoids automatic switching", () => {
+  render(<App />);
+  answerGuidedCheck({ area: "nose_skin", noseExtent: "local", form: "deep", pain: "mild",
+    noseMedication: "patima", noseMedicationDuration: "few_days", noseMedicationResponse: "unchanged" });
+  click("내 피부 관리 보기");
+  expect(screen.getByRole("heading", { name: "파티마겔을 며칠 쓴 것만으로 약을 바꾸지 않아요" })).toBeVisible();
+  expect(screen.getByText(/사용 1~3일만으로는/)).toBeVisible();
+  expect(screen.queryByRole("heading", { name: "애크논크림" })).not.toBeInTheDocument();
+});

@@ -1,7 +1,8 @@
-import { cleanSymptomAnswers, getVisibleSymptomQuestions, hasBreakoutDetails, isSymptomAnswerValid } from "../data/symptomQuestions";
+import { cleanSymptomAnswers, getVisibleSymptomQuestions, hasBreakoutDetails, isSymptomAnswerValid, isLocalizedDeepNose } from "../data/symptomQuestions";
 import { getBreakoutFirstCare } from "./breakoutFirstCare";
+import { getLocalNoseCare } from "./localNoseCare";
 
-export const SYMPTOM_RULE_VERSION = "skin-care-v7";
+export const SYMPTOM_RULE_VERSION = "skin-care-v8";
 export const symptomSources = [
   { label: "AAD · 여드름과 비슷해 보이는 모낭염", url: "https://www.aad.org/public/diseases/a-z/folliculitis/" },
   { label: "DermNet · 말라세지아 모낭염 설명·임상사진", url: "https://dermnetnz.org/topics/malassezia-folliculitis" },
@@ -23,6 +24,7 @@ export function assessSymptoms(input = {}, { guided = false } = {}) {
   };
   if (a.concern === "sudden") return { ...result, urgency: "urgent", title: "갑자기 붓거나 두드러기가 나면 새 제품은 쉬어요", nextAction: "방금 새로 바른 화장품은 더 사용하지 마세요. 숨쉬기·삼키기가 어렵거나 혀·목이 붓는다면 즉시 119에 연락하고, 눈 주위 붓기와 함께 눈 통증이나 시야 변화가 있으면 바로 진료받으세요." };
   if (a.change === "rapid") return { ...result, urgency: "urgent", title: "오늘 바로 의료 평가가 필요해요", nextAction: "붉어짐이 빠르게 번지거나 통증이 갑자기 심해졌다면 새 제품을 시험하지 말고 바로 진료받으세요." };
+  if (a.noseExtent === "spreading") return { ...result, urgency: "urgent", title: "코 주변으로 번지는 붓기는 오늘 확인이 필요해요", nextAction: "여드름약을 덧바르거나 짜지 말고 당일 의료기관에서 확인하세요. 눈 주변이 붓거나 시야가 달라지면 응급실로 가세요." };
   if (!complete) return result;
 
   const add = (key, label, reasons, limitation) => result.candidates.push({ key, label, reasons, limitation });
@@ -36,10 +38,19 @@ export function assessSymptoms(input = {}, { guided = false } = {}) {
   if (a.facialRedness === "yes") add("demodex", "주사 또는 모낭충 관련 상태와 겹치는 단서", ["볼·코 주변이 반복해서 붉어지고 막힌 피지는 없다고 답했어요."], "주사와 모낭충 관련 상태는 설문만으로 구분할 수 없어요.");
   if (a.change === "irritation") add("irritation", "제품 자극 / 피부염 가능성", ["제품 사용 뒤 따가움·화끈거림·벗겨짐이 있다고 답했어요."], "사용 시점이 겹친다는 이유만으로 특정 제품이나 알레르기가 원인이라고 확정할 수 없어요.");
 
+  if (a.area === "nose_inside") return {
+    ...result, urgency: "clinic", title: "콧구멍 안쪽에는 여드름약을 바르지 마세요",
+    nextAction: "파티마겔 같은 여드름약을 콧구멍 안에 바르거나 돌기를 짜지 마세요. 아픔이 계속되거나 노란 딱지·고름이 있으면 코 입구 염증인지 이비인후과에서 확인하세요. 코끝이 아프게 붓거나 붉은기가 번지면 오늘 바로 확인하세요.",
+  };
+  const localizedDeepNoseBump = guided && isLocalizedDeepNose(a) &&
+    a.duration === "under_week" && ["none", "mild"].includes(a.pain) && a.surface === "intact" &&
+    ["new", "stable", "improving"].includes(a.change) && ["none", "dry"].includes(a.barrier) &&
+    a.itch === "none" && a.shaving === "no" && a.recentProduct === "none";
+  if (localizedDeepNoseBump) return { ...result, ...getLocalNoseCare(a) };
   if (a.pain === "severe" || a.form === "deep" || a.surface === "damaged") {
     return { ...result, urgency: "clinic", title: "새 약을 추가하기 전에 진료로 확인하세요", nextAction: "깊은 덩이·심한 통증·흉터·물집·진물이 있다면 자가 관리만 반복하지 말고 가까운 시일 안에 진료받으세요." };
   }
-  const unknownSafety = [a.eruption, a.change, a.surface, a.barrier].includes("unknown");
+  const unknownSafety = [a.eruption, a.change, a.surface, a.barrier, a.noseExtent].includes("unknown");
   if (unknownSafety) return { ...result, title: "안전 신호가 불확실해 상태 확인이 먼저예요", nextAction: "오늘은 새 제품을 바르지 말고, 밝은 곳에서 붉어짐·물집·진물이 있는지 다시 확인해요. 붉어짐이 빠르게 번지거나 통증이 갑자기 심해지면 바로 진료받으세요." };
 
   const notClearAcne = result.candidates.some(c => ["malassezia", "folliculitis", "shaving", "demodex"].includes(c.key));

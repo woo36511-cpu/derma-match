@@ -92,3 +92,49 @@ test("conditional changes remove old broad health and hidden shaving answers and
   expect(assessSymptoms(noRash).blockRoutine).toBe(false);
   expect(getRoutineSafety(assess({}), { careLevel: "clinic_priority", summary: "진료" }).blocked).toBe(true);
 });
+
+const noseCase = {
+  ...base, concern: "breakouts", area: "nose_skin", noseExtent: "local", form: "deep",
+  pain: "mild", basicRoutine: "both", secondaryConcerns: ["none"],
+  noseMedication: "patima", noseMedicationDuration: "few_days", noseMedicationResponse: "unchanged",
+};
+const assessNose = changes => assessSymptoms({ ...noseCase, ...changes }, { guided: true });
+
+test("a recent localized outer nose bump checks existing medication before offering home care", () => {
+  const result = assessNose({});
+  expect(result).toMatchObject({ complete: true, urgency: "review", blockRoutine: true, allowMedicationRecommendation: false });
+  expect(result.nextAction).toContain("사용 1~3일");
+  expect(result.nextAction).toContain("추가하지 마세요");
+});
+
+test("nose spread interrupts the survey and keeps urgent care", () => {
+  expect(assessNose({ noseExtent: "spreading" }))
+    .toMatchObject({ complete: true, urgency: "urgent", blockRoutine: true });
+});
+
+test.each([
+  { pain: "severe" }, { surface: "damaged" }, { duration: "long" },
+  { change: "worse" },
+])("localized home care does not bypass a higher-risk nose answer: %j", change => {
+  expect(assessNose(change).urgency).not.toBe("review");
+});
+
+test("inside nostril symptoms are not treated as ordinary outer skin acne", () => {
+  const result = assessNose({ area: "nose_inside" });
+  expect(result).toMatchObject({ complete: true, urgency: "clinic", blockRoutine: true });
+  expect(result.nextAction).toContain("콧구멍 안에");
+});
+
+test("new irritation from patima prompts a pause rather than another acne medicine", () => {
+  expect(assessNose({ noseMedicationResponse: "irritated" }).nextAction).toContain("파티마겔은 중단");
+});
+
+test("changing medication clears hidden duration and response answers", () => {
+  const cleaned = cleanSymptomAnswers({ ...noseCase, noseMedication: "none" }, { guided: true });
+  expect(cleaned).not.toHaveProperty("noseMedicationDuration");
+  expect(cleaned).not.toHaveProperty("noseMedicationResponse");
+});
+
+test("uncertain nose extent never authorizes routine or new medicine", () => {
+  expect(assessNose({ noseExtent: "unknown" })).toMatchObject({ blockRoutine: true, allowMedicationRecommendation: false });
+});
