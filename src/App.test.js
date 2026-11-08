@@ -8,8 +8,13 @@ import { SAVED_SURVEY_KEY, JOURNEY_HISTORY_KEY } from "./data/storageKeys";
 
 const click = (name) => fireEvent.click(screen.getByRole("button", { name }));
 function openExistingEntry(name) {
-  fireEvent.click(screen.getByText("피부타입별 추천·전체 설문 보기", { selector: "summary" }));
-  click(name);
+  // The former full-survey accordion is gone. Keep coverage of existing journey
+  // flows through the quick shelf and the no-record recheck fallback.
+  if (name.test("피부타입 알고 있어요")) {
+    click(/피부타입별 화장품/);
+    click(/수부지·복합성/);
+    click("이 루틴으로 기록하기");
+  } else click("증상 변화·악화 재설문");
 }
 const history = () => JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY) || "[]").filter(record => !record.assessmentOnly);
 
