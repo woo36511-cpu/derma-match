@@ -8194,5 +8194,166 @@ export const products = [
       ]
     },
     "isAvailable": true
+  },
+{
+  "id": 51,
+  "name": "마녀공장 갈락 나이아신 3.0 에센스",
+  "brand": "마녀공장",
+  "category": "serum",
+  "hydrationLevel": 7,
+  "texture": "light",
+  "concerns": [
+    "tone",
+    "fine_lines"
+  ],
+  "ingredients": [
+    "갈락토미세스발효여과물",
+    "나이아신아마이드",
+    "글리세린",
+    "판테놀",
+    "아데노신",
+    "세라마이드엔피"
+  ],
+  "fullIngredients": [
+    "갈락토미세스발효여과물(81.9%)",
+    "부틸렌글라이콜",
+    "나이아신아마이드(4%)",
+    "1,2-헥산다이올",
+    "정제수",
+    "펜틸렌글라이콜",
+    "글리세린",
+    "판테놀",
+    "아데노신",
+    "잔탄검",
+    "소듐하이알루로네이트",
+    "베타-글루칸",
+    "에틸헥실글리세린",
+    "아세틸글루코사민",
+    "비사보롤",
+    "코직애씨드",
+    "토코페롤",
+    "카프릴릭/카프릭트라이글리세라이드",
+    "폴리글리세릴-10라우레이트",
+    "하이드로제네이티드레시틴",
+    "세라마이드엔피",
+    "글루타티온",
+    "하이알루로닉애씨드/폴리아이소프로필아크릴아마이드코폴리머",
+    "소듐스테아로일글루타메이트"
+  ],
+  "activeIngredients": [
+    {
+      "name": "갈락토미세스발효여과물",
+      "concentration": 81.9,
+      "unit": "%",
+      "concentrationVerified": true,
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "나이아신아마이드",
+      "concentration": 4,
+      "unit": "%",
+      "concentrationVerified": true,
+      "sourceType": "official_domestic_full_ingredient_list"
+    },
+    {
+      "name": "아데노신",
+      "concentration": null,
+      "unit": "%",
+      "concentrationVerified": false,
+      "sourceType": "official_domestic_full_ingredient_list"
+    }
+  ],
+  "careProfile": {
+    "hydrationSupport": 5,
+    "lightweightFit": 8,
+    "soothingSupport": 2,
+    "congestionSupport": 0,
+    "barrierSupport": 2
+  },
+  "evidence": {
+    "evidenceLevel": "B",
+    "officialProductVerified": true,
+    "currentOfficialProductVerified": true,
+    "fullIngredientsVerified": true,
+    "fullIngredientsMarket": "domestic_official",
+    "domesticFormulaVerified": true,
+    "concentrationDisclosure": "partially_disclosed",
+    "purchaseLinkVerified": false,
+    "priceVerified": false,
+    "lastVerifiedAt": "2026-11-08",
+    "sources": [
+      {
+        "sourceType": "official_domestic_product_and_full_ingredient_page",
+        "url": "https://m.manyo.co.kr/goods/goods_view.php?goodsNo=1000000233"
+      },
+      {
+        "sourceType": "marketplace_listing_search_index",
+        "url": "https://www.coupang.com/vp/products/9204072635"
+      }
+    ],
+    "note": "현행 3.0 / 60ml 전성분 24개와 미백·주름개선 기능성 표시를 확인했습니다. 2.0 / 50ml 처방과 섞지 않습니다. 브랜드 인체시험 변화율을 임상 효능 등급이나 예상 개선량으로 저장하지 않았습니다. 쿠팡 검색 색인에서 동일 제품·용량을 확인했으며 실시간 재고·판매자별 진위·가격은 확인하지 않았습니다."
+  },
+  "functionalClaims": {
+    "types": [
+      "whitening",
+      "wrinkle"
+    ],
+    "verification": "official_brand_label",
+    "source": "https://m.manyo.co.kr/goods/goods_view.php?goodsNo=1000000233",
+    "verifiedAt": "2026-11-08"
+  },
+  "catalogAudit": {
+    "reviewedAt": "2026-11-08",
+    "status": "reviewed",
+    "formulaStatus": "domestic_official",
+    "careProfileSource": "internal_conservative_assessment",
+    "careProfileNote": "추천용 제형·보습 내부 평가이며 임상 효능 점수가 아닙니다.",
+    "remainingGaps": [
+      "purchase_link",
+      "price",
+      "independent_clinical_efficacy"
+    ]
+  },
+  "recommendationScope": "addon_only",
+  "description": "나이아신아마이드 4%와 아데노신을 포함한 미백·주름개선 기능성 에센스",
+  "skinTypes": [
+    "중성",
+    "복합성",
+    "수부지",
+    "지성"
+  ],
+  "image": "/products/manyo-galac-niacin-3.png",
+  "link": "",
+  "price": null,
+  "volume": "60ml",
+  "sensitivitySafe": false,
+  "beginnerFriendly": false,
+  "isAvailable": true,
+  "shortReason": "피부톤·잔주름을 위한 선택형 기능성 후보",
+  "caution": [
+    "발효 원료·나이아신아마이드 등 개별 성분의 자극·알레르기 반응은 개인차가 있어요.",
+    "눈가와 상처 부위를 피하고, 붉어짐·부기·가려움이 생기면 중단해요.",
+    "염증성 여드름이나 모낭염 치료용으로 안내하지 않아요."
+  ],
+  "usage": {
+    "when": "에센스·세럼 단계",
+    "howToUse": [
+      "처음에는 작은 부위에 소량으로 반응을 확인해요.",
+      "적당량을 피부 결에 따라 고르게 펴 바르고 가볍게 흡수시켜요.",
+      "건조함이 남으면 잘 맞는 보습제를 사용하고 낮에는 자외선 차단을 유지해요."
+    ],
+    "caution": [
+      "같은 목적의 나이아신아마이드 세럼을 새로 여러 개 겹치지 않아요."
+    ]
+  },
+  "marketplaceListing": {
+    "provider": "coupang",
+    "url": "https://www.coupang.com/vp/products/9204072635",
+    "productName": "마녀공장 갈락 나이아신 3.0 에센스",
+    "volume": "60ml",
+    "verification": "search_index_identity_match",
+    "checkedAt": "2026-11-08",
+    "liveStockVerified": false
   }
+}
 ];

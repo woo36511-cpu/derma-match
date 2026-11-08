@@ -1,3 +1,5 @@
+import { CosmeticAddOnSection } from "../components/CosmeticAddOnSection";
+import { buildCosmeticAddOnPlan } from "../utils/cosmeticAddOnPlan";
 import { useMemo, useState } from "react";
 import { getSimpleCareQuestions, cleanSimpleCareAnswers } from "../data/simpleCare";
 import { buildSimpleCarePlan } from "../utils/simpleCarePlan";
@@ -37,19 +39,27 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   const [record, setRecord] = useState(initialRecord ?? null);
   const [showResult, setShowResult] = useState(() => Boolean(initialRecord));
   const [saveError, setSaveError] = useState(false);
+  const [cosmeticAnswers, setCosmeticAnswers] = useState(() => initialRecord?.cosmeticAddOn?.answers ?? null);
   const questions = getSimpleCareQuestions(answers);
   const question = questions[Math.min(index, questions.length - 1)];
   const plan = buildSimpleCarePlan(answers);
   const routine = useMemo(() => buildDynamicRoutine(profile.hydrationLevel, { mainConcern: "none", skinType: profile.skinType, isSensitive: true }), [profile.hydrationLevel, profile.skinType]);
-  const save = () => {
+  const cosmeticContext = { profile, surveyAnswers, carePlan: plan, routine };
+  const cosmeticPlan = cosmeticAnswers ? buildCosmeticAddOnPlan(cosmeticAnswers, cosmeticContext) : null;
+  const applyCosmeticRoute = addon => addon?.suppressPharmacy ? { ...plan, pharmacy: null, title: "막힌 피지·거친 결은 선택한 화장품 후보로 살펴봐요.", detail: "아래 추가 화장품 영역에서 선택한 후보를 확인해요. 약품 후보 표시는 보류했어요.", productNote: "각질 관리 화장품과 여드름약을 같은 부위에 함께 새로 시작하지 않아요." } : plan;
+  const displayPlan = applyCosmeticRoute(cosmeticPlan);
+  const save = (nextCosmeticAnswers = cosmeticAnswers) => {
     if (!plan.complete) return;
-    const next = buildSimpleSkinRecord(surveyAnswers, profile, routine, plan, record);
+    const nextCosmeticPlan = nextCosmeticAnswers ? buildCosmeticAddOnPlan(nextCosmeticAnswers, cosmeticContext) : null;
+    const next = buildSimpleSkinRecord(surveyAnswers, profile, routine, applyCosmeticRoute(nextCosmeticPlan), record, nextCosmeticPlan);
+    setCosmeticAnswers(nextCosmeticAnswers);
     setRecord(next); setShowResult(true);
     try { onSave(next); setSaveError(false); } catch { setSaveError(true); }
   };
   if (showResult && plan.complete) return <div className="space-y-6">
-    <SimpleCareResult profile={profile} routine={routine} plan={plan} />
-    {saveError && <div role="alert" className="rounded-xl bg-amber-50 p-4">결과는 표시했지만 저장하지 못했어요. <button className="underline" onClick={save}>저장 다시 시도</button></div>}
+    <SimpleCareResult profile={profile} routine={routine} plan={displayPlan} />
+    {!plan.blockNewBasics && <CosmeticAddOnSection context={cosmeticContext} initialAnswers={cosmeticAnswers} onApply={save} />}
+    {saveError && <div role="alert" className="rounded-xl bg-amber-50 p-4">결과는 표시했지만 저장하지 못했어요. <button className="underline" onClick={() => save()}>저장 다시 시도</button></div>}
     <div className="flex flex-wrap gap-3"><button className="rounded-xl border px-4 py-3" onClick={() => { setShowResult(false); setIndex(0); }}>추가 고민 답변 바꾸기</button><button className="rounded-xl border px-4 py-3" onClick={onBack}>피부타입 답변 다시 보기</button><button className="rounded-xl bg-slate-900 text-white px-4 py-3" onClick={onHome}>시작 화면</button></div>
   </div>;
   return <SimpleCareQuestion question={question} index={index} total={questions.length} answer={answers[question.id]}

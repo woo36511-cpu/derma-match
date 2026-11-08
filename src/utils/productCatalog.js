@@ -110,6 +110,8 @@ export function isProductAllowedForContext(
   category,
   userContext = {},
 ) {
+  if (product?.recommendationScope === "addon_only") return false;
+
   if (!isProductAvailable(product)) {
     return false;
   }

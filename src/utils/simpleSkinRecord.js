@@ -1,9 +1,10 @@
 import { createJourneyRecordId } from "./journeyStorage";
 import { buildSkinMeasurement } from "./skinStateMeasurement";
 import { buildProductUsagePlan } from "./productUsagePlan";
+import { snapshotCosmeticAddOn } from "./cosmeticAddOnPlan";
 import { SIMPLE_CARE_VERSION } from "./simpleCarePlan";
 
-export function buildSimpleSkinRecord(surveyAnswers, profile, routine, plan, previous = null) {
+export function buildSimpleSkinRecord(surveyAnswers, profile, routine, plan, previous = null, cosmeticPlan = null) {
   const savedAt = new Date().toISOString();
   const mainConcern = plan.answers.concern === "acne"
     ? plan.answers.shape === "blackhead" ? "blackhead_sebum" : plan.answers.shape === "closed" ? "closed_comedones" : "inflammatory_acne"
@@ -14,6 +15,7 @@ export function buildSimpleSkinRecord(surveyAnswers, profile, routine, plan, pre
     source: "simple", type: "initial_survey", journeySchemaVersion: 3, savedAt,
     surveyAnswers, mainConcern, issueAnswers: {},
     additionalCare: plan.answers,
+    ...(cosmeticPlan?.complete ? { cosmeticAddOn: snapshotCosmeticAddOn(cosmeticPlan) } : {}),
     symptomAssessment: {
       ruleVersion: SIMPLE_CARE_VERSION, complete: plan.complete, blockRoutine: plan.blockNewBasics,
       allowMedicationRecommendation: Boolean(plan.pharmacy), diagnosticStatus: "not_diagnosed",
