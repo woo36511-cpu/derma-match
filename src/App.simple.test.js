@@ -1,7 +1,9 @@
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import App from "./App";
 import { SimpleCareScreen } from "./screens/SimpleCareScreen";
-import { getObservationQuestions, observationQuestions, drynessClarification, OBSERVATION_MEASUREMENT_VERSION } from "./data/observationSurvey";
+import { getAdaptiveObservationQuestions as getObservationQuestions, adaptiveObservationQuestions as observationQuestions, adaptiveSupportQuestions, ADAPTIVE_MEASUREMENT_VERSION as OBSERVATION_MEASUREMENT_VERSION } from "./data/adaptiveObservationSurvey";
+import { observationQuestions as previousObservationQuestions, OBSERVATION_SURVEY_VERSION } from "./data/observationSurvey";
+import { analyzeObservationSurvey } from "./utils/analyzeObservationSurvey";
 import { skinSurveyQuestions } from "./data/skinSurvey";
 import { getSimpleCareQuestions } from "./data/simpleCare";
 import { analyzeSkinSurvey } from "./utils/analyzeSkinSurvey";
@@ -20,7 +22,7 @@ function baseSurvey(overrides = {}) {
   click("피부타입 확인하고 추천받기");
   expect(screen.queryByRole("heading", { name: "지금 피부 상태부터 확인할게요" })).not.toBeInTheDocument();
   const observed = { skinChange: "steady", observedOil: "tzone", drynessArea: "none", moisturizerUse: "comfortable", reactionPattern: "none", washResponse: "comfortable", surfaceObservation: "normal", ...overrides };
-  const answers = Object.fromEntries([...observationQuestions, drynessClarification].map(q => [q.id, q.options.find(o => o.value === observed[q.id])?.label]));
+  const answers = Object.fromEntries([...observationQuestions, ...adaptiveSupportQuestions].map(q => [q.id, q.options.find(o => o.value === (observed[q.id] ?? "unknown"))?.label]));
   const questions = getObservationQuestions(answers);
   for (const [index, question] of questions.entries()) {
     expect(screen.getByRole("heading", { name: question.question })).toBeInTheDocument();
@@ -92,8 +94,9 @@ test("save failure is explicit and retry reuses the same record ID", () => {
 
 test("unknown observations are saved as unknown and never become a normal-skin routine", () => {
   render(<App />); baseSurvey(Object.fromEntries(observationQuestions.map(q => [q.id, "unknown"]))); extraCare({ concern: "none" });
-  expect(screen.getByRole("heading", { name: /피부 성향 판단 보류/ })).toBeInTheDocument();
-  expect(screen.getByText("아직 피부 성향을 정할 관찰 답변이 부족해요.")).toBeInTheDocument();
+  expect(screen.getByRole("heading", { level: 1, name: /기본 관리부터 시작/ })).toBeInTheDocument();
+  expect(screen.getByText("아직 확인되지 않은 항목은 남겨두고, 아래 기본 관리부터 시작해요.")).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: "지금 시작할 관리" })).toBeInTheDocument();
   expect(screen.queryByRole("region", { name: "피부타입별 기본 화장품" })).not.toBeInTheDocument();
   expect(records()[0].routine).toEqual({});
   expect(records()[0].skinMeasurement.measurementVersion).toBe(OBSERVATION_MEASUREMENT_VERSION);
@@ -141,9 +144,10 @@ test("recheck keeps the new observation scale and does not invent missing axes",
 });
 test("unknown follow-up observations suppress a new routine and do not crash on a missing level", () => {
   render(<App />); baseSurvey(Object.fromEntries(observationQuestions.map(q => [q.id, "unknown"]))); extraCare({ concern: "none" }); startFollowUp();
-  for (const q of getObservationQuestions()) {
+  const unknownAnswers = Object.fromEntries([...observationQuestions, ...adaptiveSupportQuestions].map(q => [q.id, q.options.find(o => o.value === "unknown").label]));
+  for (const q of getObservationQuestions(unknownAnswers)) {
     const container = screen.getByText(q.question).parentElement;
-    fireEvent.click(within(container).getByRole("button", { name: "잘 모르겠어요", exact: true }));
+    fireEvent.click(within(container).getByRole("button", { name: unknownAnswers[q.id], exact: true }));
   }
   click("변화 저장하고 다음 추천 보기");
   const followUp = records().find(record => record.type === "feedback" && !record.assessmentOnly);
@@ -155,9 +159,9 @@ test("conflicting answers get a clarification instead of a forced type, and guid
   render(<App />); click("피부타입 확인하고 추천받기");
   expect(screen.getByText("답변 기준 자세히 보기").closest("details")).not.toHaveAttribute("open");
   click("시작 화면으로");
-  baseSurvey({ drynessArea: "cheeks", drynessTiming: "persistent", moisturizerUse: "comfortable", drynessClarification: "varies" }); extraCare({ concern: "none" });
-  expect(screen.getByRole("heading", { name: /피부 성향 판단 보류/ })).toBeInTheDocument();
-  expect(records()[0].result.observationAssessment.status).toBe("inconsistent");
+  baseSurvey({ drynessArea: "cheeks", drynessTiming: "persistent", moisturizerUse: "comfortable", drynessContext: "unknown", contextDryArea: "unknown" }); extraCare({ concern: "none" });
+  expect(screen.getByRole("heading", { name: /유분 중심 관리부터 시작/ })).toBeInTheDocument();
+  expect(records()[0].result.observationAssessment.status).toBe("partial");
 });
 
 test("historical simple results keep the historical scale until a fresh survey is started", () => {
@@ -171,4 +175,31 @@ test("historical simple results keep the historical scale until a fresh survey i
   click("새 기준으로 다시 확인");
   expect(screen.getByRole("heading", { name: observationQuestions[0].question })).toBeInTheDocument();
   expect(records()[0].skinMeasurement).toEqual(record.skinMeasurement);
+});
+
+test("unknown oil is resolved with a face diagram and the refined answer is saved", () => {
+  render(<App />); baseSurvey({ observedOil: "coating", oilTouch: "whole" }); extraCare({ concern: "none" });
+  expect(screen.getByText("도움 질문에서 확인한 답변도 반영했어요.")).toBeInTheDocument();
+  expect(records()[0].result.observationAssessment.resolvedObservations.observedOil).toBe("whole");
+  expect(records()[0].result.observationAssessment.refinements.some(item => item.questionId === "oilTouch")).toBe(true);
+  cleanup(); render(<App />); click("최근 결과 다시 보기");
+  expect(screen.getByRole("region", { name: "피부타입별 기본 화장품" })).toBeInTheDocument();
+});
+test("before/after context explains different answers without treating them as inconsistent", () => {
+  render(<App />); baseSurvey({ drynessArea: "cheeks", drynessTiming: "persistent", moisturizerUse: "comfortable", drynessContext: "before_after", contextReturn: "no" }); extraCare({ concern: "none" });
+  expect(records()[0].result.observationAssessment.typeComplete).toBe(true);
+  expect(records()[0].skinMeasurement.values.dryness).toBe(3);
+  expect(screen.getByRole("region", { name: "피부타입별 기본 화장품" })).toBeInTheDocument();
+});
+test("a saved v2 observation result keeps its original questionnaire and measurement", () => {
+  const answers = Object.fromEntries(previousObservationQuestions.map(q => [q.id, q.options[q.options.length - 1].label]));
+  const profile = analyzeObservationSurvey(answers);
+  const record = buildSimpleSkinRecord(answers, profile, { products: {} }, buildSimpleCarePlan({ concern: "none" }));
+  localStorage.setItem(JOURNEY_HISTORY_KEY, JSON.stringify([record])); render(<App />); click("최근 결과 다시 보기");
+  expect(screen.getByRole("heading", { name: /피부 성향 판단 보류/ })).toBeInTheDocument();
+  expect(records()[0].surveyVersion).toBe(OBSERVATION_SURVEY_VERSION);
+  expect(records()[0].skinMeasurement.measurementVersion).toBe("observed-skin-axes-v2");
+  click("피부타입 답변 다시 보기");
+  expect(screen.getByRole("heading", { name: previousObservationQuestions[previousObservationQuestions.length - 1].question })).toBeInTheDocument();
+  expect(screen.queryByText("답변을 돕는 추가 질문")).not.toBeInTheDocument();
 });

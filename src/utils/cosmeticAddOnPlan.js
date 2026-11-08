@@ -12,6 +12,7 @@ export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}
   if (carePlan.blockNewBasics || ["irritated", "concerning"].includes(answers.comfort)) return hold("지금은 새 기능성 제품을 추가하지 않아요.", "편안했던 세안·보습을 유지해요. 빠르게 퍼지는 붉어짐·심한 붓기나 통증은 오늘 확인받으세요.");
   const knownSkinAnswers = ["afterWash", "afternoonFeel", "areaDifference", "creamFeel", "innerDryness", "sensitivity"].filter(key => typeof surveyAnswers[key] === "string" && !surveyAnswers[key].includes("모르겠"));
   if (profile.observationAssessment ? !profile.observationAssessment.canRecommendBasics : knownSkinAnswers.length < 3) return hold("피부타입 답변을 조금 더 확인해요.", "정보가 부족한 상태에서 기능성 제품을 확정하지 않아요. 피부타입 답변을 보완한 뒤 다시 확인해요.");
+  if (answers.goal !== "support" && profile.observationAssessment?.canRecommendActives === false) return hold("확인된 특징에 맞춘 기본 관리부터 시작해요.", "추가 기능성은 유분·당김과 현재 상태가 더 확인되면 살펴봐요. 보습 보완은 별도로 비교할 수 있어요.");
   if (answers.goal !== "support" && profile.observationAssessment?.recentChange) return hold("최근 변한 피부 상태부터 확인해요.", "상태가 일정하지 않은 동안 새 기능성을 더하지 않아요. 편안했던 기본 관리를 유지하고 피부타입 답변을 다시 확인해요.");
   if (answers.comfort === "unknown") return hold("사용할 부위의 자극 여부부터 확인해요.", "따가움·벗겨짐 여부를 알기 전에는 새 기능성 제품을 추가하지 않아요.");
   const actives = new Set(answers.actives || []);

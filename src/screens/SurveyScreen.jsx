@@ -1,3 +1,4 @@
+import { SkinObservationReference } from "../components/SkinObservationReference";
 import { DetailDisclosure } from "../components/DetailDisclosure";
 import { SectionTitle } from "../components/SectionTitle";
 import { skinSurveyQuestions } from "../data/skinSurvey";
@@ -21,7 +22,7 @@ export function SurveyScreen({
     <section>
       <SectionTitle
         title="피부 설문 시작"
-        desc="평소 관리하면서 관찰한 상태로 답해요. 모르면 그대로 골라도 돼요. 일부 답변에 따라 질문이 추가돼요."
+        desc="평소 관리하면서 관찰한 상태로 답해요. 모르면 그대로 골라도 돼요. 추천에 필요한 정보가 모일 때까지, 답변에 맞는 질문이 이어져요."
       />
 
       <div className="max-w-3xl mx-auto">
@@ -45,7 +46,7 @@ export function SurveyScreen({
         </div>
 
         <div className="bg-white border border-gray-100 rounded-[2rem] shadow-sm p-6 sm:p-8">
-          <p className="text-sm text-gray-400 mb-3">질문 {surveyIndex + 1}</p>
+          <p className="text-sm text-gray-400 mb-3">{currentSurveyQuestion.supplemental ? "답변을 돕는 추가 질문" : `질문 ${surveyIndex + 1}`}</p>
 
           <h2 className="text-2xl sm:text-3xl font-black leading-relaxed break-keep mb-6">
             {currentSurveyQuestion.question}
@@ -53,6 +54,7 @@ export function SurveyScreen({
 
           {currentSurveyQuestion.hint && <p className="mb-4 text-sm text-slate-600">{currentSurveyQuestion.hint}</p>}
           {currentSurveyQuestion.helper && <DetailDisclosure title="답변 기준 자세히 보기" className="mb-5"><p>{currentSurveyQuestion.helper}</p></DetailDisclosure>}
+          <SkinObservationReference kind={currentSurveyQuestion.visual} />
           <div className="space-y-3">
             {currentSurveyQuestion.options.map((option) => {
               const active =
