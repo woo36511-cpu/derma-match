@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { isValidProductLink, getCategoryLabel } from "../utils/productCatalog";
+import { getCategoryLabel } from "../utils/productCatalog";
+import { getProductPurchaseLink } from "../utils/productPurchaseLink";
 import {
   buildUserTags,
   buildRecommendationReasons,
@@ -11,7 +12,8 @@ export function ProductCard({ product, categoryKey, userContext }) {
 
   if (!product) return null;
 
-  const clickable = isValidProductLink(product.link);
+  const purchase = getProductPurchaseLink(product);
+  const clickable = Boolean(purchase.url);
   const tags = userContext ? buildUserTags(userContext) : [];
   const reasons = userContext
     ? buildRecommendationReasons(product, userContext)
@@ -203,9 +205,16 @@ export function ProductCard({ product, categoryKey, userContext }) {
             clickable ? "text-black" : "text-gray-400"
           }`}
         >
-          {clickable ? "쿠팡에서 보기" : "링크 준비중"}
+          {purchase.label}
         </div>
       </div>
+
+      {purchase.affiliate && (
+        <p className="mt-2 text-xs text-gray-500">쿠팡 파트너스 링크로 구매 시 일정액의 수수료를 제공받을 수 있어요.</p>
+      )}
+      {purchase.note && (
+        <p className="mt-2 text-xs text-gray-500 leading-relaxed">{purchase.note}</p>
+      )}
 
       {product.caution?.length > 0 && (
         <div className="mt-3 bg-amber-50 rounded-2xl p-3 text-sm text-amber-800 leading-relaxed break-keep">
@@ -225,9 +234,9 @@ export function ProductCard({ product, categoryKey, userContext }) {
 
   return (
     <a
-      href={product.link}
+      href={purchase.url}
       target="_blank"
-      rel="noreferrer"
+      rel={purchase.affiliate ? "sponsored noopener noreferrer" : "noopener noreferrer"}
       className="group bg-white rounded-3xl border border-gray-100 p-4 shadow-sm hover:shadow-lg hover:-translate-y-1 transition duration-200 flex flex-col"
     >
       {cardInner}

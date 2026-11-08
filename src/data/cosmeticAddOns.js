@@ -1,4 +1,4 @@
-export const COSMETIC_ADDON_VERSION = "optional-cosmetics-v1";
+export const COSMETIC_ADDON_VERSION = "optional-cosmetics-v2-catalog-20261109";
 export const cosmeticGoals = [
   { value: "support", label: "보습·장벽 보완", detail: "기초의 보습감이 부족할 때 보완할 제품을 찾아요." },
   { value: "sebum", label: "유분감·모공 외관", detail: "번들거림과 모공이 도드라져 보이는 것이 신경 쓰여요." },
@@ -69,4 +69,9 @@ export const cosmeticProductProfiles = {
   47: { goals: ["support"], families: [], intensity: "support", label: "수분 보충 화장품" },
   49: { goals: ["texture"], families: ["acid"], intensity: "exfoliant", label: "각질 관리 화장품", source: "https://www.cosrx.co.kr/shop/shopdetail.html?branduid=191" },
   51: { goals: ["tone", "lines"], families: ["niacinamide"], intensity: "gentle", label: "미백·주름개선 기능성", source: "https://m.manyo.co.kr/goods/goods_view.php?goodsNo=1000000233" },
+  57: { goals: ["support"], families: [], intensity: "support", label: "가벼운 젤 보습 보완" },
+  58: { goals: ["support"], families: [], intensity: "support", label: "건조 부위 보습 보완" },
+  63: { goals: ["support"], families: [], intensity: "support", label: "보습 마무리 비교 후보" },
+  65: { goals: ["support"], families: [], intensity: "support", label: "수분 보충 세럼" },
+  69: { goals: ["tone"], families: ["niacinamide"], intensity: "gentle", label: "피부톤 보완 화장품", source: "https://isntree.com/product/detail.html?product_no=36" },
 };

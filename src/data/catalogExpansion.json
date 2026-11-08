@@ -1,0 +1,4686 @@
+[
+  {
+    "id": 52,
+    "name": "세타필 모이스춰라이징 크림",
+    "brand": "세타필",
+    "category": "cream",
+    "hydrationLevel": 1,
+    "texture": "rich",
+    "concerns": [
+      "hydration",
+      "barrier"
+    ],
+    "ingredients": [
+      "Glycerin",
+      "Petrolatum",
+      "Panthenol",
+      "Niacinamide"
+    ],
+    "fullIngredients": [
+      "Aqua",
+      "Glycerin",
+      "Petrolatum",
+      "Dicaprylyl Ether",
+      "Dimethicone",
+      "Glyceryl Stearate",
+      "Cetyl Alcohol",
+      "Helianthus Annuus Seed Oil",
+      "Peg-30 Stearate",
+      "Panthenol",
+      "Niacinamide",
+      "Prunus Amygdalus Dulcis Oil",
+      "Tocopherol",
+      "Tocopheryl Acetate",
+      "Pantolactone",
+      "Dimethiconol",
+      "Acrylates/C10-30 Alkyl Acrylate Crosspolymer",
+      "Carbomer",
+      "Propylene Glycol",
+      "Bht",
+      "Disodium Edta",
+      "Benzyl Alcohol",
+      "Phenoxyethanol",
+      "Sodium Hydroxide",
+      "Citric Acid"
+    ],
+    "activeIngredients": [
+      {
+        "name": "Glycerin",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "Petrolatum",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "Panthenol",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "Niacinamide",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [],
+    "careProfile": {
+      "hydrationSupport": 8,
+      "lightweightFit": 2,
+      "soothingSupport": 2,
+      "congestionSupport": 0,
+      "barrierSupport": 7
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "not_disclosed",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://www.cetaphil.co.kr/moisturizers/KR_302993917563.html"
+        }
+      ],
+      "note": "한국 공식 INCI와 공식 용량 옵션 기준. 다른 국가·구형 판매본에 자동 적용하지 않습니다. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "건조한 얼굴의 보습 마무리; 묽은 로션으로 부족할 때 비교; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "건성",
+      "중성"
+    ],
+    "description": "건조한 얼굴의 보습 마무리; 묽은 로션으로 부족할 때 비교",
+    "shortReason": "건조한 얼굴의 보습 마무리; 묽은 로션으로 부족할 때 비교",
+    "situationalValue": "건조한 얼굴의 보습 마무리; 묽은 로션으로 부족할 때 비교",
+    "caution": [
+      "아몬드오일을 포함해요. 해당 원료에 반응한 이력이 있다면 피하고 유분감이 부담되면 양을 줄여요.",
+      "새 제품은 좁은 부위에서 먼저 확인하고 따가움·붉어짐이 생기면 중단해요."
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "453g",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-52.webp",
+    "imageSource": {
+      "url": "https://www.cetaphil.co.kr/dw/image/v2/bggn_prd/on/demandware.static/-/Sites-galderma-kr-m-catalog/ko_KR/dw09dec774/302993917564/Moisturising%20Cream%20453g.png5.png?sw=900&sh=900&sm=fit&q=85",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.coupang.com/vp/products/9303936790?itemId=23869298530&vendorItemId=80519500808",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "url": "https://www.coupang.com/vp/products/9303936790?itemId=23869298530&vendorItemId=80519500808",
+      "checkedAt": "2026-11-09",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "판매 옵션·포장 성분표를 확인해요. 가격과 재고는 판매처 기준이에요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/9303936790?itemId=23869298530&vendorItemId=80519500808",
+      "productName": "세타필 모이스춰라이징 크림",
+      "volume": "453g",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "세안 후 보습 마무리 단계",
+      "howToUse": [
+        "소량을 얼굴에 펴 바르고 건조한 부위는 사용감을 보며 조절해요.",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "아몬드오일을 포함해요. 해당 원료에 반응한 이력이 있다면 피하고 유분감이 부담되면 양을 줄여요.",
+        "새 제품은 좁은 부위에서 먼저 확인하고 따가움·붉어짐이 생기면 중단해요."
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  },
+  {
+    "id": 53,
+    "name": "세타필 모이스춰라이징 로션",
+    "brand": "세타필",
+    "category": "cream",
+    "hydrationLevel": 3,
+    "texture": "medium",
+    "concerns": [
+      "hydration",
+      "barrier"
+    ],
+    "ingredients": [
+      "Glycerin",
+      "Panthenol",
+      "Niacinamide"
+    ],
+    "fullIngredients": [
+      "Aqua",
+      "Glycerin",
+      "Isopropyl Palmitate",
+      "Cetearyl Alcohol",
+      "Ceteareth-20",
+      "Panthenol",
+      "Niacinamide",
+      "Tocopheryl Acetate",
+      "Dimethicone",
+      "Persea Gratissima Oil",
+      "Helianthus Annuus Seed Oil",
+      "Pantolactone",
+      "Glyceryl Stearate",
+      "Sodium Benzoate",
+      "Benzyl Alcohol",
+      "Citric Acid"
+    ],
+    "activeIngredients": [
+      {
+        "name": "Glycerin",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "Panthenol",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "Niacinamide",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [],
+    "careProfile": {
+      "hydrationSupport": 7,
+      "lightweightFit": 5,
+      "soothingSupport": 2,
+      "congestionSupport": 0,
+      "barrierSupport": 5
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "not_disclosed",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://www.cetaphil.co.kr/moisturizers/KR_302990241333.html"
+        }
+      ],
+      "note": "한국 공식 INCI와 공식 용량 옵션 기준. 다른 국가·구형 판매본에 자동 적용하지 않습니다. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "두꺼운 크림보다 묽은 제형을 원하는 건성·중성의 보습 마무리; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "건성",
+      "중성"
+    ],
+    "description": "두꺼운 크림보다 묽은 제형을 원하는 건성·중성의 보습 마무리",
+    "shortReason": "두꺼운 크림보다 묽은 제형을 원하는 건성·중성의 보습 마무리",
+    "situationalValue": "두꺼운 크림보다 묽은 제형을 원하는 건성·중성의 보습 마무리",
+    "caution": [
+      "새 제품은 좁은 부위에서 먼저 확인하고 따가움·붉어짐이 생기면 중단해요."
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "473ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-53.webp",
+    "imageSource": {
+      "url": "https://www.cetaphil.co.kr/dw/image/v2/bggn_prd/on/demandware.static/-/Sites-galderma-kr-m-catalog/ko_KR/dwb358b06d/302990241334%20-%20Cetaphil%20Moisturizing%20Lotion%20Moisturizing%20473ml/Moisturizing%20Lotion%20473ml.png?sw=900&sh=900&sm=fit&q=85",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.coupang.com/vp/products/7164345502?itemId=13264320096&vendorItemId=87612551196",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "url": "https://www.coupang.com/vp/products/7164345502?itemId=13264320096&vendorItemId=87612551196",
+      "checkedAt": "2026-11-09",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "판매 옵션·포장 성분표를 확인해요. 가격과 재고는 판매처 기준이에요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/7164345502?itemId=13264320096&vendorItemId=87612551196",
+      "productName": "세타필 모이스춰라이징 로션",
+      "volume": "473ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "세안 후 보습 마무리 단계",
+      "howToUse": [
+        "소량을 얼굴에 펴 바르고 건조한 부위는 사용감을 보며 조절해요.",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "새 제품은 좁은 부위에서 먼저 확인하고 따가움·붉어짐이 생기면 중단해요."
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  },
+  {
+    "id": 54,
+    "name": "에스트라 테라크네365 클리어 딥 클렌징 폼",
+    "brand": "에스트라",
+    "category": "cleanser",
+    "hydrationLevel": 8,
+    "texture": "light",
+    "concerns": [
+      "cleansing"
+    ],
+    "ingredients": [
+      "글리세린",
+      "알란토인",
+      "글루코노락톤"
+    ],
+    "fullIngredients": [
+      "글리세린",
+      "정제수",
+      "포타슘코코일글리시네이트",
+      "소듐코코일글라이시네이트",
+      "부틸렌글라이콜",
+      "폴리글리세릴-10라우레이트",
+      "다이소듐라우레스설포석시네이트",
+      "글리세릴스테아레이트에스이",
+      "시트릭애씨드",
+      "글라이콜다이스테아레이트",
+      "알란토인",
+      "다이소듐이디티에이",
+      "에틸헥실글리세린",
+      "테트라소듐이디티에이",
+      "소듐하이알루로네이트",
+      "글루코노락톤",
+      "토코페롤"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "알란토인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "글루코노락톤",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [],
+    "careProfile": {
+      "hydrationSupport": 3,
+      "lightweightFit": 8,
+      "soothingSupport": 2,
+      "congestionSupport": 1,
+      "barrierSupport": 1
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "not_disclosed",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_disclosure",
+          "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=61307"
+        }
+      ],
+      "note": "복수 구형 성분표 중 현재 판매 SKU 213308의 상품고시만 사용했습니다. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "유분이 부담되는 피부의 거품 세안; PHA 성분을 다른 각질 제품과 겹치지 않을 때; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "지성",
+      "복합성"
+    ],
+    "description": "유분이 부담되는 피부의 거품 세안; PHA 성분을 다른 각질 제품과 겹치지 않을 때",
+    "shortReason": "유분이 부담되는 피부의 거품 세안; PHA 성분을 다른 각질 제품과 겹치지 않을 때",
+    "situationalValue": "유분이 부담되는 피부의 거품 세안; PHA 성분을 다른 각질 제품과 겹치지 않을 때",
+    "caution": [
+      "PHA 성분이 있어 다른 각질제거 제품과 중복하지 않아요. 현재 자극·벗겨짐이 있으면 추가하지 않아요.",
+      "세안 후 당김·따가움이 생기면 사용량과 빈도를 줄이고 자극이 지속되면 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": false,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "세안 후보"
+    ],
+    "volume": "200g",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-54.webp",
+    "imageSource": {
+      "url": "https://images-kr.amoremall.com/unitproducts/150100607/150100607_01.png?1683508491172",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=61307",
+    "purchaseSource": {
+      "provider": "official",
+      "label": "아모레몰",
+      "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=61307",
+      "checkedAt": "2026-11-09",
+      "verification": "official_product_page",
+      "liveStockVerified": false,
+      "note": "연결된 공식몰 구성은 200g 2개입니다."
+    },
+    "usageType": "cleanser",
+    "usage": {
+      "when": "세안 단계",
+      "howToUse": [
+        "적당량으로 부드럽게 세안한 뒤 미온수로 충분히 헹궈요.",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "PHA 성분이 있어 다른 각질제거 제품과 중복하지 않아요. 현재 자극·벗겨짐이 있으면 추가하지 않아요.",
+        "세안 후 당김·따가움이 생기면 사용량과 빈도를 줄이고 자극이 지속되면 중단해요."
+      ]
+    },
+    "usageAmount": {
+      "oily": "제품 안내의 적당량",
+      "normal": "제품 안내의 적당량",
+      "dry": "적은 양부터 조절"
+    }
+  },
+  {
+    "id": 55,
+    "name": "에스트라 아토베리어365 클렌징폼",
+    "brand": "에스트라",
+    "category": "cleanser",
+    "hydrationLevel": 4,
+    "texture": "medium",
+    "concerns": [
+      "cleansing"
+    ],
+    "ingredients": [
+      "글리세린",
+      "판테놀",
+      "베타인"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "포타슘코코일글리시네이트",
+      "소듐라우로일글루타메이트",
+      "글리세릴스테아레이트",
+      "글라이콜다이스테아레이트",
+      "소듐코코일글라이시네이트",
+      "라우릴하이드록시설테인",
+      "시트릭애씨드",
+      "코코-글루코사이드",
+      "데실글루코사이드",
+      "베타인",
+      "하이드록시프로필스타치포스페이트",
+      "판테놀",
+      "소듐클로라이드",
+      "카프릴릴글라이콜",
+      "소듐메타포스페이트",
+      "글리세릴카프릴레이트",
+      "하이드록시프로필구아하이드록시프로필트라이모늄클로라이드",
+      "스핑고모나스발효추출물",
+      "에틸헥실글리세린",
+      "징크클로라이드",
+      "만니톨",
+      "세틸-피지하이드록시에틸팔미타마이드",
+      "스테아릭애씨드",
+      "세라마이드엔피",
+      "하이드로제네이티드레시틴",
+      "토코페롤",
+      "실리카",
+      "콜레스테롤",
+      "스핑고리피드",
+      "소듐하이알루로네이트",
+      "하이드록시프로필메틸셀룰로오스"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "판테놀",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "베타인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [],
+    "careProfile": {
+      "hydrationSupport": 5,
+      "lightweightFit": 7,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 2
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "not_disclosed",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_disclosure",
+          "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=68369"
+        }
+      ],
+      "note": "복수 구형 성분표 중 현재 판매 SKU 232466의 상품고시만 사용했습니다. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "당김이 신경 쓰이면서 거품형 세안을 원하는 피부의 기본 세안; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "당김이 신경 쓰이면서 거품형 세안을 원하는 피부의 기본 세안",
+    "shortReason": "당김이 신경 쓰이면서 거품형 세안을 원하는 피부의 기본 세안",
+    "situationalValue": "당김이 신경 쓰이면서 거품형 세안을 원하는 피부의 기본 세안",
+    "caution": [
+      "세안 후 당김·따가움이 생기면 사용량과 빈도를 줄이고 자극이 지속되면 중단해요."
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "세안 후보"
+    ],
+    "volume": "200g",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-55.webp",
+    "imageSource": {
+      "url": "https://images-kr.amoremall.com/products/1770357523091/150100000636/150100000636_00.png?1770357524127",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=68369",
+    "purchaseSource": {
+      "provider": "official",
+      "label": "아모레몰",
+      "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=68369",
+      "checkedAt": "2026-11-09",
+      "verification": "official_product_page",
+      "liveStockVerified": false,
+      "note": "공식몰의 현재 판매 SKU 성분표 기준입니다."
+    },
+    "usageType": "cleanser",
+    "usage": {
+      "when": "세안 단계",
+      "howToUse": [
+        "적당량으로 부드럽게 세안한 뒤 미온수로 충분히 헹궈요.",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "세안 후 당김·따가움이 생기면 사용량과 빈도를 줄이고 자극이 지속되면 중단해요."
+      ]
+    },
+    "usageAmount": {
+      "oily": "제품 안내의 적당량",
+      "normal": "제품 안내의 적당량",
+      "dry": "적은 양부터 조절"
+    }
+  },
+  {
+    "id": 56,
+    "name": "에스트라 아토베리어365 젠틀 포밍클렌저",
+    "brand": "에스트라",
+    "category": "cleanser",
+    "hydrationLevel": 4,
+    "texture": "light",
+    "concerns": [
+      "cleansing"
+    ],
+    "ingredients": [
+      "글리세린",
+      "베타인",
+      "판테놀"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "솔비톨",
+      "프로판다이올",
+      "카프릴릴/카프릴글루코사이드",
+      "다이소듐코코암포다이아세테이트",
+      "코코-글루코사이드",
+      "다이소듐코코일글루타메이트",
+      "말티톨",
+      "데실글루코사이드",
+      "소듐클로라이드",
+      "베타인",
+      "판테놀",
+      "시트릭애씨드",
+      "소듐메타포스페이트",
+      "에틸헥실글리세린",
+      "징크클로라이드",
+      "만니톨",
+      "세틸-피지하이드록시에틸팔미타마이드",
+      "스테아릭애씨드",
+      "세라마이드엔피",
+      "하이드로제네이티드레시틴",
+      "토코페롤",
+      "실리카",
+      "콜레스테롤",
+      "스핑고리피드",
+      "소듐하이알루로네이트",
+      "하이드록시프로필메틸셀룰로오스"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "베타인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "판테놀",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [],
+    "careProfile": {
+      "hydrationSupport": 4,
+      "lightweightFit": 8,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 2
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "not_disclosed",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_disclosure",
+          "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=68371"
+        }
+      ],
+      "note": "복수 구형 성분표 중 현재 판매 SKU 232954의 상품고시만 사용했습니다. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "손으로 오래 거품을 내지 않고 펌프 거품 세안을 원하는 피부; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "손으로 오래 거품을 내지 않고 펌프 거품 세안을 원하는 피부",
+    "shortReason": "손으로 오래 거품을 내지 않고 펌프 거품 세안을 원하는 피부",
+    "situationalValue": "손으로 오래 거품을 내지 않고 펌프 거품 세안을 원하는 피부",
+    "caution": [
+      "세안 후 당김·따가움이 생기면 사용량과 빈도를 줄이고 자극이 지속되면 중단해요."
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "세안 후보"
+    ],
+    "volume": "150ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-56.webp",
+    "imageSource": {
+      "url": "https://images-kr.amoremall.com/unitproducts/150100642/150100642_01.png?1768977128289",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=68371",
+    "purchaseSource": {
+      "provider": "official",
+      "label": "아모레몰",
+      "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=68371",
+      "checkedAt": "2026-11-09",
+      "verification": "official_product_page",
+      "liveStockVerified": false,
+      "note": "연결된 공식몰 구성은 150ml 2개입니다."
+    },
+    "usageType": "cleanser",
+    "usage": {
+      "when": "세안 단계",
+      "howToUse": [
+        "적당량으로 부드럽게 세안한 뒤 미온수로 충분히 헹궈요.",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "세안 후 당김·따가움이 생기면 사용량과 빈도를 줄이고 자극이 지속되면 중단해요."
+      ]
+    },
+    "usageAmount": {
+      "oily": "제품 안내의 적당량",
+      "normal": "제품 안내의 적당량",
+      "dry": "적은 양부터 조절"
+    }
+  },
+  {
+    "id": 57,
+    "name": "일리윤 세라마이드 아토 수딩 젤",
+    "brand": "일리윤",
+    "category": "cream",
+    "hydrationLevel": 6,
+    "texture": "light",
+    "concerns": [
+      "hydration",
+      "barrier"
+    ],
+    "ingredients": [
+      "글리세린",
+      "스쿠알란",
+      "세라마이드엔피"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "프로판다이올",
+      "글리세린",
+      "카프릴릭/카프릭트라이글리세라이드",
+      "에틸헥실스테아레이트, 1,2-헥산다이올",
+      "암모늄아크릴로일다이메틸타우레이트/브이피코폴리머",
+      "폴리글리세릴-3메틸글루코오스다이스테아레이트",
+      "세테아릴올리베이트",
+      "솔비탄올리베이트",
+      "카보머",
+      "트로메타민",
+      "글리세릴카프릴레이트",
+      "에틸헥실글리세린",
+      "부틸렌글라이콜",
+      "인삼수",
+      "황금추출물",
+      "세라마이드엔피(104ppm)",
+      "베타인",
+      "매실추출물",
+      "검정콩오일",
+      "하이드로제네이티드레시틴",
+      "스쿠알란",
+      "마데카소사이드",
+      "폴리글리세릴-10펜타스테아레이트",
+      "피토스핑고신",
+      "펜틸렌글라이콜",
+      "다이포타슘글리시리제이트",
+      "카놀라오일",
+      "로즈마리잎추출물",
+      "토코페롤"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "스쿠알란",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "세라마이드엔피",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [],
+    "careProfile": {
+      "hydrationSupport": 6,
+      "lightweightFit": 7,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 4
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "not_disclosed",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_disclosure",
+          "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=24772"
+        }
+      ],
+      "note": "복수 구형 성분표 중 현재 판매 SKU 222071의 상품고시만 사용했습니다. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "무거운 크림이 부담되는 중성·복합성의 젤 보습 마무리; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "무거운 크림이 부담되는 중성·복합성의 젤 보습 마무리",
+    "shortReason": "무거운 크림이 부담되는 중성·복합성의 젤 보습 마무리",
+    "situationalValue": "무거운 크림이 부담되는 중성·복합성의 젤 보습 마무리",
+    "caution": [
+      "새 제품은 좁은 부위에서 먼저 확인하고 따가움·붉어짐이 생기면 중단해요."
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "175ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-57.webp",
+    "imageSource": {
+      "url": "https://images-kr.amoremall.com/products/111270000207/111270000207_01.png?1742173263698",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=24772",
+    "purchaseSource": {
+      "provider": "official",
+      "label": "아모레몰",
+      "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=24772",
+      "checkedAt": "2026-11-09",
+      "verification": "official_product_page",
+      "liveStockVerified": false,
+      "note": "공식몰의 현재 판매 SKU 성분표 기준입니다."
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "세안 후 보습 마무리 단계",
+      "howToUse": [
+        "소량을 얼굴에 펴 바르고 건조한 부위는 사용감을 보며 조절해요.",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "새 제품은 좁은 부위에서 먼저 확인하고 따가움·붉어짐이 생기면 중단해요."
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  },
+  {
+    "id": 58,
+    "name": "일리윤 세라마이드 아토 집중크림",
+    "brand": "일리윤",
+    "category": "cream",
+    "hydrationLevel": 1,
+    "texture": "rich",
+    "concerns": [
+      "hydration",
+      "barrier"
+    ],
+    "ingredients": [
+      "글리세린",
+      "다이메티콘",
+      "콜레스테롤",
+      "세라마이드엔피"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "부틸렌글라이콜",
+      "글리세린",
+      "에틸헥실스테아레이트",
+      "다이메티콘",
+      "다이카프릴릴카보네이트",
+      "베헤닐알코올",
+      "스테아릭애씨드",
+      "팔미틱애씨드",
+      "세틸에틸헥사노에이트",
+      "하이드로제네이티드폴리(C6-14올레핀), 1,2-헥산다이올",
+      "아라키딜알코올",
+      "C14-22알코올",
+      "세틸-피지하이드록시에틸팔미타마이드(세라마이드 CPP-40 7622ppm)",
+      "폴리아크릴레이트-13",
+      "만니톨",
+      "아라키딜글루코사이드",
+      "C12-20알킬글루코사이드",
+      "하이드로제네이티드폴리아이소부텐",
+      "글리세릴카프릴레이트",
+      "에틸헥실글리세린",
+      "폴리글리세릴-10라우레이트",
+      "하이드로제네이티드레시틴",
+      "에틸헥실팔미테이트",
+      "다이메티콘올",
+      "인삼수",
+      "카보머",
+      "솔비탄아이소스테아레이트",
+      "아크릴레이트/암모늄메타크릴레이트코폴리머",
+      "황금추출물",
+      "프로판다이올",
+      "콜레스테롤",
+      "실리카",
+      "매실추출물",
+      "아라키딕애씨드",
+      "검정콩오일",
+      "스쿠알란",
+      "마데카소사이드",
+      "폴리글리세릴-10펜타스테아레이트",
+      "토코페롤",
+      "세라마이드엔피(4ppm)",
+      "올레익애씨드",
+      "피토스핑고신",
+      "펜틸렌글라이콜",
+      "다이포타슘글리시리제이트",
+      "카놀라오일",
+      "로즈마리잎추출물"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "다이메티콘",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "콜레스테롤",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "세라마이드엔피",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [],
+    "careProfile": {
+      "hydrationSupport": 8,
+      "lightweightFit": 2,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 8
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "not_disclosed",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_disclosure",
+          "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=19239"
+        }
+      ],
+      "note": "복수 구형 성분표 중 현재 판매 SKU 222083의 상품고시만 사용했습니다. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "로션만으로 당기는 건조 부위의 보습 마무리; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "건성",
+      "중성"
+    ],
+    "description": "로션만으로 당기는 건조 부위의 보습 마무리",
+    "shortReason": "로션만으로 당기는 건조 부위의 보습 마무리",
+    "situationalValue": "로션만으로 당기는 건조 부위의 보습 마무리",
+    "caution": [
+      "새 제품은 좁은 부위에서 먼저 확인하고 따가움·붉어짐이 생기면 중단해요."
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "500ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-58.webp",
+    "imageSource": {
+      "url": "https://images-kr.amoremall.com/products/111270000081/111270000081_01.png?1741832509461",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=19239",
+    "purchaseSource": {
+      "provider": "official",
+      "label": "아모레몰",
+      "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=19239",
+      "checkedAt": "2026-11-09",
+      "verification": "official_product_page",
+      "liveStockVerified": false,
+      "note": "공식몰의 현재 판매 SKU 성분표 기준입니다."
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "세안 후 보습 마무리 단계",
+      "howToUse": [
+        "소량을 얼굴에 펴 바르고 건조한 부위는 사용감을 보며 조절해요.",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "새 제품은 좁은 부위에서 먼저 확인하고 따가움·붉어짐이 생기면 중단해요."
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  },
+  {
+    "id": 59,
+    "name": "라운드랩 1025 독도 클렌저",
+    "brand": "라운드랩",
+    "category": "cleanser",
+    "hydrationLevel": 6,
+    "texture": "light",
+    "concerns": [
+      "cleansing"
+    ],
+    "ingredients": [
+      "글리세린",
+      "알란토인",
+      "판테놀"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "소듐코코일이세티오네이트",
+      "글리세린",
+      "소듐메틸코코일타우레이트",
+      "코코-베타인",
+      "포타슘코코일글리시네이트",
+      "포타슘벤조에이트",
+      "소듐클로라이드",
+      "폴리쿼터늄-67",
+      "포타슘코코에이트",
+      "시트릭애씨드",
+      "프룩토올리고사카라이드",
+      "사카라이드하이드롤리세이트",
+      "다이소듐이디티에이",
+      "풀루란",
+      "1,2-헥산다이올",
+      "알란토인",
+      "판테놀",
+      "해수",
+      "소듐아세테이트",
+      "부틸렌글라이콜",
+      "마트리카리아꽃오일",
+      "카프릴릭/카프릭트라이글리세라이드",
+      "베타-글루칸",
+      "포스파티딜콜린",
+      "하이알루로닉애씨드",
+      "에틸헥실글리세린",
+      "세라마이드엔피",
+      "글라이신",
+      "하이드롤라이즈드하이알루로닉애씨드",
+      "글루타믹애씨드",
+      "세린",
+      "소듐하이알루로네이트",
+      "라이신",
+      "알라닌",
+      "알지닌",
+      "트레오닌",
+      "프롤린"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "알란토인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "판테놀",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [],
+    "careProfile": {
+      "hydrationSupport": 3,
+      "lightweightFit": 8,
+      "soothingSupport": 2,
+      "congestionSupport": 0,
+      "barrierSupport": 1
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "not_disclosed",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://roundlab.co.kr/product/detail.html?product_no=36"
+        },
+        {
+          "sourceType": "official_domestic_ingredients_image",
+          "url": "https://gi.esmplus.com/roundlab/DOKDO/DC150/DC150_05.jpg"
+        }
+      ],
+      "note": "공식몰이 현재 연결하는 국내 상품 상세 이미지 전성분을 확인함. 개별 판매처 재고의 생산 차수·처방 동일성 및 실시간 재고는 미확인. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "거품형 세안을 선호하는 중성·복합성의 기본 세안; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "거품형 세안을 선호하는 중성·복합성의 기본 세안",
+    "shortReason": "거품형 세안을 선호하는 중성·복합성의 기본 세안",
+    "situationalValue": "거품형 세안을 선호하는 중성·복합성의 기본 세안",
+    "caution": [
+      "마트리카리아꽃오일 함유: 향·식물 오일에 반응한 이력이 있으면 피하기",
+      "씻어내는 세안제로 보습제나 여드름 치료제 대체 불가"
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "세안 후보"
+    ],
+    "volume": "150ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-59.webp",
+    "imageSource": {
+      "url": "https://roundlab.co.kr/web/product/big/202511/c55cf19642f62529dc734dc2236ae230.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.coupang.com/vp/products/8539570383?itemId=24723088376&vendorItemId=91732287038",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "url": "https://www.coupang.com/vp/products/8539570383?itemId=24723088376&vendorItemId=91732287038",
+      "checkedAt": "2026-11-09",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "판매 옵션·포장 성분표를 확인해요. 가격과 재고는 판매처 기준이에요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/8539570383?itemId=24723088376&vendorItemId=91732287038",
+      "productName": "라운드랩 1025 독도 클렌저",
+      "volume": "150ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "cleanser",
+    "usage": {
+      "when": "세안 단계",
+      "howToUse": [
+        "적당량으로 부드럽게 세안한 뒤 미온수로 충분히 헹궈요.",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "마트리카리아꽃오일 함유: 향·식물 오일에 반응한 이력이 있으면 피하기",
+        "씻어내는 세안제로 보습제나 여드름 치료제 대체 불가"
+      ]
+    },
+    "usageAmount": {
+      "oily": "제품 안내의 적당량",
+      "normal": "제품 안내의 적당량",
+      "dry": "적은 양부터 조절"
+    }
+  },
+  {
+    "id": 60,
+    "name": "라운드랩 1025 독도 로션",
+    "brand": "라운드랩",
+    "category": "cream",
+    "hydrationLevel": 4,
+    "texture": "medium",
+    "concerns": [
+      "hydration",
+      "barrier"
+    ],
+    "ingredients": [
+      "글리세린",
+      "스쿠알란",
+      "판테놀"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "퀸즈랜드넛오일",
+      "1,2-헥산다이올",
+      "펜틸렌글라이콜",
+      "아이리쉬모스추출물",
+      "사탕수수추출물",
+      "해수",
+      "하이알루로닉애씨드",
+      "하이드롤라이즈드하이알루로닉애씨드",
+      "소듐하이알루로네이트",
+      "판테놀",
+      "스쿠알란",
+      "부틸렌글라이콜",
+      "폴리글리세릴-3메틸글루코오스다이스테아레이트",
+      "글리세릴스테아레이트",
+      "하이드로제네이티드폴리데센",
+      "하이드록시에틸아크릴레이트/소듐아크릴로일다이메틸타우레이트코폴리머",
+      "호호바에스터",
+      "카프릴릴글라이콜",
+      "트로메타민",
+      "소듐파이테이트",
+      "토코페롤",
+      "소듐카복시메틸베타-글루칸",
+      "에틸헥실글리세린",
+      "세테아릴알코올",
+      "카보머"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "스쿠알란",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "판테놀",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [],
+    "careProfile": {
+      "hydrationSupport": 7,
+      "lightweightFit": 6,
+      "soothingSupport": 2,
+      "congestionSupport": 0,
+      "barrierSupport": 5
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "not_disclosed",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://roundlab.co.kr/product/detail.html?product_no=21"
+        },
+        {
+          "sourceType": "official_domestic_ingredients_image",
+          "url": "https://gi.esmplus.com/roundlab/DOKDO/DL200/DL200_05.jpg"
+        }
+      ],
+      "note": "공식몰이 현재 연결하는 국내 상품 상세 이미지 전성분을 확인함. 개별 판매처 재고의 생산 차수·처방 동일성 및 실시간 재고는 미확인. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "두꺼운 크림 대신 묽은 로션으로 보습을 마무리할 때; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "두꺼운 크림 대신 묽은 로션으로 보습을 마무리할 때",
+    "shortReason": "두꺼운 크림 대신 묽은 로션으로 보습을 마무리할 때",
+    "situationalValue": "두꺼운 크림 대신 묽은 로션으로 보습을 마무리할 때",
+    "caution": [
+      "퀸즈랜드넛오일(마카다미아) 함유: 해당 원료에 반응한 이력이 있으면 피하기",
+      "유분이 많은 피부는 소량부터 조절"
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "200ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-60.webp",
+    "imageSource": {
+      "url": "https://roundlab.co.kr/web/product/big/202511/cbff05844a37c86746cc05f87e82e582.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.coupang.com/vp/products/8605649021?itemId=24799990221&vendorItemId=70445138158",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "url": "https://www.coupang.com/vp/products/8605649021?itemId=24799990221&vendorItemId=70445138158",
+      "checkedAt": "2026-11-09",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "판매 옵션·포장 성분표를 확인해요. 가격과 재고는 판매처 기준이에요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/8605649021?itemId=24799990221&vendorItemId=70445138158",
+      "productName": "라운드랩 1025 독도 로션",
+      "volume": "200ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "세안 후 보습 마무리 단계",
+      "howToUse": [
+        "소량을 얼굴에 펴 바르고 건조한 부위는 사용감을 보며 조절해요.",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "퀸즈랜드넛오일(마카다미아) 함유: 해당 원료에 반응한 이력이 있으면 피하기",
+        "유분이 많은 피부는 소량부터 조절"
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  },
+  {
+    "id": 61,
+    "name": "라운드랩 자작나무 수분 클렌저",
+    "brand": "라운드랩",
+    "category": "cleanser",
+    "hydrationLevel": 5,
+    "texture": "light",
+    "concerns": [
+      "cleansing"
+    ],
+    "ingredients": [
+      "글리세린",
+      "자작나무수액",
+      "소듐하이알루로네이트"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "소듐코코일알라니네이트",
+      "라우릴하이드록시설테인",
+      "다이소듐코코암포다이아세테이트",
+      "소듐메틸코코일타우레이트",
+      "아크릴레이트/C10-30알킬아크릴레이트크로스폴리머",
+      "자작나무수액",
+      "부틸렌글라이콜",
+      "소듐하이알루로네이트",
+      "하이알루로닉애씨드",
+      "소듐클로라이드",
+      "글리세릴글루코사이드",
+      "아스코빅애씨드",
+      "1,2-헥산다이올",
+      "개똥쑥추출물",
+      "캐모마일꽃오일",
+      "구주소나무잎오일",
+      "퀼라자껍질추출물",
+      "카프릴릴글라이콜",
+      "코코-글루코사이드",
+      "글리세릴카프릴레이트",
+      "소듐코코일이세티오네이트",
+      "헥실렌글라이콜",
+      "시트릭애씨드",
+      "다이소듐이디티에이"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "자작나무수액",
+        "concentration": 10000,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_disclosed_concentration",
+        "note": null,
+        "sourceUrl": "https://ai.esmplus.com/roundlab/LOCAL/B/LCL_B/LCL_B.jpg"
+      },
+      {
+        "name": "소듐하이알루로네이트",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "자작나무수액",
+        "concentration": 10000,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": null,
+        "sourceUrl": "https://ai.esmplus.com/roundlab/LOCAL/B/LCL_B/LCL_B.jpg"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 3,
+      "lightweightFit": 8,
+      "soothingSupport": 2,
+      "congestionSupport": 0,
+      "barrierSupport": 1
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partial",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://roundlab.co.kr/product/detail.html?product_no=140"
+        },
+        {
+          "sourceType": "official_domestic_ingredients_image",
+          "url": "https://ai.esmplus.com/roundlab/LOCAL/B/LCL_B/LCL_B.jpg"
+        }
+      ],
+      "note": "공식몰이 현재 연결하는 국내 상품 상세 이미지 전성분을 확인함. 개별 판매처 재고의 생산 차수·처방 동일성 및 실시간 재고는 미확인. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "젤 거품형 세안을 선호하고 식물 오일에 반응한 이력이 없을 때; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "젤 거품형 세안을 선호하고 식물 오일에 반응한 이력이 없을 때",
+    "shortReason": "젤 거품형 세안을 선호하고 식물 오일에 반응한 이력이 없을 때",
+    "situationalValue": "젤 거품형 세안을 선호하고 식물 오일에 반응한 이력이 없을 때",
+    "caution": [
+      "캐모마일꽃오일·구주소나무잎오일 함유: 향·식물 오일에 반응한 이력이 있으면 피하기",
+      "세안 후 당김·따가움이 생기면 사용량과 횟수를 줄이거나 중단"
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "세안 후보"
+    ],
+    "volume": "150ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-61.webp",
+    "imageSource": {
+      "url": "https://roundlab.co.kr/web/product/big/202511/f5b6fa98ad14a46a53e8b993416fdf91.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.coupang.com/vp/products/7680619453",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "url": "https://www.coupang.com/vp/products/7680619453",
+      "checkedAt": "2026-11-09",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "판매 옵션·포장 성분표를 확인해요. 가격과 재고는 판매처 기준이에요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/7680619453",
+      "productName": "라운드랩 자작나무 수분 클렌저",
+      "volume": "150ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "cleanser",
+    "usage": {
+      "when": "세안 단계",
+      "howToUse": [
+        "적당량으로 부드럽게 세안한 뒤 미온수로 충분히 헹궈요.",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "캐모마일꽃오일·구주소나무잎오일 함유: 향·식물 오일에 반응한 이력이 있으면 피하기",
+        "세안 후 당김·따가움이 생기면 사용량과 횟수를 줄이거나 중단"
+      ]
+    },
+    "usageAmount": {
+      "oily": "제품 안내의 적당량",
+      "normal": "제품 안내의 적당량",
+      "dry": "적은 양부터 조절"
+    }
+  },
+  {
+    "id": 62,
+    "name": "라운드랩 1025 독도 크림",
+    "brand": "라운드랩",
+    "category": "cream",
+    "hydrationLevel": 2,
+    "texture": "rich",
+    "concerns": [
+      "hydration",
+      "barrier"
+    ],
+    "ingredients": [
+      "글리세린",
+      "시어버터",
+      "세라마이드엔피"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "카프릴릭/카프릭트라이글리세라이드",
+      "다이프로필렌글라이콜",
+      "하이드로제네이티드폴리(C6-14올레핀)",
+      "세테아릴알코올",
+      "메틸트라이메티콘",
+      "1,2-헥산다이올",
+      "카프릴릴메티콘",
+      "페닐트라이메티콘",
+      "C12-16알코올",
+      "시어버터",
+      "해수",
+      "아이리쉬모스추출물",
+      "사탕수수추출물",
+      "하이알루로닉애씨드",
+      "하이드롤라이즈드하이알루로닉애씨드",
+      "소듐하이알루로네이트",
+      "글리세릴스테아레이트에스이",
+      "세라마이드에이피",
+      "세라마이드에이에스",
+      "세라마이드이오피",
+      "세라마이드엔피",
+      "세라마이드엔에스",
+      "폴리메틸실세스퀴옥세인",
+      "팔미틱애씨드",
+      "세테아릴글루코사이드",
+      "세테아릴올리베이트",
+      "솔비탄올리베이트",
+      "하이드로제네이티드레시틴",
+      "카나우바왁스",
+      "스테아릭애씨드",
+      "암모늄아크릴로일다이메틸타우레이트/브이피코폴리머",
+      "에틸헥실글리세린",
+      "글리세릴카프릴레이트",
+      "알란토인",
+      "판테놀",
+      "부틸렌글라이콜",
+      "베타-글루칸",
+      "콜레스테롤",
+      "피토스핑고신",
+      "다이소듐이디티에이"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "시어버터",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "세라마이드엔피",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [],
+    "careProfile": {
+      "hydrationSupport": 8,
+      "lightweightFit": 3,
+      "soothingSupport": 2,
+      "congestionSupport": 0,
+      "barrierSupport": 7
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "not_disclosed",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://roundlab.co.kr/product/detail.html?product_no=24"
+        },
+        {
+          "sourceType": "official_domestic_ingredients_image",
+          "url": "https://gi.esmplus.com/roundlab/DOKDO/DC80/DC80.jpg"
+        }
+      ],
+      "note": "공식몰이 현재 연결하는 국내 상품 상세 이미지 전성분을 확인함. 개별 판매처 재고의 생산 차수·처방 동일성 및 실시간 재고는 미확인. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "로션만으로 부족한 건성의 크림 보습 마무리; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "건성",
+      "중성"
+    ],
+    "description": "로션만으로 부족한 건성의 크림 보습 마무리",
+    "shortReason": "로션만으로 부족한 건성의 크림 보습 마무리",
+    "situationalValue": "로션만으로 부족한 건성의 크림 보습 마무리",
+    "caution": [
+      "지성 피부에는 무겁게 느껴질 수 있어 건조한 부위 위주로 소량 사용",
+      "세라마이드 종류 수를 효과 크기로 해석하지 않음"
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "80ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-62.webp",
+    "imageSource": {
+      "url": "https://roundlab.co.kr/web/product/big/202511/392574248f54d29d8ba517eed29cef33.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.coupang.com/vp/products/7706148839?itemId=20644911814&vendorItemId=70445138125",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "url": "https://www.coupang.com/vp/products/7706148839?itemId=20644911814&vendorItemId=70445138125",
+      "checkedAt": "2026-11-09",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "판매 옵션·포장 성분표를 확인해요. 가격과 재고는 판매처 기준이에요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/7706148839?itemId=20644911814&vendorItemId=70445138125",
+      "productName": "라운드랩 1025 독도 크림",
+      "volume": "80ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "세안 후 보습 마무리 단계",
+      "howToUse": [
+        "소량을 얼굴에 펴 바르고 건조한 부위는 사용감을 보며 조절해요.",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "지성 피부에는 무겁게 느껴질 수 있어 건조한 부위 위주로 소량 사용",
+        "세라마이드 종류 수를 효과 크기로 해석하지 않음"
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  },
+  {
+    "id": 63,
+    "name": "라운드랩 약콩 판테놀 크림",
+    "brand": "라운드랩",
+    "category": "cream",
+    "hydrationLevel": 3,
+    "texture": "rich",
+    "concerns": [
+      "hydration",
+      "barrier"
+    ],
+    "ingredients": [
+      "글리세린",
+      "스쿠알란",
+      "판테놀",
+      "콜레스테롤"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "메틸프로판다이올",
+      "스쿠알란",
+      "베타인",
+      "세테아릴알코올",
+      "비닐다이메티콘",
+      "세틸에틸헥사노에이트",
+      "프로필헵틸카프릴레이트",
+      "검정콩추출물",
+      "퀸즈랜드넛오일",
+      "판테놀",
+      "콜레스테롤",
+      "세라마이드엔피",
+      "글라이코스핑고리피드",
+      "세라마이드에이피",
+      "스테아릭애씨드",
+      "테트라아세틸피토스핑고신",
+      "하이드로제네이티드레시틴",
+      "다이프로필렌글라이콜",
+      "폴리글리세릴-2스테아레이트",
+      "글리세릴스테아레이트",
+      "하이드록시에틸아크릴레이트/소듐아크릴로일다이메틸타우레이트코폴리머",
+      "스테아릴알코올",
+      "글리세릴스테아레이트에스이",
+      "아크릴레이트/C10-30알킬아크릴레이트크로스폴리머",
+      "베헤닐알코올",
+      "트로메타민",
+      "세테아릴올리베이트",
+      "솔비탄올리베이트",
+      "잔탄검",
+      "아데노신",
+      "다이소듐이디티에이",
+      "시트릭애씨드",
+      "솔비탄아이소스테아레이트",
+      "카프릴릭/카프릭트라이글리세라이드",
+      "1,2-헥산다이올",
+      "하이드록시아세토페논",
+      "에틸헥실글리세린"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "스쿠알란",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "판테놀",
+        "concentration": 2550,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_disclosed_concentration",
+        "note": null,
+        "sourceUrl": "https://gi.esmplus.com/roundlab/LOCAL/PA/LC_PA/LC_PA_03.jpg"
+      },
+      {
+        "name": "콜레스테롤",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "검정콩추출물",
+        "concentration": 10000,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": null,
+        "sourceUrl": "https://gi.esmplus.com/roundlab/LOCAL/PA/LC_PA/LC_PA_03.jpg",
+        "sourceType": "official_disclosed_concentration"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "검정콩추출물",
+        "concentration": 10000,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": null,
+        "sourceUrl": "https://gi.esmplus.com/roundlab/LOCAL/PA/LC_PA/LC_PA_03.jpg"
+      },
+      {
+        "name": "판테놀",
+        "concentration": 2550,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": null,
+        "sourceUrl": "https://gi.esmplus.com/roundlab/LOCAL/PA/LC_PA/LC_PA_03.jpg"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 7,
+      "lightweightFit": 4,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 7
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partial",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://roundlab.co.kr/product/detail.html?product_no=228"
+        },
+        {
+          "sourceType": "official_domestic_ingredients_image",
+          "url": "https://gi.esmplus.com/roundlab/LOCAL/PA/LC_PA/LC_PA_03.jpg"
+        }
+      ],
+      "note": "공식몰이 현재 연결하는 국내 상품 상세 이미지 전성분을 확인함. 개별 판매처 재고의 생산 차수·처방 동일성 및 실시간 재고는 미확인. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "스쿠알란·세라마이드·콜레스테롤을 함께 담은 보습 마무리 비교; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "건성",
+      "중성"
+    ],
+    "description": "스쿠알란·세라마이드·콜레스테롤을 함께 담은 보습 마무리 비교",
+    "shortReason": "스쿠알란·세라마이드·콜레스테롤을 함께 담은 보습 마무리 비교",
+    "situationalValue": "스쿠알란·세라마이드·콜레스테롤을 함께 담은 보습 마무리 비교",
+    "caution": [
+      "콩·마카다미아 유래 원료에 반응한 이력이 있으면 피하기",
+      "다른 보습제가 잘 맞으면 필수 추가 제품이 아님"
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "80ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-63.webp",
+    "imageSource": {
+      "url": "https://roundlab.co.kr/web/product/big/202308/a2bf3b0698d385b0d7adbf6c3123cb04.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.coupang.com/vp/products/7710189038",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "url": "https://www.coupang.com/vp/products/7710189038",
+      "checkedAt": "2026-11-09",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "판매 옵션·포장 성분표를 확인해요. 가격과 재고는 판매처 기준이에요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/7710189038",
+      "productName": "라운드랩 약콩 판테놀 크림",
+      "volume": "80ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "세안 후 보습 마무리 단계",
+      "howToUse": [
+        "소량을 얼굴에 펴 바르고 건조한 부위는 사용감을 보며 조절해요.",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "콩·마카다미아 유래 원료에 반응한 이력이 있으면 피하기",
+        "다른 보습제가 잘 맞으면 필수 추가 제품이 아님"
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  },
+  {
+    "id": 64,
+    "name": "이즈앤트리 초저분자 히아루론산 토너",
+    "brand": "이즈앤트리",
+    "category": "toner",
+    "hydrationLevel": 6,
+    "texture": "light",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "글리세린",
+      "베타인",
+      "알란토인",
+      "판테놀"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "메틸프로판다이올",
+      "1,2-헥산다이올",
+      "해수",
+      "글리세린",
+      "베타인",
+      "알란토인",
+      "부틸렌글라이콜",
+      "카프릴릴글라이콜",
+      "에틸헥실글리세린",
+      "판테놀",
+      "잔탄검",
+      "말라카이트추출물",
+      "다이소듐이디티에이",
+      "하이드롤라이즈드하이알루로닉애씨드",
+      "펜틸렌글라이콜",
+      "자일리틸글루코사이드",
+      "안하이드로자일리톨",
+      "소듐하이알루로네이트",
+      "자일리톨",
+      "포타슘하이알루로네이트",
+      "글루코오스",
+      "다이메틸실란올하이알루로네이트",
+      "소듐아세틸레이티드하이알루로네이트",
+      "소듐하이알루로네이트크로스폴리머",
+      "하이드록시프로필트라이모늄하이알루로네이트",
+      "하이드롤라이즈드소듐하이알루로네이트",
+      "하이드롤라이즈드칼슘하이알루로네이트",
+      "하이알루로닉애씨드",
+      "버지니아풍년화추출물",
+      "소듐설페이티드하이알루로네이트",
+      "편백잎추출물",
+      "소듐스테아로일하이알루로네이트",
+      "소듐글리오일하이알루로네이트"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "베타인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "알란토인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "판테놀",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "14종 복합 히알루론산",
+        "concentration": 140,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": "혼합물 총 함량; 단일 히알루론산 함량으로 환산하지 않음",
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/ultra-low_toner/21_infor.png",
+        "sourceType": "official_disclosed_concentration"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "14종 복합 히알루론산",
+        "concentration": 140,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": "혼합물 총 함량; 단일 히알루론산 함량으로 환산하지 않음",
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/ultra-low_toner/21_infor.png"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 5,
+      "lightweightFit": 9,
+      "soothingSupport": 2,
+      "congestionSupport": 0,
+      "barrierSupport": 0
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partial",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://isntree.com/product/detail.html?product_no=56"
+        },
+        {
+          "sourceType": "official_domestic_ingredients_image",
+          "url": "https://isntree01.openhost.cafe24.com/product/ultra-low_toner/21_infor.png"
+        }
+      ],
+      "note": "국내 공식 상세 HTML이 직접 포함하는 상품 고시 이미지를 다운로드하여 육안 검수. 가격·리뷰·재고는 검증하지 않음. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "끈적임이 적은 워터 제형 수분 토너를 비교할 때; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "끈적임이 적은 워터 제형 수분 토너를 비교할 때",
+    "shortReason": "끈적임이 적은 워터 제형 수분 토너를 비교할 때",
+    "situationalValue": "끈적임이 적은 워터 제형 수분 토너를 비교할 때",
+    "caution": [
+      "현재 공식 성분에는 버지니아풍년화·편백잎추출물 포함. 식물 원료 반응 이력이 있으면 제외."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "300ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-64.webp",
+    "imageSource": {
+      "url": "https://isntree.com/web/product/extra/small/202608/06bb278bd0767f0a8dfc90d7c6bd9511.png",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.coupang.com/vp/products/1380963?itemId=18180489250&vendorItemId=85329521095",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "url": "https://www.coupang.com/vp/products/1380963?itemId=18180489250&vendorItemId=85329521095",
+      "checkedAt": "2026-11-09",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "판매 옵션·포장 성분표를 확인해요. 가격과 재고는 판매처 기준이에요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/1380963?itemId=18180489250&vendorItemId=85329521095",
+      "productName": "이즈앤트리 초저분자 히아루론산 토너",
+      "volume": "300ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "toner",
+    "usage": {
+      "when": "세안 후 토너 단계",
+      "howToUse": [
+        "세안 후 적당량을 화장솜이나 손에 덜어 얼굴 전체에 가볍게 두드려 흡수",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "현재 공식 성분에는 버지니아풍년화·편백잎추출물 포함. 식물 원료 반응 이력이 있으면 제외."
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  },
+  {
+    "id": 65,
+    "name": "이즈앤트리 초저분자 히아루론산 세럼",
+    "brand": "이즈앤트리",
+    "category": "serum",
+    "hydrationLevel": 5,
+    "texture": "light",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "글리세린",
+      "베타인",
+      "판테놀",
+      "알란토인"
+    ],
+    "fullIngredients": [
+      "해수",
+      "정제수",
+      "메틸프로판다이올",
+      "글리세린",
+      "부틸렌글라이콜",
+      "1,2-헥산다이올",
+      "하이드롤라이즈드하이알루로닉애씨드",
+      "소듐하이알루로네이트",
+      "하이드롤라이즈드소듐하이알루로네이트",
+      "포타슘하이알루로네이트",
+      "소듐아세틸레이티드하이알루로네이트",
+      "하이드록시프로필트라이모늄하이알루로네이트",
+      "소듐하이알루로네이트크로스폴리머",
+      "다이메틸실란올하이알루로네이트",
+      "하이드롤라이즈드칼슘하이알루로네이트",
+      "소듐설페이티드하이알루로네이트",
+      "소듐스테아로일하이알루로네이트",
+      "소듐글리오일하이알루로네이트",
+      "하이알루로닉애씨드",
+      "베타인",
+      "펜틸렌글라이콜",
+      "카보머",
+      "카프릴릴글라이콜",
+      "알란토인",
+      "트로메타민",
+      "에틸헥실글리세린",
+      "잔탄검",
+      "판테놀",
+      "말라카이트추출물",
+      "다이소듐이디티에이",
+      "글리세릴아크릴레이트/아크릴릭애씨드코폴리머",
+      "글리세릴글루코사이드",
+      "마데카소사이드",
+      "베타-글루칸"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "베타인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "판테놀",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "알란토인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "14종 복합 히알루론산",
+        "concentration": 270,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": "혼합물 총 함량. 이미지에 열거된 별표 성분은 13개이며 브랜드 총종수 주장을 임의로 보완하지 않음",
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/ultra-low_serum/20_infor.png",
+        "sourceType": "official_disclosed_concentration"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "14종 복합 히알루론산",
+        "concentration": 270,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": "혼합물 총 함량. 이미지에 열거된 별표 성분은 13개이며 브랜드 총종수 주장을 임의로 보완하지 않음",
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/ultra-low_serum/20_infor.png"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 7,
+      "lightweightFit": 8,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 1
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partial",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://isntree.com/product/detail.html?product_no=55"
+        },
+        {
+          "sourceType": "official_domestic_ingredients_image",
+          "url": "https://isntree01.openhost.cafe24.com/product/ultra-low_serum/20_infor.png"
+        }
+      ],
+      "note": "국내 공식 상세 HTML이 직접 포함하는 상품 고시 이미지를 다운로드하여 육안 검수. 가격·리뷰·재고는 검증하지 않음. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "크림 전 수분 보충용 세럼을 한 가지 비교할 때; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "크림 전 수분 보충용 세럼을 한 가지 비교할 때",
+    "shortReason": "크림 전 수분 보충용 세럼을 한 가지 비교할 때",
+    "situationalValue": "크림 전 수분 보충용 세럼을 한 가지 비교할 때",
+    "caution": [
+      "분자 크기나 성분명만으로 보습 지속력·치료효과를 확정하지 않음."
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "50ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-65.webp",
+    "imageSource": {
+      "url": "https://isntree.com/web/product/extra/small/202312/cb3b46444e9bfac9a3f4d4b3b67ab4bc.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.coupang.com/vp/products/7193938073",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "url": "https://www.coupang.com/vp/products/7193938073",
+      "checkedAt": "2026-11-09",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "판매 옵션·포장 성분표를 확인해요. 가격과 재고는 판매처 기준이에요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/7193938073",
+      "productName": "이즈앤트리 초저분자 히아루론산 세럼",
+      "volume": "50ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "serum",
+    "usage": {
+      "when": "세안 후 세럼 단계",
+      "howToUse": [
+        "세럼 단계에서 2~3방울을 얼굴 전체에 펴 바르고 가볍게 흡수",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "분자 크기나 성분명만으로 보습 지속력·치료효과를 확정하지 않음."
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  },
+  {
+    "id": 66,
+    "name": "이즈앤트리 참마 비건 밀크 클렌저",
+    "brand": "이즈앤트리",
+    "category": "cleansing_milk",
+    "hydrationLevel": 2,
+    "texture": "rich",
+    "concerns": [
+      "cleansing"
+    ],
+    "ingredients": [
+      "해바라기씨오일",
+      "글리세린",
+      "참마뿌리추출물"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "해바라기씨오일",
+      "에틸헥실팔미테이트",
+      "1,2-헥산다이올",
+      "폴리글리세릴-10미리스테이트",
+      "아라키딜알코올",
+      "글리세린",
+      "세테아릴알코올",
+      "베헤닐알코올",
+      "부틸렌글라이콜",
+      "글리세릴스테아레이트",
+      "코코-글루코사이드",
+      "아라키딜글루코사이드",
+      "글루코오스",
+      "참마뿌리추출물",
+      "시트릭애씨드",
+      "잔탄검",
+      "소듐폴리아크릴레이트",
+      "미역추출물",
+      "연꽃뿌리추출물",
+      "다시마추출물",
+      "오크라열매추출물",
+      "스위트아몬드추출물",
+      "쌀추출물",
+      "콩추출물",
+      "코코넛야자열매추출물",
+      "귀리가루추출물"
+    ],
+    "activeIngredients": [
+      {
+        "name": "해바라기씨오일",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "참마뿌리추출물",
+        "concentration": 1000,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_disclosed_concentration",
+        "note": null,
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/yam_root_cleanser/10_infor.png"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "참마뿌리추출물",
+        "concentration": 1000,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": null,
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/yam_root_cleanser/10_infor.png"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 4,
+      "lightweightFit": 4,
+      "soothingSupport": 1,
+      "congestionSupport": 0,
+      "barrierSupport": 2
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partial",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://isntree.com/product/detail.html?product_no=115"
+        },
+        {
+          "sourceType": "official_domestic_ingredients_image",
+          "url": "https://isntree01.openhost.cafe24.com/product/yam_root_cleanser/10_infor.png"
+        }
+      ],
+      "note": "국내 공식 상세 HTML이 직접 포함하는 상품 고시 이미지를 다운로드하여 육안 검수. 가격·리뷰·재고는 검증하지 않음. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "거품이 적은 밀크형 세안을 원하는 건성의 세정 후보; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "건성",
+      "중성"
+    ],
+    "description": "거품이 적은 밀크형 세안을 원하는 건성의 세정 후보",
+    "shortReason": "거품이 적은 밀크형 세안을 원하는 건성의 세정 후보",
+    "situationalValue": "거품이 적은 밀크형 세안을 원하는 건성의 세정 후보",
+    "caution": [
+      "아몬드·콩·곡물 등 식물 원료 반응 이력을 확인.",
+      "진한 메이크업·내수성 자외선차단제 세정은 해당 제품 표시와 세정 상태를 별도로 확인."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "세안 후보"
+    ],
+    "volume": "220ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-66.webp",
+    "imageSource": {
+      "url": "https://isntree.com/web/product/big/202606/5c033c1d6adf5423f05d8393504b1237.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.coupang.com/vp/products/6672035072?itemId=22212894871&vendorItemId=82573797010",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "url": "https://www.coupang.com/vp/products/6672035072?itemId=22212894871&vendorItemId=82573797010",
+      "checkedAt": "2026-11-09",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "판매 옵션·포장 성분표를 확인해요. 가격과 재고는 판매처 기준이에요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/6672035072?itemId=22212894871&vendorItemId=82573797010",
+      "productName": "이즈앤트리 참마 비건 밀크 클렌저",
+      "volume": "220ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "cleansing_milk",
+    "usage": {
+      "when": "세안 단계",
+      "howToUse": [
+        "물기 없는 얼굴에 적당량을 덜어 약 1분 부드럽게 마사지한 뒤 미온수로 헹구거나 화장솜으로 닦아 마무리",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "아몬드·콩·곡물 등 식물 원료 반응 이력을 확인.",
+        "진한 메이크업·내수성 자외선차단제 세정은 해당 제품 표시와 세정 상태를 별도로 확인."
+      ]
+    },
+    "usageAmount": {
+      "oily": "제품 안내의 적당량",
+      "normal": "제품 안내의 적당량",
+      "dry": "적은 양부터 조절"
+    }
+  },
+  {
+    "id": 67,
+    "name": "이즈앤트리 히아루론산 모이스트 크림",
+    "brand": "이즈앤트리",
+    "category": "cream",
+    "hydrationLevel": 2,
+    "texture": "rich",
+    "concerns": [
+      "hydration",
+      "barrier"
+    ],
+    "ingredients": [
+      "글리세린",
+      "시어버터",
+      "베타인"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "하이드로제네이티드폴리데센",
+      "카프릴릭/카프릭트라이글리세라이드",
+      "다이프로필렌글라이콜",
+      "사이클로헥사실록세인",
+      "시어버터",
+      "폴리글리세릴-3메틸글루코오스다이스테아레이트",
+      "세틸알코올",
+      "글리세레스-26",
+      "글리세릴스테아레이트",
+      "베타인",
+      "베헤닐알코올",
+      "비닐다이메티콘",
+      "펜틸렌글라이콜",
+      "다시마추출물",
+      "한련초잎추출물",
+      "귀리커넬추출물",
+      "아티초크잎추출물",
+      "살구씨오일",
+      "아르간커넬오일",
+      "잇꽃씨오일",
+      "소듐하이알루로네이트",
+      "하이드로제네이티드레시틴",
+      "녹차수",
+      "폴리글리세릴-10라우레이트",
+      "1,2-헥산다이올",
+      "펜타에리스리틸다이스테아레이트",
+      "암모늄아크릴로일다이메틸타우레이트/브이피코폴리머",
+      "하이드록시아세토페논",
+      "글리세릴카프릴레이트",
+      "소듐스테아로일글루타메이트",
+      "에틸헥실글리세린",
+      "메틸프로판다이올",
+      "프룩토올리고사카라이드",
+      "다이소듐이디티에이",
+      "베타-글루칸",
+      "하이드롤라이즈드하이알루로닉애씨드",
+      "폴리쿼터늄-51",
+      "부틸렌글라이콜",
+      "하이드록시프로필트라이모늄하이알루로네이트",
+      "다이메틸실란올하이알루로네이트",
+      "하이드롤라이즈드소듐하이알루로네이트",
+      "토코페롤",
+      "포타슘하이알루로네이트",
+      "하이알루로닉애씨드",
+      "소듐하이알루로네이트크로스폴리머",
+      "소듐아세틸레이티드하이알루로네이트",
+      "소듐하이알루로네이트다이메틸실란올"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "시어버터",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "베타인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "히아루론산 총량",
+        "concentration": 622.1,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": null,
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/hyaluronic_acid_cream/hyaluronic_acid_cream_23.jpg",
+        "sourceType": "official_disclosed_concentration"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "히아루론산 총량",
+        "concentration": 622.1,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": null,
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/hyaluronic_acid_cream/hyaluronic_acid_cream_23.jpg"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 8,
+      "lightweightFit": 3,
+      "soothingSupport": 2,
+      "congestionSupport": 0,
+      "barrierSupport": 6
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partial",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://isntree.com/product/detail.html?product_no=173"
+        },
+        {
+          "sourceType": "official_domestic_ingredients_image",
+          "url": "https://isntree01.openhost.cafe24.com/product/hyaluronic_acid_cream/hyaluronic_acid_cream_23.jpg"
+        }
+      ],
+      "note": "국내 공식 상세 HTML이 직접 포함하는 상품 고시 이미지를 다운로드하여 육안 검수. 가격·리뷰·재고는 검증하지 않음. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "식물성 오일·시어버터를 포함한 중성·건성용 보습 크림 비교; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "건성",
+      "중성"
+    ],
+    "description": "식물성 오일·시어버터를 포함한 중성·건성용 보습 크림 비교",
+    "shortReason": "식물성 오일·시어버터를 포함한 중성·건성용 보습 크림 비교",
+    "situationalValue": "식물성 오일·시어버터를 포함한 중성·건성용 보습 크림 비교",
+    "caution": [
+      "시어버터·식물성 오일을 포함한 크림. 번들거림이 부담스러우면 양을 조절."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "100ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-67.webp",
+    "imageSource": {
+      "url": "https://isntree.com/web/product/big/202606/b3b7ec1f5d3ff5008f4c4ca51e1a53e4.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.coupang.com/vp/products/2175826053?itemId=3702494636&vendorItemId=71687776755",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "url": "https://www.coupang.com/vp/products/2175826053?itemId=3702494636&vendorItemId=71687776755",
+      "checkedAt": "2026-11-09",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "판매 옵션·포장 성분표를 확인해요. 가격과 재고는 판매처 기준이에요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/2175826053?itemId=3702494636&vendorItemId=71687776755",
+      "productName": "이즈앤트리 히아루론산 모이스트 크림",
+      "volume": "100ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "세안 후 보습 마무리 단계",
+      "howToUse": [
+        "스킨케어 마무리 단계에서 얼굴 전체에 가볍게 펴 발라 흡수",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "시어버터·식물성 오일을 포함한 크림. 번들거림이 부담스러우면 양을 조절."
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  },
+  {
+    "id": 68,
+    "name": "이즈앤트리 히아루론산 아쿠아 젤 크림",
+    "brand": "이즈앤트리",
+    "category": "cream",
+    "hydrationLevel": 7,
+    "texture": "light",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "글리세린",
+      "베타인",
+      "스쿠알란",
+      "알란토인"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "메틸프로판다이올",
+      "코코-카프릴레이트/카프레이트",
+      "1,2-헥산다이올",
+      "글리세린",
+      "바이오사카라이드검-1",
+      "베타인",
+      "암모늄아크릴로일다이메틸타우레이트/브이피코폴리머",
+      "트레할로오스",
+      "소듐하이알루로네이트",
+      "하이드롤라이즈드하이알루로닉애씨드",
+      "병풀추출물",
+      "호장근뿌리추출물",
+      "황금추출물",
+      "녹차추출물",
+      "쇠비름추출물",
+      "스페인감초뿌리추출물",
+      "약모밀추출물",
+      "로즈마리잎추출물",
+      "마트리카리아꽃추출물",
+      "소듐하이알루로네이트크로스폴리머",
+      "소듐피씨에이",
+      "스쿠알란",
+      "아이소스테아릴알코올",
+      "부틸렌글라이콜코코에이트",
+      "세테아릴올리베이트",
+      "솔비탄올리베이트",
+      "하이알루로닉애씨드",
+      "하이드롤라이즈드호호바에스터",
+      "하이드로제네이티드올리브오일불검화물",
+      "부틸렌글라이콜",
+      "하이드롤라이즈드소듐하이알루로네이트",
+      "알란토인",
+      "잔탄검",
+      "에틸셀룰로오스",
+      "프로판다이올",
+      "페닐트라이메티콘",
+      "펜틸렌글라이콜",
+      "에틸헥실글리세린"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "베타인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "스쿠알란",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "알란토인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "5종 히아루론산 총량",
+        "concentration": 702,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": "별도 표기에 히아루론산1% 솔루션5% 함유. 솔루션 함량과 순수 성분 함량을 혼동하지 않음",
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/hyaluronic_acid_gel_cream/hyaluronic_acid_gel_cream_20.jpg",
+        "sourceType": "official_disclosed_concentration"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "5종 히아루론산 총량",
+        "concentration": 702,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": "별도 표기에 히아루론산1% 솔루션5% 함유. 솔루션 함량과 순수 성분 함량을 혼동하지 않음",
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/hyaluronic_acid_gel_cream/hyaluronic_acid_gel_cream_20.jpg"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 6,
+      "lightweightFit": 8,
+      "soothingSupport": 2,
+      "congestionSupport": 0,
+      "barrierSupport": 3
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partial",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://isntree.com/product/detail.html?product_no=174"
+        },
+        {
+          "sourceType": "official_domestic_ingredients_image",
+          "url": "https://isntree01.openhost.cafe24.com/product/hyaluronic_acid_gel_cream/hyaluronic_acid_gel_cream_20.jpg"
+        }
+      ],
+      "note": "국내 공식 상세 HTML이 직접 포함하는 상품 고시 이미지를 다운로드하여 육안 검수. 가격·리뷰·재고는 검증하지 않음. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "무거운 마무리 대신 젤 크림을 선호하는 지성·복합성; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "지성",
+      "복합성"
+    ],
+    "description": "무거운 마무리 대신 젤 크림을 선호하는 지성·복합성",
+    "shortReason": "무거운 마무리 대신 젤 크림을 선호하는 지성·복합성",
+    "situationalValue": "무거운 마무리 대신 젤 크림을 선호하는 지성·복합성",
+    "caution": [
+      "여러 식물추출물이 있어 기존 반응 이력을 확인. 무자극을 보증하지 않음."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "100ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-68.webp",
+    "imageSource": {
+      "url": "https://isntree.com/web/product/big/202606/ebe1f5047c52b51f9db7e88632eca893.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://isntree.com/product/detail.html?product_no=174",
+    "purchaseSource": {
+      "provider": "official",
+      "label": "공식몰",
+      "url": "https://isntree.com/product/detail.html?product_no=174",
+      "checkedAt": "2026-11-09",
+      "verification": "official_product_page",
+      "liveStockVerified": false,
+      "note": "공식 판매본의 용량·전성분을 확인해요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/np/products/brand-shop?brandName=%EC%9D%B4%EC%A6%88%EC%95%A4%ED%8A%B8%EB%A6%AC",
+      "productName": "이즈앤트리 히아루론산 아쿠아 젤 크림",
+      "volume": "100ml",
+      "verification": "brand_shop_only",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "세안 후 보습 마무리 단계",
+      "howToUse": [
+        "스킨케어 마무리 단계에서 얼굴 전체에 가볍게 펴 발라 흡수",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "여러 식물추출물이 있어 기존 반응 이력을 확인. 무자극을 보증하지 않음."
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  },
+  {
+    "id": 69,
+    "name": "이즈앤트리 어니언 뉴페어 앰플 플러스",
+    "brand": "이즈앤트리",
+    "category": "serum",
+    "hydrationLevel": 6,
+    "texture": "light",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "판테놀",
+      "나이아신아마이드",
+      "베타인",
+      "알란토인"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "프로판다이올",
+      "나이아신아마이드",
+      "펜틸렌글라이콜",
+      "글리세린",
+      "판테놀",
+      "1,2-헥산다이올",
+      "메틸프로판다이올",
+      "베타인",
+      "부틸렌글라이콜",
+      "아크릴레이트/C10-30알킬아크릴레이트크로스폴리머",
+      "알지닌",
+      "양파추출물",
+      "알란토인",
+      "마데카소사이드",
+      "스쿠알란",
+      "약모밀추출물",
+      "소듐하이알루로네이트",
+      "하이드롤라이즈드하이알루로닉애씨드",
+      "소듐아세틸레이티드하이알루로네이트",
+      "쿼세틴",
+      "페룰릭애씨드",
+      "글루타티온",
+      "소듐아스코빌포스페이트",
+      "에틸헥실글리세린",
+      "잔탄검",
+      "사이아노코발아민",
+      "토코페롤",
+      "아데노신",
+      "병풀추출물",
+      "무화과추출물",
+      "세라마이드엔피",
+      "하이드로제네이티드레시틴",
+      "글리세릴아크릴레이트/아크릴릭애씨드코폴리머",
+      "다이포타슘글리시리제이트",
+      "말토덱스트린",
+      "하이드롤라이즈드치자추출물",
+      "폴리글리세릴-10스테아레이트",
+      "카프릴릭/카프릭트라이글리세라이드",
+      "알지닌/라이신폴리펩타이드",
+      "폴리글리세릴-10라우레이트"
+    ],
+    "activeIngredients": [
+      {
+        "name": "판테놀",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "나이아신아마이드",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "베타인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "알란토인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "양파추출물",
+        "concentration": 1000,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": null,
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/onion_newpair_ampoule_plus/new_onion_newpair_ampoule_plus_99.jpg",
+        "sourceType": "official_disclosed_concentration"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "양파추출물",
+        "concentration": 1000,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": null,
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/onion_newpair_ampoule_plus/new_onion_newpair_ampoule_plus_99.jpg"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 6,
+      "lightweightFit": 8,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 2
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partial",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://isntree.com/product/detail.html?product_no=36"
+        },
+        {
+          "sourceType": "official_domestic_ingredients_image",
+          "url": "https://isntree01.openhost.cafe24.com/product/onion_newpair_ampoule_plus/new_onion_newpair_ampoule_plus_99.jpg"
+        }
+      ],
+      "note": "국내 공식 상세 HTML이 직접 포함하는 상품 고시 이미지를 다운로드하여 육안 검수. 가격·리뷰·재고는 검증하지 않음. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "피부가 편안한 상태에서 기존 세럼과 교체해 비교하는 수분·톤 보완 앰플; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "피부가 편안한 상태에서 기존 세럼과 교체해 비교하는 수분·톤 보완 앰플",
+    "shortReason": "피부가 편안한 상태에서 기존 세럼과 교체해 비교하는 수분·톤 보완 앰플",
+    "situationalValue": "피부가 편안한 상태에서 기존 세럼과 교체해 비교하는 수분·톤 보완 앰플",
+    "caution": [
+      "구형 양파 85% 처방과 달라요. 현재 공식몰의 양파추출물 1,000ppm 판매본을 확인해요.",
+      "현행 국내 공식 전성분은 정제수 시작, 양파추출물1000ppm. 구형 양파85%·판테놀5% 제품과 동일시하지 않음.",
+      "미백·주름개선2중 기능성 표시는 여드름 치료 효과를 뜻하지 않음."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": false,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "50ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-69.webp",
+    "imageSource": {
+      "url": "https://isntree.com/web/product/big/202606/be9513116f877b15807ed133d85c627e.jpeg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://isntree.com/product/detail.html?product_no=36",
+    "purchaseSource": {
+      "provider": "official",
+      "label": "공식몰",
+      "url": "https://isntree.com/product/detail.html?product_no=36",
+      "checkedAt": "2026-11-09",
+      "verification": "official_product_page",
+      "liveStockVerified": false,
+      "note": "공식 판매본의 용량·전성분을 확인해요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/9393121807",
+      "productName": "이즈앤트리 어니언 뉴페어 앰플 플러스",
+      "volume": "50ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "serum",
+    "usage": {
+      "when": "세안 후 세럼 단계",
+      "howToUse": [
+        "앰플 단계에 적당량을 덜어 부드럽게 펴 발라 흡수",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "구형 양파 85% 처방과 달라요. 현재 공식몰의 양파추출물 1,000ppm 판매본을 확인해요.",
+        "현행 국내 공식 전성분은 정제수 시작, 양파추출물1000ppm. 구형 양파85%·판테놀5% 제품과 동일시하지 않음.",
+        "미백·주름개선2중 기능성 표시는 여드름 치료 효과를 뜻하지 않음."
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    },
+    "recommendationScope": "addon_only"
+  },
+  {
+    "id": 70,
+    "name": "에뛰드 순정 약산성 6.5 휩 클렌저",
+    "brand": "에뛰드",
+    "category": "cleanser",
+    "hydrationLevel": 6,
+    "texture": "light",
+    "concerns": [
+      "cleansing"
+    ],
+    "ingredients": [
+      "글리세린",
+      "판테놀",
+      "마데카소사이드"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "소르비톨",
+      "프로판디올",
+      "라우릴글루코사이드",
+      "디소듐코코일글루타메이트",
+      "판테놀",
+      "시트릭애씨드",
+      "글리세릴카프릴레이트",
+      "에칠헥실글리세린",
+      "마데카소사이드",
+      "부틸렌글라이콜",
+      "토코페롤",
+      "녹차추출물"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "판테놀",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "마데카소사이드",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [],
+    "careProfile": {
+      "hydrationSupport": 3,
+      "lightweightFit": 8,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 1
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "not_disclosed",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=58265"
+        },
+        {
+          "sourceType": "official_domestic_brand_product_page",
+          "url": "https://www.etude.com/shop/category/cleanser/cleanser-all/%ec%88%9c%ec%a0%95-%ec%95%bd%ec%82%b0%ec%84%b1-6-5-%ed%9c%a9-%ed%81%b4%eb%a0%8c%ec%a0%80-150ml-2/"
+        }
+      ],
+      "note": "국내 아모레몰 58265 SKU의 현재 상품고시 전성분 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "펌프 거품형의 간단한 기본 세안; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "펌프 거품형의 간단한 기본 세안",
+    "shortReason": "펌프 거품형의 간단한 기본 세안",
+    "situationalValue": "펌프 거품형의 간단한 기본 세안",
+    "caution": [
+      "세안 후 당김·따가움이 생기면 사용량과 빈도를 줄이고 자극이 지속되면 중단해요."
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "세안 후보"
+    ],
+    "volume": "150ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-70.webp",
+    "imageSource": {
+      "url": "https://images-kr.amoremall.com/products/110090000240/110090000240_01.jpg?1687940274585",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=58265",
+    "purchaseSource": {
+      "provider": "official",
+      "label": "아모레몰",
+      "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=58265",
+      "checkedAt": "2026-11-09",
+      "verification": "official_product_page",
+      "liveStockVerified": false,
+      "note": "공식 판매본의 용량·전성분을 확인해요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://pages.coupang.com/p/8914",
+      "productName": "에뛰드 순정 약산성 6.5 휩 클렌저",
+      "volume": "150ml",
+      "verification": "brand_shop_only",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "cleanser",
+    "usage": {
+      "when": "세안 단계",
+      "howToUse": [
+        "물기 있는 얼굴에 2~3회 펌핑하여 부드럽게 마사지 한 후, 미온수로 깨끗이 씻어주세요",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "세안 후 당김·따가움이 생기면 사용량과 빈도를 줄이고 자극이 지속되면 중단해요."
+      ]
+    },
+    "usageAmount": {
+      "oily": "제품 안내의 적당량",
+      "normal": "제품 안내의 적당량",
+      "dry": "적은 양부터 조절"
+    }
+  },
+  {
+    "id": 71,
+    "name": "에뛰드 순정 약산성 5.5 진정 토너",
+    "brand": "에뛰드",
+    "category": "toner",
+    "hydrationLevel": 6,
+    "texture": "light",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "글리세린",
+      "베타인",
+      "판테놀"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "프로판디올",
+      "글리세린",
+      "베타인",
+      "판테놀",
+      "1,2-헥산디올",
+      "폴리글리세린-3",
+      "에틸헥실글리세린",
+      "디소듐이디티에이",
+      "카보머",
+      "마데카소사이드",
+      "부틸렌글라이콜",
+      "황금추출물",
+      "토코페롤",
+      "녹차추출물"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "베타인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "판테놀",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [],
+    "careProfile": {
+      "hydrationSupport": 5,
+      "lightweightFit": 9,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 1
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "not_disclosed",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=58263"
+        },
+        {
+          "sourceType": "official_domestic_brand_product_page",
+          "url": "https://www.etude.com/shop/category/skin-care/skin-care-all/%ec%88%9c%ec%a0%95-%ec%95%bd%ec%82%b0%ec%84%b1-5-5-%ec%a7%84%ec%a0%95-%ed%86%a0%eb%84%88-500ml-2/"
+        }
+      ],
+      "note": "국내 아모레몰 58263 SKU의 현재 상품고시 전성분 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "무거운 제형보다 가벼운 수분 보충을 원하는 토너 비교; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "무거운 제형보다 가벼운 수분 보충을 원하는 토너 비교",
+    "shortReason": "무거운 제형보다 가벼운 수분 보충을 원하는 토너 비교",
+    "situationalValue": "무거운 제형보다 가벼운 수분 보충을 원하는 토너 비교",
+    "caution": [
+      "새 제품은 좁은 부위에서 먼저 확인하고 따가움·붉어짐이 생기면 중단해요."
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "350ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-71.webp",
+    "imageSource": {
+      "url": "https://images-kr.amoremall.com/products/110090000238/110090000238_01.jpg?1687941174314",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.coupang.com/vp/products/18359349",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "url": "https://www.coupang.com/vp/products/18359349",
+      "checkedAt": "2026-11-09",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "판매 옵션·포장 성분표를 확인해요. 가격과 재고는 판매처 기준이에요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/18359349",
+      "productName": "에뛰드 순정 약산성 5.5 진정 토너",
+      "volume": "350ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "toner",
+    "usage": {
+      "when": "세안 후 토너 단계",
+      "howToUse": [
+        "세안 후, 손바닥에 내용물을 덜어 펴 바른\n후 가볍게 두드려 흡수시켜 주세요. 쉽게 자극받는 피부\n라면 냉장고에 넣어 차갑게 사용하거나, 화장솜 또는\n건시트에 적셔 시트 팩을 하듯 사용해 주세요.",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "새 제품은 좁은 부위에서 먼저 확인하고 따가움·붉어짐이 생기면 중단해요."
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  },
+  {
+    "id": 72,
+    "name": "에뛰드 순정 수분 베리어 크림",
+    "brand": "에뛰드",
+    "category": "cream",
+    "hydrationLevel": 5,
+    "texture": "medium",
+    "concerns": [
+      "hydration",
+      "barrier"
+    ],
+    "ingredients": [
+      "글리세린",
+      "판테놀",
+      "알란토인"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "프로판다이올",
+      "펜타에리스리틸테트라에틸헥사노에이트",
+      "하이드로제네이티드폴리(C6-14올레핀)",
+      "판테놀",
+      "1,2-헥산다이올",
+      "하이드록시에틸아크릴레이트/소듐아크릴로일다이메틸타우레이트코폴리머",
+      "폴리메틸실세스퀴옥세인",
+      "글리세릴스테아레이트시트레이트",
+      "카보머",
+      "C14-22알코올",
+      "글리세릴스테아레이트",
+      "아라키딜알코올",
+      "글리세릴카프릴레이트",
+      "베헤닐알코올",
+      "트로메타민",
+      "C12-20알킬글루코사이드",
+      "에틸헥실글리세린",
+      "부틸렌글라이콜",
+      "다이소듐이디티에이",
+      "솔비탄아이소스테아레이트",
+      "아라키딜글루코사이드",
+      "알란토인",
+      "마데카소사이드",
+      "황금추출물",
+      "토코페롤",
+      "녹차추출물"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "판테놀",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "알란토인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [],
+    "careProfile": {
+      "hydrationSupport": 7,
+      "lightweightFit": 7,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 4
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "not_disclosed",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=58262"
+        },
+        {
+          "sourceType": "official_domestic_brand_product_page",
+          "url": "https://www.etude.com/shop/category/cleanser/cleanser-all/%ec%88%9c%ec%a0%95-%ec%88%98%eb%b6%84-%eb%b2%a0%eb%a6%ac%ec%96%b4-%ed%81%ac%eb%a6%bc-75ml-2/"
+        }
+      ],
+      "note": "국내 아모레몰 58262 SKU의 현재 상품고시 전성분 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "크림의 유분감이 부담될 때 수분감 중심 보습 마무리; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "크림의 유분감이 부담될 때 수분감 중심 보습 마무리",
+    "shortReason": "크림의 유분감이 부담될 때 수분감 중심 보습 마무리",
+    "situationalValue": "크림의 유분감이 부담될 때 수분감 중심 보습 마무리",
+    "caution": [
+      "새 제품은 좁은 부위에서 먼저 확인하고 따가움·붉어짐이 생기면 중단해요."
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "75ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-72.webp",
+    "imageSource": {
+      "url": "https://images-kr.amoremall.com/products/110090000237/110090000237_01.jpg?1684994355593",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.coupang.com/vp/products/9021191893",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "url": "https://www.coupang.com/vp/products/9021191893",
+      "checkedAt": "2026-11-09",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "판매 옵션·포장 성분표를 확인해요. 가격과 재고는 판매처 기준이에요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/9021191893",
+      "productName": "에뛰드 순정 수분 베리어 크림",
+      "volume": "75ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "세안 후 보습 마무리 단계",
+      "howToUse": [
+        "적당량을 덜어 얼굴 안쪽에서 바깥쪽으로 부드럽게 펴 발라 흡수시켜 줍니다.",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "새 제품은 좁은 부위에서 먼저 확인하고 따가움·붉어짐이 생기면 중단해요."
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  },
+  {
+    "id": 73,
+    "name": "에뛰드 순정 2x 베리어 보습 크림",
+    "brand": "에뛰드",
+    "category": "cream",
+    "hydrationLevel": 2,
+    "texture": "rich",
+    "concerns": [
+      "hydration",
+      "barrier"
+    ],
+    "ingredients": [
+      "프로판다이올",
+      "판테놀",
+      "해바라기씨오일"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "프로판다이올",
+      "펜타에리스리틸테트라에틸헥사노에이트",
+      "카프릴릭/카프릭트라이글리세라이드",
+      "해바라기씨오일",
+      "폴리글리세릴-3메틸글루코오스다이스테아레이트",
+      "하이드로제네이티드식물성오일",
+      "세테아릴알코올",
+      "판테놀",
+      "1,2-헥산다이올",
+      "카보머",
+      "잔탄검",
+      "글리세릴카프릴레이트",
+      "트로메타민",
+      "에틸헥실글리세린",
+      "다이소듐이디티에이",
+      "마데카소사이드",
+      "레시틴",
+      "부틸렌글라이콜",
+      "토코페롤",
+      "녹차추출물"
+    ],
+    "activeIngredients": [
+      {
+        "name": "프로판다이올",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "판테놀",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "해바라기씨오일",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [],
+    "careProfile": {
+      "hydrationSupport": 7,
+      "lightweightFit": 3,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 6
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "not_disclosed",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=58429"
+        },
+        {
+          "sourceType": "official_domestic_brand_product_page",
+          "url": "https://www.etude.com/shop/category/skin-care/skin-care-all/%ec%88%9c%ec%a0%95-2x-%eb%b2%a0%eb%a6%ac%ec%96%b4-%eb%b3%b4%ec%8a%b5-%ed%81%ac%eb%a6%bc-60ml-2/"
+        }
+      ],
+      "note": "국내 아모레몰 58429 SKU의 현재 상품고시 전성분 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "건조한 부위에 유분막이 있는 보습 마무리를 원할 때; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "건성",
+      "중성"
+    ],
+    "description": "건조한 부위에 유분막이 있는 보습 마무리를 원할 때",
+    "shortReason": "건조한 부위에 유분막이 있는 보습 마무리를 원할 때",
+    "situationalValue": "건조한 부위에 유분막이 있는 보습 마무리를 원할 때",
+    "caution": [
+      "새 제품은 좁은 부위에서 먼저 확인하고 따가움·붉어짐이 생기면 중단해요."
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "60ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-73.webp",
+    "imageSource": {
+      "url": "https://images-kr.amoremall.com/products/110090000247/110090000247_01.jpg?1687940045009",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=58429",
+    "purchaseSource": {
+      "provider": "official",
+      "label": "아모레몰",
+      "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=58429",
+      "checkedAt": "2026-11-09",
+      "verification": "official_product_page",
+      "liveStockVerified": false,
+      "note": "공식 판매본의 용량·전성분을 확인해요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/6759174599",
+      "productName": "에뛰드 순정 2x 베리어 보습 크림",
+      "volume": "60ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "세안 후 보습 마무리 단계",
+      "howToUse": [
+        "적당량을 덜어 얼굴 안쪽에서 바깥쪽으로 부드럽게 펴 발라 흡수 시켜 줍니다",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "새 제품은 좁은 부위에서 먼저 확인하고 따가움·붉어짐이 생기면 중단해요."
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  },
+  {
+    "id": 74,
+    "name": "에뛰드 순정 10무 수분 에멀전",
+    "brand": "에뛰드",
+    "category": "cream",
+    "hydrationLevel": 4,
+    "texture": "medium",
+    "concerns": [
+      "hydration",
+      "barrier"
+    ],
+    "ingredients": [
+      "글리세린",
+      "스쿠알란",
+      "판테놀"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "프로판다이올",
+      "펜타에리스리틸테트라에틸헥사노에이트",
+      "1,2-헥산다이올",
+      "스쿠알란",
+      "판테놀",
+      "세테아릴알코올",
+      "비스-다이글리세릴폴리아실아디페이트-2",
+      "글리세릴스테아레이트",
+      "폴리글리세릴-3메틸글루코오스다이스테아레이트",
+      "암모늄아크릴로일다이메틸타우레이트/브이피코폴리머",
+      "하이드로제네이티드레시틴",
+      "아크릴레이트/C10-30알킬아크릴레이트크로스폴리머",
+      "잔탄검",
+      "글리세릴카프릴레이트",
+      "하이드록시프로필스타치포스페이트",
+      "다이소듐이디티에이",
+      "에틸헥실글리세린",
+      "마데카소사이드",
+      "트로메타민",
+      "부틸렌글라이콜",
+      "토코페롤",
+      "녹차추출물"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "스쿠알란",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "판테놀",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [],
+    "careProfile": {
+      "hydrationSupport": 6,
+      "lightweightFit": 6,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 4
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "not_disclosed",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=59899"
+        }
+      ],
+      "note": "국내 아모레몰 59899 SKU의 현재 상품고시 전성분 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "기존 크림이 무거울 때 묽은 에멀전으로 보습 마무리; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "기존 크림이 무거울 때 묽은 에멀전으로 보습 마무리",
+    "shortReason": "기존 크림이 무거울 때 묽은 에멀전으로 보습 마무리",
+    "situationalValue": "기존 크림이 무거울 때 묽은 에멀전으로 보습 마무리",
+    "caution": [
+      "새 제품은 좁은 부위에서 먼저 확인하고 따가움·붉어짐이 생기면 중단해요."
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "130ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-74.webp",
+    "imageSource": {
+      "url": "https://images-kr.amoremall.com/products/110090000306/110090000306_01.jpg?1697162477547",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=59899",
+    "purchaseSource": {
+      "provider": "official",
+      "label": "아모레몰",
+      "url": "https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=59899",
+      "checkedAt": "2026-11-09",
+      "verification": "official_product_page",
+      "liveStockVerified": false,
+      "note": "공식 판매본의 용량·전성분을 확인해요."
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "세안 후 보습 마무리 단계",
+      "howToUse": [
+        "적당량을 취해 부드럽게 펴 바른 후, 지그시 눌러 흡수시킵니다.",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "새 제품은 좁은 부위에서 먼저 확인하고 따가움·붉어짐이 생기면 중단해요."
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  }
+]

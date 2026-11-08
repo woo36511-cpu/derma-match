@@ -1,3 +1,5 @@
+import catalogExpansion from "./catalogExpansion.json";
+
 export const products = [
   {
     "id": 1,
@@ -8355,5 +8357,6 @@ export const products = [
     "checkedAt": "2026-11-08",
     "liveStockVerified": false
   }
-}
+},
+  ...catalogExpansion,
 ];
