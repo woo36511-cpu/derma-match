@@ -17,6 +17,7 @@ export function ProductCard({ product, categoryKey, userContext }) {
     ? buildRecommendationReasons(product, userContext)
     : [];
 
+  const visibleReason = userContext ? reasons[0] : product.shortReason;
   const recommendedAmount = getRecommendedAmount(product, userContext);
   const cardInner = (
     <>
@@ -55,9 +56,9 @@ export function ProductCard({ product, categoryKey, userContext }) {
         </div>
       )}
 
-      {product.shortReason && (
+      {visibleReason && (
         <p className="text-sm text-gray-700 leading-relaxed break-keep mb-3">
-          {product.shortReason}
+          {visibleReason}
         </p>
       )}
 

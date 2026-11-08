@@ -396,7 +396,7 @@ test("mild acne-like bumps and folliculitis-like bumps do not get the same pharm
 
 test.each([
   ["건조하고 당기는 느낌이 이어져요", /피지오겔|일리윤/],
-  ["번들거림이 더 신경 쓰여요", /토리든 다이브인 저분자 히알루론산 수딩 크림/],
+  ["번들거림이 더 신경 쓰여요", /라운드랩 자작나무 수분 크림/],
 ])("beginner check offers four basic slots matched to %s", (afternoon, cream) => {
   render(<App />);
   answerGuidedCheck({ concern: "none", basicRoutine: "neither" }, { hydration: true });

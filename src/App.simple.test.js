@@ -203,3 +203,18 @@ test("a saved v2 observation result keeps its original questionnaire and measure
   expect(screen.getByRole("heading", { name: previousObservationQuestions[previousObservationQuestions.length - 1].question })).toBeInTheDocument();
   expect(screen.queryByText("답변을 돕는 추가 질문")).not.toBeInTheDocument();
 });
+
+test("saved product IDs remain historical when recommendation rules change, and a fresh review is explicit", () => {
+  const oldAnswers = Object.fromEntries(previousObservationQuestions.map(q => [q.id, q.id === "observedOil" ? q.options.find(o => o.value === "tzone").label : q.id === "drynessArea" ? q.options.find(o => o.value === "none").label : q.options[0].label]));
+  const oldProfile = analyzeObservationSurvey(oldAnswers);
+  const record = buildSimpleSkinRecord(oldAnswers, oldProfile, { products: {} }, buildSimpleCarePlan({ concern: "none" }));
+  record.routine = { cleanser: 27, toner: 44, serum: 29, cream: 18 };
+  delete record.recommendationAssessment;
+  localStorage.setItem(JOURNEY_HISTORY_KEY, JSON.stringify([record]));
+  render(<App />); click("최근 결과 다시 보기");
+  expect(screen.getByText(/저장 당시의 제품 후보/)).toBeInTheDocument();
+  expect(screen.getByText("닥터지 약산성 클렌징 젤 폼")).toBeInTheDocument();
+  expect(records()[0].routine).toEqual(record.routine);
+  click("새 기준으로 다시 확인");
+  expect(screen.getByRole("heading", { name: observationQuestions[0].question })).toBeInTheDocument();
+});

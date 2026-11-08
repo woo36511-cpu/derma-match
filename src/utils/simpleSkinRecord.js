@@ -1,3 +1,5 @@
+import { buildAcneCareReview } from "./acneCareReview";
+import { RECOMMENDATION_RULE_VERSION } from "./productEvidence";
 import { createJourneyRecordId } from "./journeyStorage";
 import { buildSkinMeasurement } from "./skinStateMeasurement";
 import { buildProductUsagePlan } from "./productUsagePlan";
@@ -16,6 +18,7 @@ export function buildSimpleSkinRecord(surveyAnswers, profile, routine, plan, pre
     surveyVersion: profile.surveyVersion ?? "legacy-skin-v1",
     surveyAnswers, mainConcern, issueAnswers: {},
     additionalCare: plan.answers,
+    careReview: buildAcneCareReview(plan),
     ...(cosmeticPlan?.complete ? { cosmeticAddOn: snapshotCosmeticAddOn(cosmeticPlan) } : {}),
     symptomAssessment: {
       ruleVersion: SIMPLE_CARE_VERSION, complete: plan.complete, blockRoutine: plan.blockNewBasics,
@@ -29,6 +32,7 @@ export function buildSimpleSkinRecord(surveyAnswers, profile, routine, plan, pre
       skinState: profile.skinState, careNeeds: profile.careNeeds, lifestyleTags: profile.lifestyleTags,
       lifestyleConfounders: profile.lifestyleConfounders,
     },
+    recommendationAssessment: routine.isHistorical ? previous?.recommendationAssessment ?? { ruleVersion: "historical_unversioned", clinicalEfficacyValidated: false } : { ruleVersion: RECOMMENDATION_RULE_VERSION, selectionEvidence: routine.selectionEvidence ?? null, clinicalEfficacyValidated: false },
     routine: Object.fromEntries(Object.entries(routine.products).map(([key, product]) => [key, product?.id ?? null])),
     productUsagePlan: buildProductUsagePlan(routine.products, profile.skinType, savedAt),
   };

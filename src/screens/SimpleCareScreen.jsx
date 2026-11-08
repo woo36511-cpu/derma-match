@@ -1,3 +1,7 @@
+import { getProductById } from "../utils/productCatalog";
+import { RECOMMENDATION_RULE_VERSION } from "../utils/productEvidence";
+import { AcneCareReview } from "../components/AcneCareReview";
+import { buildAcneCareReview } from "../utils/acneCareReview";
 import { ADAPTIVE_SURVEY_VERSION } from "../data/adaptiveObservationSurvey";
 import { CosmeticAddOnSection } from "../components/CosmeticAddOnSection";
 import { buildCosmeticAddOnPlan } from "../utils/cosmeticAddOnPlan";
@@ -46,10 +50,11 @@ export function SimpleCareResult({ profile, routine, plan }) {
       {plan.showFolliculitis && <FolliculitisOptions />}
       {plan.answers.shape === "deep" && plan.answers.medicine !== "none" && <p className="text-sm">깊은 덩이는 짜지 않아요. 계속 커지거나 통증·흉터가 생기면 확인이 필요해요.</p>}
     </section>
+    <AcneCareReview review={buildAcneCareReview(plan)} />
     {!plan.blockNewBasics && profile.observationAssessment?.canRecommendBasics !== false && <section className="space-y-4" aria-label="피부타입별 기본 화장품">
       <h2 className="text-xl font-bold">피부타입에 맞는 기본 화장품</h2>
       <p className="text-sm">아무 관리도 하지 않았다면 아래 4가지 카테고리를 비교해요. 세안제·보습제를 먼저 고르고, 토너·세럼은 필요할 때 추가해요. 이미 잘 맞는 제품이 있다면 그대로 유지해요.</p>
-      <RoutineProductScroller productsByCategory={routine.products} userContext={{ skinType: profile.skinType, mainConcern: "none" }} />
+      <RoutineProductScroller productsByCategory={routine.products} userContext={{ skinType: profile.skinType, level: profile.hydrationLevel, careNeeds: profile.careNeeds, isSensitive: profile.observationAssessment?.isSensitive, acneSupport: plan.answers.concern === "acne", mainConcern: "none" }} />
       <DetailDisclosure title="사용 순서·세안법·함께 쓸 때 주의점">
         <p>미지근한 물로 부드럽게 씻고, 과한 세안·스크럽은 줄여요. 피부의 산성도는 설문만으로 측정할 수 없어요. 토너 → 세럼 → 크림 순서는 선택한 제품 안내에 따라 조절해요. 낮에는 잘 맞는 자외선 차단제를 사용해요.</p>
         <p className="mt-2">약과 화장품의 사용 순서는 해당 약 설명서를 우선해요. 각질 관리제·레티놀·벤조일퍼옥사이드를 같은 부위에 새로 여러 개 추가하지 않아요. 따갑거나 벗겨지면 새 제품을 쉬고 편안했던 세안·보습으로 줄여요. 토너·세럼 4단계를 모두 써야 장벽이 회복되는 것은 아니에요.</p>
@@ -71,7 +76,9 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   const plan = applyObservationToCarePlan(buildSimpleCarePlan(answers), profile);
   const routine = useMemo(() => profile.observationAssessment?.canRecommendBasics === false || plan.blockNewBasics
     ? { products: {} }
-    : buildDynamicRoutine(profile.hydrationLevel, { mainConcern: "none", skinType: profile.skinType, careNeeds: profile.careNeeds, basicOnly: profile.surveyVersion === ADAPTIVE_SURVEY_VERSION, isSensitive: profile.observationAssessment?.isSensitive ?? true }), [profile, plan.blockNewBasics]);
+    : initialRecord?.routine && JSON.stringify(initialRecord.surveyAnswers) === JSON.stringify(surveyAnswers)
+      ? { products: Object.fromEntries(Object.entries(initialRecord.routine).map(([category, id]) => [category, getProductById(id) ?? null])), selectionEvidence: initialRecord.recommendationAssessment?.selectionEvidence ?? null, isHistorical: initialRecord.recommendationAssessment?.ruleVersion !== RECOMMENDATION_RULE_VERSION }
+    : buildDynamicRoutine(profile.hydrationLevel, { mainConcern: "none", skinType: profile.skinType, careNeeds: profile.careNeeds, basicOnly: profile.surveyVersion === ADAPTIVE_SURVEY_VERSION, isSensitive: profile.observationAssessment?.isSensitive ?? true }), [profile, plan.blockNewBasics, initialRecord, surveyAnswers]);
   const cosmeticContext = { profile, surveyAnswers, carePlan: plan, routine };
   const cosmeticPlan = cosmeticAnswers ? buildCosmeticAddOnPlan(cosmeticAnswers, cosmeticContext) : null;
   const applyCosmeticRoute = addon => addon?.suppressPharmacy ? { ...plan, pharmacy: null, title: "막힌 피지·거친 결은 선택한 화장품 후보로 살펴봐요.", detail: "아래 추가 화장품 영역에서 선택한 후보를 확인해요. 약품 후보 표시는 보류했어요.", productNote: "각질 관리 화장품과 여드름약을 같은 부위에 함께 새로 시작하지 않아요." } : plan;
@@ -85,8 +92,9 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     try { onSave(next); setSaveError(false); } catch { setSaveError(true); }
   };
   if (showResult && plan.complete) return <div className="space-y-6">
+    {routine.isHistorical && <p className="rounded-xl bg-slate-50 p-4 text-sm">저장 당시의 제품 후보를 보여드려요. 새 검수 기준으로 다시 추천받으려면 아래에서 다시 확인해요.</p>}
     <SimpleCareResult profile={profile} routine={routine} plan={displayPlan} />
-    {profile.surveyVersion !== ADAPTIVE_SURVEY_VERSION && onRestart && <button onClick={onRestart} className="rounded-xl border px-4 py-3">새 기준으로 다시 확인</button>}
+    {(profile.surveyVersion !== ADAPTIVE_SURVEY_VERSION || routine.isHistorical) && onRestart && <button onClick={onRestart} className="rounded-xl border px-4 py-3">새 기준으로 다시 확인</button>}
     {!plan.blockNewBasics && profile.observationAssessment?.canRecommendBasics !== false && <CosmeticAddOnSection context={cosmeticContext} initialAnswers={cosmeticAnswers} onApply={save} />}
     {saveError && <div role="alert" className="rounded-xl bg-amber-50 p-4">결과는 표시했지만 저장하지 못했어요. <button className="underline" onClick={() => save()}>저장 다시 시도</button></div>}
     <div className="flex flex-wrap gap-3"><button className="rounded-xl border px-4 py-3" onClick={() => { setShowResult(false); setIndex(0); }}>추가 고민 답변 바꾸기</button><button className="rounded-xl border px-4 py-3" onClick={onBack}>피부타입 답변 다시 보기</button><button className="rounded-xl bg-slate-900 text-white px-4 py-3" onClick={onHome}>시작 화면</button></div>

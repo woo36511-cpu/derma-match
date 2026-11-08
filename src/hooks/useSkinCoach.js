@@ -1,7 +1,7 @@
 import { ADAPTIVE_SURVEY_VERSION } from "../data/adaptiveObservationSurvey";
 import { isObservationVersion, questionsForSurveyVersion, analyzeSurveyVersion, cleanVersionedSurveyAnswers } from "../utils/skinSurveyVersions";
 import { useState, useRef, useMemo, useEffect } from "react";
-import { getProductById, getRoutineProducts } from "../utils/productCatalog";
+import { getProductById } from "../utils/productCatalog";
 import { feedbackQuestions } from "../data/feedbackQuestions";
 import {
   adjustCareNeedsForIssue,
@@ -209,7 +209,7 @@ export function useSkinCoach() {
   const starterRoutineInfo = routineMap[starterLevel];
   const nextRoutineInfo = routineMap[nextLevel];
 
-  const starterRoutine = getRoutineProducts(starterLevel);
+  const starterRoutine = buildDynamicRoutine(starterLevel, { mainConcern: "none", basicOnly: true, isSensitive: true });
   const observationFeedbackHold = observationFeedback && (!feedbackSurveyComplete || followUpSurveyResult.observationAssessment?.canRecommendBasics === false);
   const feedbackSafety = observationFeedbackHold ? { blocked: true, reason: followUpSurveyResult.observationAssessment?.recommendationReason ?? "현재 피부 상태 답변을 먼저 확인해요." } : symptomFeedbackSafety;
   const nextRoutine = applyRoutineSafety(observationFeedbackHold ? { products: {} } : buildDynamicRoutine(nextLevel, {
