@@ -1,11 +1,9 @@
-import { OBSERVATION_SURVEY_VERSION, getObservationQuestions, cleanObservationAnswers } from "../data/observationSurvey";
-import { analyzeObservationSurvey } from "../utils/analyzeObservationSurvey";
+import { ADAPTIVE_SURVEY_VERSION } from "../data/adaptiveObservationSurvey";
+import { isObservationVersion, questionsForSurveyVersion, analyzeSurveyVersion, cleanVersionedSurveyAnswers } from "../utils/skinSurveyVersions";
 import { useState, useRef, useMemo, useEffect } from "react";
 import { getProductById, getRoutineProducts } from "../utils/productCatalog";
 import { feedbackQuestions } from "../data/feedbackQuestions";
-import { skinSurveyQuestions } from "../data/skinSurvey";
 import {
-  analyzeSkinSurvey,
   adjustCareNeedsForIssue,
 } from "../utils/analyzeSkinSurvey";
 import {
@@ -115,8 +113,8 @@ export function useSkinCoach() {
     isProductUsageComplete;
 
   const feedbackSurveyVersion = feedbackTargetRecord?.surveyVersion || feedbackJourneyRecords.find(record => record.type === "initial_survey")?.surveyVersion;
-  const observationFeedback = feedbackSurveyVersion === OBSERVATION_SURVEY_VERSION;
-  const feedbackQuestionsForSkin = observationFeedback ? getObservationQuestions(feedbackSurveyAnswers) : skinSurveyQuestions;
+  const observationFeedback = isObservationVersion(feedbackSurveyVersion);
+  const feedbackQuestionsForSkin = questionsForSurveyVersion(feedbackSurveyVersion, feedbackSurveyAnswers);
   const feedbackSurveyComplete = feedbackQuestionsForSkin.every((question) => {
     const answer = feedbackSurveyAnswers[question.id];
 
@@ -128,8 +126,8 @@ export function useSkinCoach() {
   });
 
   const followUpSurveyResult = useMemo(
-    () => observationFeedback ? analyzeObservationSurvey(feedbackSurveyAnswers) : analyzeSkinSurvey(feedbackSurveyAnswers, skinSurveyQuestions),
-    [feedbackSurveyAnswers, observationFeedback],
+    () => analyzeSurveyVersion(feedbackSurveyVersion, feedbackSurveyAnswers),
+    [feedbackSurveyAnswers, feedbackSurveyVersion],
   );
 
   useEffect(() => {
@@ -187,11 +185,12 @@ export function useSkinCoach() {
     return calculateNextLevel(baseLevel, answers);
   }, [baseLevel, answers, feedbackSurveyComplete, followUpSurveyResult, observationFeedback]);
 
-  const observationMode = simpleMode && (!simpleRecord || simpleRecord.surveyVersion === OBSERVATION_SURVEY_VERSION);
-  const activeSurveyQuestions = observationMode ? getObservationQuestions(surveyAnswers) : skinSurveyQuestions;
+  const surveyVersion = simpleMode ? simpleRecord?.surveyVersion ?? (simpleRecord ? "legacy-skin-v1" : ADAPTIVE_SURVEY_VERSION) : "legacy-skin-v1";
+  const observationMode = isObservationVersion(surveyVersion);
+  const activeSurveyQuestions = questionsForSurveyVersion(surveyVersion, surveyAnswers);
   const surveyResult = useMemo(() => {
-    return observationMode ? analyzeObservationSurvey(surveyAnswers) : analyzeSkinSurvey(surveyAnswers, skinSurveyQuestions);
-  }, [surveyAnswers, observationMode]);
+    return analyzeSurveyVersion(surveyVersion, surveyAnswers);
+  }, [surveyAnswers, surveyVersion]);
 
   const adjustedSurveyCareNeeds = useMemo(
     () =>
@@ -214,6 +213,7 @@ export function useSkinCoach() {
   const observationFeedbackHold = observationFeedback && (!feedbackSurveyComplete || followUpSurveyResult.observationAssessment?.canRecommendBasics === false);
   const feedbackSafety = observationFeedbackHold ? { blocked: true, reason: followUpSurveyResult.observationAssessment?.recommendationReason ?? "현재 피부 상태 답변을 먼저 확인해요." } : symptomFeedbackSafety;
   const nextRoutine = applyRoutineSafety(observationFeedbackHold ? { products: {} } : buildDynamicRoutine(nextLevel, {
+    basicOnly: feedbackSurveyVersion === ADAPTIVE_SURVEY_VERSION,
     mainConcern: feedbackMainConcern,
 
     careNeeds: feedbackSurveyComplete
@@ -327,7 +327,7 @@ export function useSkinCoach() {
   const savedSurveyResult = useMemo(() => {
     if (!savedSurvey?.surveyAnswers) return null;
 
-    return savedSurvey.surveyVersion === OBSERVATION_SURVEY_VERSION ? analyzeObservationSurvey(savedSurvey.surveyAnswers) : analyzeSkinSurvey(savedSurvey.surveyAnswers, skinSurveyQuestions);
+    return analyzeSurveyVersion(savedSurvey.surveyVersion, savedSurvey.surveyAnswers);
   }, [savedSurvey]);
 
   const hasSavedSurvey = !!savedSurveyResult;
@@ -445,7 +445,7 @@ export function useSkinCoach() {
 
   const handleFeedbackSurveyAnswer = (question, option) => {
     if (observationFeedback) {
-      setFeedbackSurveyAnswers(prev => cleanObservationAnswers({ ...prev, [question.id]: option.label }));
+      setFeedbackSurveyAnswers(prev => cleanVersionedSurveyAnswers(feedbackSurveyVersion, { ...prev, [question.id]: option.label }));
       return;
     }
     setFeedbackSurveyAnswers((prev) => {
@@ -484,7 +484,7 @@ export function useSkinCoach() {
   };
   const handleSurveyAnswer = (question, option) => {
     if (observationMode) {
-      setSurveyAnswers(prev => cleanObservationAnswers({ ...prev, [question.id]: option.label }));
+      setSurveyAnswers(prev => cleanVersionedSurveyAnswers(surveyVersion, { ...prev, [question.id]: option.label }));
       return;
     }
     setSurveyAnswers((prev) => {

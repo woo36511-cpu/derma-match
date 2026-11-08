@@ -111,6 +111,7 @@ export function isProductAllowedForContext(
   userContext = {},
 ) {
   if (product?.recommendationScope === "addon_only") return false;
+  if (userContext.basicOnly && (hasExfoliatingActive(product) || (["toner", "serum", "cream"].includes(category) && isSpecializedTreatmentProduct(product)))) return false;
 
   if (!isProductAvailable(product)) {
     return false;
