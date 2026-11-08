@@ -5,7 +5,7 @@ import { SeoContentSection } from "../components/SeoContentSection";
 import React from "react";
 
 const examplePlan = [
-  { number: "01", title: "피부타입 확인", detail: "기존 설문으로 건성·지성·수부지와 필요한 보습감을 살펴봐요." },
+  { number: "01", title: "피부타입 확인", detail: "유분·당김·자극 경험으로 현재 피부 성향과 필요한 보습감을 살펴봐요." },
   { number: "02", title: "세안제·기초 화장품", detail: "피부타입에 맞는 세안제·토너·세럼·크림을 추천해요." },
   { number: "03", title: "고민별 제품 추가", detail: "여드름 같은 추가 고민이 있을 때만 모양과 쓰는 약을 확인해요." },
 ];
@@ -130,7 +130,7 @@ export function StartScreen({
 
               <h3 className="text-xl font-bold mb-2 break-keep">
                 {savedSurveyResult.skinType} · 수분감{" "}
-                {savedSurveyResult.hydrationLevel}단계
+                {savedSurveyResult.hydrationLevel == null ? "성향 확인 전" : `${savedSurveyResult.hydrationLevel}단계`}
               </h3>
 
               <p className="text-sm text-gray-600 leading-relaxed break-keep">

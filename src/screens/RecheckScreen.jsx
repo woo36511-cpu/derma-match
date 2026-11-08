@@ -1,9 +1,11 @@
+import { DetailDisclosure } from "../components/DetailDisclosure";
 import { SectionTitle } from "../components/SectionTitle";
 import { skinSurveyQuestions } from "../data/skinSurvey";
 import { PrimaryButton } from "../components/PrimaryButton";
 import React from "react";
 
 export function RecheckScreen({
+  questions = skinSurveyQuestions,
   feedbackSurveyAnswers,
   handleFeedbackSurveyAnswer,
   saveFeedbackResult,
@@ -13,7 +15,7 @@ export function RecheckScreen({
     <section>
       <SectionTitle
         title="현재 피부 상태 다시 확인"
-        desc="처음과 같은 질문으로 다시 측정해 Before / After를 같은 기준으로 비교합니다."
+        desc="처음 기록과 같은 설문 버전으로 답하고, 확인된 항목끼리 변화를 비교해요."
       />
 
       <div className="max-w-3xl mx-auto mb-6">
@@ -26,7 +28,7 @@ export function RecheckScreen({
       </div>
 
       <div className="max-w-3xl mx-auto space-y-5">
-        {skinSurveyQuestions.map((question) => {
+        {questions.map((question) => {
           const currentAnswer = feedbackSurveyAnswers[question.id];
 
           return (
@@ -38,6 +40,8 @@ export function RecheckScreen({
                 {question.question}
               </p>
 
+              {question.hint && <p className="mb-4 text-sm text-slate-600">{question.hint}</p>}
+              {question.helper && <DetailDisclosure title="답변 기준 자세히 보기" className="mb-4"><p>{question.helper}</p></DetailDisclosure>}
               <div className="flex flex-wrap gap-2">
                 {question.options.map((option) => {
                   const active =
@@ -49,6 +53,7 @@ export function RecheckScreen({
                   return (
                     <button
                       key={option.label}
+                      aria-pressed={active}
                       onClick={() =>
                         handleFeedbackSurveyAnswer(question, option)
                       }

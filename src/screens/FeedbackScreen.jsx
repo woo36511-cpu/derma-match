@@ -135,9 +135,9 @@ export function FeedbackScreen({
           <p className="text-sm text-gray-500 break-keep mb-2">
             예상 다음 단계
           </p>
-          <div className="text-3xl font-bold mb-2">{nextLevel}</div>
+          <div className="text-3xl font-bold mb-2">{nextLevel ?? "피부 상태 답변 후 확인"}</div>
           <p className="text-sm text-gray-600 leading-relaxed break-keep">
-            {nextRoutineInfo.label}
+            {nextRoutineInfo?.label ?? "다음 설문에서 확인한 피부 성향으로 추천해요."}
           </p>
         </div>
       </div>

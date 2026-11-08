@@ -57,7 +57,7 @@ test("malassezia information keeps off-label use distinct from Korean Nizoral in
 });
 test("quick browsing can start the existing type survey and selected routine recording keeps its safety check", () => {
   render(<App />); click(/피부타입별 화장품/); click("피부타입을 잘 모르겠어요 · 설문으로 확인");
-  expect(screen.getByRole("heading", { name: "세안하고 10분 정도 지나면 얼굴이 어떤가요?" })).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: "최근 2주, 피부 상태가 평소와 비슷했나요?" })).toBeInTheDocument();
   click("시작 화면으로"); click(/피부타입별 화장품/); click(/^건성/); click("이 루틴으로 기록하기");
   expect(screen.getByRole("heading", { name: "지금 피부 상태부터 확인할게요" })).toBeInTheDocument();
 });

@@ -1,3 +1,5 @@
+import { OBSERVATION_SURVEY_VERSION, getObservationQuestions, cleanObservationAnswers } from "../data/observationSurvey";
+import { analyzeObservationSurvey } from "../utils/analyzeObservationSurvey";
 import { useState, useRef, useMemo, useEffect } from "react";
 import { getProductById, getRoutineProducts } from "../utils/productCatalog";
 import { feedbackQuestions } from "../data/feedbackQuestions";
@@ -49,7 +51,7 @@ export function useSkinCoach() {
   const [step, setStep] = useState("start");
   const symptomCheck = useSymptomCheck({ ownerId, storedHistory, persistRecord, setStep });
   const [answers, setAnswers] = useState({});
-  const feedbackSafety = getFeedbackRoutineSafety(symptomCheck.assessment, answers);
+  const symptomFeedbackSafety = getFeedbackRoutineSafety(symptomCheck.assessment, answers);
   const [quickLevel, setQuickLevel] = useState(5);
   const isBrowserBackRef = useRef(false);
   const [baseLevel, setBaseLevel] = useState(5);
@@ -112,7 +114,10 @@ export function useSkinCoach() {
     feedbackQuestions.every((q) => answers[q.id] !== undefined) &&
     isProductUsageComplete;
 
-  const feedbackSurveyComplete = skinSurveyQuestions.every((question) => {
+  const feedbackSurveyVersion = feedbackTargetRecord?.surveyVersion || feedbackJourneyRecords.find(record => record.type === "initial_survey")?.surveyVersion;
+  const observationFeedback = feedbackSurveyVersion === OBSERVATION_SURVEY_VERSION;
+  const feedbackQuestionsForSkin = observationFeedback ? getObservationQuestions(feedbackSurveyAnswers) : skinSurveyQuestions;
+  const feedbackSurveyComplete = feedbackQuestionsForSkin.every((question) => {
     const answer = feedbackSurveyAnswers[question.id];
 
     if (question.type === "multi") {
@@ -123,8 +128,8 @@ export function useSkinCoach() {
   });
 
   const followUpSurveyResult = useMemo(
-    () => analyzeSkinSurvey(feedbackSurveyAnswers, skinSurveyQuestions),
-    [feedbackSurveyAnswers],
+    () => observationFeedback ? analyzeObservationSurvey(feedbackSurveyAnswers) : analyzeSkinSurvey(feedbackSurveyAnswers, skinSurveyQuestions),
+    [feedbackSurveyAnswers, observationFeedback],
   );
 
   useEffect(() => {
@@ -174,16 +179,19 @@ export function useSkinCoach() {
   }, [ownerId]);
 
   const nextLevel = useMemo(() => {
+    if (observationFeedback && !feedbackSurveyComplete) return null;
     if (feedbackSurveyComplete) {
       return followUpSurveyResult.hydrationLevel;
     }
 
     return calculateNextLevel(baseLevel, answers);
-  }, [baseLevel, answers, feedbackSurveyComplete, followUpSurveyResult]);
+  }, [baseLevel, answers, feedbackSurveyComplete, followUpSurveyResult, observationFeedback]);
 
+  const observationMode = simpleMode && (!simpleRecord || simpleRecord.surveyVersion === OBSERVATION_SURVEY_VERSION);
+  const activeSurveyQuestions = observationMode ? getObservationQuestions(surveyAnswers) : skinSurveyQuestions;
   const surveyResult = useMemo(() => {
-    return analyzeSkinSurvey(surveyAnswers, skinSurveyQuestions);
-  }, [surveyAnswers]);
+    return observationMode ? analyzeObservationSurvey(surveyAnswers) : analyzeSkinSurvey(surveyAnswers, skinSurveyQuestions);
+  }, [surveyAnswers, observationMode]);
 
   const adjustedSurveyCareNeeds = useMemo(
     () =>
@@ -203,7 +211,9 @@ export function useSkinCoach() {
   const nextRoutineInfo = routineMap[nextLevel];
 
   const starterRoutine = getRoutineProducts(starterLevel);
-  const nextRoutine = applyRoutineSafety(buildDynamicRoutine(nextLevel, {
+  const observationFeedbackHold = observationFeedback && (!feedbackSurveyComplete || followUpSurveyResult.observationAssessment?.canRecommendBasics === false);
+  const feedbackSafety = observationFeedbackHold ? { blocked: true, reason: followUpSurveyResult.observationAssessment?.recommendationReason ?? "현재 피부 상태 답변을 먼저 확인해요." } : symptomFeedbackSafety;
+  const nextRoutine = applyRoutineSafety(observationFeedbackHold ? { products: {} } : buildDynamicRoutine(nextLevel, {
     mainConcern: feedbackMainConcern,
 
     careNeeds: feedbackSurveyComplete
@@ -211,7 +221,7 @@ export function useSkinCoach() {
       : adjustedSurveyCareNeeds,
 
     isSensitive: feedbackSurveyComplete
-      ? followUpSurveyResult.skinType?.includes("민감") ||
+      ? followUpSurveyResult.observationAssessment?.isSensitive || followUpSurveyResult.skinType?.includes("민감") ||
         (followUpSurveyResult.scores?.sensitivity ?? 0) >= 2
       : surveyResult.skinType?.includes("민감") ||
         (surveyResult.scores?.sensitivity ?? 0) >= 2 ||
@@ -317,17 +327,17 @@ export function useSkinCoach() {
   const savedSurveyResult = useMemo(() => {
     if (!savedSurvey?.surveyAnswers) return null;
 
-    return analyzeSkinSurvey(savedSurvey.surveyAnswers, skinSurveyQuestions);
+    return savedSurvey.surveyVersion === OBSERVATION_SURVEY_VERSION ? analyzeObservationSurvey(savedSurvey.surveyAnswers) : analyzeSkinSurvey(savedSurvey.surveyAnswers, skinSurveyQuestions);
   }, [savedSurvey]);
 
   const hasSavedSurvey = !!savedSurveyResult;
 
-  const currentSurveyQuestion = skinSurveyQuestions[surveyIndex];
+  const currentSurveyQuestion = activeSurveyQuestions[surveyIndex];
   const currentSurveyAnswer = currentSurveyQuestion
     ? surveyAnswers[currentSurveyQuestion.id]
     : null;
 
-  const isLastSurveyQuestion = surveyIndex === skinSurveyQuestions.length - 1;
+  const isLastSurveyQuestion = surveyIndex === activeSurveyQuestions.length - 1;
 
   const isCurrentSurveyAnswered = currentSurveyQuestion
     ? currentSurveyQuestion.type === "multi"
@@ -335,7 +345,7 @@ export function useSkinCoach() {
       : !!currentSurveyAnswer
     : false;
 
-  const surveyProgress = ((surveyIndex + 1) / skinSurveyQuestions.length) * 100;
+  const surveyProgress = ((surveyIndex + 1) / activeSurveyQuestions.length) * 100;
 
   const activeIssueQuestions =
     mainConcern === "inflammatory_acne"
@@ -434,6 +444,10 @@ export function useSkinCoach() {
   };
 
   const handleFeedbackSurveyAnswer = (question, option) => {
+    if (observationFeedback) {
+      setFeedbackSurveyAnswers(prev => cleanObservationAnswers({ ...prev, [question.id]: option.label }));
+      return;
+    }
     setFeedbackSurveyAnswers((prev) => {
       const currentAnswer = prev[question.id];
 
@@ -469,6 +483,10 @@ export function useSkinCoach() {
     });
   };
   const handleSurveyAnswer = (question, option) => {
+    if (observationMode) {
+      setSurveyAnswers(prev => cleanObservationAnswers({ ...prev, [question.id]: option.label }));
+      return;
+    }
     setSurveyAnswers((prev) => {
       const currentAnswer = prev[question.id];
 
@@ -583,7 +601,7 @@ export function useSkinCoach() {
     }
 
     setSurveyIndex((prev) =>
-      Math.min(prev + 1, skinSurveyQuestions.length - 1),
+      Math.min(prev + 1, activeSurveyQuestions.length - 1),
     );
   };
 
@@ -768,6 +786,7 @@ export function useSkinCoach() {
     quickRoutineReason,
     quickRoutine,
     startQuickJourneyFeedback,
+    activeSurveyQuestions, feedbackQuestionsForSkin,
     currentSurveyQuestion,
     surveyIndex,
     surveyProgress,

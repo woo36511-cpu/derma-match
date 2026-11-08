@@ -11,14 +11,15 @@ export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}
   if (!result.complete) return hold("추가 질문을 마쳐주세요.", "현재 상태와 사용 중인 성분을 확인한 뒤 후보를 골라요.");
   if (carePlan.blockNewBasics || ["irritated", "concerning"].includes(answers.comfort)) return hold("지금은 새 기능성 제품을 추가하지 않아요.", "편안했던 세안·보습을 유지해요. 빠르게 퍼지는 붉어짐·심한 붓기나 통증은 오늘 확인받으세요.");
   const knownSkinAnswers = ["afterWash", "afternoonFeel", "areaDifference", "creamFeel", "innerDryness", "sensitivity"].filter(key => typeof surveyAnswers[key] === "string" && !surveyAnswers[key].includes("모르겠"));
-  if (knownSkinAnswers.length < 3) return hold("피부타입 답변을 조금 더 확인해요.", "정보가 부족한 상태에서 기능성 제품을 확정하지 않아요. 피부타입 답변을 보완한 뒤 다시 확인해요.");
+  if (profile.observationAssessment ? !profile.observationAssessment.canRecommendBasics : knownSkinAnswers.length < 3) return hold("피부타입 답변을 조금 더 확인해요.", "정보가 부족한 상태에서 기능성 제품을 확정하지 않아요. 피부타입 답변을 보완한 뒤 다시 확인해요.");
+  if (answers.goal !== "support" && profile.observationAssessment?.recentChange) return hold("최근 변한 피부 상태부터 확인해요.", "상태가 일정하지 않은 동안 새 기능성을 더하지 않아요. 편안했던 기본 관리를 유지하고 피부타입 답변을 다시 확인해요.");
   if (answers.comfort === "unknown") return hold("사용할 부위의 자극 여부부터 확인해요.", "따가움·벗겨짐 여부를 알기 전에는 새 기능성 제품을 추가하지 않아요.");
   const actives = new Set(answers.actives || []);
   if (actives.has("unknown") || carePlan.answers?.medicine === "unknown") return hold("지금 쓰는 제품의 성분부터 확인해요.", "성분을 모르는 제품과의 조합을 안전하다고 안내하지 않아요. 포장 성분표를 확인한 뒤 답을 바꿔요.");
   if (answers.goal !== "support" && (answers.special !== "none" || answers.experience === "reacted")) return hold("이번에는 기능성 제품의 추가를 보류해요.", "별도 확인이 필요한 상황이나 과거 자극 경험이 있어요. 잘 맞는 기본 보습과 자외선 차단을 유지해요.");
   if (answers.goal !== "support" && (surveyAnswers.mainIssue === "붉고 아픈 여드름" || carePlan.answers?.concern === "folliculitis" || carePlan.answers?.concern === "unknown" || ["red", "pus", "deep", "unknown"].includes(carePlan.answers?.shape))) return hold("현재 트러블 관리부터 정리해요.", "원인이 불분명하거나 염증성 돌기가 있는 부위에 새 각질·미백 기능성을 더하지 않아요. 보습 보완은 별도로 살펴볼 수 있어요.");
   if (answers.goal !== "support" && (actives.has("benzoyl") || actives.has("medicine") || (carePlan.answers?.medicine && carePlan.answers.medicine !== "none"))) return hold("사용 중인 약에 새 기능성을 겹치지 않아요.", "처방·여드름약 사용법을 우선해요. 추가 제품 대신 보습 보완이 필요한지 살펴봐요.");
-  const isSensitive = (profile.scores?.sensitivity ?? 0) >= 5 || String(profile.skinType).includes("민감");
+  const isSensitive = profile.observationAssessment?.isSensitive || (profile.scores?.sensitivity ?? 0) >= 5 || String(profile.skinType).includes("민감");
   const level = profile.hydrationLevel;
   if (!Number.isFinite(level)) return hold("제품의 보습 기준을 확인하지 못했어요.", "피부타입 답변을 확인한 뒤 다시 추천받아요.");
   const sensitiveReaction = surveyAnswers.sensitivity === "자주 따갑고 붉어진다";

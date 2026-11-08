@@ -13,6 +13,7 @@ export function buildSimpleSkinRecord(surveyAnswers, profile, routine, plan, pre
     id: previous?.id ?? createJourneyRecordId("survey"),
     journeyId: previous?.journeyId ?? createJourneyRecordId("journey"),
     source: "simple", type: "initial_survey", journeySchemaVersion: 3, savedAt,
+    surveyVersion: profile.surveyVersion ?? "legacy-skin-v1",
     surveyAnswers, mainConcern, issueAnswers: {},
     additionalCare: plan.answers,
     ...(cosmeticPlan?.complete ? { cosmeticAddOn: snapshotCosmeticAddOn(cosmeticPlan) } : {}),
@@ -21,8 +22,9 @@ export function buildSimpleSkinRecord(surveyAnswers, profile, routine, plan, pre
       allowMedicationRecommendation: Boolean(plan.pharmacy), diagnosticStatus: "not_diagnosed",
       clinicalValidation: "not_validated", answers: plan.answers, title: plan.title, nextAction: plan.detail,
     },
-    skinMeasurement: buildSkinMeasurement(profile.skinState, savedAt),
+    skinMeasurement: buildSkinMeasurement(profile.skinState, savedAt, "survey", profile.measurementVersion),
     result: {
+      observationAssessment: profile.observationAssessment,
       skinType: profile.skinType, hydrationLevel: profile.hydrationLevel, scores: profile.scores,
       skinState: profile.skinState, careNeeds: profile.careNeeds, lifestyleTags: profile.lifestyleTags,
       lifestyleConfounders: profile.lifestyleConfounders,
