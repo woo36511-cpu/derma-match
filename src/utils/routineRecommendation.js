@@ -3,7 +3,6 @@ import {
   isProductAllowedForContext,
   hasExfoliatingActive,
   isSpecializedTreatmentProduct,
-  isValidProductLink,
   isProductAvailable,
 } from "./productCatalog";
 import {
@@ -161,17 +160,8 @@ export function pickBestProductByCategory(category, level, userContext = {}) {
         : candidateProducts
     : candidateProducts;
 
-  // 실제 구매 링크가 있는 제품 우선
-  const linkedProducts = safePool.filter((product) =>
-    isValidProductLink(product.link),
-  );
-
-  // 링크 있는 제품이 하나라도 있으면 그 안에서 추천
-  const recommendationPool =
-    linkedProducts.length > 0 ? linkedProducts : safePool;
-
   const sortedProducts = sortProductsForRecommendation(
-    recommendationPool,
+    safePool,
     level,
     userContext,
   );
@@ -211,15 +201,6 @@ export function pickAlternativeNonExfoliatingProduct(
     if (sensitiveSafe.length > 0) {
       levelMatched = sensitiveSafe;
     }
-  }
-
-  // 실제 링크가 있는 제품 우선
-  const linkedProducts = levelMatched.filter((product) =>
-    isValidProductLink(product.link),
-  );
-
-  if (linkedProducts.length > 0) {
-    levelMatched = linkedProducts;
   }
 
   const sorted = sortProductsForRecommendation(
