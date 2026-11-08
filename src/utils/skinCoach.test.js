@@ -358,7 +358,7 @@ test("420 synthetic skin contexts retain four safe available routine slots", () 
 
 
 test("full catalog audit has explicit care profiles and conservative verification gaps", () => {
-  expect(products).toHaveLength(44);
+  expect(products).toHaveLength(67);
 
   const inactiveIds = products
     .filter((product) => product.isAvailable === false)
@@ -371,7 +371,7 @@ test("full catalog audit has explicit care profiles and conservative verificatio
   expect(missingFullIngredientIds).toEqual([8, 20, 26, 27, 36, 48]);
 
   for (const product of products) {
-    expect(product.catalogAudit?.reviewedAt).toBe(product.id === 51 ? "2026-11-08" : "2026-10-11");
+    expect(product.catalogAudit?.reviewedAt).toBe(product.id >= 52 ? "2026-11-09" : product.id === 51 ? "2026-11-08" : "2026-10-11");
     expect(product.catalogAudit?.careProfileSource).toBe(
       "internal_conservative_assessment",
     );
