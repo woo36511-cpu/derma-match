@@ -1,3 +1,4 @@
+import { getProductEvidenceStatus } from "./productEvidence";
 import { products } from "../data/products";
 import { COSMETIC_ADDON_VERSION, cleanCosmeticAnswers, isCosmeticComplete, cosmeticProductProfiles } from "../data/cosmeticAddOns";
 import { getProductCareProfile } from "./productCareProfile";
@@ -25,8 +26,8 @@ export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}
   if (!Number.isFinite(level)) return hold("제품의 보습 기준을 확인하지 못했어요.", "피부타입 답변을 확인한 뒤 다시 추천받아요.");
   const sensitiveReaction = surveyAnswers.sensitivity === "자주 따갑고 붉어진다";
   let candidates = products.filter(product => {
-    const extra = cosmeticProductProfiles[product.id], evidence = product.evidence;
-    if (!extra?.goals.includes(answers.goal) || !isProductAvailable(product) || !evidence?.domesticFormulaVerified || !evidence?.fullIngredientsVerified) return false;
+    const extra = cosmeticProductProfiles[product.id];
+    if (!extra?.goals.includes(answers.goal) || !isProductAvailable(product) || !getProductEvidenceStatus(product).eligible) return false;
     if (Math.abs(product.hydrationLevel - level) > 3) return false;
     if (level >= 7 && getProductCareProfile(product).lightweightFit < 5) return false;
     if ((isSensitive || sensitiveReaction) && (!product.sensitivitySafe || extra.intensity === "exfoliant" || extra.intensity === "high")) return false;

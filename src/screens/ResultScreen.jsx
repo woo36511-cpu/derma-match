@@ -7,7 +7,7 @@ import {
   filterByLevel,
 } from "../utils/recommendationScoring";
 import { products } from "../data/products";
-import { isProductAvailable } from "../utils/productCatalog";
+import { isProductAllowedForContext } from "../utils/productCatalog";
 import { ProductCard } from "../components/ProductCard";
 import { PrimaryButton } from "../components/PrimaryButton";
 import React from "react";
@@ -133,9 +133,10 @@ export function ResultScreen({
                   filterByLevel(
                     products.filter(
                       (product) =>
-                        isProductAvailable(product) &&
+                        isProductAllowedForContext(product, product.category, userContext) &&
                         product.ingredients.includes(ingredient),
                     ),
+                    nextLevel,
                   ),
                   nextLevel,
                 ).map((product) => (

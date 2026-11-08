@@ -1,3 +1,5 @@
+import { getProductEvidenceStatus } from "./productEvidence";
+import { getProductCareProfile } from "./productCareProfile";
 export function buildUserTags(context) {
   const tags = [];
 
@@ -26,115 +28,23 @@ export function buildUserTags(context) {
 }
 
 export function buildRecommendationReasons(product, userContext = {}) {
-  const reasons = [];
-
-  const currentLevel = userContext.level ?? 5;
-  const mainConcern = userContext.mainConcern;
-
-  const productConcerns = product.concerns || [];
-
-  const hasConcern = (...tags) =>
-    tags.some((tag) => productConcerns.includes(tag));
-
-  const texture = String(product.texture || "").toLowerCase();
-
-  const isLightTexture = ["light", "gel", "watery", "fresh"].includes(texture);
-
-  // ===== 1순위: 현재 피부 고민과 직접 연결된 이유 =====
-
-  if (mainConcern === "inflammatory_acne") {
-    if (hasConcern("acne")) {
-      reasons.push("현재 고민인 염증성 트러블 관리 방향과 잘 맞는 제품");
-    }
-
-    if (hasConcern("soothing")) {
-      reasons.push("붉고 예민해진 피부를 진정시키는 방향으로 보기 좋음");
-    }
+  const reasons = [], p = getProductCareProfile(product), needs = userContext.careNeeds ?? {};
+  const level = userContext.level;
+  const reasonsByNeed = [
+    [needs.hydrationNeed ?? 0, p.hydrationSupport, "답변한 당김을 고려해 보습을 보완하는 방향의 후보예요."],
+    [needs.lightTextureNeed ?? 0, p.lightweightFit, "답변한 유분·사용감을 고려해 가벼운 제형을 우선했어요."],
+    [needs.soothingNeed ?? 0, p.soothingSupport, "반복 자극 경험을 고려한 기본 관리 후보예요. 개인별 무자극을 보장하지는 않아요."],
+    [needs.barrierCareNeed ?? 0, p.barrierSupport, "답변한 건조·불편함을 고려해 보습 유지에 초점을 맞춘 후보예요."],
+  ].sort((a, b) => b[0] * b[1] - a[0] * a[1]);
+  if (reasonsByNeed[0][0] * reasonsByNeed[0][1] > 0) reasons.push(reasonsByNeed[0][2]);
+  if (Number.isFinite(level)) {
+    const difference = Math.abs((product.hydrationLevel ?? 5) - level);
+    reasons.push(difference <= 1 ? "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요." : "조건을 통과한 후보 중에서 비교했어요. 보습감 기준과 차이가 있어 처음에는 필요한 부위의 사용감을 확인해요.");
   }
-
-  if (mainConcern === "closed_comedones") {
-    if (hasConcern("closed_comedones", "pores")) {
-      reasons.push("현재 고민인 좁쌀·모공 막힘 관리 방향과 잘 맞는 제품");
-    }
-
-    if (isLightTexture) {
-      reasons.push("무겁고 답답한 제형을 줄이고 싶을 때 보기 좋은 편");
-    }
-  }
-
-  if (mainConcern === "blackhead_sebum") {
-    if (hasConcern("blackhead", "pores")) {
-      reasons.push("현재 고민인 블랙헤드와 모공 관리 방향에 잘 맞는 제품");
-    }
-
-    if (hasConcern("sebum")) {
-      reasons.push("피지와 번들거림 관리가 필요한 피부에 잘 맞는 편");
-    }
-  }
-
-  if (mainConcern === "dehydration") {
-    if (hasConcern("hydration")) {
-      reasons.push("현재 고민인 속당김을 줄이기 위한 수분 보충에 잘 맞는 제품");
-    }
-
-    if (hasConcern("barrier")) {
-      reasons.push("수분이 쉽게 날아가는 피부의 장벽 보완에 보기 좋은 제품");
-    }
-  }
-
-  if (mainConcern === "sensitivity_redness") {
-    if (hasConcern("soothing", "redness") || product.sensitivitySafe) {
-      reasons.push("현재 고민인 붉어짐과 예민함을 고려한 진정 제품");
-    }
-
-    if (hasConcern("barrier")) {
-      reasons.push("자극받은 피부의 장벽 관리 방향과 잘 맞는 편");
-    }
-  }
-
-  if (mainConcern === "oiliness") {
-    if (hasConcern("sebum")) {
-      reasons.push("현재 고민인 번들거림과 유분 관리에 잘 맞는 제품");
-    }
-
-    if (isLightTexture) {
-      reasons.push("무겁고 답답한 사용감을 피하고 싶은 피부에 적합한 편");
-    }
-  }
-
-  // ===== 2순위: 수분감 단계 =====
-
-  const hydrationDiff = Math.abs((product.hydrationLevel ?? 5) - currentLevel);
-
-  if (hydrationDiff === 0) {
-    reasons.push("현재 수분감 단계와 잘 맞음");
-  } else if (hydrationDiff === 1) {
-    reasons.push("현재 수분감 단계와 크게 벗어나지 않는 제품");
-  }
-
-  // ===== 3순위: 추가 적합성 =====
-
-  if (userContext.isSensitive && product.sensitivitySafe) {
-    reasons.push("민감 경향을 고려했을 때 비교적 부담이 적은 편");
-  }
-
-  if (product.beginnerFriendly) {
-    reasons.push("초보자도 시작하기 부담이 적은 제품");
-  }
-
-  if (hasConcern("hydration")) {
-    reasons.push("기본 수분 보충용으로 활용하기 좋음");
-  }
-
-  if (hasConcern("soothing")) {
-    reasons.push("진정 관리가 필요할 때 같이 보기 좋음");
-  }
-
-  if (hasConcern("barrier")) {
-    reasons.push("장벽 보완이 필요한 피부에 보기 좋은 편");
-  }
-
-  return [...new Set(reasons)].slice(0, 3);
+  const evidence = getProductEvidenceStatus(product);
+  reasons.push(evidence.formulaVerified ? "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요." : "국내 전성분 확인이 부족한 예전 후보예요. 새 추천에는 포함하지 않아요.");
+  if (["inflammatory_acne", "closed_comedones", "blackhead_sebum"].includes(userContext.mainConcern) || userContext.acneSupport) reasons.push("이 화장품의 역할은 세안·보습 보조예요. 여드름 치료 효과로 순위를 매기지 않아요.");
+  return reasons;
 }
 
 export function getRecommendedAmount(product, userContext) {

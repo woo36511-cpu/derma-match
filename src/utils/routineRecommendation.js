@@ -3,12 +3,12 @@ import {
   isProductAllowedForContext,
   hasExfoliatingActive,
   isSpecializedTreatmentProduct,
-  isProductAvailable,
 } from "./productCatalog";
 import {
   filterByLevel,
   getConcernMatchScore,
   sortProductsForRecommendation,
+  getRecommendationBreakdown,
 } from "./recommendationScoring";
 
 export function getRecommendedIngredients(level, feedbackContext = {}) {
@@ -37,7 +37,7 @@ export function getRecommendedIngredients(level, feedbackContext = {}) {
   return list;
 }
 
-export function pickBestProductByCategory(category, level, userContext = {}) {
+export function getRankedProductCandidates(category, level, userContext = {}) {
   let targetCategory = category;
 
   let allowedCategories = [category];
@@ -157,7 +157,7 @@ export function pickBestProductByCategory(category, level, userContext = {}) {
       ? sensitiveSafeProducts
       : broaderSensitiveProducts.length > 0
         ? broaderSensitiveProducts
-        : candidateProducts
+        : []
     : candidateProducts;
 
   const sortedProducts = sortProductsForRecommendation(
@@ -166,7 +166,11 @@ export function pickBestProductByCategory(category, level, userContext = {}) {
     userContext,
   );
 
-  return sortedProducts[0] || null;
+  return sortedProducts;
+}
+
+export function pickBestProductByCategory(category, level, userContext = {}) {
+  return getRankedProductCandidates(category, level, userContext)[0] || null;
 }
 
 export function pickAlternativeNonExfoliatingProduct(
@@ -179,7 +183,7 @@ export function pickAlternativeNonExfoliatingProduct(
   let candidates = products.filter(
     (product) =>
       product.category === category &&
-      isProductAvailable(product) &&
+      isProductAllowedForContext(product, category, userContext) &&
       !excludedIds.includes(product.id) &&
       !hasExfoliatingActive(product),
   );
@@ -198,9 +202,7 @@ export function pickAlternativeNonExfoliatingProduct(
       (product) => product.sensitivitySafe,
     );
 
-    if (sensitiveSafe.length > 0) {
-      levelMatched = sensitiveSafe;
-    }
+    levelMatched = sensitiveSafe.length > 0 ? sensitiveSafe : candidates.filter(product => product.sensitivitySafe);
   }
 
   const sorted = sortProductsForRecommendation(
@@ -254,7 +256,18 @@ export function buildDynamicRoutine(level, userContext = {}) {
     }
   }
 
+  const chosen = { cleanser, toner, serum, cream };
+  const selectionEvidence = Object.fromEntries(Object.entries(chosen).map(([category, product]) => {
+    if (!product) return [category, { reason: "확인된 자료와 피부 조건을 통과한 후보가 없어요." }];
+    const assessment = getRecommendationBreakdown(product, level, userContext);
+    const ranked = getRankedProductCandidates(category, level, userContext);
+    return [category, { productId: product.id, ...assessment,
+      selectionPath: ranked[0]?.id === product.id ? "highest_fit_in_eligible_pool" : "compatibility_substitution",
+      alternatives: ranked.filter(candidate => candidate.id !== product.id).slice(0, 2).map(candidate => ({ productId: candidate.id, ...getRecommendationBreakdown(candidate, level, userContext) })),
+    }];
+  }));
   return {
+    selectionEvidence,
     label: `${level}단계 맞춤 루틴`,
     description: "현재 피부 상태와 주요 고민을 반영해 구성한 추천 루틴입니다.",
 

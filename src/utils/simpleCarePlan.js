@@ -1,8 +1,9 @@
+import { buildAcneCareReview } from "./acneCareReview";
 import { pharmacyOptions } from "../data/targetedCareProducts";
 import { isSimpleCareComplete, cleanSimpleCareAnswers } from "../data/simpleCare";
 
-export const SIMPLE_CARE_VERSION = "type-and-extra-care-v1";
-export function buildSimpleCarePlan(input) {
+export const SIMPLE_CARE_VERSION = "type-and-extra-care-v2";
+function buildBaseSimpleCarePlan(input) {
   const a = cleanSimpleCareAnswers(input);
   const result = { answers: a, complete: isSimpleCareComplete(a), pharmacy: null, showFolliculitis: false, blockNewBasics: false };
   if (!result.complete) return { ...result, title: "빠진 답변을 확인해주세요." };
@@ -42,4 +43,9 @@ export function buildSimpleCarePlan(input) {
       indication: "작은 붉은 여드름·뾰루지가 국소적으로 있을 때 살펴볼 일반의약품이에요. 깊은 덩이나 넓게 번지는 붓기에는 이 안내를 적용하지 않아요." },
     productNote: "기존 기초 제품이 잘 맞으면 유지해요. 새 약은 한 가지만 고르고, 바른 뒤 자극이 생기거나 설명서대로 사용해도 나아지지 않으면 중단하고 확인해요.",
   };
+}
+
+export function buildSimpleCarePlan(input) {
+  const plan = buildBaseSimpleCarePlan(input);
+  return { ...plan, careReview: buildAcneCareReview(plan) };
 }

@@ -1,0 +1,3719 @@
+{
+  "generatedDate": "2026-11-09",
+  "ruleVersion": "verified-product-fit-v2",
+  "scope": "stored_product_evidence_and_recommendation_rules",
+  "clinicalAccuracyValidated": false,
+  "notes": [
+    "44개 제품의 저장된 검수 기록과 추천 규칙을 재점검한 결과입니다. 모든 제조사 원문을 이번에 새로 검증했다는 의미는 아닙니다.",
+    "성분·제형 적합도 점수는 내부 평가이며 실제 개선 확률·임상 효능 등급이 아닙니다.",
+    "해외 전성분만 확인된 제품은 국내 처방 동일성 확인 전까지 새 자동 추천에서 제외합니다.",
+    "추천 조건을 통과한 제품이 없으면 안전 조건이나 확인 기준을 낮추지 않습니다."
+  ],
+  "catalog": [
+    {
+      "id": 1,
+      "name": "라운드랩 독도 토너",
+      "category": "toner",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 5,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 6,
+        "lightweightFit": 9,
+        "soothingSupport": 4,
+        "congestionSupport": 0,
+        "barrierSupport": 1
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://roundlab.co.kr/product/detail.html?product_no=22",
+        "https://gi.esmplus.com/roundlab/DOKDO/DT200/DT200_3.jpg"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 2,
+      "name": "토리든 다이브인 세럼",
+      "category": "serum",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 4,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 9,
+        "lightweightFit": 10,
+        "soothingSupport": 5,
+        "congestionSupport": 0,
+        "barrierSupport": 3
+      },
+      "formulaVerified": false,
+      "profileReviewed": true,
+      "newCandidateEligible": false,
+      "issues": [
+        "국내 제품·전성분 확인 부족"
+      ],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.torriden.com/goods/goods_list.php?cateCd=001007",
+        "https://torriden.us/products/dive-in-serum"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 3,
+      "name": "피지오겔 DMT 데일리 모이스쳐 테라피 페이셜 크림",
+      "category": "cream",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 3,
+      "texture": "rich",
+      "profile": {
+        "hydrationSupport": 9,
+        "lightweightFit": 2,
+        "soothingSupport": 4,
+        "congestionSupport": 0,
+        "barrierSupport": 8
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://physiogel.co.kr/product/detail.html?product_no=24",
+        "https://physiogel.co.kr/web/upload/NNEditor/D_product/[%ED%94%BC%EC%A7%80%EC%98%A4%EA%B2%94]DMT%ED%81%AC%EB%A6%BC%EB%A6%AC%EB%89%B4%EC%96%BC_%EB%82%98%EC%98%81%EC%95%84abm_%EA%B9%80%ED%9D%AC%EC%98%81d_260903_v06.jpg"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 4,
+      "name": "세타필 젠틀 스킨 클렌저",
+      "category": "cleanser",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 5,
+      "texture": "mild",
+      "profile": {
+        "hydrationSupport": 4,
+        "lightweightFit": 5,
+        "soothingSupport": 3,
+        "congestionSupport": 0,
+        "barrierSupport": 2
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.cetaphil.co.kr/cleansers/젠틀-스킨-클렌저/KR_302990110227.html"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 5,
+      "name": "코스알엑스 BHA 블랙헤드 파워 리퀴드",
+      "category": "serum",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 8,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 3,
+        "lightweightFit": 9,
+        "soothingSupport": 2,
+        "congestionSupport": 7,
+        "barrierSupport": 1
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.cosrx.co.kr/m/product_detail.html?brand_uid=1173596",
+        "https://www.cosrx.com/products/bha-blackhead-power-liquid",
+        "https://www.cosrx.com/blogs/skinsights/all-about-exfoliation"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 6,
+      "name": "이니스프리 그린티 히알루론산 수분 세럼",
+      "category": "serum",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 5,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 8,
+        "lightweightFit": 9,
+        "soothingSupport": 4,
+        "congestionSupport": 0,
+        "barrierSupport": 3
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.innisfree.com/kr/ko/dp/product/34116",
+        "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img23_250519.png",
+        "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img09_250519.png",
+        "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img11_250519.png",
+        "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img12_250519.png",
+        "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img03_250519.png",
+        "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img14_250519.png"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 7,
+      "name": "에스트라 아토베리어 365 크림",
+      "category": "cream",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 2,
+      "texture": "rich",
+      "profile": {
+        "hydrationSupport": 9,
+        "lightweightFit": 2,
+        "soothingSupport": 5,
+        "congestionSupport": 0,
+        "barrierSupport": 10
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.aestura.com/m/product/view.do?prdSeq=1021"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 8,
+      "name": "닥터지 레드 블레미쉬 수딩 크림",
+      "category": "cream",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 6,
+      "texture": "gel",
+      "profile": {
+        "hydrationSupport": 7,
+        "lightweightFit": 8,
+        "soothingSupport": 5,
+        "congestionSupport": 0,
+        "barrierSupport": 2
+      },
+      "formulaVerified": false,
+      "profileReviewed": true,
+      "newCandidateEligible": false,
+      "issues": [
+        "국내 제품·전성분 확인 부족"
+      ],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.dr-g.com/collections/shop-all/products/dr-g-red-blemish-clear-soothing-cream"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 9,
+      "name": "아누아 어성초 77 히알루론산 수분 진정 토너",
+      "category": "toner",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 6,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 6,
+        "lightweightFit": 9,
+        "soothingSupport": 5,
+        "congestionSupport": 0,
+        "barrierSupport": 1
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://m.anua.kr/product/detail.html?product_no=496"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 10,
+      "name": "셀퓨전씨 약산성 패리어 클렌징폼",
+      "category": "cleanser",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 4,
+      "texture": "mild",
+      "profile": {
+        "hydrationSupport": 4,
+        "lightweightFit": 5,
+        "soothingSupport": 3,
+        "congestionSupport": 0,
+        "barrierSupport": 2
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.cellfusionc.co.kr/product/detail.html?product_no=267"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 11,
+      "name": "라로슈포제 에빠끌라 듀오+M 트러블 에센스",
+      "category": "cream",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 7,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 3,
+        "lightweightFit": 8,
+        "soothingSupport": 2,
+        "congestionSupport": 4,
+        "barrierSupport": 1
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.larocheposay.co.kr/product/view/4714.do"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 12,
+      "name": "일리윤 세라마이드 아토 로션 (3세대)",
+      "category": "cream",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 3,
+      "texture": "mid",
+      "profile": {
+        "hydrationSupport": 9,
+        "lightweightFit": 5,
+        "soothingSupport": 4,
+        "congestionSupport": 0,
+        "barrierSupport": 8
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://illiyoon.com/product/detail.html?product_no=263"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 13,
+      "name": "코스드바하 나이아신아마이드 10 세럼",
+      "category": "serum",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 8,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 3,
+        "lightweightFit": 8,
+        "soothingSupport": 2,
+        "congestionSupport": 3,
+        "barrierSupport": 1
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.cosdebaha.co.kr/product/n-세럼-30ml/70/",
+        "https://ecimg.cafe24img.com/pg2348b91183604049/jainaface/web/upload/NNEditor/20260909/N_02.jpg",
+        "https://ecimg.cafe24img.com/pg2348b91183604049/jainaface/web/upload/NNEditor/20260909/N_01.jpg",
+        "https://cosdebahaofficial.com/products/niacinamide-serum-30ml",
+        "https://www.cosdebaha.com/blogs/news/niacinamide-serum-important-information"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 14,
+      "name": "코스알엑스 나이아신아마이드 15 세럼",
+      "category": "serum",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 9,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 2,
+        "lightweightFit": 9,
+        "soothingSupport": 2,
+        "congestionSupport": 6,
+        "barrierSupport": 0
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.cosrx.co.kr/shop/shopdetail.html?branduid=1177564",
+        "https://cosrxinc.jpg3.kr/cosrximg/cosrx/product/The-Niacinamide15-Serum/1000_Niacinamide-15-Serum_03.jpg",
+        "https://cosrxinc.jpg3.kr/cosrximg/cosrx/product/The-Niacinamide15-Serum/1000_Niacinamide-15-Serum_02.gif",
+        "https://www.cosrx.com/products/the-niacinamide-15-serum-%EB%B2%88%EB%93%A4"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 15,
+      "name": "라운드랩 자작나무 수분 토너",
+      "category": "toner",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 4,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 7,
+        "lightweightFit": 9,
+        "soothingSupport": 4,
+        "congestionSupport": 0,
+        "barrierSupport": 1
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://roundlab.co.kr/product/detail.html?product_no=90",
+        "https://ai.esmplus.com/roundlab/LOCAL/B/LT_B/LT_B_03.jpg"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 18,
+      "name": "토리든 다이브인 저분자 히알루론산 수딩 크림",
+      "category": "cream",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 7,
+      "texture": "gel",
+      "profile": {
+        "hydrationSupport": 9,
+        "lightweightFit": 9,
+        "soothingSupport": 7,
+        "congestionSupport": 0,
+        "barrierSupport": 2
+      },
+      "formulaVerified": false,
+      "profileReviewed": true,
+      "newCandidateEligible": false,
+      "issues": [
+        "국내 제품·전성분 확인 부족"
+      ],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.torriden.com/goods/goods_view.php?goodsNo=439",
+        "https://torriden.us/products/dive-in-soothing-cream"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 19,
+      "name": "라운드랩 자작나무 수분 크림",
+      "category": "cream",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 4,
+      "texture": "mid",
+      "profile": {
+        "hydrationSupport": 8,
+        "lightweightFit": 8,
+        "soothingSupport": 4,
+        "congestionSupport": 2,
+        "barrierSupport": 2
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://roundlab.co.kr/product/detail.html?product_no=94",
+        "https://ai.esmplus.com/roundlab/LOCAL/B/LC_B/LC_B_03.jpg"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 20,
+      "name": "브링그린 티트리 시카 수딩 토너",
+      "category": "toner",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 7,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 5,
+        "lightweightFit": 10,
+        "soothingSupport": 4,
+        "congestionSupport": 1,
+        "barrierSupport": 0
+      },
+      "formulaVerified": false,
+      "profileReviewed": true,
+      "newCandidateEligible": false,
+      "issues": [
+        "국내 제품·전성분 확인 부족"
+      ],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo=A000000189181"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 21,
+      "name": "스킨푸드 캐롯 카로틴 카밍 워터 패드",
+      "category": "toner",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 6,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 6,
+        "lightweightFit": 9,
+        "soothingSupport": 4,
+        "congestionSupport": 0,
+        "barrierSupport": 1
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.theskinfood.com/shop/shopdetail.html?branduid=677"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 22,
+      "name": "넘버즈인 1번 진정 맑게담은 청초토너",
+      "category": "toner",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 6,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 6,
+        "lightweightFit": 9,
+        "soothingSupport": 5,
+        "congestionSupport": 0,
+        "barrierSupport": 1
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://numbuzin.com/product/1번-진정-맑게담은-청초토너-300ml/24/"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 23,
+      "name": "마녀공장 비피다 바이옴 콤플렉스 앰플",
+      "category": "serum",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 5,
+      "texture": "mid",
+      "profile": {
+        "hydrationSupport": 8,
+        "lightweightFit": 7,
+        "soothingSupport": 5,
+        "congestionSupport": 0,
+        "barrierSupport": 7
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://manyo.co.kr/goods/goods_view.php?goodsNo=1709",
+        "https://www.manyo.co.kr/goods/goods_view.php?goodsNo=1000000499",
+        "https://img.manyo.co.kr/page/260618_bifida_ampoule/Bifida_Biome_Complex_Ampoule_1000_03.jpg",
+        "https://img.manyo.co.kr/page/260618_bifida_ampoule/Bifida_Biome_Complex_Ampoule_1000_05.jpg",
+        "https://manyo.us/products/bifida-biome-complex-ampoule"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 24,
+      "name": "라로슈포제 시카플라스트 밤 B5+",
+      "category": "cream",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 2,
+      "texture": "rich",
+      "profile": {
+        "hydrationSupport": 8,
+        "lightweightFit": 2,
+        "soothingSupport": 6,
+        "congestionSupport": 0,
+        "barrierSupport": 7
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.larocheposay.co.kr/product/view/4710.do"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 25,
+      "name": "스킨1004 마다가스카르 센텔라 앰플",
+      "category": "serum",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 6,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 5,
+        "lightweightFit": 9,
+        "soothingSupport": 7,
+        "congestionSupport": 0,
+        "barrierSupport": 2
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://skin1004korea.com/product/detail.html?product_no=275",
+        "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777506000-5.jpg",
+        "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777505991-3.jpg",
+        "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777505995-4.jpg",
+        "https://www.skin1004.com/products/skin1004-madagascar-centella-ampoule"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 26,
+      "name": "브링그린 티트리 시카 트러블 세럼",
+      "category": "serum",
+      "available": false,
+      "scope": "general",
+      "moistureLevel": 7,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 0,
+        "lightweightFit": 0,
+        "soothingSupport": 0,
+        "congestionSupport": 0,
+        "barrierSupport": 0
+      },
+      "formulaVerified": false,
+      "profileReviewed": true,
+      "newCandidateEligible": false,
+      "issues": [
+        "국내 제품·전성분 확인 부족",
+        "현재 추천 대상에서 제외된 제품"
+      ],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://corp.oliveyoung.com/ko/business/brand/bringgreen"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 27,
+      "name": "닥터지 약산성 클렌징 젤 폼",
+      "category": "cleanser",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 7,
+      "texture": "fresh",
+      "profile": {
+        "hydrationSupport": 3,
+        "lightweightFit": 9,
+        "soothingSupport": 2,
+        "congestionSupport": 0,
+        "barrierSupport": 1
+      },
+      "formulaVerified": false,
+      "profileReviewed": true,
+      "newCandidateEligible": false,
+      "issues": [
+        "국내 제품·전성분 확인 부족"
+      ],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.dr-g.co.kr/item/4009"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 28,
+      "name": "라로슈포제 에빠끌라 퓨리파잉 포밍 젤+M",
+      "category": "cleanser",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 8,
+      "texture": "fresh",
+      "profile": {
+        "hydrationSupport": 2,
+        "lightweightFit": 9,
+        "soothingSupport": 1,
+        "congestionSupport": 1,
+        "barrierSupport": 0
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.larocheposay.co.kr/product/view/4418.do"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 29,
+      "name": "아누아 어성초 80 수분 진정 앰플",
+      "category": "serum",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 6,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 7,
+        "lightweightFit": 7,
+        "soothingSupport": 7,
+        "congestionSupport": 0,
+        "barrierSupport": 2
+      },
+      "formulaVerified": false,
+      "profileReviewed": true,
+      "newCandidateEligible": false,
+      "issues": [
+        "국내 제품·전성분 확인 부족"
+      ],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://anua.com/products/heartleaf-80-moisture-soothing-ampoule-30ml",
+        "https://anua.com/cdn/shop/files/anua-us-ampoule-serum-heartleaf-80-moisture-soothing-ampoule-1261541635.jpg?v=1791442930",
+        "https://anua.com/cdn/shop/files/anua-us-ampoule-serum-heartleaf-80-moisture-soothing-ampoule-1261541636.jpg?v=1791442988"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 30,
+      "name": "메이크프렘 세이프 미 릴리프 모이스처 클렌징 오일",
+      "category": "cleansing_oil",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 5,
+      "texture": "oil",
+      "profile": {
+        "hydrationSupport": 2,
+        "lightweightFit": 3,
+        "soothingSupport": 1,
+        "congestionSupport": 1,
+        "barrierSupport": 0
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.makeprem.com/goods/goods_view.php?goodsNo=1000000283",
+        "https://magnif.godohosting.com/detail_page/safeme/re/safeme_rm_cleansingoil210_05.jpg"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 31,
+      "name": "비오텀 클렌징 밀크",
+      "category": "cleansing_milk",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 2,
+      "texture": "milk",
+      "profile": {
+        "hydrationSupport": 4,
+        "lightweightFit": 3,
+        "soothingSupport": 3,
+        "congestionSupport": 0,
+        "barrierSupport": 1
+      },
+      "formulaVerified": false,
+      "profileReviewed": true,
+      "newCandidateEligible": false,
+      "issues": [
+        "국내 제품·전성분 확인 부족"
+      ],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.bioturm.de/reinigungsmilch"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 32,
+      "name": "아벤느 익스트림 톨러런스 클렌징 로션",
+      "category": "cleansing_milk",
+      "available": false,
+      "scope": "general",
+      "moistureLevel": 1,
+      "texture": "milk",
+      "profile": {
+        "hydrationSupport": 4,
+        "lightweightFit": 3,
+        "soothingSupport": 3,
+        "congestionSupport": 0,
+        "barrierSupport": 1
+      },
+      "formulaVerified": false,
+      "profileReviewed": true,
+      "newCandidateEligible": false,
+      "issues": [
+        "국내 제품·전성분 확인 부족",
+        "현재 추천 대상에서 제외된 제품"
+      ],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.aveneusa.com/concerns/tolerance-extreme-cleansing-lotion?bvstate=pg%3A2%2Fct%3Ar&yoReviewsPage=1"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 33,
+      "name": "에스트라 아토베리어 클렌저",
+      "category": "gel_cleanser",
+      "available": false,
+      "scope": "general",
+      "moistureLevel": 4,
+      "texture": "gel",
+      "profile": {
+        "hydrationSupport": 4,
+        "lightweightFit": 5,
+        "soothingSupport": 3,
+        "congestionSupport": 0,
+        "barrierSupport": 1
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": false,
+      "issues": [
+        "현재 추천 대상에서 제외된 제품"
+      ],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.aestura.com/m/product/view.do?prdSeq=1006"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 34,
+      "name": "이즈앤트리 그린티 프레시 클렌저",
+      "category": "gel_cleanser",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 8,
+      "texture": "gel",
+      "profile": {
+        "hydrationSupport": 4,
+        "lightweightFit": 9,
+        "soothingSupport": 3,
+        "congestionSupport": 1,
+        "barrierSupport": 1
+      },
+      "formulaVerified": false,
+      "profileReviewed": true,
+      "newCandidateEligible": false,
+      "issues": [
+        "국내 제품·전성분 확인 부족"
+      ],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://isntree-global.com/products/isntree-green-tea-fresh-cleanser-120ml"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 35,
+      "name": "수이사이 뷰티클리어 파우더 워시 N",
+      "category": "enzyme_cleanser",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 6,
+      "texture": "powder",
+      "profile": {
+        "hydrationSupport": 1,
+        "lightweightFit": 9,
+        "soothingSupport": 1,
+        "congestionSupport": 2,
+        "barrierSupport": 0
+      },
+      "formulaVerified": false,
+      "profileReviewed": true,
+      "newCandidateEligible": false,
+      "issues": [
+        "국내 제품·전성분 확인 부족"
+      ],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.kao-kirei.com/ja/item/kbb/suisai/4973167823859/"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 36,
+      "name": "파파레서피 효소 파우더 클렌저",
+      "category": "enzyme_cleanser",
+      "available": false,
+      "scope": "general",
+      "moistureLevel": 5,
+      "texture": "powder",
+      "profile": {
+        "hydrationSupport": 0,
+        "lightweightFit": 0,
+        "soothingSupport": 0,
+        "congestionSupport": 0,
+        "barrierSupport": 0
+      },
+      "formulaVerified": false,
+      "profileReviewed": true,
+      "newCandidateEligible": false,
+      "issues": [
+        "국내 제품·전성분 확인 부족",
+        "현재 추천 대상에서 제외된 제품"
+      ],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://paparecipe.com/product/detail.html?product_no=1365"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 38,
+      "name": "이즈앤트리 그린티 프레쉬 토너",
+      "category": "toner",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 10,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 5,
+        "lightweightFit": 9,
+        "soothingSupport": 4,
+        "congestionSupport": 1,
+        "barrierSupport": 1
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://isntree.com/product/detail.html?product_no=177",
+        "https://isntree01.openhost.cafe24.com/product/green_tea_toner/green_tea_toner_17.jpg"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 39,
+      "name": "라운드랩 소나무 진정 시카 토너",
+      "category": "toner",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 9,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 6,
+        "lightweightFit": 9,
+        "soothingSupport": 4,
+        "congestionSupport": 2,
+        "barrierSupport": 0
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://roundlab.co.kr/product/detail.html?product_no=219",
+        "https://ai.esmplus.com/roundlab/LOCAL/P/LT_P250/LT_P250_03.jpg"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 42,
+      "name": "에스트라 테라크네365 수딩 액티브 모이스처라이저",
+      "category": "cream",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 10,
+      "texture": "gel",
+      "profile": {
+        "hydrationSupport": 6,
+        "lightweightFit": 8,
+        "soothingSupport": 3,
+        "congestionSupport": 4,
+        "barrierSupport": 1
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.amoremall.com/kr/ko/product/detail?onlineProdCode=150100000179&onlineProdSn=57282"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 44,
+      "name": "토리든 다이브인 저분자 히알루론산 토너",
+      "category": "toner",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 2,
+      "texture": "watery",
+      "profile": {
+        "hydrationSupport": 8,
+        "lightweightFit": 10,
+        "soothingSupport": 6,
+        "congestionSupport": 0,
+        "barrierSupport": 3
+      },
+      "formulaVerified": false,
+      "profileReviewed": true,
+      "newCandidateEligible": false,
+      "issues": [
+        "국내 제품·전성분 확인 부족"
+      ],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.torriden.com/goods/goods_view.php?goodsNo=2269",
+        "https://torriden.us/products/dive-in-toner"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 45,
+      "name": "에스트라 아토베리어365 하이드로 에센스",
+      "category": "serum",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 2,
+      "texture": "essence",
+      "profile": {
+        "hydrationSupport": 9,
+        "lightweightFit": 6,
+        "soothingSupport": 3,
+        "congestionSupport": 0,
+        "barrierSupport": 7
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.aestura.com/web/product/view.do?prdSeq=1071",
+        "https://image.aestura.com/upload/editor/204e4def-3d9e-480d-bb2a-66a4688b189e.png"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 47,
+      "name": "웰라쥬 리얼 히알루로닉 블루 100 앰플",
+      "category": "serum",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 2,
+      "texture": "ampoule",
+      "profile": {
+        "hydrationSupport": 9,
+        "lightweightFit": 8,
+        "soothingSupport": 6,
+        "congestionSupport": 0,
+        "barrierSupport": 2
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.wellage.co.kr/product/detail.html?product_no=1010",
+        "https://www.wellage.co.kr/detail/ha_ample_100_06_04.gif",
+        "https://www.wellage.co.kr/detail/ha_ample_100_08_03.gif",
+        "https://www.wellage.co.kr/detail/ha_ample_100_13_04.jpg",
+        "https://www.wellage.co.kr/detail/ha_ample_100_17_01.gif",
+        "https://www.wellage.co.kr/detail/ha_ample_100_20_04.jpg",
+        "https://www.wellage.co.kr/detail/ha_ample_100_13_02.jpg"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 48,
+      "name": "에스트라 아토베리어365 세럼",
+      "category": "serum",
+      "available": false,
+      "scope": "general",
+      "moistureLevel": 1,
+      "texture": "serum",
+      "profile": {
+        "hydrationSupport": 0,
+        "lightweightFit": 0,
+        "soothingSupport": 0,
+        "congestionSupport": 0,
+        "barrierSupport": 0
+      },
+      "formulaVerified": false,
+      "profileReviewed": true,
+      "newCandidateEligible": false,
+      "issues": [
+        "국내 제품·전성분 확인 부족",
+        "현재 추천 대상에서 제외된 제품"
+      ],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.aestura.com/m/product/list.do"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 49,
+      "name": "코스알엑스 AHA/BHA 클래리파잉 트리트먼트 토너",
+      "category": "toner",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 4,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 3,
+        "lightweightFit": 9,
+        "soothingSupport": 2,
+        "congestionSupport": 2,
+        "barrierSupport": 1
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://www.cosrx.co.kr/shop/shopdetail.html?branduid=191"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 50,
+      "name": "바이위시트렌드 만델릭 애씨드 젠틀 엑스폴리에이팅 토너",
+      "category": "toner",
+      "available": true,
+      "scope": "general",
+      "moistureLevel": 3,
+      "texture": "watery",
+      "profile": {
+        "hydrationSupport": 3,
+        "lightweightFit": 9,
+        "soothingSupport": 2,
+        "congestionSupport": 3,
+        "barrierSupport": 1
+      },
+      "formulaVerified": false,
+      "profileReviewed": true,
+      "newCandidateEligible": false,
+      "issues": [
+        "국내 제품·전성분 확인 부족"
+      ],
+      "lastSourceVerification": "2026-10-11",
+      "sourceUrls": [
+        "https://wishtrend.com/products/mandelic-acid-gentle-exfoliating-toner"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    },
+    {
+      "id": 51,
+      "name": "마녀공장 갈락 나이아신 3.0 에센스",
+      "category": "serum",
+      "available": true,
+      "scope": "addon_only",
+      "moistureLevel": 7,
+      "texture": "light",
+      "profile": {
+        "hydrationSupport": 5,
+        "lightweightFit": 8,
+        "soothingSupport": 2,
+        "congestionSupport": 0,
+        "barrierSupport": 2
+      },
+      "formulaVerified": true,
+      "profileReviewed": true,
+      "newCandidateEligible": true,
+      "issues": [],
+      "lastSourceVerification": "2026-11-08",
+      "sourceUrls": [
+        "https://m.manyo.co.kr/goods/goods_view.php?goodsNo=1000000233"
+      ],
+      "assessmentBasis": "internal_conservative_assessment",
+      "clinicalOutcomeValidated": false
+    }
+  ],
+  "coverage": {
+    "syntheticCases": 420,
+    "changedComparedWithPreviousRules": 405,
+    "problems": []
+  },
+  "scenarios": [
+    {
+      "name": "건조·보습 후에도 당김",
+      "profile": {
+        "skinType": "건성 성향",
+        "hydrationLevel": 3,
+        "status": "ready"
+      },
+      "action": "지속되는 당김을 고려해 보습을 유지하는 제형을 우선해요.",
+      "categories": [
+        {
+          "category": "cleanser",
+          "chosenId": 10,
+          "chosenName": "셀퓨전씨 약산성 패리어 클렌징폼",
+          "reasons": [
+            "답변한 당김을 고려해 보습을 보완하는 방향의 후보예요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 10,
+              "name": "셀퓨전씨 약산성 패리어 클렌징폼",
+              "score": 0.9536000000000002
+            }
+          ],
+          "breakdown": {
+            "productId": 10,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 1.9536000000000002,
+              "concernSupport": 0,
+              "moistureFit": -2.5,
+              "sensitiveFit": 0,
+              "beginnerFit": 1.5
+            },
+            "total": 0.9536000000000002,
+            "moistureDistance": 1,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://www.cellfusionc.co.kr/product/detail.html?product_no=267"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": []
+          }
+        },
+        {
+          "category": "toner",
+          "chosenId": 15,
+          "chosenName": "라운드랩 자작나무 수분 토너",
+          "reasons": [
+            "답변한 당김을 고려해 보습을 보완하는 방향의 후보예요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 15,
+              "name": "라운드랩 자작나무 수분 토너",
+              "score": 5.045600000000001
+            }
+          ],
+          "breakdown": {
+            "productId": 15,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 6.045600000000001,
+              "concernSupport": 0,
+              "moistureFit": -2.5,
+              "sensitiveFit": 0,
+              "beginnerFit": 1.5
+            },
+            "total": 5.045600000000001,
+            "moistureDistance": 1,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://roundlab.co.kr/product/detail.html?product_no=90"
+                },
+                {
+                  "sourceType": "official_domestic_ingredients_image",
+                  "url": "https://ai.esmplus.com/roundlab/LOCAL/B/LT_B/LT_B_03.jpg"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": []
+          }
+        },
+        {
+          "category": "serum",
+          "chosenId": 45,
+          "chosenName": "에스트라 아토베리어365 하이드로 에센스",
+          "reasons": [
+            "답변한 당김을 고려해 보습을 보완하는 방향의 후보예요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 45,
+              "name": "에스트라 아토베리어365 하이드로 에센스",
+              "score": 7.527200000000001
+            },
+            {
+              "id": 47,
+              "name": "웰라쥬 리얼 히알루로닉 블루 100 앰플",
+              "score": 6.8672
+            }
+          ],
+          "breakdown": {
+            "productId": 45,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 8.5272,
+              "concernSupport": 0,
+              "moistureFit": -2.5,
+              "sensitiveFit": 0,
+              "beginnerFit": 1.5
+            },
+            "total": 7.527200000000001,
+            "moistureDistance": 1,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://www.aestura.com/web/product/view.do?prdSeq=1071"
+                },
+                {
+                  "sourceType": "official_domestic_brand_reported_study",
+                  "url": "https://image.aestura.com/upload/editor/204e4def-3d9e-480d-bb2a-66a4688b189e.png"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": [
+              {
+                "productId": 47,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 7.8672,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 0,
+                  "beginnerFit": 1.5
+                },
+                "total": 6.8672,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://www.wellage.co.kr/product/detail.html?product_no=1010"
+                    },
+                    {
+                      "sourceType": "official_domestic_brand_material",
+                      "url": "https://www.wellage.co.kr/detail/ha_ample_100_06_04.gif"
+                    },
+                    {
+                      "sourceType": "official_domestic_brand_material",
+                      "url": "https://www.wellage.co.kr/detail/ha_ample_100_08_03.gif"
+                    },
+                    {
+                      "sourceType": "official_domestic_brand_material",
+                      "url": "https://www.wellage.co.kr/detail/ha_ample_100_13_04.jpg"
+                    },
+                    {
+                      "sourceType": "official_domestic_brand_material",
+                      "url": "https://www.wellage.co.kr/detail/ha_ample_100_17_01.gif"
+                    },
+                    {
+                      "sourceType": "official_domestic_brand_material",
+                      "url": "https://www.wellage.co.kr/detail/ha_ample_100_20_04.jpg"
+                    },
+                    {
+                      "sourceType": "official_domestic_brand_material",
+                      "url": "https://www.wellage.co.kr/detail/ha_ample_100_13_02.jpg"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              }
+            ]
+          }
+        },
+        {
+          "category": "cream",
+          "chosenId": 3,
+          "chosenName": "피지오겔 DMT 데일리 모이스쳐 테라피 페이셜 크림",
+          "reasons": [
+            "답변한 당김을 고려해 보습을 보완하는 방향의 후보예요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 3,
+              "name": "피지오겔 DMT 데일리 모이스쳐 테라피 페이셜 크림",
+              "score": 12.200800000000003
+            },
+            {
+              "id": 12,
+              "name": "일리윤 세라마이드 아토 로션 (3세대)",
+              "score": 12.200800000000003
+            },
+            {
+              "id": 7,
+              "name": "에스트라 아토베리어 365 크림",
+              "score": 10.3168
+            }
+          ],
+          "breakdown": {
+            "productId": 3,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 10.700800000000003,
+              "concernSupport": 0,
+              "moistureFit": 0,
+              "sensitiveFit": 0,
+              "beginnerFit": 1.5
+            },
+            "total": 12.200800000000003,
+            "moistureDistance": 0,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://physiogel.co.kr/product/detail.html?product_no=24"
+                },
+                {
+                  "sourceType": "official_domestic_ingredients_and_claims_image",
+                  "url": "https://physiogel.co.kr/web/upload/NNEditor/D_product/[%ED%94%BC%EC%A7%80%EC%98%A4%EA%B2%94]DMT%ED%81%AC%EB%A6%BC%EB%A6%AC%EB%89%B4%EC%96%BC_%EB%82%98%EC%98%81%EC%95%84abm_%EA%B9%80%ED%9D%AC%EC%98%81d_260903_v06.jpg"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": [
+              {
+                "productId": 12,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 10.700800000000003,
+                  "concernSupport": 0,
+                  "moistureFit": 0,
+                  "sensitiveFit": 0,
+                  "beginnerFit": 1.5
+                },
+                "total": 12.200800000000003,
+                "moistureDistance": 0,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://illiyoon.com/product/detail.html?product_no=263"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              },
+              {
+                "productId": 7,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 11.3168,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 0,
+                  "beginnerFit": 1.5
+                },
+                "total": 10.3168,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://www.aestura.com/m/product/view.do?prdSeq=1021"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "얼굴 전반 유분",
+      "profile": {
+        "skinType": "지성 성향",
+        "hydrationLevel": 7,
+        "status": "ready"
+      },
+      "action": "유분이 보이는 부위를 고려해 가벼운 제형을 우선해요.",
+      "categories": [
+        {
+          "category": "cleanser",
+          "chosenId": 28,
+          "chosenName": "라로슈포제 에빠끌라 퓨리파잉 포밍 젤+M",
+          "reasons": [
+            "답변한 유분·사용감을 고려해 가벼운 제형을 우선했어요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 28,
+              "name": "라로슈포제 에빠끌라 퓨리파잉 포밍 젤+M",
+              "score": 10.226600000000001
+            }
+          ],
+          "breakdown": {
+            "productId": 28,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 11.226600000000001,
+              "concernSupport": 0,
+              "moistureFit": -2.5,
+              "sensitiveFit": 0,
+              "beginnerFit": 1.5
+            },
+            "total": 10.226600000000001,
+            "moistureDistance": 1,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://www.larocheposay.co.kr/product/view/4418.do"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": []
+          }
+        },
+        {
+          "category": "toner",
+          "chosenId": 9,
+          "chosenName": "아누아 어성초 77 히알루론산 수분 진정 토너",
+          "reasons": [
+            "답변한 유분·사용감을 고려해 가벼운 제형을 우선했어요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 9,
+              "name": "아누아 어성초 77 히알루론산 수분 진정 토너",
+              "score": 7.820899999999998
+            },
+            {
+              "id": 21,
+              "name": "스킨푸드 캐롯 카로틴 카밍 워터 패드",
+              "score": 7.820899999999998
+            },
+            {
+              "id": 22,
+              "name": "넘버즈인 1번 진정 맑게담은 청초토너",
+              "score": 7.820899999999998
+            }
+          ],
+          "breakdown": {
+            "productId": 9,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 8.820899999999998,
+              "concernSupport": 0,
+              "moistureFit": -2.5,
+              "sensitiveFit": 0,
+              "beginnerFit": 1.5
+            },
+            "total": 7.820899999999998,
+            "moistureDistance": 1,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://m.anua.kr/product/detail.html?product_no=496"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": [
+              {
+                "productId": 21,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 8.820899999999998,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 0,
+                  "beginnerFit": 1.5
+                },
+                "total": 7.820899999999998,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://www.theskinfood.com/shop/shopdetail.html?branduid=677"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              },
+              {
+                "productId": 22,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 8.820899999999998,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 0,
+                  "beginnerFit": 1.5
+                },
+                "total": 7.820899999999998,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://numbuzin.com/product/1번-진정-맑게담은-청초토너-300ml/24/",
+                      "retrievalMethod": "official_page_search_index"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              }
+            ]
+          }
+        },
+        {
+          "category": "serum",
+          "chosenId": 25,
+          "chosenName": "스킨1004 마다가스카르 센텔라 앰플",
+          "reasons": [
+            "답변한 유분·사용감을 고려해 가벼운 제형을 우선했어요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 25,
+              "name": "스킨1004 마다가스카르 센텔라 앰플",
+              "score": 7.820899999999998
+            }
+          ],
+          "breakdown": {
+            "productId": 25,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 8.820899999999998,
+              "concernSupport": 0,
+              "moistureFit": -2.5,
+              "sensitiveFit": 0,
+              "beginnerFit": 1.5
+            },
+            "total": 7.820899999999998,
+            "moistureDistance": 1,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://skin1004korea.com/product/detail.html?product_no=275"
+                },
+                {
+                  "sourceType": "official_domestic_full_ingredient_list",
+                  "url": "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777506000-5.jpg"
+                },
+                {
+                  "sourceType": "official_domestic_brand_reported_study",
+                  "url": "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777505991-3.jpg"
+                },
+                {
+                  "sourceType": "official_domestic_brand_reported_study",
+                  "url": "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777505995-4.jpg"
+                },
+                {
+                  "sourceType": "official_global_product_page",
+                  "url": "https://www.skin1004.com/products/skin1004-madagascar-centella-ampoule"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": []
+          }
+        },
+        {
+          "category": "cream",
+          "chosenId": 19,
+          "chosenName": "라운드랩 자작나무 수분 크림",
+          "reasons": [
+            "답변한 유분·사용감을 고려해 가벼운 제형을 우선했어요.",
+            "조건을 통과한 후보 중에서 비교했어요. 보습감 기준과 차이가 있어 처음에는 필요한 부위의 사용감을 확인해요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 19,
+              "name": "라운드랩 자작나무 수분 크림",
+              "score": -0.2975999999999992
+            },
+            {
+              "id": 12,
+              "name": "일리윤 세라마이드 아토 로션 (3세대)",
+              "score": -4.936
+            },
+            {
+              "id": 3,
+              "name": "피지오겔 DMT 데일리 모이스쳐 테라피 페이셜 크림",
+              "score": -7.074400000000001
+            }
+          ],
+          "breakdown": {
+            "productId": 19,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 5.702400000000001,
+              "concernSupport": 0,
+              "moistureFit": -7.5,
+              "sensitiveFit": 0,
+              "beginnerFit": 1.5
+            },
+            "total": -0.2975999999999992,
+            "moistureDistance": 3,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://roundlab.co.kr/product/detail.html?product_no=94"
+                },
+                {
+                  "sourceType": "official_domestic_ingredients_image",
+                  "url": "https://ai.esmplus.com/roundlab/LOCAL/B/LC_B/LC_B_03.jpg"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": [
+              {
+                "productId": 12,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 3.5640000000000005,
+                  "concernSupport": 0,
+                  "moistureFit": -10,
+                  "sensitiveFit": 0,
+                  "beginnerFit": 1.5
+                },
+                "total": -4.936,
+                "moistureDistance": 4,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://illiyoon.com/product/detail.html?product_no=263"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              },
+              {
+                "productId": 3,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 1.4256000000000002,
+                  "concernSupport": 0,
+                  "moistureFit": -10,
+                  "sensitiveFit": 0,
+                  "beginnerFit": 1.5
+                },
+                "total": -7.074400000000001,
+                "moistureDistance": 4,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://physiogel.co.kr/product/detail.html?product_no=24"
+                    },
+                    {
+                      "sourceType": "official_domestic_ingredients_and_claims_image",
+                      "url": "https://physiogel.co.kr/web/upload/NNEditor/D_product/[%ED%94%BC%EC%A7%80%EC%98%A4%EA%B2%94]DMT%ED%81%AC%EB%A6%BC%EB%A6%AC%EB%89%B4%EC%96%BC_%EB%82%98%EC%98%81%EC%95%84abm_%EA%B9%80%ED%9D%AC%EC%98%81d_260903_v06.jpg"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "T존 유분·볼 당김",
+      "profile": {
+        "skinType": "복합성 성향",
+        "hydrationLevel": 5,
+        "status": "ready"
+      },
+      "action": "유분과 지속되는 당김을 함께 고려해 가벼운 보습을 우선해요. 유분이 보인다고 보습을 빼지는 않아요.",
+      "categories": [
+        {
+          "category": "cleanser",
+          "chosenId": 4,
+          "chosenName": "세타필 젠틀 스킨 클렌저",
+          "reasons": [
+            "답변한 유분·사용감을 고려해 가벼운 제형을 우선했어요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 4,
+              "name": "세타필 젠틀 스킨 클렌저",
+              "score": 6.430200000000001
+            },
+            {
+              "id": 10,
+              "name": "셀퓨전씨 약산성 패리어 클렌징폼",
+              "score": 3.930200000000001
+            }
+          ],
+          "breakdown": {
+            "productId": 4,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 4.930200000000001,
+              "concernSupport": 0,
+              "moistureFit": 0,
+              "sensitiveFit": 0,
+              "beginnerFit": 1.5
+            },
+            "total": 6.430200000000001,
+            "moistureDistance": 0,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://www.cetaphil.co.kr/cleansers/젠틀-스킨-클렌저/KR_302990110227.html"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": [
+              {
+                "productId": 10,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 4.930200000000001,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 0,
+                  "beginnerFit": 1.5
+                },
+                "total": 3.930200000000001,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://www.cellfusionc.co.kr/product/detail.html?product_no=267"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              }
+            ]
+          }
+        },
+        {
+          "category": "toner",
+          "chosenId": 1,
+          "chosenName": "라운드랩 독도 토너",
+          "reasons": [
+            "답변한 유분·사용감을 고려해 가벼운 제형을 우선했어요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 1,
+              "name": "라운드랩 독도 토너",
+              "score": 10.301100000000002
+            },
+            {
+              "id": 15,
+              "name": "라운드랩 자작나무 수분 토너",
+              "score": 8.434700000000003
+            },
+            {
+              "id": 9,
+              "name": "아누아 어성초 77 히알루론산 수분 진정 토너",
+              "score": 7.801100000000002
+            }
+          ],
+          "breakdown": {
+            "productId": 1,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 8.801100000000002,
+              "concernSupport": 0,
+              "moistureFit": 0,
+              "sensitiveFit": 0,
+              "beginnerFit": 1.5
+            },
+            "total": 10.301100000000002,
+            "moistureDistance": 0,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://roundlab.co.kr/product/detail.html?product_no=22"
+                },
+                {
+                  "sourceType": "official_domestic_ingredients_image",
+                  "url": "https://gi.esmplus.com/roundlab/DOKDO/DT200/DT200_3.jpg"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": [
+              {
+                "productId": 15,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 9.434700000000003,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 0,
+                  "beginnerFit": 1.5
+                },
+                "total": 8.434700000000003,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://roundlab.co.kr/product/detail.html?product_no=90"
+                    },
+                    {
+                      "sourceType": "official_domestic_ingredients_image",
+                      "url": "https://ai.esmplus.com/roundlab/LOCAL/B/LT_B/LT_B_03.jpg"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              },
+              {
+                "productId": 9,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 8.801100000000002,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 0,
+                  "beginnerFit": 1.5
+                },
+                "total": 7.801100000000002,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://m.anua.kr/product/detail.html?product_no=496"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              }
+            ]
+          }
+        },
+        {
+          "category": "serum",
+          "chosenId": 6,
+          "chosenName": "이니스프리 그린티 히알루론산 수분 세럼",
+          "reasons": [
+            "답변한 유분·사용감을 고려해 가벼운 제형을 우선했어요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 6,
+              "name": "이니스프리 그린티 히알루론산 수분 세럼",
+              "score": 11.766300000000001
+            },
+            {
+              "id": 23,
+              "name": "마녀공장 비피다 바이옴 콤플렉스 앰플",
+              "score": 11.073300000000001
+            },
+            {
+              "id": 25,
+              "name": "스킨1004 마다가스카르 센텔라 앰플",
+              "score": 7.266500000000001
+            }
+          ],
+          "breakdown": {
+            "productId": 6,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 10.266300000000001,
+              "concernSupport": 0,
+              "moistureFit": 0,
+              "sensitiveFit": 0,
+              "beginnerFit": 1.5
+            },
+            "total": 11.766300000000001,
+            "moistureDistance": 0,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page_and_embedded_product_information",
+                  "url": "https://www.innisfree.com/kr/ko/dp/product/34116"
+                },
+                {
+                  "sourceType": "official_domestic_brand_reported_study",
+                  "url": "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img23_250519.png"
+                },
+                {
+                  "sourceType": "official_domestic_brand_reported_study",
+                  "url": "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img09_250519.png"
+                },
+                {
+                  "sourceType": "official_domestic_brand_reported_study",
+                  "url": "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img11_250519.png"
+                },
+                {
+                  "sourceType": "official_domestic_brand_reported_study",
+                  "url": "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img12_250519.png"
+                },
+                {
+                  "sourceType": "official_domestic_brand_reported_study",
+                  "url": "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img03_250519.png"
+                },
+                {
+                  "sourceType": "official_domestic_brand_reported_study",
+                  "url": "https://inm-cdn.innisfree.com/publish/pdtDetail/skincare/essence/greentea_seed_hyaluronic_serum_240103/gtshs_img14_250519.png"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": [
+              {
+                "productId": 23,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 9.573300000000001,
+                  "concernSupport": 0,
+                  "moistureFit": 0,
+                  "sensitiveFit": 0,
+                  "beginnerFit": 1.5
+                },
+                "total": 11.073300000000001,
+                "moistureDistance": 0,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://manyo.co.kr/goods/goods_view.php?goodsNo=1709"
+                    },
+                    {
+                      "sourceType": "official_domestic_formula_cross_check",
+                      "url": "https://www.manyo.co.kr/goods/goods_view.php?goodsNo=1000000499"
+                    },
+                    {
+                      "sourceType": "official_domestic_brand_reported_study",
+                      "url": "https://img.manyo.co.kr/page/260618_bifida_ampoule/Bifida_Biome_Complex_Ampoule_1000_03.jpg"
+                    },
+                    {
+                      "sourceType": "official_domestic_texture_and_usage",
+                      "url": "https://img.manyo.co.kr/page/260618_bifida_ampoule/Bifida_Biome_Complex_Ampoule_1000_05.jpg"
+                    },
+                    {
+                      "sourceType": "official_us_product_page",
+                      "url": "https://manyo.us/products/bifida-biome-complex-ampoule"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              },
+              {
+                "productId": 25,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 8.2665,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 0,
+                  "beginnerFit": 1.5
+                },
+                "total": 7.266500000000001,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://skin1004korea.com/product/detail.html?product_no=275"
+                    },
+                    {
+                      "sourceType": "official_domestic_full_ingredient_list",
+                      "url": "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777506000-5.jpg"
+                    },
+                    {
+                      "sourceType": "official_domestic_brand_reported_study",
+                      "url": "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777505991-3.jpg"
+                    },
+                    {
+                      "sourceType": "official_domestic_brand_reported_study",
+                      "url": "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777505995-4.jpg"
+                    },
+                    {
+                      "sourceType": "official_global_product_page",
+                      "url": "https://www.skin1004.com/products/skin1004-madagascar-centella-ampoule"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              }
+            ]
+          }
+        },
+        {
+          "category": "cream",
+          "chosenId": 19,
+          "chosenName": "라운드랩 자작나무 수분 크림",
+          "reasons": [
+            "답변한 당김을 고려해 보습을 보완하는 방향의 후보예요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 19,
+              "name": "라운드랩 자작나무 수분 크림",
+              "score": 8.121200000000002
+            }
+          ],
+          "breakdown": {
+            "productId": 19,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 9.121200000000002,
+              "concernSupport": 0,
+              "moistureFit": -2.5,
+              "sensitiveFit": 0,
+              "beginnerFit": 1.5
+            },
+            "total": 8.121200000000002,
+            "moistureDistance": 1,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://roundlab.co.kr/product/detail.html?product_no=94"
+                },
+                {
+                  "sourceType": "official_domestic_ingredients_image",
+                  "url": "https://ai.esmplus.com/roundlab/LOCAL/B/LC_B/LC_B_03.jpg"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "여러 제품 자극 경험",
+      "profile": {
+        "skinType": "중성 성향",
+        "hydrationLevel": 5,
+        "status": "ready"
+      },
+      "action": "심한 당김이나 전반적인 유분 응답이 없어 무난한 보습감을 기준으로 후보를 골라요.",
+      "categories": [
+        {
+          "category": "cleanser",
+          "chosenId": 4,
+          "chosenName": "세타필 젠틀 스킨 클렌저",
+          "reasons": [
+            "반복 자극 경험을 고려한 기본 관리 후보예요. 개인별 무자극을 보장하지는 않아요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 4,
+              "name": "세타필 젠틀 스킨 클렌저",
+              "score": 7.348
+            },
+            {
+              "id": 10,
+              "name": "셀퓨전씨 약산성 패리어 클렌징폼",
+              "score": 4.848
+            }
+          ],
+          "breakdown": {
+            "productId": 4,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 1.8479999999999999,
+              "concernSupport": 0,
+              "moistureFit": 0,
+              "sensitiveFit": 4,
+              "beginnerFit": 1.5
+            },
+            "total": 7.348,
+            "moistureDistance": 0,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://www.cetaphil.co.kr/cleansers/젠틀-스킨-클렌저/KR_302990110227.html"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": [
+              {
+                "productId": 10,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 1.8479999999999999,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 4,
+                  "beginnerFit": 1.5
+                },
+                "total": 4.848,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://www.cellfusionc.co.kr/product/detail.html?product_no=267"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              }
+            ]
+          }
+        },
+        {
+          "category": "toner",
+          "chosenId": 1,
+          "chosenName": "라운드랩 독도 토너",
+          "reasons": [
+            "반복 자극 경험을 고려한 기본 관리 후보예요. 개인별 무자극을 보장하지는 않아요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 1,
+              "name": "라운드랩 독도 토너",
+              "score": 8.3336
+            },
+            {
+              "id": 9,
+              "name": "아누아 어성초 77 히알루론산 수분 진정 토너",
+              "score": 6.4496
+            },
+            {
+              "id": 22,
+              "name": "넘버즈인 1번 진정 맑게담은 청초토너",
+              "score": 6.4496
+            }
+          ],
+          "breakdown": {
+            "productId": 1,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 2.8335999999999997,
+              "concernSupport": 0,
+              "moistureFit": 0,
+              "sensitiveFit": 4,
+              "beginnerFit": 1.5
+            },
+            "total": 8.3336,
+            "moistureDistance": 0,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://roundlab.co.kr/product/detail.html?product_no=22"
+                },
+                {
+                  "sourceType": "official_domestic_ingredients_image",
+                  "url": "https://gi.esmplus.com/roundlab/DOKDO/DT200/DT200_3.jpg"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": [
+              {
+                "productId": 9,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 3.4496,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 4,
+                  "beginnerFit": 1.5
+                },
+                "total": 6.4496,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://m.anua.kr/product/detail.html?product_no=496"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              },
+              {
+                "productId": 22,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 3.4496,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 4,
+                  "beginnerFit": 1.5
+                },
+                "total": 6.4496,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://numbuzin.com/product/1번-진정-맑게담은-청초토너-300ml/24/",
+                      "retrievalMethod": "official_page_search_index"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              }
+            ]
+          }
+        },
+        {
+          "category": "serum",
+          "chosenId": 23,
+          "chosenName": "마녀공장 비피다 바이옴 콤플렉스 앰플",
+          "reasons": [
+            "반복 자극 경험을 고려한 기본 관리 후보예요. 개인별 무자극을 보장하지는 않아요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 23,
+              "name": "마녀공장 비피다 바이옴 콤플렉스 앰플",
+              "score": 11.167200000000001
+            },
+            {
+              "id": 25,
+              "name": "스킨1004 마다가스카르 센텔라 앰플",
+              "score": 8.0512
+            }
+          ],
+          "breakdown": {
+            "productId": 23,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 5.6672,
+              "concernSupport": 0,
+              "moistureFit": 0,
+              "sensitiveFit": 4,
+              "beginnerFit": 1.5
+            },
+            "total": 11.167200000000001,
+            "moistureDistance": 0,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://manyo.co.kr/goods/goods_view.php?goodsNo=1709"
+                },
+                {
+                  "sourceType": "official_domestic_formula_cross_check",
+                  "url": "https://www.manyo.co.kr/goods/goods_view.php?goodsNo=1000000499"
+                },
+                {
+                  "sourceType": "official_domestic_brand_reported_study",
+                  "url": "https://img.manyo.co.kr/page/260618_bifida_ampoule/Bifida_Biome_Complex_Ampoule_1000_03.jpg"
+                },
+                {
+                  "sourceType": "official_domestic_texture_and_usage",
+                  "url": "https://img.manyo.co.kr/page/260618_bifida_ampoule/Bifida_Biome_Complex_Ampoule_1000_05.jpg"
+                },
+                {
+                  "sourceType": "official_us_product_page",
+                  "url": "https://manyo.us/products/bifida-biome-complex-ampoule"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": [
+              {
+                "productId": 25,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 5.0512,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 4,
+                  "beginnerFit": 1.5
+                },
+                "total": 8.0512,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://skin1004korea.com/product/detail.html?product_no=275"
+                    },
+                    {
+                      "sourceType": "official_domestic_full_ingredient_list",
+                      "url": "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777506000-5.jpg"
+                    },
+                    {
+                      "sourceType": "official_domestic_brand_reported_study",
+                      "url": "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777505991-3.jpg"
+                    },
+                    {
+                      "sourceType": "official_domestic_brand_reported_study",
+                      "url": "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777505995-4.jpg"
+                    },
+                    {
+                      "sourceType": "official_global_product_page",
+                      "url": "https://www.skin1004.com/products/skin1004-madagascar-centella-ampoule"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              }
+            ]
+          }
+        },
+        {
+          "category": "cream",
+          "chosenId": 19,
+          "chosenName": "라운드랩 자작나무 수분 크림",
+          "reasons": [
+            "반복 자극 경험을 고려한 기본 관리 후보예요. 개인별 무자극을 보장하지는 않아요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 19,
+              "name": "라운드랩 자작나무 수분 크림",
+              "score": 6.942400000000001
+            }
+          ],
+          "breakdown": {
+            "productId": 19,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 3.9424000000000006,
+              "concernSupport": 0,
+              "moistureFit": -2.5,
+              "sensitiveFit": 4,
+              "beginnerFit": 1.5
+            },
+            "total": 6.942400000000001,
+            "moistureDistance": 1,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://roundlab.co.kr/product/detail.html?product_no=94"
+                },
+                {
+                  "sourceType": "official_domestic_ingredients_image",
+                  "url": "https://ai.esmplus.com/roundlab/LOCAL/B/LC_B/LC_B_03.jpg"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "화장품 미사용",
+      "profile": {
+        "skinType": "중성 성향",
+        "hydrationLevel": 5,
+        "status": "ready"
+      },
+      "action": "심한 당김이나 전반적인 유분 응답이 없어 무난한 보습감을 기준으로 후보를 골라요.",
+      "categories": [
+        {
+          "category": "cleanser",
+          "chosenId": 4,
+          "chosenName": "세타필 젠틀 스킨 클렌저",
+          "reasons": [
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 4,
+              "name": "세타필 젠틀 스킨 클렌저",
+              "score": 5.5
+            },
+            {
+              "id": 10,
+              "name": "셀퓨전씨 약산성 패리어 클렌징폼",
+              "score": 3
+            }
+          ],
+          "breakdown": {
+            "productId": 4,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 0,
+              "concernSupport": 0,
+              "moistureFit": 0,
+              "sensitiveFit": 4,
+              "beginnerFit": 1.5
+            },
+            "total": 5.5,
+            "moistureDistance": 0,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://www.cetaphil.co.kr/cleansers/젠틀-스킨-클렌저/KR_302990110227.html"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": [
+              {
+                "productId": 10,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 0,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 4,
+                  "beginnerFit": 1.5
+                },
+                "total": 3,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://www.cellfusionc.co.kr/product/detail.html?product_no=267"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              }
+            ]
+          }
+        },
+        {
+          "category": "toner",
+          "chosenId": 1,
+          "chosenName": "라운드랩 독도 토너",
+          "reasons": [
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 1,
+              "name": "라운드랩 독도 토너",
+              "score": 5.5
+            },
+            {
+              "id": 9,
+              "name": "아누아 어성초 77 히알루론산 수분 진정 토너",
+              "score": 3
+            },
+            {
+              "id": 15,
+              "name": "라운드랩 자작나무 수분 토너",
+              "score": 3
+            }
+          ],
+          "breakdown": {
+            "productId": 1,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 0,
+              "concernSupport": 0,
+              "moistureFit": 0,
+              "sensitiveFit": 4,
+              "beginnerFit": 1.5
+            },
+            "total": 5.5,
+            "moistureDistance": 0,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://roundlab.co.kr/product/detail.html?product_no=22"
+                },
+                {
+                  "sourceType": "official_domestic_ingredients_image",
+                  "url": "https://gi.esmplus.com/roundlab/DOKDO/DT200/DT200_3.jpg"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": [
+              {
+                "productId": 9,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 0,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 4,
+                  "beginnerFit": 1.5
+                },
+                "total": 3,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://m.anua.kr/product/detail.html?product_no=496"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              },
+              {
+                "productId": 15,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 0,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 4,
+                  "beginnerFit": 1.5
+                },
+                "total": 3,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://roundlab.co.kr/product/detail.html?product_no=90"
+                    },
+                    {
+                      "sourceType": "official_domestic_ingredients_image",
+                      "url": "https://ai.esmplus.com/roundlab/LOCAL/B/LT_B/LT_B_03.jpg"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              }
+            ]
+          }
+        },
+        {
+          "category": "serum",
+          "chosenId": 23,
+          "chosenName": "마녀공장 비피다 바이옴 콤플렉스 앰플",
+          "reasons": [
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 23,
+              "name": "마녀공장 비피다 바이옴 콤플렉스 앰플",
+              "score": 5.5
+            },
+            {
+              "id": 25,
+              "name": "스킨1004 마다가스카르 센텔라 앰플",
+              "score": 3
+            }
+          ],
+          "breakdown": {
+            "productId": 23,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 0,
+              "concernSupport": 0,
+              "moistureFit": 0,
+              "sensitiveFit": 4,
+              "beginnerFit": 1.5
+            },
+            "total": 5.5,
+            "moistureDistance": 0,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://manyo.co.kr/goods/goods_view.php?goodsNo=1709"
+                },
+                {
+                  "sourceType": "official_domestic_formula_cross_check",
+                  "url": "https://www.manyo.co.kr/goods/goods_view.php?goodsNo=1000000499"
+                },
+                {
+                  "sourceType": "official_domestic_brand_reported_study",
+                  "url": "https://img.manyo.co.kr/page/260618_bifida_ampoule/Bifida_Biome_Complex_Ampoule_1000_03.jpg"
+                },
+                {
+                  "sourceType": "official_domestic_texture_and_usage",
+                  "url": "https://img.manyo.co.kr/page/260618_bifida_ampoule/Bifida_Biome_Complex_Ampoule_1000_05.jpg"
+                },
+                {
+                  "sourceType": "official_us_product_page",
+                  "url": "https://manyo.us/products/bifida-biome-complex-ampoule"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": [
+              {
+                "productId": 25,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 0,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 4,
+                  "beginnerFit": 1.5
+                },
+                "total": 3,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://skin1004korea.com/product/detail.html?product_no=275"
+                    },
+                    {
+                      "sourceType": "official_domestic_full_ingredient_list",
+                      "url": "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777506000-5.jpg"
+                    },
+                    {
+                      "sourceType": "official_domestic_brand_reported_study",
+                      "url": "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777505991-3.jpg"
+                    },
+                    {
+                      "sourceType": "official_domestic_brand_reported_study",
+                      "url": "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777505995-4.jpg"
+                    },
+                    {
+                      "sourceType": "official_global_product_page",
+                      "url": "https://www.skin1004.com/products/skin1004-madagascar-centella-ampoule"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              }
+            ]
+          }
+        },
+        {
+          "category": "cream",
+          "chosenId": 19,
+          "chosenName": "라운드랩 자작나무 수분 크림",
+          "reasons": [
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 19,
+              "name": "라운드랩 자작나무 수분 크림",
+              "score": 3
+            }
+          ],
+          "breakdown": {
+            "productId": 19,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 0,
+              "concernSupport": 0,
+              "moistureFit": -2.5,
+              "sensitiveFit": 4,
+              "beginnerFit": 1.5
+            },
+            "total": 3,
+            "moistureDistance": 1,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://roundlab.co.kr/product/detail.html?product_no=94"
+                },
+                {
+                  "sourceType": "official_domestic_ingredients_image",
+                  "url": "https://ai.esmplus.com/roundlab/LOCAL/B/LC_B/LC_B_03.jpg"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "유분만 확인됨",
+      "profile": {
+        "skinType": "유분 중심 관리부터 시작",
+        "hydrationLevel": 7,
+        "status": "partial"
+      },
+      "action": "확인된 유분에 맞춰 가벼운 제형 후보를 보여드려요. 당김이 없는 피부라고 단정하지 않으며, 불편한 부위는 보습을 조절해요.",
+      "categories": [
+        {
+          "category": "cleanser",
+          "chosenId": 28,
+          "chosenName": "라로슈포제 에빠끌라 퓨리파잉 포밍 젤+M",
+          "reasons": [
+            "답변한 유분·사용감을 고려해 가벼운 제형을 우선했어요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 28,
+              "name": "라로슈포제 에빠끌라 퓨리파잉 포밍 젤+M",
+              "score": 5.237000000000001
+            }
+          ],
+          "breakdown": {
+            "productId": 28,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 6.237000000000001,
+              "concernSupport": 0,
+              "moistureFit": -2.5,
+              "sensitiveFit": 0,
+              "beginnerFit": 1.5
+            },
+            "total": 5.237000000000001,
+            "moistureDistance": 1,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://www.larocheposay.co.kr/product/view/4418.do"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": []
+          }
+        },
+        {
+          "category": "toner",
+          "chosenId": 9,
+          "chosenName": "아누아 어성초 77 히알루론산 수분 진정 토너",
+          "reasons": [
+            "답변한 유분·사용감을 고려해 가벼운 제형을 우선했어요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 9,
+              "name": "아누아 어성초 77 히알루론산 수분 진정 토너",
+              "score": 3.9005
+            },
+            {
+              "id": 21,
+              "name": "스킨푸드 캐롯 카로틴 카밍 워터 패드",
+              "score": 3.9005
+            },
+            {
+              "id": 22,
+              "name": "넘버즈인 1번 진정 맑게담은 청초토너",
+              "score": 3.9005
+            }
+          ],
+          "breakdown": {
+            "productId": 9,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 4.9005,
+              "concernSupport": 0,
+              "moistureFit": -2.5,
+              "sensitiveFit": 0,
+              "beginnerFit": 1.5
+            },
+            "total": 3.9005,
+            "moistureDistance": 1,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://m.anua.kr/product/detail.html?product_no=496"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": [
+              {
+                "productId": 21,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 4.9005,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 0,
+                  "beginnerFit": 1.5
+                },
+                "total": 3.9005,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://www.theskinfood.com/shop/shopdetail.html?branduid=677"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              },
+              {
+                "productId": 22,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 4.9005,
+                  "concernSupport": 0,
+                  "moistureFit": -2.5,
+                  "sensitiveFit": 0,
+                  "beginnerFit": 1.5
+                },
+                "total": 3.9005,
+                "moistureDistance": 1,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://numbuzin.com/product/1번-진정-맑게담은-청초토너-300ml/24/",
+                      "retrievalMethod": "official_page_search_index"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              }
+            ]
+          }
+        },
+        {
+          "category": "serum",
+          "chosenId": 25,
+          "chosenName": "스킨1004 마다가스카르 센텔라 앰플",
+          "reasons": [
+            "답변한 유분·사용감을 고려해 가벼운 제형을 우선했어요.",
+            "설문에서 정한 보습감 기준과 제품의 내부 제형 평가가 가까워요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 25,
+              "name": "스킨1004 마다가스카르 센텔라 앰플",
+              "score": 3.9005
+            }
+          ],
+          "breakdown": {
+            "productId": 25,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 4.9005,
+              "concernSupport": 0,
+              "moistureFit": -2.5,
+              "sensitiveFit": 0,
+              "beginnerFit": 1.5
+            },
+            "total": 3.9005,
+            "moistureDistance": 1,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://skin1004korea.com/product/detail.html?product_no=275"
+                },
+                {
+                  "sourceType": "official_domestic_full_ingredient_list",
+                  "url": "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777506000-5.jpg"
+                },
+                {
+                  "sourceType": "official_domestic_brand_reported_study",
+                  "url": "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777505991-3.jpg"
+                },
+                {
+                  "sourceType": "official_domestic_brand_reported_study",
+                  "url": "https://skin1004korea.com/web/upload/NNEditor/20260430/copy-1777505995-4.jpg"
+                },
+                {
+                  "sourceType": "official_global_product_page",
+                  "url": "https://www.skin1004.com/products/skin1004-madagascar-centella-ampoule"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": []
+          }
+        },
+        {
+          "category": "cream",
+          "chosenId": 19,
+          "chosenName": "라운드랩 자작나무 수분 크림",
+          "reasons": [
+            "답변한 유분·사용감을 고려해 가벼운 제형을 우선했어요.",
+            "조건을 통과한 후보 중에서 비교했어요. 보습감 기준과 차이가 있어 처음에는 필요한 부위의 사용감을 확인해요.",
+            "국내 제품·전성분 확인 자료를 바탕으로 비교했어요. 효과를 입증한 순위는 아니에요."
+          ],
+          "ranking": [
+            {
+              "id": 19,
+              "name": "라운드랩 자작나무 수분 크림",
+              "score": -2.832
+            },
+            {
+              "id": 12,
+              "name": "일리윤 세라마이드 아토 로션 (3세대)",
+              "score": -6.52
+            },
+            {
+              "id": 3,
+              "name": "피지오겔 DMT 데일리 모이스쳐 테라피 페이셜 크림",
+              "score": -7.708
+            }
+          ],
+          "breakdown": {
+            "productId": 19,
+            "ruleVersion": "verified-product-fit-v2",
+            "parts": {
+              "careFit": 3.168,
+              "concernSupport": 0,
+              "moistureFit": -7.5,
+              "sensitiveFit": 0,
+              "beginnerFit": 1.5
+            },
+            "total": -2.832,
+            "moistureDistance": 3,
+            "evidence": {
+              "formulaVerified": true,
+              "profileReviewed": true,
+              "eligible": true,
+              "sources": [
+                {
+                  "sourceType": "official_domestic_product_page",
+                  "url": "https://roundlab.co.kr/product/detail.html?product_no=94"
+                },
+                {
+                  "sourceType": "official_domestic_ingredients_image",
+                  "url": "https://ai.esmplus.com/roundlab/LOCAL/B/LC_B/LC_B_03.jpg"
+                }
+              ],
+              "lastVerifiedAt": "2026-10-11",
+              "issues": [],
+              "assessmentBasis": "internal_conservative_assessment",
+              "clinicalEfficacyValidated": false
+            },
+            "clinicalSuccessProbability": null,
+            "selectionPath": "highest_fit_in_eligible_pool",
+            "alternatives": [
+              {
+                "productId": 12,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 1.9800000000000002,
+                  "concernSupport": 0,
+                  "moistureFit": -10,
+                  "sensitiveFit": 0,
+                  "beginnerFit": 1.5
+                },
+                "total": -6.52,
+                "moistureDistance": 4,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://illiyoon.com/product/detail.html?product_no=263"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              },
+              {
+                "productId": 3,
+                "ruleVersion": "verified-product-fit-v2",
+                "parts": {
+                  "careFit": 0.792,
+                  "concernSupport": 0,
+                  "moistureFit": -10,
+                  "sensitiveFit": 0,
+                  "beginnerFit": 1.5
+                },
+                "total": -7.708,
+                "moistureDistance": 4,
+                "evidence": {
+                  "formulaVerified": true,
+                  "profileReviewed": true,
+                  "eligible": true,
+                  "sources": [
+                    {
+                      "sourceType": "official_domestic_product_page",
+                      "url": "https://physiogel.co.kr/product/detail.html?product_no=24"
+                    },
+                    {
+                      "sourceType": "official_domestic_ingredients_and_claims_image",
+                      "url": "https://physiogel.co.kr/web/upload/NNEditor/D_product/[%ED%94%BC%EC%A7%80%EC%98%A4%EA%B2%94]DMT%ED%81%AC%EB%A6%BC%EB%A6%AC%EB%89%B4%EC%96%BC_%EB%82%98%EC%98%81%EC%95%84abm_%EA%B9%80%ED%9D%AC%EC%98%81d_260903_v06.jpg"
+                    }
+                  ],
+                  "lastVerifiedAt": "2026-10-11",
+                  "issues": [],
+                  "assessmentBasis": "internal_conservative_assessment",
+                  "clinicalEfficacyValidated": false
+                },
+                "clinicalSuccessProbability": null
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "현재 벗겨짐·자극",
+      "profile": {
+        "skinType": "중성 성향",
+        "hydrationLevel": null,
+        "status": "ready"
+      },
+      "action": "따갑게 만든 새 제품은 쉬고, 편안했던 세안·보습으로 줄여요. 헐거나 진물이 나거나 자극이 계속되면 상태 확인이 필요해요.",
+      "categories": []
+    },
+    {
+      "name": "전체 답변 미확인",
+      "profile": {
+        "skinType": "기본 관리부터 시작",
+        "hydrationLevel": null,
+        "status": "guidance_only"
+      },
+      "action": "피부타입 이름을 정하지 못해도 아래 기본 관리부터 이어갈 수 있어요. 확인된 답변과 추가 고민에 맞는 관리부터 보고, 새 기본 제품은 현재 편안함과 유분·당김을 확인한 뒤 골라요.",
+      "categories": []
+    }
+  ],
+  "acneCases": [
+    {
+      "name": "작은 붉은 뾰루지",
+      "decision": "작은 붉은 여드름·고름 뾰루지는 해당 부위만 관리해요.",
+      "medicine": "애크논크림",
+      "review": {
+        "version": "acne-support-and-review-v1",
+        "clinicalOutcomeValidated": false,
+        "goal": "새 붉은 뾰루지와 기존 돌기의 변화를 확인해요.",
+        "cosmeticRole": "기본 화장품은 세안·보습을 보조하는 후보예요. 이 제품 순위가 여드름 치료 효과 순위나 개선 확률을 뜻하지 않아요.",
+        "observations": [
+          "같은 부위에 새로 생긴 붉은 뾰루지 수",
+          "기존 돌기의 크기·통증 변화",
+          "새 따가움·붉어짐·벗겨짐"
+        ],
+        "earlyCheck": "초기에는 사용 후 새 따가움·붉어짐·붓기·벗겨짐을 먼저 확인해요. 악화하면 예정된 체크일까지 기다리지 않아요.",
+        "effectCheck": "애크논은 허가사항상 개선이 나타나지 않으면 사용을 중단하고 확인하도록 되어 있어요. 사용량·범위를 늘리거나 다른 약을 겹쳐 해결하지 않아요.",
+        "evidence": "애크논은 국내에서 여드름·뾰루지 용도로 허가된 제품이에요. 벤조일퍼옥사이드 등에 대한 지침 근거를 애크논의 효과나 우월성 근거로 대신 사용하지 않아요.",
+        "sources": [
+          {
+            "label": "애크논 제조·판매사 제품 설명",
+            "url": "https://dpharm.co.kr/acnon/ko/info"
+          },
+          {
+            "label": "애크논 식약처 허가사항",
+            "url": "https://nedrug.mfds.go.kr/pbp/CCBBB01/getItemDetail?itemSeq=201901721"
+          }
+        ]
+      }
+    },
+    {
+      "name": "블랙헤드",
+      "decision": "막힌 피지에는 살리실산 제품 한 가지를 살펴봐요.",
+      "medicine": "클리어틴외용액 2%",
+      "review": {
+        "version": "acne-support-and-review-v1",
+        "clinicalOutcomeValidated": false,
+        "goal": "막힌 면포가 줄어드는지 확인해요.",
+        "cosmeticRole": "기본 화장품은 세안·보습을 보조하는 후보예요. 이 제품 순위가 여드름 치료 효과 순위나 개선 확률을 뜻하지 않아요.",
+        "observations": [
+          "같은 부위의 막힌 알갱이·검은 점 변화",
+          "새 붉은 뾰루지가 생기는지",
+          "따가움·붉어짐·벗겨짐"
+        ],
+        "earlyCheck": "초기에는 사용 후 새 따가움·붉어짐·붓기·벗겨짐을 먼저 확인해요. 악화하면 예정된 체크일까지 기다리지 않아요.",
+        "effectCheck": "클리어틴은 허가사항상 수회 사용해도 개선이 없으면 중단하고 확인하도록 되어 있어요. 일반적인 여드름 관리 기간을 이유로 계속 사용하지 않아요.",
+        "evidence": "살리실산은 면포 관리에 사용되는 성분이며 지침에서는 조건부 권고예요. 국내 클리어틴의 감염·염증·발적·자극 부위 사용 금지 등 허가사항이 우선해요.",
+        "sources": [
+          {
+            "label": "클리어틴 식약처 허가사항",
+            "url": "https://nedrug.mfds.go.kr/pbp/CCBBB01/getItemDetail?itemSeq=201306847"
+          },
+          {
+            "label": "AAD 여드름 관리 지침",
+            "url": "https://www.aad.org/member/clinical-quality/guidelines/acne"
+          }
+        ]
+      }
+    },
+    {
+      "name": "파티마겔 2일·변화 없음",
+      "decision": "파티마겔을 며칠 쓴 것만으로 새 약으로 바꾸지 않아요.",
+      "medicine": null,
+      "review": {
+        "version": "acne-support-and-review-v1",
+        "clinicalOutcomeValidated": false,
+        "goal": "새 붉은 뾰루지와 기존 돌기의 변화를 확인해요.",
+        "cosmeticRole": "기본 화장품은 세안·보습을 보조하는 후보예요. 이 제품 순위가 여드름 치료 효과 순위나 개선 확률을 뜻하지 않아요.",
+        "observations": [
+          "같은 부위에 새로 생긴 붉은 뾰루지 수",
+          "기존 돌기의 크기·통증 변화",
+          "새 따가움·붉어짐·벗겨짐"
+        ],
+        "earlyCheck": "초기에는 사용 후 새 따가움·붉어짐·붓기·벗겨짐을 먼저 확인해요. 악화하면 예정된 체크일까지 기다리지 않아요.",
+        "effectCheck": "며칠만으로 실패를 판정하지 않아요. 일반적인 여드름 치료의 개선은 수주가 걸릴 수 있지만, 지속적인 자극·악화나 설명서의 중단 조건이 있으면 기다리지 않아요.",
+        "evidence": "벤조일퍼옥사이드는 AAD 지침의 강한 권고 성분이에요. 파티마겔은 이 성분의 국내 일반의약품이며 개인의 효과·원인균을 확정하지 않아요. 국내 설명서의 병용·사용 부위·주의사항이 우선이에요.",
+        "sources": [
+          {
+            "label": "파티마겔 2.5% 제조사 제품 정보",
+            "url": "https://www.taiguk.co.kr/product/view.jsp?pid=AHG72438"
+          },
+          {
+            "label": "AAD 여드름 관리 지침",
+            "url": "https://www.aad.org/member/clinical-quality/guidelines/acne"
+          },
+          {
+            "label": "AAD 여드름 관리의 변화 확인 시점",
+            "url": "https://www.aad.org/public/diseases/acne/diy/wont-clear/"
+          }
+        ]
+      }
+    },
+    {
+      "name": "애크논 사용 중 개선 없음",
+      "decision": "지금 쓰는 제품에 새 여드름약을 겹치지 않아요.",
+      "medicine": null,
+      "review": {
+        "version": "acne-support-and-review-v1",
+        "clinicalOutcomeValidated": false,
+        "goal": "새 붉은 뾰루지와 기존 돌기의 변화를 확인해요.",
+        "cosmeticRole": "기본 화장품은 세안·보습을 보조하는 후보예요. 이 제품 순위가 여드름 치료 효과 순위나 개선 확률을 뜻하지 않아요.",
+        "observations": [
+          "같은 부위에 새로 생긴 붉은 뾰루지 수",
+          "기존 돌기의 크기·통증 변화",
+          "새 따가움·붉어짐·벗겨짐"
+        ],
+        "earlyCheck": "초기에는 사용 후 새 따가움·붉어짐·붓기·벗겨짐을 먼저 확인해요. 악화하면 예정된 체크일까지 기다리지 않아요.",
+        "effectCheck": "애크논은 허가사항상 개선이 나타나지 않으면 사용을 중단하고 확인하도록 되어 있어요. 사용량·범위를 늘리거나 다른 약을 겹쳐 해결하지 않아요.",
+        "evidence": "애크논은 국내에서 여드름·뾰루지 용도로 허가된 제품이에요. 벤조일퍼옥사이드 등에 대한 지침 근거를 애크논의 효과나 우월성 근거로 대신 사용하지 않아요.",
+        "sources": [
+          {
+            "label": "애크논 제조·판매사 제품 설명",
+            "url": "https://dpharm.co.kr/acnon/ko/info"
+          },
+          {
+            "label": "애크논 식약처 허가사항",
+            "url": "https://nedrug.mfds.go.kr/pbp/CCBBB01/getItemDetail?itemSeq=201901721"
+          }
+        ]
+      }
+    },
+    {
+      "name": "깊은 돌기",
+      "decision": "깊게 만져지는 덩이는 새 약을 여러 개 시험하지 않아요.",
+      "medicine": null,
+      "review": {
+        "version": "acne-support-and-review-v1",
+        "clinicalOutcomeValidated": false,
+        "goal": "깊은 덩이의 커짐·통증·흉터 여부를 우선 확인해요.",
+        "cosmeticRole": "기본 화장품은 세안·보습을 보조하는 후보예요. 이 제품 순위가 여드름 치료 효과 순위나 개선 확률을 뜻하지 않아요.",
+        "observations": [
+          "같은 부위에 새로 생긴 붉은 뾰루지 수",
+          "기존 돌기의 크기·통증 변화",
+          "새 따가움·붉어짐·벗겨짐"
+        ],
+        "earlyCheck": "초기에는 사용 후 새 따가움·붉어짐·붓기·벗겨짐을 먼저 확인해요. 악화하면 예정된 체크일까지 기다리지 않아요.",
+        "effectCheck": "여드름 관리의 변화는 수주가 걸릴 수 있어요. 2주 체크는 사용감과 자극 점검이며, 개선이 없다는 이유만으로 다른 제품을 바로 겹치지 않아요. 개별 약품의 중단 기준이 우선이에요.",
+        "evidence": "화장품의 성분·제형 적합도와 의약품의 허가 용도는 별도 근거예요. 브랜드 만족도나 피지 시험 수치를 여드름 감소율로 바꾸지 않아요.",
+        "sources": [
+          {
+            "label": "AAD 여드름 관리의 변화 확인 시점",
+            "url": "https://www.aad.org/public/diseases/acne/diy/wont-clear/"
+          }
+        ]
+      }
+    },
+    {
+      "name": "자극·악화",
+      "decision": "새 약을 더하지 말고 따가웠던 제품을 쉬어요.",
+      "medicine": null,
+      "review": {
+        "version": "acne-support-and-review-v1",
+        "clinicalOutcomeValidated": false,
+        "goal": "새 자극·악화에 대응하고 기존 관리를 줄여요.",
+        "cosmeticRole": "기본 화장품은 세안·보습을 보조하는 후보예요. 이 제품 순위가 여드름 치료 효과 순위나 개선 확률을 뜻하지 않아요.",
+        "observations": [
+          "같은 부위에 새로 생긴 붉은 뾰루지 수",
+          "기존 돌기의 크기·통증 변화",
+          "새 따가움·붉어짐·벗겨짐"
+        ],
+        "earlyCheck": "초기에는 사용 후 새 따가움·붉어짐·붓기·벗겨짐을 먼저 확인해요. 악화하면 예정된 체크일까지 기다리지 않아요.",
+        "effectCheck": "먼저 자극·악화 상태를 확인해요. 새 약을 추가하거나 사용량을 늘려 효과를 시험하지 않아요.",
+        "evidence": "화장품의 성분·제형 적합도와 의약품의 허가 용도는 별도 근거예요. 브랜드 만족도나 피지 시험 수치를 여드름 감소율로 바꾸지 않아요.",
+        "sources": [
+          {
+            "label": "AAD 여드름 관리의 변화 확인 시점",
+            "url": "https://www.aad.org/public/diseases/acne/diy/wont-clear/"
+          }
+        ]
+      }
+    }
+  ]
+}

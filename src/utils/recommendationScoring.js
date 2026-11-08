@@ -1,3 +1,4 @@
+import { RECOMMENDATION_RULE_VERSION, getProductEvidenceStatus } from "./productEvidence";
 import { getProductCareProfile } from "./productCareProfile";
 import { hasExfoliatingActive } from "./productCatalog";
 
@@ -98,101 +99,31 @@ export function getCareNeedMatchScore(product, careNeeds = {}) {
 }
 
 export function getConcernMatchScore(product, mainConcern) {
-  const concerns = product.concerns || [];
-
-  const has = (...tags) => tags.some((tag) => concerns.includes(tag));
-
-  const texture = String(product.texture || "").toLowerCase();
-
-  const isLightTexture = ["light", "gel", "watery", "fresh"].includes(texture);
-
-  let score = 0;
-
-  // 염증성 여드름
-  if (mainConcern === "inflammatory_acne") {
-    if (has("acne")) score += 6;
-    if (has("soothing")) score += 3;
-    if (has("barrier")) score += 1;
+  if (!getProductEvidenceStatus(product).profileReviewed) return 0;
+  const p = getProductCareProfile(product);
+  // Cosmetic scores describe support/texture fit; an acne tag is not treatment evidence.
+  switch (mainConcern) {
+    case "inflammatory_acne": return p.soothingSupport * 0.6 + p.barrierSupport * 0.4;
+    case "closed_comedones":
+    case "blackhead_sebum": return p.congestionSupport * 0.5 + p.lightweightFit * 0.2;
+    case "dehydration": return p.hydrationSupport * 0.65 + p.barrierSupport * 0.35;
+    case "sensitivity_redness": return p.soothingSupport * 0.6 + p.barrierSupport * 0.4;
+    case "oiliness": return p.lightweightFit * 0.8 + p.congestionSupport * 0.2;
+    default: return 0;
   }
-
-  // 좁쌀 / 막힘
-  if (mainConcern === "closed_comedones") {
-    if (has("closed_comedones")) score += 6;
-    if (has("pores")) score += 4;
-    if (has("sebum")) score += 2;
-    if (isLightTexture) score += 3;
-    if (has("acne")) score += 1;
-  }
-
-  // 블랙헤드 / 피지
-  if (mainConcern === "blackhead_sebum") {
-    if (has("blackhead")) score += 6;
-    if (has("pores")) score += 5;
-    if (has("sebum")) score += 4;
-    if (isLightTexture) score += 2;
-  }
-
-  // 속당김 / 건조함
-  if (mainConcern === "dehydration") {
-    if (has("hydration")) score += 6;
-    if (has("barrier")) score += 4;
-    if (has("soothing")) score += 1;
-  }
-
-  // 민감 / 붉어짐
-  if (mainConcern === "sensitivity_redness") {
-    if (has("soothing")) score += 6;
-    if (product.sensitivitySafe) score += 4;
-    if (has("barrier")) score += 3;
-    if (has("hydration")) score += 1;
-  }
-
-  // 번들거림
-  if (mainConcern === "oiliness") {
-    if (has("sebum")) score += 6;
-    if (isLightTexture) score += 5;
-    if (has("pores")) score += 2;
-    if (has("blackhead")) score += 1;
-  }
-
-  return score;
 }
-
-export function getRecommendationScore(
-  product,
-  currentLevel,
-  userContext = {},
-) {
-  const careScore = getCareNeedMatchScore(product, userContext.careNeeds);
-
-  const concernScore = getConcernMatchScore(product, userContext.mainConcern);
-
-  const hydrationDifference = Math.abs(
-    (product.hydrationLevel ?? 5) - currentLevel,
-  );
-
-  let score = 0;
-
-  // careScore는 최대 약 100 범위라
-  // 0~10 정도로 정규화해서 사용
-  score += (careScore / 10) * 5.5;
-
-  // 사용자가 직접 선택한 주요 고민을
-  // 충분히 크게 반영
-  score += concernScore * 3.5;
-
-  // 현재 수분감 단계와 너무 멀면 감점
-  score -= hydrationDifference * 2.5;
-
-  if (userContext.isSensitive && product.sensitivitySafe) {
-    score += 4;
-  }
-
-  if (product.beginnerFriendly) {
-    score += 1.5;
-  }
-
-  return score;
+export function getRecommendationBreakdown(product, currentLevel, userContext = {}) {
+  const careFit = getCareNeedMatchScore(product, userContext.careNeeds) * 0.55;
+  const concernSupport = getConcernMatchScore(product, userContext.mainConcern) * 3.5;
+  const moistureDistance = Math.abs((product.hydrationLevel ?? 5) - currentLevel);
+  const parts = { careFit, concernSupport, moistureFit: -moistureDistance * 2.5,
+    sensitiveFit: userContext.isSensitive && product.sensitivitySafe ? 4 : 0,
+    beginnerFit: product.beginnerFriendly ? 1.5 : 0 };
+  return { ruleVersion: RECOMMENDATION_RULE_VERSION, parts, total: Object.values(parts).reduce((sum, value) => sum + value, 0),
+    moistureDistance, evidence: getProductEvidenceStatus(product), clinicalSuccessProbability: null };
+}
+export function getRecommendationScore(product, currentLevel, userContext = {}) {
+  return getRecommendationBreakdown(product, currentLevel, userContext).total;
 }
 
 export function sortProductsForRecommendation(
@@ -240,7 +171,7 @@ export function sortProductsForRecommendation(
 
     const bBeginner = b.beginnerFriendly ? 1 : 0;
 
-    return bBeginner - aBeginner;
+    return bBeginner - aBeginner || (a.id ?? 0) - (b.id ?? 0);
   });
 }
 

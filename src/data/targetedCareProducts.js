@@ -26,7 +26,7 @@ const salicylicAcidOtc = {
   indication: "붉거나 아프지 않은 검은 면포가 신경 쓰일 때 써볼 수 있는 여드름 치료제예요.",
   caution: "붉거나 자극이 있는 부위, 감염·염증 부위, 눈가와 점막에는 쓰지 않아요. 성분 과민증·당뇨병·혈액순환장애가 있는 사람은 사용할 수 없어요. 임신·수유 중이거나 약·화장품에 알레르기 병력이 있다면 혼자 시작하지 마세요.",
   image: "/otc/clearteen.jpg",
-  source: "https://health.kr/drug/2013041100003",
+  source: "https://nedrug.mfds.go.kr/pbp/CCBBB01/getItemDetail?itemSeq=201306847",
   sourceLabel: "클리어틴 허가사항 보기",
 };
 
@@ -36,7 +36,7 @@ export const pharmacyOptions = {
   breakouts: {
     name: "애크논크림",
     ingredients: "이부프로펜피코놀 30 mg/g · 이소프로필메틸페놀 10 mg/g",
-    indication: "작고 붉은 뾰루지가 몇 개 올라왔을 때 해당 부위에만 써볼 수 있는 일반의약품이에요. 고름이 주로 보이거나 어떤 돌기인지 모르겠다면 이 제품부터 시험하지 않아요.",
+    indication: "작고 붉은 뾰루지가 몇 개 올라왔을 때 해당 부위에만 써볼 수 있는 일반의약품이에요. 깊은 덩이나 넓게 번지는 붓기, 종류가 불명확한 돌기에는 이 안내를 적용하지 않아요.",
     caution: "눈 주위, 상처나 진물이 있는 부위, 턱 전체에 넓게 바르지 않아요. 성분에 알레르기가 있거나 임신 3기에는 사용하지 마세요. 임신 1·2기, 치료 중이거나 약·화장품 알레르기 병력이 있다면 혼자 시작하지 마세요.",
     image: "/otc/acnon.png",
     source: "https://nedrug.mfds.go.kr/pbp/CCBBB01/getItemDetail?itemSeq=201901721",

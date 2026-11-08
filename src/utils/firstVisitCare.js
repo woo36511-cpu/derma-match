@@ -1,3 +1,4 @@
+import { getProductEvidenceStatus } from "./productEvidence";
 import { blackheadCosmetics, pharmacyOptions, sunscreenOption } from "../data/targetedCareProducts";
 import { canPairMildBumpCare, getCareConcern, hasCalmClosedBumps, hasMildFacialBumps, hasRecentCosmetic, mayAskAboutActives } from "../data/symptomQuestions";
 import { products } from "../data/products";
@@ -37,7 +38,7 @@ const concernCare = {
 };
 
 const hydrationLevels = { dry: 3, mixed: 5, oily: 7, comfortable: 5 };
-const gentleBasics = products.filter(product => isProductAvailable(product) &&
+const gentleBasics = products.filter(product => isProductAvailable(product) && getProductEvidenceStatus(product).eligible &&
   product.beginnerFriendly && product.sensitivitySafe && !hasExfoliatingActive(product) &&
   (!isSpecializedTreatmentProduct(product) || product.id === 38 || product.id === 34));
 const basicMoisturizers = gentleBasics.filter(product => product.category === "cream");
