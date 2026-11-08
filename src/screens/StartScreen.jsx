@@ -130,7 +130,7 @@ export function StartScreen({
 
               <h3 className="text-xl font-bold mb-2 break-keep">
                 {savedSurveyResult.skinType} · 수분감{" "}
-                {savedSurveyResult.hydrationLevel}단계
+                {savedSurveyResult.hydrationLevel == null ? "성향 확인 전" : `${savedSurveyResult.hydrationLevel}단계`}
               </h3>
 
               <p className="text-sm text-gray-600 leading-relaxed break-keep">

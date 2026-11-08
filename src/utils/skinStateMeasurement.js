@@ -23,10 +23,10 @@ export function normalizeSkinState(state = null) {
   );
 }
 
-export function buildSkinMeasurement(state, measuredAt, source = "survey") {
+export function buildSkinMeasurement(state, measuredAt, source = "survey", measurementVersion = SKIN_MEASUREMENT_VERSION) {
   return {
     schemaVersion: 1,
-    measurementVersion: SKIN_MEASUREMENT_VERSION,
+    measurementVersion,
     scale: { min: 0, max: 10, higherMeans: "more_reported_signals" },
     measuredAt: measuredAt ?? null,
     source,

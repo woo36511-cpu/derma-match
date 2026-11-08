@@ -1,3 +1,4 @@
+import { DetailDisclosure } from "../components/DetailDisclosure";
 import { SectionTitle } from "../components/SectionTitle";
 import { skinSurveyQuestions } from "../data/skinSurvey";
 import { PrimaryButton } from "../components/PrimaryButton";
@@ -14,19 +15,20 @@ export function SurveyScreen({
   isCurrentSurveyAnswered,
   isLastSurveyQuestion,
   simpleMode = false,
+  questionsCount = skinSurveyQuestions.length,
 }) {
   return (
     <section>
       <SectionTitle
         title="피부 설문 시작"
-        desc="한 번에 하나씩만 답하면 돼요. 느껴지는 상태에 가장 가까운 답변을 골라주세요."
+        desc="평소 관리하면서 관찰한 상태로 답해요. 모르면 그대로 골라도 돼요. 일부 답변에 따라 질문이 추가돼요."
       />
 
       <div className="max-w-3xl mx-auto">
         <div className="mb-5">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-semibold text-gray-500">
-              {surveyIndex + 1} / {skinSurveyQuestions.length}
+              {surveyIndex + 1} / {questionsCount}
             </p>
 
             <p className="text-sm text-gray-400">
@@ -49,6 +51,8 @@ export function SurveyScreen({
             {currentSurveyQuestion.question}
           </h2>
 
+          {currentSurveyQuestion.hint && <p className="mb-4 text-sm text-slate-600">{currentSurveyQuestion.hint}</p>}
+          {currentSurveyQuestion.helper && <DetailDisclosure title="답변 기준 자세히 보기" className="mb-5"><p>{currentSurveyQuestion.helper}</p></DetailDisclosure>}
           <div className="space-y-3">
             {currentSurveyQuestion.options.map((option) => {
               const active =
@@ -60,6 +64,7 @@ export function SurveyScreen({
               return (
                 <button
                   key={option.label}
+                  aria-pressed={active}
                   onClick={() =>
                     handleSurveyAnswer(currentSurveyQuestion, option)
                   }

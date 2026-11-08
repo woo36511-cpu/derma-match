@@ -16,7 +16,6 @@ import { AccountPanel } from "./components/AccountPanel";
 import { SymptomCheckScreen } from "./screens/SymptomCheckScreen";
 import { SymptomResultScreen } from "./screens/SymptomResultScreen";
 import { SimpleCareScreen } from "./screens/SimpleCareScreen";
-import { skinSurveyQuestions } from "./data/skinSurvey";
 import { RoutineSafetyNotice } from "./components/RoutineSafetyNotice";
 
 export default function App() {
@@ -60,6 +59,7 @@ export default function App() {
     quickRoutineReason,
     quickRoutine,
     startQuickJourneyFeedback,
+    activeSurveyQuestions, feedbackQuestionsForSkin,
     currentSurveyQuestion,
     surveyIndex,
     surveyProgress,
@@ -186,6 +186,7 @@ export default function App() {
             simpleMode={simpleMode}
             surveyIndex={surveyIndex}
             surveyProgress={surveyProgress}
+            questionsCount={activeSurveyQuestions.length}
             currentSurveyQuestion={currentSurveyQuestion}
             currentSurveyAnswer={currentSurveyAnswer}
             handleSurveyAnswer={handleSurveyAnswer}
@@ -196,7 +197,7 @@ export default function App() {
           />
         )}
 
-        {step === "simpleCare" && <SimpleCareScreen key={account.user?.id ?? "guest"} profile={surveyResult} surveyAnswers={surveyAnswers} initialRecord={simpleRecord} onSave={saveSimpleSkinRecord} onBack={() => { setSurveyIndex(skinSurveyQuestions.length - 1); setStep("survey"); }} onHome={() => setStep("start")} />}
+        {step === "simpleCare" && <SimpleCareScreen key={account.user?.id ?? "guest"} profile={surveyResult} surveyAnswers={surveyAnswers} initialRecord={simpleRecord} onRestart={startSimpleSkinCare} onSave={saveSimpleSkinRecord} onBack={() => { setSurveyIndex(activeSurveyQuestions.length - 1); setStep("survey"); }} onHome={() => setStep("start")} />}
 
         {step === "issueSelect" && (
           <IssueSelectScreen
@@ -272,6 +273,7 @@ export default function App() {
 
         {step === "recheck" && (
           <RecheckScreen
+            questions={feedbackQuestionsForSkin}
             feedbackSurveyAnswers={feedbackSurveyAnswers}
             handleFeedbackSurveyAnswer={handleFeedbackSurveyAnswer}
             saveFeedbackResult={saveFeedbackResult}

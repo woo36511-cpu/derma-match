@@ -226,7 +226,7 @@ export function useJourneyActions({
 
     const skinComparison = buildSkinComparison(
       before,
-      buildSkinMeasurement(followUpSkinState, savedAt, "recheck"),
+      buildSkinMeasurement(followUpSkinState, savedAt, "recheck", followUpSurveyResult.measurementVersion),
       latestJourneyRecord?.id ?? null,
     );
     const skinStateDelta = skinComparison.comparableAxisCount > 0 ? skinComparison.delta : null;
@@ -255,7 +255,9 @@ export function useJourneyActions({
 
       feedbackAnswers: answers,
 
+      surveyVersion: followUpSurveyResult.surveyVersion ?? "legacy-skin-v1",
       followUpSurveyAnswers: feedbackSurveyAnswers,
+      observationAssessment: followUpSurveyResult.observationAssessment,
 
       journeyId: activeJourneyId,
       evaluatedRecordId: latestJourneyRecord?.id ?? null,
