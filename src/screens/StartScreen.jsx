@@ -1,6 +1,6 @@
 import { formatSavedAt } from "../utils/formatSavedAt";
 import { PrimaryButton } from "../components/PrimaryButton";
-import { DetailDisclosure } from "../components/DetailDisclosure";
+import { HomeQuickBrowse } from "../components/HomeQuickBrowse";
 import { SeoContentSection } from "../components/SeoContentSection";
 import React from "react";
 
@@ -12,6 +12,7 @@ const examplePlan = [
 
 export function StartScreen({
   startSimpleSkinCare, startCheckedFlow, startSymptomRecheck, symptomCheck,
+  setQuickLevel,
   setActiveJourneyId,
   setStep,
   isQuickJourney,
@@ -67,31 +68,17 @@ export function StartScreen({
         </div>
       </section>
 
+      <HomeQuickBrowse onStartSurvey={startSimpleSkinCare} onStartRoutine={level => {
+        setQuickLevel(level); setActiveJourneyId(null); startCheckedFlow("quickRecommend");
+      }} />
+
       <div className="flex flex-wrap items-center gap-x-5 gap-y-2 px-1 text-sm text-slate-700">
         <button type="button" onClick={() => { setActiveJourneyId(null); startCheckedFlow("guidedCare"); }} className="min-h-10 font-medium underline underline-offset-4">증상부터 자세히 확인하기</button>
         <button type="button" onClick={startSymptomRecheck} className="min-h-10 font-medium underline underline-offset-4">증상 변화·악화 재설문</button>
         {symptomCheck.latestRecord && <button type="button" onClick={symptomCheck.openLatest} className="min-h-10 font-medium underline underline-offset-4">지난 증상 확인 기록</button>}
       </div>
 
-      <DetailDisclosure title="피부타입별 추천·전체 설문 보기">
-        <p className="mb-3 text-sm text-slate-600">피부타입을 이미 알고 있다면 빠른 추천을, 더 자세히 확인하고 싶다면 전체 설문을 이용해요.</p>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <button type="button" onClick={() => {
-            setActiveJourneyId(null);
-            startCheckedFlow("quickRecommend");
-          }} className="rounded-2xl border border-slate-200 p-4 text-left hover:bg-slate-50">
-            <span className="block font-bold text-slate-950">피부타입 알고 있어요</span>
-            <span className="mt-1 block text-sm text-slate-600">알고 있는 피부타입으로 기본 루틴 살펴보기</span>
-          </button>
-          <button type="button" onClick={() => {
-            setActiveJourneyId(null);
-            startCheckedFlow("survey");
-          }} className="rounded-2xl border border-slate-200 p-4 text-left hover:bg-slate-50">
-            <span className="block font-bold text-slate-950">처음이라 설문으로 시작할래요</span>
-            <span className="mt-1 block text-sm text-slate-600">세안 뒤 당김과 번들거림을 확인해 기본 루틴 찾기</span>
-          </button>
-        </div>
-      </DetailDisclosure>
+
 
       {isQuickJourney && (
         <div className="mt-6 max-w-4xl w-full bg-white border border-emerald-100 rounded-3xl shadow-sm p-5 sm:p-6 text-left">

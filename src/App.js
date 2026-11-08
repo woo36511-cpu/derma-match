@@ -129,6 +129,7 @@ export default function App() {
           <StartScreen
             startCheckedFlow={startCheckedFlow}
             startSimpleSkinCare={startSimpleSkinCare}
+            setQuickLevel={setQuickLevel}
             startSymptomRecheck={startSymptomRecheck}
             symptomCheck={symptomCheck}
             setActiveJourneyId={setActiveJourneyId}
