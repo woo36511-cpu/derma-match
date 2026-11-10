@@ -5,11 +5,12 @@ import { buildSkinMeasurement } from "./skinStateMeasurement";
 import { buildProductUsagePlan } from "./productUsagePlan";
 import { snapshotCosmeticAddOn } from "./cosmeticAddOnPlan";
 import { SIMPLE_CARE_VERSION } from "./simpleCarePlan";
+import { acneTraceShapes } from "../data/simpleCare";
 
 export function buildSimpleSkinRecord(surveyAnswers, profile, routine, plan, previous = null, cosmeticPlan = null) {
   const savedAt = new Date().toISOString();
   const mainConcern = plan.answers.concern === "acne"
-    ? plan.answers.shape === "blackhead" ? "blackhead_sebum" : plan.answers.shape === "closed" ? "closed_comedones" : "inflammatory_acne"
+    ? plan.answers.shape === "blackhead" ? "blackhead_sebum" : plan.answers.shape === "closed" ? "closed_comedones" : acneTraceShapes.includes(plan.answers.shape) || plan.answers.shape === "unknown" ? "none" : "inflammatory_acne"
     : plan.answers.concern === "folliculitis" ? "folliculitis" : "none";
   return {
     id: previous?.id ?? createJourneyRecordId("survey"),

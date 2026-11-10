@@ -6,7 +6,7 @@ import { ADAPTIVE_SURVEY_VERSION } from "../data/adaptiveObservationSurvey";
 import { CosmeticAddOnSection } from "../components/CosmeticAddOnSection";
 import { buildCosmeticAddOnPlan } from "../utils/cosmeticAddOnPlan";
 import { useMemo, useState } from "react";
-import { getSimpleCareQuestions, cleanSimpleCareAnswers } from "../data/simpleCare";
+import { acneAreas, getSimpleCareQuestions, cleanSimpleCareAnswers } from "../data/simpleCare";
 import { buildSimpleCarePlan } from "../utils/simpleCarePlan";
 import { buildSimpleSkinRecord } from "../utils/simpleSkinRecord";
 import { buildDynamicRoutine } from "../utils/routineRecommendation";
@@ -45,11 +45,20 @@ export function SimpleCareResult({ profile, routine, plan }) {
     <header className="space-y-2"><p className="text-sm font-semibold text-emerald-700">내 피부 관리 결과</p><h1 className="text-2xl sm:text-3xl font-bold">{profile.skinType} · 기본 루틴과 필요한 추가 관리</h1><p className="text-sm text-slate-600">설문으로 추정한 피부타입이에요. 질환·원인균을 확정한 결과는 아니에요.</p></header>
     <ObservationSummary profile={profile} />
     <section className="space-y-3 rounded-2xl bg-white border border-slate-200 p-5" aria-label="추가 고민 관리">
+      {plan.concernSummary && <p className="text-sm font-semibold text-emerald-800">먼저 고른 고민: {plan.concernSummary.primary.label}{plan.concernSummary.primary.area && ` · ${plan.concernSummary.primary.area}`}</p>}
       <h2 className="text-lg font-bold">{plan.title}</h2><p>{plan.detail}</p>
       <ConcernProductOptions plan={plan} />
       {plan.showFolliculitis && <FolliculitisOptions />}
       {plan.answers.shape === "deep" && plan.answers.medicine !== "none" && <p className="text-sm">깊은 덩이는 짜지 않아요. 계속 커지거나 통증·흉터가 생기면 확인이 필요해요.</p>}
     </section>
+    {plan.concernSummary && <section className="space-y-3 rounded-2xl border border-slate-200 bg-white p-5" aria-label="함께 선택한 고민">
+      <h2 className="text-lg font-bold">함께 선택한 고민</h2>
+      <ul className="space-y-3">{plan.concernSummary.secondary.map(item => <li key={item.shape}>
+        <p className="font-semibold">{item.label}{item.area && ` · ${item.area}`}</p>
+        <p className="text-sm text-slate-700">{item.observation}</p>
+      </li>)}</ul>
+      <p className="text-sm text-slate-600">지금은 위의 관리부터 살펴보고, 다른 고민에 새 제품을 한꺼번에 추가하지 않아요.</p>
+    </section>}
     <AcneCareReview review={buildAcneCareReview(plan)} />
     {!plan.blockNewBasics && profile.observationAssessment?.canRecommendBasics !== false && <section className="space-y-4" aria-label="피부타입별 기본 화장품">
       <h2 className="text-xl font-bold">피부타입에 맞는 기본 화장품</h2>
@@ -64,8 +73,19 @@ export function SimpleCareResult({ profile, routine, plan }) {
   </div>;
 }
 
+function updateCareAnswer(previous, id, value) {
+  if (JSON.stringify(previous[id]) === JSON.stringify(value)) return previous;
+  const next = { ...previous, [id]: value };
+  const order = ["concern", "shapes", "primaryShape", "locations", "areaState", "medicine", "duration", "response"];
+  for (const downstream of order.slice(order.indexOf(id) + 1)) {
+    if (downstream !== "locations" || id === "concern") delete next[downstream];
+  }
+  if (id === "concern" || id === "shapes") delete next.shape;
+  return cleanSimpleCareAnswers(next);
+}
+
 export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave, onBack, onHome, onRestart }) {
-  const [answers, setAnswers] = useState(() => initialRecord?.additionalCare ?? {});
+  const [answers, setAnswers] = useState(() => cleanSimpleCareAnswers(initialRecord?.additionalCare ?? {}));
   const [index, setIndex] = useState(0);
   const [record, setRecord] = useState(initialRecord ?? null);
   const [showResult, setShowResult] = useState(() => Boolean(initialRecord));
@@ -99,22 +119,46 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     {saveError && <div role="alert" className="rounded-xl bg-amber-50 p-4">결과는 표시했지만 저장하지 못했어요. <button className="underline" onClick={() => save()}>저장 다시 시도</button></div>}
     <div className="flex flex-wrap gap-3"><button className="rounded-xl border px-4 py-3" onClick={() => { setShowResult(false); setIndex(0); }}>추가 고민 답변 바꾸기</button><button className="rounded-xl border px-4 py-3" onClick={onBack}>피부타입 답변 다시 보기</button><button className="rounded-xl bg-slate-900 text-white px-4 py-3" onClick={onHome}>시작 화면</button></div>
   </div>;
-  return <SimpleCareQuestion question={question} index={index} total={questions.length} answer={answers[question.id]}
-    onAnswer={value => setAnswers(previous => cleanSimpleCareAnswers({ ...previous, [question.id]: value }))}
+  const changeAnswer = (id, value) => {
+    const next = updateCareAnswer(answers, id, value);
+    if (next !== answers) {
+      setAnswers(next);
+      setCosmeticAnswers(null);
+    }
+  };
+  return <SimpleCareQuestion question={question} index={index} total={questions.length} answer={answers[question.id]} locations={answers.locations}
+    onAnswer={value => changeAnswer(question.id, value)}
+    onLocation={(shape, value) => changeAnswer("locations", { ...answers.locations, [shape]: value })}
     onPrev={() => index === 0 ? onBack() : setIndex(index - 1)}
     onNext={() => index === questions.length - 1 ? save() : setIndex(index + 1)} />;
 }
 
-export function SimpleCareQuestion({ question, index, total, answer, onAnswer, onPrev, onNext }) {
+export function SimpleCareQuestion({ question, index, total, answer, locations, onAnswer, onLocation, onPrev, onNext }) {
+  const selected = question.multiple ? answer ?? [] : [];
+  const isSelected = value => question.multiple ? selected.includes(value) : answer === value;
+  const select = value => onAnswer(!question.multiple ? value : selected.includes(value)
+    ? selected.filter(item => item !== value) : value === "unknown" ? ["unknown"] : [...selected.filter(item => item !== "unknown"), value]);
   return <div className="max-w-2xl mx-auto space-y-6">
     <p className="text-sm font-semibold text-emerald-700">피부 성향 답변 완료 · 추가 고민 {index + 1}/{total}</p>
     <h1 className="text-2xl font-bold">{question.q}</h1>
+    {question.hint && <p className="text-sm text-slate-600">{question.hint}</p>}
     {question.visual && <AcnePhotoReference />}
+    {question.multiple && <p className="text-sm text-slate-600">좁쌀, 붉은 돌기, 이전 트러블의 자국이 함께 있다면 모두 골라요.</p>}
     {question.id === "concern" && <p className="text-sm text-slate-600">기본 관리와 별도로 필요한 관리를 확인해요. 아직 모르는 항목이 있어도 확인된 특징으로 가능한 관리부터 안내해요.</p>}
-    <div className="space-y-3" role="group" aria-label={question.q}>{question.options.map(option => <button key={option.value} aria-pressed={answer === option.value} className={`w-full text-left rounded-2xl border p-4 ${answer === option.value ? "border-emerald-600 bg-emerald-50" : "border-slate-200 bg-white"}`} onClick={() => onAnswer(option.value)}>
+    <div className="space-y-3" role="group" aria-label={question.q}>{question.options.map(option => <button key={option.value} aria-pressed={isSelected(option.value)} className={`w-full text-left rounded-2xl border p-4 ${isSelected(option.value) ? "border-emerald-600 bg-emerald-50" : "border-slate-200 bg-white"}`} onClick={() => select(option.value)}>
       <span className="block font-semibold">{option.label}</span>{option.detail && <span className="mt-1 block text-sm text-slate-600">{option.detail}</span>}
     </button>)}</div>
+    {question.locations && <fieldset className="space-y-3 rounded-2xl border border-slate-200 p-4">
+      <legend className="px-1 text-sm font-semibold">고민별 부위 기록 (선택)</legend>
+      {question.options.map(option => <label key={option.value} className="flex flex-wrap items-center justify-between gap-2 text-sm">
+        <span>{option.label} 부위</span>
+        <select className="rounded-lg border border-slate-300 bg-white p-2" value={locations?.[option.value] ?? ""} onChange={event => onLocation(option.value, event.target.value)}>
+          <option value="">선택 안 함</option>
+          {acneAreas.map(area => <option key={area.value} value={area.value}>{area.label}</option>)}
+        </select>
+      </label>)}
+    </fieldset>}
     <div className="flex justify-between gap-3"><button className="rounded-xl border px-5 py-3" onClick={onPrev}>이전</button>
-      <button disabled={!answer} className="rounded-xl bg-slate-900 px-5 py-3 text-white disabled:opacity-40" onClick={onNext}>{index === total - 1 ? "기본 루틴과 추가 관리 보기" : "다음"}</button></div>
+      <button disabled={question.multiple ? !selected.length : !answer} className="rounded-xl bg-slate-900 px-5 py-3 text-white disabled:opacity-40" onClick={onNext}>{index === total - 1 ? "기본 루틴과 추가 관리 보기" : "다음"}</button></div>
   </div>;
 }

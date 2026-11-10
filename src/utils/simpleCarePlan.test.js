@@ -31,6 +31,30 @@ test("upstream changes remove hidden medicine answers and still require visible 
   expect(isSimpleCareComplete({ concern: "acne", shape: "red" })).toBe(false);
   expect(buildSimpleCarePlan({ concern: "acne", shape: "red" }).pharmacy).toBeNull();
 });
+test("mixed observations require a selected priority and keep only valid per-concern locations", () => {
+  const input = { ...acne, shapes: ["red", "closed", "dark_mark", "red", "unknown"], primaryShape: "dark_mark", locations: { red: "chin", closed: "forehead", dark_mark: "cheeks", deep: "nose" } };
+  expect(isSimpleCareComplete({ ...input, primaryShape: "deep" })).toBe(false);
+  const plan = buildSimpleCarePlan(input);
+  expect(plan.answers.shapes).toEqual(["closed", "red", "dark_mark"]);
+  expect(plan.answers.locations).toEqual({ red: "chin", closed: "forehead", dark_mark: "cheeks" });
+  expect(plan.concernSummary.primary).toMatchObject({ shape: "dark_mark", area: "볼" });
+  expect(plan.pharmacy).toBeNull();
+  expect(plan.careReview).toBeNull();
+});
+test("salicylic acid for a primary comedone is withheld unless the inflamed area is explicitly distinct", () => {
+  const mixed = { ...acne, shapes: ["closed", "red"], primaryShape: "closed" };
+  expect(buildSimpleCarePlan(mixed).pharmacy).toBeNull();
+  expect(buildSimpleCarePlan({ ...mixed, locations: { closed: "chin", red: "chin" } }).pharmacy).toBeNull();
+  expect(buildSimpleCarePlan({ ...mixed, locations: { closed: "forehead", red: "chin" } }).pharmacy.name).toContain("클리어틴");
+  expect(buildSimpleCarePlan({ ...mixed, shapes: ["closed", "deep"], locations: { closed: "forehead", deep: "chin" } }).pharmacy).toBeNull();
+});
+test.each(["dark_mark", "red_mark", "indented_scar", "raised_scar"])("a flat mark or suspected scar (%s) never falls into the active acne medicine path", shape => {
+  const plan = buildSimpleCarePlan({ ...acne, shapes: [shape] });
+  expect(plan.complete).toBe(true);
+  expect(plan.pharmacy).toBeNull();
+  expect(plan.careReview).toBeNull();
+  expect(buildSimpleCarePlan({ ...acne, shapes: [shape], areaState: "concerning" }).blockNewBasics).toBe(true);
+});
 test("four basic categories stay free of exfoliants and targeted treatments across hydration levels", () => {
   for (let level = 1; level <= 10; level++) {
     const routine = buildDynamicRoutine(level, { mainConcern: "none", isSensitive: true });
