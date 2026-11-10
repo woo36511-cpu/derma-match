@@ -134,7 +134,7 @@ test("current surface irritation overrides a reassuring extra-concern answer", (
   expect(records()[0].routine).toEqual({});
 });
 
-function startFollowUp() {
+function startFollowUp(onFeedback = () => {}) {
   click("시작 화면"); click("2주 후 체크하기");
   const symptomValues = { concern: "none", breathing: "no", eyeWarning: "no", eruption: "no", change: "stable", surface: "intact", barrier: "none", habit: "observe", area: "face", form: "mixed", comedones: "yes", uniform: "no", itch: "none", follicular: "no", shaving: "no", pain: "none", duration: "under_week", recentProduct: "none" };
   for (const q of getVisibleSymptomQuestions(symptomValues)) {
@@ -142,6 +142,7 @@ function startFollowUp() {
     click(screen.queryByRole("button", { name: "다음", exact: true }) ? "다음" : "내 피부 관리 보기");
   }
   click("피부 관리 설문·기록 이어가기");
+  onFeedback();
   screen.queryAllByRole("button", { name: "전혀 사용하지 않음", exact: true }).forEach(button => fireEvent.click(button));
   for (const q of feedbackQuestions) {
     const option = q.options.find(o => o.value === 0) || q.options[0];
@@ -150,19 +151,65 @@ function startFollowUp() {
   }
   click("피부 상태 다시 확인하기");
 }
-test("recheck keeps the new observation scale and does not invent missing axes", () => {
-  render(<App />); baseSurvey(); extraCare({ concern: "none" }); startFollowUp();
+function completeStandardRecheck() {
   const observed = { skinChange: "steady", observedOil: "tzone", drynessArea: "none", moisturizerUse: "comfortable", washResponse: "comfortable", reactionPattern: "none", surfaceObservation: "normal" };
   for (const q of getObservationQuestions()) {
     const container = screen.getByText(q.question).parentElement;
     fireEvent.click(within(container).getByRole("button", { name: q.options.find(o => o.value === observed[q.id]).label, exact: true }));
   }
   click("변화 저장하고 다음 추천 보기");
+}
+test("recheck keeps the new observation scale and does not invent missing axes", () => {
+  render(<App />); baseSurvey(); extraCare({ concern: "none" }); startFollowUp();
+  completeStandardRecheck();
   const followUp = records().find(record => record.type === "feedback" && !record.assessmentOnly);
   expect(followUp.outcome.skinComparison.after.measurementVersion).toBe(OBSERVATION_MEASUREMENT_VERSION);
   expect(followUp.outcome.skinComparison.comparisonStatus).toBe("partial");
   expect(followUp.outcome.skinComparison.delta.acneActivity).toBeNull();
   expect(followUp.surveyVersion).toBe(records()[0].surveyVersion);
+});
+test("follow-up prioritizes the first concern and compares saved observations by appearance and area", () => {
+  render(<App />); baseSurvey();
+  extraCare({ concern: "acne", shapes: ["red", "dark_mark", "indented_scar"], primaryShape: "red",
+    locations: { red: "chin", dark_mark: "cheeks", indented_scar: "cheeks" },
+    areaState: "comfortable", medicine: "none" });
+
+  startFollowUp(() => {
+    const tracker = within(screen.getByRole("region", { name: "고민별 변화 기록" }));
+    const red = within(tracker.getByRole("group", { name: /먼저 확인.*붉은 뾰루지.*턱·턱선/ }));
+    fireEvent.click(red.getByRole("button", { name: "3~5개" }));
+    fireEvent.click(tracker.getByText("다른 고민도 확인하기 (2개)"));
+    const mark = within(tracker.getByRole("group", { name: "평평한 갈색·회갈색 자국 · 볼" }));
+    fireEvent.click(mark.getByRole("button", { name: "옅어졌어요" }));
+  });
+  completeStandardRecheck();
+  const firstResult = within(screen.getByRole("region", { name: "고민별 변화 기록" }));
+  expect(firstResult.getByText(/다음에 먼저 볼 것.*턱·턱선/)).toBeInTheDocument();
+  expect(firstResult.getByText("최근 7일 새 돌기 · 3~5개")).toBeInTheDocument();
+  expect(firstResult.getByText("관리 시작 때와 비교 · 옅어졌어요")).toBeInTheDocument();
+  expect(firstResult.queryByText(/패인 흉터/)).not.toBeInTheDocument();
+  const first = records().find(record => record.concernTracking);
+  expect(first.concernTracking.sourceRecordId).toBe(records()[0].id);
+  expect(first.concernTracking.entries).toMatchObject([
+    { shape: "red", area: "chin", value: "three_five" },
+    { shape: "dark_mark", area: "cheeks", value: "less" },
+  ]);
+  expect(Object.keys(first.feedbackAnswers)).not.toContain("concernTracking:red:chin");
+
+  click("처음부터 다시"); click("최근 결과 다시 보기");
+  startFollowUp(() => {
+    const tracker = within(screen.getByRole("region", { name: "고민별 변화 기록" }));
+    const red = within(tracker.getByRole("group", { name: /붉은 뾰루지.*턱·턱선/ }));
+    expect(red.getByText(/이전 기록.*3~5개/)).toBeInTheDocument();
+    fireEvent.click(red.getByRole("button", { name: "1~2개" }));
+  });
+  completeStandardRecheck();
+  const secondResult = within(screen.getByRole("region", { name: "고민별 변화 기록" }));
+  expect(secondResult.getByText("최근 7일 새 돌기 · 1~2개")).toBeInTheDocument();
+  expect(secondResult.getByText(/이전 기록.*3~5개/)).toBeInTheDocument();
+  click("처음부터 다시"); click("내 피부 변화 보기");
+  expect(screen.getByText("관리 시작 때와 비교 · 옅어졌어요")).toBeInTheDocument();
+  expect(screen.getByText("최근 7일 새 돌기 · 1~2개")).toBeInTheDocument();
 });
 test("unknown follow-up observations suppress a new routine and do not crash on a missing level", () => {
   render(<App />); baseSurvey(Object.fromEntries(observationQuestions.map(q => [q.id, "unknown"]))); extraCare({ concern: "none" }); startFollowUp();

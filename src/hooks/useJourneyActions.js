@@ -14,6 +14,7 @@ import {
   getRecordSkinMeasurement,
   buildSkinComparison,
 } from "../utils/skinStateMeasurement";
+import { buildConcernTrackingRecord, getRoutineFeedbackAnswers } from "../utils/concernTracking";
 import { buildUsageReliability } from "../utils/usageReliability";
 
 export function useJourneyActions({
@@ -38,6 +39,7 @@ export function useJourneyActions({
   persistRecord,
   activeJourneyId,
   feedbackJourneyRecords,
+  concernTracking,
   feedbackTargetRecord,
   feedbackDraft,
   setFeedbackDraft,
@@ -236,12 +238,14 @@ export function useJourneyActions({
         buildProductUsageRecord(product, category, productUsageFeedback),
     );
 
-    const confounders = buildFeedbackConfounders(answers);
+    const trackingRecord = buildConcernTrackingRecord(concernTracking, answers);
+    const feedbackAnswers = getRoutineFeedbackAnswers(answers);
+    const confounders = buildFeedbackConfounders(feedbackAnswers);
 
-    const usageReport = buildFeedbackUsageReport(answers);
+    const usageReport = buildFeedbackUsageReport(feedbackAnswers);
 
     const dataReliability = buildUsageReliability({
-      feedbackAnswers: answers,
+      feedbackAnswers,
       actualProductUsage,
       skinComparison,
       symptomAssessment,
@@ -253,7 +257,8 @@ export function useJourneyActions({
       journeySchemaVersion: 3,
       symptomAssessment,
 
-      feedbackAnswers: answers,
+      feedbackAnswers,
+      ...(trackingRecord ? { concernTracking: trackingRecord } : {}),
 
       surveyVersion: followUpSurveyResult.surveyVersion ?? "legacy-skin-v1",
       followUpSurveyAnswers: feedbackSurveyAnswers,
@@ -283,7 +288,7 @@ export function useJourneyActions({
       },
 
       outcome: {
-        conditionSnapshot: getFeedbackConditionSnapshot(answers),
+        conditionSnapshot: getFeedbackConditionSnapshot(feedbackAnswers),
 
         baselineSkinState,
         followUpSkinState,
@@ -307,7 +312,7 @@ export function useJourneyActions({
       },
 
       changeReasons: getJourneyChangeReasons(
-        answers,
+        feedbackAnswers,
         {
           hydrationLevel: baseLevel,
           mainConcern,

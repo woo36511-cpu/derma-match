@@ -35,6 +35,7 @@ import {
   getVisibleOilinessQuestions,
 } from "../data/skinIssueQuestions";
 import { buildJourneySummary } from "../utils/journeySummary";
+import { getConcernTracking } from "../utils/concernTracking";
 import { useJourneyActions } from "./useJourneyActions";
 import { useJourneyAccount } from "./useJourneyAccount";
 import { useSymptomCheck, isSymptomCheckRecord } from "./useSymptomCheck";
@@ -75,6 +76,11 @@ export function useSkinCoach() {
           item.journeyId === activeJourneyId || item.id === activeJourneyId,
       ),
     [journeyHistory, activeJourneyId],
+  );
+
+  const concernTracking = useMemo(
+    () => getConcernTracking(feedbackJourneyRecords, feedbackDraft?.savedRecordId),
+    [feedbackJourneyRecords, feedbackDraft?.savedRecordId],
   );
 
   const feedbackTargetRecord =
@@ -696,6 +702,7 @@ export function useSkinCoach() {
     persistRecord,
     activeJourneyId,
     feedbackJourneyRecords,
+    concernTracking,
     feedbackTargetRecord,
     feedbackDraft,
     setFeedbackDraft,
@@ -825,6 +832,7 @@ export function useSkinCoach() {
     starterLevel,
     setAnswers,
     feedbackTargetProducts,
+    concernTracking,
     productUsageFeedback,
     handleProductUsageAnswer,
     answers,

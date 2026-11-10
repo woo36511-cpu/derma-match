@@ -3,12 +3,14 @@ import { getCategoryLabel } from "../utils/productCatalog";
 import { feedbackQuestions } from "../data/feedbackQuestions";
 import { PrimaryButton } from "../components/PrimaryButton";
 import React from "react";
+import { ConcernTrackingFields } from "../components/ConcernTracking";
 import { ProductUsageFields } from "../components/ProductUsageFields";
 
 export function FeedbackScreen({
   onSymptomRecheck,
   continueFeedback,
   feedbackTargetProducts,
+  concernTracking,
   productUsageFeedback,
   handleProductUsageAnswer,
   answers,
@@ -29,6 +31,7 @@ export function FeedbackScreen({
         <button onClick={onSymptomRecheck} className="block underline mt-2">증상 변화·악화 재설문</button>
       </div>
       <div className="max-w-3xl mx-auto space-y-5">
+        <ConcernTrackingFields questions={concernTracking?.questions} answers={answers} onAnswer={handleAnswer} />
         {feedbackTargetProducts.length > 0 && (
           <div className="bg-gray-50 border border-gray-100 rounded-3xl p-5 sm:p-6">
             <p className="text-base sm:text-lg font-semibold mb-2">
