@@ -7,6 +7,7 @@ import {
 import { skinConcernOptions } from "../data/skinIssueQuestions";
 import { getProductById, getCategoryLabel } from "../utils/productCatalog";
 import React from "react";
+import { DetailDisclosure } from "../components/DetailDisclosure";
 import { ConcernTrackingRecord } from "../components/ConcernTracking";
 import { JourneyOutcomeCard } from "../components/JourneyOutcomeCard";
 
@@ -25,16 +26,18 @@ export function JourneyScreen({
   previousJourneyConcern,
   currentJourneyStartConcern,
   activeJourneyRecords,
+  concernCheckHistory = [],
   latestJourneyConcern,
   journeyLevelChange,
   journeyRoundSummaries,
   setStep,
 }) {
+  const latestConcernCheck = concernCheckHistory.at(-1);
   return (
     <section>
       <SectionTitle
         title="내 피부 변화"
-        desc="처음 진단부터 2주 피드백까지 피부 상태와 추천 루틴이 어떻게 바뀌었는지 확인할 수 있어요."
+        desc="고민별 변화 기록과 자세히 체크한 루틴 변화를 확인할 수 있어요."
       />
       {journeyOptions.length > 1 && (
         <div className="max-w-4xl mx-auto mb-8">
@@ -347,6 +350,19 @@ export function JourneyScreen({
           </div>
         </div>
       )}
+      {latestConcernCheck && <section aria-label="고민 변화 빠른 기록" className="mx-auto mb-8 max-w-3xl space-y-3 rounded-3xl border border-emerald-100 bg-emerald-50 p-4 sm:p-5">
+        <div>
+          <h3 className="font-bold text-emerald-950">고민 변화 빠른 기록</h3>
+          <p className="mt-1 text-sm text-slate-600">최근 기록 · {formatSavedAt(latestConcernCheck.savedAt)}</p>
+        </div>
+        <ConcernTrackingRecord tracking={latestConcernCheck.concernTracking} />
+        {concernCheckHistory.length > 1 && <DetailDisclosure title="이전 빠른 기록 보기">
+          <div className="space-y-3">{concernCheckHistory.slice(0, -1).reverse().map(record => <div key={record.id} className="space-y-1">
+            <p className="text-sm text-slate-600">{formatSavedAt(record.savedAt)}</p>
+            <ConcernTrackingRecord tracking={record.concernTracking} />
+          </div>)}</div>
+        </DetailDisclosure>}
+      </section>}
       <div className="max-w-3xl mx-auto">
         {activeJourneyRecords.length === 0 ? (
           <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-8 text-center">

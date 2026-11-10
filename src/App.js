@@ -8,6 +8,7 @@ import { IssueSelectScreen } from "./screens/IssueSelectScreen";
 import { IssueDetailScreen } from "./screens/IssueDetailScreen";
 import { SurveyResultScreen } from "./screens/SurveyResultScreen";
 import { StarterScreen } from "./screens/StarterScreen";
+import { ConcernCheckScreen } from "./screens/ConcernCheckScreen";
 import { FeedbackScreen } from "./screens/FeedbackScreen";
 import { RecheckScreen } from "./screens/RecheckScreen";
 import { ResultScreen } from "./screens/ResultScreen";
@@ -22,7 +23,7 @@ import { RoutineSafetyNotice } from "./components/RoutineSafetyNotice";
 export default function App() {
   const {
     simpleMode, simpleRecord, startSimpleSkinCare, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
-    symptomCheck, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck, continueFeedback,
+    symptomCheck, concernCheck, concernCheckHistory, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck, continueFeedback,
     account,
     resetFlow,
     step,
@@ -135,7 +136,9 @@ export default function App() {
 
       <main className={`max-w-5xl mx-auto px-4 sm:px-6 ${step === "start" ? "pt-4 pb-10 sm:pt-6 sm:pb-14" : "py-10 sm:py-14"}`}>
         {step === "symptomCheck" && <SymptomCheckScreen check={symptomCheck} />}
-        {step === "symptomResult" && <SymptomResultScreen check={symptomCheck} setStep={setStep} />}
+        {step === "symptomResult" && <SymptomResultScreen check={symptomCheck} setStep={setStep}
+          onRecordConcern={symptomCheck.returningToConcernCheck ? concernCheck.resume : concernCheck.canStart ? concernCheck.start : undefined} />}
+        {step === "concernCheck" && <ConcernCheckScreen check={concernCheck} onHome={() => setStep("start")} onDetailedFeedback={startSavedFeedback} />}
         {step === "start" && (
           <StartScreen
             startCheckedFlow={startCheckedFlow}
@@ -156,6 +159,7 @@ export default function App() {
             savedSurveyResult={savedSurveyResult}
             openSavedSurveyResult={openSavedSurveyResult}
             startSavedFeedback={startSavedFeedback}
+            onQuickConcernCheck={concernCheck.canStart ? concernCheck.start : undefined}
             routineReview={routineReview}
           />
         )}
@@ -181,6 +185,7 @@ export default function App() {
             previousJourneyConcern={previousJourneyConcern}
             currentJourneyStartConcern={currentJourneyStartConcern}
             activeJourneyRecords={activeJourneyRecords}
+            concernCheckHistory={concernCheckHistory}
             latestJourneyConcern={latestJourneyConcern}
             journeyLevelChange={journeyLevelChange}
             journeyRoundSummaries={journeyRoundSummaries}
@@ -258,6 +263,7 @@ export default function App() {
             setSurveyIndex={setSurveyIndex}
             setStep={setStep}
             startSavedFeedback={startSavedFeedback}
+            onQuickConcernCheck={concernCheck.canStart ? concernCheck.start : undefined}
             routineReview={routineReview}
           />
         )}

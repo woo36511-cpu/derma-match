@@ -135,7 +135,8 @@ test("current surface irritation overrides a reassuring extra-concern answer", (
 });
 
 function startFollowUp(onFeedback = () => {}) {
-  click("시작 화면"); click("2주 후 체크하기");
+  click("시작 화면");
+  click(screen.queryByRole("button", { name: "루틴·제품 자세히 체크하기" }) ? "루틴·제품 자세히 체크하기" : "2주 후 체크하기");
   const symptomValues = { concern: "none", breathing: "no", eyeWarning: "no", eruption: "no", change: "stable", surface: "intact", barrier: "none", habit: "observe", area: "face", form: "mixed", comedones: "yes", uniform: "no", itch: "none", follicular: "no", shaving: "no", pain: "none", duration: "under_week", recentProduct: "none" };
   for (const q of getVisibleSymptomQuestions(symptomValues)) {
     click(q.options.find(o => o.value === symptomValues[q.id]).label);
@@ -310,4 +311,44 @@ test("current routine review reuses a completed survey and suggests only a diffe
   expect(review.getByText("자극 먼저 확인")).toBeVisible();
   expect(review.getByText(/새 제품 후보는 잠시 보류할게요/)).toBeVisible();
   expect(review.queryByText(/지난 설문과 이번 사용 반응에 맞춰 고른/)).not.toBeInTheDocument();
+});
+
+test("saved concerns can be recorded immediately and the next check restores only that concern's previous count", () => {
+  render(<App />); baseSurvey();
+  extraCare({ concern: "acne", shapes: ["red", "dark_mark"], primaryShape: "red",
+    locations: { red: "chin", dark_mark: "cheeks" }, areaState: "comfortable", medicine: "none" });
+  click("시작 화면"); click("2주 후 체크하기");
+  expect(screen.getByRole("heading", { name: "지난 고민만 빠르게 체크" })).toBeInTheDocument();
+  expect(screen.getByRole("button", { name: "변화만 저장" })).toBeDisabled();
+  click("3~5개"); click("변화만 저장");
+  expect(screen.getByRole("heading", { name: "고민 변화를 저장했어요" })).toBeInTheDocument();
+  const saved = records().find(record => record.source === "concern_check");
+  expect(saved.concernTracking.entries).toMatchObject([{ shape: "red", area: "chin", value: "three_five" }]);
+  expect(saved).not.toHaveProperty("routine");
+  expect(saved).not.toHaveProperty("outcome");
+  expect(records().filter(record => record.source === "symptom_check")).toHaveLength(0);
+
+  click("내 피부 변화 보기");
+  const history = within(screen.getByRole("region", { name: "고민 변화 빠른 기록" }));
+  expect(history.getByText("최근 7일 새 돌기 · 3~5개")).toBeVisible();
+  click("시작 화면으로 돌아가기"); click("고민 변화 바로 기록");
+  expect(screen.getByText(/이전 기록.*3~5개/)).toBeVisible();
+});
+test("the symptom result can return to the concern draft without allowing a new routine", () => {
+  render(<App />); baseSurvey();
+  extraCare({ concern: "acne", shape: "red", areaState: "comfortable", medicine: "none" });
+  click("시작 화면"); click("고민 변화 바로 기록"); click("1~2개"); click("증상 자세히 확인하기");
+  const symptoms = { concern: "breakouts", change: "stable", surface: "intact", barrier: "none",
+    duration: "two_six_weeks", area: "face", form: "papules", comedones: "no", itch: "none",
+    shaving: "no", pain: "none", recentProduct: "none", habit: "observe" };
+  for (const question of getVisibleSymptomQuestions(symptoms)) {
+    click(question.options.find(option => option.value === symptoms[question.id]).label);
+    click(screen.queryByRole("button", { name: "다음", exact: true }) ? "다음" : "내 피부 관리 보기");
+  }
+  expect(screen.getByRole("heading", { name: "트러블이 가라앉는지 먼저 살펴봐요" })).toBeVisible();
+  expect(screen.queryByRole("button", { name: "피부 관리 설문·기록 이어가기" })).not.toBeInTheDocument();
+  click("고민 변화 기록으로 돌아가기");
+  expect(screen.getByRole("button", { name: "1~2개" })).toHaveAttribute("aria-pressed", "true");
+  click("변화만 저장");
+  expect(screen.getByText("최근 7일 새 돌기 · 1~2개")).toBeVisible();
 });

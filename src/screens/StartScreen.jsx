@@ -26,6 +26,7 @@ export function StartScreen({
   savedSurveyResult,
   openSavedSurveyResult,
   startSavedFeedback,
+  onQuickConcernCheck,
   routineReview,
 }) {
   return (
@@ -49,6 +50,8 @@ export function StartScreen({
                 피부타입 확인하고 추천받기 <span aria-hidden="true">→</span>
               </button>
               <p className="mt-3 text-xs text-slate-600 sm:text-sm">피부타입을 몰라도 괜찮아요. 답변에 맞춰 기본 루틴부터 찾아요.</p>
+              {onQuickConcernCheck && !isQuickJourney && <button type="button" onClick={onQuickConcernCheck}
+                className="mt-4 text-sm font-semibold text-emerald-900 underline underline-offset-4">고민 변화 바로 기록</button>}
             </div>
           </div>
           <aside aria-labelledby="example-plan" className="rounded-3xl border border-emerald-100 bg-white p-5 shadow-sm sm:p-6">
@@ -148,9 +151,13 @@ export function StartScreen({
                 최근 결과 다시 보기
               </button>
 
-              <PrimaryButton onClick={startSavedFeedback}>
+              <PrimaryButton onClick={onQuickConcernCheck ?? startSavedFeedback}>
                 2주 후 체크하기
               </PrimaryButton>
+              {onQuickConcernCheck && <button type="button" onClick={startSavedFeedback}
+                className="px-5 py-3 rounded-2xl text-sm font-medium border border-gray-300 bg-white hover:bg-gray-100">
+                루틴·제품 자세히 체크하기
+              </button>}
               <button
                 onClick={() => setStep("journey")}
                 className="px-5 py-3 rounded-2xl text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-100 hover:bg-emerald-100 transition"
