@@ -287,3 +287,27 @@ test("saved product IDs remain historical when recommendation rules change, and 
   click("새 기준으로 다시 확인");
   expect(screen.getByRole("heading", { name: observationQuestions[0].question })).toBeInTheDocument();
 });
+
+test("current routine review reuses a completed survey and suggests only a different basic moisturizer", () => {
+  render(<App />); baseSurvey(); extraCare({ concern: "none" });
+  click("지금 쓰는 제품 점검하기");
+  const search = screen.getByRole("searchbox", { name: "브랜드나 제품명" });
+  fireEvent.change(search, { target: { value: "피지오겔 DMT" } });
+  const product = "피지오겔 DMT 데일리 모이스쳐 테라피 페이셜 크림";
+  click(product + " 내 루틴에 담기");
+  const review = within(screen.getByRole("region", { name: "내 루틴 점검" }));
+  expect(review.getByText(/지난 피부 설문.*복합성 성향/)).toBeVisible();
+  expect(review.getByRole("button", { name: /같은 제품이라면 지난 설문 답변 적용/ })).toBeVisible();
+  fireEvent.change(review.getByRole("combobox", { name: product + " 사용 반응" }), { target: { value: "heavy" } });
+  fireEvent.click(review.getByText("대체 후보 보기"));
+  expect(review.getByText(/지난 설문과 이번 사용 반응에 맞춰 고른 같은 단계 후보예요/)).toBeVisible();
+  expect(review.getAllByText(product, { exact: true })).toHaveLength(1);
+
+  fireEvent.change(search, { target: { value: "굿모닝 젤 클렌저" } });
+  const cleanser = "코스알엑스 약산성 굿모닝 젤 클렌저";
+  click(cleanser + " 내 루틴에 담기");
+  fireEvent.change(review.getByRole("combobox", { name: cleanser + " 사용 반응" }), { target: { value: "irritation" } });
+  expect(review.getByText("자극 먼저 확인")).toBeVisible();
+  expect(review.getByText(/새 제품 후보는 잠시 보류할게요/)).toBeVisible();
+  expect(review.queryByText(/지난 설문과 이번 사용 반응에 맞춰 고른/)).not.toBeInTheDocument();
+});

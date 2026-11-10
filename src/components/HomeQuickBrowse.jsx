@@ -24,7 +24,7 @@ export function MedicineReferenceCard({ medicine }) {
   </article>;
 }
 
-export function HomeQuickBrowse({ onStartSurvey, onStartRoutine }) {
+export function HomeQuickBrowse({ onStartSurvey, onStartRoutine, routineReview }) {
   const [view, setView] = useState(null);
   const [skinId, setSkinId] = useState(null);
   const [concernId, setConcernId] = useState(null);
@@ -34,12 +34,12 @@ export function HomeQuickBrowse({ onStartSurvey, onStartRoutine }) {
   return <section aria-labelledby="home-quick-title" className="space-y-5">
     <div><p className="text-xs font-semibold text-emerald-700">설문 없이 빠르게 보기</p><h2 id="home-quick-title" className="mt-1 text-xl font-bold text-slate-950 sm:text-2xl">필요한 정보만 바로 찾아봐요</h2></div>
     <div className="grid gap-3 sm:grid-cols-3">
-      {[{id:"products",title:"피부타입별 화장품",detail:"타입을 고르면 기본 제품 4종을 바로 보여줘요.",number:"01"},{id:"medicines",title:"피부 고민별 약품 안내",detail:"어떤 고민에 어떤 약을 쓰는지 용도별로 살펴봐요.",number:"02"},{id:"lookup",title:"지금 쓰는 화장품 찾기",detail:"브랜드나 제품명으로 찾아 포장과 공식 정보를 확인해요.",number:"03"}].map(item => <button key={item.id} type="button" aria-expanded={view === item.id} aria-controls="home-quick-content" onClick={() => setView(previous => previous === item.id ? null : item.id)} className={`rounded-2xl border p-5 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-700 ${view === item.id ? "border-emerald-600 bg-emerald-50" : "border-slate-200 bg-white hover:border-emerald-300"}`}>
+      {[{id:"products",title:"피부타입별 화장품",detail:"타입을 고르면 기본 제품 4종을 바로 보여줘요.",number:"01"},{id:"medicines",title:"피부 고민별 약품 안내",detail:"어떤 고민에 어떤 약을 쓰는지 용도별로 살펴봐요.",number:"02"},{id:"lookup",title:"지금 쓰는 화장품 찾기",detail:"지금 쓰는 제품을 담고 유지할지 점검해요.",number:"03"}].map(item => <button key={item.id} type="button" aria-expanded={view === item.id} aria-controls="home-quick-content" onClick={() => setView(previous => previous === item.id ? null : item.id)} className={`rounded-2xl border p-5 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-700 ${view === item.id ? "border-emerald-600 bg-emerald-50" : "border-slate-200 bg-white hover:border-emerald-300"}`}>
       <span className="text-xs font-bold text-emerald-700">{item.number}</span><span className="mt-2 block text-lg font-bold">{item.title}</span><span className="mt-1 block text-sm text-slate-600">{item.detail}</span><span className="mt-3 block text-sm font-semibold text-emerald-800">{view === item.id ? "접기 −" : "바로 보기 →"}</span>
     </button>)}
     </div>
     <div id="home-quick-content">
-      {view === "lookup" && <RoutineProductLookup />}
+      {view === "lookup" && <RoutineProductLookup {...routineReview} onStartSurvey={onStartSurvey} />}
       {view === "products" && <section aria-label="피부타입별 화장품 빠른 보기" className="space-y-5 rounded-3xl border border-slate-200 bg-white p-4 sm:p-6">
         <div><h3 className="text-lg font-bold">내 피부타입을 골라주세요</h3><p className="mt-1 text-sm text-slate-600">선택한 타입에 맞는 기본 예시예요. 지금 피부 상태를 더 반영하려면 설문을 이용해요.</p></div>
         <div className="grid gap-3 sm:grid-cols-3" role="group" aria-label="피부타입 선택">{quickSkinTypes.map(type => <button key={type.id} aria-pressed={skinId === type.id} onClick={() => setSkinId(type.id)} className={`rounded-2xl border px-4 py-3 text-left ${skinId === type.id ? "border-emerald-600 bg-emerald-50" : "border-slate-200 hover:bg-slate-50"}`}><span className="block font-semibold">{type.label}</span><span className="mt-1 block text-xs text-slate-600">{type.detail}</span></button>)}</div>

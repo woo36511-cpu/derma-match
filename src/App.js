@@ -16,6 +16,7 @@ import { AccountPanel } from "./components/AccountPanel";
 import { SymptomCheckScreen } from "./screens/SymptomCheckScreen";
 import { SymptomResultScreen } from "./screens/SymptomResultScreen";
 import { SimpleCareScreen } from "./screens/SimpleCareScreen";
+import { RoutineProductLookup } from "./components/RoutineProductLookup";
 import { RoutineSafetyNotice } from "./components/RoutineSafetyNotice";
 
 export default function App() {
@@ -118,6 +119,15 @@ export default function App() {
     routineReason,
     ingredients,
   } = useSkinCoach();
+  const lastSymptom = symptomCheck.latestRecord;
+  const routineReview = {
+    ownerKey: account.user?.id ? `account:${account.user.id}` : "guest",
+    loading: account.authLoading,
+    profile: savedSurveyResult,
+    savedAt: savedSurvey?.savedAt,
+    safetyBlocked: savedSurvey?.symptomAssessment?.blockRoutine === true ||
+      Boolean(lastSymptom?.savedAt >= (savedSurvey?.savedAt ?? "") && lastSymptom?.symptomAssessment?.blockRoutine),
+  };
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
       <Header resetFlow={resetFlow} isStart={step === "start"} />
@@ -146,8 +156,14 @@ export default function App() {
             savedSurveyResult={savedSurveyResult}
             openSavedSurveyResult={openSavedSurveyResult}
             startSavedFeedback={startSavedFeedback}
+            routineReview={routineReview}
           />
         )}
+
+        {step === "routineReview" && <div className="space-y-4">
+          <RoutineProductLookup {...routineReview} onStartSurvey={startSimpleSkinCare} />
+          <button type="button" onClick={() => setStep("start")} className="rounded-xl border px-4 py-3 text-sm font-semibold">시작 화면으로</button>
+        </div>}
 
         {step === "journey" && (
           <JourneyScreen
@@ -198,7 +214,7 @@ export default function App() {
           />
         )}
 
-        {step === "simpleCare" && <SimpleCareScreen key={account.user?.id ?? "guest"} profile={surveyResult} surveyAnswers={surveyAnswers} initialRecord={simpleRecord} onRestart={startSimpleSkinCare} onSave={saveSimpleSkinRecord} onBack={() => { setSurveyIndex(activeSurveyQuestions.length - 1); setStep("survey"); }} onHome={() => setStep("start")} />}
+        {step === "simpleCare" && <SimpleCareScreen key={account.user?.id ?? "guest"} profile={surveyResult} surveyAnswers={surveyAnswers} initialRecord={simpleRecord} onRestart={startSimpleSkinCare} onReviewRoutine={() => setStep("routineReview")} onSave={saveSimpleSkinRecord} onBack={() => { setSurveyIndex(activeSurveyQuestions.length - 1); setStep("survey"); }} onHome={() => setStep("start")} />}
 
         {step === "issueSelect" && (
           <IssueSelectScreen
@@ -242,6 +258,7 @@ export default function App() {
             setSurveyIndex={setSurveyIndex}
             setStep={setStep}
             startSavedFeedback={startSavedFeedback}
+            routineReview={routineReview}
           />
         )}
         {step === "starter" && starterRoutine && (quickSafety.blocked ? <RoutineSafetyNotice safety={quickSafety} onRecheck={() => symptomCheck.begin("survey")} /> : (

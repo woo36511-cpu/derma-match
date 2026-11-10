@@ -60,3 +60,7 @@ export function searchRoutineProducts(query, limit = 12) {
   }).sort((a, b) => b.nameRank - a.nameRank || a.product.name.localeCompare(b.product.name, "ko"));
   return { total: ranked.length, matches: ranked.slice(0, limit).map(({ product }) => product) };
 }
+
+export function getRoutineLookupProduct(id) {
+  return entries.find(product => product.id === id) ?? null;
+}

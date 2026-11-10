@@ -26,6 +26,7 @@ export function StartScreen({
   savedSurveyResult,
   openSavedSurveyResult,
   startSavedFeedback,
+  routineReview,
 }) {
   return (
     <div className="space-y-7">
@@ -68,7 +69,7 @@ export function StartScreen({
         </div>
       </section>
 
-      <HomeQuickBrowse onStartSurvey={startSimpleSkinCare} onStartRoutine={level => {
+      <HomeQuickBrowse routineReview={routineReview} onStartSurvey={startSimpleSkinCare} onStartRoutine={level => {
         setQuickLevel(level); setActiveJourneyId(null); startCheckedFlow("quickRecommend");
       }} />
 

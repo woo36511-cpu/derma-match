@@ -77,3 +77,28 @@ test("the home lookup finds new and existing products without saving a routine",
   expect(lookup.getByRole("status")).toHaveTextContent("일치하는 제품이 없어요");
   expect(JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY) || "[]")).toHaveLength(0);
 });
+
+test("review saves actual reactions, accepts an unlisted product, and never suggests a change for a comfortable product", () => {
+  render(<App />); click(/지금 쓰는 화장품 찾기/);
+  const search = screen.getByRole("searchbox", { name: "브랜드나 제품명" });
+  fireEvent.change(search, { target: { value: "굿모닝 젤 클렌저" } });
+  click("코스알엑스 약산성 굿모닝 젤 클렌저 내 루틴에 담기");
+  const review = within(screen.getByRole("region", { name: "내 루틴 점검" }));
+  fireEvent.change(review.getByRole("combobox", { name: "코스알엑스 약산성 굿모닝 젤 클렌저 사용 반응" }), { target: { value: "comfortable" } });
+  expect(review.getByText("유지")).toBeVisible();
+  expect(review.queryByText("대체 후보 보기")).not.toBeInTheDocument();
+
+  fireEvent.change(search, { target: { value: "테스트 크림" } });
+  fireEvent.click(screen.getByText("목록에 없는 제품 직접 추가"));
+  fireEvent.change(screen.getByRole("combobox", { name: "제품 종류" }), { target: { value: "moisturizer" } });
+  click("입력한 제품 담기");
+  fireEvent.change(review.getByRole("combobox", { name: "테스트 크림 사용 반응" }), { target: { value: "later_oil" } });
+  expect(review.getByText("관찰")).toBeVisible();
+  expect(review.queryByText("대체 후보 보기")).not.toBeInTheDocument();
+
+  click(/지금 쓰는 화장품 찾기/); click(/지금 쓰는 화장품 찾기/);
+  const reopened = within(screen.getByRole("region", { name: "내 루틴 점검" }));
+  expect(reopened.getByRole("combobox", { name: "테스트 크림 사용 반응" })).toHaveValue("later_oil");
+  click("테스트 크림 내 루틴에서 빼기");
+  expect(reopened.queryByText("테스트 크림")).not.toBeInTheDocument();
+});
