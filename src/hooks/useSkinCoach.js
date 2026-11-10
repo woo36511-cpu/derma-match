@@ -38,6 +38,7 @@ import { buildJourneySummary } from "../utils/journeySummary";
 import { getConcernTracking } from "../utils/concernTracking";
 import { useJourneyActions } from "./useJourneyActions";
 import { useJourneyAccount } from "./useJourneyAccount";
+import { useConcernCheck, isConcernCheckRecord } from "./useConcernCheck";
 import { useSymptomCheck, isSymptomCheckRecord } from "./useSymptomCheck";
 import { applyRoutineSafety, getRoutineSafety, getFeedbackRoutineSafety, feedbackNeedsSymptomReview } from "../utils/symptomAssessment";
 
@@ -45,7 +46,7 @@ export function useSkinCoach() {
   const starterLevel = 5;
   const { savedSurvey, journeyHistory: storedHistory, persistRecord, account, ownerId } = useJourneyAccount();
   // Symptom-only checks have no 8-axis measurement or product-effect attribution.
-  const journeyHistory = useMemo(() => storedHistory.filter(record => !isSymptomCheckRecord(record)), [storedHistory]);
+  const journeyHistory = useMemo(() => storedHistory.filter(record => !isSymptomCheckRecord(record) && !isConcernCheckRecord(record)), [storedHistory]);
 
   const [step, setStep] = useState("start");
   const symptomCheck = useSymptomCheck({ ownerId, storedHistory, persistRecord, setStep });
@@ -60,6 +61,7 @@ export function useSkinCoach() {
   const [simpleRecord, setSimpleRecord] = useState(null);
   const [activeJourneyId, setActiveJourneyId] = useState(null);
   const [viewJourneyId, setViewJourneyId] = useState(null);
+  const concernCheck = useConcernCheck({ ownerId, savedSurvey, storedHistory, persistRecord, setStep, setViewJourneyId, beginSymptomCheck: symptomCheck.begin });
   const [mainConcern, setMainConcern] = useState("");
   const [issueAnswers, setIssueAnswers] = useState({});
   const [issueIndex, setIssueIndex] = useState(0);
@@ -79,8 +81,10 @@ export function useSkinCoach() {
   );
 
   const concernTracking = useMemo(
-    () => getConcernTracking(feedbackJourneyRecords, feedbackDraft?.savedRecordId),
-    [feedbackJourneyRecords, feedbackDraft?.savedRecordId],
+    () => getConcernTracking(storedHistory.filter(record =>
+      record.journeyId === activeJourneyId || record.id === activeJourneyId
+    ), feedbackDraft?.savedRecordId),
+    [storedHistory, activeJourneyId, feedbackDraft?.savedRecordId],
   );
 
   const feedbackTargetRecord =
@@ -754,9 +758,11 @@ export function useSkinCoach() {
 
   return {
     simpleMode, simpleRecord, startSimpleSkinCare, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
-    symptomCheck, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck,
+    symptomCheck, concernCheck, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck,
     continueFeedback: () => feedbackNeedsSymptomReview(answers) ? symptomCheck.begin("recheck") : setStep("recheck"),
     account,
+    concernCheckHistory: storedHistory.filter(record => isConcernCheckRecord(record) &&
+      record.concernTracking?.sourceRecordId === viewedJourneyStartRecord?.id),
     resetFlow,
     step,
     setActiveJourneyId,

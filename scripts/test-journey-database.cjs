@@ -40,6 +40,13 @@ async function main() {
     await assert.rejects(save(alice, [fresh, { ...changed, payload: record }]), { code: "40001" });
     assert.equal((await db.query("select count(*)::integer as count from public.journey_records")).rows[0].count, 1, "conflicting batch rolls back all writes");
     await assert.rejects(save(alice, [{ record_id: "bad", expected_revision: 0, payload: { id: null, type: "feedback" } }]), { code: "23514" });
+    const concern = { id: "concern-check", type: "feedback", source: "concern_check", assessmentOnly: true, journeyId: "journey-one",
+      concernTracking: { version: "concern-tracking-v1", sourceRecordId: "survey-one", entries: [
+        { shape: "red", area: "chin", metric: "new_bumps_7d", value: "one_two" },
+      ] },
+    };
+    assert.equal((await save(alice, [{ record_id: concern.id, expected_revision: 0, payload: concern }]))[0].revision, 1);
+    assert.deepEqual((await db.query("select payload from public.journey_records where record_id = $1", [concern.id])).rows[0].payload, concern);
     await asUser(bob);
     assert.equal((await db.query("select * from public.journey_records")).rows.length, 0, "other user's records are invisible");
     await assert.rejects(save(alice, [fresh]), { code: "42501" }, "owner mismatch is rejected");

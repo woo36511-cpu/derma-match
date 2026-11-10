@@ -77,6 +77,8 @@ export function useSymptomCheck({ ownerId, storedHistory, persistRecord, setStep
 
   return {
     answers, questions, index, assessment, saved, historical, latestRecord,
+    returningToConcernCheck: nextStep === "concernCheck",
+    detailedRoutineFollowUp: ["feedback", "recheck"].includes(nextStep),
     begin, answer,
     editGuidedAnswer: (id) => {
       if (!assessment?.guidedCare) return;
