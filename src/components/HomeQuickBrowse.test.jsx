@@ -6,7 +6,7 @@ import { JOURNEY_HISTORY_KEY } from "../data/storageKeys";
 
 const click = name => fireEvent.click(screen.getByRole("button", { name }));
 beforeEach(() => { localStorage.clear(); window.history.replaceState({}, "", "/"); });
-test("home replaces the old full-survey accordion with two direct quick shelves", () => {
+test("home replaces the old full-survey accordion with direct quick shelves", () => {
   render(<App />);
   expect(screen.queryByText("피부타입별 추천·전체 설문 보기")).not.toBeInTheDocument();
   expect(screen.queryByText("처음이라 설문으로 시작할래요")).not.toBeInTheDocument();
@@ -41,9 +41,9 @@ test("medicine groups display named references with folded details, sources, and
     for (const medicine of group.medicines) {
       const article = screen.getByRole("article", { name: medicine.name });
       expect(within(article).getByText(medicine.classification)).toBeInTheDocument();
-      const summary = within(article).getByText("성분·용도·사용 전 주의사항", { selector: "summary" });
-      expect(summary.closest("details")).not.toHaveAttribute("open");
-      expect(within(article).getByRole("link", { name: medicine.sourceLabel, hidden: true })).toHaveAttribute("href", medicine.source);
+      const source = within(article).getByRole("link", { name: medicine.sourceLabel, hidden: true });
+      expect(source).not.toBeVisible();
+      expect(source).toHaveAttribute("href", medicine.source);
       expect(within(article).queryByRole("button")).not.toBeInTheDocument();
     }
   }
@@ -60,4 +60,20 @@ test("quick browsing can start the existing type survey and selected routine rec
   expect(screen.getByRole("heading", { name: "최근 2주, 피부 상태가 평소와 비슷했나요?" })).toBeInTheDocument();
   click("시작 화면으로"); click(/피부타입별 화장품/); click(/^건성/); click("이 루틴으로 기록하기");
   expect(screen.getByRole("heading", { name: "지금 피부 상태부터 확인할게요" })).toBeInTheDocument();
+});
+
+test("the home lookup finds new and existing products without saving a routine", () => {
+  render(<App />); click(/지금 쓰는 화장품 찾기/);
+  const lookup = within(screen.getByRole("region", { name: "지금 쓰는 화장품 찾기" }));
+  const search = lookup.getByRole("searchbox", { name: "브랜드나 제품명" });
+  fireEvent.change(search, { target: { value: "COSRX good morning" } });
+  expect(lookup.getByText("코스알엑스 약산성 굿모닝 젤 클렌저")).toBeVisible();
+  expect(lookup.getByText("전성분 검수 전")).toBeVisible();
+  expect(lookup.getByRole("link", { name: "공식 제품 정보" })).toHaveAttribute("href", expect.stringMatching(/^https:\/\/www\.cosrx\.co\.kr\//));
+
+  fireEvent.change(search, { target: { value: "피지오겔 DMT" } });
+  expect(lookup.getByText(/피지오겔 DMT 데일리 모이스쳐/)).toBeVisible();
+  fireEvent.change(search, { target: { value: "없는브랜드테스트" } });
+  expect(lookup.getByRole("status")).toHaveTextContent("일치하는 제품이 없어요");
+  expect(JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY) || "[]")).toHaveLength(0);
 });
