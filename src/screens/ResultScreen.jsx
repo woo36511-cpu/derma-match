@@ -14,6 +14,7 @@ import React from "react";
 import { DetailDisclosure } from "../components/DetailDisclosure";
 import { RoutineSafetyNotice } from "../components/RoutineSafetyNotice";
 import { SymptomCareSummary } from "../components/SelfCarePlan";
+import { ConcernTrackingRecord } from "../components/ConcernTracking";
 import { JourneyOutcomeCard } from "../components/JourneyOutcomeCard";
 
 export function ResultScreen({
@@ -34,6 +35,7 @@ export function ResultScreen({
   if (safety?.blocked) return <section className="max-w-3xl mx-auto space-y-6">
     <SymptomCareSummary assessment={symptomAssessment} />
     <RoutineSafetyNotice safety={safety} onRecheck={onSymptomRecheck} />
+    <ConcernTrackingRecord tracking={feedbackResultRecord?.concernTracking} />
     <JourneyOutcomeCard record={feedbackResultRecord} />
     <PrimaryButton onClick={resetFlow}>처음부터 다시</PrimaryButton>
   </section>;
@@ -43,6 +45,10 @@ export function ResultScreen({
         title={nextRoutineInfo.label}
         desc={nextRoutineInfo.summary}
       />
+
+      {feedbackResultRecord?.concernTracking && <div className="max-w-3xl mx-auto mb-8">
+        <ConcernTrackingRecord tracking={feedbackResultRecord.concernTracking} showNext />
+      </div>}
 
       <div className="max-w-3xl mx-auto mb-8">
         <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-5 sm:p-6">

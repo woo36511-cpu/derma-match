@@ -98,6 +98,7 @@ export default function App() {
     starterLevel,
     setAnswers,
     feedbackTargetProducts,
+    concernTracking,
     productUsageFeedback,
     handleProductUsageAnswer,
     answers,
@@ -260,6 +261,7 @@ export default function App() {
             continueFeedback={continueFeedback}
             onSymptomRecheck={startSymptomRecheck}
             feedbackTargetProducts={feedbackTargetProducts}
+            concernTracking={concernTracking}
             productUsageFeedback={productUsageFeedback}
             handleProductUsageAnswer={handleProductUsageAnswer}
             answers={answers}
