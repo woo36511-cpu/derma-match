@@ -1,5 +1,5 @@
 import { buildSimpleCarePlan } from "./simpleCarePlan";
-const base = { concern: "acne", shape: "red", areaState: "comfortable", medicine: "none" };
+const base = { concern: "acne", shape: "red", areaState: "comfortable", breakoutExtent: "local", medicine: "none" };
 test("cosmetic support and medicine evidence remain distinct in acne results", () => {
   const p = buildSimpleCarePlan(base);
   expect(p.careReview.cosmeticRole).toContain("세안·보습");

@@ -112,3 +112,15 @@ test("known traits remain visible when present comfort cannot yet be confirmed",
   expect(p.observationAssessment.careActions.length).toBeGreaterThan(0);
   expect(p.skinState.barrierStress).toBeNull();
 });
+
+test("environment context is conditional and never changes a skin score or type on its own", () => {
+  const recent = { skinChange: "changed", drynessArea: "cheeks", drynessTiming: "day" };
+  const observed = analyze({ ...recent, recentEnvironment: "dry_air" });
+  const sameAnswers = analyze({ ...recent, recentEnvironment: "none" });
+  expect(observed.observationAssessment.environmentContext).toMatchObject({ value: "dry_air" });
+  expect(observed.hydrationLevel).toBe(sameAnswers.hydrationLevel);
+  expect(observed.skinType).toBe(sameAnswers.skinType);
+  expect(observed.skinState).toEqual(sameAnswers.skinState);
+  expect(observed.careNeeds).toEqual(sameAnswers.careNeeds);
+  expect(analyze({ recentEnvironment: "dry_air" }).observationAssessment.environmentContext).toBeUndefined();
+});

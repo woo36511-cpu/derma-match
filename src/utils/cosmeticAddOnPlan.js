@@ -21,6 +21,8 @@ export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}
   if (actives.has("unknown") || carePlan.answers?.medicine === "unknown") return hold("지금 쓰는 제품의 성분부터 확인해요.", "성분을 모르는 제품과의 조합을 안전하다고 안내하지 않아요. 포장 성분표를 확인한 뒤 답을 바꿔요.");
   if (answers.goal !== "support" && (answers.special !== "none" || answers.experience === "reacted")) return hold("이번에는 기능성 제품의 추가를 보류해요.", "별도 확인이 필요한 상황이나 과거 자극 경험이 있어요. 잘 맞는 기본 보습과 자외선 차단을 유지해요.");
   const care = carePlan.answers ?? {};
+  if (answers.goal !== "support" && care.breakoutExtent && care.breakoutExtent !== "local")
+    return hold("돌기가 있는 범위를 먼저 확인해요.", "여러 부위에 새 각질·기능성 제품을 추가하기 전에 현재 상태부터 살펴봐요.");
   const hasInflamedOrUnknown = (care.shapes ?? [care.shape]).some(shape => inflamedAcneShapes.includes(shape) || shape === "unknown");
   if (answers.goal !== "support" && (surveyAnswers.mainIssue === "붉고 아픈 여드름" || ["folliculitis", "unknown"].includes(care.concern) || hasInflamedOrUnknown)) return hold("현재 트러블 관리부터 정리해요.", "원인이 불분명하거나 붉은 돌기가 있을 때는 새 각질·미백 제품을 더하지 않아요. 보습 보완은 별도로 살펴볼 수 있어요.");
   if (answers.goal !== "support" && acneTraceShapes.includes(care.shape) && !(care.shape === "dark_mark" && answers.goal === "tone")) return hold("고른 자국이나 흉터에는 새 기능성 제품을 권하지 않아요.", "평평한 갈색 자국의 톤 관리와 붉은 자국·패이거나 솟은 흉터의 관리는 달라요. 기본 보습과 자외선 차단을 유지해요.");

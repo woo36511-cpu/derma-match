@@ -30,7 +30,8 @@ function baseSurvey(overrides = {}) {
     click(index === questions.length - 1 ? "추가 고민 선택" : "다음");
   }
 }
-function extraCare(answers) {
+function extraCare(input) {
+  const answers = { breakoutExtent: "local", ...input };
   const questions = getSimpleCareQuestions(answers);
   for (const [index, q] of questions.entries()) {
     expect(screen.getByRole("heading", { name: q.q })).toBeInTheDocument();
@@ -92,7 +93,7 @@ test("different acne appearances and traces retain priority and locations throug
   expect(screen.getByRole("region", { name: "함께 선택한 고민" })).toHaveTextContent("살색·하얀 좁쌀 · 이마");
   click("추가 고민 답변 바꾸기"); click("다음"); click("다음");
   click(/평평한 갈색·회갈색 자국/); click("다음");
-  expect(screen.getByRole("button", { name: /작은 부위에만 있고/ })).toHaveAttribute("aria-pressed", "false");
+  expect(screen.getByRole("button", { name: /심한 통증·따가움은 없어요/ })).toHaveAttribute("aria-pressed", "false");
 });
 test("folliculitis shows common care and folded cause-specific information, without a trial antibiotic", () => {
   render(<App />); baseSurvey(); extraCare({ concern: "folliculitis", areaState: "comfortable", medicine: "none" });
@@ -351,4 +352,34 @@ test("the symptom result can return to the concern draft without allowing a new 
   expect(screen.getByRole("button", { name: "1~2개" })).toHaveAttribute("aria-pressed", "true");
   click("변화만 저장");
   expect(screen.getByText("최근 7일 새 돌기 · 1~2개")).toBeVisible();
+});
+
+test("multiple areas without severe pain do not enter the local medicine path", () => {
+  render(<App />); baseSurvey();
+  extraCare({ concern: "acne", shape: "red", areaState: "comfortable", breakoutExtent: "multiple", medicine: "none" });
+  expect(screen.getByRole("heading", { name: "돌기가 많은 곳에는 국소용 후보를 넓게 바르지 않아요." })).toBeVisible();
+  expect(screen.queryByRole("region", { name: "일반의약품 후보" })).not.toBeInTheDocument();
+  expect(records()[0].additionalCare).toMatchObject({ areaState: "comfortable", breakoutExtent: "multiple" });
+});
+test("a previous broad count can be compared subjectively without inventing a count", () => {
+  render(<App />); baseSurvey();
+  extraCare({ concern: "acne", shape: "red", areaState: "comfortable", breakoutExtent: "crowded", medicine: "none" });
+  click("시작 화면"); click("고민 변화 바로 기록"); click("세기 어려울 만큼 많아요");
+  expect(screen.queryByText(/지난 기록과 비교해 새로 난 돌기가/)).not.toBeInTheDocument();
+  click("변화만 저장"); click("시작 화면으로"); click("고민 변화 바로 기록"); click("세기 어려울 만큼 많아요");
+  click("지난번보다 줄었어요");
+  click("변화만 저장");
+  expect(screen.getByText("최근 7일 새 돌기 · 세기 어려울 만큼 많아요")).toBeVisible();
+  expect(screen.getByText("느낀 변화 · 지난번보다 줄었어요")).toBeVisible();
+  expect(records().filter(record => record.source === "concern_check").at(-1).concernTracking.entries[0])
+    .toMatchObject({ value: "too_many", trend: "less", previous: { value: "too_many" } });
+});
+test("recent environmental exposure is shown in the first result alongside observed skin traits", () => {
+  render(<App />);
+  baseSurvey({ skinChange: "changed", recentEnvironment: "dry_air", drynessArea: "cheeks", drynessTiming: "day" });
+  extraCare({ concern: "none" });
+  expect(screen.getByRole("heading", { name: "최근 달라진 환경" })).toBeVisible();
+  expect(screen.getByText(/볼·입 주변의 당김이 노출이 적은 날에도/)).toBeVisible();
+  expect(records()[0].result.observationAssessment.environmentContext).toMatchObject({ value: "dry_air" });
+  expect(records()[0].result.skinType).toBe("복합성 성향");
 });

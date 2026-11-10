@@ -30,14 +30,15 @@ test("an opt-in recommendation saves in the same journey, shows a photo, and con
   expect(screen.getByAltText("마녀공장 갈락 나이아신 3.0 에센스")).toBeInTheDocument();
   click("추가 선택 지우기"); expect(onSave.mock.calls[1][0]).not.toHaveProperty("cosmeticAddOn"); expect(onSave.mock.calls[1][0].id).toBe(initialRecord.id);
 });
-test("cosmetic-first blackhead care hides the medicine card and removal restores the original shortlist", () => {
+test("cosmetic-first care on a saved blackhead result keeps its original scope until edited", () => {
   const careAnswers = { concern: "acne", shape: "blackhead", areaState: "comfortable", medicine: "none" };
-  const carePlan = buildSimpleCarePlan(careAnswers); const onSave = jest.fn();
+  const carePlan = buildSimpleCarePlan(careAnswers, { legacyExtent: true }); const onSave = jest.fn();
   render(<SimpleCareScreen profile={profile} surveyAnswers={surveyAnswers} initialRecord={{ ...initialRecord, additionalCare: careAnswers }} onSave={onSave} />);
   expect(screen.getByRole("region", { name: "일반의약품 후보" })).toBeInTheDocument();
   optional({ ...answers, goal: "texture", route: "cosmetic_first" }, carePlan);
   expect(screen.queryByRole("region", { name: "일반의약품 후보" })).not.toBeInTheDocument();
   expect(onSave.mock.calls[0][0].symptomAssessment.allowMedicationRecommendation).toBe(false);
+  expect(onSave.mock.calls[0][0].symptomAssessment.ruleVersion).toBe("type-and-extra-care-v3");
   click("추가 선택 지우기"); expect(screen.getByRole("region", { name: "일반의약품 후보" })).toBeInTheDocument();
 });
 test("irritated skin receives a hold without a product image or a replacement medication", () => {

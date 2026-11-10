@@ -6,11 +6,17 @@ const option = (value, label) => ({ value, label });
 const unsure = option("unknown", "잘 모르겠어요");
 const countOptions = [
   option("none", "0개"), option("one_two", "1~2개"), option("three_five", "3~5개"),
-  option("six_plus", "6개 이상"), unsure,
+  option("six_plus", "6개 이상"), option("too_many", "세기 어려울 만큼 많아요"), unsure,
 ];
 const changeOptions = (less, more) => [
   option("less", less), option("same", "비슷해요"), option("more", more), unsure,
 ];
+export const trackingTrendOptions = [
+  option("less", "지난번보다 줄었어요"), option("same", "지난번과 비슷해요"), option("more", "지난번보다 늘었어요"), unsure,
+];
+export const getTrackingTrendLabel = trend => trackingTrendOptions.find(option => option.value === trend)?.label;
+export const canCompareTrackingTrend = (value, previous) => Boolean(previous) &&
+  (value === "too_many" || (value === "six_plus" && ["six_plus", "too_many"].includes(previous.value)));
 const newBumps = question => ({ metric: "new_bumps_7d", question, options: countOptions, intervalWeeks: 2 });
 const change = (metric, question, less, more, intervalWeeks = 2) => ({
   metric, question, options: changeOptions(less, more), intervalWeeks,
@@ -75,17 +81,20 @@ export function getConcernTracking(journeyRecords, excludedRecordId) {
           break;
         }
       }
-      return { id: `${PREFIX}${shape}:${area ?? "unspecified"}`, shape, area, ...metric, previous };
+      const id = `${PREFIX}${shape}:${area ?? "unspecified"}`;
+      return { id, shape, area, ...metric, previous, trendId: `${id}:trend` };
     }),
   };
 }
 
 export function buildConcernTrackingRecord(tracking, answers) {
-  const entries = tracking?.questions.flatMap(({ id, shape, area, metric, options, previous }) => {
+  const entries = tracking?.questions.flatMap(({ id, trendId, shape, area, metric, options, previous }) => {
     const value = answers[id]?.value;
     if (!options.some(option => option.value === value)) return [];
+    const trend = answers[trendId]?.value;
     return [{
       shape, area, metric, value,
+      ...(metric === "new_bumps_7d" && canCompareTrackingTrend(value, previous) && getTrackingTrendLabel(trend) ? { trend } : {}),
       ...(metric === "new_bumps_7d" && previous && value !== "unknown" ? { previous } : {}),
     }];
   });

@@ -1,5 +1,5 @@
 import { observationQuestions } from "../data/observationSurvey";
-import { ADAPTIVE_SURVEY_VERSION, ADAPTIVE_MEASUREMENT_VERSION, adaptiveValue, getAdaptiveObservationQuestions, resolveAdaptiveObservations, needsAdaptiveContext, resolveAdaptiveBase } from "../data/adaptiveObservationSurvey";
+import { ADAPTIVE_SURVEY_VERSION, ADAPTIVE_MEASUREMENT_VERSION, adaptiveValue, getAdaptiveObservationQuestions, resolveAdaptiveObservations, needsAdaptiveContext, resolveAdaptiveBase, recentEnvironmentOptions } from "../data/adaptiveObservationSurvey";
 import { analyzeObservationSurvey } from "./analyzeObservationSurvey";
 
 export function analyzeAdaptiveSkinSurvey(answers = {}) {
@@ -11,7 +11,7 @@ export function analyzeAdaptiveSkinSurvey(answers = {}) {
   if (resolved.drynessTiming === "persistent" && resolved.moisturizerUse === "comfortable") encoded.moisturizerUse = undefined;
   const profile = analyzeObservationSurvey(encoded);
   const visible = getAdaptiveObservationQuestions(answers);
-  const refinements = visible.filter(question => question.supplemental && answers[question.id]).map(question => ({ questionId: question.id, answer: answers[question.id] }));
+  const refinements = visible.filter(question => question.supplemental && !question.contextOnly && answers[question.id]).map(question => ({ questionId: question.id, answer: answers[question.id] }));
   const oil = profile.skinState.oiliness, dry = profile.skinState.dryness;
   const oilKnown = oil !== null, dryKnown = dry !== null;
   const currentIrritation = profile.observationAssessment.currentIrritation || (adaptiveValue(answers, "surfaceObservation") === "unknown" && adaptiveValue(answers, "surfaceCheck") === "unknown" && adaptiveValue(answers, "surfaceComfort") === "stings");
@@ -38,6 +38,18 @@ export function analyzeAdaptiveSkinSurvey(answers = {}) {
     ? ["따갑게 만든 새 제품은 쉬고, 편안했던 세안·보습으로 줄여요.", "헐거나 진물이 나거나 자극이 계속되면 상태 확인이 필요해요."]
     : [resolved.moisturizerUse === "comfortable" ? "현재 보습제가 편안하다면 유지해요. 토너·세럼을 반드시 추가할 필요는 없어요." : resolved.moisturizerUse === "none" ? "기본 제품이 없다면 세안제·보습제부터 살펴보고, 새 제품은 한 가지씩 추가해요." : "이미 편안하게 쓰던 기본 제품은 유지하고, 불편한 부위만 조절해요.",
       resolved.washResponse === "tight" ? "세안 직후 당긴다면 뜨거운 물·문지르기·잦은 세안을 줄이고 세안 후 보습을 이어가요." : "미지근한 물로 부드럽게 씻고, 확인하려고 보습을 끊거나 세안을 늘리지 않아요."];
+  const environmentValue = visible.some(question => question.id === "recentEnvironment") ? adaptiveValue(answers, "recentEnvironment") : "unknown";
+  const environmentLabel = recentEnvironmentOptions.find(([value]) => value === environmentValue)?.[1];
+  const dryAreaLabel = { cheeks: "볼·입 주변", tzone: "이마·코 주변", whole: "얼굴 전반" }[resolved.drynessArea];
+  const environmentContext = !["none", "unknown"].includes(environmentValue) && environmentLabel ? {
+    value: environmentValue,
+    label: environmentLabel,
+    nextAction: currentIrritation ? "환경이 달라졌어도 지금은 자극 반응부터 살펴봐요."
+      : resolved.skinChange === "product" ? "제품도 바뀌었다고 답했어요. 제품을 바꾼 시점과 환경이 달라진 시점을 나눠서 피부 반응을 비교해요."
+      : ["dry_air", "cold_wind"].includes(environmentValue) && dryAreaLabel
+        ? `${dryAreaLabel}의 당김이 노출이 적은 날에도 이어지는지 비교하고, 당기는 부위의 보습을 점검해요.`
+        : "환경이 달라진 날과 평소에 같은 부위의 유분·당김이 달랐는지 비교해요.",
+  } : null;
   const recommendationReason = currentIrritation ? careActions.join(" ")
     : !canRecommendBasics ? "피부타입 이름을 정하지 못해도 아래 기본 관리부터 이어갈 수 있어요. 확인된 답변과 추가 고민에 맞는 관리부터 보고, 새 기본 제품은 현재 편안함과 유분·당김을 확인한 뒤 골라요."
     : !typeComplete ? oilKnown && oil >= 5 ? "확인된 유분에 맞춰 가벼운 제형 후보를 보여드려요. 당김이 없는 피부라고 단정하지 않으며, 불편한 부위는 보습을 조절해요." : "피부타입을 확정하지 않고 무난한 보습감의 후보로 시작해요. 확인된 당김과 현재 제품 반응을 기준으로 필요한 부위만 조절해요."
@@ -46,6 +58,6 @@ export function analyzeAdaptiveSkinSurvey(answers = {}) {
     skinType, hydrationLevel, reasons: evidence, solution: recommendationReason,
     observationAssessment: { ...profile.observationAssessment, status, canRecommendBasics, canRecommendActives: canRecommendBasics && typeComplete && !recentChange,
       typeComplete, currentIrritation, recentChange, evidence, uncertainties, nextObservations, careActions, recommendationReason, refinements,
-      resolvedObservations: resolved, resolvedWithFollowUps: refinements.length > 0 },
+      resolvedObservations: resolved, ...(environmentContext ? { environmentContext } : {}), resolvedWithFollowUps: refinements.length > 0 },
   };
 }

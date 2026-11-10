@@ -5,6 +5,9 @@ import {
   getTrackingIntervalWeeks,
   getTrackingShapeLabel,
   getTrackingValueLabel,
+  canCompareTrackingTrend,
+  getTrackingTrendLabel,
+  trackingTrendOptions,
 } from "../utils/concernTracking";
 
 function getPreviousLabel(shape, previous) {
@@ -21,8 +24,10 @@ function getConcernLabel(shape, area) {
   return [getTrackingShapeLabel(shape), getTrackingAreaLabel(area)].filter(Boolean).join(" · ");
 }
 
-function TrackingQuestion({ item, answer, onAnswer, first = false }) {
-  const { id, shape, area, question, intervalWeeks, options, previous, metric } = item;
+function TrackingQuestion({ item, answers, onAnswer, first = false }) {
+  const { id, trendId, shape, area, question, intervalWeeks, options, previous, metric } = item;
+  const answer = answers[id];
+  const showTrend = metric === "new_bumps_7d" && canCompareTrackingTrend(answer?.value, previous);
   const prior = getPreviousLabel(shape, previous);
   return (
     <fieldset className="min-w-0 rounded-2xl border border-gray-200 px-4 pb-4">
@@ -44,12 +49,29 @@ function TrackingQuestion({ item, answer, onAnswer, first = false }) {
         {options.map(option => {
           const selected = answer?.value === option.value;
           return <button key={option.value} type="button" aria-pressed={selected}
-            onClick={() => onAnswer(id, selected ? undefined : option)}
+            onClick={() => {
+              const next = selected ? undefined : option;
+              onAnswer(id, next);
+              if (!canCompareTrackingTrend(next?.value, previous) && answers[trendId]) onAnswer(trendId, undefined);
+            }}
             className={`rounded-xl border px-3 py-2 text-sm ${selected ? "border-black bg-black text-white" : "border-gray-300 bg-white text-gray-700 hover:bg-gray-100"}`}>
             {option.label}
           </button>;
         })}
       </div>
+      {showTrend && <fieldset className="mt-4 min-w-0 border-t border-gray-200 pt-3">
+        <legend className="pr-2 text-sm font-medium">지난 기록과 비교해 새로 난 돌기가 어때요? (선택)</legend>
+        <div className="flex flex-wrap gap-2">
+          {trackingTrendOptions.map(option => {
+            const selected = answers[trendId]?.value === option.value;
+            return <button key={option.value} type="button" aria-pressed={selected}
+              onClick={() => onAnswer(trendId, selected ? undefined : option)}
+              className={`rounded-xl border px-3 py-2 text-sm ${selected ? "border-black bg-black text-white" : "border-gray-300 bg-white text-gray-700 hover:bg-gray-100"}`}>
+              {option.label}
+            </button>;
+          })}
+        </div>
+      </fieldset>}
     </fieldset>
   );
 }
@@ -65,11 +87,11 @@ export function ConcernTrackingFields({ questions, answers, onAnswer }) {
         가장 먼저 관리하기로 한 고민부터 봐요. 확인할 수 있는 것만 답해도 돼요.
       </p>
       <div className="mt-4 space-y-3">
-        <TrackingQuestion item={first} answer={answers[first.id]} onAnswer={onAnswer} first />
+        <TrackingQuestion item={first} answers={answers} onAnswer={onAnswer} first />
         {others.length > 0 && (
           <DetailDisclosure title={`다른 고민도 확인하기 (${others.length}개)`}>
             <div className="space-y-3">
-              {others.map(item => <TrackingQuestion key={item.id} item={item} answer={answers[item.id]} onAnswer={onAnswer} />)}
+              {others.map(item => <TrackingQuestion key={item.id} item={item} answers={answers} onAnswer={onAnswer} />)}
             </div>
           </DetailDisclosure>
         )}
@@ -79,7 +101,7 @@ export function ConcernTrackingFields({ questions, answers, onAnswer }) {
 }
 
 const nextCheckGuides = {
-  new_bumps_7d: "같은 부위에 최근 7일간 새로 생긴 돌기를 세어요.",
+  new_bumps_7d: "같은 부위의 최근 7일 새 돌기를 확인해요. 세기 어려우면 느낀 변화를 남겨요.",
   visible_change: "같은 부위의 개수를 관리 시작 때와 비교해요.",
   pain_change: "같은 부위의 통증을 관리 시작 때와 비교해요.",
   color_change: "같은 조명에서 자국의 색을 관리 시작 때와 비교해요.",
@@ -101,7 +123,7 @@ export function ConcernTrackingRecord({ tracking, showNext = false }) {
         <p className="mt-1 break-keep">약 {getTrackingIntervalWeeks(next.shape)}주 뒤, {nextCheckGuides[next.metric]}</p>
       </div>}
       <dl className="mt-3 grid gap-2 sm:grid-cols-2">
-        {entries.map(({ shape, area, metric, value, previous }) => {
+        {entries.map(({ shape, area, metric, value, previous, trend }) => {
           const prior = getPreviousLabel(shape, previous);
           return (
             <div key={`${shape}:${area ?? "unspecified"}`} className="rounded-2xl bg-gray-50 px-4 py-3 text-sm break-keep">
@@ -109,6 +131,7 @@ export function ConcernTrackingRecord({ tracking, showNext = false }) {
               <dd className="mt-1 text-gray-700">
                 {metric === "new_bumps_7d" ? "최근 7일 새 돌기" : "관리 시작 때와 비교"} · {getTrackingValueLabel(shape, value)}
               </dd>
+              {getTrackingTrendLabel(trend) && <dd className="mt-1 text-xs text-gray-700">느낀 변화 · {getTrackingTrendLabel(trend)}</dd>}
               {prior && <dd className="mt-1 text-xs text-gray-600">{prior}</dd>}
               <dd className="mt-1 text-xs text-gray-600">약 {getTrackingIntervalWeeks(shape)}주 간격으로 확인</dd>
             </div>

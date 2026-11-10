@@ -6,7 +6,20 @@ const q = (id, question, hint, options, visual) => ({ id, question, hint, visual
 const unknown = ["unknown", "아직 구분하기 어려워요"];
 const areas = [["none", "지금은 특별히 당기는 곳이 없어요"], ["cheeks", "볼·입 주변이 당겨요"], ["tzone", "이마·코 주변이 당겨요"], ["whole", "얼굴 전반이 당겨요"], unknown];
 const timing = [["wash", "세안 직후뿐이고 이후에는 편안해요"], ["day", "낮에도 당김이 다시 느껴져요"], ["persistent", "보습제를 발라도 같은 부위가 계속 당겨요"], unknown];
+export const recentEnvironmentOptions = [
+  ["dry_air", "난방·냉방으로 건조한 실내에 오래 있었어요"],
+  ["cold_wind", "추운 공기나 바람에 닿는 시간이 늘었어요"],
+  ["heat_sweat", "더위·습기나 땀에 노출되는 시간이 늘었어요"],
+  ["several", "이런 환경이 두 가지 이상 달라졌어요"],
+  ["none", "환경은 평소와 비슷했어요"],
+  unknown,
+];
+const recentEnvironmentQuestion = {
+  ...q("recentEnvironment", "피부가 달라진 즈음에 생활 환경도 바뀌었나요?", "계절 이름보다 실제로 오래 머문 환경을 떠올려요. 제품을 바꾼 것과 환경이 달라진 것은 둘 다 있을 수 있어요.", recentEnvironmentOptions),
+  contextOnly: true,
+};
 export const adaptiveSupportQuestions = [
+  recentEnvironmentQuestion,
   q("changeAnchor", "가장 최근에 피부가 달라졌다고 느낀 계기가 있나요?", "정확한 날짜를 몰라도 괜찮아요. 평소와 비교해 떠오르는 경험으로 골라요.", [["steady", "최근 특별한 변화는 떠오르지 않아요"], ["product", "화장품을 추가하거나 바꾼 뒤 달라졌어요"], ["changed", "제품 변경과 상관없이 최근 불편해졌어요"], ["varies", "날마다 다른 편이에요"], unknown]),
   q("oilTouch", "광택과 별개로, 평소 오후에 기름기가 느껴지는 곳은 어디인가요?", "그림의 부위를 비교해요. 평소 가볍게 만졌을 때의 경험으로 답하고, 확인하려고 문지르거나 세안을 늘리지 않아요.", [["none", "코와 볼 모두 기름기가 거의 없어요"], ["tzone", "코·이마에는 기름기가 있고 볼에는 거의 없어요"], ["whole", "코·이마와 양쪽 볼 모두 기름기가 있어요"], unknown], "oil_regions"),
   q("drynessSensation", "여기서 ‘당김’은 피부가 팽팽하게 조이는 느낌이에요. 그런 경험이 있나요?", "기름져 보이는 것과 별개로 답해요. 단순히 모공이나 주름이 보인다는 뜻은 아니에요.", [["yes", "피부가 조여 보습을 하고 싶은 느낌이 있어요"], ["no", "그런 느낌은 없고 편안해요"], unknown], "dry_regions"),
@@ -71,7 +84,10 @@ export function getAdaptiveObservationQuestions(answers = {}) {
     if (core.id === "drynessTiming" && !hasArea(base.drynessArea)) continue;
     result.push(core);
     if (!answers[core.id]) continue;
-    if (core.id === "skinChange" && v(core.id) === "unknown") add("changeAnchor");
+    if (core.id === "skinChange") {
+      if (v(core.id) === "unknown") add("changeAnchor");
+      if (["product", "changed", "varies"].includes(base.skinChange)) add("recentEnvironment");
+    }
     if (core.id === "observedOil" && ["unknown", "coating"].includes(v(core.id))) add("oilTouch");
     if (core.id === "drynessArea" && v(core.id) === "unknown") { add("drynessSensation"); if (v("drynessSensation") === "yes") add("drynessLocation"); }
     if (core.id === "drynessTiming" && v(core.id) === "unknown") {
