@@ -40,9 +40,10 @@ export function applyObservationToCarePlan(plan, profile) {
   return plan;
 }
 
-export function SimpleCareResult({ profile, routine, plan }) {
+export function SimpleCareResult({ profile, routine, plan, onReviewRoutine }) {
   return <div className="space-y-6">
     <header className="space-y-2"><p className="text-sm font-semibold text-emerald-700">내 피부 관리 결과</p><h1 className="text-2xl sm:text-3xl font-bold">{profile.skinType} · 기본 루틴과 필요한 추가 관리</h1><p className="text-sm text-slate-600">설문으로 추정한 피부타입이에요. 질환·원인균을 확정한 결과는 아니에요.</p></header>
+    {onReviewRoutine && <button type="button" onClick={onReviewRoutine} className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-900">지금 쓰는 제품 점검하기</button>}
     <ObservationSummary profile={profile} />
     <section className="space-y-3 rounded-2xl bg-white border border-slate-200 p-5" aria-label="추가 고민 관리">
       {plan.concernSummary && <p className="text-sm font-semibold text-emerald-800">먼저 고른 고민: {plan.concernSummary.primary.label}{plan.concernSummary.primary.area && ` · ${plan.concernSummary.primary.area}`}</p>}
@@ -84,7 +85,7 @@ function updateCareAnswer(previous, id, value) {
   return cleanSimpleCareAnswers(next);
 }
 
-export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave, onBack, onHome, onRestart }) {
+export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave, onBack, onHome, onRestart, onReviewRoutine }) {
   const [answers, setAnswers] = useState(() => cleanSimpleCareAnswers(initialRecord?.additionalCare ?? {}));
   const [index, setIndex] = useState(0);
   const [record, setRecord] = useState(initialRecord ?? null);
@@ -113,7 +114,7 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   };
   if (showResult && plan.complete) return <div className="space-y-6">
     {routine.isHistorical && <p className="rounded-xl bg-slate-50 p-4 text-sm">저장 당시의 제품 후보를 보여드려요. 새 검수 기준으로 다시 추천받으려면 아래에서 다시 확인해요.</p>}
-    <SimpleCareResult profile={profile} routine={routine} plan={displayPlan} />
+    <SimpleCareResult profile={profile} routine={routine} plan={displayPlan} onReviewRoutine={saveError ? undefined : onReviewRoutine} />
     {(profile.surveyVersion !== ADAPTIVE_SURVEY_VERSION || routine.isHistorical) && onRestart && <button onClick={onRestart} className="rounded-xl border px-4 py-3">새 기준으로 다시 확인</button>}
     {!plan.blockNewBasics && profile.observationAssessment?.canRecommendBasics !== false && <CosmeticAddOnSection context={cosmeticContext} initialAnswers={cosmeticAnswers} onApply={save} />}
     {saveError && <div role="alert" className="rounded-xl bg-amber-50 p-4">결과는 표시했지만 저장하지 못했어요. <button className="underline" onClick={() => save()}>저장 다시 시도</button></div>}
