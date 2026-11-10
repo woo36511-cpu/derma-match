@@ -7,7 +7,7 @@ import { CosmeticAddOnSection } from "../components/CosmeticAddOnSection";
 import { buildCosmeticAddOnPlan } from "../utils/cosmeticAddOnPlan";
 import { useMemo, useState } from "react";
 import { acneAreas, getSimpleCareQuestions, cleanSimpleCareAnswers } from "../data/simpleCare";
-import { buildSimpleCarePlan } from "../utils/simpleCarePlan";
+import { buildSimpleCarePlan, SIMPLE_CARE_VERSION } from "../utils/simpleCarePlan";
 import { buildSimpleSkinRecord } from "../utils/simpleSkinRecord";
 import { buildDynamicRoutine } from "../utils/routineRecommendation";
 import { AcnePhotoReference } from "../components/AcnePhotoReference";
@@ -24,6 +24,12 @@ export function ObservationSummary({ profile }) {
     {assessment.evidence.length > 0 ? <ul className="list-disc pl-5 space-y-1">{assessment.evidence.map(item => <li key={item}>{item}</li>)}</ul> : <p>{assessment.careActions ? "아직 확인되지 않은 항목은 남겨두고, 아래 기본 관리부터 시작해요." : "아직 피부 성향을 정할 관찰 답변이 부족해요."}</p>}
     {assessment.resolvedWithFollowUps && <p className="text-sm text-emerald-800">도움 질문에서 확인한 답변도 반영했어요.</p>}
     <p className="font-medium">{assessment.recommendationReason}</p>
+    {assessment.environmentContext && <div className="space-y-1 rounded-xl border border-emerald-100 bg-white p-3 text-sm">
+      <h3 className="font-semibold">최근 달라진 환경</h3>
+      <p>{assessment.environmentContext.label}</p>
+      <p>{assessment.environmentContext.nextAction}</p>
+      <p className="text-xs text-slate-600">함께 달라진 환경을 기록했어요. 이 답만으로 피부타입이나 변화의 원인을 정하지 않아요.</p>
+    </div>}
     {assessment.careActions?.length > 0 && <div className="space-y-2"><h3 className="font-semibold">지금 시작할 관리</h3><ul className="list-disc pl-5 space-y-1">{assessment.careActions.map(item => <li key={item}>{item}</li>)}</ul></div>}
     {assessment.nextObservations?.length > 0 && <DetailDisclosure title="다음에 확인하면 더 맞출 수 있어요"><ul className="list-disc pl-5 space-y-2">{assessment.nextObservations.map(item => <li key={item}>{item}</li>)}</ul></DetailDisclosure>}
     {assessment.uncertainties.length > 0 && <DetailDisclosure title="아직 확인하지 못한 점">{assessment.uncertainties.map(item => <p key={item} className="mt-2">{item}</p>)}</DetailDisclosure>}
@@ -77,7 +83,7 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine }) {
 function updateCareAnswer(previous, id, value) {
   if (JSON.stringify(previous[id]) === JSON.stringify(value)) return previous;
   const next = { ...previous, [id]: value };
-  const order = ["concern", "shapes", "primaryShape", "locations", "areaState", "medicine", "duration", "response"];
+  const order = ["concern", "shapes", "primaryShape", "locations", "areaState", "breakoutExtent", "medicine", "duration", "response"];
   for (const downstream of order.slice(order.indexOf(id) + 1)) {
     if (downstream !== "locations" || id === "concern") delete next[downstream];
   }
@@ -86,15 +92,17 @@ function updateCareAnswer(previous, id, value) {
 }
 
 export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave, onBack, onHome, onRestart, onReviewRoutine }) {
-  const [answers, setAnswers] = useState(() => cleanSimpleCareAnswers(initialRecord?.additionalCare ?? {}));
+  const [legacyExtent, setLegacyExtent] = useState(() => Boolean(initialRecord &&
+    initialRecord.symptomAssessment?.ruleVersion !== SIMPLE_CARE_VERSION && !initialRecord.additionalCare?.breakoutExtent));
+  const [answers, setAnswers] = useState(() => cleanSimpleCareAnswers(initialRecord?.additionalCare ?? {}, { legacyExtent }));
   const [index, setIndex] = useState(0);
   const [record, setRecord] = useState(initialRecord ?? null);
   const [showResult, setShowResult] = useState(() => Boolean(initialRecord));
   const [saveError, setSaveError] = useState(false);
   const [cosmeticAnswers, setCosmeticAnswers] = useState(() => initialRecord?.cosmeticAddOn?.answers ?? null);
-  const questions = getSimpleCareQuestions(answers);
+  const questions = getSimpleCareQuestions(answers, { legacyExtent });
   const question = questions[Math.min(index, questions.length - 1)];
-  const plan = applyObservationToCarePlan(buildSimpleCarePlan(answers), profile);
+  const plan = applyObservationToCarePlan(buildSimpleCarePlan(answers, { legacyExtent }), profile);
   const routine = useMemo(() => profile.observationAssessment?.canRecommendBasics === false || plan.blockNewBasics
     ? { products: {} }
     : initialRecord?.routine && JSON.stringify(initialRecord.surveyAnswers) === JSON.stringify(surveyAnswers)
@@ -108,6 +116,7 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     if (!plan.complete) return;
     const nextCosmeticPlan = nextCosmeticAnswers ? buildCosmeticAddOnPlan(nextCosmeticAnswers, cosmeticContext) : null;
     const next = buildSimpleSkinRecord(surveyAnswers, profile, routine, applyCosmeticRoute(nextCosmeticPlan), record, nextCosmeticPlan);
+    if (legacyExtent) next.symptomAssessment.ruleVersion = record?.symptomAssessment?.ruleVersion ?? "type-and-extra-care-v3";
     setCosmeticAnswers(nextCosmeticAnswers);
     setRecord(next); setShowResult(true);
     try { onSave(next); setSaveError(false); } catch { setSaveError(true); }
@@ -118,7 +127,7 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     {(profile.surveyVersion !== ADAPTIVE_SURVEY_VERSION || routine.isHistorical) && onRestart && <button onClick={onRestart} className="rounded-xl border px-4 py-3">새 기준으로 다시 확인</button>}
     {!plan.blockNewBasics && profile.observationAssessment?.canRecommendBasics !== false && <CosmeticAddOnSection context={cosmeticContext} initialAnswers={cosmeticAnswers} onApply={save} />}
     {saveError && <div role="alert" className="rounded-xl bg-amber-50 p-4">결과는 표시했지만 저장하지 못했어요. <button className="underline" onClick={() => save()}>저장 다시 시도</button></div>}
-    <div className="flex flex-wrap gap-3"><button className="rounded-xl border px-4 py-3" onClick={() => { setShowResult(false); setIndex(0); }}>추가 고민 답변 바꾸기</button><button className="rounded-xl border px-4 py-3" onClick={onBack}>피부타입 답변 다시 보기</button><button className="rounded-xl bg-slate-900 text-white px-4 py-3" onClick={onHome}>시작 화면</button></div>
+    <div className="flex flex-wrap gap-3"><button className="rounded-xl border px-4 py-3" onClick={() => { setShowResult(false); setLegacyExtent(false); setIndex(0); }}>추가 고민 답변 바꾸기</button><button className="rounded-xl border px-4 py-3" onClick={onBack}>피부타입 답변 다시 보기</button><button className="rounded-xl bg-slate-900 text-white px-4 py-3" onClick={onHome}>시작 화면</button></div>
   </div>;
   const changeAnswer = (id, value) => {
     const next = updateCareAnswer(answers, id, value);

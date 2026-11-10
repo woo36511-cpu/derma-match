@@ -2,7 +2,7 @@ import { buildAcneCareReview } from "./acneCareReview";
 import { pharmacyOptions } from "../data/targetedCareProducts";
 import { acneAreas, acneShapes, acneTraceShapes, inflamedAcneShapes, isSimpleCareComplete, cleanSimpleCareAnswers } from "../data/simpleCare";
 
-export const SIMPLE_CARE_VERSION = "type-and-extra-care-v3";
+export const SIMPLE_CARE_VERSION = "type-and-extra-care-v4";
 const traceGuidance = {
   dark_mark: { title: "평평한 갈색 자국은 자외선 차단부터 챙겨요.", detail: "트러블이 가라앉은 자리에 높이 변화 없이 색만 남았다면, 외출할 때 잘 맞는 자외선 차단제를 사용하고 자국의 색이 변하는지 살펴봐요. 자국만 남은 부위에 여드름약을 새로 바르지 않아요." },
   red_mark: { title: "평평한 붉은 자국은 새로 올라온 돌기와 나눠 봐요.", detail: "만져지는 돌기 없이 색만 남았다면 문지르거나 짜지 않고, 잘 맞는 보습과 자외선 차단을 유지해요. 따가움이나 새 돌기가 생기면 자국으로만 생각하지 말고 상태를 다시 확인해요." },
@@ -33,9 +33,9 @@ function buildConcernSummary(a) {
   } : null;
 }
 
-function buildBaseSimpleCarePlan(input) {
-  const a = cleanSimpleCareAnswers(input);
-  const result = { answers: a, complete: isSimpleCareComplete(a), pharmacy: null, showFolliculitis: false, blockNewBasics: false, concernSummary: buildConcernSummary(a) };
+function buildBaseSimpleCarePlan(input, options) {
+  const a = cleanSimpleCareAnswers(input, options);
+  const result = { answers: a, complete: isSimpleCareComplete(a, options), pharmacy: null, showFolliculitis: false, blockNewBasics: false, concernSummary: buildConcernSummary(a) };
   if (!result.complete) return { ...result, title: "빠진 답변을 확인해주세요." };
   if (a.concern === "none") return { ...result, title: "피부타입에 맞는 기본 루틴이면 충분해요.", detail: "잘 맞는 제품은 유지하고, 필요한 카테고리만 확인해요." };
   if (a.areaState === "concerning") return { ...result, blockNewBasics: true,
@@ -61,6 +61,10 @@ function buildBaseSimpleCarePlan(input) {
         : a.medicine === "prescribed" ? "처방받은 사용법을 우선하고 새 기능성 제품은 추가하지 않아요."
         : "지금 쓰는 제품명·기간·반응을 기준으로 먼저 판단해요. 계속 나아지지 않거나 악화하면 같은 약을 반복해서 덧바르기보다 원인을 확인받으세요." };
   }
+  if (a.breakoutExtent && a.breakoutExtent !== "local") return { ...result,
+    showFolliculitis: a.concern !== "acne" || a.shape === "unknown",
+    title: a.breakoutExtent === "unknown" ? "범위를 확인한 뒤 다음 관리를 골라요." : "돌기가 많은 곳에는 국소용 후보를 넓게 바르지 않아요.",
+    detail: "잘 맞는 세안·보습은 유지하고, 어느 부위에 어떤 돌기가 많은지 먼저 확인해요. 작은 한 부위에 쓰는 약품 후보는 이 답변에서 보여주지 않아요." };
   if (a.concern !== "acne" || a.shape === "unknown") return { ...result, showFolliculitis: true,
     title: "비슷한 돌기는 공통 관리와 원인별 약품을 나눠 봐요.",
     detail: "털구멍 주변을 짜지 말고, 면도·마찰이 닿는 부위를 쉬어요. 아래는 원인이 확인됐을 때의 약품 정보예요. 모양만으로 원인균을 판정하지 않아요." };
@@ -88,7 +92,7 @@ function buildBaseSimpleCarePlan(input) {
   };
 }
 
-export function buildSimpleCarePlan(input) {
-  const plan = buildBaseSimpleCarePlan(input);
+export function buildSimpleCarePlan(input, options) {
+  const plan = buildBaseSimpleCarePlan(input, options);
   return { ...plan, careReview: buildAcneCareReview(plan) };
 }

@@ -3,7 +3,7 @@ import { cleanSimpleCareAnswers, isSimpleCareComplete } from "../data/simpleCare
 import { buildDynamicRoutine } from "./routineRecommendation";
 import { hasExfoliatingActive } from "./productCatalog";
 
-const acne = { concern: "acne", shape: "red", areaState: "comfortable", medicine: "none" };
+const acne = { concern: "acne", shape: "red", areaState: "comfortable", breakoutExtent: "local", medicine: "none" };
 test("existing active products and uncertain products never receive another OTC candidate", () => {
   for (const medicine of ["patima", "acnon", "salicylic", "prescribed", "other", "unknown"]) {
     for (const response of ["better", "same", "irritated", "worse", "unknown"]) {

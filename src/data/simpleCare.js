@@ -31,7 +31,14 @@ export function getSelectedAcneShapes(answers = {}) {
   return known.length ? known : input.includes("unknown") ? ["unknown"] : [];
 }
 
-export function getSimpleCareQuestions(answers = {}) {
+export const breakoutExtentOptions = [
+  option("local", "한 부위에 몇 개만 있어요"),
+  option("crowded", "한 부위지만 세기 어려울 만큼 많아요"),
+  option("multiple", "여러 부위에 있거나 넓게 보여요"),
+  option("unknown", "범위를 잘 모르겠어요"),
+];
+
+export function getSimpleCareQuestions(answers = {}, { legacyExtent = false } = {}) {
   const qs = [{ id: "concern", q: "기본 루틴 외에 추가로 관리할 고민이 있나요?", options: simpleConcernOptions }];
   if (!matches(simpleConcernOptions, answers.concern) || answers.concern === "none") return qs;
   const shapes = answers.concern === "acne" ? getSelectedAcneShapes(answers) : [];
@@ -44,15 +51,21 @@ export function getSimpleCareQuestions(answers = {}) {
     }
   }
   const multiple = shapes.length > 1;
-  qs.push({ id: "areaState", q: multiple ? "고른 부위 중 가장 불편한 곳은 어떤 상태인가요?" : "지금 그 부위는 어떤 상태인가요?",
+  qs.push({ id: "areaState", q: multiple ? "고른 부위 중 가장 불편한 곳의 통증이나 자극은 어떤가요?" : "그 부위의 통증이나 자극은 어떤가요?",
     hint: multiple ? "고른 부위 중 하나라도 붉은기가 빠르게 퍼지거나 붓기·통증이 심하면 그 상태를 골라요." : undefined, options: [
-    option("comfortable", "작은 부위에만 있고, 심한 통증·따가움은 없어요"),
+    option("comfortable", "심한 통증·따가움은 없어요"),
     option("dry", "조금 건조하지만 따갑거나 벗겨지지는 않아요"),
     option("irritated", "평소 제품도 따갑거나 붉고 벗겨져요"),
     option("concerning", "붉은기가 빠르게 퍼지거나 붓기·통증이 심해요"),
     option("unknown", "잘 모르겠어요"),
   ] });
   if (answers.areaState === "concerning") return qs;
+  const primary = shapes.length === 1 ? shapes[0] : answers.primaryShape;
+  if (!legacyExtent && !acneTraceShapes.includes(primary)) qs.push({
+    id: "breakoutExtent", q: "지금 올라온 돌기는 어느 정도 범위에 있나요?",
+    hint: multiple ? "먼저 살펴보기로 한 고민만 기준으로 답해요. 평평한 자국이나 흉터는 빼고 봐요." : "평평한 자국은 빼고, 지금 보이는 돌기나 막힌 피지를 기준으로 답해요.",
+    options: breakoutExtentOptions,
+  });
   qs.push({ id: "medicine", q: multiple ? "고른 부위에 이미 바르는 약이나 기능성 제품이 있나요?" : "그 부위에 이미 바르는 약이나 기능성 제품이 있나요?", options: [
     option("none", "없어요. 순한 세안제·보습제 정도만 써요"),
     option("patima", "파티마겔 같은 벤조일퍼옥사이드 제품"),
@@ -73,9 +86,9 @@ export function getSimpleCareQuestions(answers = {}) {
   );
   return qs;
 }
-export function cleanSimpleCareAnswers(answers) {
+export function cleanSimpleCareAnswers(answers, options) {
   const cleaned = {};
-  for (const q of getSimpleCareQuestions(answers)) {
+  for (const q of getSimpleCareQuestions(answers, options)) {
     if (q.id === "shapes") {
       const shapes = getSelectedAcneShapes(answers);
       if (shapes.length) cleaned.shapes = shapes;
@@ -91,6 +104,6 @@ export function cleanSimpleCareAnswers(answers) {
   }
   return cleaned;
 }
-export function isSimpleCareComplete(answers) {
-  return getSimpleCareQuestions(answers).every(q => q.id === "shapes" ? getSelectedAcneShapes(answers).length > 0 : matches(q.options, answers[q.id]));
+export function isSimpleCareComplete(answers, options) {
+  return getSimpleCareQuestions(answers, options).every(q => q.id === "shapes" ? getSelectedAcneShapes(answers).length > 0 : matches(q.options, answers[q.id]));
 }
