@@ -14,5 +14,6 @@ export function AcnePhotoReference() {
         <p className="mt-2 text-xs">{example.author} · <a href={example.source} target="_blank" rel="noreferrer" className="underline">원본</a> · <a href={example.licenseUrl} target="_blank" rel="noreferrer" className="underline">{example.license}</a> · 크기 축소</p></figcaption>
     </figure>)}</div>
     <a href="https://www.aad.org/public/diseases/acne/really-acne/symptoms" target="_blank" rel="noreferrer" className="mt-4 inline-block underline">미국피부과학회 유형별 사진·설명 더 보기</a>
+    <a href="https://www.aad.org/public/diseases/acne/derm-treat/scars/symptoms" target="_blank" rel="noreferrer" className="mt-3 block underline">평평한 자국과 패이거나 솟은 흉터 사진 비교</a>
   </DetailDisclosure>;
 }

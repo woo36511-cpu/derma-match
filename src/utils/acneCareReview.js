@@ -1,3 +1,5 @@
+import { acneTraceShapes } from "../data/simpleCare";
+
 export const ACNE_REVIEW_VERSION = "acne-support-and-review-v1";
 export const acneEvidenceSources = {
   guideline: { label: "AAD 여드름 관리 지침", url: "https://www.aad.org/member/clinical-quality/guidelines/acne" },
@@ -9,13 +11,13 @@ export const acneEvidenceSources = {
 };
 export function buildAcneCareReview(plan) {
   const a = plan.answers;
-  if (!plan.complete || a.concern !== "acne") return null;
+  if (!plan.complete || a.concern !== "acne" || (acneTraceShapes.includes(a.shape) && !a.shapes?.includes("deep"))) return null;
   const blocked = plan.blockNewBasics;
   const medicine = a.medicine === "none" && plan.pharmacy ? ["closed", "blackhead"].includes(a.shape) ? "salicylic" : "acnon" : a.medicine;
   const isComedone = ["closed", "blackhead"].includes(a.shape);
   const result = {
     version: ACNE_REVIEW_VERSION, clinicalOutcomeValidated: false,
-    goal: blocked ? "새 자극·악화에 대응하고 기존 관리를 줄여요." : a.shape === "deep" ? "깊은 덩이의 커짐·통증·흉터 여부를 우선 확인해요." : isComedone ? "막힌 면포가 줄어드는지 확인해요." : "새 붉은 뾰루지와 기존 돌기의 변화를 확인해요.",
+    goal: blocked ? "새 자극·악화에 대응하고 기존 관리를 줄여요." : a.shape === "deep" || a.shapes?.includes("deep") ? "깊은 덩이의 커짐·통증·흉터 여부를 우선 확인해요." : isComedone ? "막힌 면포가 줄어드는지 확인해요." : "새 붉은 뾰루지와 기존 돌기의 변화를 확인해요.",
     cosmeticRole: "기본 화장품은 세안·보습을 보조하는 후보예요. 이 제품 순위가 여드름 치료 효과 순위나 개선 확률을 뜻하지 않아요.",
     observations: isComedone ? ["같은 부위의 막힌 알갱이·검은 점 변화", "새 붉은 뾰루지가 생기는지", "따가움·붉어짐·벗겨짐"] : ["같은 부위에 새로 생긴 붉은 뾰루지 수", "기존 돌기의 크기·통증 변화", "새 따가움·붉어짐·벗겨짐"],
     earlyCheck: "초기에는 사용 후 새 따가움·붉어짐·붓기·벗겨짐을 먼저 확인해요. 악화하면 예정된 체크일까지 기다리지 않아요.",

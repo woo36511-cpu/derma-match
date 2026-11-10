@@ -34,7 +34,11 @@ function extraCare(answers) {
   const questions = getSimpleCareQuestions(answers);
   for (const [index, q] of questions.entries()) {
     expect(screen.getByRole("heading", { name: q.q })).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: new RegExp(q.options.find(option => option.value === answers[q.id]).label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")) }));
+    const picked = q.multiple ? answers.shapes ?? [answers.shape] : [answers[q.id]];
+    for (const value of picked) fireEvent.click(screen.getByRole("button", { name: new RegExp(q.options.find(option => option.value === value).label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")) }));
+    if (q.locations) for (const [shape, area] of Object.entries(answers.locations ?? {})) {
+      fireEvent.change(screen.getByLabelText(q.options.find(option => option.value === shape).label + " 부위"), { target: { value: area } });
+    }
     click(index === questions.length - 1 ? "기본 루틴과 추가 관리 보기" : "다음");
   }
 }
@@ -57,7 +61,7 @@ test("blackheads show licensed visual references and the targeted OTC product be
   expect(within(drug).getByText(/검은 면포/)).toBeInTheDocument();
   expect(records()[0].mainConcern).toBe("blackhead_sebum");
   click("추가 고민 답변 바꾸기");
-  click(/여드름·좁쌀·블랙헤드가 있어요/); click("다음");
+  click(/여드름·좁쌀·블랙헤드 또는 자국·흉터가 있어요/); click("다음");
   expect(screen.getByText("실제 사진·구조 그림으로 비교하기")).toBeInTheDocument();
   expect(screen.getByAltText("면포성 여드름 실제 사진")).toHaveAttribute("src", "/skin-examples/closed-comedones.jpg");
 });
@@ -71,6 +75,24 @@ test("small localized acne pustules have a named Acnon candidate", () => {
   render(<App />); baseSurvey(); extraCare({ concern: "acne", shape: "pus", areaState: "comfortable", medicine: "none" });
   expect(screen.getByRole("heading", { name: "애크논크림" })).toBeInTheDocument();
   expect(screen.getByAltText("애크논크림 제품 포장")).toBeInTheDocument();
+});
+test("different acne appearances and traces retain priority and locations through save and reopen", () => {
+  render(<App />); baseSurvey();
+  const chosen = { concern: "acne", shapes: ["closed", "red", "dark_mark", "indented_scar"], primaryShape: "red",
+    locations: { closed: "forehead", red: "chin", dark_mark: "cheeks", indented_scar: "cheeks" }, areaState: "comfortable", medicine: "none" };
+  extraCare(chosen);
+  expect(screen.getByText(/먼저 고른 고민: 고름 없는 작은 붉은 뾰루지 · 턱·턱선/)).toBeInTheDocument();
+  const secondary = screen.getByRole("region", { name: "함께 선택한 고민" });
+  expect(within(secondary).getByText("살색·하얀 좁쌀 · 이마")).toBeInTheDocument();
+  expect(within(secondary).getByText("평평한 갈색·회갈색 자국 · 볼")).toBeInTheDocument();
+  expect(within(secondary).getByText("패인 흉터처럼 보여요 · 볼")).toBeInTheDocument();
+  expect(screen.getAllByRole("region", { name: "일반의약품 후보" })).toHaveLength(1);
+  expect(records()[0].additionalCare).toMatchObject({ ...chosen, shape: "red" });
+  cleanup(); render(<App />); click("최근 결과 다시 보기");
+  expect(screen.getByRole("region", { name: "함께 선택한 고민" })).toHaveTextContent("살색·하얀 좁쌀 · 이마");
+  click("추가 고민 답변 바꾸기"); click("다음"); click("다음");
+  click(/평평한 갈색·회갈색 자국/); click("다음");
+  expect(screen.getByRole("button", { name: /작은 부위에만 있고/ })).toHaveAttribute("aria-pressed", "false");
 });
 test("folliculitis shows common care and folded cause-specific information, without a trial antibiotic", () => {
   render(<App />); baseSurvey(); extraCare({ concern: "folliculitis", areaState: "comfortable", medicine: "none" });
