@@ -19,8 +19,9 @@ test("expanded catalog has stable unique identities, actual full ingredients, ph
     expect(p.price).toBeNull();
     expect(p.evidence.priceVerified).toBe(false);
     expect(p.purchaseSource.liveStockVerified).toBe(false);
-    expect(getProductPurchaseLink(p).url).toBe(p.link);
-    expect(getProductPurchaseLink(p).affiliate).toBe(false);
+    const ordinary = getProductPurchaseLink(p, {});
+    expect(ordinary.url).toBe(p.link);
+    expect(ordinary.affiliate).toBe(false);
     expect(p.catalogAudit.careProfileNote).toContain("내부 평가");
   }
 });

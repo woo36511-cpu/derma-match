@@ -25,5 +25,10 @@ export function getProductPurchaseLink(product, overrides = affiliateLinks) {
   const affiliate = Boolean(override || isCoupangAffiliateUrl(original));
   const url = override ? saved.affiliateUrl : original;
   const retailer = isCoupang || affiliate ? "쿠팡" : product.purchaseSource?.label || "판매처";
-  return { url, affiliate, label: retailer + "에서 보기", note: product.purchaseSource?.note || "" };
+  const isSearch = override && saved.destination === "search";
+  const label = isSearch ? "쿠팡에서 검색" : retailer + "에서 보기";
+  const note = isSearch && product.volume
+    ? `검색 결과에서 ${product.volume} 옵션을 확인해요.`
+    : product.purchaseSource?.note || "";
+  return { url, affiliate, label, note };
 }

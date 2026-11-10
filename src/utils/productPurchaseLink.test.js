@@ -6,6 +6,9 @@ test("only an exact-product affiliate mapping overrides a normal Coupang link",(
   expect(getProductPurchaseLink(base,saved)).toMatchObject({url:saved[52].affiliateUrl,affiliate:true,label:"쿠팡에서 보기"});
   expect(getProductPurchaseLink({...base,link:base.link+"5"},saved).affiliate).toBe(false);
   expect(getProductPurchaseLink(base,{52:{...saved[52],affiliateUrl:"https://example.com/redirect"}}).url).toBe(base.link);
+  expect(getProductPurchaseLink({...base,volume:"453g"},{52:{...saved[52],destination:"search"}})).toMatchObject({
+    url:saved[52].affiliateUrl, affiliate:true, label:"쿠팡에서 검색", note:"검색 결과에서 453g 옵션을 확인해요.",
+  });
 });
 test("official and other retailer destinations are labelled accurately and never converted",()=>{
   const official={...base,link:"https://www.amoremall.com/kr/ko/product/detail?onlineProdSn=123",purchaseSource:{label:"아모레몰",note:"150ml 2개 구성"}};
