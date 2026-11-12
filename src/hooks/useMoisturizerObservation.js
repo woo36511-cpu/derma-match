@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import {
-  buildMoisturizerFollowUp, buildMoisturizerObservation, getMoisturizerOffer,
-  isMoisturizerObservation, makeAnalysisConsent, observationId,
+  buildProductFollowUp, buildProductObservation, getProductObservationOffers, getObservationStudy,
+  isProductObservation, makeAnalysisConsent, observationId, updateObservationStudy,
 } from "../utils/moisturizerObservation";
 
 export function useMoisturizerObservation({ ownerId, storedHistory, persistRecord, setStep }) {
-  const [survey, setSurvey] = useState(null);
+  const [selection, setSelection] = useState(null);
   const [error, setError] = useState(false);
-  useEffect(() => { setSurvey(null); setError(false); }, [ownerId]);
-  const latest = storedHistory.filter(isMoisturizerObservation).at(-1) ?? null;
-  const record = survey ? storedHistory.find(item => item.id === observationId(survey.id) && isMoisturizerObservation(item)) ?? null : latest;
+  useEffect(() => { setSelection(null); setError(false); }, [ownerId]);
+  const history = storedHistory.filter(isProductObservation).reverse();
+  const offer = getProductObservationOffers(selection?.survey).find(item => item.kind === selection.kind);
+  const recordId = selection?.recordId ?? (offer ? observationId(selection.survey.id, offer.kind) : null);
+  const record = history.find(item => item.id === recordId) ?? null;
   const now = () => new Date().toISOString();
   const save = item => {
     if (!item) return false;
@@ -20,18 +22,23 @@ export function useMoisturizerObservation({ ownerId, storedHistory, persistRecor
     }
   };
   const open = source => {
-    setSurvey(source); setError(false); setStep("moisturizerObservation");
+    setSelection(source); setError(false); setStep("moisturizerObservation");
   };
   return {
-    latest, record, error, offer: getMoisturizerOffer(survey), signedIn: Boolean(ownerId),
-    start: source => { if (getMoisturizerOffer(source)) open(source); },
-    resume: () => { if (latest) open(null); },
-    enroll: input => !record && save(buildMoisturizerObservation({ ...input, survey, signedIn: Boolean(ownerId), now: now() })),
-    followUp: input => save(buildMoisturizerFollowUp(record, input, now())),
-    setAnalysisConsent: enabled => record && (!enabled || ownerId) && save({
-      ...record, moisturizerObservation: {
-        ...record.moisturizerObservation, analysisConsent: makeAnalysisConsent(enabled, Boolean(ownerId), now()),
-      },
-    }),
+    latest: history[0] ?? null, history, record, error, offer, signedIn: Boolean(ownerId),
+    start: (survey, kind) => { if (getProductObservationOffers(survey).some(item => item.kind === kind)) open({ survey, kind }); },
+    resume: () => { if (history.length) open(history.length === 1 ? { recordId: history[0].id } : null); },
+    selectRecord: id => { if (history.some(item => item.id === id)) open({ recordId: id }); },
+    showHistory: () => open(null),
+    enroll: input => !record && offer && save(buildProductObservation({ ...input, survey: selection.survey, kind: offer.kind, signedIn: Boolean(ownerId), now: now() })),
+    followUp: input => save(buildProductFollowUp(record, input, now())),
+    setAnalysisConsent: enabled => {
+      if (!record || (enabled && !ownerId)) return false;
+      const study = getObservationStudy(record);
+      const timestamp = now();
+      return save(updateObservationStudy(record, {
+        ...study, analysisConsent: makeAnalysisConsent(enabled, Boolean(ownerId), timestamp, study.protocol),
+      }, timestamp));
+    },
   };
 }
