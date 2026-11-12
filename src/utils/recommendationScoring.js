@@ -1,3 +1,4 @@
+import { getPersonalBasicFit } from "./personalProductFeedback";
 import { RECOMMENDATION_RULE_VERSION, getProductEvidenceStatus } from "./productEvidence";
 import { getProductCareProfile } from "./productCareProfile";
 import { hasExfoliatingActive } from "./productCatalog";
@@ -119,10 +120,11 @@ export function getRecommendationBreakdown(product, currentLevel, userContext = 
   const moistureDistance = Math.abs((product.hydrationLevel ?? 5) - currentLevel);
   const evidence = getProductEvidenceStatus(product);
   const observation = getReviewedProductObservation(product, evidence, currentLevel, userContext);
+  const personalFit = getPersonalBasicFit(product, currentLevel, userContext);
   const parts = { careFit, concernSupport, moistureFit: -moistureDistance * 2.5,
     sensitiveFit: userContext.isSensitive && product.sensitivitySafe ? 4 : 0,
     beginnerFit: product.beginnerFriendly ? 1.5 : 0,
-    ...(observation && { reviewedObservation: OBSERVATION_FIT_BONUS }) };
+    ...(observation && { reviewedObservation: OBSERVATION_FIT_BONUS }), ...(personalFit && { personalFit }) };
   return { ruleVersion: RECOMMENDATION_RULE_VERSION, parts, total: Object.values(parts).reduce((sum, value) => sum + value, 0),
     moistureDistance, evidence, clinicalSuccessProbability: null,
     ...(observation && { reviewedObservation: { protocol: observation.protocol, reviewedOn: observation.reviewedOn } }) };

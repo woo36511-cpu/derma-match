@@ -92,7 +92,7 @@ function updateCareAnswer(previous, id, value) {
   return cleanSimpleCareAnswers(next);
 }
 
-export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave, onBack, onHome, onRestart, onReviewRoutine }) {
+export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave, onBack, onHome, onRestart, onReviewRoutine, personalProductFeedback }) {
   const [legacyExtent, setLegacyExtent] = useState(() => Boolean(initialRecord &&
     initialRecord.symptomAssessment?.ruleVersion !== SIMPLE_CARE_VERSION && !initialRecord.additionalCare?.breakoutExtent));
   const [answers, setAnswers] = useState(() => cleanSimpleCareAnswers(initialRecord?.additionalCare ?? {}, { legacyExtent }));
@@ -108,8 +108,8 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     ? { products: {} }
     : initialRecord?.routine && JSON.stringify(initialRecord.surveyAnswers) === JSON.stringify(surveyAnswers)
       ? { products: Object.fromEntries(Object.entries(initialRecord.routine).map(([category, id]) => [category, getProductById(id) ?? null])), selectionEvidence: initialRecord.recommendationAssessment?.selectionEvidence ?? null, isHistorical: initialRecord.recommendationAssessment?.ruleVersion !== RECOMMENDATION_RULE_VERSION }
-    : buildDynamicRoutine(profile.hydrationLevel, { mainConcern: "none", skinType: profile.skinType, careNeeds: profile.careNeeds, basicOnly: profile.surveyVersion === ADAPTIVE_SURVEY_VERSION, isSensitive: profile.observationAssessment?.isSensitive ?? true, observationKinds: getObservationKinds(profile), observationTracks: getBasicObservationTracks(profile) }), [profile, plan.blockNewBasics, initialRecord, surveyAnswers]);
-  const cosmeticContext = { profile, surveyAnswers, carePlan: plan, routine };
+    : buildDynamicRoutine(profile.hydrationLevel, { mainConcern: "none", skinType: profile.skinType, careNeeds: profile.careNeeds, basicOnly: profile.surveyVersion === ADAPTIVE_SURVEY_VERSION, isSensitive: profile.observationAssessment?.isSensitive ?? true, observationKinds: getObservationKinds(profile), observationTracks: getBasicObservationTracks(profile), observedSkin: profile.observationAssessment?.resolvedObservations, personalProductFeedback }), [profile, plan.blockNewBasics, initialRecord, surveyAnswers, personalProductFeedback]);
+  const cosmeticContext = { profile, surveyAnswers, carePlan: plan, routine, personalProductFeedback };
   const cosmeticPlan = cosmeticAnswers ? buildCosmeticAddOnPlan(cosmeticAnswers, cosmeticContext) : null;
   const applyCosmeticRoute = addon => addon?.suppressPharmacy ? { ...plan, pharmacy: null, title: "막힌 피지·거친 결은 선택한 화장품 후보로 살펴봐요.", detail: "아래 추가 화장품 영역에서 선택한 후보를 확인해요. 약품 후보 표시는 보류했어요.", productNote: "각질 관리 화장품과 여드름약을 같은 부위에 함께 새로 시작하지 않아요." } : plan;
   const displayPlan = applyCosmeticRoute(cosmeticPlan);

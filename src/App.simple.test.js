@@ -487,3 +487,30 @@ test("blackhead cosmetic observations are optional and stay outside the recommen
     expect(screen.getByRole("heading", { name: observationQuestions[0].question })).toBeVisible();
   } finally { jest.useRealTimers(); }
 });
+
+test("a saved use reaction changes the next routine without a data explanation on the result", () => {
+  render(<App />); baseSurvey({ drynessArea: "cheeks", drynessTiming: "day" });
+  extraCare({ concern: "none" });
+  const original = records()[0].routine.serum;
+  expect(original).not.toBeNull();
+  click("시작 화면"); click("다음 화장품 고르기");
+  fireEvent.click(screen.getByText("지금 쓰는 제품 기록하기 (선택)")); click(/^수분 세럼 ·/);
+  const choose = (name, value) => fireEvent.change(screen.getByRole("combobox", { name }), { target: { value } });
+  const prompt = OBSERVATION_KINDS.serum.question;
+  choose(prompt, "5"); choose("오늘 이 제품을 어떻게 쓰기로 했나요?", "start");
+  click("시작 기록 저장");
+  choose(prompt, "unknown"); choose("이 기간에 실제로 어떤 제품을 썼나요?", "recommended");
+  choose("얼마나 자주 썼나요?", "sometimes");
+  choose("불편함이 있거나 사용을 중단했나요?", "stopped_irritation");
+  choose("다른 화장품·약·세안 습관이나 생활 환경도 달라졌나요?", "no");
+  click("중간 기록 저장");
+  expect(records().find(record => record.productObservation)?.productObservation.analysisConsent).toBeNull();
+  click("시작 화면으로");
+  baseSurvey({ drynessArea: "cheeks", drynessTiming: "day" });
+  extraCare({ concern: "none" });
+  const next = records().filter(record => record.type === "initial_survey").at(-1).routine.serum;
+  expect(next).not.toBeNull();
+  expect(next).not.toBe(original);
+  expect(screen.queryByText("내 기록 자세히 보기")).not.toBeInTheDocument();
+  expect(screen.queryByText("지금 쓰는 제품 기록하기 (선택)")).not.toBeInTheDocument();
+});
