@@ -853,7 +853,6 @@ export function useSkinCoach() {
     handleFeedbackSurveyAnswer,
     saveFeedbackResult,
     feedbackSurveyComplete,
-    feedbackResultRecord: [...feedbackJourneyRecords].reverse().find((record) => record.type === "feedback") || null,
     nextRoutine,
     baseLevel,
     levelChangeMessage,
