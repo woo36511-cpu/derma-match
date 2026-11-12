@@ -383,3 +383,31 @@ test("recent environmental exposure is shown in the first result alongside obser
   expect(records()[0].result.observationAssessment.environmentContext).toMatchObject({ value: "dry_air" });
   expect(records()[0].result.skinType).toBe("복합성 성향");
 });
+
+test("guest can keep a moisturizer, compare the same question after two weeks, and never opt in by default", () => {
+  jest.useFakeTimers();
+  try {
+    jest.setSystemTime(new Date("2026-11-12T00:00:00Z"));
+    render(<App />); baseSurvey({ drynessArea: "cheeks", drynessTiming: "day" });
+    extraCare({ concern: "none" }); click("보습제 사용 기록 시작");
+    const choose = (name, value) => fireEvent.change(screen.getByRole("combobox", { name }), { target: { value } });
+    const prompt = "지난 7일 중 오후에 볼이 당긴 날은 며칠이었나요?";
+    expect(screen.queryByRole("checkbox", { name: /내부 분석에 동의/ })).not.toBeInTheDocument();
+    choose(prompt, "5"); choose("오늘 보습제를 어떻게 쓰기로 했나요?", "keep");
+    click("시작 기록 저장");
+    expect(screen.getByText(/기존 보습제 유지 · 시작 전 볼 당김 5일/)).toBeVisible();
+    expect(records().find(row => row.source === "moisturizer_observation").moisturizerObservation.analysisConsent).toBeNull();
+
+    click("시작 화면으로");
+    jest.setSystemTime(new Date("2026-11-26T01:00:00Z"));
+    click("보습제 변화 기록");
+    choose(prompt, "2"); choose("이 기간에 실제로 어떤 보습제를 썼나요?", "existing");
+    choose("얼마나 자주 썼나요?", "daily"); choose("불편함이 있거나 사용을 중단했나요?", "none");
+    choose("다른 제품·약 또는 생활 환경도 달라졌나요?", "no");
+    click("변화 기록 저장");
+    expect(screen.getByText(/재체크: 2일 · 3일 줄었어요/)).toBeVisible();
+    const data = records().filter(row => row.source === "moisturizer_observation");
+    expect(data).toHaveLength(1);
+    expect(data[0].moisturizerObservation.followUp).toMatchObject({ elapsedDays: 14, used: "existing", days: 2 });
+  } finally { jest.useRealTimers(); }
+});

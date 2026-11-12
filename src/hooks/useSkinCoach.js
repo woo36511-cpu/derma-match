@@ -38,6 +38,8 @@ import { buildJourneySummary } from "../utils/journeySummary";
 import { getConcernTracking } from "../utils/concernTracking";
 import { useJourneyActions } from "./useJourneyActions";
 import { useJourneyAccount } from "./useJourneyAccount";
+import { useMoisturizerObservation } from "./useMoisturizerObservation";
+import { isMoisturizerObservation } from "../utils/moisturizerObservation";
 import { useConcernCheck, isConcernCheckRecord } from "./useConcernCheck";
 import { useSymptomCheck, isSymptomCheckRecord } from "./useSymptomCheck";
 import { applyRoutineSafety, getRoutineSafety, getFeedbackRoutineSafety, feedbackNeedsSymptomReview } from "../utils/symptomAssessment";
@@ -46,9 +48,10 @@ export function useSkinCoach() {
   const starterLevel = 5;
   const { savedSurvey, journeyHistory: storedHistory, persistRecord, account, ownerId } = useJourneyAccount();
   // Symptom-only checks have no 8-axis measurement or product-effect attribution.
-  const journeyHistory = useMemo(() => storedHistory.filter(record => !isSymptomCheckRecord(record) && !isConcernCheckRecord(record)), [storedHistory]);
+  const journeyHistory = useMemo(() => storedHistory.filter(record => !isSymptomCheckRecord(record) && !isConcernCheckRecord(record) && !isMoisturizerObservation(record)), [storedHistory]);
 
   const [step, setStep] = useState("start");
+  const moisturizerObservation = useMoisturizerObservation({ ownerId, storedHistory, persistRecord, setStep });
   const symptomCheck = useSymptomCheck({ ownerId, storedHistory, persistRecord, setStep });
   const [answers, setAnswers] = useState({});
   const symptomFeedbackSafety = getFeedbackRoutineSafety(symptomCheck.assessment, answers);
@@ -758,7 +761,7 @@ export function useSkinCoach() {
 
   return {
     simpleMode, simpleRecord, startSimpleSkinCare, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
-    symptomCheck, concernCheck, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck,
+    symptomCheck, concernCheck, moisturizerObservation, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck,
     continueFeedback: () => feedbackNeedsSymptomReview(answers) ? symptomCheck.begin("recheck") : setStep("recheck"),
     account,
     concernCheckHistory: storedHistory.filter(record => isConcernCheckRecord(record) &&
