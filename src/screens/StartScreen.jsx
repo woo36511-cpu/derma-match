@@ -51,8 +51,6 @@ export function StartScreen({
                 피부타입 확인하고 추천받기 <span aria-hidden="true">→</span>
               </button>
               <p className="mt-3 text-xs text-slate-600 sm:text-sm">피부타입을 몰라도 괜찮아요. 답변에 맞춰 기본 루틴부터 찾아요.</p>
-              {onMoisturizerCheck && <button type="button" onClick={onMoisturizerCheck}
-                className="mt-4 mr-4 text-sm font-semibold text-emerald-900 underline underline-offset-4">화장품 사용과 피부 변화 기록</button>}
               {onQuickConcernCheck && !isQuickJourney && <button type="button" onClick={onQuickConcernCheck}
                 className="mt-4 text-sm font-semibold text-emerald-900 underline underline-offset-4">고민 변화 바로 기록</button>}
             </div>
@@ -171,6 +169,10 @@ export function StartScreen({
           </div>
         </div>
       )}
+      {onMoisturizerCheck && <div className="text-sm text-slate-700">
+        <button type="button" onClick={onMoisturizerCheck} className="font-semibold text-emerald-900 underline underline-offset-4">다음 화장품 고르기</button>
+        <p className="mt-1">지금 쓰는 제품이 어땠는지 남기거나, 피부에 맞는 제품을 다시 찾아요.</p>
+      </div>}
       <SeoContentSection />
     </div>
   );

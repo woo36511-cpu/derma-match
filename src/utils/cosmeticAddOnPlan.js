@@ -4,7 +4,10 @@ import { COSMETIC_ADDON_VERSION, cleanCosmeticAnswers, isCosmeticComplete, cosme
 import { getProductCareProfile } from "./productCareProfile";
 import { getCareNeedMatchScore } from "./recommendationScoring";
 import { hasExfoliatingActive, isProductAvailable } from "./productCatalog";
-import { acneTraceShapes, inflamedAcneShapes } from "../data/simpleCare";
+import { acneTraceShapes, getSelectedAcneShapes, inflamedAcneShapes } from "../data/simpleCare";
+
+import { COSMETIC_TRACKS_BY_GOAL } from "../data/productObservationGoals";
+import { COSMETIC_OBSERVATION_FIT_BONUS, getReviewedCosmeticObservation } from "./reviewedProductObservations";
 
 export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}, carePlan = {}, routine = {} } = {}) {
   const answers = cleanCosmeticAnswers(input, carePlan);
@@ -46,10 +49,16 @@ export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}
     }
     return true;
   });
-  candidates.sort((a, b) => {
-    const score = p => getCareNeedMatchScore(p, profile.careNeeds) / 10 - Math.abs(p.hydrationLevel - level) * 5 + (p.sensitivitySafe ? 1 : 0);
-    return score(b) - score(a) || a.id - b.id;
-  });
+  const shapes = getSelectedAcneShapes(care);
+  const observationContext = {
+    sensitive: Boolean(isSensitive || sensitiveReaction), route: answers.goal, locations: care.locations,
+    tracks: COSMETIC_TRACKS_BY_GOAL[answers.goal].filter(track =>
+      !["closed", "blackhead", "dark_mark"].includes(track) || shapes.includes(track)),
+  };
+  const score = p => getCareNeedMatchScore(p, profile.careNeeds) / 10 -
+    Math.abs(p.hydrationLevel - level) * 5 + (p.sensitivitySafe ? 1 : 0) +
+    (getReviewedCosmeticObservation(p, getProductEvidenceStatus(p), level, observationContext) ? COSMETIC_OBSERVATION_FIT_BONUS : 0);
+  candidates.sort((a, b) => score(b) - score(a) || a.id - b.id);
   const product = candidates[0];
   if (!product) return hold("지금 조건에 맞는 추가 후보가 없어요.", "보습감·현재 성분·자극 조건을 통과한 제품이 없어요. 맞지 않는 제품을 억지로 추가하지 않고 기본 루틴을 유지해요.");
   const extra = cosmeticProductProfiles[product.id];

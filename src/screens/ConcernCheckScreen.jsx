@@ -2,7 +2,7 @@ import { ConcernTrackingFields, ConcernTrackingRecord } from "../components/Conc
 import { PrimaryButton } from "../components/PrimaryButton";
 import { SectionTitle } from "../components/SectionTitle";
 
-export function ConcernCheckScreen({ check, onHome, onDetailedFeedback, onMoisturizerCheck }) {
+export function ConcernCheckScreen({ check, onHome, onDetailedFeedback }) {
   if (!check.tracking) return <section className="mx-auto max-w-3xl space-y-4">
     <SectionTitle title="고민 변화 기록" desc="기록할 고민이 아직 없어요. 첫 설문에서 고민을 선택하면 이어서 기록할 수 있어요." />
     <PrimaryButton onClick={onHome}>시작 화면으로</PrimaryButton>
@@ -20,7 +20,6 @@ export function ConcernCheckScreen({ check, onHome, onDetailedFeedback, onMoistu
     <div className="flex flex-wrap items-center gap-3">
       {check.saved ? <PrimaryButton onClick={check.openHistory}>내 피부 변화 보기</PrimaryButton> :
         <PrimaryButton onClick={check.save} disabled={!check.canSave}>{check.error ? "변화 저장 다시 시도" : "변화만 저장"}</PrimaryButton>}
-      {onMoisturizerCheck && <button type="button" onClick={onMoisturizerCheck} className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold">화장품 사용과 피부 변화 기록</button>}
       {onDetailedFeedback && <button type="button" onClick={onDetailedFeedback} className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold">루틴·제품 자세히 체크하기</button>}
       <button type="button" onClick={onHome} className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold">시작 화면으로</button>
     </div>

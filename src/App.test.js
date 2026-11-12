@@ -120,7 +120,7 @@ test("quick recommendation survives reload and saves two feedback rounds in the 
   expect(history()[1].dataReliability.level).toBe("low");
   expect(history()[1].actualProductUsage[0].actualUsage).toMatchObject({ durationDays: 14, frequency: "daily", usedAsDirected: true });
   expect(history()[1].followUpSurveyAnswers).toBeTruthy();
-  expect(screen.getByText(/비교할 이전 8축 측정이 없어요/)).toBeInTheDocument();
+  expect(screen.queryByText(/비교할 이전 8축 측정이 없어요/)).not.toBeInTheDocument();
   const firstFeedbackId = history()[1].id;
   click("피드백 다시 선택");
   completeFeedback({ usageDetails: true });
@@ -141,6 +141,7 @@ test("quick recommendation survives reload and saves two feedback rounds in the 
   expect(
     screen.getByRole("heading", { name: "내 피부 변화" }),
   ).toBeInTheDocument();
+  expect(screen.getByText(/비교할 이전 8축 측정이 없어요/)).toBeInTheDocument();
 });
 
 test("survey answers gate progression and a saved result can be reopened", () => {
@@ -166,10 +167,12 @@ test("survey answers gate progression and a saved result can be reopened", () =>
   completeFeedback({ usageDetails: true });
   expect(history()[1].journeyId).toBe(history()[0].journeyId);
   expect(history()[1].outcome.skinComparison).toMatchObject({ complete: true, baselineRecordId: history()[0].id });
+  expect(screen.queryByRole("heading", { name: "Before / After · 피부 상태 8축" })).not.toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: "다음 단계 기본 루틴" })).toBeVisible();
+  click("처음부터 다시"); click("내 피부 변화 보기");
   expect(screen.getByRole("heading", { name: "Before / After · 피부 상태 8축" })).toBeInTheDocument();
   expect(screen.getByText("기록 충분")).toBeInTheDocument();
   expect(screen.getByRole("table", { hidden: true })).not.toBeVisible();
-  expect(screen.getByRole("heading", { name: "다음 단계 기본 루틴" })).toBeVisible();
 });
 
 const concerns = [

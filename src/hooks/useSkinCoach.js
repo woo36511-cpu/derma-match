@@ -51,7 +51,7 @@ export function useSkinCoach() {
   const journeyHistory = useMemo(() => storedHistory.filter(record => !isSymptomCheckRecord(record) && !isConcernCheckRecord(record) && !isProductObservation(record)), [storedHistory]);
 
   const [step, setStep] = useState("start");
-  const moisturizerObservation = useMoisturizerObservation({ ownerId, storedHistory, persistRecord, setStep });
+  const moisturizerObservation = useMoisturizerObservation({ ownerId, savedSurvey, storedHistory, persistRecord, setStep });
   const symptomCheck = useSymptomCheck({ ownerId, storedHistory, persistRecord, setStep });
   const [answers, setAnswers] = useState({});
   const symptomFeedbackSafety = getFeedbackRoutineSafety(symptomCheck.assessment, answers);
@@ -853,7 +853,6 @@ export function useSkinCoach() {
     handleFeedbackSurveyAnswer,
     saveFeedbackResult,
     feedbackSurveyComplete,
-    feedbackResultRecord: [...feedbackJourneyRecords].reverse().find((record) => record.type === "feedback") || null,
     nextRoutine,
     baseLevel,
     levelChangeMessage,
