@@ -39,7 +39,8 @@ import { getConcernTracking } from "../utils/concernTracking";
 import { useJourneyActions } from "./useJourneyActions";
 import { useJourneyAccount } from "./useJourneyAccount";
 import { useMoisturizerObservation } from "./useMoisturizerObservation";
-import { isProductObservation } from "../utils/moisturizerObservation";
+import { collectPersonalProductFeedback } from "../utils/personalProductFeedback";
+import { getBasicObservationTracks, getObservationKinds, isProductObservation } from "../utils/moisturizerObservation";
 import { useConcernCheck, isConcernCheckRecord } from "./useConcernCheck";
 import { useSymptomCheck, isSymptomCheckRecord } from "./useSymptomCheck";
 import { applyRoutineSafety, getRoutineSafety, getFeedbackRoutineSafety, feedbackNeedsSymptomReview } from "../utils/symptomAssessment";
@@ -50,6 +51,7 @@ export function useSkinCoach() {
   // Symptom-only checks have no 8-axis measurement or product-effect attribution.
   const journeyHistory = useMemo(() => storedHistory.filter(record => !isSymptomCheckRecord(record) && !isConcernCheckRecord(record) && !isProductObservation(record)), [storedHistory]);
 
+  const personalProductFeedback = useMemo(() => collectPersonalProductFeedback(storedHistory), [storedHistory]);
   const [step, setStep] = useState("start");
   const moisturizerObservation = useMoisturizerObservation({ ownerId, savedSurvey, storedHistory, persistRecord, setStep });
   const symptomCheck = useSymptomCheck({ ownerId, storedHistory, persistRecord, setStep });
@@ -222,12 +224,26 @@ export function useSkinCoach() {
   const starterRoutineInfo = routineMap[starterLevel];
   const nextRoutineInfo = routineMap[nextLevel];
 
-  const starterRoutine = buildDynamicRoutine(starterLevel, { mainConcern: "none", basicOnly: true, isSensitive: true });
+  const starterRoutine = buildDynamicRoutine(starterLevel, { mainConcern: "none", basicOnly: true, isSensitive: true, personalProductFeedback });
   const observationFeedbackHold = observationFeedback && (!feedbackSurveyComplete || followUpSurveyResult.observationAssessment?.canRecommendBasics === false);
   const feedbackSafety = observationFeedbackHold ? { blocked: true, reason: followUpSurveyResult.observationAssessment?.recommendationReason ?? "현재 피부 상태 답변을 먼저 확인해요." } : symptomFeedbackSafety;
+  const feedbackProfile = feedbackSurveyComplete ? followUpSurveyResult : surveyResult;
+  const nextPersonalProductFeedback = useMemo(() => {
+    if (!Object.keys(productUsageFeedback).length) return personalProductFeedback;
+    const draft = { actualProductUsage: feedbackTargetProducts.map(({ product }) => ({
+      productId: product.id, actualUsage: productUsageFeedback[product.id],
+    })) };
+    return collectPersonalProductFeedback([
+      ...storedHistory.filter(record => record.id !== feedbackDraft?.savedRecordId), draft,
+    ]);
+  }, [feedbackTargetProducts, feedbackDraft?.savedRecordId, personalProductFeedback, productUsageFeedback, storedHistory]);
   const nextRoutine = applyRoutineSafety(observationFeedbackHold ? { products: {} } : buildDynamicRoutine(nextLevel, {
     basicOnly: feedbackSurveyVersion === ADAPTIVE_SURVEY_VERSION,
     mainConcern: feedbackMainConcern,
+    personalProductFeedback: nextPersonalProductFeedback,
+    observationKinds: getObservationKinds(feedbackProfile),
+    observationTracks: getBasicObservationTracks(feedbackProfile),
+    observedSkin: feedbackProfile.observationAssessment?.resolvedObservations,
 
     careNeeds: feedbackSurveyComplete
       ? followUpSurveyResult.careNeeds
@@ -241,7 +257,7 @@ export function useSkinCoach() {
         feedbackMainConcern === "sensitivity_redness",
   }), feedbackSafety);
   const quickSafety = getRoutineSafety(symptomCheck.assessment);
-  const quickRoutine = applyRoutineSafety(buildDynamicRoutine(quickLevel), quickSafety);
+  const quickRoutine = applyRoutineSafety(buildDynamicRoutine(quickLevel, { personalProductFeedback }), quickSafety);
   const quickRoutineReason = buildRoutineReason(quickLevel);
 
   const acneGuide = useMemo(() => {
@@ -329,6 +345,7 @@ export function useSkinCoach() {
   const routineSafety = getRoutineSafety(symptomCheck.assessment, activeIssueGuide);
   const surveyRoutine = applyRoutineSafety(buildDynamicRoutine(surveyResult.hydrationLevel, {
     mainConcern,
+    personalProductFeedback,
 
     careNeeds: adjustedSurveyCareNeeds,
 
@@ -422,6 +439,7 @@ export function useSkinCoach() {
   const feedbackAdvice = getFeedbackAdvice(answers);
   const userContext = {
     mainConcern: feedbackMainConcern,
+    personalProductFeedback: nextPersonalProductFeedback,
     level: nextLevel,
     careNeeds: feedbackSurveyComplete
       ? followUpSurveyResult.careNeeds
@@ -760,7 +778,7 @@ export function useSkinCoach() {
   };
 
   return {
-    simpleMode, simpleRecord, startSimpleSkinCare, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
+    personalProductFeedback, simpleMode, simpleRecord, startSimpleSkinCare, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
     symptomCheck, concernCheck, moisturizerObservation, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck,
     continueFeedback: () => feedbackNeedsSymptomReview(answers) ? symptomCheck.begin("recheck") : setStep("recheck"),
     account,

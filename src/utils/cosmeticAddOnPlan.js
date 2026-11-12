@@ -8,8 +8,9 @@ import { acneTraceShapes, getSelectedAcneShapes, inflamedAcneShapes } from "../d
 
 import { COSMETIC_TRACKS_BY_GOAL } from "../data/productObservationGoals";
 import { COSMETIC_OBSERVATION_FIT_BONUS, getReviewedCosmeticObservation } from "./reviewedProductObservations";
+import { avoidPersonalProduct, getPersonalCosmeticFit } from "./personalProductFeedback";
 
-export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}, carePlan = {}, routine = {} } = {}) {
+export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}, carePlan = {}, routine = {}, personalProductFeedback } = {}) {
   const answers = cleanCosmeticAnswers(input, carePlan);
   const result = { version: COSMETIC_ADDON_VERSION, answers, complete: isCosmeticComplete(answers, carePlan), product: null, suppressPharmacy: false };
   const hold = (title, detail) => ({ ...result, status: "hold", title, detail });
@@ -37,7 +38,7 @@ export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}
   const sensitiveReaction = surveyAnswers.sensitivity === "자주 따갑고 붉어진다";
   let candidates = products.filter(product => {
     const extra = cosmeticProductProfiles[product.id];
-    if (!extra?.goals.includes(answers.goal) || !isProductAvailable(product) || !getProductEvidenceStatus(product).eligible) return false;
+    if (!extra?.goals.includes(answers.goal) || !isProductAvailable(product) || avoidPersonalProduct(product, personalProductFeedback) || !getProductEvidenceStatus(product).eligible) return false;
     if (Math.abs(product.hydrationLevel - level) > 3) return false;
     if (level >= 7 && getProductCareProfile(product).lightweightFit < 5) return false;
     if ((isSensitive || sensitiveReaction) && (!product.sensitivitySafe || extra.intensity === "exfoliant" || extra.intensity === "high")) return false;
@@ -51,12 +52,13 @@ export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}
   });
   const shapes = getSelectedAcneShapes(care);
   const observationContext = {
-    sensitive: Boolean(isSensitive || sensitiveReaction), route: answers.goal, locations: care.locations,
+    personalProductFeedback, sensitive: Boolean(isSensitive || sensitiveReaction), route: answers.goal, locations: care.locations,
     tracks: COSMETIC_TRACKS_BY_GOAL[answers.goal].filter(track =>
       !["closed", "blackhead", "dark_mark"].includes(track) || shapes.includes(track)),
   };
   const score = p => getCareNeedMatchScore(p, profile.careNeeds) / 10 -
     Math.abs(p.hydrationLevel - level) * 5 + (p.sensitivitySafe ? 1 : 0) +
+    getPersonalCosmeticFit(p, level, observationContext) +
     (getReviewedCosmeticObservation(p, getProductEvidenceStatus(p), level, observationContext) ? COSMETIC_OBSERVATION_FIT_BONUS : 0);
   candidates.sort((a, b) => score(b) - score(a) || a.id - b.id);
   const product = candidates[0];
