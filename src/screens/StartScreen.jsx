@@ -27,6 +27,7 @@ export function StartScreen({
   openSavedSurveyResult,
   startSavedFeedback,
   onQuickConcernCheck,
+  onMoisturizerCheck,
   routineReview,
 }) {
   return (
@@ -50,6 +51,8 @@ export function StartScreen({
                 피부타입 확인하고 추천받기 <span aria-hidden="true">→</span>
               </button>
               <p className="mt-3 text-xs text-slate-600 sm:text-sm">피부타입을 몰라도 괜찮아요. 답변에 맞춰 기본 루틴부터 찾아요.</p>
+              {onMoisturizerCheck && <button type="button" onClick={onMoisturizerCheck}
+                className="mt-4 mr-4 text-sm font-semibold text-emerald-900 underline underline-offset-4">보습제 변화 기록</button>}
               {onQuickConcernCheck && !isQuickJourney && <button type="button" onClick={onQuickConcernCheck}
                 className="mt-4 text-sm font-semibold text-emerald-900 underline underline-offset-4">고민 변화 바로 기록</button>}
             </div>

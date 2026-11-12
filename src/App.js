@@ -8,6 +8,7 @@ import { IssueSelectScreen } from "./screens/IssueSelectScreen";
 import { IssueDetailScreen } from "./screens/IssueDetailScreen";
 import { SurveyResultScreen } from "./screens/SurveyResultScreen";
 import { StarterScreen } from "./screens/StarterScreen";
+import { MoisturizerObservationScreen } from "./screens/MoisturizerObservationScreen";
 import { ConcernCheckScreen } from "./screens/ConcernCheckScreen";
 import { FeedbackScreen } from "./screens/FeedbackScreen";
 import { RecheckScreen } from "./screens/RecheckScreen";
@@ -23,7 +24,7 @@ import { RoutineSafetyNotice } from "./components/RoutineSafetyNotice";
 export default function App() {
   const {
     simpleMode, simpleRecord, startSimpleSkinCare, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
-    symptomCheck, concernCheck, concernCheckHistory, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck, continueFeedback,
+    symptomCheck, concernCheck, concernCheckHistory, moisturizerObservation, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck, continueFeedback,
     account,
     resetFlow,
     step,
@@ -138,7 +139,9 @@ export default function App() {
         {step === "symptomCheck" && <SymptomCheckScreen check={symptomCheck} />}
         {step === "symptomResult" && <SymptomResultScreen check={symptomCheck} setStep={setStep}
           onRecordConcern={symptomCheck.returningToConcernCheck ? concernCheck.resume : concernCheck.canStart ? concernCheck.start : undefined} />}
-        {step === "concernCheck" && <ConcernCheckScreen check={concernCheck} onHome={() => setStep("start")} onDetailedFeedback={startSavedFeedback} />}
+        {step === "concernCheck" && <ConcernCheckScreen check={concernCheck} onHome={() => setStep("start")} onDetailedFeedback={startSavedFeedback}
+          onMoisturizerCheck={moisturizerObservation.latest ? moisturizerObservation.resume : undefined} />}
+        {step === "moisturizerObservation" && <MoisturizerObservationScreen key={account.user?.id ?? "guest"} observation={moisturizerObservation} onHome={() => setStep("start")} />}
         {step === "start" && (
           <StartScreen
             startCheckedFlow={startCheckedFlow}
@@ -160,6 +163,7 @@ export default function App() {
             openSavedSurveyResult={openSavedSurveyResult}
             startSavedFeedback={startSavedFeedback}
             onQuickConcernCheck={concernCheck.canStart ? concernCheck.start : undefined}
+            onMoisturizerCheck={moisturizerObservation.latest ? moisturizerObservation.resume : undefined}
             routineReview={routineReview}
           />
         )}
@@ -219,7 +223,7 @@ export default function App() {
           />
         )}
 
-        {step === "simpleCare" && <SimpleCareScreen key={account.user?.id ?? "guest"} profile={surveyResult} surveyAnswers={surveyAnswers} initialRecord={simpleRecord} onRestart={startSimpleSkinCare} onReviewRoutine={() => setStep("routineReview")} onSave={saveSimpleSkinRecord} onBack={() => { setSurveyIndex(activeSurveyQuestions.length - 1); setStep("survey"); }} onHome={() => setStep("start")} />}
+        {step === "simpleCare" && <SimpleCareScreen key={account.user?.id ?? "guest"} profile={surveyResult} surveyAnswers={surveyAnswers} initialRecord={simpleRecord} onRestart={startSimpleSkinCare} onReviewRoutine={() => setStep("routineReview")} onMoisturizerObservation={moisturizerObservation.start} onSave={saveSimpleSkinRecord} onBack={() => { setSurveyIndex(activeSurveyQuestions.length - 1); setStep("survey"); }} onHome={() => setStep("start")} />}
 
         {step === "issueSelect" && (
           <IssueSelectScreen

@@ -14,6 +14,7 @@ import { AcnePhotoReference } from "../components/AcnePhotoReference";
 import { FolliculitisOptions } from "../components/FolliculitisOptions";
 import { ConcernProductOptions } from "../components/ConcernProductOptions";
 import { RoutineProductScroller } from "../components/RoutineProductScroller";
+import { getMoisturizerOffer } from "../utils/moisturizerObservation";
 import { DetailDisclosure } from "../components/DetailDisclosure";
 
 export function ObservationSummary({ profile }) {
@@ -91,7 +92,7 @@ function updateCareAnswer(previous, id, value) {
   return cleanSimpleCareAnswers(next);
 }
 
-export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave, onBack, onHome, onRestart, onReviewRoutine }) {
+export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave, onBack, onHome, onRestart, onReviewRoutine, onMoisturizerObservation }) {
   const [legacyExtent, setLegacyExtent] = useState(() => Boolean(initialRecord &&
     initialRecord.symptomAssessment?.ruleVersion !== SIMPLE_CARE_VERSION && !initialRecord.additionalCare?.breakoutExtent));
   const [answers, setAnswers] = useState(() => cleanSimpleCareAnswers(initialRecord?.additionalCare ?? {}, { legacyExtent }));
@@ -124,6 +125,12 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   if (showResult && plan.complete) return <div className="space-y-6">
     {routine.isHistorical && <p className="rounded-xl bg-slate-50 p-4 text-sm">저장 당시의 제품 후보를 보여드려요. 새 검수 기준으로 다시 추천받으려면 아래에서 다시 확인해요.</p>}
     <SimpleCareResult profile={profile} routine={routine} plan={displayPlan} onReviewRoutine={saveError ? undefined : onReviewRoutine} />
+    {!saveError && !displayPlan.blockNewBasics && onMoisturizerObservation && getMoisturizerOffer(record) &&
+      <section aria-label="보습제 사용 기록 시작" className="space-y-2 rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+        <h2 className="font-bold">지금 보습제로 볼 당김이 달라지는지 확인해요</h2>
+        <p className="text-sm text-slate-700">기존 제품을 유지해도 돼요. 오늘 상태를 남겨두고 2주 후 같은 질문으로 비교해요.</p>
+        <button type="button" onClick={() => onMoisturizerObservation(record)} className="rounded-xl bg-emerald-900 px-4 py-2 text-sm font-semibold text-white">보습제 사용 기록 시작</button>
+      </section>}
     {(profile.surveyVersion !== ADAPTIVE_SURVEY_VERSION || routine.isHistorical) && onRestart && <button onClick={onRestart} className="rounded-xl border px-4 py-3">새 기준으로 다시 확인</button>}
     {!plan.blockNewBasics && profile.observationAssessment?.canRecommendBasics !== false && <CosmeticAddOnSection context={cosmeticContext} initialAnswers={cosmeticAnswers} onApply={save} />}
     {saveError && <div role="alert" className="rounded-xl bg-amber-50 p-4">결과는 표시했지만 저장하지 못했어요. <button className="underline" onClick={() => save()}>저장 다시 시도</button></div>}

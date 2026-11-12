@@ -71,6 +71,32 @@ async function main() {
     for (const expected of [true,true,false]) assert.equal((await db.query("select public.username_auth_limit('qa-bucket',2,60) as ok")).rows[0].ok, expected);
     await db.exec("update dearsince_private.username_rate_limits set resets_at=now()-interval '1 second' where bucket='qa-bucket'");
     assert.equal((await db.query("select public.username_auth_limit('qa-bucket',2,60) as ok")).rows[0].ok, true);
+    const daysAgo = days => new Date(Date.now() - days * 86400000).toISOString();
+    const pilot = (id, analysisConsent) => ({
+      id, type: "feedback", source: "moisturizer_observation", assessmentOnly: true,
+      moisturizerObservation: { protocol: "cheek-tightness-v1", productId: 68, formulaVerifiedAt: "2026-11-09",
+        choice: "keep", startedAt: daysAgo(30), baselineDays: 5, analysisConsent,
+        followUp: { days: 2, used: "existing", frequency: "daily", otherChanges: "no", reaction: "none", recordedAt: daysAgo(16) },
+      },
+    });
+    const allowed = pilot("pilot-opt-in", { version: "moisturizer-internal-analysis-v1", grantedAt: daysAgo(30) });
+    const privateOnly = pilot("pilot-opt-out", null);
+    await asUser(alice);
+    for (const payload of [allowed, privateOnly]) await save(alice, [{ record_id: payload.id, expected_revision: 0, payload }]);
+    await asUser(bob);
+    assert.equal((await db.query("select * from public.journey_records where record_id = $1", [allowed.id])).rows.length, 0);
+    await db.exec("reset role;");
+    const report = fs.readFileSync("scripts/moisturizer-observation-report.sql", "utf8");
+    const [aggregate] = (await db.query(report)).rows;
+    assert.equal(Number(aggregate.enrolled), 1, "personal records without consent never count");
+    assert.equal(Number(aggregate.checked_in_days_14_to_21), 1);
+    assert.equal(Number(aggregate.mean_fewer_tight_days), 3);
+    await asUser(alice);
+    await save(alice, [{ record_id: allowed.id, expected_revision: 1, payload: { ...allowed,
+      moisturizerObservation: { ...allowed.moisturizerObservation, analysisConsent: null },
+    } }]);
+    await db.exec("reset role;");
+    assert.equal((await db.query(report)).rows.length, 0, "withdrawal removes the record from future reports");
     console.log("Journey SQL checks passed: RLS isolation, ownership guard, revisions, idempotence, atomic rollback, validation, anonymous denial, private username registry, single-use recovery and throttling.");
   } finally { await db.close(); }
 }
