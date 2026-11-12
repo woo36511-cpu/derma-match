@@ -12,6 +12,8 @@ import { getVisibleSymptomQuestions } from "./data/symptomQuestions";
 import { buildSimpleSkinRecord } from "./utils/simpleSkinRecord";
 import { buildSimpleCarePlan } from "./utils/simpleCarePlan";
 import { buildDynamicRoutine } from "./utils/routineRecommendation";
+import { getCosmeticQuestions } from "./data/cosmeticAddOns";
+import { getCosmeticObservationConfig } from "./data/productObservationGoals";
 import { COMFORT_QUESTION, OBSERVATION_KINDS } from "./utils/moisturizerObservation";
 import { JOURNEY_HISTORY_KEY } from "./data/storageKeys";
 
@@ -186,11 +188,7 @@ test("follow-up prioritizes the first concern and compares saved observations by
     fireEvent.click(mark.getByRole("button", { name: "옅어졌어요" }));
   });
   completeStandardRecheck();
-  const firstResult = within(screen.getByRole("region", { name: "고민별 변화 기록" }));
-  expect(firstResult.getByText(/다음에 먼저 볼 것.*턱·턱선/)).toBeInTheDocument();
-  expect(firstResult.getByText("최근 7일 새 돌기 · 3~5개")).toBeInTheDocument();
-  expect(firstResult.getByText("관리 시작 때와 비교 · 옅어졌어요")).toBeInTheDocument();
-  expect(firstResult.queryByText(/패인 흉터/)).not.toBeInTheDocument();
+  expect(screen.queryByRole("region", { name: "고민별 변화 기록" })).not.toBeInTheDocument();
   const first = records().find(record => record.concernTracking);
   expect(first.concernTracking.sourceRecordId).toBe(records()[0].id);
   expect(first.concernTracking.entries).toMatchObject([
@@ -207,9 +205,7 @@ test("follow-up prioritizes the first concern and compares saved observations by
     fireEvent.click(red.getByRole("button", { name: "1~2개" }));
   });
   completeStandardRecheck();
-  const secondResult = within(screen.getByRole("region", { name: "고민별 변화 기록" }));
-  expect(secondResult.getByText("최근 7일 새 돌기 · 1~2개")).toBeInTheDocument();
-  expect(secondResult.getByText(/이전 기록.*3~5개/)).toBeInTheDocument();
+  expect(screen.queryByRole("region", { name: "고민별 변화 기록" })).not.toBeInTheDocument();
   click("처음부터 다시"); click("내 피부 변화 보기");
   expect(screen.getByText("관리 시작 때와 비교 · 옅어졌어요")).toBeInTheDocument();
   expect(screen.getByText("최근 7일 새 돌기 · 1~2개")).toBeInTheDocument();
@@ -392,8 +388,14 @@ test("guests can track three product types separately and compare symptom-free d
     render(<App />); baseSurvey({ drynessArea: "cheeks", drynessTiming: "day", washResponse: "tight" });
     extraCare({ concern: "none" });
     const choose = (name, value) => fireEvent.change(screen.getByRole("combobox", { name }), { target: { value } });
-    const begin = kind => click(`${OBSERVATION_KINDS[kind].label} 사용 기록 시작`);
-    const changeLink = "화장품 사용과 피부 변화 기록";
+    const changeLink = "다음 화장품 고르기";
+    const begin = kind => {
+      fireEvent.click(screen.getByText("지금 쓰는 제품 기록하기 (선택)"));
+      click(new RegExp(`^${OBSERVATION_KINDS[kind].label} ·`));
+    };
+    expect(screen.queryByRole("button", { name: "보습제 사용 기록 시작" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: changeLink })).not.toBeInTheDocument();
+    click("시작 화면"); click(changeLink);
     begin("cream");
     const prompt = OBSERVATION_KINDS.cream.question;
     expect(screen.queryByRole("checkbox", { name: /내부 분석에 동의/ })).not.toBeInTheDocument();
@@ -401,11 +403,11 @@ test("guests can track three product types separately and compare symptom-free d
     expect(screen.getByRole("button", { name: "시작 기록 저장" })).toBeDisabled();
     choose(prompt, "5"); choose(COMFORT_QUESTION, "3"); choose("오늘 이 제품을 어떻게 쓰기로 했나요?", "keep");
     click("시작 기록 저장");
-    expect(screen.getByText(/기존 보습제 유지 · 시작 전 볼 당김 5일/)).toBeVisible();
+    fireEvent.click(screen.getByText("내 기록 자세히 보기"));
+    expect(screen.getByText(/기존 제품 유지 · 시작 전 볼 당김 5일/)).toBeVisible();
 
     for (const kind of ["serum", "cleanser"]) {
-      click("시작 화면으로");
-      click("최근 결과 다시 보기");
+      click("제품 기록 목록으로");
       begin(kind);
       expect(screen.queryByRole("combobox", { name: prompt })).not.toBeInTheDocument();
       choose(OBSERVATION_KINDS[kind].question, "3"); choose("오늘 이 제품을 어떻게 쓰기로 했나요?", "keep");
@@ -424,12 +426,15 @@ test("guests can track three product types separately and compare symptom-free d
     };
     answerFollowUp(prompt, "0"); choose(COMFORT_QUESTION, "1");
     click("변화 기록 저장");
+    expect(screen.getByText("사용 기록을 저장했어요.")).toBeVisible();
+    fireEvent.click(screen.getByText("내 기록 자세히 보기"));
     expect(screen.getByText("재체크: 최근 7일 동안 볼 당김 0일")).toBeVisible();
     expect(screen.getByText("피부 불편함: 많이 → 조금")).toBeVisible();
 
-    click("다른 제품 기록 보기"); click(/세안제 · 변화 기록 열기/);
+    click("제품 기록 목록으로"); click(/세안제 · 변화 기록 열기/);
     answerFollowUp(OBSERVATION_KINDS.cleanser.question, "unknown");
     click("변화 기록 저장");
+    fireEvent.click(screen.getByText("내 기록 자세히 보기"));
     expect(screen.getByText(/당긴 날을 기억하지 못해 전후 비교는 건너뛰었어요/)).toBeVisible();
     const data = records().filter(row => row.source === "skin_product_observation");
     expect(data).toHaveLength(3);
@@ -438,5 +443,47 @@ test("guests can track three product types separately and compare symptom-free d
     expect(read("cream").followUp).toMatchObject({ elapsedDays: 14, used: "existing", days: 0, comfort: 1 });
     expect(read("cleanser").followUp.days).toBeNull();
     expect(read("serum").followUp).toBeUndefined();
+  } finally { jest.useRealTimers(); }
+});
+
+
+test("blackhead cosmetic observations are optional and stay outside the recommendation result", () => {
+  jest.useFakeTimers();
+  try {
+    jest.setSystemTime(new Date("2026-11-12T00:00:00Z"));
+    render(<App />); baseSurvey(); extraCare({ concern: "acne", shape: "blackhead", areaState: "comfortable", medicine: "none" });
+    const input = { goal: "texture", route: "cosmetic_first", comfort: "comfortable", actives: ["none"], experience: "new", special: "none" };
+    const questions = getCosmeticQuestions(input, { pharmacy: true, answers: { shape: "blackhead" } });
+    click("추가 화장품 후보 찾아보기");
+    for (const [index, question] of questions.entries()) {
+      const option = question.options.find(o => o.value === (question.multiple ? input[question.id][0] : input[question.id]));
+      click(new RegExp(option.label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+      click(index === questions.length - 1 ? "추가 추천 확인하고 저장" : "다음");
+    }
+    const productId = records()[0].cosmeticAddOn.recommendedProductId;
+    expect(productId).not.toBeNull();
+    expect(screen.queryByText("지금 쓰는 제품 기록하기 (선택)")).not.toBeInTheDocument();
+    click("시작 화면"); click("다음 화장품 고르기");
+    expect(screen.getByRole("button", { name: "새 화장품 추천받기" })).toBeEnabled();
+    fireEvent.click(screen.getByText("지금 쓰는 제품 기록하기 (선택)")); click(/^블랙헤드 ·/);
+    const choose = (name, value) => fireEvent.change(screen.getByRole("combobox", { name }), { target: { value } });
+    const prompt = getCosmeticObservationConfig("blackhead").question;
+    choose("어느 부위를 기준으로 기록할까요?", "nose");
+    choose(prompt, "3"); choose("오늘 이 제품을 어떻게 쓰기로 했나요?", "start");
+    click("시작 기록 저장"); click("시작 화면으로");
+    jest.setSystemTime(new Date("2026-12-10T01:00:00Z"));
+    click("다음 화장품 고르기"); click(/^블랙헤드 · 변화 기록 열기/);
+    expect(screen.getByText("기록한 부위 · 코")).toBeVisible();
+    choose(prompt, "1"); choose("이 기간에 실제로 어떤 제품을 썼나요?", "recommended");
+    choose("얼마나 자주 썼나요?", "daily"); choose("실제로 사용한 날은 총 얼마나 되나요?", "28_plus");
+    choose("불편함이 있거나 사용을 중단했나요?", "none"); choose("다른 화장품·약·세안 습관이나 생활 환경도 달라졌나요?", "no");
+    click("변화 기록 저장");
+    expect(screen.getByText("사용 기록을 저장했어요.")).toBeVisible();
+    expect(screen.getByText(/재체크: 6개 이상 → 1~2개/)).not.toBeVisible();
+    expect(records().find(row => row.productObservation).productObservation).toMatchObject({
+      productId, area: "nose", baselineValue: 3, analysisConsent: null, followUp: { value: 1, useDays: "28_plus" },
+    });
+    click("새 화장품 추천받기");
+    expect(screen.getByRole("heading", { name: observationQuestions[0].question })).toBeVisible();
   } finally { jest.useRealTimers(); }
 });

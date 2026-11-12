@@ -14,8 +14,6 @@ import React from "react";
 import { DetailDisclosure } from "../components/DetailDisclosure";
 import { RoutineSafetyNotice } from "../components/RoutineSafetyNotice";
 import { SymptomCareSummary } from "../components/SelfCarePlan";
-import { ConcernTrackingRecord } from "../components/ConcernTracking";
-import { JourneyOutcomeCard } from "../components/JourneyOutcomeCard";
 
 export function ResultScreen({
   safety, symptomAssessment, onSymptomRecheck,
@@ -30,13 +28,10 @@ export function ResultScreen({
   ingredients,
   setStep,
   resetFlow,
-  feedbackResultRecord,
 }) {
   if (safety?.blocked) return <section className="max-w-3xl mx-auto space-y-6">
     <SymptomCareSummary assessment={symptomAssessment} />
     <RoutineSafetyNotice safety={safety} onRecheck={onSymptomRecheck} />
-    <ConcernTrackingRecord tracking={feedbackResultRecord?.concernTracking} />
-    <JourneyOutcomeCard record={feedbackResultRecord} />
     <PrimaryButton onClick={resetFlow}>처음부터 다시</PrimaryButton>
   </section>;
   return (
@@ -45,10 +40,6 @@ export function ResultScreen({
         title={nextRoutineInfo.label}
         desc={nextRoutineInfo.summary}
       />
-
-      {feedbackResultRecord?.concernTracking && <div className="max-w-3xl mx-auto mb-8">
-        <ConcernTrackingRecord tracking={feedbackResultRecord.concernTracking} showNext />
-      </div>}
 
       <div className="max-w-3xl mx-auto mb-8">
         <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-5 sm:p-6">
@@ -73,10 +64,6 @@ export function ResultScreen({
 
       <div className="max-w-3xl mx-auto mb-8 space-y-5"><SymptomCareSummary assessment={symptomAssessment} /><button onClick={onSymptomRecheck} className="underline text-sm">증상 변화·악화 재설문</button></div>
       <FeedbackAdviceCard advice={feedbackAdvice} />
-
-      <div className="max-w-3xl mx-auto mb-8">
-        <JourneyOutcomeCard record={feedbackResultRecord} />
-      </div>
 
       <div className="max-w-3xl mx-auto mb-8">
         <DetailDisclosure title="다음 루틴을 추천한 이유">

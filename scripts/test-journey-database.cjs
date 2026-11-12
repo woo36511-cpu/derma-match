@@ -89,8 +89,8 @@ async function main() {
     const report = fs.readFileSync("scripts/moisturizer-observation-report.sql", "utf8");
     const [aggregate] = (await db.query(report)).rows;
     assert.equal(Number(aggregate.enrolled), 1, "personal records without consent never count");
-    assert.equal(Number(aggregate.checked_in_days_14_to_21), 1);
-    assert.equal(Number(aggregate.mean_fewer_tight_days), 3);
+    assert.equal(Number(aggregate.checked_in_window), 1);
+    assert.equal(Number(aggregate.mean_fewer_symptom_days), 3);
     await asUser(alice);
     await save(alice, [{ record_id: allowed.id, expected_revision: 1, payload: { ...allowed,
       moisturizerObservation: { ...allowed.moisturizerObservation, analysisConsent: null },
@@ -122,14 +122,44 @@ async function main() {
     assert.equal(results.length, 3, "different measurement questions are aggregated separately");
     const cohort = protocol => results.find(row => row.protocol === protocol);
     assert.equal(Number(cohort("cheek-tightness-v2").enrolled), 1, "repeat account does not inflate sample");
-    assert.equal(Number(cohort("cheek-tightness-v2").comparable_no_tightness_without_reaction_or_stop), 1);
+    assert.equal(Number(cohort("cheek-tightness-v2").comparable_none_without_reaction_or_stop), 1);
     assert.equal(Number(cohort("cheek-tightness-v2").lower_discomfort), 1);
     assert.equal(cohort("cheek-tightness-v2").enough_to_review, false);
-    assert.equal(Number(cohort("post-wash-tightness-v1").unknown_tightness_days), 1);
-    assert.equal(Number(cohort("post-wash-tightness-v1").no_tightness_days), 0);
-    assert.equal(Number(cohort("serum-cheek-tightness-v1").no_tightness_days), 1);
-    assert.equal(Number(cohort("serum-cheek-tightness-v1").comparable_no_tightness_without_reaction_or_stop), 0);
+    assert.equal(Number(cohort("post-wash-tightness-v1").unknown_outcomes), 1);
+    assert.equal(Number(cohort("post-wash-tightness-v1").none_reported), 0);
+    assert.equal(Number(cohort("serum-cheek-tightness-v1").none_reported), 1);
+    assert.equal(Number(cohort("serum-cheek-tightness-v1").comparable_none_without_reaction_or_stop), 0);
     assert.equal(Number(cohort("serum-cheek-tightness-v1").irritation_reported), 1);
+    const cosmetic = (id, protocol, report, extra = {}) => modern(id, protocol, {
+      startedAt: daysAgo(45), baselineValue: 3, area: "nose", route: "texture",
+      analysisConsent: { version: "cosmetic-outcome-analysis-v3", grantedAt: daysAgo(45) },
+      followUp: { used: "recommended", frequency: "daily", otherChanges: "no", reaction: "none",
+        recordedAt: daysAgo(17), value: 1, useDays: "28_plus", ...report },
+      ...extra,
+    });
+    const before = (await db.query(report)).rows.length;
+    const additions = [
+      cosmetic("cosmetic-eligible", "cosmetic-blackhead-v1", {}),
+      cosmetic("cosmetic-changed-more", "cosmetic-closed-v1", { value: 0, otherChanges: "yes" }),
+      cosmetic("cosmetic-early", "cosmetic-texture-v1", { value: 0, recordedAt: daysAgo(24) }),
+      cosmetic("cosmetic-no-consent", "cosmetic-dark-mark-v1", { value: 0 }, { route: "tone", analysisConsent: null }),
+      cosmetic("cosmetic-not-allowed", "cosmetic-inflamed-v1", { value: 0 }),
+    ];
+    await asUser(alice);
+    for (const payload of additions) await save(alice, [{ record_id: payload.id, expected_revision: 0, payload }]);
+    await db.exec("reset role;");
+    const expanded = (await db.query(report)).rows;
+    assert.equal(expanded.length, before + 3, "only authorized protocols and consented data are counted");
+    const cosmeticRow = protocol => expanded.find(row => row.protocol === protocol);
+    const blackhead = cosmeticRow("cosmetic-blackhead-v1");
+    assert.equal(blackhead.area, "nose");
+    assert.equal(Number(blackhead.check_day), 28);
+    assert.equal(Number(blackhead.improved_but_remaining), 1);
+    assert.equal(Number(blackhead.comparable_improved_but_remaining_without_reaction_or_stop), 1);
+    assert.equal(Number(blackhead.comparable_none_without_reaction_or_stop), 0);
+    assert.equal(Number(cosmeticRow("cosmetic-closed-v1").none_reported), 1, "personal outcome is counted separately");
+    assert.equal(Number(cosmeticRow("cosmetic-closed-v1").comparable_none_without_reaction_or_stop), 0, "multiple changes are not product evidence");
+    assert.equal(Number(cosmeticRow("cosmetic-texture-v1").checked_in_window), 0);
     console.log("Journey SQL checks passed: RLS isolation, ownership guard, revisions, idempotence, atomic rollback, validation, anonymous denial, private username registry, single-use recovery and throttling.");
   } finally { await db.close(); }
 }

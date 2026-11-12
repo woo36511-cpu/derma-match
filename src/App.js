@@ -113,7 +113,6 @@ export default function App() {
     handleFeedbackSurveyAnswer,
     saveFeedbackResult,
     feedbackSurveyComplete,
-    feedbackResultRecord,
     nextRoutine,
     baseLevel,
     levelChangeMessage,
@@ -139,9 +138,8 @@ export default function App() {
         {step === "symptomCheck" && <SymptomCheckScreen check={symptomCheck} />}
         {step === "symptomResult" && <SymptomResultScreen check={symptomCheck} setStep={setStep}
           onRecordConcern={symptomCheck.returningToConcernCheck ? concernCheck.resume : concernCheck.canStart ? concernCheck.start : undefined} />}
-        {step === "concernCheck" && <ConcernCheckScreen check={concernCheck} onHome={() => setStep("start")} onDetailedFeedback={startSavedFeedback}
-          onMoisturizerCheck={moisturizerObservation.latest ? moisturizerObservation.resume : undefined} />}
-        {step === "moisturizerObservation" && <MoisturizerObservationScreen key={JSON.stringify([account.user?.id, moisturizerObservation.record?.id, moisturizerObservation.offer?.kind])} observation={moisturizerObservation} onHome={() => setStep("start")} />}
+        {step === "concernCheck" && <ConcernCheckScreen check={concernCheck} onHome={() => setStep("start")} onDetailedFeedback={startSavedFeedback} />}
+        {step === "moisturizerObservation" && <MoisturizerObservationScreen key={JSON.stringify([account.user?.id, moisturizerObservation.record?.id, moisturizerObservation.offer?.kind])} observation={moisturizerObservation} onRecommend={startSimpleSkinCare} onHome={() => setStep("start")} />}
         {step === "start" && (
           <StartScreen
             startCheckedFlow={startCheckedFlow}
@@ -163,7 +161,7 @@ export default function App() {
             openSavedSurveyResult={openSavedSurveyResult}
             startSavedFeedback={startSavedFeedback}
             onQuickConcernCheck={concernCheck.canStart ? concernCheck.start : undefined}
-            onMoisturizerCheck={moisturizerObservation.latest ? moisturizerObservation.resume : undefined}
+            onMoisturizerCheck={moisturizerObservation.available ? moisturizerObservation.resume : undefined}
             routineReview={routineReview}
           />
         )}
@@ -223,7 +221,7 @@ export default function App() {
           />
         )}
 
-        {step === "simpleCare" && <SimpleCareScreen key={account.user?.id ?? "guest"} profile={surveyResult} surveyAnswers={surveyAnswers} initialRecord={simpleRecord} onRestart={startSimpleSkinCare} onReviewRoutine={() => setStep("routineReview")} onMoisturizerObservation={moisturizerObservation.start} onSave={saveSimpleSkinRecord} onBack={() => { setSurveyIndex(activeSurveyQuestions.length - 1); setStep("survey"); }} onHome={() => setStep("start")} />}
+        {step === "simpleCare" && <SimpleCareScreen key={account.user?.id ?? "guest"} profile={surveyResult} surveyAnswers={surveyAnswers} initialRecord={simpleRecord} onRestart={startSimpleSkinCare} onReviewRoutine={() => setStep("routineReview")} onSave={saveSimpleSkinRecord} onBack={() => { setSurveyIndex(activeSurveyQuestions.length - 1); setStep("survey"); }} onHome={() => setStep("start")} />}
 
         {step === "issueSelect" && (
           <IssueSelectScreen
@@ -315,7 +313,6 @@ export default function App() {
             safety={feedbackSafety}
             symptomAssessment={symptomCheck.assessment}
             onSymptomRecheck={startSymptomRecheck}
-            feedbackResultRecord={feedbackResultRecord}
             nextRoutineInfo={nextRoutineInfo}
             nextLevel={nextLevel}
             baseLevel={baseLevel}
