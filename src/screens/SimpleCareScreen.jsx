@@ -16,6 +16,7 @@ import { ConcernProductOptions } from "../components/ConcernProductOptions";
 import { RoutineProductScroller } from "../components/RoutineProductScroller";
 import { getBasicObservationTracks, getObservationKinds } from "../utils/moisturizerObservation";
 import { DetailDisclosure } from "../components/DetailDisclosure";
+import { ProcedureOptions } from "../components/ProcedureOptions";
 
 export function ObservationSummary({ profile }) {
   const assessment = profile.observationAssessment;
@@ -127,6 +128,7 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     <SimpleCareResult profile={profile} routine={routine} plan={displayPlan} onReviewRoutine={saveError ? undefined : onReviewRoutine} />
     {(profile.surveyVersion !== ADAPTIVE_SURVEY_VERSION || routine.isHistorical) && onRestart && <button onClick={onRestart} className="rounded-xl border px-4 py-3">새 기준으로 다시 확인</button>}
     {!plan.blockNewBasics && profile.observationAssessment?.canRecommendBasics !== false && <CosmeticAddOnSection context={cosmeticContext} initialAnswers={cosmeticAnswers} onApply={save} />}
+    <ProcedureOptions plan={displayPlan} profile={profile} />
     {saveError && <div role="alert" className="rounded-xl bg-amber-50 p-4">결과는 표시했지만 저장하지 못했어요. <button className="underline" onClick={() => save()}>저장 다시 시도</button></div>}
     <div className="flex flex-wrap gap-3"><button className="rounded-xl border px-4 py-3" onClick={() => { setShowResult(false); setLegacyExtent(false); setIndex(0); }}>추가 고민 답변 바꾸기</button><button className="rounded-xl border px-4 py-3" onClick={onBack}>피부타입 답변 다시 보기</button><button className="rounded-xl bg-slate-900 text-white px-4 py-3" onClick={onHome}>시작 화면</button></div>
   </div>;

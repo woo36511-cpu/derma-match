@@ -135,6 +135,7 @@ export function MoisturizerObservationScreen({ observation, onHome, onRecommend 
         <SelectField label="불편함이 있거나 사용을 중단했나요?" value={answers.reaction} onChange={value => selected("reaction", value)} options={[
           ["none", "둘 다 없어요"], ["irritation", "따가움·붉어짐이 있었어요"], ["stopped_irritation", "자극 때문에 중단했어요"], ["stopped_other", "다른 이유로 중단했어요"],
         ]} />
+        <p className="text-xs text-slate-600">같은 부위에 새로 받은 피부과 시술이 있다면 다음 질문에서 ‘같이 달라졌어요’를 골라요.</p>
         <SelectField label="다른 화장품·약·세안 습관이나 생활 환경도 달라졌나요?" value={answers.otherChanges} onChange={value => selected("otherChanges", value)} options={[
           ["no", "달라지지 않았어요"], ["yes", "같이 달라졌어요"], ["unknown", "잘 모르겠어요"],
         ]} />
