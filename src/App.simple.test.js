@@ -58,6 +58,34 @@ test("main flow preserves skin-type survey, saves four basic categories, and reo
   expect(screen.getByRole("heading", { name: "피부타입에 맞는 기본 루틴이면 충분해요." })).toBeInTheDocument();
   expect(records()).toHaveLength(1);
 });
+test("procedure options stay out of the result until requested and follow the chosen scar shape", () => {
+  render(<App />); baseSurvey();
+  extraCare({ concern: "acne", shape: "indented_scar", areaState: "comfortable", medicine: "none" });
+  const control = screen.getByRole("button", { name: "피부과 시술 선택지 보기" });
+  expect(control).toHaveAttribute("aria-expanded", "false");
+  expect(screen.queryByText("부작용과 주의점")).not.toBeInTheDocument();
+  fireEvent.click(control);
+  const choice = screen.getByRole("combobox", { name: "패임이 어떤 모습에 가까워요?" });
+  expect(screen.queryByRole("heading", { name: "TCA CROSS" })).not.toBeInTheDocument();
+  fireEvent.change(choice, { target: { value: "narrow" } });
+  expect(screen.getByRole("heading", { name: "TCA CROSS" })).toBeVisible();
+  expect(screen.getByText("부작용과 주의점")).toBeVisible();
+  expect(screen.queryByRole("heading", { name: "서브시전" })).not.toBeInTheDocument();
+  fireEvent.change(choice, { target: { value: "unknown" } });
+  expect(screen.queryByRole("heading", { name: "TCA CROSS" })).not.toBeInTheDocument();
+  fireEvent.click(control);
+  expect(screen.queryByRole("combobox", { name: "패임이 어떤 모습에 가까워요?" })).not.toBeInTheDocument();
+  expect(records()).toHaveLength(1);
+});
+
+test("active inflamed breakouts with old marks don't offer an elective procedure", () => {
+  render(<App />); baseSurvey();
+  extraCare({ concern: "acne", shapes: ["red", "indented_scar"], primaryShape: "indented_scar",
+    locations: { red: "chin", indented_scar: "cheeks" }, areaState: "comfortable", medicine: "none" });
+  expect(screen.queryByRole("button", { name: "피부과 시술 선택지 보기" })).not.toBeInTheDocument();
+  expect(screen.queryByText("TCA CROSS")).not.toBeInTheDocument();
+});
+
 test("blackheads show licensed visual references and the targeted OTC product beside the basic routine", () => {
   render(<App />); baseSurvey(); extraCare({ concern: "acne", shape: "blackhead", areaState: "comfortable", medicine: "none" });
   const drug = screen.getByRole("region", { name: "일반의약품 후보" });
