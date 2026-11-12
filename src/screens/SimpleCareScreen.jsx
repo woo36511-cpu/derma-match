@@ -14,7 +14,7 @@ import { AcnePhotoReference } from "../components/AcnePhotoReference";
 import { FolliculitisOptions } from "../components/FolliculitisOptions";
 import { ConcernProductOptions } from "../components/ConcernProductOptions";
 import { RoutineProductScroller } from "../components/RoutineProductScroller";
-import { getMoisturizerOffer } from "../utils/moisturizerObservation";
+import { getObservationKinds, getProductObservationOffers } from "../utils/moisturizerObservation";
 import { DetailDisclosure } from "../components/DetailDisclosure";
 
 export function ObservationSummary({ profile }) {
@@ -108,7 +108,8 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     ? { products: {} }
     : initialRecord?.routine && JSON.stringify(initialRecord.surveyAnswers) === JSON.stringify(surveyAnswers)
       ? { products: Object.fromEntries(Object.entries(initialRecord.routine).map(([category, id]) => [category, getProductById(id) ?? null])), selectionEvidence: initialRecord.recommendationAssessment?.selectionEvidence ?? null, isHistorical: initialRecord.recommendationAssessment?.ruleVersion !== RECOMMENDATION_RULE_VERSION }
-    : buildDynamicRoutine(profile.hydrationLevel, { mainConcern: "none", skinType: profile.skinType, careNeeds: profile.careNeeds, basicOnly: profile.surveyVersion === ADAPTIVE_SURVEY_VERSION, isSensitive: profile.observationAssessment?.isSensitive ?? true }), [profile, plan.blockNewBasics, initialRecord, surveyAnswers]);
+    : buildDynamicRoutine(profile.hydrationLevel, { mainConcern: "none", skinType: profile.skinType, careNeeds: profile.careNeeds, basicOnly: profile.surveyVersion === ADAPTIVE_SURVEY_VERSION, isSensitive: profile.observationAssessment?.isSensitive ?? true, observationKinds: getObservationKinds(profile) }), [profile, plan.blockNewBasics, initialRecord, surveyAnswers]);
+  const observationOffers = getProductObservationOffers(record);
   const cosmeticContext = { profile, surveyAnswers, carePlan: plan, routine };
   const cosmeticPlan = cosmeticAnswers ? buildCosmeticAddOnPlan(cosmeticAnswers, cosmeticContext) : null;
   const applyCosmeticRoute = addon => addon?.suppressPharmacy ? { ...plan, pharmacy: null, title: "막힌 피지·거친 결은 선택한 화장품 후보로 살펴봐요.", detail: "아래 추가 화장품 영역에서 선택한 후보를 확인해요. 약품 후보 표시는 보류했어요.", productNote: "각질 관리 화장품과 여드름약을 같은 부위에 함께 새로 시작하지 않아요." } : plan;
@@ -125,11 +126,13 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   if (showResult && plan.complete) return <div className="space-y-6">
     {routine.isHistorical && <p className="rounded-xl bg-slate-50 p-4 text-sm">저장 당시의 제품 후보를 보여드려요. 새 검수 기준으로 다시 추천받으려면 아래에서 다시 확인해요.</p>}
     <SimpleCareResult profile={profile} routine={routine} plan={displayPlan} onReviewRoutine={saveError ? undefined : onReviewRoutine} />
-    {!saveError && !displayPlan.blockNewBasics && onMoisturizerObservation && getMoisturizerOffer(record) &&
-      <section aria-label="보습제 사용 기록 시작" className="space-y-2 rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
-        <h2 className="font-bold">지금 보습제로 볼 당김이 달라지는지 확인해요</h2>
-        <p className="text-sm text-slate-700">기존 제품을 유지해도 돼요. 오늘 상태를 남겨두고 2주 후 같은 질문으로 비교해요.</p>
-        <button type="button" onClick={() => onMoisturizerObservation(record)} className="rounded-xl bg-emerald-900 px-4 py-2 text-sm font-semibold text-white">보습제 사용 기록 시작</button>
+    {!saveError && !displayPlan.blockNewBasics && onMoisturizerObservation && observationOffers.length > 0 &&
+      <section aria-label="화장품 사용과 피부 변화 기록 시작" className="space-y-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+        <h2 className="font-bold">지금 쓰는 제품과 피부 변화를 기록해요</h2>
+        <p className="text-sm text-slate-700">기존 제품을 유지해도 돼요. 바꾼다면 한 번에 한 가지씩 바꾸고, 2주 후 같은 질문에 답해요.</p>
+        <div className="flex flex-wrap gap-2">{observationOffers.map(({ kind, config }) =>
+          <button key={kind} type="button" onClick={() => onMoisturizerObservation(record, kind)} className="rounded-xl bg-emerald-900 px-4 py-2 text-sm font-semibold text-white">{config.label} 사용 기록 시작</button>
+        )}</div>
       </section>}
     {(profile.surveyVersion !== ADAPTIVE_SURVEY_VERSION || routine.isHistorical) && onRestart && <button onClick={onRestart} className="rounded-xl border px-4 py-3">새 기준으로 다시 확인</button>}
     {!plan.blockNewBasics && profile.observationAssessment?.canRecommendBasics !== false && <CosmeticAddOnSection context={cosmeticContext} initialAnswers={cosmeticAnswers} onApply={save} />}

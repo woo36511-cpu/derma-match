@@ -141,7 +141,7 @@ export default function App() {
           onRecordConcern={symptomCheck.returningToConcernCheck ? concernCheck.resume : concernCheck.canStart ? concernCheck.start : undefined} />}
         {step === "concernCheck" && <ConcernCheckScreen check={concernCheck} onHome={() => setStep("start")} onDetailedFeedback={startSavedFeedback}
           onMoisturizerCheck={moisturizerObservation.latest ? moisturizerObservation.resume : undefined} />}
-        {step === "moisturizerObservation" && <MoisturizerObservationScreen key={account.user?.id ?? "guest"} observation={moisturizerObservation} onHome={() => setStep("start")} />}
+        {step === "moisturizerObservation" && <MoisturizerObservationScreen key={JSON.stringify([account.user?.id, moisturizerObservation.record?.id, moisturizerObservation.offer?.kind])} observation={moisturizerObservation} onHome={() => setStep("start")} />}
         {step === "start" && (
           <StartScreen
             startCheckedFlow={startCheckedFlow}

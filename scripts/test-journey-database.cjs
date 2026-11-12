@@ -97,6 +97,39 @@ async function main() {
     } }]);
     await db.exec("reset role;");
     assert.equal((await db.query(report)).rows.length, 0, "withdrawal removes the record from future reports");
+    const modern = (id, protocol, extra = {}) => ({
+      id, type: "feedback", source: "skin_product_observation", assessmentOnly: true,
+      productObservation: {
+        protocol, productId: 68, formulaVerifiedAt: "2026-11-09", hydrationLevel: 4, sensitive: false,
+        choice: "start", startedAt: daysAgo(30), baselineDays: 5, baselineComfort: 3,
+        analysisConsent: { version: "skin-product-internal-analysis-v2", grantedAt: daysAgo(30) },
+        followUp: { days: 0, comfort: 1, used: "recommended", frequency: "daily", otherChanges: "no", reaction: "none", recordedAt: daysAgo(16) },
+        ...extra,
+      },
+    });
+    const successful = modern("moisturizer-clear", "cheek-tightness-v2");
+    const unknown = modern("cleanser-unknown", "post-wash-tightness-v1", {
+      followUp: { ...successful.productObservation.followUp, days: null },
+    });
+    const irritated = modern("serum-irritated", "serum-cheek-tightness-v1", {
+      earlyCheck: { reaction: "stopped_irritation" },
+    });
+    const duplicate = modern("moisturizer-repeat", "cheek-tightness-v2", { startedAt: daysAgo(29) });
+    await asUser(alice);
+    for (const payload of [successful, unknown, irritated, duplicate]) await save(alice, [{ record_id: payload.id, expected_revision: 0, payload }]);
+    await db.exec("reset role;");
+    const results = (await db.query(report)).rows;
+    assert.equal(results.length, 3, "different measurement questions are aggregated separately");
+    const cohort = protocol => results.find(row => row.protocol === protocol);
+    assert.equal(Number(cohort("cheek-tightness-v2").enrolled), 1, "repeat account does not inflate sample");
+    assert.equal(Number(cohort("cheek-tightness-v2").comparable_no_tightness_without_reaction_or_stop), 1);
+    assert.equal(Number(cohort("cheek-tightness-v2").lower_discomfort), 1);
+    assert.equal(cohort("cheek-tightness-v2").enough_to_review, false);
+    assert.equal(Number(cohort("post-wash-tightness-v1").unknown_tightness_days), 1);
+    assert.equal(Number(cohort("post-wash-tightness-v1").no_tightness_days), 0);
+    assert.equal(Number(cohort("serum-cheek-tightness-v1").no_tightness_days), 1);
+    assert.equal(Number(cohort("serum-cheek-tightness-v1").comparable_no_tightness_without_reaction_or_stop), 0);
+    assert.equal(Number(cohort("serum-cheek-tightness-v1").irritation_reported), 1);
     console.log("Journey SQL checks passed: RLS isolation, ownership guard, revisions, idempotence, atomic rollback, validation, anonymous denial, private username registry, single-use recovery and throttling.");
   } finally { await db.close(); }
 }

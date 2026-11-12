@@ -20,7 +20,7 @@ export function ConcernCheckScreen({ check, onHome, onDetailedFeedback, onMoistu
     <div className="flex flex-wrap items-center gap-3">
       {check.saved ? <PrimaryButton onClick={check.openHistory}>내 피부 변화 보기</PrimaryButton> :
         <PrimaryButton onClick={check.save} disabled={!check.canSave}>{check.error ? "변화 저장 다시 시도" : "변화만 저장"}</PrimaryButton>}
-      {onMoisturizerCheck && <button type="button" onClick={onMoisturizerCheck} className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold">보습제 변화 기록</button>}
+      {onMoisturizerCheck && <button type="button" onClick={onMoisturizerCheck} className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold">화장품 사용과 피부 변화 기록</button>}
       {onDetailedFeedback && <button type="button" onClick={onDetailedFeedback} className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold">루틴·제품 자세히 체크하기</button>}
       <button type="button" onClick={onHome} className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold">시작 화면으로</button>
     </div>
