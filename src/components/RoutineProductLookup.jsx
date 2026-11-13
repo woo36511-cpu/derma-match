@@ -11,15 +11,21 @@ function LookupImage({ src }) {
     : <span aria-hidden="true" className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-xs text-slate-500">사진 없음</span>;
 }
 
-export function RoutineProductLookup({ ownerKey = "guest", profile, savedAt, safetyBlocked = false, onStartSurvey, loading = false }) {
+export function RoutineProductLookup({ ownerKey = "guest", profile, savedAt, safetyBlocked = false, onStartSurvey, loading = false, currentRoutine }) {
   if (loading) return <p className="rounded-2xl bg-white p-4 text-sm text-slate-700" role="status">이 기기의 내 루틴을 확인하고 있어요.</p>;
-  return <RoutineLookupContent key={ownerKey} {...{ ownerKey, profile, savedAt, safetyBlocked, onStartSurvey }} />;
+  const props = { ownerKey, profile, savedAt, safetyBlocked, onStartSurvey };
+  return currentRoutine ? <RoutineLookupContent key={ownerKey} {...props} routine={currentRoutine} />
+    : <StandaloneRoutineLookup key={ownerKey} {...props} />;
 }
 
-function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onStartSurvey }) {
+function StandaloneRoutineLookup(props) {
+  const routine = useCurrentRoutine(props.ownerKey);
+  return <RoutineLookupContent {...props} routine={routine} />;
+}
+
+function RoutineLookupContent({ profile, savedAt, safetyBlocked, onStartSurvey, routine }) {
   const [query, setQuery] = useState("");
   const [manualCategory, setManualCategory] = useState("");
-  const routine = useCurrentRoutine(ownerKey);
   const reviewRef = useRef(null);
   const isFull = routine.entries.length >= CURRENT_ROUTINE_LIMIT;
   const manual = makeManualRoutineEntry(query, manualCategory);

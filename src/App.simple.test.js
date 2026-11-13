@@ -542,3 +542,31 @@ test("a saved use reaction changes the next routine without a data explanation o
   expect(screen.queryByText("내 기록 자세히 보기")).not.toBeInTheDocument();
   expect(screen.queryByText("지금 쓰는 제품 기록하기 (선택)")).not.toBeInTheDocument();
 });
+
+test("first survey keeps the two comfortable serums entered before the result", () => {
+  render(<App />); baseSurvey({ observedOil: "whole" });
+  fireEvent.click(screen.getByText("쓰는 화장품 검색·직접 입력 (선택)"));
+  const search = screen.getByRole("searchbox", { name: "브랜드나 제품명" });
+  fireEvent.change(search, { target: { value: "코스알엑스 나이아신아마이드 15 세럼" } });
+  click("코스알엑스 나이아신아마이드 15 세럼 내 루틴에 담기");
+  fireEvent.change(screen.getByRole("combobox", { name: "코스알엑스 나이아신아마이드 15 세럼 사용 반응" }), { target: { value: "comfortable" } });
+  fireEvent.change(search, { target: { value: "테스트 재생 세럼" } });
+  fireEvent.click(screen.getByText("목록에 없는 제품 직접 추가"));
+  fireEvent.change(screen.getByRole("combobox", { name: "제품 종류" }), { target: { value: "serum" } });
+  click("입력한 제품 담기");
+  fireEvent.change(screen.getByRole("combobox", { name: "테스트 재생 세럼 사용 반응" }), { target: { value: "comfortable" } });
+  extraCare({ concern: "none" });
+  const keep = within(screen.getByRole("region", { name: "지금 쓰는 세럼" }));
+  expect(keep.getByText(/코스알엑스 나이아신아마이드 15 세럼 · 테스트 재생 세럼/)).toBeVisible();
+  expect(records()[0].routine.serum).toBeNull();
+  expect(records()[0].productUsagePlan.some(product => product.category === "serum")).toBe(false);
+});
+
+test("a first-time visitor can keep an unnamed serum without using product search", () => {
+  render(<App />); baseSurvey();
+  fireEvent.change(screen.getByRole("combobox", { name: /지금 쓰는 세럼은 어때요/ }), { target: { value: "keep" } });
+  extraCare({ concern: "none" });
+  expect(screen.getByText("편하게 쓰는 세럼은 그대로 유지해요.")).toBeVisible();
+  expect(records()[0].routine.serum).toBeNull();
+  expect(records()[0].routinePreferences.serum).toBe("keep");
+});

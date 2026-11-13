@@ -1,4 +1,4 @@
-export const COSMETIC_ADDON_VERSION = "optional-cosmetics-v2-catalog-20261109";
+export const COSMETIC_ADDON_VERSION = "optional-cosmetics-v3-oil-fit";
 export const cosmeticGoals = [
   { value: "support", label: "보습·장벽 보완", detail: "기초의 보습감이 부족할 때 보완할 제품을 찾아요." },
   { value: "sebum", label: "유분감·모공 외관", detail: "번들거림과 모공이 도드라져 보이는 것이 신경 쓰여요." },
@@ -20,6 +20,20 @@ const option = (value, label) => ({ value, label });
 export function getCosmeticQuestions(answers = {}, carePlan = {}) {
   const questions = [{ id: "goal", q: "어떤 관리를 추가하고 싶나요?", options: cosmeticGoals }];
   if (!answers.goal) return questions;
+  if (answers.goal === "sebum") {
+    questions.push({ id: "shine", q: "신경 쓰이는 번들거림은 언제 느껴지나요?", options: [
+      option("immediate", "화장품을 바른 직후부터 무겁거나 번들거려요"),
+      option("later", "바를 땐 편한데 몇 시간 뒤 기름기가 올라와요"),
+      option("fine", "평소 번들거림은 크게 신경 쓰이지 않아요"),
+      option("unknown", "언제부터인지 잘 모르겠어요"),
+    ] });
+    if (answers.shine !== "later") return questions;
+    questions.push({ id: "oilArea", q: "어느 부위에서 기름기가 올라오나요?", options: [
+      option("tzone", "주로 이마·코 주변"), option("whole", "이마·코와 볼 모두"),
+      option("other", "그 밖의 일부 부위"), option("unknown", "잘 모르겠어요"),
+    ] });
+    if (answers.oilArea === "unknown") return questions;
+  }
   if (answers.goal === "texture" && carePlan.pharmacy && ["closed", "blackhead"].includes(carePlan.answers?.shape)) {
     questions.push({ id: "route", q: "이번에는 어떤 관리 후보를 볼까요?", options: [
       option("cosmetic_first", "이번에는 각질 관리 화장품 후보만 볼게요"),
@@ -68,6 +82,7 @@ export const cosmeticProductProfiles = {
   45: { goals: ["support"], families: [], intensity: "support", label: "보습·장벽 보완 화장품" },
   47: { goals: ["support"], families: [], intensity: "support", label: "수분 보충 화장품" },
   49: { goals: ["texture"], families: ["acid"], intensity: "exfoliant", label: "각질 관리 화장품", source: "https://www.cosrx.co.kr/shop/shopdetail.html?branduid=191" },
+  75: { goals: ["sebum"], families: ["niacinamide"], intensity: "gentle", label: "오후 번들거림 관리 화장품" },
   51: { goals: ["tone", "lines"], families: ["niacinamide"], intensity: "gentle", label: "미백·주름개선 기능성", source: "https://m.manyo.co.kr/goods/goods_view.php?goodsNo=1000000233" },
   57: { goals: ["support"], families: [], intensity: "support", label: "가벼운 젤 보습 보완" },
   58: { goals: ["support"], families: [], intensity: "support", label: "건조 부위 보습 보완" },

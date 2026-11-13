@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { getCosmeticQuestions, cleanCosmeticAnswers } from "../data/cosmeticAddOns";
 import { buildCosmeticAddOnPlan } from "../utils/cosmeticAddOnPlan";
+import { getProductPurchaseLink } from "../utils/productPurchaseLink";
 import { DetailDisclosure } from "./DetailDisclosure";
 
 export function CosmeticAddOnResult({ plan }) {
+  const purchase = plan.answers?.goal === "sebum" ? getProductPurchaseLink(plan.product) : null;
   return <div className="space-y-4" aria-label="추가 화장품 추천 결과">
     <div><h3 className="font-bold">{plan.title}</h3><p className="mt-1 text-sm text-slate-700">{plan.detail}</p></div>
     {plan.product && <article className="space-y-3 rounded-2xl border border-emerald-100 bg-white p-4" aria-label={plan.product.name}>
       <div className="flex items-center gap-4"><img src={plan.product.image} alt={plan.product.name} loading="lazy" width="100" height="100" className="h-24 w-24 shrink-0 rounded-xl object-contain bg-slate-50" /><div><p className="text-xs font-semibold text-emerald-800">{plan.classification}</p><h4 className="mt-1 font-bold">{plan.product.name}</h4><p className="mt-1 text-sm text-slate-600">{plan.product.volume}</p></div></div>
       <p className="text-sm">{plan.fit}</p>
+      {purchase?.url && <a href={purchase.url} target="_blank" rel="noopener noreferrer" className="inline-block text-sm font-semibold text-emerald-800 underline">{purchase.label}</a>}
       {plan.suppressPharmacy && <p className="rounded-xl bg-amber-50 p-3 text-sm">이번 결과에서는 각질 관리 화장품 후보를 선택했어요. 약품 후보 표시는 보류하며, 약과 이 제품을 함께 새로 시작하지 않아요.</p>}
       <DetailDisclosure title="추천 이유·사용 순서·주의사항">
         <div className="space-y-3"><p>{plan.placement}</p><p>{plan.product.description}</p><ul className="list-disc space-y-1 pl-5">{(plan.product.usage?.howToUse ?? []).map(text => <li key={text}>{text}</li>)}</ul><ul className="list-disc space-y-1 pl-5">{(plan.product.caution ?? []).map(text => <li key={text}>{text}</li>)}</ul><p>같은 목적의 기능성 제품은 한 가지만 먼저 확인해요. 낮에는 잘 맞는 자외선 차단제를 사용하고, 새 자극이 생기면 새로 추가한 제품을 중단해요.</p><p>답변한 성분군과 확인된 제품 정보로 조합을 점검했어요. 현재 제품의 전체 처방이나 알레르기를 모두 확인한 것은 아니므로 무자극·안전성을 보장하지 않아요.</p>{plan.source && <a href={plan.source} target="_blank" rel="noreferrer" className="inline-block underline">브랜드 공식 제품 정보</a>}</div>

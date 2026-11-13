@@ -4682,5 +4682,189 @@
       "normal": "얼굴에 얇게 펴 바를 정도",
       "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
     }
+  },
+  {
+    "id": 75,
+    "name": "이즈앤트리 그린티 프레쉬 세럼",
+    "brand": "이즈앤트리",
+    "category": "serum",
+    "hydrationLevel": 7,
+    "texture": "light_serum",
+    "concerns": [
+      "sebum"
+    ],
+    "recommendationScope": "addon_only",
+    "ingredients": [
+      "녹차추출물",
+      "나이아신아마이드",
+      "판테놀",
+      "스쿠알란"
+    ],
+    "fullIngredients": [
+      "녹차추출물",
+      "정제수",
+      "부틸렌글라이콜",
+      "글리세린",
+      "프로판다이올",
+      "다이프로필렌글라이콜",
+      "나이아신아마이드",
+      "1,2-헥산다이올",
+      "판테놀",
+      "하이드록시아세토페논",
+      "스쿠알란",
+      "암모늄아크릴로일다이메틸타우레이트/브이피코폴리머",
+      "알란토인",
+      "카보머",
+      "트로메타민",
+      "베타인",
+      "폴리글리세릴-3메틸글루코오스다이스테아레이트",
+      "세테아릴알코올",
+      "에피갈로카테킨갈레이트",
+      "글리세릴스테아레이트에스이",
+      "아데노신",
+      "다이포타슘글리시리제이트",
+      "바실러스발효물",
+      "녹두추출물",
+      "동백나무꽃추출물",
+      "대왕송잎추출물",
+      "당느릅나무뿌리추출물",
+      "달맞이꽃추출물",
+      "칡뿌리추출물",
+      "브로콜리싹추출물"
+    ],
+    "activeIngredients": [
+      {
+        "name": "나이아신아마이드",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "판테놀",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "에피갈로카테킨갈레이트",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "녹차추출물",
+        "concentration": 77,
+        "unit": "%",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_product_detail_image"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 5,
+      "lightweightFit": 8,
+      "soothingSupport": 3,
+      "congestionSupport": 2,
+      "barrierSupport": 3
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partially_disclosed",
+      "purchaseLinkVerified": true,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-13",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://m.isntree.com/product/detail.html?product_no=127"
+        },
+        {
+          "sourceType": "official_domestic_product_detail_image",
+          "url": "https://isntree01.openhost.cafe24.com/product/green_tea_serum/green_tea_serum_17.jpg"
+        },
+        {
+          "sourceType": "official_global_product_page",
+          "url": "https://isntree-global.com/products/isntree-green-tea-fresh-serum-50ml"
+        }
+      ],
+      "note": "국내 공식 상세 이미지에 기재된 전성분. 녹차추출물 77%는 원료 함량이며 나이아신아마이드·EGCG 함량은 미공개."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-13",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "오후 번들거림이 신경 쓰이고 현재 피부가 편안할 때 비교하는 추가 후보. 가벼운 제형과 제조사 용도를 반영했으며 효능 수치를 추정하지 않음.",
+      "remainingGaps": [
+        "niacinamide_concentration",
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "humanStudyVerified": false,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false
+    },
+    "skinTypes": [
+      "지성",
+      "복합성"
+    ],
+    "description": "오후에 기름기가 신경 쓰이는 부위에 비교할 가벼운 유분 관리 세럼이에요.",
+    "shortReason": "오후 번들거림을 관리하고 싶을 때 비교해요.",
+    "caution": [
+      "나이아신아마이드 함량은 공개되지 않았어요. 이미 같은 성분의 세럼을 쓰고 있다면 겹쳐 추가하지 않아요.",
+      "새로 따갑거나 붉어지면 사용을 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": false,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "유분감 관리"
+    ],
+    "volume": "50ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-75.webp",
+    "imageSource": {
+      "url": "https://isntree.com/web/product/big/202409/6b8350a72dc58c1bdee87de0383f1713.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-13"
+    },
+    "link": "https://www.coupang.com/vp/products/6773971816",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "50ml 옵션과 포장 성분표를 확인해요. 재고는 판매처 기준이에요."
+    },
+    "usageType": "serum",
+    "usage": {
+      "when": "세안 후 세럼 단계",
+      "howToUse": [
+        "평소 편안한 피부의 번들거리는 부위부터 얇게 발라요."
+      ]
+    },
+    "usageAmount": {
+      "normal": "얇게 펴 바를 정도",
+      "oily": "소량부터 얇게"
+    }
   }
 ]

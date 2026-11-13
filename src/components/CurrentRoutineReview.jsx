@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   CURRENT_ROUTINE_LIMIT, getCurrentRoutineProduct, getRoutineConclusion, getRoutineReactionOptions,
   getRoutineReplacement, getSurveyRoutineReaction, readCurrentRoutine, writeCurrentRoutine,
@@ -8,16 +8,16 @@ import { getProductById } from "../utils/productCatalog";
 import { DetailDisclosure } from "./DetailDisclosure";
 
 export function useCurrentRoutine(ownerKey) {
-  const [initial] = useState(() => {
-    try { return { entries: readCurrentRoutine(window.localStorage, ownerKey), failed: false }; }
-    catch { return { entries: [], failed: true }; }
-  });
-  const [entries, setEntries] = useState(initial.entries);
-  const [storageFailed, setStorageFailed] = useState(initial.failed);
+  const load = key => {
+    try { return { ownerKey: key, entries: readCurrentRoutine(window.localStorage, key), storageFailed: false }; }
+    catch { return { ownerKey: key, entries: [], storageFailed: true }; }
+  };
+  const [state, setState] = useState(() => load(ownerKey));
+  useEffect(() => { setState(load(ownerKey)); }, [ownerKey]);
+  const { entries, storageFailed } = state.ownerKey === ownerKey ? state : { entries: [], storageFailed: false };
   function update(next) {
-    setEntries(next);
-    try { writeCurrentRoutine(window.localStorage, ownerKey, next); setStorageFailed(false); }
-    catch { setStorageFailed(true); }
+    try { writeCurrentRoutine(window.localStorage, ownerKey, next); setState({ ownerKey, entries: next, storageFailed: false }); }
+    catch { setState({ ownerKey, entries: next, storageFailed: true }); }
   }
   return {
     entries, storageFailed,
