@@ -7,7 +7,7 @@ import { hasExfoliatingActive } from "./productCatalog";
 import { getProductPurchaseLink } from "./productPurchaseLink";
 
 test("expanded catalog has stable unique identities, actual full ingredients, photos and source-specific sales links", () => {
-  expect(additions.map(p => p.id)).toEqual(Array.from({ length: 23 }, (_, i) => i + 52));
+  expect(additions.map(p => p.id)).toEqual(Array.from({ length: 24 }, (_, i) => i + 52));
   expect(new Set(products.map(p => p.id)).size).toBe(products.length);
   for (const p of additions) {
     expect(getProductEvidenceStatus(p).eligible).toBe(true);

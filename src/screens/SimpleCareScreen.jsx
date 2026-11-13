@@ -9,13 +9,15 @@ import { useMemo, useState } from "react";
 import { acneAreas, getSimpleCareQuestions, cleanSimpleCareAnswers } from "../data/simpleCare";
 import { buildSimpleCarePlan, SIMPLE_CARE_VERSION } from "../utils/simpleCarePlan";
 import { buildSimpleSkinRecord } from "../utils/simpleSkinRecord";
-import { buildDynamicRoutine } from "../utils/routineRecommendation";
+import { buildDynamicRoutine, getRankedProductCandidates } from "../utils/routineRecommendation";
 import { AcnePhotoReference } from "../components/AcnePhotoReference";
 import { FolliculitisOptions } from "../components/FolliculitisOptions";
 import { ConcernProductOptions } from "../components/ConcernProductOptions";
 import { RoutineProductScroller } from "../components/RoutineProductScroller";
 import { getBasicObservationTracks, getObservationKinds } from "../utils/moisturizerObservation";
+import { getComfortableRoutineSlots, getCurrentRoutineProduct, getSerumRoutineSummary } from "../utils/currentRoutineReview";
 import { DetailDisclosure } from "../components/DetailDisclosure";
+import { RoutineProductLookup } from "../components/RoutineProductLookup";
 import { ProcedureOptions } from "../components/ProcedureOptions";
 
 export function ObservationSummary({ profile }) {
@@ -48,10 +50,21 @@ export function applyObservationToCarePlan(plan, profile) {
   return plan;
 }
 
-export function SimpleCareResult({ profile, routine, plan, onReviewRoutine }) {
+export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, serumStatus, otherRetained = [] }) {
   return <div className="space-y-6">
     <header className="space-y-2"><p className="text-sm font-semibold text-emerald-700">내 피부 관리 결과</p><h1 className="text-2xl sm:text-3xl font-bold">{profile.skinType} · 기본 루틴과 필요한 추가 관리</h1><p className="text-sm text-slate-600">설문으로 추정한 피부타입이에요. 질환·원인균을 확정한 결과는 아니에요.</p></header>
     {onReviewRoutine && <button type="button" onClick={onReviewRoutine} className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-900">지금 쓰는 제품 점검하기</button>}
+    {serumStatus?.skipBasicSerum && !plan.blockNewBasics && <section aria-label="지금 쓰는 세럼" className="space-y-1 rounded-2xl border border-emerald-100 bg-emerald-50 p-4 text-sm">
+      <h2 className="font-bold">{serumStatus.hasIrritation ? "세럼은 자극 여부부터 확인해요." : "편하게 쓰는 세럼은 그대로 유지해요."}</h2>
+      {serumStatus.hasIrritation ? <p>새 세럼을 더하기보다, 어떤 제품을 쓸 때 불편했는지 먼저 확인해요.</p> : <>
+        {serumStatus.keep.length > 0 && <p>{serumStatus.keep.map(entry => getCurrentRoutineProduct(entry)?.name).join(" · ")}</p>}
+        <p>지금 조합이 편하다면 기본 세럼을 하나 더 살 필요는 없어요.</p>
+      </>}
+    </section>}
+    {otherRetained.length > 0 && !plan.blockNewBasics && <section aria-label="그대로 쓸 화장품" className="rounded-2xl border border-emerald-100 bg-emerald-50 p-4 text-sm">
+      <h2 className="font-bold">편하게 쓰는 기초 제품도 유지해요.</h2>
+      <p className="mt-1">{otherRetained.flatMap(([, products]) => products).join(" · ")}</p>
+    </section>}
     <ObservationSummary profile={profile} />
     <section className="space-y-3 rounded-2xl bg-white border border-slate-200 p-5" aria-label="추가 고민 관리">
       {plan.concernSummary && <p className="text-sm font-semibold text-emerald-800">먼저 고른 고민: {plan.concernSummary.primary.label}{plan.concernSummary.primary.area && ` · ${plan.concernSummary.primary.area}`}</p>}
@@ -69,9 +82,9 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine }) {
       <p className="text-sm text-slate-600">지금은 위의 관리부터 살펴보고, 다른 고민에 새 제품을 한꺼번에 추가하지 않아요.</p>
     </section>}
     <AcneCareReview review={buildAcneCareReview(plan)} />
-    {!plan.blockNewBasics && profile.observationAssessment?.canRecommendBasics !== false && <section className="space-y-4" aria-label="피부타입별 기본 화장품">
+    {!plan.blockNewBasics && profile.observationAssessment?.canRecommendBasics !== false && Object.values(routine.products).some(Boolean) && <section className="space-y-4" aria-label="피부타입별 기본 화장품">
       <h2 className="text-xl font-bold">피부타입에 맞는 기본 화장품</h2>
-      <p className="text-sm">아무 관리도 하지 않았다면 아래 4가지 카테고리를 비교해요. 세안제·보습제를 먼저 고르고, 토너·세럼은 필요할 때 추가해요. 이미 잘 맞는 제품이 있다면 그대로 유지해요.</p>
+      <p className="text-sm">아무 관리도 하지 않았다면 필요한 기초 제품을 비교해요. 세안제·보습제를 먼저 고르고, 토너·세럼은 필요할 때 추가해요. 이미 잘 맞는 제품이 있다면 그대로 유지해요.</p>
       <RoutineProductScroller productsByCategory={routine.products} userContext={{ skinType: profile.skinType, level: profile.hydrationLevel, careNeeds: profile.careNeeds, isSensitive: profile.observationAssessment?.isSensitive, acneSupport: plan.answers.concern === "acne", mainConcern: "none" }} />
       <DetailDisclosure title="사용 순서·세안법·함께 쓸 때 주의점">
         <p>미지근한 물로 부드럽게 씻고, 과한 세안·스크럽은 줄여요. 피부의 산성도는 설문만으로 측정할 수 없어요. 토너 → 세럼 → 크림 순서는 선택한 제품 안내에 따라 조절해요. 낮에는 잘 맞는 자외선 차단제를 사용해요.</p>
@@ -93,7 +106,7 @@ function updateCareAnswer(previous, id, value) {
   return cleanSimpleCareAnswers(next);
 }
 
-export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave, onBack, onHome, onRestart, onReviewRoutine, personalProductFeedback }) {
+export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave, onBack, onHome, onRestart, onReviewRoutine, currentRoutineEntries, routineReview, priorSerumPreference, personalProductFeedback }) {
   const [legacyExtent, setLegacyExtent] = useState(() => Boolean(initialRecord &&
     initialRecord.symptomAssessment?.ruleVersion !== SIMPLE_CARE_VERSION && !initialRecord.additionalCare?.breakoutExtent));
   const [answers, setAnswers] = useState(() => cleanSimpleCareAnswers(initialRecord?.additionalCare ?? {}, { legacyExtent }));
@@ -101,23 +114,44 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   const [record, setRecord] = useState(initialRecord ?? null);
   const [showResult, setShowResult] = useState(() => Boolean(initialRecord));
   const [saveError, setSaveError] = useState(false);
+  const [serumPreference, setSerumPreference] = useState(() => initialRecord?.routinePreferences?.serum ?? priorSerumPreference ?? "");
+  const serumStatus = getSerumRoutineSummary(currentRoutineEntries, serumPreference === "keep");
+  const skipBasicSerum = (serumPreference !== "compare" && serumStatus.skipBasicSerum) || serumStatus.hasIrritation;
   const [cosmeticAnswers, setCosmeticAnswers] = useState(() => initialRecord?.cosmeticAddOn?.answers ?? null);
   const questions = getSimpleCareQuestions(answers, { legacyExtent });
   const question = questions[Math.min(index, questions.length - 1)];
   const plan = applyObservationToCarePlan(buildSimpleCarePlan(answers, { legacyExtent }), profile);
-  const routine = useMemo(() => profile.observationAssessment?.canRecommendBasics === false || plan.blockNewBasics
+  const baseRoutine = useMemo(() => profile.observationAssessment?.canRecommendBasics === false || plan.blockNewBasics
     ? { products: {} }
-    : initialRecord?.routine && JSON.stringify(initialRecord.surveyAnswers) === JSON.stringify(surveyAnswers)
+    : initialRecord?.routine && Object.values(initialRecord.routine).every(Boolean) && JSON.stringify(initialRecord.surveyAnswers) === JSON.stringify(surveyAnswers)
       ? { products: Object.fromEntries(Object.entries(initialRecord.routine).map(([category, id]) => [category, getProductById(id) ?? null])), selectionEvidence: initialRecord.recommendationAssessment?.selectionEvidence ?? null, isHistorical: initialRecord.recommendationAssessment?.ruleVersion !== RECOMMENDATION_RULE_VERSION }
     : buildDynamicRoutine(profile.hydrationLevel, { mainConcern: "none", skinType: profile.skinType, careNeeds: profile.careNeeds, basicOnly: profile.surveyVersion === ADAPTIVE_SURVEY_VERSION, isSensitive: profile.observationAssessment?.isSensitive ?? true, observationKinds: getObservationKinds(profile), observationTracks: getBasicObservationTracks(profile), observedSkin: profile.observationAssessment?.resolvedObservations, personalProductFeedback }), [profile, plan.blockNewBasics, initialRecord, surveyAnswers, personalProductFeedback]);
-  const cosmeticContext = { profile, surveyAnswers, carePlan: plan, routine, personalProductFeedback };
+  const routine = skipBasicSerum && baseRoutine.products.serum ? {
+    ...baseRoutine, products: { ...baseRoutine.products, serum: null },
+    selectionEvidence: Object.fromEntries(Object.entries(baseRoutine.selectionEvidence ?? {}).filter(([category]) => category !== "serum")),
+  } : serumPreference === "compare" && !baseRoutine.products.serum && !plan.blockNewBasics &&
+    profile.observationAssessment?.canRecommendBasics !== false ? {
+      ...baseRoutine, products: { ...baseRoutine.products, serum: getRankedProductCandidates("serum", profile.hydrationLevel, {
+        mainConcern: "none", basicOnly: true, careNeeds: profile.careNeeds,
+        isSensitive: profile.observationAssessment?.isSensitive ?? true, personalProductFeedback,
+      })[0] ?? null },
+    } : baseRoutine;
+  const retained = getComfortableRoutineSlots(currentRoutineEntries);
+  const otherRetained = Object.entries(retained).filter(([slot]) => slot !== "serum");
+  const displayRoutine = otherRetained.length ? {
+    ...routine, products: { ...routine.products, ...Object.fromEntries(otherRetained.map(([slot]) => [slot, null])) },
+    selectionEvidence: Object.fromEntries(Object.entries(routine.selectionEvidence ?? {}).filter(([slot]) => slot === "serum" || !retained[slot])),
+  } : routine;
+  const visibleSerumStatus = { ...serumStatus, skipBasicSerum };
+  const cosmeticContext = { profile, surveyAnswers, carePlan: plan, routine: displayRoutine, personalProductFeedback, knownSerumFamilies: serumStatus.knownSerumFamilies, serumIrritation: serumStatus.hasIrritation };
   const cosmeticPlan = cosmeticAnswers ? buildCosmeticAddOnPlan(cosmeticAnswers, cosmeticContext) : null;
   const applyCosmeticRoute = addon => addon?.suppressPharmacy ? { ...plan, pharmacy: null, title: "막힌 피지·거친 결은 선택한 화장품 후보로 살펴봐요.", detail: "아래 추가 화장품 영역에서 선택한 후보를 확인해요. 약품 후보 표시는 보류했어요.", productNote: "각질 관리 화장품과 여드름약을 같은 부위에 함께 새로 시작하지 않아요." } : plan;
   const displayPlan = applyCosmeticRoute(cosmeticPlan);
   const save = (nextCosmeticAnswers = cosmeticAnswers) => {
     if (!plan.complete) return;
     const nextCosmeticPlan = nextCosmeticAnswers ? buildCosmeticAddOnPlan(nextCosmeticAnswers, cosmeticContext) : null;
-    const next = buildSimpleSkinRecord(surveyAnswers, profile, routine, applyCosmeticRoute(nextCosmeticPlan), record, nextCosmeticPlan);
+    const next = buildSimpleSkinRecord(surveyAnswers, profile, displayRoutine, applyCosmeticRoute(nextCosmeticPlan), record, nextCosmeticPlan);
+    if (serumPreference) next.routinePreferences = { serum: serumPreference };
     if (legacyExtent) next.symptomAssessment.ruleVersion = record?.symptomAssessment?.ruleVersion ?? "type-and-extra-care-v3";
     setCosmeticAnswers(nextCosmeticAnswers);
     setRecord(next); setShowResult(true);
@@ -125,7 +159,7 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   };
   if (showResult && plan.complete) return <div className="space-y-6">
     {routine.isHistorical && <p className="rounded-xl bg-slate-50 p-4 text-sm">저장 당시의 제품 후보를 보여드려요. 새 검수 기준으로 다시 추천받으려면 아래에서 다시 확인해요.</p>}
-    <SimpleCareResult profile={profile} routine={routine} plan={displayPlan} onReviewRoutine={saveError ? undefined : onReviewRoutine} />
+    <SimpleCareResult profile={profile} routine={displayRoutine} otherRetained={otherRetained} plan={displayPlan} serumStatus={visibleSerumStatus} onReviewRoutine={saveError ? undefined : onReviewRoutine} />
     {(profile.surveyVersion !== ADAPTIVE_SURVEY_VERSION || routine.isHistorical) && onRestart && <button onClick={onRestart} className="rounded-xl border px-4 py-3">새 기준으로 다시 확인</button>}
     {!plan.blockNewBasics && profile.observationAssessment?.canRecommendBasics !== false && <CosmeticAddOnSection context={cosmeticContext} initialAnswers={cosmeticAnswers} onApply={save} />}
     <ProcedureOptions plan={displayPlan} profile={profile} />
@@ -139,14 +173,14 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
       setCosmeticAnswers(null);
     }
   };
-  return <SimpleCareQuestion question={question} index={index} total={questions.length} answer={answers[question.id]} locations={answers.locations}
+  return <SimpleCareQuestion routineReview={routineReview} serumPreference={serumPreference} onSerumPreference={setSerumPreference} question={question} index={index} total={questions.length} answer={answers[question.id]} locations={answers.locations}
     onAnswer={value => changeAnswer(question.id, value)}
     onLocation={(shape, value) => changeAnswer("locations", { ...answers.locations, [shape]: value })}
     onPrev={() => index === 0 ? onBack() : setIndex(index - 1)}
     onNext={() => index === questions.length - 1 ? save() : setIndex(index + 1)} />;
 }
 
-export function SimpleCareQuestion({ question, index, total, answer, locations, onAnswer, onLocation, onPrev, onNext }) {
+export function SimpleCareQuestion({ question, index, total, answer, locations, onAnswer, onLocation, onPrev, onNext, serumPreference, onSerumPreference, routineReview }) {
   const selected = question.multiple ? answer ?? [] : [];
   const isSelected = value => question.multiple ? selected.includes(value) : answer === value;
   const select = value => onAnswer(!question.multiple ? value : selected.includes(value)
@@ -161,6 +195,18 @@ export function SimpleCareQuestion({ question, index, total, answer, locations, 
     <div className="space-y-3" role="group" aria-label={question.q}>{question.options.map(option => <button key={option.value} aria-pressed={isSelected(option.value)} className={`w-full text-left rounded-2xl border p-4 ${isSelected(option.value) ? "border-emerald-600 bg-emerald-50" : "border-slate-200 bg-white"}`} onClick={() => select(option.value)}>
       <span className="block font-semibold">{option.label}</span>{option.detail && <span className="mt-1 block text-sm text-slate-600">{option.detail}</span>}
     </button>)}</div>
+    {question.id === "concern" && onSerumPreference && <section aria-label="지금 쓰는 화장품 확인" className="space-y-3 rounded-2xl border border-emerald-100 bg-emerald-50 p-4">
+      <h2 className="font-semibold">지금 쓰는 화장품이 있나요?</h2>
+      <p className="text-sm text-slate-700">잘 맞는 제품을 굳이 바꾸지 않도록, 아는 제품만 담고 사용감을 골라요. 건너뛰어도 돼요.</p>
+      {routineReview && <DetailDisclosure title="쓰는 화장품 검색·직접 입력 (선택)">
+        <RoutineProductLookup {...routineReview} profile={undefined} />
+      </DetailDisclosure>}
+      <label className="block text-sm font-semibold">지금 쓰는 세럼은 어때요? (선택)
+        <select value={serumPreference} onChange={event => onSerumPreference(event.target.value)} className="mt-2 block w-full rounded-xl border border-slate-300 bg-white p-2 font-normal">
+          <option value="">선택하지 않음</option><option value="keep">편하게 쓰고 있어서 유지할래요</option><option value="compare">쓰지 않거나 다른 세럼을 비교하고 싶어요</option>
+        </select>
+      </label>
+    </section>}
     {question.locations && <fieldset className="space-y-3 rounded-2xl border border-slate-200 p-4">
       <legend className="px-1 text-sm font-semibold">고민별 부위 기록 (선택)</legend>
       {question.options.map(option => <label key={option.value} className="flex flex-wrap items-center justify-between gap-2 text-sm">

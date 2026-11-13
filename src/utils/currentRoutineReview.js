@@ -1,4 +1,4 @@
-import { hasExfoliatingActive } from "./productCatalog";
+import { getProductById, hasExfoliatingActive } from "./productCatalog";
 import { getRankedProductCandidates } from "./routineRecommendation";
 import { getRoutineLookupProduct, routineLookupCategories } from "./routineLookup";
 
@@ -102,4 +102,35 @@ export function getRoutineReplacement({ entry, product, entries, profile, safety
     (category !== "cleanser" || ["cleanser", "gel_cleanser"].includes(item.category)) &&
     (entry.reaction !== "heavy" || item.careProfile?.lightweightFit >= 7));
   return candidate ? { status: "candidate", product: getRoutineLookupProduct(candidate.id), description: candidate.description } : { status: "no_candidate" };
+}
+
+
+export function getSerumRoutineSummary(entries = [], declared = false) {
+  const serums = entries.filter(entry => getCurrentRoutineProduct(entry)?.category === "serum");
+  const hasIrritation = serums.some(entry => entry.reaction === "irritation");
+  const keep = serums.filter(entry => ["comfortable", "later_oil"].includes(entry.reaction));
+  const knownSerumFamilies = serums.some(entry => {
+    const lookup = getCurrentRoutineProduct(entry);
+    const formula = getProductById(entry.id);
+    return /나이아신|niacinamide/i.test(lookup?.name ?? "") ||
+      (formula?.evidence?.domesticFormulaVerified && formula.fullIngredients?.some(item => /나이아신아마이드|niacinamide/i.test(item)));
+  }) ? ["niacinamide"] : [];
+  return { keep, hasIrritation, skipBasicSerum: hasIrritation || keep.length > 0 || declared, knownSerumFamilies };
+}
+
+
+export function getComfortableRoutineSlots(entries = []) {
+  const slots = { cleanser: "cleanser", moisturizer: "cream", toner: "toner" };
+  const bySlot = {};
+  for (const entry of entries) {
+    const product = getCurrentRoutineProduct(entry);
+    const slot = slots[product?.category];
+    if (!slot) continue;
+    // A makeup-removal oil, balm or water is not the same slot as the ordinary face wash.
+    if (slot === "cleanser" && /오일|밤|워터|티슈|패드|oil|balm|water/i.test(product.name)) continue;
+    (bySlot[slot] ??= []).push({ name: product.name, reaction: entry.reaction });
+  }
+  return Object.fromEntries(Object.entries(bySlot).filter(([, rows]) =>
+    rows.every(row => ["comfortable", "later_oil"].includes(row.reaction)),
+  ).map(([slot, rows]) => [slot, rows.map(row => row.name)]));
 }

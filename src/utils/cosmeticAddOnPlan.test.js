@@ -58,3 +58,17 @@ test("the new catalog entry has exact 3.0 identity, verified strengths, photo, a
 test("changing the goal drops hidden route and restrictions rather than storing stale answers", () => {
   expect(cleanCosmeticAnswers({ ...choices, goal: "support", route: "cosmetic_first" })).toEqual({ goal: "support", comfort: "comfortable", actives: ["none"] });
 });
+
+test("oil-control serum is optional, scoped to the oily area and not doubled with current niacinamide", () => {
+  const oil = { ...choices, goal: "sebum", shine: "later", oilArea: "tzone" };
+  const candidate = buildCosmeticAddOnPlan(oil, context);
+  expect(candidate.product?.id).toBe(75);
+  expect(candidate.fit).toContain("이마·코 주변");
+  expect(candidate.product.activeIngredients.find(x => x.name === "나이아신아마이드").concentration).toBeNull();
+  expect(buildCosmeticAddOnPlan({ ...oil, shine: "immediate" }, context).title).toContain("무거운 제품 하나");
+  expect(buildCosmeticAddOnPlan({ ...oil, shine: "fine" }, context).product).toBeNull();
+  expect(buildCosmeticAddOnPlan({ ...oil, oilArea: "unknown" }, context).product).toBeNull();
+  expect(buildCosmeticAddOnPlan(oil, { ...context, knownSerumFamilies: ["niacinamide"] }).title).toContain("이미 쓰는 나이아신아마이드");
+  expect(buildCosmeticAddOnPlan(oil, { ...context, serumIrritation: true }).product).toBeNull();
+  expect(buildDynamicRoutine(7).products.serum?.id).not.toBe(75);
+});

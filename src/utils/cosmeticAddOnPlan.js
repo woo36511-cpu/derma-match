@@ -10,18 +10,25 @@ import { COSMETIC_TRACKS_BY_GOAL } from "../data/productObservationGoals";
 import { COSMETIC_OBSERVATION_FIT_BONUS, getReviewedCosmeticObservation } from "./reviewedProductObservations";
 import { avoidPersonalProduct, getPersonalCosmeticFit } from "./personalProductFeedback";
 
-export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}, carePlan = {}, routine = {}, personalProductFeedback } = {}) {
+export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}, carePlan = {}, routine = {}, personalProductFeedback, knownSerumFamilies = [], serumIrritation = false } = {}) {
   const answers = cleanCosmeticAnswers(input, carePlan);
   const result = { version: COSMETIC_ADDON_VERSION, answers, complete: isCosmeticComplete(answers, carePlan), product: null, suppressPharmacy: false };
   const hold = (title, detail) => ({ ...result, status: "hold", title, detail });
   if (!result.complete) return hold("추가 질문을 마쳐주세요.", "현재 상태와 사용 중인 성분을 확인한 뒤 후보를 골라요.");
   if (carePlan.blockNewBasics || ["irritated", "concerning"].includes(answers.comfort)) return hold("지금은 새 기능성 제품을 추가하지 않아요.", "편안했던 세안·보습을 유지해요. 빠르게 퍼지는 붉어짐·심한 붓기나 통증은 오늘 확인받으세요.");
+  if (answers.goal === "sebum" && answers.shine !== "later") {
+    if (answers.shine === "immediate") return hold("세럼을 더하기 전에 무거운 제품 하나부터 점검해요.", "바른 직후부터 무겁다면 선크림이나 크림 등 부담이 느껴지는 제품 한 가지의 제형을 비교해요. 편안한 제품과 보습은 유지해요.");
+    if (answers.shine === "fine") return hold("지금 쓰는 제품을 그대로 유지해도 돼요.", "불편한 번들거림이 없다면 유분 관리 세럼을 더할 필요는 없어요.");
+    return hold("번들거리는 시점부터 확인해요.", "바른 직후의 광택과 몇 시간 뒤 느껴지는 기름기를 구분한 뒤 필요한 관리만 골라요.");
+  }
+  if (answers.goal === "sebum" && serumIrritation) return hold("현재 세럼의 사용 반응부터 확인해요.", "쓰고 나서 따갑거나 붉었다면 유분 관리 세럼을 새로 더하지 않아요.");
+  if (answers.goal === "sebum" && answers.oilArea === "unknown") return hold("어느 부위가 번들거리는지 먼저 살펴봐요.", "평소 오후에 기름기가 느껴지는 부위를 확인한 뒤 그곳만 관리해요.");
   const knownSkinAnswers = ["afterWash", "afternoonFeel", "areaDifference", "creamFeel", "innerDryness", "sensitivity"].filter(key => typeof surveyAnswers[key] === "string" && !surveyAnswers[key].includes("모르겠"));
   if (profile.observationAssessment ? !profile.observationAssessment.canRecommendBasics : knownSkinAnswers.length < 3) return hold("피부타입 답변을 조금 더 확인해요.", "정보가 부족한 상태에서 기능성 제품을 확정하지 않아요. 피부타입 답변을 보완한 뒤 다시 확인해요.");
   if (answers.goal !== "support" && profile.observationAssessment?.canRecommendActives === false) return hold("확인된 특징에 맞춘 기본 관리부터 시작해요.", "추가 기능성은 유분·당김과 현재 상태가 더 확인되면 살펴봐요. 보습 보완은 별도로 비교할 수 있어요.");
   if (answers.goal !== "support" && profile.observationAssessment?.recentChange) return hold("최근 변한 피부 상태부터 확인해요.", "상태가 일정하지 않은 동안 새 기능성을 더하지 않아요. 편안했던 기본 관리를 유지하고 피부타입 답변을 다시 확인해요.");
   if (answers.comfort === "unknown") return hold("사용할 부위의 자극 여부부터 확인해요.", "따가움·벗겨짐 여부를 알기 전에는 새 기능성 제품을 추가하지 않아요.");
-  const actives = new Set(answers.actives || []);
+  const actives = new Set([...(answers.actives || []), ...knownSerumFamilies]);
   if (actives.has("unknown") || carePlan.answers?.medicine === "unknown") return hold("지금 쓰는 제품의 성분부터 확인해요.", "성분을 모르는 제품과의 조합을 안전하다고 안내하지 않아요. 포장 성분표를 확인한 뒤 답을 바꿔요.");
   if (answers.goal !== "support" && (answers.special !== "none" || answers.experience === "reacted")) return hold("이번에는 기능성 제품의 추가를 보류해요.", "별도 확인이 필요한 상황이나 과거 자극 경험이 있어요. 잘 맞는 기본 보습과 자외선 차단을 유지해요.");
   const care = carePlan.answers ?? {};
@@ -61,17 +68,26 @@ export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}
     getPersonalCosmeticFit(p, level, observationContext) +
     (getReviewedCosmeticObservation(p, getProductEvidenceStatus(p), level, observationContext) ? COSMETIC_OBSERVATION_FIT_BONUS : 0);
   candidates.sort((a, b) => score(b) - score(a) || a.id - b.id);
+  if (answers.goal === "sebum") {
+    const serums = candidates.filter(product => product.category === "serum");
+    if (serums.length) candidates = serums;
+  }
   const product = candidates[0];
+  if (answers.goal === "sebum" && (!product || product.category !== "serum") && actives.has("niacinamide")) {
+    return hold("이미 쓰는 나이아신아마이드 세럼은 유지해요.", "같은 성분의 세럼을 더하지 않아요. 번들거림이 남아 있다면 편한 제품을 유지하면서 이마·코 등 신경 쓰이는 부위만 살펴봐요.");
+  }
   if (!product) return hold("지금 조건에 맞는 추가 후보가 없어요.", "보습감·현재 성분·자극 조건을 통과한 제품이 없어요. 맞지 않는 제품을 억지로 추가하지 않고 기본 루틴을 유지해요.");
   const extra = cosmeticProductProfiles[product.id];
+  const oilArea = { tzone: "이마·코 주변", whole: "기름기가 느껴지는 얼굴 부위", other: "선택한 번들거리는 부위" }[answers.oilArea];
   const duplicateBasic = Object.values(routine.products ?? {}).some(p => p?.id === product.id);
   return { ...result, status: duplicateBasic ? "covered" : "candidate", product, classification: extra.label,
     source: extra.source ?? product.evidence.sources?.find(s => s.sourceType.includes("official_domestic"))?.url,
     suppressPharmacy: hasExfoliatingActive(product) && answers.route === "cosmetic_first" && carePlan.answers?.medicine === "none",
     title: duplicateBasic ? "기본 추천 제품으로 이 목적도 보완할 수 있어요." : "추가 후보는 한 가지만 먼저 살펴봐요.",
     detail: duplicateBasic ? "아래 제품은 기본 루틴에 이미 포함된 후보예요. 같은 제품을 하나 더 추가할 필요는 없어요." : "선택한 고민과 보습 단계에 맞추고, 답변한 성분군과의 중복을 확인한 후보예요.",
-    fit: `추천 보습 기준 ${level}단계와 제품 기준 ${product.hydrationLevel}단계를 비교했어요. ${level <= 4 ? "보습을 유지하면서 필요한 부위에 사용해요." : level >= 7 ? "무거운 제형보다 가벼운 사용감을 우선했어요." : "수분·유분의 균형을 고려했어요."}`,
-    placement: product.category === "toner" ? "기존 토너를 쓰는 날과 구분해 토너 단계에서 한 가지로 사용해요." : product.category === "cream" ? "기존 크림과 역할을 비교해 해당 부위의 크림 단계에서 조절해요." : "기존 세럼·에센스와 역할을 비교해 한 가지로 교체하거나 필요한 부위에만 사용해요.",
+    fit: answers.goal === "sebum" ? `${oilArea}의 오후 번들거림이 신경 쓰일 때 비교할 후보예요. 피지가 줄어드는 정도는 제품과 사람에 따라 달라요.` : `추천 보습 기준 ${level}단계와 제품 기준 ${product.hydrationLevel}단계를 비교했어요. ${level <= 4 ? "보습을 유지하면서 필요한 부위에 사용해요." : level >= 7 ? "무거운 제형보다 가벼운 사용감을 우선했어요." : "수분·유분의 균형을 고려했어요."}`,
+    placement: answers.goal === "sebum" ? `${oilArea}부터 살펴봐요. 볼이 당긴다면 그 부위에는 잘 맞던 보습을 유지해요. 이미 쓰는 세럼이 있다면 새 세럼을 겹치기 전에 기존 제품의 역할을 먼저 확인해요.`
+      : product.category === "toner" ? "기존 토너를 쓰는 날과 구분해 토너 단계에서 한 가지로 사용해요." : product.category === "cream" ? "기존 크림과 역할을 비교해 해당 부위의 크림 단계에서 조절해요." : "기존 세럼·에센스와 역할을 비교해 한 가지로 교체하거나 필요한 부위에만 사용해요.",
   };
 }
 export function snapshotCosmeticAddOn(plan) {

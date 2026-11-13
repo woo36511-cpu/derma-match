@@ -18,6 +18,7 @@ import { AccountPanel } from "./components/AccountPanel";
 import { SymptomCheckScreen } from "./screens/SymptomCheckScreen";
 import { SymptomResultScreen } from "./screens/SymptomResultScreen";
 import { SimpleCareScreen } from "./screens/SimpleCareScreen";
+import { useCurrentRoutine } from "./components/CurrentRoutineReview";
 import { RoutineProductLookup } from "./components/RoutineProductLookup";
 import { RoutineSafetyNotice } from "./components/RoutineSafetyNotice";
 
@@ -120,9 +121,11 @@ export default function App() {
     routineReason,
     ingredients,
   } = useSkinCoach();
+  const ownerKey = account.user?.id ? `account:${account.user.id}` : "guest";
   const lastSymptom = symptomCheck.latestRecord;
+  const currentRoutine = useCurrentRoutine(ownerKey);
   const routineReview = {
-    ownerKey: account.user?.id ? `account:${account.user.id}` : "guest",
+    ownerKey, currentRoutine,
     loading: account.authLoading,
     profile: savedSurveyResult,
     savedAt: savedSurvey?.savedAt,
@@ -221,7 +224,7 @@ export default function App() {
           />
         )}
 
-        {step === "simpleCare" && <SimpleCareScreen key={account.user?.id ?? "guest"} profile={surveyResult} surveyAnswers={surveyAnswers} initialRecord={simpleRecord} personalProductFeedback={personalProductFeedback} onRestart={startSimpleSkinCare} onReviewRoutine={() => setStep("routineReview")} onSave={saveSimpleSkinRecord} onBack={() => { setSurveyIndex(activeSurveyQuestions.length - 1); setStep("survey"); }} onHome={() => setStep("start")} />}
+        {step === "simpleCare" && <SimpleCareScreen key={account.user?.id ?? "guest"} profile={surveyResult} surveyAnswers={surveyAnswers} initialRecord={simpleRecord} currentRoutineEntries={currentRoutine.entries} routineReview={routineReview} priorSerumPreference={savedSurvey?.routinePreferences?.serum} personalProductFeedback={personalProductFeedback} onRestart={startSimpleSkinCare} onReviewRoutine={() => setStep("routineReview")} onSave={saveSimpleSkinRecord} onBack={() => { setSurveyIndex(activeSurveyQuestions.length - 1); setStep("survey"); }} onHome={() => setStep("start")} />}
 
         {step === "issueSelect" && (
           <IssueSelectScreen
