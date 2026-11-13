@@ -204,150 +204,142 @@ export const products = [
   },
   {
     "id": 2,
-    "name": "토리든 다이브인 세럼",
+    "name": "토리든 다이브인 저분자 히알루론산 세럼",
     "brand": "토리든",
     "category": "serum",
-    "hydrationLevel": 4,
+    "hydrationLevel": 6,
     "texture": "light",
     "concerns": [
       "hydration"
     ],
     "ingredients": [
-      "히알루론산",
-      "판테놀",
-      "알란토인",
       "글리세린",
-      "베타인",
-      "세라마이드엔피",
-      "베타글루칸"
+      "판테놀",
+      "하이알루로닉애씨드",
+      "엑토인",
+      "세라마이드엔피"
     ],
     "fullIngredients": [
-      "Water",
-      "Butylene Glycol",
-      "Glycerin",
-      "Dipropylene Glycol",
-      "1,2-Hexanediol",
-      "Panthenol",
-      "Sodium Hyaluronate",
-      "Hydrolyzed Hyaluronic Acid",
-      "Sodium Acetylated Hyaluronate",
-      "Sodium Hyaluronate Crosspolymer",
-      "Hydrolyzed Sodium Hyaluronate",
-      "Allantoin",
-      "Trehalose",
-      "Betaine",
-      "Propanediol",
-      "Portulaca Oleracea Extract",
-      "Hamamelis Virginiana (Witch Hazel) Leaf Extract",
-      "Madecassoside",
-      "Madecassic Acid",
-      "Ceramide NP",
-      "Beta-Glucan",
-      "Malachite Extract",
-      "Cholesterol",
-      "Pentylene Glycol",
-      "Glyceryl Acrylate/Acrylic Acid Copolymer",
-      "PVM/MA Copolymer",
-      "Polyglyceryl-10 Laurate",
-      "Xanthan Gum",
-      "Tromethamine",
-      "Carbomer",
-      "Ethylhexylglycerin",
-      "Scutellaria Baicalensis Root Extract",
-      "Paeonia Suffruticosa Root Extract"
+      "정제수",
+      "부틸렌글라이콜",
+      "글리세린",
+      "다이프로필렌글라이콜",
+      "1,2-헥산다이올",
+      "판테놀",
+      "소듐하이알루로네이트크로스폴리머",
+      "하이드롤라이즈드하이알루로닉애씨드(1,000ppm)",
+      "소듐하이알루로네이트",
+      "소듐아세틸레이티드하이알루로네이트",
+      "하이드롤라이즈드소듐하이알루로네이트",
+      "알란토인",
+      "엑토인",
+      "감초추출물",
+      "2,3-부탄다이올",
+      "트레할로오스",
+      "베타인",
+      "프로판다이올",
+      "쇠비름추출물",
+      "버지니아풍년화잎추출물",
+      "마데카소사이드",
+      "마데카식애씨드",
+      "세라마이드엔피",
+      "베타-글루칸",
+      "말라카이트추출물",
+      "콜레스테롤",
+      "펜틸렌글라이콜",
+      "글리세릴아크릴레이트/아크릴릭애씨드코폴리머",
+      "피브이엠/엠에이코폴리머",
+      "폴리글리세릴-10라우레이트",
+      "잔탄검",
+      "트로메타민",
+      "카보머",
+      "에틸헥실글리세린",
+      "황금추출물",
+      "모란뿌리추출물"
     ],
     "activeIngredients": [
-      {
-        "name": "5종 히알루론산 복합체",
-        "concentration": null,
-        "unit": "%",
-        "concentrationVerified": false,
-        "sourceType": "official_global_product_page"
-      },
       {
         "name": "판테놀",
         "concentration": null,
         "unit": "%",
         "concentrationVerified": false,
-        "sourceType": "official_global_full_ingredient_list"
+        "sourceType": "official_domestic_full_ingredient_list"
       },
       {
-        "name": "알란토인",
+        "name": "엑토인",
         "concentration": null,
         "unit": "%",
         "concentrationVerified": false,
-        "sourceType": "official_global_full_ingredient_list"
+        "sourceType": "official_domestic_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "하이드롤라이즈드하이알루로닉애씨드",
+        "concentration": 1000,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
       }
     ],
     "careProfile": {
-      "hydrationSupport": 9,
-      "lightweightFit": 10,
-      "soothingSupport": 5,
+      "hydrationSupport": 8,
+      "lightweightFit": 9,
+      "soothingSupport": 4,
       "congestionSupport": 0,
       "barrierSupport": 3
     },
     "evidence": {
-      "evidenceLevel": "B",
+      "evidenceLevel": "formula_verified",
       "officialProductVerified": true,
       "currentOfficialProductVerified": true,
       "fullIngredientsVerified": true,
-      "fullIngredientsMarket": "global_official",
-      "domesticFormulaVerified": false,
-      "concentrationDisclosure": "not_disclosed",
-      "purchaseLinkVerified": false,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partially_disclosed",
+      "purchaseLinkVerified": true,
       "priceVerified": false,
-      "lastVerifiedAt": "2026-10-11",
+      "lastVerifiedAt": "2026-11-13",
       "sources": [
         {
-          "sourceType": "official_domestic_product_listing",
-          "url": "https://www.torriden.com/goods/goods_list.php?cateCd=001007"
+          "sourceType": "official_domestic_product_page",
+          "url": "https://www.torriden.com/goods/goods_view.php?goodsNo=2268"
         },
         {
-          "sourceType": "official_global_product_page",
-          "url": "https://torriden.us/products/dive-in-serum"
+          "sourceType": "official_domestic_full_ingredient_list",
+          "url": "https://torriden.jpg1.kr/torriden/product/2.5/DI/serum/99.png"
         }
       ],
-      "note": "기존 검수 기록을 보존했습니다."
+      "note": "국내 공식 [NEW] 50ml 상품정보 고시의 현행 처방. 1,000ppm은 하이드롤라이즈드하이알루로닉애씨드 한 종의 표시 함량이며, 구형·해외 시험 결과를 승계하지 않음."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-13",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "공식 전성분과 제형·보습 역할을 비교한 내부 평가. 개별 효능의 크기나 개선율을 뜻하지 않음.",
+      "remainingGaps": [
+        "independent_clinical_efficacy",
+        "live_stock",
+        "retailer_batch_formula_match"
+      ]
     },
     "clinicalEvidence": {
-      "sourceType": "brand_reported",
-      "humanStudyAvailable": true,
-      "studies": [
-        {
-          "endpoint": "repeat_insult_patch_test",
-          "sampleSize": 50,
-          "duration": "6_weeks",
-          "result": "non_irritant"
-        },
-        {
-          "endpoint": "outer_skin_moisture",
-          "sampleSize": 20,
-          "duration": "immediate",
-          "resultPercent": 88.87
-        },
-        {
-          "endpoint": "inner_skin_moisture",
-          "sampleSize": 20,
-          "duration": "immediate",
-          "resultPercent": 10.09
-        },
-        {
-          "endpoint": "lower_stratum_corneum_moisture",
-          "sampleSize": 22,
-          "duration": "4_weeks",
-          "resultPercent": 14.94
-        }
-      ],
-      "note": "토리든 글로벌 공식 페이지의 브랜드 공개 인체적용시험 요약입니다. 독립 임상시험과 동일하게 취급하지 않으며 국내 판매 처방과 시험 처방의 완전한 동일성은 별도 확인이 필요합니다."
+      "humanStudyAvailable": null,
+      "humanStudyVerified": false,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false
     },
     "skinTypes": [
-      "건성",
       "중성",
-      "수부지"
+      "복합성",
+      "지성"
     ],
-    "description": "5종 히알루론산과 판테놀·알란토인을 중심으로 가볍게 수분을 보충하는 저점도 수분 세럼",
-    "image": "https://thumbnail5.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/076a/53c053161aa6834869885e94909f50b87e42b050165af8bc153b7eaf327d.jpg",
-    "link": "https://link.coupang.com/a/gmRbsjXonA",
+    "description": "무거운 마무리가 부담될 때 비교하는 수분 세럼이에요. 지성이라도 당기는 부위에 수분을 보완할 수 있어요.",
+    "shortReason": "가벼운 수분 보충",
+    "caution": [
+      "처음엔 소량으로 피부 반응을 확인하고, 따가움이나 붉어짐이 생기면 중단해요."
+    ],
     "sensitivitySafe": true,
     "beginnerFriendly": true,
     "seasons": [
@@ -356,55 +348,40 @@ export const products = [
       "autumn",
       "winter"
     ],
-    "price": 17800,
-    "volume": "50ml",
-    "shortReason": "가볍게 수분을 채워줘서 수부지와 초보자 입문용으로 무난함",
-    "caution": [
-      "극건성은 크림과 같이 써야 만족도가 높을 수 있음"
-    ],
     "ratingTags": [
-      "수분세럼",
-      "입문용",
-      "가벼움"
+      "가벼운 수분 보충"
     ],
+    "volume": "50ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-2.webp",
+    "imageSource": {
+      "url": "https://godomall-storage.cdn-nhncommerce.com/4d7876b81b0d37f8a7cfa4d402d68be4/goods/2268/image/detail/2268_detail_062.png",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-13"
+    },
+    "link": "https://www.torriden.com/goods/goods_view.php?goodsNo=2268",
+    "purchaseSource": {
+      "provider": "official",
+      "label": "공식몰",
+      "verification": "official_domestic_product_page",
+      "liveStockVerified": false,
+      "note": "50ml 옵션과 포장 성분표를 확인해요. 재고는 판매처 기준이에요."
+    },
     "usageType": "serum",
-    "usageAmount": {
-      "oily": "1~2방울 정도",
-      "normal": "2~3방울 정도",
-      "dry": "3~4방울 정도"
-    },
     "usage": {
-      "when": "토너 다음 단계 / 아침·저녁",
+      "when": "세럼 단계",
       "howToUse": [
-        "토너 사용 후 적당량을 덜어냅니다.",
-        "얼굴 전체에 얇게 펴 바릅니다.",
-        "흡수될 때까지 손바닥으로 가볍게 눌러줍니다."
-      ],
-      "caution": [
-        "기능성 성분이 강한 제품은 처음부터 많은 양을 바르지 마세요."
+        "적당량을 피부에 고루 펴 바르고 가볍게 흡수시켜요."
       ]
     },
-    "catalogAudit": {
-      "reviewedAt": "2026-10-11",
-      "status": "reviewed",
-      "formulaStatus": "global_official",
-      "reviewScope": [
-        "official_product_identity",
-        "full_ingredient_list",
-        "concentration_disclosure",
-        "brand_reported_human_evidence",
-        "internal_care_profile",
-        "basic_usage_guidance"
-      ],
-      "careProfileSource": "internal_conservative_assessment",
-      "careProfileNote": "추천 점수용 내부 보수 평가입니다. 브랜드 시험 수치나 임상 효능 등급으로 표시하지 않습니다.",
-      "remainingGaps": [
-        "domestic_formula_match",
-        "purchase_link",
-        "price"
-      ]
+    "usageAmount": {
+      "normal": "제품 안내를 따라 소량부터"
     },
-    "isAvailable": true
+    "aliases": [
+      "토리든 다이브인 세럼",
+      "토리든 NEW 다이브인 세럼"
+    ]
   },
   {
     "id": 3,
@@ -6921,188 +6898,168 @@ export const products = [
     "name": "토리든 다이브인 저분자 히알루론산 토너",
     "brand": "토리든",
     "category": "toner",
-    "hydrationLevel": 2,
+    "hydrationLevel": 3,
     "texture": "watery",
     "concerns": [
-      "hydration",
-      "soothing"
+      "hydration"
     ],
     "ingredients": [
-      "히알루론산",
-      "판테놀",
-      "알란토인",
       "글리세린",
       "베타인",
-      "트레할로오스",
-      "쇠비름추출물"
+      "판테놀",
+      "하이알루로닉애씨드",
+      "엑토인"
     ],
     "fullIngredients": [
-      "Water",
-      "Butylene Glycol",
-      "Dipropylene Glycol",
-      "1,2-Hexanediol",
-      "Glycerin",
-      "Betaine",
-      "Allantoin",
-      "Panthenol",
-      "Portulaca Oleracea Extract",
-      "Trehalose",
-      "Sodium Hyaluronate",
-      "Hydrolyzed Hyaluronic Acid",
-      "Sodium Hyaluronate Crosspolymer",
-      "Hydrolyzed Sodium Hyaluronate",
-      "Sodium Acetylated Hyaluronate",
-      "2,3-Butanediol",
-      "Pentylene Glycol",
-      "Malachite Extract",
-      "Disodium EDTA",
-      "Ethylhexylglycerin"
+      "정제수",
+      "부틸렌글라이콜",
+      "다이프로필렌글라이콜",
+      "1,2-헥산다이올",
+      "글리세린",
+      "베타인",
+      "알란토인",
+      "판테놀",
+      "소듐하이알루로네이트크로스폴리머",
+      "소듐하이알루로네이트",
+      "소듐아세틸레이티드하이알루로네이트",
+      "하이드롤라이즈드소듐하이알루로네이트",
+      "하이드롤라이즈드하이알루로닉애씨드(200ppm)",
+      "엑토인",
+      "감초추출물",
+      "2,3-부탄다이올",
+      "쇠비름추출물",
+      "트레할로오스",
+      "알지닌",
+      "펜틸렌글라이콜",
+      "말라카이트추출물",
+      "다이소듐이디티에이",
+      "에틸헥실글리세린"
     ],
     "activeIngredients": [
-      {
-        "name": "5종 히알루론산 복합체",
-        "concentration": null,
-        "unit": "%",
-        "concentrationVerified": false,
-        "sourceType": "official_global_product_page"
-      },
       {
         "name": "판테놀",
         "concentration": null,
         "unit": "%",
         "concentrationVerified": false,
-        "sourceType": "official_global_full_ingredient_list"
+        "sourceType": "official_domestic_full_ingredient_list"
       },
       {
-        "name": "알란토인",
+        "name": "엑토인",
         "concentration": null,
         "unit": "%",
         "concentrationVerified": false,
-        "sourceType": "official_global_full_ingredient_list"
+        "sourceType": "official_domestic_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "하이드롤라이즈드하이알루로닉애씨드",
+        "concentration": 200,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
       }
     ],
     "careProfile": {
-      "hydrationSupport": 8,
-      "lightweightFit": 10,
-      "soothingSupport": 6,
+      "hydrationSupport": 7,
+      "lightweightFit": 9,
+      "soothingSupport": 4,
       "congestionSupport": 0,
-      "barrierSupport": 3
+      "barrierSupport": 2
     },
     "evidence": {
-      "evidenceLevel": "B",
+      "evidenceLevel": "formula_verified",
       "officialProductVerified": true,
       "currentOfficialProductVerified": true,
       "fullIngredientsVerified": true,
-      "fullIngredientsMarket": "global_official",
-      "domesticFormulaVerified": false,
-      "concentrationDisclosure": "not_disclosed",
-      "purchaseLinkVerified": false,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partially_disclosed",
+      "purchaseLinkVerified": true,
       "priceVerified": false,
-      "lastVerifiedAt": "2026-10-11",
+      "lastVerifiedAt": "2026-11-13",
       "sources": [
         {
           "sourceType": "official_domestic_product_page",
           "url": "https://www.torriden.com/goods/goods_view.php?goodsNo=2269"
         },
         {
-          "sourceType": "official_global_product_page",
-          "url": "https://torriden.us/products/dive-in-toner"
+          "sourceType": "official_domestic_full_ingredient_list",
+          "url": "https://torriden.jpg1.kr/torriden/product/2.5/DI/toner/99.png"
+        },
+        {
+          "sourceType": "official_domestic_formula_cross_check",
+          "url": "https://www.ssg.com/item/itemView.ssg?itemId=1000056812704"
         }
       ],
-      "note": "기존 검수 기록을 보존했습니다."
+      "note": "국내 공식 [NEW] 300ml 현행 처방. 구형 100ppm 대신 현행 단일 성분 200ppm을 기록. 구형·해외 시험 결과를 승계하지 않음."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-13",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "공식 전성분과 제형·보습 역할을 비교한 내부 평가. 개별 효능의 크기나 개선율을 뜻하지 않음.",
+      "remainingGaps": [
+        "independent_clinical_efficacy",
+        "live_stock",
+        "retailer_batch_formula_match"
+      ]
     },
     "clinicalEvidence": {
-      "sourceType": "brand_reported",
-      "humanStudyAvailable": true,
-      "studies": [
-        {
-          "endpoint": "repeat_insult_patch_test",
-          "sampleSize": 50,
-          "duration": "6_weeks",
-          "result": "non_irritant"
-        },
-        {
-          "endpoint": "skin_smoothness",
-          "sampleSize": 22,
-          "duration": "immediate",
-          "resultPercent": 13.24
-        },
-        {
-          "endpoint": "lower_stratum_corneum_hydration",
-          "sampleSize": 20,
-          "duration": "immediate",
-          "resultPercent": 112.5
-        },
-        {
-          "endpoint": "sebum_reduction",
-          "sampleSize": 20,
-          "duration": "immediate",
-          "resultPercent": 80.76
-        }
-      ],
-      "note": "토리든 글로벌 공식 페이지의 브랜드 공개 인체적용시험 요약입니다. 독립 임상시험과 동일하게 취급하지 않으며 국내 판매 처방과 시험 처방의 완전한 동일성은 별도 확인이 필요합니다."
+      "humanStudyAvailable": null,
+      "humanStudyVerified": false,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false
     },
     "skinTypes": [
       "건성",
-      "민감성"
+      "민감성",
+      "중성"
     ],
-    "description": "속당김이 느껴지는 피부에 가볍게 수분을 여러 번 채우기 좋은 수분 토너입니다.",
-    "image": "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/vendor_inventory/c9d2/991f837bda30447b064f67677810e24a4d1019b7e369c2158d61a3cc0981.png",
-    "link": "https://link.coupang.com/a/hpv6j4CjQW",
+    "description": "건조한 피부에서 크림 전에 가볍게 수분을 보충할 때 비교하는 워터 토너예요.",
+    "shortReason": "보습제 전 가벼운 수분 보충",
+    "caution": [
+      "처음엔 소량으로 피부 반응을 확인하고, 따가움이나 붉어짐이 생기면 중단해요."
+    ],
     "sensitivitySafe": true,
     "beginnerFriendly": true,
     "seasons": [
       "spring",
+      "summer",
       "autumn",
       "winter"
     ],
-    "price": 0,
-    "volume": "300ml",
-    "shortReason": "속당김이 있는 건성 피부에 수분감을 먼저 채워주기 좋습니다.",
-    "caution": [],
     "ratingTags": [
-      "속당김",
-      "히알루론산",
-      "건성 추천"
+      "보습제 전 가벼운 수분 보충"
     ],
+    "volume": "300ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-44.webp",
+    "imageSource": {
+      "url": "https://godomall-storage.cdn-nhncommerce.com/4d7876b81b0d37f8a7cfa4d402d68be4/goods/2269/image/detail/2269_detail_033.png",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-13"
+    },
+    "link": "https://www.torriden.com/goods/goods_view.php?goodsNo=2269",
+    "purchaseSource": {
+      "provider": "official",
+      "label": "공식몰",
+      "verification": "official_domestic_product_page",
+      "liveStockVerified": false,
+      "note": "300ml 옵션과 포장 성분표를 확인해요. 재고는 판매처 기준이에요."
+    },
     "usageType": "toner",
-    "usageAmount": {
-      "oily": "손바닥에 소량",
-      "normal": "500원 동전 크기 정도",
-      "dry": "500원 동전 크기 정도를 1~2번"
-    },
     "usage": {
-      "when": "세안 후 첫 단계 / 아침·저녁",
+      "when": "세안 후 토너 단계",
       "howToUse": [
-        "세안 직후 얼굴이 마르기 전에 사용합니다.",
-        "손바닥으로 얼굴 전체에 부드럽게 펴 바릅니다.",
-        "당김이 있는 볼 주변은 한 번 더 눌러 흡수시킵니다."
-      ],
-      "caution": [
-        "많이 바른다고 오래 촉촉한 것은 아니니 얇게 나눠 바르세요."
+        "적당량을 덜어 문지르지 않고 부드럽게 흡수시켜요."
       ]
     },
-    "catalogAudit": {
-      "reviewedAt": "2026-10-11",
-      "status": "reviewed",
-      "formulaStatus": "global_official",
-      "reviewScope": [
-        "official_product_identity",
-        "full_ingredient_list",
-        "concentration_disclosure",
-        "brand_reported_human_evidence",
-        "internal_care_profile",
-        "basic_usage_guidance"
-      ],
-      "careProfileSource": "internal_conservative_assessment",
-      "careProfileNote": "추천 점수용 내부 보수 평가입니다. 브랜드 시험 수치나 임상 효능 등급으로 표시하지 않습니다.",
-      "remainingGaps": [
-        "domestic_formula_match",
-        "purchase_link",
-        "price"
-      ]
-    },
-    "isAvailable": true
+    "usageAmount": {
+      "normal": "제품 안내를 따라 소량부터"
+    }
   },
   {
     "id": 45,

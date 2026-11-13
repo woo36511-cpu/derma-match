@@ -358,7 +358,7 @@ test("420 synthetic skin contexts retain four safe available routine slots", () 
 
 
 test("full catalog audit has explicit care profiles and conservative verification gaps", () => {
-  expect(products).toHaveLength(68);
+  expect(products).toHaveLength(74);
 
   const inactiveIds = products
     .filter((product) => product.isAvailable === false)

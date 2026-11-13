@@ -7,7 +7,7 @@ import { hasExfoliatingActive } from "./productCatalog";
 import { getProductPurchaseLink } from "./productPurchaseLink";
 
 test("expanded catalog has stable unique identities, actual full ingredients, photos and source-specific sales links", () => {
-  expect(additions.map(p => p.id)).toEqual(Array.from({ length: 24 }, (_, i) => i + 52));
+  expect(additions.map(p => p.id)).toEqual(Array.from({ length: 30 }, (_, i) => i + 52));
   expect(new Set(products.map(p => p.id)).size).toBe(products.length);
   for (const p of additions) {
     expect(getProductEvidenceStatus(p).eligible).toBe(true);
@@ -23,6 +23,22 @@ test("expanded catalog has stable unique identities, actual full ingredients, ph
     expect(ordinary.url).toBe(p.link);
     expect(ordinary.affiliate).toBe(false);
     expect(p.catalogAudit.careProfileNote).toContain("내부 평가");
+  }
+});
+
+test("updated domestic formulas fill sparse routine pools without inserting targeted serums into basic care", () => {
+  const context = { mainConcern: "none", basicOnly: true, isSensitive: true };
+  const ids = (category, level) => getRankedProductCandidates(category, level, context).map(p => p.id);
+  expect(ids("serum", 7)).toEqual(expect.arrayContaining([2, 25]));
+  expect(ids("cleanser", 7)).toEqual(expect.arrayContaining([70, 77]));
+  expect(ids("cream", 7)).toEqual(expect.arrayContaining([57, 78]));
+  expect(ids("toner", 3)).toEqual(expect.arrayContaining([15, 44]));
+  for (let level = 1; level <= 10; level++) for (const id of [76, 79, 80, 81])
+    expect(ids("serum", level)).not.toContain(id);
+  for (const [id, ppm] of [[2, 1000], [44, 200]]) {
+    const product = products.find(p => p.id === id);
+    expect(product.disclosedConcentrations).toContainEqual(expect.objectContaining({ name: "하이드롤라이즈드하이알루로닉애씨드", concentration: ppm, unit: "ppm" }));
+    expect(product.clinicalEvidence.studyFormulaMatchVerified).toBe(false);
   }
 });
 

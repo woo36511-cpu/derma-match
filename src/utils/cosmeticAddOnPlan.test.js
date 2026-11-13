@@ -2,6 +2,8 @@ import { buildCosmeticAddOnPlan, snapshotCosmeticAddOn } from "./cosmeticAddOnPl
 import { buildDynamicRoutine } from "./routineRecommendation";
 import { getProductById, hasExfoliatingActive } from "./productCatalog";
 import { cleanCosmeticAnswers } from "../data/cosmeticAddOns";
+import { getSerumRoutineSummary, readCurrentRoutine } from "./currentRoutineReview";
+import { searchRoutineProducts } from "./routineLookup";
 
 const surveyAnswers = { afterWash: "별로 불편하지 않다", afternoonFeel: "얼굴 전체가 번들거린다", areaDifference: "얼굴 전체가 기름진 편이다", creamFeel: "적당히 편안하다", innerDryness: "거의 없다", sensitivity: "거의 없다", mainIssue: "특별한 고민은 없다" };
 const profile = { skinType: "지성", hydrationLevel: 8, scores: { sensitivity: 0 }, careNeeds: {} };
@@ -71,4 +73,33 @@ test("oil-control serum is optional, scoped to the oily area and not doubled wit
   expect(buildCosmeticAddOnPlan(oil, { ...context, knownSerumFamilies: ["niacinamide"] }).title).toContain("이미 쓰는 나이아신아마이드");
   expect(buildCosmeticAddOnPlan(oil, { ...context, serumIrritation: true }).product).toBeNull();
   expect(buildDynamicRoutine(7).products.serum?.id).not.toBe(75);
+});
+
+test("a previously saved search-only PDRN serum keeps its reaction and blocks duplicate niacinamide", () => {
+  const legacy = { id: "lookup:anua:359", reaction: "comfortable" };
+  const result = readCurrentRoutine({ getItem: () => JSON.stringify([legacy, { ...legacy, id: 76 }]) }, "guest");
+  expect(result).toEqual([{ id: 76, reaction: "comfortable" }]);
+  expect(searchRoutineProducts("재생 세럼").matches).toEqual([expect.objectContaining({ id: 76, formulaVerified: true })]);
+  const current = getSerumRoutineSummary([legacy]);
+  expect(current.skipBasicSerum).toBe(true);
+  expect(current.knownSerumFamilies).toEqual(expect.arrayContaining(["pdrn", "niacinamide"]));
+  expect(buildCosmeticAddOnPlan({ ...choices, goal: "sebum", shine: "later", oilArea: "tzone" }, { ...context, ...current }).product).toBeNull();
+});
+
+test("serum preferences respect moisture fit, irritation, active overlap and vitamin C experience", () => {
+  const fit = { ...context, profile: { ...profile, hydrationLevel: 6 } };
+  const support = { ...choices, goal: "support", serumFocus: "pdrn" };
+  expect(buildCosmeticAddOnPlan(support, fit).product?.id).toBe(76);
+  expect(buildCosmeticAddOnPlan(support, { ...fit, knownSerumFamilies: ["niacinamide"] }).product?.id).not.toBe(76);
+  expect(buildCosmeticAddOnPlan({ ...support, serumFocus: "panthenol" }, fit).product?.id).toBe(79);
+  const lines = { ...choices, goal: "lines", serumFocus: "peptide" };
+  expect(buildCosmeticAddOnPlan(lines, fit).product?.id).toBe(81);
+  expect(buildCosmeticAddOnPlan(lines, { ...fit, knownSerumFamilies: ["peptide"] }).product?.id).not.toBe(81);
+  const vitamin = { ...choices, experience: "tolerated_vitamin_c" };
+  expect(buildCosmeticAddOnPlan(vitamin, fit).product?.id).toBe(80);
+  expect(buildCosmeticAddOnPlan(choices, fit).product?.id).not.toBe(80);
+  for (const bad of [{ comfort: "dry" }, { comfort: "irritated" }, { special: "restricted" }, { actives: ["retinoid"] }, { actives: ["acid"] }, { actives: ["vitaminC"] }, { actives: ["peptide"] }]) {
+    expect(buildCosmeticAddOnPlan({ ...vitamin, ...bad }, fit).product?.id).not.toBe(80);
+  }
+  expect(buildCosmeticAddOnPlan(vitamin, { ...fit, profile: { ...fit.profile, scores: { sensitivity: 5 } } }).product?.id).not.toBe(80);
 });

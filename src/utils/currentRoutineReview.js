@@ -43,8 +43,8 @@ export function readCurrentRoutine(storage, ownerId) {
   const seen = new Set();
   return raw.flatMap(entry => {
     const product = getCurrentRoutineProduct(entry);
-    if (!product || seen.has(entry.id)) return [];
-    seen.add(entry.id);
+    if (!product || seen.has(product.id)) return [];
+    seen.add(product.id);
     const reaction = getRoutineReactionOptions(product.category).some(option => option.value === entry.reaction) ? entry.reaction : null;
     return [{ ...(product.manual ? makeManualRoutineEntry(product.name, product.category) : makeCurrentRoutineEntry(product)), reaction }];
   }).slice(0, CURRENT_ROUTINE_LIMIT);
@@ -109,12 +109,20 @@ export function getSerumRoutineSummary(entries = [], declared = false) {
   const serums = entries.filter(entry => getCurrentRoutineProduct(entry)?.category === "serum");
   const hasIrritation = serums.some(entry => entry.reaction === "irritation");
   const keep = serums.filter(entry => ["comfortable", "later_oil"].includes(entry.reaction));
-  const knownSerumFamilies = serums.some(entry => {
-    const lookup = getCurrentRoutineProduct(entry);
-    const formula = getProductById(entry.id);
-    return /나이아신|niacinamide/i.test(lookup?.name ?? "") ||
-      (formula?.evidence?.domesticFormulaVerified && formula.fullIngredients?.some(item => /나이아신아마이드|niacinamide/i.test(item)));
-  }) ? ["niacinamide"] : [];
+  const knownSerumFamilies = [...new Set(serums.flatMap(entry => {
+    const product = getCurrentRoutineProduct(entry);
+    const formula = getProductById(product?.id);
+    const confirmed = product?.formulaVerified ? formula?.fullIngredients ?? [] : [];
+    const names = [product?.name ?? "", ...confirmed];
+    return Object.entries({
+      niacinamide: /나이아신|niacinamide/i,
+      vitaminC: /비타민\s*(?:씨|c)|vitamin\s*c|아스코빅애씨드|아스코빌글루코사이드|ascorbic acid/i,
+      retinoid: /레티놀|레티날|레틴알|retinol|retinal|retinoid|하이드록시피나콜론레티노에이트/i,
+      pdrn: /pdrn|피디알엔|소듐디엔에이|하이드롤라이즈드디엔에이/i,
+      peptide: /펩타이드|peptide/i,
+      acid: /\b(?:aha|bha|pha|lha)\b|살리실릭애씨드|살리실레이트|글라이콜릭애씨드|만델릭애씨드|글루코노락톤/i,
+    }).filter(([, pattern]) => names.some(name => pattern.test(name))).map(([family]) => family);
+  }))];
   return { keep, hasIrritation, skipBasicSerum: hasIrritation || keep.length > 0 || declared, knownSerumFamilies };
 }
 
