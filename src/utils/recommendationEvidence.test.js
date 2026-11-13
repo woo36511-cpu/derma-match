@@ -10,7 +10,9 @@ const contexts = [
 ];
 test("all newly ranked candidates, including alternatives, have domestic formula and reviewed profile data", () => {
   const unverified = products.filter(p => !getProductEvidenceStatus(p).eligible).map(p => p.id);
-  expect(unverified).toEqual(expect.arrayContaining([2, 8, 18, 20, 27, 29, 31, 34, 44, 50]));
+  expect(unverified).toEqual(expect.arrayContaining([8, 18, 20, 27, 29, 31, 34, 50]));
+  expect(unverified).not.toContain(2);
+  expect(unverified).not.toContain(44);
   for (const level of [1, 3, 5, 7, 10]) for (const careNeeds of contexts) for (const isSensitive of [false, true]) {
     const ctx = { mainConcern: "none", careNeeds, isSensitive, basicOnly: true };
     const routine = buildDynamicRoutine(level, ctx);

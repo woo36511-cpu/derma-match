@@ -19,8 +19,17 @@ const brandAliases = {
   "마녀공장": "ma:nyo", "토리든": "Torriden", "에스트라": "Aestura", "세타필": "Cetaphil",
   "일리윤": "Illiyoon", "닥터지": "Dr.G", "이즈앤트리": "Isntree", "피지오겔": "Physiogel",
   "에뛰드": "Etude", "라로슈포제": "La Roche-Posay", "이니스프리": "Innisfree",
+  "퓨리토": "Purito", "바이오더마": "Bioderma",
 };
 const normalize = text => text.normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
+
+const legacyIds = new Map(products.flatMap(product =>
+  (product.legacyLookupIds ?? []).map(id => [id, product.id]),
+));
+
+export function getCanonicalRoutineProductId(id) {
+  return legacyIds.get(id) ?? id;
+}
 
 const entries = [
   ...products.filter(product => categories[product.category]).map(product => ({
@@ -30,6 +39,7 @@ const entries = [
     brandAlias: brandAliases[product.brand],
     category: categories[product.category],
     volume: product.volume,
+    aliases: product.aliases,
     image: product.image,
     officialUrl: product.evidence?.sources?.find(source =>
       source.sourceType === "official_domestic_product_page" && source.url?.startsWith("https://"),
@@ -37,7 +47,7 @@ const entries = [
     formulaVerified: product.evidence?.domesticFormulaVerified === true &&
       product.evidence?.fullIngredientsVerified === true && product.fullIngredients?.length > 0,
   })),
-  ...lookup.products.map(product => ({ ...product, formulaVerified: false })),
+  ...lookup.products.filter(product => !legacyIds.has(product.id)).map(product => ({ ...product, formulaVerified: false })),
 ];
 
 const index = entries.map(product => {
@@ -62,5 +72,5 @@ export function searchRoutineProducts(query, limit = 12) {
 }
 
 export function getRoutineLookupProduct(id) {
-  return entries.find(product => product.id === id) ?? null;
+  return entries.find(product => product.id === getCanonicalRoutineProductId(id)) ?? null;
 }

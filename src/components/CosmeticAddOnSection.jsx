@@ -5,7 +5,7 @@ import { getProductPurchaseLink } from "../utils/productPurchaseLink";
 import { DetailDisclosure } from "./DetailDisclosure";
 
 export function CosmeticAddOnResult({ plan }) {
-  const purchase = plan.answers?.goal === "sebum" ? getProductPurchaseLink(plan.product) : null;
+  const purchase = getProductPurchaseLink(plan.product);
   return <div className="space-y-4" aria-label="추가 화장품 추천 결과">
     <div><h3 className="font-bold">{plan.title}</h3><p className="mt-1 text-sm text-slate-700">{plan.detail}</p></div>
     {plan.product && <article className="space-y-3 rounded-2xl border border-emerald-100 bg-white p-4" aria-label={plan.product.name}>
@@ -42,6 +42,12 @@ export function CosmeticAddOnSection({ context, initialAnswers, onApply }) {
     {!editing ? <div className="flex flex-wrap gap-3"><button className="rounded-xl bg-emerald-900 px-4 py-3 text-sm font-semibold text-white" onClick={() => { setDraft(initialAnswers ?? {}); setIndex(0); setEditing(true); }}>{initialAnswers ? "추가 추천 답변 바꾸기" : "추가 화장품 후보 찾아보기"}</button>{initialAnswers && <button className="rounded-xl border border-slate-300 px-4 py-3 text-sm" onClick={() => { onApply(null); setDraft({}); }}>추가 선택 지우기</button>}</div> : <div className="space-y-4">
       <p className="text-xs text-slate-600">추가 확인 {index + 1}/{questions.length}</p><h3 className="font-semibold">{question.q}</h3>{question.multiple && <p className="text-sm text-slate-600">해당하는 성분을 모두 골라요. 모르는 성분은 추측하지 않아도 돼요.</p>}
       <div className="space-y-2" role="group" aria-label={question.q}>{question.options.map(option => { const active = question.multiple ? draft[question.id]?.includes(option.value) : draft[question.id] === option.value; return <button key={option.value} aria-pressed={Boolean(active)} className={`w-full rounded-xl border p-3 text-left text-sm ${active ? "border-emerald-700 bg-emerald-100" : "border-slate-200 bg-white"}`} onClick={() => answer(option.value)}><span className="block font-semibold">{option.label}</span>{option.detail && <span className="mt-1 block text-slate-600">{option.detail}</span>}</button>; })}</div>
+      {question.id === "goal" && ["support", "lines"].includes(draft.goal) && <label className="block text-sm font-semibold">먼저 비교하고 싶은 세럼 (선택)
+        <select className="mt-1 block w-full rounded-xl border border-slate-300 bg-white p-2 font-normal" value={draft.serumFocus ?? ""} onChange={event => setDraft(previous => ({ ...previous, serumFocus: event.target.value }))}>
+          <option value="">피부 상태에 맞게 골라주세요</option>
+          {draft.goal === "support" ? <><option value="pdrn">PDRN 수분 세럼</option><option value="panthenol">판테놀 보습 세럼</option></> : <option value="peptide">펩타이드 세럼</option>}
+        </select>
+      </label>}
       <div className="flex flex-wrap justify-between gap-3"><button className="rounded-xl border px-4 py-3 text-sm" onClick={() => index ? setIndex(index - 1) : setEditing(false)}>{index ? "이전" : "돌아가기"}</button><button disabled={!answered} className="rounded-xl bg-emerald-900 px-4 py-3 text-sm font-semibold text-white disabled:opacity-40" onClick={() => { if (index === questions.length - 1) { if (!buildCosmeticAddOnPlan(draft, context).complete) return; onApply(draft); setEditing(false); } else setIndex(index + 1); }}>{index === questions.length - 1 ? "추가 추천 확인하고 저장" : "다음"}</button></div>
     </div>}
     <p className="text-xs text-slate-600">보습·각질 관리용 일반화장품도 포함해요. 기능성 표시는 공식 자료로 확인한 제품에만 사용해요. 추가 선택은 추천 기록으로 저장하며 실제 사용한 것으로 처리하지 않아요.</p>

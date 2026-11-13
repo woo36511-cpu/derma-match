@@ -1,4 +1,4 @@
-export const COSMETIC_ADDON_VERSION = "optional-cosmetics-v3-oil-fit";
+export const COSMETIC_ADDON_VERSION = "optional-cosmetics-v4-serum-fit";
 export const cosmeticGoals = [
   { value: "support", label: "보습·장벽 보완", detail: "기초의 보습감이 부족할 때 보완할 제품을 찾아요." },
   { value: "sebum", label: "유분감·모공 외관", detail: "번들거림과 모공이 도드라져 보이는 것이 신경 쓰여요." },
@@ -12,6 +12,8 @@ export const cosmeticActiveOptions = [
   { value: "retinoid", label: "레티놀·레티날·레티노이드 제품" },
   { value: "niacinamide", label: "나이아신아마이드 기능성 제품" },
   { value: "vitaminC", label: "비타민 C 기능성 제품" },
+  { value: "pdrn", label: "PDRN 제품" },
+  { value: "peptide", label: "펩타이드 제품" },
   { value: "benzoyl", label: "파티마겔 등 벤조일퍼옥사이드" },
   { value: "medicine", label: "다른 여드름약·처방약" },
   { value: "unknown", label: "제품 성분을 잘 모르겠어요" },
@@ -47,7 +49,7 @@ export function getCosmeticQuestions(answers = {}, carePlan = {}) {
   if (["irritated", "concerning"].includes(answers.comfort) || carePlan.blockNewBasics) return questions;
   questions.push({ id: "actives", q: "같은 부위에 이미 쓰는 약·기능성 성분을 골라주세요", multiple: true, options: cosmeticActiveOptions });
   if (answers.goal !== "support") questions.push(
-    { id: "experience", q: "기능성 제품을 써본 경험은 어떤가요?", options: [option("new", "처음이거나 사용 경험이 적어요"), option("tolerated", "기능성 제품을 자극 없이 사용해봤어요"), option("reacted", "기능성 제품에 자극이 생긴 적이 있어요")] },
+    { id: "experience", q: "기능성 제품을 써본 경험은 어떤가요?", options: [option("new", "처음이거나 사용 경험이 적어요"), option("tolerated", "기능성 제품을 자극 없이 사용해봤어요"), ...(answers.goal === "tone" ? [option("tolerated_vitamin_c", "순수 비타민 C 세럼을 자극 없이 써봤고 후보도 보고 싶어요")] : []), option("reacted", "기능성 제품에 자극이 생긴 적이 있어요")] },
     { id: "special", q: "다음 중 해당하는 상황이 있나요?", options: [option("none", "성인이며 임신·임신 준비·수유에 해당하지 않아요"), option("restricted", "미성년자이거나 임신·임신 준비·수유 중이에요"), option("unknown", "잘 모르겠거나 별도 확인이 필요해요")] },
   );
   return questions;
@@ -63,6 +65,8 @@ export function cleanCosmeticAnswers(input = {}, carePlan = {}) {
       else if (selected.length) result[question.id] = selected;
     } else if (question.options.some(option => option.value === answer)) result[question.id] = answer;
   }
+  if (result.goal === "support" && ["pdrn", "panthenol"].includes(input.serumFocus)) result.serumFocus = input.serumFocus;
+  if (result.goal === "lines" && input.serumFocus === "peptide") result.serumFocus = input.serumFocus;
   return result;
 }
 export function isCosmeticComplete(input, carePlan = {}) {
@@ -72,6 +76,7 @@ export function isCosmeticComplete(input, carePlan = {}) {
 
 // Labels describe the product, not the presence of one ingredient alone.
 export const cosmeticProductProfiles = {
+  2: { goals: ["support"], families: [], intensity: "support", label: "가벼운 수분 보충 세럼" },
   5: { goals: ["texture"], families: ["acid", "niacinamide"], intensity: "exfoliant", label: "각질 관리 화장품", source: "https://www.cosrx.co.kr/m/product_detail.html?brand_uid=1173596" },
   13: { goals: ["sebum"], families: ["niacinamide"], intensity: "high", label: "유분감 관리 화장품", source: "https://www.cosdebaha.co.kr/product/n-세럼-30ml/70/" },
   14: { goals: ["sebum"], families: ["niacinamide"], intensity: "high", label: "모공 외관 관리 화장품", source: "https://www.cosrx.co.kr/shop/shopdetail.html?branduid=1177564" },
@@ -89,4 +94,8 @@ export const cosmeticProductProfiles = {
   63: { goals: ["support"], families: [], intensity: "support", label: "보습 마무리 비교 후보" },
   65: { goals: ["support"], families: [], intensity: "support", label: "수분 보충 세럼" },
   69: { goals: ["tone"], families: ["niacinamide"], intensity: "gentle", label: "피부톤 보완 화장품", source: "https://isntree.com/product/detail.html?product_no=36" },
+  76: { goals: ["support"], families: ["pdrn", "niacinamide"], intensity: "support", focus: "pdrn", label: "PDRN을 포함한 수분 보완 세럼" },
+  79: { goals: ["support"], families: ["niacinamide"], intensity: "support", focus: "panthenol", label: "판테놀 보습 보완 세럼" },
+  80: { goals: ["tone"], families: ["vitaminC", "niacinamide"], intensity: "high", label: "순수 비타민 C 13% · 미백 기능성", requiresVitaminCExperience: true },
+  81: { goals: ["lines"], families: ["peptide", "niacinamide"], intensity: "gentle", focus: "peptide", label: "펩타이드 함유 · 주름개선 기능성", placement: "세안 후 스킨케어 첫 단계에 사용해요. 이미 쓰는 토너나 부스터와 역할이 겹치면 한 가지만 비교해요." },
 };

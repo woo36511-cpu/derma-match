@@ -4866,5 +4866,1118 @@
       "normal": "얇게 펴 바를 정도",
       "oily": "소량부터 얇게"
     }
+  },
+  {
+    "id": 76,
+    "name": "아누아 PDRN 히알루론산 캡슐 100 세럼",
+    "brand": "아누아",
+    "category": "serum",
+    "hydrationLevel": 5,
+    "texture": "light",
+    "concerns": [],
+    "ingredients": [
+      "글리세린",
+      "하이알루로닉애씨드",
+      "나이아신아마이드",
+      "소듐디엔에이"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "부틸렌글라이콜",
+      "프로판다이올",
+      "글리세린",
+      "하이드롤라이즈드하이알루로닉애씨드(29,049ppm)",
+      "1,2-헥산다이올",
+      "나이아신아마이드",
+      "글리세릴올리에이트",
+      "라우릴글루코사이드",
+      "미리스틸글루코사이드",
+      "폴리글리세릴-6라우레이트",
+      "하이드로제네이티드레시틴",
+      "글루타티온",
+      "하이드롤라이즈드콜라겐",
+      "소듐하이알루로네이트(800ppm)",
+      "황련뿌리추출물",
+      "아데노신",
+      "소듐디엔에이(100ppm)",
+      "하이알루로닉애씨드(30ppm)",
+      "하이드롤라이즈드소듐하이알루로네이트(30ppm)",
+      "하이드록시프로필트라이모늄하이알루로네이트(30ppm)",
+      "포타슘하이알루로네이트(30ppm)",
+      "소듐하이알루로네이트크로스폴리머(30ppm)",
+      "소듐아세틸레이티드하이알루로네이트(1ppm)",
+      "인도멀구슬나무잎추출물",
+      "인도멀구슬나무꽃추출물",
+      "아이비고드열매추출물",
+      "가지열매추출물",
+      "홀리바질잎추출물",
+      "시트릭애씨드",
+      "울금뿌리추출물",
+      "참산호말추출물",
+      "소듐시트레이트",
+      "펜틸렌글라이콜"
+    ],
+    "activeIngredients": [
+      {
+        "name": "나이아신아마이드",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "아데노신",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_domestic_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "소듐디엔에이",
+        "concentration": 100,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "하이드롤라이즈드하이알루로닉애씨드",
+        "concentration": 29049,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "소듐하이알루로네이트",
+        "concentration": 800,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "하이알루로닉애씨드",
+        "concentration": 30,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "하이드롤라이즈드소듐하이알루로네이트",
+        "concentration": 30,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "하이드록시프로필트라이모늄하이알루로네이트",
+        "concentration": 30,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "포타슘하이알루로네이트",
+        "concentration": 30,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "소듐하이알루로네이트크로스폴리머",
+        "concentration": 30,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "소듐아세틸레이티드하이알루로네이트",
+        "concentration": 1,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 7,
+      "lightweightFit": 7,
+      "soothingSupport": 2,
+      "congestionSupport": 0,
+      "barrierSupport": 2
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partially_disclosed",
+      "purchaseLinkVerified": true,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-13",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://anua.kr/product/detail.html?cate_no=57&display_group=1&product_no=359"
+        }
+      ],
+      "note": "국내 공식 판매 30ml 표시 처방과 미백·주름개선 기능성 표시 확인. 고시 HTML의 오탈자는 성분 표준명으로 정리. 소듐디엔에이 100ppm은 성분 표시이며 효능 수치가 아님."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-13",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "공식 전성분과 제형·보습 역할을 비교한 내부 평가. 개별 효능의 크기나 개선율을 뜻하지 않음.",
+      "remainingGaps": [
+        "independent_clinical_efficacy",
+        "live_stock",
+        "retailer_batch_formula_match"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "humanStudyVerified": false,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "지성"
+    ],
+    "description": "히알루론산 계열과 소듐디엔에이를 포함한 보습 보완 세럼이에요.",
+    "shortReason": "PDRN 성분을 포함한 수분 보완",
+    "caution": [
+      "나이아신아마이드도 들어 있어요. 기존 제품과 같은 성분을 더하지 않아요.",
+      "상처·시술 부위의 재생이나 여드름 흉터 치료를 위한 추천은 아니에요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": false,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "PDRN 성분을 포함한 수분 보완"
+    ],
+    "volume": "30ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-76.webp",
+    "imageSource": {
+      "url": "https://anua.kr/web/product/big/202605/62c9be57bcb0a3e694a6dbe879e3d6c0.png",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-13"
+    },
+    "link": "https://anua.kr/product/detail.html?cate_no=57&display_group=1&product_no=359",
+    "purchaseSource": {
+      "provider": "official",
+      "label": "공식몰",
+      "verification": "official_domestic_product_page",
+      "liveStockVerified": false,
+      "note": "30ml 옵션과 포장 성분표를 확인해요. 재고는 판매처 기준이에요."
+    },
+    "usageType": "serum",
+    "usage": {
+      "when": "세럼 단계",
+      "howToUse": [
+        "이미 쓰는 세럼과 역할을 비교해 한 가지를 소량부터 사용해요."
+      ]
+    },
+    "usageAmount": {
+      "normal": "제품 안내를 따라 소량부터"
+    },
+    "recommendationScope": "addon_only",
+    "functionalClaims": {
+      "types": [
+        "whitening",
+        "wrinkle"
+      ],
+      "verification": "official_brand_label",
+      "source": "https://anua.kr/product/detail.html?cate_no=57&display_group=1&product_no=359",
+      "verifiedAt": "2026-11-13"
+    },
+    "legacyLookupIds": [
+      "lookup:anua:359"
+    ],
+    "aliases": [
+      "아누아 피디알엔 히알루론산 캡슐 100 세럼",
+      "PDRN 보습 세럼",
+      "재생 세럼"
+    ]
+  },
+  {
+    "id": 77,
+    "name": "바이오더마 센시비오 젤 무쌍",
+    "brand": "바이오더마",
+    "category": "gel_cleanser",
+    "hydrationLevel": 7,
+    "texture": "light",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "소듐코코암포아세테이트",
+      "코코-글루코사이드",
+      "프로판다이올"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "소듐코코암포아세테이트",
+      "프로판다이올",
+      "소듐라우로일사코시네이트",
+      "시트릭애씨드",
+      "코코-글루코사이드",
+      "글리세릴올리에이트",
+      "소듐시트레이트",
+      "피이지-90글리세릴아이소스테아레이트",
+      "만니톨",
+      "자일리톨",
+      "라우레스-2",
+      "람노오스",
+      "프룩토올리고사카라이드",
+      "토코페롤",
+      "하이드로제네이티드팜글리세라이즈시트레이트"
+    ],
+    "activeIngredients": [],
+    "disclosedConcentrations": [],
+    "careProfile": {
+      "hydrationSupport": 3,
+      "lightweightFit": 8,
+      "soothingSupport": 2,
+      "congestionSupport": 0,
+      "barrierSupport": 1
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "not_disclosed",
+      "purchaseLinkVerified": true,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-13",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://m.naosmall.kr/product/detail.html?product_no=1330"
+        }
+      ],
+      "note": "나오스코리아 국내 책임판매 상품 고시의 200ml 전성분. 구연산이 포함된 세정 제품이며 각질 제거제로 분류하지 않음."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-13",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "공식 전성분과 제형·보습 역할을 비교한 내부 평가. 개별 효능의 크기나 개선율을 뜻하지 않음.",
+      "remainingGaps": [
+        "independent_clinical_efficacy",
+        "live_stock",
+        "retailer_batch_formula_match"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "humanStudyVerified": false,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false
+    },
+    "skinTypes": [
+      "지성",
+      "복합성",
+      "민감성"
+    ],
+    "description": "거품형 대신 젤형을 비교하고 싶은 사람의 기본 세안 후보예요.",
+    "shortReason": "약산성 젤 세안제",
+    "caution": [
+      "처음엔 소량으로 피부 반응을 확인하고, 따가움이나 붉어짐이 생기면 중단해요."
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "약산성 젤 세안제"
+    ],
+    "volume": "200ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-77.webp",
+    "imageSource": {
+      "url": "https://m.naosmall.kr/web/product/big/202606/d28e75f606e369f8808b0cabf0a9906b.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-13"
+    },
+    "link": "https://www.coupang.com/vp/products/1336260612?vendorItemId=95687379757",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "200ml 옵션과 포장 성분표를 확인해요. 재고는 판매처 기준이에요."
+    },
+    "usageType": "cleanser",
+    "usage": {
+      "when": "세안 단계",
+      "howToUse": [
+        "젖은 얼굴에 거품을 내 부드럽게 씻고 미온수로 헹궈요."
+      ]
+    },
+    "usageAmount": {
+      "normal": "제품 안내를 따라 소량부터"
+    },
+    "aliases": [
+      "바이오더마 센시비오 젤 무쌍 클렌저"
+    ]
+  },
+  {
+    "id": 78,
+    "name": "퓨리토 오트 인 카밍 젤 크림",
+    "brand": "퓨리토",
+    "category": "cream",
+    "hydrationLevel": 7,
+    "texture": "gel",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "귀리씨수",
+      "글리세린",
+      "스쿠알란",
+      "판테놀"
+    ],
+    "fullIngredients": [
+      "귀리씨수(77%)",
+      "부틸렌글라이콜",
+      "글리세린",
+      "2,3-부탄다이올",
+      "1,2-헥산다이올",
+      "정제수",
+      "암모늄아크릴로일다이메틸타우레이트/브이피코폴리머",
+      "스쿠알란",
+      "하이드록시아세토페논",
+      "카보머",
+      "다이포타슘글리시리제이트",
+      "판테놀",
+      "트로메타민",
+      "에틸헥실글리세린",
+      "이눌린라우릴카바메이트",
+      "소듐서팩틴",
+      "베타-글루칸"
+    ],
+    "activeIngredients": [
+      {
+        "name": "판테놀",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "스쿠알란",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_domestic_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "귀리씨수",
+        "concentration": 77,
+        "unit": "%",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list",
+        "concentrationBasis": "raw_material_fraction"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 6,
+      "lightweightFit": 9,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 3
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partially_disclosed",
+      "purchaseLinkVerified": true,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-13",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://purito.com/ko/product/new-오트-인-카밍-젤-크림/"
+        }
+      ],
+      "note": "국내 상품정보 고시의 귀리씨수 77%는 원료 배합량이며 베타글루칸 함량이 아님. 공식 안내상 포장 변경이며 제형은 동일."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-13",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "공식 전성분과 제형·보습 역할을 비교한 내부 평가. 개별 효능의 크기나 개선율을 뜻하지 않음.",
+      "remainingGaps": [
+        "independent_clinical_efficacy",
+        "live_stock",
+        "retailer_batch_formula_match"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "humanStudyVerified": false,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false
+    },
+    "skinTypes": [
+      "지성",
+      "복합성",
+      "민감성"
+    ],
+    "description": "꾸덕한 크림이 부담스러운 피부에서 비교하는 가벼운 젤 보습제예요.",
+    "shortReason": "가벼운 젤 보습 마무리",
+    "caution": [
+      "귀리 성분 제품에 반응한 적이 있으면 피하세요.",
+      "바른 뒤에도 당김이 남으면 기존에 편했던 보습제를 건조한 부위에 유지해요."
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "가벼운 젤 보습 마무리"
+    ],
+    "volume": "100ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-78.webp",
+    "imageSource": {
+      "url": "https://purito.com/ko/wp-content/uploads/sites/5/2025/04/Oat_Cream_slide_01.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-13"
+    },
+    "link": "https://www.coupang.com/vp/products/6055303461",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "100ml 옵션과 포장 성분표를 확인해요. 재고는 판매처 기준이에요."
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "보습 마무리 단계",
+      "howToUse": [
+        "기존 크림이 무겁다면 대체 후보로 얇게 사용해요."
+      ]
+    },
+    "usageAmount": {
+      "normal": "제품 안내를 따라 소량부터"
+    }
+  },
+  {
+    "id": 79,
+    "name": "퓨리토 마이티 밤부 판테놀 세럼",
+    "brand": "퓨리토",
+    "category": "serum",
+    "hydrationLevel": 4,
+    "texture": "light_serum",
+    "concerns": [],
+    "ingredients": [
+      "판테놀",
+      "글리세린",
+      "나이아신아마이드",
+      "엑토인",
+      "스쿠알란"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "판테놀(13%)",
+      "글리세린",
+      "프로판다이올",
+      "1,2-헥산다이올",
+      "부틸렌글라이콜",
+      "나이아신아마이드",
+      "스쿠알란",
+      "밤부사 불가리스추출물(3,335ppm)",
+      "엑토인",
+      "알란토인",
+      "카보머",
+      "하이드록시에틸아크릴레이트/소듐아크릴로일다이메틸타우레이트코폴리머",
+      "세테아릴올리베이트",
+      "트로메타민",
+      "솔비탄올리베이트",
+      "메도우폼씨오일",
+      "에틸헥실글리세린",
+      "아데노신",
+      "다이소듐이디티에이",
+      "솔비탄아이소스테아레이트",
+      "폴리글리세릴-10스테아레이트"
+    ],
+    "activeIngredients": [
+      {
+        "name": "나이아신아마이드",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "엑토인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_domestic_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "판테놀",
+        "concentration": 13,
+        "unit": "%",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "밤부사 불가리스추출물",
+        "concentration": 3335,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list",
+        "concentrationBasis": "raw_material_fraction"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 8,
+      "lightweightFit": 6,
+      "soothingSupport": 4,
+      "congestionSupport": 0,
+      "barrierSupport": 4
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partially_disclosed",
+      "purchaseLinkVerified": true,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-13",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://purito.com/ko/product/마이티-밤부-판테놀-세럼/"
+        }
+      ],
+      "note": "국내 공식 판매 제품의 표시 전성분을 확인했어요. 공개하지 않은 성분의 함량은 추정하지 않았어요."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-13",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "공식 전성분과 제형·보습 역할을 비교한 내부 평가. 개별 효능의 크기나 개선율을 뜻하지 않음.",
+      "remainingGaps": [
+        "independent_clinical_efficacy",
+        "live_stock",
+        "retailer_batch_formula_match"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "humanStudyVerified": false,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false
+    },
+    "skinTypes": [
+      "건성",
+      "중성",
+      "복합성"
+    ],
+    "description": "판테놀과 글리세린으로 보습감을 보완하는 세럼이에요.",
+    "shortReason": "보습감이 부족할 때 기존 세럼과 비교",
+    "caution": [
+      "판테놀 13%와 나이아신아마이드가 들어 있어요. 잘 맞는 기존 제품이 있다면 추가할 필요는 없어요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": false,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습감이 부족할 때 기존 세럼과 비교"
+    ],
+    "volume": "30ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-79.webp",
+    "imageSource": {
+      "url": "https://purito.com/ko/wp-content/uploads/sites/5/2025/01/Panthenol-Serum-slide-01-1.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-13"
+    },
+    "link": "https://www.coupang.com/vp/products/8539576378",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "30ml 옵션과 포장 성분표를 확인해요. 재고는 판매처 기준이에요."
+    },
+    "usageType": "serum",
+    "usage": {
+      "when": "세럼 단계",
+      "howToUse": [
+        "보습감이 아쉬운 부위에 소량부터 비교해요."
+      ]
+    },
+    "usageAmount": {
+      "normal": "제품 안내를 따라 소량부터"
+    },
+    "recommendationScope": "addon_only",
+    "functionalClaims": {
+      "types": [
+        "whitening",
+        "wrinkle"
+      ],
+      "verification": "official_brand_label",
+      "source": "https://purito.com/ko/product/마이티-밤부-판테놀-세럼/",
+      "verifiedAt": "2026-11-13"
+    }
+  },
+  {
+    "id": 80,
+    "name": "코스알엑스 더 비타민씨 13 세럼",
+    "brand": "코스알엑스",
+    "category": "serum",
+    "hydrationLevel": 6,
+    "texture": "light_serum",
+    "concerns": [],
+    "ingredients": [
+      "아스코빅애씨드",
+      "판테놀",
+      "나이아신아마이드"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "아스코빅애씨드(13%)",
+      "부틸렌글라이콜",
+      "다이프로필렌글라이콜",
+      "트로메타민",
+      "3-O-에틸아스코빅애씨드",
+      "판테놀",
+      "아세틸글루코사민",
+      "카페인",
+      "소듐하이알루로네이트",
+      "소듐설파이트",
+      "다이소듐이디티에이",
+      "글루타티온",
+      "아데노신",
+      "치자추출물",
+      "알란토인",
+      "덱스트린",
+      "스쿠알란",
+      "토코트라이엔올",
+      "토코페롤",
+      "오일팜오일",
+      "알지닌",
+      "나이아신아마이드",
+      "펜틸렌글라이콜",
+      "스페인감초뿌리추출물"
+    ],
+    "activeIngredients": [
+      {
+        "name": "나이아신아마이드",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "3-O-에틸아스코빅애씨드",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_domestic_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "아스코빅애씨드",
+        "concentration": 13,
+        "unit": "%",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 4,
+      "lightweightFit": 7,
+      "soothingSupport": 1,
+      "congestionSupport": 0,
+      "barrierSupport": 0
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partially_disclosed",
+      "purchaseLinkVerified": true,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-13",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://www.cosrx.co.kr/product/더-비타민씨-13-세럼-20ml/709/category/102/display/1/"
+        },
+        {
+          "sourceType": "official_domestic_full_ingredient_list",
+          "url": "https://cosrxinc.jpg3.kr/cosrximg/cosrx/product/The-VitaminC13-Serum/The-VitaminC13-Serum_15.jpg"
+        }
+      ],
+      "note": "국내 공식 판매 제품의 표시 전성분을 확인했어요. 공개하지 않은 성분의 함량은 추정하지 않았어요."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-13",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "공식 전성분과 제형·보습 역할을 비교한 내부 평가. 개별 효능의 크기나 개선율을 뜻하지 않음.",
+      "remainingGaps": [
+        "independent_clinical_efficacy",
+        "live_stock",
+        "retailer_batch_formula_match"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "humanStudyVerified": false,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "지성"
+    ],
+    "description": "순수 비타민 C를 써 본 사람이 피부톤과 평평한 갈색 흔적을 관리할 때 비교할 후보예요.",
+    "shortReason": "피부톤 관리용 순수 비타민 C",
+    "caution": [
+      "순수 비타민 C 13% 제품이에요. 처음 쓰거나 현재 따갑고 당기는 피부에는 권하지 않아요.",
+      "같은 부위의 다른 비타민 C·레티노이드·각질 관리제와 새로 겹쳐 시작하지 않아요. 낮에는 자외선 차단을 유지해요.",
+      "공식 제품 고시의 개봉 후 사용기한은 2개월이에요. 실제 포장에 적힌 보관·사용기한을 확인해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": false,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "피부톤 관리용 순수 비타민 C"
+    ],
+    "volume": "20ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-80.webp",
+    "imageSource": {
+      "url": "https://ecimg.cafe24img.com/pg3307b33863671083/cosrxinc2026/web/product/big/20261023/e173a689b4474d6b37b6955643ec616b.png",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-13"
+    },
+    "link": "https://www.coupang.com/vp/products/7728889235?itemId=18746386460&vendorItemId=86456590244",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "20ml 옵션과 포장 성분표를 확인해요. 재고는 판매처 기준이에요."
+    },
+    "usageType": "serum",
+    "usage": {
+      "when": "세럼 단계",
+      "howToUse": [
+        "소량부터 한 가지로 비교하고 보관은 제품 안내를 따라요."
+      ]
+    },
+    "usageAmount": {
+      "normal": "제품 안내를 따라 소량부터"
+    },
+    "recommendationScope": "addon_only",
+    "functionalClaims": {
+      "types": [
+        "whitening",
+        "wrinkle"
+      ],
+      "verification": "official_brand_label",
+      "source": "https://cosrxinc.jpg3.kr/cosrximg/cosrx/product/The-VitaminC13-Serum/The-VitaminC13-Serum_15.jpg",
+      "verifiedAt": "2026-11-13"
+    },
+    "legacyLookupIds": [
+      "lookup:cosrx:709"
+    ]
+  },
+  {
+    "id": 81,
+    "name": "코스알엑스 더 6 펩타이드 스킨 부스터 세럼",
+    "brand": "코스알엑스",
+    "category": "serum",
+    "hydrationLevel": 6,
+    "texture": "watery",
+    "concerns": [],
+    "ingredients": [
+      "글리세린",
+      "나이아신아마이드",
+      "아세틸헥사펩타이드-8",
+      "카퍼트라이펩타이드-1",
+      "아데노신"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "다이프로필렌글라이콜",
+      "글리세린",
+      "펜틸렌글라이콜",
+      "1,2-헥산다이올",
+      "나이아신아마이드",
+      "아세틸헥사펩타이드-8(5ppm)",
+      "카퍼트라이펩타이드-1(5ppm)",
+      "에스에이치-폴리펩타이드-121(1.98ppm)",
+      "다이펩타이드다이아미노부티로일벤질아마이드다이아세테이트(0.3ppm)",
+      "올리고펩타이드-68(0.095ppm)",
+      "팔미토일트라이펩타이드-8(0.02ppm)",
+      "알란토인",
+      "소듐하이알루로네이트",
+      "아세틸글루코사민",
+      "세린",
+      "알라닌",
+      "글라이신",
+      "트레오닌",
+      "알지닌",
+      "프롤린",
+      "베타인",
+      "소듐피씨에이",
+      "소듐락테이트",
+      "피씨에이",
+      "글루타믹애씨드",
+      "라이신에이치씨엘",
+      "토코페롤",
+      "덱스트란",
+      "돌콩오일",
+      "하이드로제네이티드레시틴",
+      "암모늄아크릴로일다이메틸타우레이트/브이피코폴리머",
+      "폴리아크릴레이트크로스폴리머-6",
+      "부틸렌글라이콜",
+      "잔탄검",
+      "에틸헥실글리세린",
+      "아데노신",
+      "폴리쿼터늄-51",
+      "다이소듐이디티에이",
+      "시트릭애씨드",
+      "카프릴릴글라이콜",
+      "t-부틸알코올",
+      "포타슘솔베이트",
+      "소듐올리에이트"
+    ],
+    "activeIngredients": [
+      {
+        "name": "나이아신아마이드",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "아데노신",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_domestic_full_ingredient_list"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "아세틸헥사펩타이드-8",
+        "concentration": 5,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "카퍼트라이펩타이드-1",
+        "concentration": 5,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "에스에이치-폴리펩타이드-121",
+        "concentration": 1.98,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "다이펩타이드다이아미노부티로일벤질아마이드다이아세테이트",
+        "concentration": 0.3,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "올리고펩타이드-68",
+        "concentration": 0.095,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
+      },
+      {
+        "name": "팔미토일트라이펩타이드-8",
+        "concentration": 0.02,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_domestic_full_ingredient_list"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 5,
+      "lightweightFit": 9,
+      "soothingSupport": 2,
+      "congestionSupport": 0,
+      "barrierSupport": 1
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partially_disclosed",
+      "purchaseLinkVerified": true,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-13",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://www.cosrx.co.kr/product/더-6-펩타이드-스킨-부스터-세럼-150ml/732/"
+        },
+        {
+          "sourceType": "official_domestic_full_ingredient_list",
+          "url": "https://cosrxinc.jpg3.kr/cosrximg/cosrx/product/The-Peptide-serum/1000_6_Peptide_08.jpg"
+        }
+      ],
+      "note": "국내 공식 판매 제품의 표시 전성분을 확인했어요. 공개하지 않은 성분의 함량은 추정하지 않았어요."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-13",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "공식 전성분과 제형·보습 역할을 비교한 내부 평가. 개별 효능의 크기나 개선율을 뜻하지 않음.",
+      "remainingGaps": [
+        "independent_clinical_efficacy",
+        "live_stock",
+        "retailer_batch_formula_match"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "humanStudyVerified": false,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "지성"
+    ],
+    "description": "묽은 사용감의 펩타이드 부스터예요. 잔주름을 위한 화장품 후보로 비교할 수 있어요.",
+    "shortReason": "잔주름 관리용 펩타이드 부스터",
+    "caution": [
+      "펩타이드와 나이아신아마이드가 이미 든 세럼은 겹쳐 추가하지 않아요.",
+      "제품의 펩타이드 수나 표시 함량만으로 주름 개선 효과를 비교하지 않아요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": false,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "잔주름 관리용 펩타이드 부스터"
+    ],
+    "volume": "150ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-81.webp",
+    "imageSource": {
+      "url": "https://ecimg.cafe24img.com/pg3307b33863671083/cosrxinc2026/web/product/big/20261023/83a31f8c0aacef869cb52a533686c326.png",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-13"
+    },
+    "link": "https://www.coupang.com/vp/products/7702287490?itemId=23641990806&vendorItemId=91922970980",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "150ml 옵션과 포장 성분표를 확인해요. 재고는 판매처 기준이에요."
+    },
+    "usageType": "serum",
+    "usage": {
+      "when": "세안 후 스킨케어 첫 단계",
+      "howToUse": [
+        "기존에 같은 역할의 부스터가 있다면 대체할 한 가지만 비교해요."
+      ]
+    },
+    "usageAmount": {
+      "normal": "제품 안내를 따라 소량부터"
+    },
+    "recommendationScope": "addon_only",
+    "legacyLookupIds": [
+      "lookup:cosrx:732"
+    ],
+    "functionalClaims": {
+      "types": [
+        "whitening",
+        "wrinkle"
+      ],
+      "verification": "official_brand_label",
+      "source": "https://cosrxinc.jpg3.kr/cosrximg/cosrx/product/The-Peptide-serum/1000_6_Peptide_08.jpg",
+      "verifiedAt": "2026-11-13"
+    }
   }
 ]
