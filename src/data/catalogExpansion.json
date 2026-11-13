@@ -4803,7 +4803,7 @@
       "status": "reviewed",
       "formulaStatus": "domestic_official",
       "careProfileSource": "internal_conservative_assessment",
-      "careProfileNote": "오후 번들거림이 신경 쓰이고 현재 피부가 편안할 때 비교하는 추가 후보. 가벼운 제형과 제조사 용도를 반영했으며 효능 수치를 추정하지 않음.",
+      "careProfileNote": "오후 번들거림이 신경 쓰이고 현재 피부가 편안할 때 비교하는 추가 후보. 가벼운 제형과 제조사 용도를 반영한 보수적 내부 평가이며 효능 수치를 추정하지 않음.",
       "remainingGaps": [
         "niacinamide_concentration",
         "clinical_outcome",
