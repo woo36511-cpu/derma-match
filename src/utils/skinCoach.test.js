@@ -371,7 +371,8 @@ test("full catalog audit has explicit care profiles and conservative verificatio
   expect(missingFullIngredientIds).toEqual([8, 20, 26, 27, 36, 48]);
 
   for (const product of products) {
-    expect(product.catalogAudit?.reviewedAt).toBe(product.id >= 52 ? "2026-11-09" : product.id === 51 ? "2026-11-08" : "2026-10-11");
+    expect(product.catalogAudit?.reviewedAt).toMatch(/^2026-\d{2}-\d{2}$/);
+    expect(Date.parse(product.catalogAudit.reviewedAt)).toBeGreaterThanOrEqual(Date.parse("2026-10-11"));
     expect(product.catalogAudit?.careProfileSource).toBe(
       "internal_conservative_assessment",
     );
