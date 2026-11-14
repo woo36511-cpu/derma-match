@@ -44,10 +44,20 @@ import { getBasicObservationTracks, getObservationKinds, isProductObservation } 
 import { useConcernCheck, isConcernCheckRecord } from "./useConcernCheck";
 import { useSymptomCheck, isSymptomCheckRecord } from "./useSymptomCheck";
 import { applyRoutineSafety, getRoutineSafety, getFeedbackRoutineSafety, feedbackNeedsSymptomReview } from "../utils/symptomAssessment";
+import { useCurrentRoutine } from "../components/CurrentRoutineReview";
+import { getCurrentRoutineContext } from "../utils/currentRoutineReview";
+import { getRoutinePreferences } from "../utils/routineAdvice";
 
 export function useSkinCoach() {
   const starterLevel = 5;
   const { savedSurvey, journeyHistory: storedHistory, persistRecord, account, ownerId } = useJourneyAccount();
+  const ownerKey = account.user?.id ? `account:${account.user.id}` : "guest";
+  const currentRoutine = useCurrentRoutine(ownerKey);
+  const currentRoutineContext = useMemo(() => getCurrentRoutineContext(currentRoutine.entries), [currentRoutine.entries]);
+  const routineFilter = observedSkin => ({
+    ...currentRoutineContext, observedSkin,
+    suppressedSlots: getRoutinePreferences(currentRoutineContext, observedSkin).suppressedSlots,
+  });
   // Symptom-only checks have no 8-axis measurement or product-effect attribution.
   const journeyHistory = useMemo(() => storedHistory.filter(record => !isSymptomCheckRecord(record) && !isConcernCheckRecord(record) && !isProductObservation(record)), [storedHistory]);
 
@@ -224,7 +234,7 @@ export function useSkinCoach() {
   const starterRoutineInfo = routineMap[starterLevel];
   const nextRoutineInfo = routineMap[nextLevel];
 
-  const starterRoutine = buildDynamicRoutine(starterLevel, { mainConcern: "none", basicOnly: true, isSensitive: true, personalProductFeedback });
+  const starterRoutine = buildDynamicRoutine(starterLevel, { ...routineFilter(), mainConcern: "none", basicOnly: true, isSensitive: true, personalProductFeedback });
   const observationFeedbackHold = observationFeedback && (!feedbackSurveyComplete || followUpSurveyResult.observationAssessment?.canRecommendBasics === false);
   const feedbackSafety = observationFeedbackHold ? { blocked: true, reason: followUpSurveyResult.observationAssessment?.recommendationReason ?? "현재 피부 상태 답변을 먼저 확인해요." } : symptomFeedbackSafety;
   const feedbackProfile = feedbackSurveyComplete ? followUpSurveyResult : surveyResult;
@@ -238,6 +248,7 @@ export function useSkinCoach() {
     ]);
   }, [feedbackTargetProducts, feedbackDraft?.savedRecordId, personalProductFeedback, productUsageFeedback, storedHistory]);
   const nextRoutine = applyRoutineSafety(observationFeedbackHold ? { products: {} } : buildDynamicRoutine(nextLevel, {
+    ...routineFilter(feedbackProfile.observationAssessment?.resolvedObservations),
     basicOnly: feedbackSurveyVersion === ADAPTIVE_SURVEY_VERSION,
     mainConcern: feedbackMainConcern,
     personalProductFeedback: nextPersonalProductFeedback,
@@ -257,7 +268,7 @@ export function useSkinCoach() {
         feedbackMainConcern === "sensitivity_redness",
   }), feedbackSafety);
   const quickSafety = getRoutineSafety(symptomCheck.assessment);
-  const quickRoutine = applyRoutineSafety(buildDynamicRoutine(quickLevel, { personalProductFeedback }), quickSafety);
+  const quickRoutine = applyRoutineSafety(buildDynamicRoutine(quickLevel, { ...routineFilter(), basicOnly: true, personalProductFeedback }), quickSafety);
   const quickRoutineReason = buildRoutineReason(quickLevel);
 
   const acneGuide = useMemo(() => {
@@ -344,6 +355,7 @@ export function useSkinCoach() {
 
   const routineSafety = getRoutineSafety(symptomCheck.assessment, activeIssueGuide);
   const surveyRoutine = applyRoutineSafety(buildDynamicRoutine(surveyResult.hydrationLevel, {
+    ...routineFilter(surveyResult.observationAssessment?.resolvedObservations),
     mainConcern,
     personalProductFeedback,
 
@@ -778,7 +790,7 @@ export function useSkinCoach() {
   };
 
   return {
-    personalProductFeedback, simpleMode, simpleRecord, startSimpleSkinCare, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
+    personalProductFeedback, ownerKey, currentRoutine, currentRoutineContext, simpleMode, simpleRecord, startSimpleSkinCare, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
     symptomCheck, concernCheck, moisturizerObservation, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck,
     continueFeedback: () => feedbackNeedsSymptomReview(answers) ? symptomCheck.begin("recheck") : setStep("recheck"),
     account,

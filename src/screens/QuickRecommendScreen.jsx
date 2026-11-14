@@ -12,6 +12,7 @@ export function QuickRecommendScreen({
   setStep,
   startQuickJourneyFeedback,
 }) {
+  const hasCandidates = Object.values(quickRoutine.products).some(Boolean);
   return (
     <section>
       <SectionTitle
@@ -91,7 +92,8 @@ export function QuickRecommendScreen({
           desc="피부타입에 맞는 후보예요. 기존에 편안한 제품을 모두 바꾸지 않아도 되고 토너·세럼은 필수가 아니에요. 새 제품은 하나씩 확인하세요."
         />
 
-        <RoutineProductScroller
+        {!hasCandidates && <p className="text-sm text-slate-700">편했던 제품은 그대로 유지해요. 사용 중 자극이 있었다면 새 제품을 더하기 전에 그 제품부터 확인해요.</p>}
+        {hasCandidates && <RoutineProductScroller
           productsByCategory={quickRoutine.products}
           userContext={{
             level: quickLevel,
@@ -107,7 +109,7 @@ export function QuickRecommendScreen({
                   ? "밸런스"
                   : "유분 밸런스",
           }}
-        />
+        />}
       </div>
 
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -118,9 +120,9 @@ export function QuickRecommendScreen({
           시작 화면으로 돌아가기
         </button>
 
-        <PrimaryButton onClick={startQuickJourneyFeedback}>
+        {hasCandidates && <PrimaryButton onClick={startQuickJourneyFeedback}>
           이 루틴으로 시작하기
-        </PrimaryButton>
+        </PrimaryButton>}
       </div>
     </section>
   );

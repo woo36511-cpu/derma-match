@@ -1,6 +1,7 @@
 import { getProductEvidenceStatus } from "./productEvidence";
 import { products } from "../data/products";
 import { starterRoutineByLevel } from "../data/routines";
+import { getIngredientFamilies, getCompatibilityRisk } from "./ingredientCompatibility";
 
 export function getProductById(id) {
   return products.find((product) => product.id === id);
@@ -111,13 +112,16 @@ export function isProductAllowedForContext(
   category,
   userContext = {},
 ) {
-  if (product?.recommendationScope === "addon_only" || userContext.personalProductFeedback?.avoided?.has(product?.id)) return false;
+  if (product?.recommendationScope === "addon_only" || userContext.personalProductFeedback?.avoided?.has(product?.id) || userContext.ownedProductIds?.has(product?.id)) return false;
   if (!getProductEvidenceStatus(product).eligible) return false;
   if (userContext.basicOnly && (hasExfoliatingActive(product) || (["toner", "serum", "cream"].includes(category) && isSpecializedTreatmentProduct(product)))) return false;
 
   if (!isProductAvailable(product)) {
     return false;
   }
+  const activeFamilies = getIngredientFamilies(product).filter(family => ["acid", "retinoid", "benzoyl"].includes(family));
+  if (activeFamilies.length && (userContext.currentFamilies?.includes("unknown") ||
+    getCompatibilityRisk(activeFamilies, [...(userContext.currentFamilies ?? []), ...(userContext.rinseOffFamilies ?? [])]))) return false;
 
   const { inflammationCareNeed = 0, soothingNeed = 0 } =
     userContext.careNeeds || {};

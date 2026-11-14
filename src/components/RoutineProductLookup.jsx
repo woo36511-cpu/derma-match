@@ -11,9 +11,9 @@ function LookupImage({ src }) {
     : <span aria-hidden="true" className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-xs text-slate-500">사진 없음</span>;
 }
 
-export function RoutineProductLookup({ ownerKey = "guest", profile, savedAt, safetyBlocked = false, onStartSurvey, loading = false, currentRoutine }) {
+export function RoutineProductLookup({ ownerKey = "guest", profile, savedAt, safetyBlocked = false, onStartSurvey, loading = false, currentRoutine, personalProductFeedback }) {
   if (loading) return <p className="rounded-2xl bg-white p-4 text-sm text-slate-700" role="status">이 기기의 내 루틴을 확인하고 있어요.</p>;
-  const props = { ownerKey, profile, savedAt, safetyBlocked, onStartSurvey };
+  const props = { ownerKey, profile, savedAt, safetyBlocked, onStartSurvey, personalProductFeedback };
   return currentRoutine ? <RoutineLookupContent key={ownerKey} {...props} routine={currentRoutine} />
     : <StandaloneRoutineLookup key={ownerKey} {...props} />;
 }
@@ -23,7 +23,7 @@ function StandaloneRoutineLookup(props) {
   return <RoutineLookupContent {...props} routine={routine} />;
 }
 
-function RoutineLookupContent({ profile, savedAt, safetyBlocked, onStartSurvey, routine }) {
+function RoutineLookupContent({ profile, savedAt, safetyBlocked, onStartSurvey, routine, personalProductFeedback }) {
   const [query, setQuery] = useState("");
   const [manualCategory, setManualCategory] = useState("");
   const reviewRef = useRef(null);
@@ -36,7 +36,7 @@ function RoutineLookupContent({ profile, savedAt, safetyBlocked, onStartSurvey, 
       <h3 id="routine-lookup-title" className="text-lg font-bold">지금 쓰는 화장품 찾기</h3>
       <p className="mt-1 text-sm text-slate-600">등록된 {routineLookupCount}개 중 제품을 찾아 담고, 실제 사용 반응을 기준으로 유지할 것과 점검할 것을 나눠봐요.</p>
     </div>
-    <div ref={reviewRef}><CurrentRoutineReview {...{ routine, profile, savedAt, safetyBlocked, onStartSurvey }} /></div>
+    <div ref={reviewRef}><CurrentRoutineReview {...{ routine, profile, savedAt, safetyBlocked, onStartSurvey, personalProductFeedback }} /></div>
     {isFull && <p className="text-sm text-slate-600">최대 {CURRENT_ROUTINE_LIMIT}개까지 담을 수 있어요. 더 담으려면 지금 쓰지 않는 제품을 빼주세요.</p>}
     <div>
       <div className="flex flex-wrap items-center justify-between gap-2">

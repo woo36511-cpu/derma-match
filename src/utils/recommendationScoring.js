@@ -3,6 +3,7 @@ import { RECOMMENDATION_RULE_VERSION, getProductEvidenceStatus } from "./product
 import { getProductCareProfile } from "./productCareProfile";
 import { hasExfoliatingActive } from "./productCatalog";
 import { getReviewedProductObservation, OBSERVATION_FIT_BONUS } from "./reviewedProductObservations";
+import { getRoutineFitSignals } from "./routineFitContext";
 
 export function getCareNeedMatchScore(product, careNeeds = {}) {
   if (!product) return 0;
@@ -115,13 +116,33 @@ export function getConcernMatchScore(product, mainConcern) {
   }
 }
 export function getRecommendationBreakdown(product, currentLevel, userContext = {}) {
-  const careFit = getCareNeedMatchScore(product, userContext.careNeeds) * 0.55;
+  const slot = userContext.slot ?? (["cleanser", "cleansing_milk", "gel_cleanser", "bha_cleanser", "enzyme_cleanser"].includes(product.category) ? "cleanser" : product.category);
+  const fit = getRoutineFitSignals(slot, userContext);
+  const p = getProductCareProfile(product);
+  const rawNeeds = userContext.careNeeds ?? {};
+  const careFit = fit ? getCareNeedMatchScore(product, {
+    ...rawNeeds, hydrationNeed: 0, lightTextureNeed: 0, barrierCareNeed: 0,
+  }) * 0.4 : getCareNeedMatchScore(product, rawNeeds) * 0.55;
   const concernSupport = getConcernMatchScore(product, userContext.mainConcern) * 3.5;
   const moistureDistance = Math.abs((product.hydrationLevel ?? 5) - currentLevel);
   const evidence = getProductEvidenceStatus(product);
   const observation = getReviewedProductObservation(product, evidence, currentLevel, userContext);
   const personalFit = getPersonalBasicFit(product, currentLevel, userContext);
-  const parts = { careFit, concernSupport, moistureFit: -moistureDistance * 2.5,
+  const weights = {
+    cleanser: [0.12, 0.12, 0.04], toner: [0.12, 0.07, 0.04],
+    serum: [0.15, 0.08, 0.09], cream: [0.16, 0.13, 0.16],
+  }[slot] ?? [0.12, 0.08, 0.07];
+  const oilOnlyInTZone = fit?.zonedOil && !fit.heavy;
+  const parts = { careFit, concernSupport,
+    moistureFit: -moistureDistance * (fit ? (fit.washTight || fit.postMoistureTight || fit.heavy ? 0.9 : 1.6) : 2.5),
+    ...(fit && {
+      hydrationFit: fit.hydration * p.hydrationSupport * weights[0],
+      textureFit: fit.texture * p.lightweightFit * weights[1],
+      barrierFit: fit.barrier * p.barrierSupport * weights[2],
+      washComfortFit: fit.washTight ? (p.hydrationSupport * 0.65 + p.soothingSupport * 0.3 + (product.category === "cleansing_milk" ? 0.75 : 0)) : 0,
+      localTextureFit: oilOnlyInTZone && slot === "cream" ? p.barrierSupport * 0.7 : 0,
+      hydrationRoleFit: fit.postMoistureTight && slot === "cream" ? p.barrierSupport * 0.7 : 0,
+    }),
     sensitiveFit: userContext.isSensitive && product.sensitivitySafe ? 4 : 0,
     beginnerFit: product.beginnerFriendly ? 1.5 : 0,
     ...(observation && { reviewedObservation: OBSERVATION_FIT_BONUS }), ...(personalFit && { personalFit }) };
@@ -138,10 +159,10 @@ export function sortProductsForRecommendation(
   currentLevel,
   userContext = {},
 ) {
+  const scores = new Map(productList.map(product => [product.id, getRecommendationScore(product, currentLevel, userContext)]));
   return [...productList].sort((a, b) => {
-    const aScore = getRecommendationScore(a, currentLevel, userContext);
-
-    const bScore = getRecommendationScore(b, currentLevel, userContext);
+    const aScore = scores.get(a.id);
+    const bScore = scores.get(b.id);
 
     if (aScore !== bScore) {
       return bScore - aScore;

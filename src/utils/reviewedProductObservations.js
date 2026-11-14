@@ -7,10 +7,13 @@ export const OBSERVATION_FIT_BONUS = 0.5;
 export const COSMETIC_OBSERVATION_FIT_BONUS = 0.25;
 
 function findReviewedSignal(product, evidence, level, sensitive, matches, entries, now) {
-  if (!entries.length || !evidence.eligible || !evidence.lastVerifiedAt || product.hydrationLevel !== level ||
+  if (!entries.length || !evidence.eligible || !evidence.lastVerifiedAt ||
       typeof sensitive !== "boolean" || (sensitive && !product.sensitivitySafe)) return null;
   return entries.find(entry => {
     const reviewedAt = /^\d{4}-\d{2}-\d{2}$/.test(entry.reviewedOn ?? "") ? Date.parse(entry.reviewedOn) : NaN;
+    const periodEnd = /^\d{4}-\d{2}-\d{2}$/.test(entry.evidencePeriodEnd ?? "") ? Date.parse(entry.evidencePeriodEnd) : NaN;
+    if (entry.reviewBasis !== "repeated_consented_observation_v1" || !Number.isFinite(periodEnd) ||
+      periodEnd > reviewedAt || now - periodEnd >= REVIEW_LIFETIME_DAYS * DAYS_MS) return false;
     return entry.productId === product.id && entry.formulaVerifiedAt === evidence.lastVerifiedAt &&
       entry.hydrationLevel === level && entry.sensitive === sensitive && reviewedAt <= now &&
       now - reviewedAt < REVIEW_LIFETIME_DAYS * DAYS_MS && matches(entry);
@@ -23,9 +26,11 @@ export function getReviewedProductObservation(product, evidence, level, context,
   const category = Object.keys(context.observationTracks ?? {}).find(key =>
     key === product.category || (key === "cleanser" && OBSERVATION_KINDS.cleanser.categories.includes(product.category)));
   const basicTracks = context.observationTracks?.[category] ?? [];
+  const observed = context.observedSkin;
   return findReviewedSignal(product, evidence, level, context.isSensitive, entry =>
     (kind && entry.protocol === OBSERVATION_KINDS[kind].protocol) ||
-    (entry.route === "basic" && entry.area === null && basicTracks.some(track => entry.protocol === cosmeticObservationProtocol(track))),
+    (entry.route === "basic" && basicTracks.some(track => entry.protocol === cosmeticObservationProtocol(track) &&
+      (entry.area === null || entry.area === (track === "sebum" ? observed?.observedOil : observed?.drynessArea)))),
   entries, now);
 }
 

@@ -50,7 +50,7 @@ test("reviewed cosmetic evidence must match formula, goal, symptom, and the trac
   const level = product.hydrationLevel;
   const signal = { protocol: "cosmetic-blackhead-v1", route: "texture", area: "nose",
     formulaVerifiedAt: evidence.lastVerifiedAt, productId: product.id, hydrationLevel: level,
-    sensitive: false, reviewedOn: "2026-11-11" };
+    sensitive: false, reviewedOn: "2026-11-11", evidencePeriodEnd: "2026-10-01", reviewBasis: "repeated_consented_observation_v1" };
   const context = { sensitive: false, route: "texture", tracks: ["blackhead"], locations: { blackhead: "nose" } };
   const check = (contextOverride, signalOverride) => getReviewedCosmeticObservation(product, evidence, level,
     { ...context, ...contextOverride }, [{ ...signal, ...signalOverride }], Date.parse(now));

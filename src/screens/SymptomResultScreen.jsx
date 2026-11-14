@@ -12,14 +12,14 @@ import { SYMPTOM_RULE_VERSION } from "../utils/symptomAssessment";
 import { buildFirstVisitPlan } from "../utils/firstVisitCare";
 import { SymptomCareSummary } from "../components/SelfCarePlan";
 
-export function SymptomResultScreen({ check, setStep, onRecordConcern }) {
+export function SymptomResultScreen({ check, setStep, onRecordConcern, currentRoutine, personalProductFeedback }) {
   const assessment = check.assessment;
   const guided = assessment?.guidedCare === true;
   useLayoutEffect(() => {
     if (guided) window.scrollTo(0, 0);
   }, [guided]);
   if (!assessment) return null;
-  const plan = !check.historical || assessment.ruleVersion === SYMPTOM_RULE_VERSION ? buildFirstVisitPlan(assessment) : null;
+  const plan = !check.historical || assessment.ruleVersion === SYMPTOM_RULE_VERSION ? buildFirstVisitPlan(assessment, currentRoutine, personalProductFeedback) : null;
   const showBreakoutGuide = guided && assessment.complete &&
     !["emergency", "urgent"].includes(assessment.urgency) && hasBreakoutDetails(assessment.answers);
   return <section className="max-w-3xl mx-auto space-y-6">

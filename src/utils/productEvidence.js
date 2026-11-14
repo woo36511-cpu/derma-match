@@ -1,5 +1,5 @@
 export const PRODUCT_CARE_AXES = ["hydrationSupport", "lightweightFit", "soothingSupport", "congestionSupport", "barrierSupport"];
-export const RECOMMENDATION_RULE_VERSION = "verified-product-fit-v4-serum-catalog-20261113";
+export const RECOMMENDATION_RULE_VERSION = "verified-product-fit-v5-current-routine-20261114";
 
 // Verification describes product identity/formula data. It is not clinical efficacy.
 export function getProductEvidenceStatus(product) {

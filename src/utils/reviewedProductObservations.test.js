@@ -19,8 +19,10 @@ test("reviewed records change eligible ranking by only the small allowed bonus",
       expect(closeFit).toBeDefined();
       const { level, ranked, alternative } = closeFit;
       const entry = { protocol: config.protocol, productId: alternative.id,
-        formulaVerifiedAt: alternative.evidence.lastVerifiedAt, hydrationLevel: level, sensitive: false, reviewedOn: "2026-11-12" };
-      for (const mismatch of [{ formulaVerifiedAt: "2025-01-01" }, { reviewedOn: "2026-01-01" }, { sensitive: true }, { protocol: "cheek-tightness-v1" }]) {
+        formulaVerifiedAt: alternative.evidence.lastVerifiedAt, hydrationLevel: level, sensitive: false, reviewedOn: "2026-11-12",
+        evidencePeriodEnd: "2026-10-01", reviewBasis: "repeated_consented_observation_v1" };
+      for (const mismatch of [{ formulaVerifiedAt: "2025-01-01" }, { reviewedOn: "2026-01-01" }, { sensitive: true },
+        { evidencePeriodEnd: "2026-08-01" }, { reviewBasis: undefined }, { protocol: "cheek-tightness-v1" }]) {
         entries.splice(0, 1, { ...entry, ...mismatch });
         expect(getRankedProductCandidates(kind, level, context)[0].id).toBe(ranked[0].id);
       }

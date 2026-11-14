@@ -18,13 +18,12 @@ import { AccountPanel } from "./components/AccountPanel";
 import { SymptomCheckScreen } from "./screens/SymptomCheckScreen";
 import { SymptomResultScreen } from "./screens/SymptomResultScreen";
 import { SimpleCareScreen } from "./screens/SimpleCareScreen";
-import { useCurrentRoutine } from "./components/CurrentRoutineReview";
 import { RoutineProductLookup } from "./components/RoutineProductLookup";
 import { RoutineSafetyNotice } from "./components/RoutineSafetyNotice";
 
 export default function App() {
   const {
-    personalProductFeedback, simpleMode, simpleRecord, startSimpleSkinCare, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
+    personalProductFeedback, ownerKey, currentRoutine, currentRoutineContext, simpleMode, simpleRecord, startSimpleSkinCare, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
     symptomCheck, concernCheck, concernCheckHistory, moisturizerObservation, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck, continueFeedback,
     account,
     resetFlow,
@@ -121,11 +120,9 @@ export default function App() {
     routineReason,
     ingredients,
   } = useSkinCoach();
-  const ownerKey = account.user?.id ? `account:${account.user.id}` : "guest";
   const lastSymptom = symptomCheck.latestRecord;
-  const currentRoutine = useCurrentRoutine(ownerKey);
   const routineReview = {
-    ownerKey, currentRoutine,
+    ownerKey, currentRoutine, currentRoutineContext, personalProductFeedback,
     loading: account.authLoading,
     profile: savedSurveyResult,
     savedAt: savedSurvey?.savedAt,
@@ -139,7 +136,7 @@ export default function App() {
 
       <main className={`max-w-5xl mx-auto px-4 sm:px-6 ${step === "start" ? "pt-4 pb-10 sm:pt-6 sm:pb-14" : "py-10 sm:py-14"}`}>
         {step === "symptomCheck" && <SymptomCheckScreen check={symptomCheck} />}
-        {step === "symptomResult" && <SymptomResultScreen check={symptomCheck} setStep={setStep}
+        {step === "symptomResult" && <SymptomResultScreen check={symptomCheck} setStep={setStep} currentRoutine={currentRoutineContext} personalProductFeedback={personalProductFeedback}
           onRecordConcern={symptomCheck.returningToConcernCheck ? concernCheck.resume : concernCheck.canStart ? concernCheck.start : undefined} />}
         {step === "concernCheck" && <ConcernCheckScreen check={concernCheck} onHome={() => setStep("start")} onDetailedFeedback={startSavedFeedback} />}
         {step === "moisturizerObservation" && <MoisturizerObservationScreen key={JSON.stringify([account.user?.id, moisturizerObservation.record?.id, moisturizerObservation.offer?.kind])} observation={moisturizerObservation} onRecommend={startSimpleSkinCare} onHome={() => setStep("start")} />}

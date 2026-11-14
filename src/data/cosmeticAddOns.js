@@ -1,4 +1,4 @@
-export const COSMETIC_ADDON_VERSION = "optional-cosmetics-v4-serum-fit";
+export const COSMETIC_ADDON_VERSION = "optional-cosmetics-v5-routine-compatibility";
 export const cosmeticGoals = [
   { value: "support", label: "보습·장벽 보완", detail: "기초의 보습감이 부족할 때 보완할 제품을 찾아요." },
   { value: "sebum", label: "유분감·모공 외관", detail: "번들거림과 모공이 도드라져 보이는 것이 신경 쓰여요." },
@@ -67,6 +67,7 @@ export function cleanCosmeticAnswers(input = {}, carePlan = {}) {
   }
   if (result.goal === "support" && ["pdrn", "panthenol"].includes(input.serumFocus)) result.serumFocus = input.serumFocus;
   if (result.goal === "lines" && input.serumFocus === "peptide") result.serumFocus = input.serumFocus;
+  if (["tone", "texture", "sebum"].includes(result.goal) && result.actives && !result.actives.includes("unknown") && input.unlistedIngredientsChecked === true) result.unlistedIngredientsChecked = true;
   return result;
 }
 export function isCosmeticComplete(input, carePlan = {}) {
