@@ -10,6 +10,7 @@ import {
   sortProductsForRecommendation,
   getRecommendationBreakdown,
 } from "./recommendationScoring";
+import { getRoutineFitSignals } from "./routineFitContext";
 
 export function getRecommendedIngredients(level, feedbackContext = {}) {
   const list = [];
@@ -38,8 +39,7 @@ export function getRecommendedIngredients(level, feedbackContext = {}) {
 }
 
 export function getRankedProductCandidates(category, level, userContext = {}) {
-  let targetCategory = category;
-
+  if (!Number.isFinite(level) || userContext.irritated?.length || userContext.suppressedSlots?.has(category)) return [];
   let allowedCategories = [category];
 
   // 클렌저는 한 종류로 고정하지 않고
@@ -47,7 +47,7 @@ export function getRankedProductCandidates(category, level, userContext = {}) {
   if (category === "cleanser") {
     if (level <= 3) {
       allowedCategories = ["cleansing_milk", "cleanser", "gel_cleanser"];
-    } else if (level >= 7) {
+    } else if (level >= 7 && !getRoutineFitSignals(category, userContext)?.washTight) {
       allowedCategories = ["gel_cleanser", "cleanser"];
     } else {
       allowedCategories = ["cleanser", "gel_cleanser", "cleansing_milk"];
@@ -59,14 +59,16 @@ export function getRankedProductCandidates(category, level, userContext = {}) {
       allowedCategories.includes(product.category) &&
       isProductAllowedForContext(product, category, userContext),
   );
+  if (userContext.isSensitive) categoryProducts = categoryProducts.filter(product => product.sensitivitySafe);
+  if (getRoutineFitSignals(category, userContext)?.heavy) {
+    categoryProducts = categoryProducts.filter(product => product.careProfile.lightweightFit >= 7);
+  }
 
   // 단순 번들거림이 고민일 때는
   // AHA / BHA / 살리실산 같은 각질 기능성 제품을 기본 추천에서 제외
   if (
     userContext.mainConcern === "oiliness" &&
-    (targetCategory === "toner" ||
-      targetCategory === "serum" ||
-      targetCategory === "cream")
+    (category === "toner" || category === "serum" || category === "cream")
   ) {
     const nonExfoliatingProducts = categoryProducts.filter(
       (product) => !hasExfoliatingActive(product),
@@ -77,7 +79,13 @@ export function getRankedProductCandidates(category, level, userContext = {}) {
     }
   }
 
-  const levelMatchedProducts = filterByLevel(categoryProducts, level);
+  // Compare the second-nearest band even when the closest band already has a candidate.
+  // Without current observations, the legacy quick path keeps its published level behavior.
+  const contextualFit = getRoutineFitSignals(category, userContext);
+  const width = contextualFit?.washTight || contextualFit?.postMoistureTight || contextualFit?.heavy ? 3 : 2;
+  const levelMatchedProducts = contextualFit
+    ? categoryProducts.filter(product => Math.abs((product.hydrationLevel ?? 5) - level) <= width)
+    : filterByLevel(categoryProducts, level);
 
   // 현재 고민과 잘 맞는 제품은
   // 수분 단계가 최대 3단계 정도 차이나도 추가 후보로 허용
@@ -109,7 +117,7 @@ export function getRankedProductCandidates(category, level, userContext = {}) {
   // 가까운 단계나 고민 적합 후보가 하나도 없으면
   // 안전 게이트를 통과한 같은 카테고리 전체로 fallback
   if (candidateProducts.length === 0) {
-    candidateProducts = [...categoryProducts];
+    candidateProducts = contextualFit ? categoryProducts.filter(product => Math.abs((product.hydrationLevel ?? 5) - level) <= 3) : [...categoryProducts];
   }
 
   // 특별한 고민이 없거나 빠른 추천일 때는
@@ -134,39 +142,17 @@ export function getRankedProductCandidates(category, level, userContext = {}) {
         (product) => product.beginnerFriendly && !hasExfoliatingActive(product),
       );
 
-      if (broaderBeginnerSafe.length > 0) {
+      if (!contextualFit && broaderBeginnerSafe.length > 0) {
         candidateProducts = broaderBeginnerSafe;
       }
     }
   }
 
-  // 민감 피부라면 sensitivitySafe 제품을 먼저 후보군으로 제한
-  const sensitiveSafeProducts = userContext.isSensitive
-    ? candidateProducts.filter((product) => product.sensitivitySafe)
-    : candidateProducts;
-
-  // 현재 수분 단계 안에 민감 안전 제품이 없다면
-  // 같은 카테고리 전체에서 민감 안전 제품을 다시 탐색
-  const broaderSensitiveProducts =
-    userContext.isSensitive && sensitiveSafeProducts.length === 0
-      ? categoryProducts.filter((product) => product.sensitivitySafe)
-      : [];
-
-  const safePool = userContext.isSensitive
-    ? sensitiveSafeProducts.length > 0
-      ? sensitiveSafeProducts
-      : broaderSensitiveProducts.length > 0
-        ? broaderSensitiveProducts
-        : []
-    : candidateProducts;
-
-  const sortedProducts = sortProductsForRecommendation(
-    safePool,
+  return sortProductsForRecommendation(
+    candidateProducts,
     level,
-    userContext,
+    { ...userContext, slot: category },
   );
-
-  return sortedProducts;
 }
 
 export function pickBestProductByCategory(category, level, userContext = {}) {
@@ -215,27 +201,17 @@ export function pickAlternativeNonExfoliatingProduct(
 }
 
 export function buildDynamicRoutine(level, userContext = {}) {
-  const cleanser = pickBestProductByCategory("cleanser", level, userContext);
-
-  const toner = pickBestProductByCategory("toner", level, userContext);
-
-  let serum = pickBestProductByCategory("serum", level, userContext);
-
-  let cream = pickBestProductByCategory("cream", level, userContext);
+  const categories = ["cleanser", "toner", "serum", "cream"];
+  const pools = Object.fromEntries(categories.map(category => [category, getRankedProductCandidates(category, level, userContext)]));
+  const cleanser = pools.cleanser[0] ?? null;
+  const toner = pools.toner[0] ?? null;
+  let serum = pools.serum[0] ?? null;
+  let cream = pools.cream[0] ?? null;
 
   // 토너와 세럼에 각질 기능성이 동시에 들어가면
   // 세럼을 순한 대체 제품으로 변경
   if (hasExfoliatingActive(toner) && hasExfoliatingActive(serum)) {
-    const alternativeSerum = pickAlternativeNonExfoliatingProduct(
-      "serum",
-      level,
-      userContext,
-      [serum.id],
-    );
-
-    if (alternativeSerum) {
-      serum = alternativeSerum;
-    }
+    serum = pools.serum.find(product => !hasExfoliatingActive(product)) ?? null;
   }
 
   // 토너 또는 세럼에 이미 각질 기능성이 있다면
@@ -244,26 +220,20 @@ export function buildDynamicRoutine(level, userContext = {}) {
     (hasExfoliatingActive(toner) || hasExfoliatingActive(serum)) &&
     hasExfoliatingActive(cream)
   ) {
-    const alternativeCream = pickAlternativeNonExfoliatingProduct(
-      "cream",
-      level,
-      userContext,
-      [cream.id],
-    );
-
-    if (alternativeCream) {
-      cream = alternativeCream;
-    }
+    cream = pools.cream.find(product => !hasExfoliatingActive(product)) ?? null;
   }
 
   const chosen = { cleanser, toner, serum, cream };
   const selectionEvidence = Object.fromEntries(Object.entries(chosen).map(([category, product]) => {
     if (!product) return [category, { reason: "확인된 자료와 피부 조건을 통과한 후보가 없어요." }];
-    const assessment = getRecommendationBreakdown(product, level, userContext);
-    const ranked = getRankedProductCandidates(category, level, userContext);
+    const context = { ...userContext, slot: category };
+    const assessment = getRecommendationBreakdown(product, level, context);
+    const ranked = pools[category];
     return [category, { productId: product.id, ...assessment,
       selectionPath: ranked[0]?.id === product.id ? "highest_fit_in_eligible_pool" : "compatibility_substitution",
-      alternatives: ranked.filter(candidate => candidate.id !== product.id).slice(0, 2).map(candidate => ({ productId: candidate.id, ...getRecommendationBreakdown(candidate, level, userContext) })),
+      alternatives: ranked.filter(candidate => candidate.id !== product.id && (!hasExfoliatingActive(candidate) ||
+        !Object.entries(chosen).some(([other, selected]) => other !== category && hasExfoliatingActive(selected))))
+        .slice(0, 2).map(candidate => ({ productId: candidate.id, ...getRecommendationBreakdown(candidate, level, context) })),
     }];
   }));
   return {

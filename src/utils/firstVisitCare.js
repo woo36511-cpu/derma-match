@@ -2,8 +2,11 @@ import { getProductEvidenceStatus } from "./productEvidence";
 import { blackheadCosmetics, pharmacyOptions, sunscreenOption } from "../data/targetedCareProducts";
 import { canPairMildBumpCare, getCareConcern, hasCalmClosedBumps, hasMildFacialBumps, hasRecentCosmetic, mayAskAboutActives } from "../data/symptomQuestions";
 import { products } from "../data/products";
-import { hasExfoliatingActive, isProductAvailable, isSpecializedTreatmentProduct } from "./productCatalog";
+import { hasExfoliatingActive, isProductAvailable, isProductAllowedForContext, isSpecializedTreatmentProduct } from "./productCatalog";
 import { sortProductsForRecommendation } from "./recommendationScoring";
+import { getRankedProductCandidates } from "./routineRecommendation";
+import { getCompatibilityRisk } from "./ingredientCompatibility";
+import { getRoutinePreferences } from "./routineAdvice";
 
 export const hydrationQuestion = {
   id: "afternoonSkin",
@@ -47,12 +50,14 @@ const starterSlots = [
   ["toner", ["toner"]], ["serum", ["serum"]], ["cream", ["cream"]],
 ];
 
-function beginnerPlan(answers, care) {
+function beginnerPlan(answers, care, context) {
   const level = hydrationLevels[answers.afternoonSkin] ?? null;
   const matchingLevel = level ?? 5;
-  const userContext = { level: matchingLevel, goal: "기초 관리" };
+  const userContext = { ...context, level: matchingLevel, goal: "기초 관리" };
   const starterProducts = Object.fromEntries(starterSlots.map(([slot, categories]) => {
-    const candidates = gentleBasics.filter(product => categories.includes(product.category));
+    if (context.suppressedSlots?.has(slot)) return [slot, null];
+    if (context.slotReactions?.[slot]) return [slot, getRankedProductCandidates(slot, matchingLevel, { ...userContext, isSensitive: true, basicOnly: true })[0] ?? null];
+    const candidates = gentleBasics.filter(product => categories.includes(product.category) && isProductAllowedForContext(product, slot, context));
     const minDistance = Math.min(...candidates.map(product => Math.abs(product.hydrationLevel - matchingLevel)));
     const closest = candidates.filter(product => Math.abs(product.hydrationLevel - matchingLevel) === minDistance);
     return [slot, sortProductsForRecommendation(closest, matchingLevel, userContext)[0]];
@@ -71,7 +76,7 @@ function beginnerPlan(answers, care) {
 function catalogOption(id, type, guidance) {
   const product = products.find(item => item.id === id && isProductAvailable(item));
   if (!product) return null;
-  return { type, name: product.name, guidance, source: product.evidence?.sources?.[0]?.url || product.link };
+  return { id, type, name: product.name, guidance, source: product.evidence?.sources?.[0]?.url || product.link };
 }
 
 function targetedPlan(answers, priorTrial) {
@@ -171,13 +176,19 @@ function targetedPlan(answers, priorTrial) {
   return {};
 }
 
-export function buildFirstVisitPlan(assessment) {
+export function buildFirstVisitPlan(assessment, currentRoutine, personalProductFeedback) {
   if (!assessment?.guidedCare || !assessment.complete || assessment.blockRoutine) return null;
   const { area, basicRoutine, afternoonSkin } = assessment.answers;
   const concern = getCareConcern(assessment.answers);
   const care = concern === "breakouts" && area === "chin"
     ? { ...concernCare.breakouts, observation: "턱에 새로 올라오는 돌기 수와 따가움이 달라지는지" }
     : concernCare[concern] ?? concernCare.other;
+  const context = { ...currentRoutine, personalProductFeedback,
+    suppressedSlots: currentRoutine ? getRoutinePreferences(currentRoutine).suppressedSlots : undefined };
+  if (currentRoutine?.irritated?.length) return { ...care,
+    action: "새 화장품보다 자극이 있었던 제품부터 확인해요.",
+    actionDetail: `${currentRoutine.irritated.join(" · ")} 사용 뒤 불편했다면 편했던 세안·보습만 유지해요.`,
+  };
   if (hasRecentCosmetic(assessment.answers)) return {
     ...care,
     action: "바를 때마다 불편했던 새 화장품 한 가지만 쉬어요.",
@@ -189,7 +200,7 @@ export function buildFirstVisitPlan(assessment) {
     reason: "새 제품을 고르기 전에 따가움과 붉어짐이 언제 생기는지 확인해야 해요.",
     productNote: "피부 반응이 확인될 때까지 새 제품을 추가하지 않아요.",
   };
-  if (basicRoutine === "neither") return beginnerPlan(assessment.answers, care);
+  if (basicRoutine === "neither") return beginnerPlan(assessment.answers, care, context);
 
   const maintenance = {
     both: "잘 맞던 세안제와 보습제는 유지해요.",
@@ -199,20 +210,30 @@ export function buildFirstVisitPlan(assessment) {
     unknown: "지금 편안하게 쓰는 제품이 있다면 그대로 유지해요.",
   };
   if (!needsHydrationQuestion(assessment)) {
+    const targeted = targetedPlan({ ...assessment.answers, concern }, assessment.priorTrial);
+    const cosmetics = targeted.cosmetics?.filter(product => {
+      if (product.id && (context.ownedProductIds?.has(product.id) || personalProductFeedback?.avoided?.has(product.id))) return false;
+      if (blackheadCosmetics.includes(product)) return !context.uncertainActives?.length &&
+        !getCompatibilityRisk(["acid"], [...(context.currentFamilies ?? []), ...(context.rinseOffFamilies ?? [])]);
+      return product !== sunscreenOption || !currentRoutine?.hasSunscreen;
+    });
+    const blockedAcid = targeted.cosmetics?.some(product => blackheadCosmetics.includes(product)) && !cosmetics?.length;
     return {
       ...care,
       keep: maintenance[basicRoutine],
       reason: null,
-      ...targetedPlan({ ...assessment.answers, concern }, assessment.priorTrial),
+      ...targeted, cosmetics,
+      ...(blockedAcid && { action: "이미 쓰는 각질 제품과 성분부터 확인해요.",
+        actionDetail: "새 각질 제품을 겹치지 않고 기존 사용 부위와 포장 성분을 먼저 확인해요.", pharmacy: null }),
     };
   }
 
   const hasMoisturizer = ["both", "moisturizer"].includes(basicRoutine);
   const level = hydrationLevels[afternoonSkin] ?? null;
-  const userContext = { level, isSensitive: false, goal: "보습" };
+  const userContext = { ...context, level, isSensitive: false, goal: "보습" };
   const replacingMoisturizer = hasMoisturizer && assessment.answers.moisturizerFit === "insufficient";
   const product = level == null || (hasMoisturizer && !replacingMoisturizer) || basicRoutine === "unknown" ? null :
-    sortProductsForRecommendation(basicMoisturizers, level, userContext)[0] ?? null;
+    sortProductsForRecommendation(basicMoisturizers.filter(item => isProductAllowedForContext(item, "cream", context)), level, userContext)[0] ?? null;
 
   return {
     action: replacingMoisturizer ? "세안 뒤 금방 당긴다면 보습제 한 가지만 바꿔봐요."

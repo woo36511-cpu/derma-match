@@ -1,5 +1,8 @@
 -- Trusted project operator only; creates no API object. Groups are observational.
-with protocols (protocol, consent_version, scale_max, check_day, is_cosmetic) as (values
+with report_window as (
+  select nullif(current_setting('dearsince.report_start', true), '')::date as period_start,
+    nullif(current_setting('dearsince.report_end', true), '')::date as period_end
+), protocols (protocol, consent_version, scale_max, check_day, is_cosmetic) as (values
   ('cheek-tightness-v1', 'moisturizer-internal-analysis-v1', 7, 14, false),
   ('cheek-tightness-v2', 'skin-product-internal-analysis-v2', 7, 14, false),
   ('post-wash-tightness-v1', 'skin-product-internal-analysis-v2', 7, 14, false),
@@ -63,7 +66,7 @@ with protocols (protocol, consent_version, scale_max, check_day, is_cosmetic) as
     and consent_at between now() - interval '1 year' and now()
   order by user_id, protocol, product_id, formula_verified_at, started_at, record_id
 ), observations as (
-  select *,
+  select first_per_product.*,
     case when baseline_value <= (scale_max + 1) / 2
       then 'lower' else 'higher' end as baseline_band,
     coalesce(reported_at >= started_at + check_day * interval '24 hours'
@@ -81,6 +84,9 @@ with protocols (protocol, consent_version, scale_max, check_day, is_cosmetic) as
         or (choice = 'keep' and study#>>'{followUp,used}' = 'existing')), false) as matched_use,
     study#>>'{followUp,reaction}' in ('none', 'irritation', 'stopped_irritation', 'stopped_other') as known_reaction
   from first_per_product
+  cross join report_window
+  where (period_start is null or started_at >= (period_start::timestamp at time zone 'UTC'))
+    and (period_end is null or started_at < (period_end::timestamp at time zone 'UTC'))
 ), cohorts as (
   select protocol, product_id, formula_verified_at, hydration_level, sensitive, area, route, baseline_band, choice, check_day,
     count(*) as enrolled,
@@ -110,6 +116,9 @@ with protocols (protocol, consent_version, scale_max, check_day, is_cosmetic) as
 select *,
   (protocol <> 'cheek-tightness-v1' and hydration_level is not null and sensitive is not null
     and enrolled >= 50 and known_outcomes * 10 >= enrolled * 8
-    and comparable_follow_ups * 10 >= enrolled * 7) as enough_to_review
+    and comparable_follow_ups * 10 >= enrolled * 7
+    and paired_discomfort * 10 >= enrolled * 7) as enough_to_review,
+  period_start, period_end
 from cohorts
+cross join report_window
 order by protocol, product_id, formula_verified_at, hydration_level, sensitive, area, route, baseline_band, choice;

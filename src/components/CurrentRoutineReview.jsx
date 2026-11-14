@@ -52,7 +52,7 @@ function Replacement({ result, onStartSurvey }) {
   return <p>{replacementText[result.status] ?? replacementText.no_candidate}</p>;
 }
 
-export function CurrentRoutineReview({ routine, profile, savedAt, safetyBlocked, onStartSurvey }) {
+export function CurrentRoutineReview({ routine, profile, savedAt, safetyBlocked, onStartSurvey, personalProductFeedback }) {
   const rows = routine.entries.map(entry => ({ entry, product: getCurrentRoutineProduct(entry), conclusion: getRoutineConclusion(entry.reaction) }))
     .filter(row => row.product).sort((a, b) => a.conclusion.rank - b.conclusion.rank);
   const first = rows.find(row => row.conclusion.rank < 3);
@@ -93,7 +93,7 @@ export function CurrentRoutineReview({ routine, profile, savedAt, safetyBlocked,
               같은 제품이라면 지난 설문 답변 적용 · {previous.label}
             </button>}
             {entry.reaction && <p className="text-sm text-slate-700"><strong>{conclusion.label}</strong> · {conclusion.text}</p>}
-            {conclusion.alternative && <RoutineReplacementDisclosure entry={entry} product={product} routine={routine} profile={profile} safetyBlocked={safetyBlocked} onStartSurvey={onStartSurvey} />}
+            {conclusion.alternative && <RoutineReplacementDisclosure entry={entry} product={product} routine={routine} profile={profile} safetyBlocked={safetyBlocked} onStartSurvey={onStartSurvey} personalProductFeedback={personalProductFeedback} />}
           </li>;
         })}
       </ul>
@@ -101,8 +101,8 @@ export function CurrentRoutineReview({ routine, profile, savedAt, safetyBlocked,
   </section>;
 }
 
-function RoutineReplacementDisclosure({ entry, product, routine, profile, safetyBlocked, onStartSurvey }) {
+function RoutineReplacementDisclosure({ entry, product, routine, profile, safetyBlocked, onStartSurvey, personalProductFeedback }) {
   return <DetailDisclosure title="대체 후보 보기">
-    <Replacement result={getRoutineReplacement({ entry, product, entries: routine.entries, profile, safetyBlocked })} onStartSurvey={onStartSurvey} />
+    <Replacement result={getRoutineReplacement({ entry, product, entries: routine.entries, profile, safetyBlocked, personalProductFeedback })} onStartSurvey={onStartSurvey} />
   </DetailDisclosure>;
 }

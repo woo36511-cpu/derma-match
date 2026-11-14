@@ -58,6 +58,29 @@ test("main flow preserves skin-type survey, saves four basic categories, and reo
   expect(screen.getByRole("heading", { name: "피부타입에 맞는 기본 루틴이면 충분해요." })).toBeInTheDocument();
   expect(records()).toHaveLength(1);
 });
+test("a first survey keeps a comfortable serum, prioritizes a heavy moisturizer and folds away the second choice", () => {
+  render(<App />); baseSurvey({ moisturizerUse: "heavy" });
+  fireEvent.click(screen.getByText("쓰는 화장품 검색·직접 입력 (선택)"));
+  const search = screen.getByRole("searchbox", { name: "브랜드나 제품명" });
+  const serum = "아누아 PDRN 히알루론산 캡슐 100 세럼";
+  const cream = "피지오겔 DMT 데일리 모이스쳐 테라피 페이셜 크림";
+  const add = (query, name, reaction) => {
+    fireEvent.change(search, { target: { value: query } });
+    click(name + " 내 루틴에 담기");
+    fireEvent.change(screen.getByRole("combobox", { name: name + " 사용 반응" }), { target: { value: reaction } });
+  };
+  add("피지오겔 DMT", cream, "heavy");
+  add("아누아 PDRN", serum, "comfortable");
+  extraCare({ concern: "none" });
+  const priority = screen.getByRole("region", { name: "지금 먼저 할 한 가지" });
+  expect(priority).toHaveTextContent("보습제부터 한 가지만 점검해요.");
+  expect(priority).toHaveTextContent(cream);
+  expect(screen.getByRole("region", { name: "지금 쓰는 세럼" })).toHaveTextContent(serum);
+  expect(records()[0].routine.serum).toBeNull();
+  expect(records()[0].routine.cream).not.toBeNull();
+  const compare = screen.getByText("보습제 대안 비교").closest("details");
+  expect(compare).not.toHaveAttribute("open");
+});
 test("procedure options stay out of the result until requested and follow the chosen scar shape", () => {
   render(<App />); baseSurvey();
   extraCare({ concern: "acne", shape: "indented_scar", areaState: "comfortable", medicine: "none" });

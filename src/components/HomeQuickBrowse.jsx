@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { quickSkinTypes, homeMedicineGroups } from "../data/homeQuickGuides";
 import { buildDynamicRoutine } from "../utils/routineRecommendation";
+import { getRoutinePreferences } from "../utils/routineAdvice";
 import { RoutineProductScroller } from "./RoutineProductScroller";
 import { RoutineProductLookup } from "./RoutineProductLookup";
 import { DetailDisclosure } from "./DetailDisclosure";
@@ -30,7 +31,12 @@ export function HomeQuickBrowse({ onStartSurvey, onStartRoutine, routineReview }
   const [concernId, setConcernId] = useState(null);
   const skin = quickSkinTypes.find(type => type.id === skinId);
   const group = homeMedicineGroups.find(item => item.id === concernId);
-  const routine = useMemo(() => skin ? buildDynamicRoutine(skin.level) : null, [skin]);
+  const current = routineReview?.currentRoutineContext;
+  const feedback = routineReview?.personalProductFeedback;
+  const routine = useMemo(() => skin ? buildDynamicRoutine(skin.level, {
+    ...current, basicOnly: true, personalProductFeedback: feedback,
+    suppressedSlots: current ? getRoutinePreferences(current).suppressedSlots : undefined,
+  }) : null, [skin, current, feedback]);
   return <section aria-labelledby="home-quick-title" className="space-y-5">
     <div><p className="text-xs font-semibold text-emerald-700">설문 없이 빠르게 보기</p><h2 id="home-quick-title" className="mt-1 text-xl font-bold text-slate-950 sm:text-2xl">필요한 정보만 바로 찾아봐요</h2></div>
     <div className="grid gap-3 sm:grid-cols-3">
@@ -45,8 +51,9 @@ export function HomeQuickBrowse({ onStartSurvey, onStartRoutine, routineReview }
         <div className="grid gap-3 sm:grid-cols-3" role="group" aria-label="피부타입 선택">{quickSkinTypes.map(type => <button key={type.id} aria-pressed={skinId === type.id} onClick={() => setSkinId(type.id)} className={`rounded-2xl border px-4 py-3 text-left ${skinId === type.id ? "border-emerald-600 bg-emerald-50" : "border-slate-200 hover:bg-slate-50"}`}><span className="block font-semibold">{type.label}</span><span className="mt-1 block text-xs text-slate-600">{type.detail}</span></button>)}</div>
         {skin && routine && <div className="space-y-4" aria-label={`${skin.label} 기본 제품`}>
           <div><h4 className="font-bold">{skin.label} 기본 화장품</h4><p className="mt-1 text-sm text-slate-600">{skin.description} 잘 맞는 기존 제품은 유지하고, 토너·세럼은 필요할 때만 추가해요.</p></div>
-          <RoutineProductScroller productsByCategory={routine.products} userContext={{ level: skin.level, skinType: skin.skinType, mainConcern: "none" }} />
-          <div className="flex flex-wrap items-center gap-3"><button onClick={() => onStartRoutine(skin.level)} className="rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold">이 루틴으로 기록하기</button><p className="text-xs text-slate-500">기록을 시작할 때 현재 상태를 한 번 확인해요.</p></div>
+          {current?.irritated.length > 0 ? <p className="text-sm">따갑거나 붉어졌던 제품부터 확인하고, 새 화장품은 잠시 보류해요.</p>
+            : <RoutineProductScroller productsByCategory={routine.products} userContext={{ level: skin.level, skinType: skin.skinType, mainConcern: "none" }} />}
+          {!!Object.values(routine.products).filter(Boolean).length && <div className="flex flex-wrap items-center gap-3"><button onClick={() => onStartRoutine(skin.level)} className="rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold">이 루틴으로 기록하기</button><p className="text-xs text-slate-500">기록을 시작할 때 현재 상태를 한 번 확인해요.</p></div>}
         </div>}
         <button onClick={onStartSurvey} className="text-sm font-semibold text-emerald-800 underline underline-offset-4">피부타입을 잘 모르겠어요 · 설문으로 확인</button>
       </section>}

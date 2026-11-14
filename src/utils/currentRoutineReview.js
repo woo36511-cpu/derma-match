@@ -1,6 +1,7 @@
 import { getProductById, hasExfoliatingActive } from "./productCatalog";
 import { getRankedProductCandidates } from "./routineRecommendation";
-import { getRoutineLookupProduct, routineLookupCategories } from "./routineLookup";
+import { getRoutineLookupProduct, routineLookupCategories, searchRoutineProducts } from "./routineLookup";
+import { getIngredientFamilies, hasIntensiveActives } from "./ingredientCompatibility";
 
 export const CURRENT_ROUTINE_LIMIT = 12;
 const keyPrefix = "dearsince_current_routine_v1:";
@@ -10,10 +11,14 @@ const irritation = option("irritation", "쓰고 나서 따갑거나 붉어져요
 const unsure = option("unsure", "이 제품 때문인지는 모르겠어요");
 const heavy = option("heavy", "바른 직후부터 무겁거나 끈적여요");
 const laterOil = option("later_oil", "바를 땐 편안하고 오후에만 번들거려요");
+const slots = { cleanser: "cleanser", moisturizer: "cream", toner: "toner", serum: "serum" };
+const isFirstCleanse = name => /오일|밤|워터|티슈|패드|oil|balm|water/i.test(name);
+const keepReaction = reaction => ["comfortable", "later_oil"].includes(reaction);
+const replacementReactions = ["wash_tight", "moisture_tight", "heavy"];
 
 export function getRoutineReactionOptions(category) {
   const options = category === "cleanser" ? [option("wash_tight", "세안 직후 당겨요")]
-    : category === "moisturizer" ? [heavy, option("moisture_tight", "발라도 당김이 남아요"), laterOil]
+    : ["moisturizer", "serum", "toner"].includes(category) ? [heavy, option("moisture_tight", "발라도 당김이 남아요"), laterOil]
     : [heavy, laterOil];
   return [comfortable, ...options, irritation, unsure];
 }
@@ -77,9 +82,11 @@ export function getRoutineConclusion(reaction) {
 function getReplacementCategory(product) {
   if (product.category === "moisturizer" && !/스팟|레티놀|트러블|잡티|브라이트닝|retinol|spot/i.test(product.name)) return "cream";
   if (product.category === "cleanser" && !/오일|밤|밀크|워터|패드|티슈|파우더|oil|balm|milk|water/i.test(product.name)) return "cleanser";
+  if (["serum", "toner"].includes(product.category) && !/패드|필링|스팟|pad|peeling|spot/i.test(product.name) &&
+      !hasIntensiveActives(getIngredientFamilies(getExactCatalogProduct(product) ?? product))) return product.category;
   return null;
 }
-export function getRoutineReplacement({ entry, product, entries, profile, safetyBlocked }) {
+export function getRoutineReplacement({ entry, product, entries, profile, safetyBlocked, personalProductFeedback }) {
   if (!getRoutineConclusion(entry.reaction).alternative) return null;
   const category = getReplacementCategory(product);
   if (!category) return { status: "unsupported" };
@@ -87,18 +94,12 @@ export function getRoutineReplacement({ entry, product, entries, profile, safety
     return { status: "blocked" };
   }
   if (!profile?.observationAssessment?.canRecommendBasics || !Number.isFinite(profile.hydrationLevel)) return { status: "needs_profile" };
-  const careNeeds = { ...profile.careNeeds };
-  if (entry.reaction === "heavy") careNeeds.lightTextureNeed = Math.max(careNeeds.lightTextureNeed || 0, 8);
-  if (entry.reaction === "moisture_tight") careNeeds.hydrationNeed = Math.max(careNeeds.hydrationNeed || 0, 8);
-  const targetLevel = entry.reaction === "heavy" ? Math.max(6, profile.hydrationLevel)
-    : ["moisture_tight", "wash_tight"].includes(entry.reaction) ? Math.min(5, profile.hydrationLevel)
-    : profile.hydrationLevel;
-  const excludedIds = new Set(entries.map(item => item.id));
-  const candidate = getRankedProductCandidates(category, targetLevel, {
-    mainConcern: "none", basicOnly: true,
-    isSensitive: profile.observationAssessment.isSensitive ?? true,
-    skinType: profile.skinType, careNeeds,
-  }).find(item => !excludedIds.has(item.id) && !hasExfoliatingActive(item) &&
+  const candidate = getRankedProductCandidates(category, profile.hydrationLevel, {
+    ...getCurrentRoutineContext(entries), mainConcern: "none", basicOnly: true,
+    isSensitive: profile.observationAssessment.isSensitive ?? true, skinType: profile.skinType,
+    careNeeds: profile.careNeeds, observedSkin: profile.observationAssessment.resolvedObservations, personalProductFeedback,
+    slotReactions: { [category]: entry.reaction },
+  }).find(item => !hasExfoliatingActive(item) &&
     (category !== "cleanser" || ["cleanser", "gel_cleanser"].includes(item.category)) &&
     (entry.reaction !== "heavy" || item.careProfile?.lightweightFit >= 7));
   return candidate ? { status: "candidate", product: getRoutineLookupProduct(candidate.id), description: candidate.description } : { status: "no_candidate" };
@@ -108,37 +109,54 @@ export function getRoutineReplacement({ entry, product, entries, profile, safety
 export function getSerumRoutineSummary(entries = [], declared = false) {
   const serums = entries.filter(entry => getCurrentRoutineProduct(entry)?.category === "serum");
   const hasIrritation = serums.some(entry => entry.reaction === "irritation");
-  const keep = serums.filter(entry => ["comfortable", "later_oil"].includes(entry.reaction));
-  const knownSerumFamilies = [...new Set(serums.flatMap(entry => {
-    const product = getCurrentRoutineProduct(entry);
-    const formula = getProductById(product?.id);
-    const confirmed = product?.formulaVerified ? formula?.fullIngredients ?? [] : [];
-    const names = [product?.name ?? "", ...confirmed];
-    return Object.entries({
-      niacinamide: /나이아신|niacinamide/i,
-      vitaminC: /비타민\s*(?:씨|c)|vitamin\s*c|아스코빅애씨드|아스코빌글루코사이드|ascorbic acid/i,
-      retinoid: /레티놀|레티날|레틴알|retinol|retinal|retinoid|하이드록시피나콜론레티노에이트/i,
-      pdrn: /pdrn|피디알엔|소듐디엔에이|하이드롤라이즈드디엔에이/i,
-      peptide: /펩타이드|peptide/i,
-      acid: /\b(?:aha|bha|pha|lha)\b|살리실릭애씨드|살리실레이트|글라이콜릭애씨드|만델릭애씨드|글루코노락톤/i,
-    }).filter(([, pattern]) => names.some(name => pattern.test(name))).map(([family]) => family);
-  }))];
+  const keep = serums.filter(entry => keepReaction(entry.reaction));
+  const knownSerumFamilies = getCurrentRoutineContext(serums).currentFamilies;
   return { keep, hasIrritation, skipBasicSerum: hasIrritation || keep.length > 0 || declared, knownSerumFamilies };
 }
 
 
 export function getComfortableRoutineSlots(entries = []) {
-  const slots = { cleanser: "cleanser", moisturizer: "cream", toner: "toner" };
-  const bySlot = {};
+  const { rowsBySlot } = getCurrentRoutineContext(entries);
+  return Object.fromEntries(Object.entries(rowsBySlot).flatMap(([slot, rows]) => {
+    if (slot === "serum") return [];
+    const comfortable = rows.filter(row => keepReaction(row.reaction));
+    return comfortable.length ? [[slot, comfortable.map(row => row.name)]] : [];
+  }));
+}
+
+const normalizeName = value => String(value ?? "").normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
+function getExactCatalogProduct(product) {
+  const direct = getProductById(product.id);
+  if (direct) return direct;
+  if (!product.manual) return null;
+  const key = normalizeName(product.name);
+  const exact = searchRoutineProducts(product.name, 40).matches.filter(item =>
+    Number.isInteger(item.id) && item.category === product.category &&
+    [item.name, ...(item.aliases ?? [])].some(name => normalizeName(name) === key));
+  return exact.length === 1 ? getProductById(exact[0].id) : null;
+}
+
+export function getCurrentRoutineContext(entries = []) {
+  const rowsBySlot = {}, slotReactions = {}, ownedProductIds = new Set(), currentFamilies = new Set(), rinseOffFamilies = new Set();
+  const irritated = [], uncertainActives = [];
+  let hasSunscreen = false;
   for (const entry of entries) {
     const product = getCurrentRoutineProduct(entry);
+    if (!product) continue;
+    if (product.category === "sunscreen") hasSunscreen = true;
     const slot = slots[product?.category];
-    if (!slot) continue;
-    // A makeup-removal oil, balm or water is not the same slot as the ordinary face wash.
-    if (slot === "cleanser" && /오일|밤|워터|티슈|패드|oil|balm|water/i.test(product.name)) continue;
-    (bySlot[slot] ??= []).push({ name: product.name, reaction: entry.reaction });
+    const catalog = getExactCatalogProduct(product);
+    if (catalog) ownedProductIds.add(catalog.id);
+    if (entry.reaction === "irritation") irritated.push(product.name);
+    const families = getIngredientFamilies(catalog ?? product);
+    const leaveOn = product.category !== "cleanser";
+    for (const family of families) (leaveOn ? currentFamilies : rinseOffFamilies).add(family);
+    if (leaveOn && !(catalog?.evidence?.domesticFormulaVerified && catalog.evidence?.fullIngredientsVerified) &&
+      (product.category !== "sunscreen" || families.length)) uncertainActives.push(product.name);
+    if (!slot || (slot === "cleanser" && isFirstCleanse(product.name))) continue;
+    (rowsBySlot[slot] ??= []).push({ name: product.name, reaction: entry.reaction, productId: catalog?.id ?? null });
+    if (replacementReactions.includes(entry.reaction) && !slotReactions[slot]) slotReactions[slot] = entry.reaction;
   }
-  return Object.fromEntries(Object.entries(bySlot).filter(([, rows]) =>
-    rows.every(row => ["comfortable", "later_oil"].includes(row.reaction)),
-  ).map(([slot, rows]) => [slot, rows.map(row => row.name)]));
+  return { rowsBySlot, slotReactions, ownedProductIds, hasSunscreen, currentFamilies: [...currentFamilies],
+    rinseOffFamilies: [...rinseOffFamilies], irritated, uncertainActives };
 }
