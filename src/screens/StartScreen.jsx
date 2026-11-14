@@ -32,6 +32,51 @@ export function StartScreen({
 }) {
   return (
     <div className="space-y-7">
+      {hasSavedSurvey && !isQuickJourney && (
+        <section aria-label="최근 저장된 설문 결과" className="w-full rounded-3xl border border-gray-100 bg-white p-5 text-left shadow-sm sm:p-6">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="text-sm text-gray-400 mb-2">
+                최근 저장된 설문 결과 · {formatSavedAt(savedSurvey?.savedAt)}
+              </p>
+
+              <h2 className="text-xl font-bold mb-2 break-keep">
+                {savedSurveyResult.skinType} · 수분감{" "}
+                {savedSurveyResult.hydrationLevel == null ? "성향 확인 전" : `${savedSurveyResult.hydrationLevel}단계`}
+              </h2>
+
+              <p className="text-sm text-gray-600 leading-relaxed break-keep">
+                이전에 추천받은 루틴을 다시 확인하거나, 사용 후 피부 반응을
+                체크할 수 있어요.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 lg:shrink-0">
+              <button
+                onClick={openSavedSurveyResult}
+                className="break-keep rounded-2xl border border-gray-300 bg-white px-2 py-3 text-sm font-medium transition hover:bg-gray-100 sm:px-5"
+              >
+                최근 결과 다시 보기
+              </button>
+
+              <PrimaryButton onClick={onQuickConcernCheck ?? startSavedFeedback}>
+                2주 후 체크하기
+              </PrimaryButton>
+              {onQuickConcernCheck && <button type="button" onClick={startSavedFeedback}
+                className="break-keep rounded-2xl border border-gray-300 bg-white px-2 py-3 text-sm font-medium hover:bg-gray-100 sm:px-5">
+                루틴·제품 자세히 체크하기
+              </button>}
+              <button
+                onClick={() => setStep("journey")}
+                className="break-keep rounded-2xl border border-emerald-100 bg-emerald-50 px-2 py-3 text-sm font-medium text-emerald-700 transition hover:bg-emerald-100 sm:px-5"
+              >
+                내 피부 변화 보기
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+
       <section aria-labelledby="start-title" className="overflow-hidden rounded-[2rem] border border-emerald-100 bg-gradient-to-br from-emerald-50 via-white to-amber-50/60 px-5 py-8 sm:p-10 lg:p-12">
         <div className="grid items-center gap-8 md:grid-cols-[1.15fr_1fr] lg:gap-10">
           <div>
@@ -120,50 +165,6 @@ export function StartScreen({
                 className="px-5 py-3 rounded-2xl text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-100 hover:bg-emerald-100 transition"
               >
                 변화 기록 보기
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-      {hasSavedSurvey && !isQuickJourney && (
-        <div className="mt-6 max-w-4xl w-full bg-white border border-gray-100 rounded-3xl shadow-sm p-5 sm:p-6 text-left">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-              <p className="text-sm text-gray-400 mb-2">
-                최근 저장된 설문 결과 · {formatSavedAt(savedSurvey?.savedAt)}
-              </p>
-
-              <h3 className="text-xl font-bold mb-2 break-keep">
-                {savedSurveyResult.skinType} · 수분감{" "}
-                {savedSurveyResult.hydrationLevel == null ? "성향 확인 전" : `${savedSurveyResult.hydrationLevel}단계`}
-              </h3>
-
-              <p className="text-sm text-gray-600 leading-relaxed break-keep">
-                이전에 추천받은 루틴을 다시 확인하거나, 사용 후 피부 반응을
-                체크할 수 있어요.
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-2 sm:flex-shrink-0">
-              <button
-                onClick={openSavedSurveyResult}
-                className="px-5 py-3 rounded-2xl text-sm font-medium border border-gray-300 bg-white hover:bg-gray-100 transition"
-              >
-                최근 결과 다시 보기
-              </button>
-
-              <PrimaryButton onClick={onQuickConcernCheck ?? startSavedFeedback}>
-                2주 후 체크하기
-              </PrimaryButton>
-              {onQuickConcernCheck && <button type="button" onClick={startSavedFeedback}
-                className="px-5 py-3 rounded-2xl text-sm font-medium border border-gray-300 bg-white hover:bg-gray-100">
-                루틴·제품 자세히 체크하기
-              </button>}
-              <button
-                onClick={() => setStep("journey")}
-                className="px-5 py-3 rounded-2xl text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-100 hover:bg-emerald-100 transition"
-              >
-                내 피부 변화 보기
               </button>
             </div>
           </div>
