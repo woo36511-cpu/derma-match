@@ -1,4 +1,5 @@
 import lookup from "../data/routineLookupProducts.json";
+import expansion from "../data/routineLookupExpansion.json";
 import { products } from "../data/products";
 
 export const routineLookupCategories = {
@@ -31,8 +32,7 @@ export function getCanonicalRoutineProductId(id) {
   return legacyIds.get(id) ?? id;
 }
 
-const entries = [
-  ...products.filter(product => categories[product.category]).map(product => ({
+const reviewedEntries = products.filter(product => categories[product.category]).map(product => ({
     id: product.id,
     name: product.name,
     brand: product.brand,
@@ -46,18 +46,60 @@ const entries = [
     )?.url,
     formulaVerified: product.evidence?.domesticFormulaVerified === true &&
       product.evidence?.fullIngredientsVerified === true && product.fullIngredients?.length > 0,
-  })),
-  ...lookup.products.filter(product => !legacyIds.has(product.id)).map(product => ({ ...product, formulaVerified: false })),
-];
+  }));
+
+const identity = product => [product.brand, product.category, normalize(product.name), normalize(product.volume ?? "")].join(":");
+const pageIdentity = value => {
+  try {
+    const url = new URL(value);
+    const sku = url.pathname.match(/^\/product\/[^/]+\/(\d+)(?:\/|$)/)?.[1] ?? url.searchParams.get("product_no") ??
+      url.searchParams.get("goodsNo") ?? url.searchParams.get("branduid");
+    return `${url.hostname.replace(/^(?:www|m)\./, "")}:${sku && /^\d+$/.test(sku) ? sku : `${url.pathname}${url.search}`}`;
+  } catch { return null; }
+};
+
+const baseLookup = lookup.products.filter(product => !legacyIds.has(product.id)).map(product => ({ ...product, formulaVerified: false }));
+const base = [...reviewedEntries, ...baseLookup];
+const namesInBase = new Set(base.map(identity));
+const urlsInBase = new Set(base.map(product => pageIdentity(product.officialUrl)).filter(Boolean));
+const primaryByPage = new Map(base.flatMap(product => {
+  const key = pageIdentity(product.officialUrl);
+  return key ? [[key, product]] : [];
+}).reverse());
+const backCompatLookupIds = new Map();
+const additional = [];
+for (const product of expansion.products) {
+  if (legacyIds.has(product.id)) continue;
+  const url = pageIdentity(product.officialUrl);
+  const onSamePage = url && urlsInBase.has(url) ? primaryByPage.get(url) : null;
+  if (onSamePage && (!onSamePage.volume || !product.volume || normalize(onSamePage.volume) === normalize(product.volume))) {
+    backCompatLookupIds.set(product.id, onSamePage.id);
+    continue;
+  }
+  if (namesInBase.has(identity(product))) {
+    const matching = base.find(entry => identity(entry) === identity(product));
+    if (matching) backCompatLookupIds.set(product.id, matching.id);
+    continue;
+  }
+  additional.push({ ...product, formulaVerified: false, listingOnly: true });
+}
+const entries = [...base, ...additional];
+const entriesById = new Map(entries.map(product => [product.id, product]));
 
 const index = entries.map(product => {
-  const names = [product.name, ...(product.aliases ?? [])].map(normalize);
+  const names = [product.name, ...(product.aliases ?? []), ...(product.volume ? [`${product.name} ${product.volume}`] : [])].map(normalize);
   const description = [...names, product.brandAlias && normalize(product.brandAlias),
     product.volume && normalize(product.volume)].filter(Boolean).join(" ");
   return { product, names, description };
 });
 
 export const routineLookupCount = entries.length;
+export const officialExpansionCount = additional.length;
+
+export function exactRoutineLookupProducts(name, category) {
+  const key = normalize(name);
+  return index.filter(item => item.product.category === category && item.names.includes(key)).map(item => item.product);
+}
 
 export function searchRoutineProducts(query, limit = 12) {
   const normalized = normalize(query);
@@ -67,10 +109,11 @@ export function searchRoutineProducts(query, limit = 12) {
     const nameRank = Math.max(...names.map(name => name === normalized ? 3 : name.startsWith(normalized) ? 2 : name.includes(normalized) ? 1 : 0));
     if (!nameRank && !tokens.every(token => description.includes(token))) return [];
     return [{ product, nameRank }];
-  }).sort((a, b) => b.nameRank - a.nameRank || a.product.name.localeCompare(b.product.name, "ko"));
+  }).sort((a, b) => b.nameRank - a.nameRank || Number(b.product.formulaVerified) - Number(a.product.formulaVerified) ||
+    a.product.name.localeCompare(b.product.name, "ko"));
   return { total: ranked.length, matches: ranked.slice(0, limit).map(({ product }) => product) };
 }
 
 export function getRoutineLookupProduct(id) {
-  return entries.find(product => product.id === getCanonicalRoutineProductId(id)) ?? null;
+  return entriesById.get(getCanonicalRoutineProductId(backCompatLookupIds.get(id) ?? id)) ?? null;
 }

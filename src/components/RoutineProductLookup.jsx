@@ -61,15 +61,16 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
       {matches.map(product => {
         const added = routine.entries.some(entry => entry.id === product.id);
         const reviewed = getReviewedRoutineProduct(product);
+        const actionName = product.listingOnly && product.volume ? `${product.name} ${product.volume}` : product.name;
         return <li key={product.id} className="flex items-start gap-3 rounded-2xl border border-slate-200 p-3">
         <LookupImage key={product.image} src={product.image} />
         <div className="min-w-0">
           <p className="text-xs font-medium text-slate-600">{routineLookupCategories[product.category]}{product.volume && ` · ${product.volume}`}</p>
           <p className="mt-1 break-keep text-sm font-semibold text-slate-950">{product.name}</p>
-          <p className="mt-1 text-xs text-slate-600">{product.formulaVerified ? "국내 전성분 확인됨" : "전성분 검수 전"}</p>
+          <p className="mt-1 text-xs text-slate-600">{product.formulaVerified ? "국내 전성분 확인됨" : product.listingOnly ? "국내 공식 목록 확인 · 전성분 검수 전" : "전성분 검수 전"}</p>
           {reviewed && <p className="mt-1 text-xs text-slate-700">{reviewed.label}</p>}
           <div className="mt-2 flex flex-wrap items-center gap-2">
-            <button type="button" disabled={added || isFull} aria-label={`${product.name} ${added ? "내 루틴에 담음" : "내 루틴에 담기"}`}
+            <button type="button" disabled={added || isFull} aria-label={`${actionName} ${added ? "내 루틴에 담음" : "내 루틴에 담기"}`}
               onClick={() => routine.add(makeCurrentRoutineEntry(product))}
               className="rounded-lg bg-emerald-900 px-3 py-2 text-xs font-semibold text-white disabled:bg-slate-100 disabled:text-slate-600">
               {added ? "내 루틴에 담음" : "내 루틴에 담기"}

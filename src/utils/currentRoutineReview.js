@@ -1,6 +1,6 @@
 import { getProductById, hasExfoliatingActive } from "./productCatalog";
 import { getRankedProductCandidates } from "./routineRecommendation";
-import { getRoutineLookupProduct, routineLookupCategories, searchRoutineProducts } from "./routineLookup";
+import { exactRoutineLookupProducts, getRoutineLookupProduct, routineLookupCategories } from "./routineLookup";
 import { getIngredientFamilies, hasIntensiveActives } from "./ingredientCompatibility";
 import { getProductEvidenceStatus } from "./productEvidence";
 import { readRoutineSurveyContext, ROUTINE_INTAKE_VERSION } from "../data/routineSurveyContext";
@@ -129,17 +129,13 @@ export function getComfortableRoutineSlots(entries = []) {
   }));
 }
 
-const normalizeName = value => String(value ?? "").normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
 export function getExactCatalogProduct(product) {
   if (!product) return null;
   const direct = getProductById(product.id);
   if (direct) return direct;
   if (!product.manual) return null;
-  const key = normalizeName(product.name);
-  const exact = searchRoutineProducts(product.name, 40).matches.filter(item =>
-    Number.isInteger(item.id) && item.category === product.category &&
-    [item.name, ...(item.aliases ?? [])].some(name => normalizeName(name) === key));
-  return exact.length === 1 ? getProductById(exact[0].id) : null;
+  const exact = exactRoutineLookupProducts(product.name, product.category);
+  return exact.length === 1 && Number.isInteger(exact[0].id) ? getProductById(exact[0].id) : null;
 }
 
 function getRoutineProductBand(catalog, slot) {
