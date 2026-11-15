@@ -1,3 +1,5 @@
+import { readPricePreference } from "../data/pricePreference";
+import { getOfficialPriceReference, preferComparablePrice } from "./pricePreference";
 import { getProductEvidenceStatus } from "./productEvidence";
 import { products } from "../data/products";
 import { COSMETIC_ADDON_VERSION, cleanCosmeticAnswers, isCosmeticComplete, cosmeticProductProfiles } from "../data/cosmeticAddOns";
@@ -118,7 +120,8 @@ export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}
   const leader = candidates[0];
   const reuse = leader && candidates.find(candidate => basicProducts.some(basic => basic.id === candidate.id) &&
     scores.get(leader.id) - scores.get(candidate.id) <= 1);
-  const product = reuse ?? leader;
+  const pricePreference = readPricePreference(surveyAnswers);
+  const product = reuse ?? preferComparablePrice(candidates, candidate => scores.get(candidate.id), pricePreference)[0];
   if (!product && unlistedNeedCheck && answers.goal === "texture") return hold("이미 쓰는 제품의 포장 성분표부터 확인해요.", "확인하기 전에는 각질 관리제를 새로 더하지 않아요. 성분을 확인한 뒤 추가 추천 답변을 바꿀 수 있어요.");
   if (answers.goal === "sebum" && (!product || product.category !== "serum") && actives.has("niacinamide")) {
     return hold(currentRoutine.currentFamilies ? "이미 쓰는 나이아신아마이드 제품을 먼저 확인해요." : "이미 쓰는 나이아신아마이드 세럼은 유지해요.", "같은 성분의 세럼을 더하지 않아요. 번들거림이 남아 있다면 편한 제품을 유지하면서 이마·코 등 신경 쓰이는 부위만 살펴봐요.");
@@ -129,6 +132,7 @@ export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}
   const duplicateBasic = Object.values(routine.products ?? {}).some(p => p?.id === product.id);
   const roleFit = getRoutineFitSignals(product.category, { careNeeds: profile.careNeeds, observedSkin });
   return { ...result, status: duplicateBasic ? "covered" : "candidate", product, classification: extra.label,
+    priceReference: pricePreference === "important" ? getOfficialPriceReference(product) : null,
     source: extra.source ?? product.evidence.sources?.find(s => s.sourceType.includes("official_domestic"))?.url,
     suppressPharmacy: hasExfoliatingActive(product) && answers.route === "cosmetic_first" && carePlan.answers?.medicine === "none",
     title: duplicateBasic ? "기본 추천 제품으로 이 목적도 보완할 수 있어요." : "추가 후보는 한 가지만 먼저 살펴봐요.",

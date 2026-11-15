@@ -1,3 +1,4 @@
+import { readPricePreference } from "../data/pricePreference";
 import { getProductById } from "../utils/productCatalog";
 import { RECOMMENDATION_RULE_VERSION } from "../utils/productEvidence";
 import { AcneCareReview } from "../components/AcneCareReview";
@@ -147,6 +148,7 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   const observedSkin = assessment?.resolvedObservations;
   const preferences = getRoutinePreferences(currentRoutine, observedSkin, serumPreference);
   const recommendationContext = { ...currentRoutine, suppressedSlots: preferences.suppressedSlots, mainConcern: "none",
+    pricePreference: readPricePreference(surveyAnswers),
     skinType: profile.skinType, careNeeds: profile.careNeeds, basicOnly: profile.surveyVersion === ADAPTIVE_SURVEY_VERSION,
     isSensitive: assessment?.isSensitive ?? true, observationKinds: getObservationKinds(profile),
     observationTracks: getBasicObservationTracks(profile), observedSkin, personalProductFeedback };
@@ -181,6 +183,7 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     try { onSave(next); setSaveError(false); } catch { setSaveError(true); }
   };
   if (showResult && plan.complete) return <div className="space-y-6">
+    {recommendationContext.pricePreference === "important" && Object.values(displayRoutine.products).some(Boolean) && !historical && <p className="rounded-xl bg-slate-50 p-4 text-sm">가격을 중요하게 선택했어요. 피부에 비슷하게 맞는 제품 중 확인된 공식 기준가가 있는 제품을 우선해요. 실제 할인 가격과 배송비는 판매처에서 확인할 수 있어요.</p>}
     {displayRoutine.isHistorical && <p className="rounded-xl bg-slate-50 p-4 text-sm">저장 당시의 제품 후보를 보여드려요. 새 검수 기준으로 다시 추천받으려면 아래에서 다시 확인해요.</p>}
     {newReview && onRestart && <div className="space-y-2 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm">
       <p>전에는 보습 특성을 알 수 없었던 단계에 검수된 제품 정보가 있어요. 지금도 쓰는 제품이라면 새 설문에서 반영할 수 있어요.</p>
