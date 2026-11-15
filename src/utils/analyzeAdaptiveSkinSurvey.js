@@ -1,6 +1,7 @@
 import { observationQuestions } from "../data/observationSurvey";
 import { ADAPTIVE_SURVEY_VERSION, ADAPTIVE_MEASUREMENT_VERSION, adaptiveValue, getAdaptiveObservationQuestions, resolveAdaptiveObservations, needsAdaptiveContext, resolveAdaptiveBase, recentEnvironmentOptions } from "../data/adaptiveObservationSurvey";
 import { analyzeObservationSurvey } from "./analyzeObservationSurvey";
+import { readRoutineSurveyContext, hasMoistureSupport } from "../data/routineSurveyContext";
 
 export function analyzeAdaptiveSkinSurvey(answers = {}) {
   const resolved = resolveAdaptiveObservations(answers);
@@ -13,6 +14,9 @@ export function analyzeAdaptiveSkinSurvey(answers = {}) {
   const visible = getAdaptiveObservationQuestions(answers);
   const refinements = visible.filter(question => question.supplemental && !question.contextOnly && answers[question.id]).map(question => ({ questionId: question.id, answer: answers[question.id] }));
   const oil = profile.skinState.oiliness, dry = profile.skinState.dryness;
+  const routine = readRoutineSurveyContext(answers.routineIntake);
+  const washOnly = Boolean(routine?.cleanser && resolved.washResponse === "tight" &&
+    (resolved.drynessTiming === "wash" || resolved.drynessArea === "none"));
   const oilKnown = oil !== null, dryKnown = dry !== null;
   const currentIrritation = profile.observationAssessment.currentIrritation || (adaptiveValue(answers, "surfaceObservation") === "unknown" && adaptiveValue(answers, "surfaceCheck") === "unknown" && adaptiveValue(answers, "surfaceComfort") === "stings");
   const surfaceKnown = ["normal", "flakes"].includes(resolved.surfaceObservation);
@@ -22,6 +26,7 @@ export function analyzeAdaptiveSkinSurvey(answers = {}) {
   const status = !typeComplete ? oilKnown || dryKnown ? "partial" : "guidance_only" : recentChange ? "provisional" : "ready";
   let skinType = resolved.observedOil === "tzone" ? "복합성 성향" : oil >= 5 && dry > 0 ? "유분·당김 동반" : oil >= 5 ? "지성 성향" : dry > 0 ? "건성 성향" : "중성 성향";
   if (!typeComplete) skinType = oilKnown ? oil >= 5 ? "유분 중심 관리부터 시작" : "가벼운 기본 관리부터 시작" : dryKnown && dry > 0 ? "당김 관리부터 시작" : "기본 관리부터 시작";
+  if (washOnly && typeComplete) skinType = oil === 0 ? "세안 후 당김 중심" : oil >= 9 ? "지성 성향" : "복합성 성향";
   const hydrationLevel = !canRecommendBasics ? null : typeComplete ? profile.hydrationLevel : oilKnown && oil >= 5 ? 7 : 5;
   const uncertainties = [];
   const nextObservations = [];
@@ -31,6 +36,11 @@ export function analyzeAdaptiveSkinSurvey(answers = {}) {
   if (recentChange) uncertainties.push("최근 달라졌거나 일정하지 않은 상태예요. 현재 관찰한 특징을 기준으로 하고 평소 피부타입으로 확정하지 않아요.");
   if (profile.skinState.sensitivity === null) uncertainties.push("반복 자극 경험은 확인되지 않아 기본 후보는 자극을 적게 고려한 제품으로 좁혀요.");
   const evidence = [...profile.observationAssessment.evidence];
+  if (washOnly) evidence.push("현재 세안제를 쓴 직후에만 당김 · 평소 유분·당김과 나눠 봤어요.");
+  if (refinements.some(item => item.questionId === "routineOilTiming") && adaptiveValue(answers, "routineOilTiming") !== "unknown")
+    evidence.push("화장품을 바른 직후의 광택과 나중의 기름기를 나눠 봤어요.");
+  if (hasMoistureSupport(routine) && refinements.some(item => item.questionId === "routineDryTiming") && adaptiveValue(answers, "routineDryTiming") !== "unknown")
+    evidence.push("현재 보습 제품을 바르기 전과 바른 뒤의 당김을 나눠 봤어요.");
   if (currentIrritation && !profile.observationAssessment.currentIrritation) evidence.push("현재 따갑거나 화끈거리는 느낌 있음");
   const context = adaptiveValue(answers, "drynessContext");
   if (needsAdaptiveContext(resolveAdaptiveBase(answers)) && context !== "unknown") evidence.push(context === "area" ? "서로 다른 부위의 응답을 나눠 확인함" : context === "days" ? "서로 다른 날의 응답을 현재 상태와 나눠 확인함" : "보습 전후·현재 느낌을 다시 확인함");
@@ -58,6 +68,7 @@ export function analyzeAdaptiveSkinSurvey(answers = {}) {
     skinType, hydrationLevel, reasons: evidence, solution: recommendationReason,
     observationAssessment: { ...profile.observationAssessment, status, canRecommendBasics, canRecommendActives: canRecommendBasics && typeComplete && !recentChange,
       typeComplete, currentIrritation, recentChange, evidence, uncertainties, nextObservations, careActions, recommendationReason, refinements,
-      resolvedObservations: resolved, ...(environmentContext ? { environmentContext } : {}), resolvedWithFollowUps: refinements.length > 0 },
+      resolvedObservations: { ...resolved, ...(washOnly && { washOnly: true, washProductBand: routine.cleanser.band }) },
+      ...(environmentContext ? { environmentContext } : {}), resolvedWithFollowUps: refinements.length > 0 },
   };
 }

@@ -16,6 +16,7 @@ export function SurveyScreen({
   isCurrentSurveyAnswered,
   isLastSurveyQuestion,
   simpleMode = false,
+  afterRoutineIntake = false,
   questionsCount = skinSurveyQuestions.length,
 }) {
   return (
@@ -94,7 +95,7 @@ export function SurveyScreen({
             onClick={handlePrevSurvey}
             className="px-6 py-3 rounded-2xl text-sm sm:text-base font-medium border border-gray-300 bg-white hover:bg-gray-100 transition"
           >
-            {surveyIndex === 0 ? "시작 화면으로" : "이전"}
+            {surveyIndex === 0 ? afterRoutineIntake ? "화장품 답변으로" : "시작 화면으로" : "이전"}
           </button>
 
           <PrimaryButton

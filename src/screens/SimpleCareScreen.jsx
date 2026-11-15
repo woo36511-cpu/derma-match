@@ -21,6 +21,9 @@ import { RoutineProductLookup } from "../components/RoutineProductLookup";
 import { buildRoutineAdvice, getRoutineComparison, getRoutinePreferences, routineSlotNames } from "../utils/routineAdvice";
 import { getRoutineFitSignals } from "../utils/routineFitContext";
 import { ProcedureOptions } from "../components/ProcedureOptions";
+import { readRoutineSurveyContext } from "../data/routineSurveyContext";
+
+const emptyRoutine = [];
 
 export function ObservationSummary({ profile }) {
   const assessment = profile.observationAssessment;
@@ -129,9 +132,12 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   const [record, setRecord] = useState(initialRecord ?? null);
   const [showResult, setShowResult] = useState(() => Boolean(initialRecord));
   const [saveError, setSaveError] = useState(false);
-  const [serumPreference, setSerumPreference] = useState(() => initialRecord?.routinePreferences?.serum ?? priorSerumPreference ?? "");
-  const currentRoutine = useMemo(() => getCurrentRoutineContext(currentRoutineEntries), [currentRoutineEntries]);
-  const serumStatus = getSerumRoutineSummary(currentRoutineEntries, serumPreference === "keep");
+  const intake = readRoutineSurveyContext(surveyAnswers?.routineIntake);
+  const [legacySerumPreference, setSerumPreference] = useState(() => initialRecord?.routinePreferences?.serum ?? priorSerumPreference ?? "");
+  const serumPreference = intake ? intake.serumPreference ?? "" : legacySerumPreference;
+  const activeRoutineEntries = intake && intake.use !== "yes" ? emptyRoutine : currentRoutineEntries;
+  const currentRoutine = useMemo(() => getCurrentRoutineContext(activeRoutineEntries), [activeRoutineEntries]);
+  const serumStatus = getSerumRoutineSummary(activeRoutineEntries, serumPreference === "keep");
   const skipBasicSerum = (serumPreference !== "compare" && serumStatus.skipBasicSerum) || serumStatus.hasIrritation;
   const [cosmeticAnswers, setCosmeticAnswers] = useState(() => initialRecord?.cosmeticAddOn?.answers ?? null);
   const questions = getSimpleCareQuestions(answers, { legacyExtent });
@@ -186,7 +192,7 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
       setCosmeticAnswers(null);
     }
   };
-  return <SimpleCareQuestion routineReview={routineReview} serumPreference={serumPreference} onSerumPreference={setSerumPreference} question={question} index={index} total={questions.length} answer={answers[question.id]} locations={answers.locations}
+  return <SimpleCareQuestion routineReview={routineReview} serumPreference={serumPreference} onSerumPreference={intake ? undefined : setSerumPreference} question={question} index={index} total={questions.length} answer={answers[question.id]} locations={answers.locations}
     onAnswer={value => changeAnswer(question.id, value)}
     onLocation={(shape, value) => changeAnswer("locations", { ...answers.locations, [shape]: value })}
     onPrev={() => index === 0 ? onBack() : setIndex(index - 1)}

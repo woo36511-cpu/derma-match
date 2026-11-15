@@ -1,4 +1,5 @@
 import { observationQuestions } from "./observationSurvey";
+import { readRoutineSurveyContext, hasMoistureSupport, hasPossibleCoating } from "./routineSurveyContext";
 
 export const ADAPTIVE_SURVEY_VERSION = "adaptive-skin-v3";
 export const ADAPTIVE_MEASUREMENT_VERSION = "adaptive-skin-axes-v3";
@@ -20,6 +21,9 @@ const recentEnvironmentQuestion = {
 };
 export const adaptiveSupportQuestions = [
   recentEnvironmentQuestion,
+  q("routineOilTiming", "화장품을 바른 직후 광택 말고, 몇 시간 뒤 기름기는 어디에서 느껴져요?", "크림이나 선크림 등을 바른 직후 반짝이는 것과 시간이 지나 느껴지는 기름기를 나눠서 답해요.", [["none", "바른 직후에만 반짝이고 나중에는 기름기가 거의 없어요"], ["tzone", "몇 시간 뒤 이마·코 중심으로 기름기가 느껴져요"], ["whole", "몇 시간 뒤 이마·코와 볼에도 기름기가 느껴져요"], unknown], "oil_regions"),
+  q("routineDryTiming", "평소 보습 제품을 바르기 전에도 피부가 편안한가요?", "지금 쓰는 토너·세럼·크림을 바꾸거나 쉬지 말고, 평소 바르기 전과 바른 뒤를 떠올려요.", [["none", "바르기 전후 모두 당기지 않아요"], ["wash", "세안 후 당기지만 바르면 그 뒤로 편안해요"], ["day", "바르고 나면 편한데 낮에 다시 당겨요"], ["persistent", "바른 뒤에도 같은 부위가 계속 당겨요"], unknown]),
+  q("routineDryArea", "방금 말한 당김은 주로 어디에서 느껴져요?", "세안 후나 보습 뒤 당기는 곳을 떠올려요.", areas.filter(([value]) => value !== "none"), "dry_regions"),
   q("changeAnchor", "가장 최근에 피부가 달라졌다고 느낀 계기가 있나요?", "정확한 날짜를 몰라도 괜찮아요. 평소와 비교해 떠오르는 경험으로 골라요.", [["steady", "최근 특별한 변화는 떠오르지 않아요"], ["product", "화장품을 추가하거나 바꾼 뒤 달라졌어요"], ["changed", "제품 변경과 상관없이 최근 불편해졌어요"], ["varies", "날마다 다른 편이에요"], unknown]),
   q("oilTouch", "광택과 별개로, 평소 오후에 기름기가 느껴지는 곳은 어디인가요?", "그림의 부위를 비교해요. 평소 가볍게 만졌을 때의 경험으로 답하고, 확인하려고 문지르거나 세안을 늘리지 않아요.", [["none", "코와 볼 모두 기름기가 거의 없어요"], ["tzone", "코·이마에는 기름기가 있고 볼에는 거의 없어요"], ["whole", "코·이마와 양쪽 볼 모두 기름기가 있어요"], unknown], "oil_regions"),
   q("drynessSensation", "여기서 ‘당김’은 피부가 팽팽하게 조이는 느낌이에요. 그런 경험이 있나요?", "기름져 보이는 것과 별개로 답해요. 단순히 모공이나 주름이 보인다는 뜻은 아니에요.", [["yes", "피부가 조여 보습을 하고 싶은 느낌이 있어요"], ["no", "그런 느낌은 없고 편안해요"], unknown], "dry_regions"),
@@ -49,6 +53,7 @@ const hasArea = value => ["cheeks", "tzone", "whole"].includes(value);
 export function resolveAdaptiveBase(answers = {}) {
   const v = id => adaptiveValue(answers, id);
   const result = Object.fromEntries(observationQuestions.map(item => [item.id, v(item.id)]));
+  if (readRoutineSurveyContext(answers.routineIntake)?.use === "no") result.moisturizerUse = "none";
   if (result.skinChange === "unknown") result.skinChange = v("changeAnchor");
   if (["unknown", "coating"].includes(result.observedOil)) result.observedOil = v("oilTouch");
   if (result.drynessArea === "unknown") result.drynessArea = v("drynessSensation") === "no" ? "none" : v("drynessSensation") === "yes" ? v("drynessLocation") : "unknown";
@@ -66,7 +71,7 @@ export function needsAdaptiveContext(resolved) {
   return (resolved.drynessArea === "none" && resolved.moisturizerUse === "persistent") ||
     (hasArea(resolved.drynessArea) && ((resolved.drynessTiming === "persistent" && ["comfortable", "none"].includes(resolved.moisturizerUse)) || (resolved.drynessTiming === "wash" && resolved.moisturizerUse === "persistent")));
 }
-export function resolveAdaptiveObservations(answers = {}) {
+function resolveAdaptiveDryness(answers = {}) {
   const result = resolveAdaptiveBase(answers), v = id => adaptiveValue(answers, id);
   if (!needsAdaptiveContext(result)) return result;
   const context = v("drynessContext");
@@ -77,11 +82,31 @@ export function resolveAdaptiveObservations(answers = {}) {
   if (context === "persistent") return { ...result, drynessArea: hasArea(result.drynessArea) ? result.drynessArea : area, drynessTiming: "persistent", moisturizerUse: "persistent" };
   return { ...result, skinChange: context === "days" ? "varies" : result.skinChange, drynessArea: area, drynessTiming: hasArea(area) ? v("contextDryTiming") : "unknown" };
 }
+
+const routineOilQuestionApplies = (context, oil) => hasPossibleCoating(context) && ["whole", "tzone"].includes(oil);
+const routineDryQuestionApplies = (context, base) => hasMoistureSupport(context) && base.drynessArea === "none" && base.moisturizerUse !== "stings";
+
+export function resolveAdaptiveObservations(answers = {}) {
+  const base = resolveAdaptiveBase(answers);
+  const result = resolveAdaptiveDryness(answers), context = readRoutineSurveyContext(answers.routineIntake);
+  const oil = adaptiveValue(answers, "routineOilTiming");
+  const timing = adaptiveValue(answers, "routineDryTiming"), area = adaptiveValue(answers, "routineDryArea");
+  if (routineOilQuestionApplies(context, adaptiveValue(answers, "observedOil")) && oil !== "unknown") result.observedOil = oil;
+  if (routineDryQuestionApplies(context, base) && ["wash", "day", "persistent"].includes(timing)) {
+    result.drynessArea = area;
+    result.drynessTiming = timing;
+    // This may be a toner or serum instead of a lotion; don't invent cream use.
+    if (timing === "persistent" && context?.cream && result.moisturizerUse === "comfortable") result.moisturizerUse = "persistent";
+  }
+  return result;
+}
 export function getAdaptiveObservationQuestions(answers = {}) {
   const result = [], v = id => adaptiveValue(answers, id), base = resolveAdaptiveBase(answers);
+  const routine = readRoutineSurveyContext(answers.routineIntake);
   const add = id => { if (!result.some(item => item.id === id)) result.push(questionsById[id]); };
   for (const core of adaptiveObservationQuestions) {
     if (core.id === "drynessTiming" && !hasArea(base.drynessArea)) continue;
+    if (core.id === "moisturizerUse" && routine?.use === "no") continue;
     result.push(core);
     if (!answers[core.id]) continue;
     if (core.id === "skinChange") {
@@ -89,6 +114,7 @@ export function getAdaptiveObservationQuestions(answers = {}) {
       if (["product", "changed", "varies"].includes(base.skinChange)) add("recentEnvironment");
     }
     if (core.id === "observedOil" && ["unknown", "coating"].includes(v(core.id))) add("oilTouch");
+    if (core.id === "observedOil" && routineOilQuestionApplies(routine, v(core.id))) add("routineOilTiming");
     if (core.id === "drynessArea" && v(core.id) === "unknown") { add("drynessSensation"); if (v("drynessSensation") === "yes") add("drynessLocation"); }
     if (core.id === "drynessTiming" && v(core.id) === "unknown") {
       add("tightnessAfterMoisturizer");
@@ -96,6 +122,10 @@ export function getAdaptiveObservationQuestions(answers = {}) {
       if (v("tightnessAfterMoisturizer") === "untried") add("tightnessWithoutMoisturizer");
     }
     if (core.id === "moisturizerUse" && v(core.id) === "unknown") { add("moisturizerIdentity"); if (v("moisturizerIdentity") === "yes") add("moisturizerResponse"); }
+    if (core.id === "moisturizerUse" && routineDryQuestionApplies(routine, base)) {
+      add("routineDryTiming");
+      if (["wash", "day", "persistent"].includes(v("routineDryTiming"))) add("routineDryArea");
+    }
     if (core.id === "washResponse" && v(core.id) === "unknown") add("washSensation");
     if (core.id === "reactionPattern" && v(core.id) === "unknown") add("reactionRecall");
     if (core.id === "surfaceObservation" && v(core.id) === "unknown") { add("surfaceCheck"); if (answers.surfaceCheck && v("surfaceCheck") === "unknown") add("surfaceComfort"); }
@@ -115,5 +145,6 @@ export function getAdaptiveObservationQuestions(answers = {}) {
 }
 export function cleanAdaptiveObservationAnswers(answers = {}) {
   const visible = getAdaptiveObservationQuestions(answers);
-  return Object.fromEntries(visible.filter(question => question.options.some(option => option.label === answers[question.id])).map(question => [question.id, answers[question.id]]));
+  const context = readRoutineSurveyContext(answers.routineIntake);
+  return { ...(context && { routineIntake: context }), ...Object.fromEntries(visible.filter(question => question.options.some(option => option.label === answers[question.id])).map(question => [question.id, answers[question.id]])) };
 }

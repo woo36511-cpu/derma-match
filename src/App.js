@@ -20,10 +20,12 @@ import { SymptomResultScreen } from "./screens/SymptomResultScreen";
 import { SimpleCareScreen } from "./screens/SimpleCareScreen";
 import { RoutineProductLookup } from "./components/RoutineProductLookup";
 import { RoutineSafetyNotice } from "./components/RoutineSafetyNotice";
+import { RoutineIntakeScreen } from "./screens/RoutineIntakeScreen";
+import { readRoutineSurveyContext } from "./data/routineSurveyContext";
 
 export default function App() {
   const {
-    personalProductFeedback, ownerKey, currentRoutine, currentRoutineContext, simpleMode, simpleRecord, startSimpleSkinCare, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
+    personalProductFeedback, ownerKey, currentRoutine, currentRoutineContext, simpleMode, simpleRecord, startSimpleSkinCare, completeRoutineIntake, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
     symptomCheck, concernCheck, concernCheckHistory, moisturizerObservation, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck, continueFeedback,
     account,
     resetFlow,
@@ -205,9 +207,13 @@ export default function App() {
             startQuickJourneyFeedback={startQuickJourneyFeedback}
           />
         ))}
+        {step === "routineIntake" && <RoutineIntakeScreen key={ownerKey} previous={readRoutineSurveyContext(surveyAnswers.routineIntake)}
+          routineReview={routineReview} onNext={completeRoutineIntake} onBack={() => setStep("start")} />}
+
         {step === "survey" && currentSurveyQuestion && (
           <SurveyScreen
             simpleMode={simpleMode}
+            afterRoutineIntake={Boolean(simpleMode && readRoutineSurveyContext(surveyAnswers.routineIntake))}
             surveyIndex={surveyIndex}
             surveyProgress={surveyProgress}
             questionsCount={activeSurveyQuestions.length}
