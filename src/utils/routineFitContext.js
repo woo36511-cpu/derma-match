@@ -23,7 +23,10 @@ export function getRoutineFitSignals(category, context = {}) {
     : postMoistureTight || dryAfterMoisturizer ? Math.max(dry, 7) : dry;
   const barrier = Math.max(needs.barrierCareNeed ?? 0, !isWash && postMoistureTight ? 5 : 0);
   let note = null;
-  if (isWash && washTight) note = "세안 직후 당김을 기준으로 골랐어요. 씻을 때 볼까지 세게 문지르지 않아요.";
+  if (isWash && washTight && observation?.washOnly) note = observation.washProductBand === "comfort"
+    ? "보습감을 고려한 현재 세안제에서도 씻은 직후 당겼다고 답했어요. 제형과 함께 물 온도·세안 횟수도 살펴봐요."
+    : "당김이 세안 직후에만 있었다고 답했어요. 하루 종일 건조하다고 보고 보습을 늘리기 전에 세안부터 비교해요.";
+  else if (isWash && washTight) note = "세안 직후 당김을 기준으로 골랐어요. 씻을 때 볼까지 세게 문지르지 않아요.";
   else if (heavy) note = "바른 직후 무거웠던 제품과 비교해, 더 가벼운 마무리를 우선했어요.";
   else if (!isWash && distinctAreas) note = "당기는 볼·입 주변에 보습을 먼저 하고, 이마·코는 얇게 발라 사용감을 비교해요.";
   else if (!isWash && dryArea && hydration >= 4) note = `${dryArea}의 당김을 기준으로 보습감을 골랐어요.`;

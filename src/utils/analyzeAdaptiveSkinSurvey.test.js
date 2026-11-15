@@ -5,11 +5,37 @@ import { analyzeAdaptiveSkinSurvey } from "./analyzeAdaptiveSkinSurvey";
 import { questionsForSurveyVersion, analyzeSurveyVersion } from "./skinSurveyVersions";
 import { buildSkinComparison, buildSkinMeasurement } from "./skinStateMeasurement";
 import { buildCosmeticAddOnPlan } from "./cosmeticAddOnPlan";
+import { buildRoutineSurveyContext, makeManualRoutineEntry } from "./currentRoutineReview";
 const all = [...adaptiveObservationQuestions, ...adaptiveSupportQuestions];
 const encode = values => Object.fromEntries(Object.entries(values).map(([id, value]) => [id, all.find(q => q.id === id).options.find(o => o.value === value).label]));
 const base = { skinChange: "steady", observedOil: "tzone", drynessArea: "none", moisturizerUse: "comfortable", washResponse: "comfortable", reactionPattern: "none", surfaceObservation: "normal" };
 const answers = (override = {}) => encode({ ...base, ...override });
 const analyze = (override = {}) => analyzeAdaptiveSkinSurvey(answers(override));
+test("verified toner and serum can surface tightness masked by the usual routine without assuming dryness from a name", () => {
+  const routineIntake = buildRoutineSurveyContext("yes", [{ id: 44 }, { id: 2 }]);
+  expect(routineIntake).toMatchObject({ toner: { band: "higher_hydration" }, serum: { band: "higher_hydration" } });
+  const raw = { ...answers({ observedOil: "none", moisturizerUse: "none" }), routineIntake };
+  expect(getAdaptiveObservationQuestions(raw).map(q => q.id)).toContain("routineDryTiming");
+  expect(getAdaptiveObservationQuestions(raw).map(q => q.id)).not.toContain("routineOilTiming");
+  expect(analyzeAdaptiveSkinSurvey(raw).skinType).toBe("중성 성향");
+  const measured = cleanAdaptiveObservationAnswers({ ...raw, ...encode({ routineDryTiming: "day", routineDryArea: "cheeks" }) });
+  expect(analyzeAdaptiveSkinSurvey(measured)).toMatchObject({ skinType: "건성 성향", hydrationLevel: 3, skinState: { dryness: 6 } });
+  const unknown = buildRoutineSurveyContext("yes", [makeManualRoutineEntry("내가 쓰는 토너", "toner")]);
+  expect(unknown.toner.band).toBe("unknown");
+  expect(getAdaptiveObservationQuestions({ ...raw, routineIntake: unknown }).map(q => q.id)).not.toContain("routineDryTiming");
+});
+
+test("wash-only tightness is not labelled dry skin and the later oil answer overrides product shine", () => {
+  const routineIntake = buildRoutineSurveyContext("yes", [{ id: 55, reaction: "wash_tight" }, { id: 78, reaction: "heavy" }]);
+  const raw = { ...answers({ observedOil: "whole", routineOilTiming: "none", drynessArea: "cheeks", drynessTiming: "wash", washResponse: "tight" }), routineIntake };
+  const profile = analyzeAdaptiveSkinSurvey(raw);
+  expect(profile.skinType).toBe("세안 후 당김 중심");
+  expect(profile.skinState.oiliness).toBe(0);
+  expect(profile.observationAssessment.resolvedObservations).toMatchObject({ washOnly: true, washProductBand: "comfort" });
+  expect(analyzeAdaptiveSkinSurvey({ ...raw, ...encode({ routineOilTiming: "tzone", drynessTiming: "day" }) })).toMatchObject({
+    skinType: "복합성 성향", skinState: { dryness: 6, oiliness: 5 },
+  });
+});
 test("clear answers finish without unrelated support questions", () => {
   expect(getAdaptiveObservationQuestions(answers()).map(q => q.id)).toEqual(adaptiveObservationQuestions.filter(q => q.id !== "drynessTiming").map(q => q.id));
   expect(analyze().observationAssessment.status).toBe("ready");

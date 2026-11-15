@@ -2,6 +2,8 @@ import { getProductById, hasExfoliatingActive } from "./productCatalog";
 import { getRankedProductCandidates } from "./routineRecommendation";
 import { getRoutineLookupProduct, routineLookupCategories, searchRoutineProducts } from "./routineLookup";
 import { getIngredientFamilies, hasIntensiveActives } from "./ingredientCompatibility";
+import { getProductEvidenceStatus } from "./productEvidence";
+import { readRoutineSurveyContext, ROUTINE_INTAKE_VERSION } from "../data/routineSurveyContext";
 
 export const CURRENT_ROUTINE_LIMIT = 12;
 const keyPrefix = "dearsince_current_routine_v1:";
@@ -134,6 +136,25 @@ function getExactCatalogProduct(product) {
     Number.isInteger(item.id) && item.category === product.category &&
     [item.name, ...(item.aliases ?? [])].some(name => normalizeName(name) === key));
   return exact.length === 1 ? getProductById(exact[0].id) : null;
+}
+
+export function buildRoutineSurveyContext(use, entries, serumPreference) {
+  const input = { version: ROUTINE_INTAKE_VERSION, use, serumPreference };
+  if (use === "yes") {
+    const { rowsBySlot, slotReactions } = getCurrentRoutineContext(entries);
+    for (const [slot, rows] of Object.entries(rowsBySlot)) {
+      const catalog = rows.length === 1 ? getProductById(rows[0].productId) : null;
+      const axes = getProductEvidenceStatus(catalog).eligible ? catalog.careProfile : null;
+      const band = !axes ? "unknown" : slot === "cleanser"
+        ? axes.hydrationSupport >= 4 && axes.soothingSupport >= 3 ? "comfort" : "other"
+        : axes.hydrationSupport >= 7 ? "higher_hydration"
+          : axes.lightweightFit >= 7 && axes.hydrationSupport <= 6 ? "light" : "balanced";
+      input[slot] = { band, fullerFinish: slot !== "cleanser" && axes?.lightweightFit <= 4, reaction: slotReactions[slot] };
+    }
+    if (entries.some(entry => entry.reaction === "heavy" && getCurrentRoutineProduct(entry)?.category === "sunscreen"))
+      input.sunscreen = { reaction: "heavy" };
+  }
+  return readRoutineSurveyContext(input);
 }
 
 export function getCurrentRoutineContext(entries = []) {

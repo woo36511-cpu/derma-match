@@ -16,16 +16,23 @@ import { getCosmeticQuestions } from "./data/cosmeticAddOns";
 import { getCosmeticObservationConfig } from "./data/productObservationGoals";
 import { COMFORT_QUESTION, OBSERVATION_KINDS } from "./utils/moisturizerObservation";
 import { JOURNEY_HISTORY_KEY } from "./data/storageKeys";
+import { buildRoutineSurveyContext, readCurrentRoutine } from "./utils/currentRoutineReview";
 
 const click = name => fireEvent.click(screen.getByRole("button", { name }));
 const records = () => JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY) || "[]");
 const values = Object.fromEntries(skinSurveyQuestions.map(q => [q.id, q.type === "multi" ? [q.options[0].label] : q.options[0].label]));
 beforeEach(() => { localStorage.clear(); window.history.replaceState({}, "", "/"); });
-function baseSurvey(overrides = {}) {
+function baseSurvey(overrides = {}, { use = "skip", setup, serum } = {}) {
   click("피부타입 확인하고 추천받기");
+  expect(screen.getByRole("heading", { name: "지금 쓰는 화장품이 있나요?" })).toBeVisible();
+  click({ skip: "제품 입력 없이 진행할래요", yes: "네, 지금 쓰는 제품이 있어요", no: "아니요, 지금은 아무것도 안 써요" }[use]);
+  setup?.();
+  if (serum) fireEvent.change(screen.getByRole("combobox", { name: /지금 쓰는 세럼은 어때요/ }), { target: { value: serum } });
+  click("피부 상태 질문으로");
   expect(screen.queryByRole("heading", { name: "지금 피부 상태부터 확인할게요" })).not.toBeInTheDocument();
-  const observed = { skinChange: "steady", observedOil: "tzone", drynessArea: "none", moisturizerUse: "comfortable", reactionPattern: "none", washResponse: "comfortable", surfaceObservation: "normal", ...overrides };
+  const observed = { skinChange: "steady", observedOil: "tzone", routineOilTiming: overrides.observedOil ?? "tzone", routineDryTiming: "none", drynessArea: "none", moisturizerUse: "comfortable", reactionPattern: "none", washResponse: "comfortable", surfaceObservation: "normal", ...overrides };
   const answers = Object.fromEntries([...observationQuestions, ...adaptiveSupportQuestions].map(q => [q.id, q.options.find(o => o.value === (observed[q.id] ?? "unknown"))?.label]));
+  answers.routineIntake = buildRoutineSurveyContext(use, readCurrentRoutine(localStorage, "guest"), serum);
   const questions = getObservationQuestions(answers);
   for (const [index, question] of questions.entries()) {
     expect(screen.getByRole("heading", { name: question.question })).toBeInTheDocument();
@@ -58,19 +65,27 @@ test("main flow preserves skin-type survey, saves four basic categories, and reo
   expect(screen.getByRole("heading", { name: "피부타입에 맞는 기본 루틴이면 충분해요." })).toBeInTheDocument();
   expect(records()).toHaveLength(1);
 });
+test("no current products skips the repeat moisturizer question and returns four starter candidates", () => {
+  render(<App />); baseSurvey({ reactionPattern: "untried" }, { use: "no" }); extraCare({ concern: "none" });
+  const record = records()[0];
+  expect(record.surveyAnswers.routineIntake.use).toBe("no");
+  expect(record.surveyAnswers).not.toHaveProperty("moisturizerUse");
+  expect(record.result.observationAssessment.resolvedObservations.moisturizerUse).toBe("none");
+  expect(Object.values(record.routine).every(Boolean)).toBe(true);
+});
 test("a first survey keeps a comfortable serum, prioritizes a heavy moisturizer and folds away the second choice", () => {
-  render(<App />); baseSurvey({ moisturizerUse: "heavy" });
-  fireEvent.click(screen.getByText("쓰는 화장품 검색·직접 입력 (선택)"));
-  const search = screen.getByRole("searchbox", { name: "브랜드나 제품명" });
+  render(<App />);
   const serum = "아누아 PDRN 히알루론산 캡슐 100 세럼";
   const cream = "피지오겔 DMT 데일리 모이스쳐 테라피 페이셜 크림";
   const add = (query, name, reaction) => {
-    fireEvent.change(search, { target: { value: query } });
+    fireEvent.change(screen.getByRole("searchbox", { name: "브랜드나 제품명" }), { target: { value: query } });
     click(name + " 내 루틴에 담기");
     fireEvent.change(screen.getByRole("combobox", { name: name + " 사용 반응" }), { target: { value: reaction } });
   };
-  add("피지오겔 DMT", cream, "heavy");
-  add("아누아 PDRN", serum, "comfortable");
+  baseSurvey({ moisturizerUse: "heavy" }, { use: "yes", setup: () => {
+    add("피지오겔 DMT", cream, "heavy");
+    add("아누아 PDRN", serum, "comfortable");
+  } });
   extraCare({ concern: "none" });
   const priority = screen.getByRole("region", { name: "지금 먼저 할 한 가지" });
   expect(priority).toHaveTextContent("보습제부터 한 가지만 점검해요.");
@@ -276,8 +291,9 @@ test("unknown follow-up observations suppress a new routine and do not crash on 
 
 test("conflicting answers get a clarification instead of a forced type, and guidance starts folded", () => {
   render(<App />); click("피부타입 확인하고 추천받기");
+  click("제품 입력 없이 진행할래요"); click("피부 상태 질문으로");
   expect(screen.getByText("답변 기준 자세히 보기").closest("details")).not.toHaveAttribute("open");
-  click("시작 화면으로");
+  click("화장품 답변으로"); click("시작 화면으로");
   baseSurvey({ drynessArea: "cheeks", drynessTiming: "persistent", moisturizerUse: "comfortable", drynessContext: "unknown", contextDryArea: "unknown" }); extraCare({ concern: "none" });
   expect(screen.getByRole("heading", { name: /유분 중심 관리부터 시작/ })).toBeInTheDocument();
   expect(records()[0].result.observationAssessment.status).toBe("partial");
@@ -292,7 +308,7 @@ test("historical simple results keep the historical scale until a fresh survey i
   expect(screen.getByText("예전 설문 기준으로 저장된 결과예요. 당시 답변과 점수를 유지했어요.")).toBeInTheDocument();
   expect(records()[0].skinMeasurement.measurementVersion).toBe("survey-8-axis-v1");
   click("새 기준으로 다시 확인");
-  expect(screen.getByRole("heading", { name: observationQuestions[0].question })).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: "지금 쓰는 화장품이 있나요?" })).toBeInTheDocument();
   expect(records()[0].skinMeasurement).toEqual(record.skinMeasurement);
 });
 
@@ -335,7 +351,7 @@ test("saved product IDs remain historical when recommendation rules change, and 
   expect(screen.getByText("닥터지 약산성 클렌징 젤 폼")).toBeInTheDocument();
   expect(records()[0].routine).toEqual(record.routine);
   click("새 기준으로 다시 확인");
-  expect(screen.getByRole("heading", { name: observationQuestions[0].question })).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: "지금 쓰는 화장품이 있나요?" })).toBeInTheDocument();
 });
 
 test("current routine review reuses a completed survey and suggests only a different basic moisturizer", () => {
@@ -535,7 +551,7 @@ test("blackhead cosmetic observations are optional and stay outside the recommen
       productId, area: "nose", baselineValue: 3, analysisConsent: null, followUp: { value: 1, useDays: "28_plus" },
     });
     click("새 화장품 추천받기");
-    expect(screen.getByRole("heading", { name: observationQuestions[0].question })).toBeVisible();
+    expect(screen.getByRole("heading", { name: "지금 쓰는 화장품이 있나요?" })).toBeVisible();
   } finally { jest.useRealTimers(); }
 });
 
@@ -567,8 +583,7 @@ test("a saved use reaction changes the next routine without a data explanation o
 });
 
 test("first survey keeps the two comfortable serums entered before the result", () => {
-  render(<App />); baseSurvey({ observedOil: "whole" });
-  fireEvent.click(screen.getByText("쓰는 화장품 검색·직접 입력 (선택)"));
+  render(<App />); baseSurvey({ observedOil: "whole" }, { use: "yes", setup: () => {
   const search = screen.getByRole("searchbox", { name: "브랜드나 제품명" });
   fireEvent.change(search, { target: { value: "코스알엑스 나이아신아마이드 15 세럼" } });
   click("코스알엑스 나이아신아마이드 15 세럼 내 루틴에 담기");
@@ -578,6 +593,7 @@ test("first survey keeps the two comfortable serums entered before the result", 
   fireEvent.change(screen.getByRole("combobox", { name: "제품 종류" }), { target: { value: "serum" } });
   click("입력한 제품 담기");
   fireEvent.change(screen.getByRole("combobox", { name: "테스트 재생 세럼 사용 반응" }), { target: { value: "comfortable" } });
+  } });
   extraCare({ concern: "none" });
   const keep = within(screen.getByRole("region", { name: "지금 쓰는 세럼" }));
   expect(keep.getByText(/코스알엑스 나이아신아마이드 15 세럼 · 테스트 재생 세럼/)).toBeVisible();
@@ -586,8 +602,7 @@ test("first survey keeps the two comfortable serums entered before the result", 
 });
 
 test("a first-time visitor can keep an unnamed serum without using product search", () => {
-  render(<App />); baseSurvey();
-  fireEvent.change(screen.getByRole("combobox", { name: /지금 쓰는 세럼은 어때요/ }), { target: { value: "keep" } });
+  render(<App />); baseSurvey({}, { use: "yes", serum: "keep" });
   extraCare({ concern: "none" });
   expect(screen.getByText("편하게 쓰는 세럼은 그대로 유지해요.")).toBeVisible();
   expect(records()[0].routine.serum).toBeNull();

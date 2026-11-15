@@ -45,7 +45,8 @@ import { useConcernCheck, isConcernCheckRecord } from "./useConcernCheck";
 import { useSymptomCheck, isSymptomCheckRecord } from "./useSymptomCheck";
 import { applyRoutineSafety, getRoutineSafety, getFeedbackRoutineSafety, feedbackNeedsSymptomReview } from "../utils/symptomAssessment";
 import { useCurrentRoutine } from "../components/CurrentRoutineReview";
-import { getCurrentRoutineContext } from "../utils/currentRoutineReview";
+import { getCurrentRoutineContext, buildRoutineSurveyContext } from "../utils/currentRoutineReview";
+import { readRoutineSurveyContext } from "../data/routineSurveyContext";
 import { getRoutinePreferences } from "../utils/routineAdvice";
 
 export function useSkinCoach() {
@@ -628,7 +629,7 @@ export function useSkinCoach() {
 
   const handlePrevSurvey = () => {
     if (surveyIndex === 0) {
-      setStep("start");
+      setStep(simpleMode && readRoutineSurveyContext(surveyAnswers.routineIntake) ? "routineIntake" : "start");
       return;
     }
 
@@ -770,7 +771,18 @@ export function useSkinCoach() {
   const startSimpleSkinCare = () => {
     setSimpleMode(true); setSimpleRecord(null);
     setSurveyAnswers({}); setSurveyIndex(0); setMainConcern(""); setIssueAnswers({});
-    setActiveJourneyId(null); setStep("survey");
+    setActiveJourneyId(null); setStep("routineIntake");
+  };
+  const completeRoutineIntake = (use, serumPreference) => {
+    const routineIntake = buildRoutineSurveyContext(use, currentRoutine.entries, serumPreference);
+    if (!routineIntake) return;
+    setSurveyAnswers(previous => {
+      if (JSON.stringify(previous.routineIntake) === JSON.stringify(routineIntake)) return previous;
+      const next = { ...previous, routineIntake };
+      for (const field of ["routineOilTiming", "routineDryTiming", "routineDryArea"]) delete next[field];
+      return cleanVersionedSurveyAnswers(ADAPTIVE_SURVEY_VERSION, next);
+    });
+    setSurveyIndex(0); setStep("survey");
   };
   const saveSimpleSkinRecord = record => {
     persistRecord(record);
@@ -790,7 +802,7 @@ export function useSkinCoach() {
   };
 
   return {
-    personalProductFeedback, ownerKey, currentRoutine, currentRoutineContext, simpleMode, simpleRecord, startSimpleSkinCare, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
+    personalProductFeedback, ownerKey, currentRoutine, currentRoutineContext, simpleMode, simpleRecord, startSimpleSkinCare, completeRoutineIntake, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
     symptomCheck, concernCheck, moisturizerObservation, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck,
     continueFeedback: () => feedbackNeedsSymptomReview(answers) ? symptomCheck.begin("recheck") : setStep("recheck"),
     account,
