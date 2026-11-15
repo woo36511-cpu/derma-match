@@ -12,6 +12,17 @@ import { avoidPersonalProduct, getPersonalCosmeticFit } from "./personalProductF
 import { getIngredientFamilies, getCompatibilityRisk } from "./ingredientCompatibility";
 import { getRoutineFitSignals } from "./routineFitContext";
 
+function getDirectGoalFit(goal, axes) {
+  switch (goal) {
+    case "support": return (axes.hydrationSupport * 2 + axes.barrierSupport) / 15;
+    case "sebum": return (axes.lightweightFit * 2 + axes.congestionSupport) / 15;
+    case "texture": return axes.congestionSupport / 5;
+    case "tone":
+    case "lines": return (axes.hydrationSupport + axes.barrierSupport) / 15;
+    default: return 0;
+  }
+}
+
 export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}, carePlan = {}, routine = {}, personalProductFeedback, knownSerumFamilies = [], serumIrritation = false, currentRoutine = {} } = {}) {
   const answers = cleanCosmeticAnswers(input, carePlan);
   const result = { version: COSMETIC_ADDON_VERSION, answers, complete: isCosmeticComplete(answers, carePlan), product: null, suppressPharmacy: false };
@@ -87,7 +98,7 @@ export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}
     const axes = getProductCareProfile(p);
     const texture = answers.goal === "sebum" ? Math.max(5, fit?.texture ?? 0) : fit?.texture ?? 0;
     const currentFit = fit ? (fit.hydration * axes.hydrationSupport + texture * axes.lightweightFit + fit.barrier * axes.barrierSupport) / 35 : 0;
-    return getCareNeedMatchScore(p, profile.careNeeds) / 10 + currentFit -
+    return getCareNeedMatchScore(p, profile.careNeeds) / 10 + currentFit + getDirectGoalFit(answers.goal, axes) -
       Math.abs(p.hydrationLevel - level) * (fit ? 3.5 : 5) + (p.sensitivitySafe ? 1 : 0) +
       getPersonalCosmeticFit(p, level, observationContext) +
       (getReviewedCosmeticObservation(p, getProductEvidenceStatus(p), level, observationContext) ? COSMETIC_OBSERVATION_FIT_BONUS : 0);
@@ -103,7 +114,11 @@ export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}
     const serums = candidates.filter(product => product.category === "serum");
     if (serums.length) candidates = serums;
   }
-  const product = candidates[0];
+  // If an equally suitable product already appears in the proposed basic routine, avoid adding another step.
+  const leader = candidates[0];
+  const reuse = leader && candidates.find(candidate => basicProducts.some(basic => basic.id === candidate.id) &&
+    scores.get(leader.id) - scores.get(candidate.id) <= 1);
+  const product = reuse ?? leader;
   if (!product && unlistedNeedCheck && answers.goal === "texture") return hold("이미 쓰는 제품의 포장 성분표부터 확인해요.", "확인하기 전에는 각질 관리제를 새로 더하지 않아요. 성분을 확인한 뒤 추가 추천 답변을 바꿀 수 있어요.");
   if (answers.goal === "sebum" && (!product || product.category !== "serum") && actives.has("niacinamide")) {
     return hold(currentRoutine.currentFamilies ? "이미 쓰는 나이아신아마이드 제품을 먼저 확인해요." : "이미 쓰는 나이아신아마이드 세럼은 유지해요.", "같은 성분의 세럼을 더하지 않아요. 번들거림이 남아 있다면 편한 제품을 유지하면서 이마·코 등 신경 쓰이는 부위만 살펴봐요.");

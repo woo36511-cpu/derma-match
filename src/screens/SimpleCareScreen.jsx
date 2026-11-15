@@ -168,7 +168,8 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   const displayPlan = applyCosmeticRoute(cosmeticPlan);
   const liveIntake = showResult && intake?.use === "yes" ? buildRoutineSurveyContext("yes", activeRoutineEntries) : null;
   const newReview = ["cleanser", "toner", "serum", "cream"].some(slot => intake?.[slot]?.band === "unknown" &&
-    liveIntake?.[slot]?.band && liveIntake[slot].band !== "unknown");
+    ((liveIntake?.[slot]?.band && liveIntake[slot].band !== "unknown") ||
+      (!intake[slot].listedHumectants && liveIntake?.[slot]?.listedHumectants)));
   const save = (nextCosmeticAnswers = cosmeticAnswers) => {
     if (!plan.complete) return;
     const nextCosmeticPlan = nextCosmeticAnswers ? buildCosmeticAddOnPlan(nextCosmeticAnswers, cosmeticContext) : null;

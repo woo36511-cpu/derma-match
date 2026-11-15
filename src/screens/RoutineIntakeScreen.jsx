@@ -7,13 +7,22 @@ const options = [["yes", "네, 지금 쓰는 제품이 있어요"], ["no", "아�
 export function RoutineIntakeScreen({ previous, routineReview, onNext, onBack }) {
   const [use, setUse] = useState(previous?.use ?? "");
   const [serum, setSerum] = useState(previous?.serumPreference ?? "");
+  const [continuing, setContinuing] = useState(false);
+  const [continueWithoutCheck, setContinueWithoutCheck] = useState(false);
+  const routine = routineReview.currentRoutine;
+  const next = async () => {
+    if (use !== "yes" || !routine?.checking || continueWithoutCheck) { onNext(use, serum); return; }
+    setContinuing(true);
+    const entries = await routine.entriesAfterChecks();
+    onNext(use, serum, entries);
+  };
   return <section className="mx-auto max-w-3xl space-y-5" aria-labelledby="routine-intake-title">
     <div className="space-y-3 rounded-[2rem] border border-slate-200 bg-white p-5 sm:p-8">
       <p className="text-sm font-semibold text-emerald-700">피부 설문 · 첫 질문</p>
       <h1 id="routine-intake-title" className="text-2xl font-bold">지금 쓰는 화장품이 있나요?</h1>
       <p className="text-sm text-slate-700">세안제·토너·세럼·로션·크림·선크림처럼 평소에 쓰는 제품을 떠올려요. 제품명과 사용감을 알면 세안 뒤 당김이나 화장품을 바른 뒤 광택을 구분하는 데 참고해요.</p>
       <div className="grid gap-2" role="group" aria-label="현재 화장품 사용">
-        {options.map(([value, label]) => <button key={value} type="button" aria-pressed={use === value} onClick={() => setUse(value)}
+        {options.map(([value, label]) => <button key={value} type="button" disabled={continuing} aria-pressed={use === value} onClick={() => { setUse(value); if (value === "yes") routine?.checkExisting?.(); }}
           className={`min-h-12 rounded-xl border px-4 py-3 text-left text-sm font-semibold ${use === value ? "border-emerald-800 bg-emerald-50" : "border-slate-200 bg-white"}`}>{label}</button>)}
       </div>
     </div>
@@ -25,10 +34,14 @@ export function RoutineIntakeScreen({ previous, routineReview, onNext, onBack })
         </select>
       </label>
       <p className="text-sm text-slate-600">이름이 기억나지 않거나 일부 제품만 알아도 다음으로 갈 수 있어요.</p>
+      {routine?.checking && <p role="status" className="text-sm text-emerald-900">담은 제품의 공식 전성분을 확인 중이에요.</p>}
+      {routine?.checking && !continuing && <label className="flex items-center gap-2 text-xs text-slate-600">
+        <input type="checkbox" checked={continueWithoutCheck} onChange={e => setContinueWithoutCheck(e.target.checked)} /> 확인을 기다리지 않고 계속하기
+      </label>}
     </div>}
     <div className="flex justify-between gap-3">
-      <button type="button" className="rounded-xl border px-4 py-3 text-sm" onClick={onBack}>시작 화면으로</button>
-      <PrimaryButton disabled={!use} onClick={() => onNext(use, serum)}>피부 상태 질문으로</PrimaryButton>
+      <button type="button" disabled={continuing} className="rounded-xl border px-4 py-3 text-sm" onClick={onBack}>시작 화면으로</button>
+      <PrimaryButton disabled={!use || continuing} onClick={next}>{continuing ? "공식 자료 확인 중…" : "피부 상태 질문으로"}</PrimaryButton>
     </div>
   </section>;
 }

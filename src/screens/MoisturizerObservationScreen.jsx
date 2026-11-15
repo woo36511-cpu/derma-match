@@ -3,6 +3,7 @@ import { PrimaryButton } from "../components/PrimaryButton";
 import { SectionTitle } from "../components/SectionTitle";
 import { getProductById } from "../utils/productCatalog";
 import { OBSERVATION_AREAS } from "../data/productObservationGoals";
+import { getCosmeticNextStep } from "../utils/cosmeticProgress";
 import { DetailDisclosure } from "../components/DetailDisclosure";
 import {
   DAYS_MS, COMFORT_QUESTION, COMFORT_OPTIONS, OBSERVATION_USE_DAYS, isObservationValue,
@@ -69,6 +70,7 @@ export function MoisturizerObservationScreen({ observation, onHome, onRecommend 
   const checkDays = getObservationCheckDays(config);
   const isEarly = daysElapsed < checkDays;
   const report = study?.followUp ?? study?.earlyCheck;
+  const nextAction = getCosmeticNextStep(study, config);
   const change = report && config ? describeObservationChange(study, report, config) : null;
   const comfortChange = report && study ? describeComfortChange(study, report) : null;
   const reaction = report?.reaction;
@@ -109,6 +111,9 @@ export function MoisturizerObservationScreen({ observation, onHome, onRecommend 
         {areaLabel && <p>기록한 부위 · {areaLabel}</p>}
         {!study.followUp && <p>다음 기록 · {date} 이후</p>}
       </div>
+      {nextAction && <section aria-label="지금 할 한 가지" className="space-y-1 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm">
+        <h2 className="font-semibold">{nextAction.title}</h2><p>{nextAction.detail}</p>
+      </section>}
       <DetailDisclosure title="내 기록 자세히 보기" className="rounded-xl border border-slate-200 bg-white p-4 text-sm">
         <p className="font-semibold">{study.choice === "start" ? "추천 제품 시작" : "기존 제품 유지"} · 시작 전 {config.symptom} {baselineLabel}</p>
         {!study.followUp && <p>같은 기준으로 다시 비교할 날 · {date} 이후</p>}

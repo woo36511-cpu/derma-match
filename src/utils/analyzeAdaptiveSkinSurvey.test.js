@@ -5,12 +5,25 @@ import { analyzeAdaptiveSkinSurvey } from "./analyzeAdaptiveSkinSurvey";
 import { questionsForSurveyVersion, analyzeSurveyVersion } from "./skinSurveyVersions";
 import { buildSkinComparison, buildSkinMeasurement } from "./skinStateMeasurement";
 import { buildCosmeticAddOnPlan } from "./cosmeticAddOnPlan";
-import { buildRoutineSurveyContext, makeManualRoutineEntry } from "./currentRoutineReview";
+import { buildRoutineSurveyContext, getCurrentRoutineContext, makeManualRoutineEntry } from "./currentRoutineReview";
 const all = [...adaptiveObservationQuestions, ...adaptiveSupportQuestions];
 const encode = values => Object.fromEntries(Object.entries(values).map(([id, value]) => [id, all.find(q => q.id === id).options.find(o => o.value === value).label]));
 const base = { skinChange: "steady", observedOil: "tzone", drynessArea: "none", moisturizerUse: "comfortable", washResponse: "comfortable", reactionPattern: "none", surfaceObservation: "normal" };
 const answers = (override = {}) => encode({ ...base, ...override });
 const analyze = (override = {}) => analyzeAdaptiveSkinSurvey(answers(override));
+test("a missing product with exact official INCI can affect follow-up and active overlap without gaining a rating", () => {
+  const entry = makeManualRoutineEntry("마녀공장 예시 수분 세럼 60ml", "serum");
+  entry.officialFormula = { name: entry.name, category: "serum", volume: "60ml", sourceUrl: "https://www.manyo.co.kr/goods/goods_view.php?goodsNo=999",
+    checkedAt: new Date().toISOString(), hydrationSignal: true,
+    ingredients: ["정제수", "글리세린", "판테놀", "나이아신아마이드", "소듐하이알루로네이트", "향료"] };
+  const routineIntake = buildRoutineSurveyContext("yes", [entry]);
+  expect(routineIntake.serum).toMatchObject({ band: "unknown", listedHumectants: true });
+  expect(getCurrentRoutineContext([entry])).toMatchObject({ currentFamilies: ["niacinamide"], uncertainActives: [] });
+  const input = { ...answers({ observedOil: "none", moisturizerUse: "none", routineDryTiming: "day", routineDryArea: "cheeks" }), routineIntake };
+  expect(analyzeAdaptiveSkinSurvey(input)).toMatchObject({ skinType: "건성 성향", hydrationLevel: 3 });
+  entry.officialFormula.sourceUrl = "https://not-the-brand.example/goods/goods_view.php?goodsNo=999";
+  expect(buildRoutineSurveyContext("yes", [entry]).serum).not.toHaveProperty("listedHumectants");
+});
 test("verified toner and serum can surface tightness masked by the usual routine without assuming dryness from a name", () => {
   const matchedManualProduct = makeManualRoutineEntry("토리든 다이브인 저분자 히알루론산 토너", "toner");
   const routineIntake = buildRoutineSurveyContext("yes", [matchedManualProduct, { id: 2 }]);

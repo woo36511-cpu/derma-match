@@ -39,6 +39,7 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
     <div>
       <h3 id="routine-lookup-title" className="text-lg font-bold">지금 쓰는 화장품 찾기</h3>
       <p className="mt-1 text-sm text-slate-600">등록된 {routineLookupCount}개 중 제품을 찾아 담고, 실제 사용 반응을 기준으로 유지할 것과 점검할 것을 나눠봐요.</p>
+      <p className="mt-1 text-xs text-slate-600">아누아·마녀공장은 제품명과 국내 공식 전성분이 정확히 맞으면 자동으로 확인해요.</p>
     </div>
     <div ref={reviewRef}><CurrentRoutineReview {...{ routine, profile, savedAt, safetyBlocked, onStartSurvey, personalProductFeedback }} /></div>
     {isFull && <p className="text-sm text-slate-600">최대 {CURRENT_ROUTINE_LIMIT}개까지 담을 수 있어요. 더 담으려면 지금 쓰지 않는 제품을 빼주세요.</p>}
