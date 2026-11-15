@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { getCategoryLabel } from "../utils/productCatalog";
 import { getProductPurchaseLink } from "../utils/productPurchaseLink";
+import { getOfficialPriceReference } from "../utils/pricePreference";
 import {
   buildUserTags,
   buildRecommendationReasons,
@@ -21,6 +22,7 @@ export function ProductCard({ product, categoryKey, userContext }) {
 
   const visibleReason = userContext ? reasons[0] : product.shortReason;
   const recommendedAmount = getRecommendedAmount(product, userContext);
+  const price = userContext?.pricePreference === "important" ? getOfficialPriceReference(product) : null;
   const cardInner = (
     <>
       <img
@@ -45,6 +47,7 @@ export function ProductCard({ product, categoryKey, userContext }) {
       <p className="text-sm text-gray-500 leading-relaxed break-keep mb-2">
         {product.description}
       </p>
+      {price && <p className="mb-2 text-xs font-semibold text-emerald-800">공식 기준가 {price.amount.toLocaleString("ko-KR")}원</p>}
       {tags.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-3">
           {tags.map((tag) => (
@@ -118,6 +121,7 @@ export function ProductCard({ product, categoryKey, userContext }) {
               </li>
             ))}
           </ul>
+          {price && <p className="mt-2 text-xs text-slate-600"><a className="underline" href={price.url} target="_blank" rel="noreferrer">가격 출처</a> · {price.checkedAt} 확인 · 할인과 배송비 제외</p>}
         </div>
       )}
 

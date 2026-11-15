@@ -11,6 +11,7 @@ export function CosmeticAddOnResult({ plan }) {
     {plan.product && <article className="space-y-3 rounded-2xl border border-emerald-100 bg-white p-4" aria-label={plan.product.name}>
       <div className="flex items-center gap-4"><img src={plan.product.image} alt={plan.product.name} loading="lazy" width="100" height="100" className="h-24 w-24 shrink-0 rounded-xl object-contain bg-slate-50" /><div><p className="text-xs font-semibold text-emerald-800">{plan.classification}</p><h4 className="mt-1 font-bold">{plan.product.name}</h4><p className="mt-1 text-sm text-slate-600">{plan.product.volume}</p></div></div>
       <p className="text-sm">{plan.fit}</p>
+      {plan.priceReference && <p className="text-sm font-semibold text-emerald-800"><a href={plan.priceReference.url} target="_blank" rel="noreferrer" className="underline">공식 기준가 {plan.priceReference.amount.toLocaleString("ko-KR")}원</a> <span className="text-xs font-normal text-slate-600">· {plan.priceReference.checkedAt} 확인</span></p>}
       {plan.status === "candidate" && purchase?.url && <a href={purchase.url} target="_blank" rel="noopener noreferrer" className="inline-block text-sm font-semibold text-emerald-800 underline">{purchase.label}</a>}
       {plan.suppressPharmacy && <p className="rounded-xl bg-amber-50 p-3 text-sm">이번 결과에서는 각질 관리 화장품 후보를 선택했어요. 약품 후보 표시는 보류하며, 약과 이 제품을 함께 새로 시작하지 않아요.</p>}
       <DetailDisclosure title="추천 이유·사용 순서·주의사항">

@@ -1,3 +1,4 @@
+import { preferComparablePrice } from "./pricePreference";
 import { getPersonalBasicFit } from "./personalProductFeedback";
 import { RECOMMENDATION_RULE_VERSION, getProductEvidenceStatus } from "./productEvidence";
 import { getProductCareProfile } from "./productCareProfile";
@@ -160,7 +161,7 @@ export function sortProductsForRecommendation(
   userContext = {},
 ) {
   const scores = new Map(productList.map(product => [product.id, getRecommendationScore(product, currentLevel, userContext)]));
-  return [...productList].sort((a, b) => {
+  const ranked = [...productList].sort((a, b) => {
     const aScore = scores.get(a.id);
     const bScore = scores.get(b.id);
 
@@ -201,6 +202,7 @@ export function sortProductsForRecommendation(
 
     return bBeginner - aBeginner || (a.id ?? 0) - (b.id ?? 0);
   });
+  return preferComparablePrice(ranked, product => scores.get(product.id), userContext.pricePreference);
 }
 
 export function sortProductsForDisplay(productList, currentLevel) {

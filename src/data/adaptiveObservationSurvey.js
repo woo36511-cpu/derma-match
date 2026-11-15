@@ -1,5 +1,6 @@
 import { observationQuestions } from "./observationSurvey";
 import { readRoutineSurveyContext, hasMoistureSupport, hasPossibleCoating } from "./routineSurveyContext";
+import { pricePreferenceQuestion } from "./pricePreference";
 
 export const ADAPTIVE_SURVEY_VERSION = "adaptive-skin-v3";
 export const ADAPTIVE_MEASUREMENT_VERSION = "adaptive-skin-axes-v3";
@@ -132,15 +133,17 @@ export function getAdaptiveObservationQuestions(answers = {}) {
   }
   if (needsAdaptiveContext(base)) {
     add("drynessContext");
-    if (!answers.drynessContext) return result;
-    const context = v("drynessContext"), area = v("contextDryArea");
-    if (context === "before_after" && hasArea(base.drynessArea)) add("contextReturn");
-    else if (context !== "comfortable") {
-      if (context !== "persistent" || !hasArea(base.drynessArea)) add("contextDryArea");
-      if (!["persistent", "before_after"].includes(context) && hasArea(area)) add("contextDryTiming");
-      if (context === "before_after" && hasArea(area)) add("contextReturn");
+    if (answers.drynessContext) {
+      const context = v("drynessContext"), area = v("contextDryArea");
+      if (context === "before_after" && hasArea(base.drynessArea)) add("contextReturn");
+      else if (context !== "comfortable") {
+        if (context !== "persistent" || !hasArea(base.drynessArea)) add("contextDryArea");
+        if (!["persistent", "before_after"].includes(context) && hasArea(area)) add("contextDryTiming");
+        if (context === "before_after" && hasArea(area)) add("contextReturn");
+      }
     }
   }
+  if (routine) result.push(pricePreferenceQuestion);
   return result;
 }
 export function cleanAdaptiveObservationAnswers(answers = {}) {

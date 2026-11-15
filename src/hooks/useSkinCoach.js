@@ -1,3 +1,4 @@
+import { readPricePreference } from "../data/pricePreference";
 import { ADAPTIVE_SURVEY_VERSION } from "../data/adaptiveObservationSurvey";
 import { isObservationVersion, questionsForSurveyVersion, analyzeSurveyVersion, cleanVersionedSurveyAnswers } from "../utils/skinSurveyVersions";
 import { useState, useRef, useMemo, useEffect } from "react";
@@ -253,6 +254,7 @@ export function useSkinCoach() {
     basicOnly: feedbackSurveyVersion === ADAPTIVE_SURVEY_VERSION,
     mainConcern: feedbackMainConcern,
     personalProductFeedback: nextPersonalProductFeedback,
+    pricePreference: readPricePreference(feedbackTargetRecord?.surveyAnswers ?? savedSurvey?.surveyAnswers),
     observationKinds: getObservationKinds(feedbackProfile),
     observationTracks: getBasicObservationTracks(feedbackProfile),
     observedSkin: feedbackProfile.observationAssessment?.resolvedObservations,
@@ -359,6 +361,7 @@ export function useSkinCoach() {
     ...routineFilter(surveyResult.observationAssessment?.resolvedObservations),
     mainConcern,
     personalProductFeedback,
+    pricePreference: readPricePreference(surveyAnswers),
 
     careNeeds: adjustedSurveyCareNeeds,
 

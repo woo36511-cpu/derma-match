@@ -229,8 +229,10 @@ export function buildDynamicRoutine(level, userContext = {}) {
     const context = { ...userContext, slot: category };
     const assessment = getRecommendationBreakdown(product, level, context);
     const ranked = pools[category];
+    const priceOrdered = ranked[0]?.id === product.id && context.pricePreference === "important" &&
+      ranked.slice(1).some(candidate => getRecommendationBreakdown(candidate, level, context).total > assessment.total);
     return [category, { productId: product.id, ...assessment,
-      selectionPath: ranked[0]?.id === product.id ? "highest_fit_in_eligible_pool" : "compatibility_substitution",
+      selectionPath: priceOrdered ? "comparable_official_price" : ranked[0]?.id === product.id ? "highest_fit_in_eligible_pool" : "compatibility_substitution",
       alternatives: ranked.filter(candidate => candidate.id !== product.id && (!hasExfoliatingActive(candidate) ||
         !Object.entries(chosen).some(([other, selected]) => other !== category && hasExfoliatingActive(selected))))
         .slice(0, 2).map(candidate => ({ productId: candidate.id, ...getRecommendationBreakdown(candidate, level, context) })),

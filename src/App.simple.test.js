@@ -1,3 +1,4 @@
+import { pricePreferenceQuestion } from "./data/pricePreference";
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import App from "./App";
 import { SimpleCareScreen } from "./screens/SimpleCareScreen";
@@ -30,8 +31,8 @@ function baseSurvey(overrides = {}, { use = "skip", setup, serum } = {}) {
   if (serum) fireEvent.change(screen.getByRole("combobox", { name: /지금 쓰는 세럼은 어때요/ }), { target: { value: serum } });
   click("피부 상태 질문으로");
   expect(screen.queryByRole("heading", { name: "지금 피부 상태부터 확인할게요" })).not.toBeInTheDocument();
-  const observed = { skinChange: "steady", observedOil: "tzone", routineOilTiming: overrides.observedOil ?? "tzone", routineDryTiming: "none", drynessArea: "none", moisturizerUse: "comfortable", reactionPattern: "none", washResponse: "comfortable", surfaceObservation: "normal", ...overrides };
-  const answers = Object.fromEntries([...observationQuestions, ...adaptiveSupportQuestions].map(q => [q.id, q.options.find(o => o.value === (observed[q.id] ?? "unknown"))?.label]));
+  const observed = { skinChange: "steady", observedOil: "tzone", routineOilTiming: overrides.observedOil ?? "tzone", routineDryTiming: "none", drynessArea: "none", moisturizerUse: "comfortable", reactionPattern: "none", washResponse: "comfortable", surfaceObservation: "normal", pricePreference: "any", ...overrides };
+  const answers = Object.fromEntries([...observationQuestions, ...adaptiveSupportQuestions, pricePreferenceQuestion].map(q => [q.id, q.options.find(o => o.value === (observed[q.id] ?? "unknown"))?.label]));
   answers.routineIntake = buildRoutineSurveyContext(use, readCurrentRoutine(localStorage, "guest"), serum);
   const questions = getObservationQuestions(answers);
   for (const [index, question] of questions.entries()) {
@@ -53,6 +54,16 @@ function extraCare(input) {
     click(index === questions.length - 1 ? "기본 루틴과 추가 관리 보기" : "다음");
   }
 }
+
+test("the basic survey saves price preference and shows official-price guidance for that result", () => {
+  render(<App />);
+  baseSurvey({ pricePreference: "important" }, { use: "no" });
+  extraCare({ concern: "none" });
+  expect(records()[0].surveyAnswers.pricePreference).toBe("화장품 가격이 중요해요");
+  expect(screen.getByText(/가격을 중요하게 선택했어요/)).toBeInTheDocument();
+  expect(screen.getByRole("region", { name: "피부타입별 기본 화장품" })).toBeInTheDocument();
+});
+
 test("main flow preserves skin-type survey, saves four basic categories, and reopens its simple result", () => {
   render(<App />); baseSurvey(); extraCare({ concern: "none" });
   expect(screen.getByRole("region", { name: "피부타입별 기본 화장품" })).toBeInTheDocument();
