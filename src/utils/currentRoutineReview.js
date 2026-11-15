@@ -127,7 +127,8 @@ export function getComfortableRoutineSlots(entries = []) {
 }
 
 const normalizeName = value => String(value ?? "").normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
-function getExactCatalogProduct(product) {
+export function getExactCatalogProduct(product) {
+  if (!product) return null;
   const direct = getProductById(product.id);
   if (direct) return direct;
   if (!product.manual) return null;
@@ -138,18 +139,33 @@ function getExactCatalogProduct(product) {
   return exact.length === 1 ? getProductById(exact[0].id) : null;
 }
 
+function getRoutineProductBand(catalog, slot) {
+  if (!getProductEvidenceStatus(catalog).eligible) return null;
+  const axes = catalog.careProfile;
+  const band = slot === "cleanser" ? axes.hydrationSupport >= 4 && axes.soothingSupport >= 3 ? "comfort" : "other"
+    : axes.hydrationSupport >= 7 ? "higher_hydration" : axes.lightweightFit >= 7 ? "light" : "balanced";
+  return { band, fullerFinish: slot !== "cleanser" && axes.lightweightFit <= 4 };
+}
+
+export function getReviewedRoutineProduct(product) {
+  const lookup = getCurrentRoutineProduct(product);
+  const catalog = getExactCatalogProduct(lookup);
+  const fit = getRoutineProductBand(catalog, slots[lookup?.category]);
+  if (!fit) return null;
+  const label = { comfort: "세안 후 보습감을 고려한 세안제", other: "씻어내는 세안제 · 씻은 직후의 사용감을 참고해요",
+    higher_hydration: "보습감을 더 고려한 제형", light: "가벼운 사용감을 고려한 제형", balanced: "중간 보습감을 고려한 제형" }[fit.band];
+  const officialUrl = getRoutineLookupProduct(catalog.id)?.officialUrl ?? catalog.evidence.sources?.find(source =>
+    source.sourceType?.startsWith("official_domestic") && source.url?.startsWith("https://"))?.url;
+  return { catalog, label, officialUrl };
+}
+
 export function buildRoutineSurveyContext(use, entries, serumPreference) {
   const input = { version: ROUTINE_INTAKE_VERSION, use, serumPreference };
   if (use === "yes") {
     const { rowsBySlot, slotReactions } = getCurrentRoutineContext(entries);
     for (const [slot, rows] of Object.entries(rowsBySlot)) {
       const catalog = rows.length === 1 ? getProductById(rows[0].productId) : null;
-      const axes = getProductEvidenceStatus(catalog).eligible ? catalog.careProfile : null;
-      const band = !axes ? "unknown" : slot === "cleanser"
-        ? axes.hydrationSupport >= 4 && axes.soothingSupport >= 3 ? "comfort" : "other"
-        : axes.hydrationSupport >= 7 ? "higher_hydration"
-          : axes.lightweightFit >= 7 && axes.hydrationSupport <= 6 ? "light" : "balanced";
-      input[slot] = { band, fullerFinish: slot !== "cleanser" && axes?.lightweightFit <= 4, reaction: slotReactions[slot] };
+      input[slot] = { ...(getRoutineProductBand(catalog, slot) ?? { band: "unknown" }), reaction: slotReactions[slot] };
     }
     if (entries.some(entry => entry.reaction === "heavy" && getCurrentRoutineProduct(entry)?.category === "sunscreen"))
       input.sunscreen = { reaction: "heavy" };

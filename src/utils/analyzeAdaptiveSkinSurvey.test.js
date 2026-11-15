@@ -12,7 +12,8 @@ const base = { skinChange: "steady", observedOil: "tzone", drynessArea: "none", 
 const answers = (override = {}) => encode({ ...base, ...override });
 const analyze = (override = {}) => analyzeAdaptiveSkinSurvey(answers(override));
 test("verified toner and serum can surface tightness masked by the usual routine without assuming dryness from a name", () => {
-  const routineIntake = buildRoutineSurveyContext("yes", [{ id: 44 }, { id: 2 }]);
+  const matchedManualProduct = makeManualRoutineEntry("토리든 다이브인 저분자 히알루론산 토너", "toner");
+  const routineIntake = buildRoutineSurveyContext("yes", [matchedManualProduct, { id: 2 }]);
   expect(routineIntake).toMatchObject({ toner: { band: "higher_hydration" }, serum: { band: "higher_hydration" } });
   const raw = { ...answers({ observedOil: "none", moisturizerUse: "none" }), routineIntake };
   expect(getAdaptiveObservationQuestions(raw).map(q => q.id)).toContain("routineDryTiming");

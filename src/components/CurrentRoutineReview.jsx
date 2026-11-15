@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import {
   CURRENT_ROUTINE_LIMIT, getCurrentRoutineProduct, getRoutineConclusion, getRoutineReactionOptions,
   getRoutineReplacement, getSurveyRoutineReaction, readCurrentRoutine, writeCurrentRoutine,
+  getReviewedRoutineProduct,
 } from "../utils/currentRoutineReview";
 import { routineLookupCategories } from "../utils/routineLookup";
-import { getProductById } from "../utils/productCatalog";
 import { DetailDisclosure } from "./DetailDisclosure";
 
 export function useCurrentRoutine(ownerKey) {
@@ -73,14 +73,15 @@ export function CurrentRoutineReview({ routine, profile, savedAt, safetyBlocked,
           const options = getRoutineReactionOptions(product.category);
           const previous = rows.filter(row => row.product.category === product.category).length === 1
             ? options.find(option => option.value === getSurveyRoutineReaction(product.category, profile)) : null;
-          const description = product.formulaVerified ? getProductById(product.id)?.description : null;
+          const reviewed = getReviewedRoutineProduct(product);
           return <li key={entry.id} className="space-y-2 rounded-xl border border-slate-200 bg-white p-4">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <p className="text-sm font-bold text-slate-950">{product.name}</p>
               <button type="button" aria-label={`${product.name} 내 루틴에서 빼기`} onClick={() => routine.remove(entry.id)} className="text-xs text-slate-600 underline underline-offset-2">빼기</button>
             </div>
-            <p className="text-xs text-slate-600">{routineLookupCategories[product.category]} · {product.manual ? "직접 입력한 제품" : product.formulaVerified ? "국내 전성분 확인됨" : "전성분 검수 전"}</p>
-            {description && <p className="text-xs text-slate-600">{description}</p>}
+            <p className="text-xs text-slate-600">{routineLookupCategories[product.category]} · {reviewed ? "국내 전성분·보습감 검수 완료" : product.manual ? "직접 입력한 제품 · 보습감 미확인" : product.formulaVerified ? "국내 전성분 확인됨" : "전성분 검수 전"}</p>
+            {reviewed && <p className="text-xs text-slate-600">{reviewed.label}{reviewed.officialUrl && <> · <a href={reviewed.officialUrl} className="underline" target="_blank" rel="noreferrer">공식 제품 근거</a></>}</p>}
+            {reviewed?.catalog.description && <p className="text-xs text-slate-600">{reviewed.catalog.description}</p>}
             <label className="block text-sm">
               <span className="font-semibold">이 제품을 쓸 때 느낌</span>
               <select aria-label={`${product.name} 사용 반응`} value={entry.reaction ?? ""} onChange={event => routine.react(entry.id, event.target.value || null)}
