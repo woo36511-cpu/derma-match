@@ -20,6 +20,7 @@ async function main() {
     `);
     await db.exec(fs.readFileSync("supabase/migrations/20261105052119_journey_records.sql", "utf8"));
     await db.exec(fs.readFileSync("supabase/migrations/20261105145141_username_accounts.sql", "utf8"));
+    await db.exec(fs.readFileSync("supabase/migrations/20261115091320_product_review_requests.sql", "utf8"));
     const asUser = async (id) => {
       await db.exec("reset role; set role authenticated;");
       await db.query("select set_config('request.jwt.claim.sub', $1, false)", [id]);
@@ -27,6 +28,30 @@ async function main() {
     const save = async (id, entries) => (await db.query(
       "select public.sync_journey_records($1::uuid, $2::jsonb) as records", [id, JSON.stringify(entries)],
     )).rows[0].records;
+    const requestReview = (name, url = null) => db.query(
+      "insert into public.product_review_requests(product_name,category,source_url) values ($1,'serum',$2)", [name, url],
+    );
+    const readRequests = () => db.query("select product_name,category,status,requested_at from public.product_review_requests");
+    await asUser(alice);
+    await requestReview("예시 수분 세럼", "https://brand.example/ingredients");
+    await assert.rejects(requestReview("예시-수분세럼"), { code: "23505" });
+    await assert.rejects(requestReview("에러 링크 세럼", "http://brand.example/ingredients"), { code: "23514" });
+    await assert.rejects(db.query("update public.product_review_requests set status = 'published'"), { code: "42501" });
+    await assert.rejects(db.query("select user_id, source_url from public.product_review_requests"), { code: "42501" });
+    await assert.rejects(db.query("insert into public.product_review_requests(product_name,category,status) values ('예시','serum','insufficient')"), { code: "42501" });
+    for (const name of ["테스트 세럼1", "테스트 세럼2", "테스트 세럼3", "테스트 세럼4"]) await requestReview(name);
+    await assert.rejects(requestReview("초과 세럼"), { code: "P0001", message: "product_review_request_limit" });
+    assert.equal((await readRequests()).rows.length, 5);
+    await asUser(bob);
+    assert.equal((await readRequests()).rows.length, 0);
+    await requestReview("예시 수분 세럼");
+    await db.exec("reset role; set role anon;");
+    await assert.rejects(requestReview("비회원 요청"), { code: "42501" });
+    await assert.rejects(readRequests(), { code: "42501" });
+    await db.exec("reset role; set role service_role;");
+    await db.query("update public.product_review_requests set status='published', catalog_id=2 where user_id=$1 and product_name=$2", [alice, "예시 수분 세럼"]);
+    await asUser(alice);
+    assert.equal((await readRequests()).rows.find(row => row.product_name === "예시 수분 세럼").status, "published");
     const record = { id: "feedback-main", type: "feedback", savedAt: "2026-10-12T00:00:00Z", outcome: { dryness: 5 } };
     const entry = { record_id: record.id, expected_revision: 0, payload: record };
     await asUser(alice);

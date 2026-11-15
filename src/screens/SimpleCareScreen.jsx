@@ -15,7 +15,7 @@ import { FolliculitisOptions } from "../components/FolliculitisOptions";
 import { ConcernProductOptions } from "../components/ConcernProductOptions";
 import { RoutineProductScroller } from "../components/RoutineProductScroller";
 import { getBasicObservationTracks, getObservationKinds } from "../utils/moisturizerObservation";
-import { getCurrentRoutineContext, getCurrentRoutineProduct, getSerumRoutineSummary } from "../utils/currentRoutineReview";
+import { buildRoutineSurveyContext, getCurrentRoutineContext, getCurrentRoutineProduct, getSerumRoutineSummary } from "../utils/currentRoutineReview";
 import { DetailDisclosure } from "../components/DetailDisclosure";
 import { RoutineProductLookup } from "../components/RoutineProductLookup";
 import { buildRoutineAdvice, getRoutineComparison, getRoutinePreferences, routineSlotNames } from "../utils/routineAdvice";
@@ -166,6 +166,9 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   const cosmeticPlan = cosmeticAnswers ? buildCosmeticAddOnPlan(cosmeticAnswers, cosmeticContext) : null;
   const applyCosmeticRoute = addon => addon?.suppressPharmacy ? { ...plan, pharmacy: null, title: "막힌 피지·거친 결은 선택한 화장품 후보로 살펴봐요.", detail: "아래 추가 화장품 영역에서 선택한 후보를 확인해요. 약품 후보 표시는 보류했어요.", productNote: "각질 관리 화장품과 여드름약을 같은 부위에 함께 새로 시작하지 않아요." } : plan;
   const displayPlan = applyCosmeticRoute(cosmeticPlan);
+  const liveIntake = showResult && intake?.use === "yes" ? buildRoutineSurveyContext("yes", activeRoutineEntries) : null;
+  const newReview = ["cleanser", "toner", "serum", "cream"].some(slot => intake?.[slot]?.band === "unknown" &&
+    liveIntake?.[slot]?.band && liveIntake[slot].band !== "unknown");
   const save = (nextCosmeticAnswers = cosmeticAnswers) => {
     if (!plan.complete) return;
     const nextCosmeticPlan = nextCosmeticAnswers ? buildCosmeticAddOnPlan(nextCosmeticAnswers, cosmeticContext) : null;
@@ -178,6 +181,10 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   };
   if (showResult && plan.complete) return <div className="space-y-6">
     {displayRoutine.isHistorical && <p className="rounded-xl bg-slate-50 p-4 text-sm">저장 당시의 제품 후보를 보여드려요. 새 검수 기준으로 다시 추천받으려면 아래에서 다시 확인해요.</p>}
+    {newReview && onRestart && <div className="space-y-2 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm">
+      <p>전에는 보습 특성을 알 수 없었던 단계에 검수된 제품 정보가 있어요. 지금도 쓰는 제품이라면 새 설문에서 반영할 수 있어요.</p>
+      <button type="button" className="font-semibold text-emerald-900 underline" onClick={onRestart}>검수된 제품 정보로 다시 확인</button>
+    </div>}
     <SimpleCareResult profile={profile} routine={displayRoutine} otherRetained={otherRetained} advice={advice} recommendationContext={recommendationContext} ownedIds={currentRoutine.ownedProductIds} plan={displayPlan} serumStatus={visibleSerumStatus} onReviewRoutine={saveError ? undefined : onReviewRoutine} />
     {(profile.surveyVersion !== ADAPTIVE_SURVEY_VERSION || displayRoutine.isHistorical) && onRestart && <button onClick={onRestart} className="rounded-xl border px-4 py-3">새 기준으로 다시 확인</button>}
     {allowNewBasics && <CosmeticAddOnSection context={cosmeticContext} initialAnswers={cosmeticAnswers} onApply={save} />}
