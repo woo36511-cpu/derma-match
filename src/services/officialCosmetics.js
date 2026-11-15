@@ -10,6 +10,8 @@ export function readOfficialFormula(evidence, product, now = Date.now()) {
       evidence.category !== product.category || !/^\d+(?:\.\d+)?(?:ml|g)$/.test(evidence.volume ?? "") || typeof evidence.hydrationSignal !== "boolean" ||
       !Array.isArray(evidence.ingredients) || evidence.ingredients.length < 5 || evidence.ingredients.length > 135 ||
       !evidence.ingredients.every(i => typeof i === "string" && i.length >= 2 && i.length < 100 && /^[*\p{L}\p{N}/+()\-,. %·]+$/u.test(i))) return null;
+  const knownSize = typeof product.volume === "string" ? product.volume.trim().match(/^(\d+(?:\.\d+)?)\s*(ml|g)$/i) : null;
+  if (knownSize && `${Number(knownSize[1])}${knownSize[2].toLowerCase()}` !== evidence.volume) return null;
   const checked = Date.parse(evidence.checkedAt);
   if (!Number.isFinite(checked) || checked > now + 300_000 || now - checked > 30 * 86400_000) return null;
   const brand = Object.keys(hosts).find(name => product.name.startsWith(name));
@@ -29,7 +31,7 @@ export async function checkOfficialFormula(product, fetcher = typeof fetch === "
   const timer = setTimeout(() => controller.abort(), 7500);
   try {
     const res = await fetcher("/api/official-cosmetic", { method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: product.name, category: product.category, sourceUrl: product.officialUrl }), signal: controller.signal });
+      body: JSON.stringify({ name: product.name, category: product.category, volume: product.volume, sourceUrl: product.officialUrl }), signal: controller.signal });
     if (!res.ok) return null;
     const payload = await res.json();
     return payload.status === "confirmed" ? readOfficialFormula(payload.evidence, product) : null;

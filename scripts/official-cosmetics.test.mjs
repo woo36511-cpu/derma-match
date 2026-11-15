@@ -38,4 +38,7 @@ test("wrong size, bundles, ambiguous variants, incomplete and nonofficial source
   assert.equal(answer, null);
   assert.equal(new URL(requests[0]).hostname, "www.manyo.co.kr");
   assert.equal(parseOfficialLookupInput({ name: "다른브랜드 예시 로션", category: "moisturizer" }), null);
+  assert.equal(parseOfficialLookupInput({ name, category: "moisturizer", volume: "100ml" }), null);
+  const selectedListing = parseOfficialLookupInput({ name: "마녀공장 예시 로션", category: "moisturizer", volume: "100 ml" });
+  assert.equal(extractOfficialFormula(page(), selectedListing, url), null);
 });

@@ -21,7 +21,10 @@ export function parseOfficialLookupInput(input) {
   if (!brand || !Object.hasOwn(categories, category) || !categories[category].test(namePart(name)) || name.length > 100 || nonSingle.test(name) ||
     !/^[\p{L}\p{N}\p{M} %.,()&·\-/]+$/u.test(name)) return null;
   const key = nameKey(name, brand);
-  return key.length >= 4 ? { name, category, brand, key, amount: inputSize(name), sourceUrl: typeof input.sourceUrl === "string" ? input.sourceUrl.slice(0, 512) : "" } : null;
+  const typedSize = inputSize(name), catalogueSize = typeof input.volume === "string" ? amount(input.volume) : null;
+  if (typedSize && catalogueSize && typedSize !== catalogueSize) return null;
+  return key.length >= 4 ? { name, category, brand, key, amount: typedSize ?? catalogueSize,
+    sourceUrl: typeof input.sourceUrl === "string" ? input.sourceUrl.slice(0, 512) : "" } : null;
 }
 
 const children = node => node?.childNodes ?? [];
