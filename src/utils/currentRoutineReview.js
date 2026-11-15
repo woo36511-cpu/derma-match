@@ -4,6 +4,7 @@ import { getRoutineLookupProduct, routineLookupCategories, searchRoutineProducts
 import { getIngredientFamilies, hasIntensiveActives } from "./ingredientCompatibility";
 import { getProductEvidenceStatus } from "./productEvidence";
 import { readRoutineSurveyContext, ROUTINE_INTAKE_VERSION } from "../data/routineSurveyContext";
+import { readOfficialFormula } from "../services/officialCosmetics";
 
 export const CURRENT_ROUTINE_LIMIT = 12;
 const keyPrefix = "dearsince_current_routine_v1:";
@@ -53,7 +54,9 @@ export function readCurrentRoutine(storage, ownerId) {
     if (!product || seen.has(product.id)) return [];
     seen.add(product.id);
     const reaction = getRoutineReactionOptions(product.category).some(option => option.value === entry.reaction) ? entry.reaction : null;
-    return [{ ...(product.manual ? makeManualRoutineEntry(product.name, product.category) : makeCurrentRoutineEntry(product)), reaction }];
+    const official = readOfficialFormula(entry.officialFormula, product);
+    return [{ ...(product.manual ? makeManualRoutineEntry(product.name, product.category) : makeCurrentRoutineEntry(product)), reaction,
+      ...(official && { officialFormula: official }) }];
   }).slice(0, CURRENT_ROUTINE_LIMIT);
 }
 
@@ -165,7 +168,8 @@ export function buildRoutineSurveyContext(use, entries, serumPreference) {
     const { rowsBySlot, slotReactions } = getCurrentRoutineContext(entries);
     for (const [slot, rows] of Object.entries(rowsBySlot)) {
       const catalog = rows.length === 1 ? getProductById(rows[0].productId) : null;
-      input[slot] = { ...(getRoutineProductBand(catalog, slot) ?? { band: "unknown" }), reaction: slotReactions[slot] };
+      input[slot] = { ...(getRoutineProductBand(catalog, slot) ?? { band: "unknown" }), reaction: slotReactions[slot],
+        listedHumectants: rows.some(row => row.officialFormula?.hydrationSignal) };
     }
     if (entries.some(entry => entry.reaction === "heavy" && getCurrentRoutineProduct(entry)?.category === "sunscreen"))
       input.sunscreen = { reaction: "heavy" };
@@ -183,15 +187,19 @@ export function getCurrentRoutineContext(entries = []) {
     if (product.category === "sunscreen") hasSunscreen = true;
     const slot = slots[product?.category];
     const catalog = getExactCatalogProduct(product);
+    const official = readOfficialFormula(entry.officialFormula, product);
     if (catalog) ownedProductIds.add(catalog.id);
     if (entry.reaction === "irritation") irritated.push(product.name);
-    const families = getIngredientFamilies(catalog ?? product);
+    const curatedFormula = catalog?.evidence?.domesticFormulaVerified && catalog.evidence?.fullIngredientsVerified;
+    const families = getIngredientFamilies(curatedFormula ? catalog : official ? { name: product.name, fullIngredients: official.ingredients,
+      evidence: { domesticFormulaVerified: true, fullIngredientsVerified: true } } : catalog ?? product);
     const leaveOn = product.category !== "cleanser";
     for (const family of families) (leaveOn ? currentFamilies : rinseOffFamilies).add(family);
-    if (leaveOn && !(catalog?.evidence?.domesticFormulaVerified && catalog.evidence?.fullIngredientsVerified) &&
+    if (leaveOn && !curatedFormula && !official &&
       (product.category !== "sunscreen" || families.length)) uncertainActives.push(product.name);
     if (!slot || (slot === "cleanser" && isFirstCleanse(product.name))) continue;
-    (rowsBySlot[slot] ??= []).push({ name: product.name, reaction: entry.reaction, productId: catalog?.id ?? null });
+    (rowsBySlot[slot] ??= []).push({ name: product.name, reaction: entry.reaction, productId: catalog?.id ?? null,
+      officialFormula: official });
     if (replacementReactions.includes(entry.reaction) && !slotReactions[slot]) slotReactions[slot] = entry.reaction;
   }
   return { rowsBySlot, slotReactions, ownedProductIds, hasSunscreen, currentFamilies: [...currentFamilies],

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   CURRENT_ROUTINE_LIMIT, getCurrentRoutineProduct, getRoutineConclusion, getRoutineReactionOptions,
   getRoutineReplacement, getSurveyRoutineReaction, readCurrentRoutine, writeCurrentRoutine,
@@ -6,6 +6,8 @@ import {
 } from "../utils/currentRoutineReview";
 import { routineLookupCategories } from "../utils/routineLookup";
 import { DetailDisclosure } from "./DetailDisclosure";
+import { checkOfficialFormula, readOfficialFormula, supportsOfficialFormula } from "../services/officialCosmetics";
+import { getIngredientFamilies } from "../utils/ingredientCompatibility";
 
 export function useCurrentRoutine(ownerKey) {
   const load = key => {
@@ -13,21 +15,58 @@ export function useCurrentRoutine(ownerKey) {
     catch { return { ownerKey: key, entries: [], storageFailed: true }; }
   };
   const [state, setState] = useState(() => load(ownerKey));
-  useEffect(() => { setState(load(ownerKey)); }, [ownerKey]);
+  const ledger = useRef({ ...state, pending: new Map(), checked: new Set() });
+  const [checkingCount, setCheckingCount] = useState(0);
+  useEffect(() => {
+    if (ledger.current.ownerKey !== ownerKey) ledger.current = { ...load(ownerKey), pending: new Map(), checked: new Set() };
+    const scope = ledger.current;
+    setState({ ownerKey, entries: scope.entries, storageFailed: scope.storageFailed });
+    setCheckingCount(scope.pending.size);
+  }, [ownerKey]);
   const { entries, storageFailed } = state.ownerKey === ownerKey ? state : { entries: [], storageFailed: false };
-  function update(next) {
-    try { writeCurrentRoutine(window.localStorage, ownerKey, next); setState({ ownerKey, entries: next, storageFailed: false }); }
-    catch { setState({ ownerKey, entries: next, storageFailed: true }); }
+  function update(scope, next) {
+    if (ledger.current !== scope || scope.ownerKey !== ownerKey) return;
+    scope.entries = next;
+    try { writeCurrentRoutine(window.localStorage, ownerKey, next); scope.storageFailed = false; }
+    catch { scope.storageFailed = true; }
+    setState({ ownerKey, entries: next, storageFailed: scope.storageFailed });
+  }
+  function check(scope, entry) {
+    const product = getCurrentRoutineProduct(entry);
+    if (!supportsOfficialFormula(product) || product.formulaVerified || getReviewedRoutineProduct(product) ||
+        readOfficialFormula(entry.officialFormula, product) || scope.checked.has(entry.id) || scope.pending.size >= 4) return;
+    scope.checked.add(entry.id);
+    const req = checkOfficialFormula(product).then(officialFormula => {
+      if (officialFormula && scope.entries.some(row => row.id === entry.id)) {
+        update(scope, scope.entries.map(row => row.id === entry.id ? { ...row, officialFormula } : row));
+      }
+    }).finally(() => {
+      scope.pending.delete(entry.id);
+      if (ledger.current === scope) setCheckingCount(scope.pending.size);
+    });
+    scope.pending.set(entry.id, req);
+    setCheckingCount(scope.pending.size);
   }
   return {
-    entries, storageFailed,
+    entries, storageFailed, checking: state.ownerKey === ownerKey && checkingCount > 0,
+    checkExisting: () => {
+      const scope = ledger.current;
+      if (scope.ownerKey === ownerKey) scope.entries.forEach(entry => check(scope, entry));
+    },
+    entriesAfterChecks: async () => {
+      const scope = ledger.current;
+      await Promise.allSettled([...scope.pending.values()]);
+      return ledger.current === scope && scope.ownerKey === ownerKey ? scope.entries : [];
+    },
     add: entry => {
-      if (entries.length >= CURRENT_ROUTINE_LIMIT || entries.some(item => item.id === entry.id)) return false;
-      update([...entries, entry]);
+      const scope = ledger.current;
+      if (scope.ownerKey !== ownerKey || scope.entries.length >= CURRENT_ROUTINE_LIMIT || scope.entries.some(item => item.id === entry.id)) return false;
+      update(scope, [...scope.entries, entry]);
+      check(scope, entry);
       return true;
     },
-    react: (id, reaction) => update(entries.map(entry => entry.id === id ? { ...entry, reaction } : entry)),
-    remove: id => update(entries.filter(entry => entry.id !== id)),
+    react: (id, reaction) => update(ledger.current, ledger.current.entries.map(entry => entry.id === id ? { ...entry, reaction } : entry)),
+    remove: id => update(ledger.current, ledger.current.entries.filter(entry => entry.id !== id)),
   };
 }
 
@@ -74,13 +113,23 @@ export function CurrentRoutineReview({ routine, profile, savedAt, safetyBlocked,
           const previous = rows.filter(row => row.product.category === product.category).length === 1
             ? options.find(option => option.value === getSurveyRoutineReaction(product.category, profile)) : null;
           const reviewed = getReviewedRoutineProduct(product);
+          const official = reviewed ? null : readOfficialFormula(entry.officialFormula, product);
+          const families = official ? getIngredientFamilies({ name: product.name, fullIngredients: official.ingredients,
+            evidence: { domesticFormulaVerified: true, fullIngredientsVerified: true } }) : [];
+          const familyLabels = { niacinamide: "나이아신아마이드", vitaminC: "비타민 C 계열", retinoid: "레티노이드", pdrn: "PDRN", peptide: "펩타이드", acid: "각질 관리 성분군", benzoyl: "벤조일퍼옥사이드" };
           return <li key={entry.id} className="space-y-2 rounded-xl border border-slate-200 bg-white p-4">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <p className="text-sm font-bold text-slate-950">{product.name}</p>
               <button type="button" aria-label={`${product.name} 내 루틴에서 빼기`} onClick={() => routine.remove(entry.id)} className="text-xs text-slate-600 underline underline-offset-2">빼기</button>
             </div>
-            <p className="text-xs text-slate-600">{routineLookupCategories[product.category]} · {reviewed ? "국내 전성분·보습감 검수 완료" : product.manual ? "직접 입력한 제품 · 보습감 미확인" : product.formulaVerified ? "국내 전성분 확인됨" : "전성분 검수 전"}</p>
+            <p className="text-xs text-slate-600">{routineLookupCategories[product.category]} · {reviewed ? "국내 전성분·보습감 검수 완료" : official ? "국내 공식 전성분 확인됨" : product.manual ? "직접 입력한 제품 · 보습감 미확인" : product.formulaVerified ? "국내 전성분 확인됨" : "전성분 검수 전"}</p>
             {reviewed && <p className="text-xs text-slate-600">{reviewed.label}{reviewed.officialUrl && <> · <a href={reviewed.officialUrl} className="underline" target="_blank" rel="noreferrer">공식 제품 근거</a></>}</p>}
+            {official && <DetailDisclosure title="공식 전성분과 확인한 성분군">
+              <p>{official.ingredients.join(", ")}</p>
+              {families.length > 0 && <p className="mt-2">루틴에서 함께 확인할 성분군: {families.map(family => familyLabels[family]).filter(Boolean).join(" · ")}</p>}
+              <p className="mt-2">성분의 유무를 확인했어요. 공개 자료만으로 보습 지속 시간이나 자극 여부를 정하지 않아요.</p>
+              <a href={official.sourceUrl} className="mt-2 inline-block underline" target="_blank" rel="noreferrer">브랜드 공식 제품 정보</a>
+            </DetailDisclosure>}
             {reviewed?.catalog.description && <p className="text-xs text-slate-600">{reviewed.catalog.description}</p>}
             <label className="block text-sm">
               <span className="font-semibold">이 제품을 쓸 때 느낌</span>

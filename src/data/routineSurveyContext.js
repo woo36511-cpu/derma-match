@@ -14,11 +14,12 @@ export function readRoutineSurveyContext(value) {
     const bands = slot === "cleanser" ? ["comfort", "other", "unknown"] : ["light", "balanced", "higher_hydration", "unknown"];
     context[slot] = { band: isOneOf(row.band, bands) ? row.band : "unknown",
       ...(row.fullerFinish === true && { fullerFinish: true }),
+      ...(slot !== "cleanser" && row.listedHumectants === true && { listedHumectants: true }),
       reaction: isOneOf(row.reaction, ["heavy", "wash_tight", "moisture_tight"]) ? row.reaction : null };
   }
   if (isOneOf(value.serumPreference, ["keep", "compare"])) context.serumPreference = value.serumPreference;
   return context;
 }
 
-export const hasMoistureSupport = context => [context?.toner, context?.serum, context?.cream].some(row => row?.band === "higher_hydration");
+export const hasMoistureSupport = context => [context?.toner, context?.serum, context?.cream].some(row => row?.band === "higher_hydration" || row?.listedHumectants);
 export const hasPossibleCoating = context => [context?.toner, context?.serum, context?.cream, context?.sunscreen].some(row => row?.fullerFinish || row?.reaction === "heavy");

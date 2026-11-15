@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^13.5.0",
+    "parse5": "6.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -21,6 +22,7 @@
     "prebuild": "node scripts/check-cloud-config.cjs",
     "prestart": "node scripts/check-cloud-config.cjs development",
     "test:db": "node scripts/test-journey-database.cjs",
+    "test:official": "node --test scripts/official-cosmetics.test.mjs",
     "test:auth": "node --test scripts/username-auth.test.mjs"
   },
   "eslintConfig": {
