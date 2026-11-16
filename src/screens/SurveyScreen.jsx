@@ -1,8 +1,9 @@
 import { SkinObservationReference } from "../components/SkinObservationReference";
 import { DetailDisclosure } from "../components/DetailDisclosure";
-import { SectionTitle } from "../components/SectionTitle";
 import { skinSurveyQuestions } from "../data/skinSurvey";
 import { PrimaryButton } from "../components/PrimaryButton";
+import { SurveyChoice } from "../components/SurveyChoice";
+import { useScreenHeading } from "../hooks/useScreenHeading";
 import React from "react";
 
 export function SurveyScreen({
@@ -19,81 +20,62 @@ export function SurveyScreen({
   afterRoutineIntake = false,
   questionsCount = skinSurveyQuestions.length,
 }) {
+  const heading = useScreenHeading(currentSurveyQuestion.id);
+  const multiple = currentSurveyQuestion.type === "multi";
   return (
-    <section>
-      <SectionTitle
-        title="피부 설문 시작"
-        desc="평소 관리하면서 관찰한 상태로 답해요. 모르면 그대로 골라도 돼요. 추천에 필요한 정보가 모일 때까지, 답변에 맞는 질문이 이어져요."
-      />
-
-      <div className="max-w-3xl mx-auto">
-        <div className="mb-5">
-          <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-semibold text-gray-500">
-              {surveyIndex + 1} / {questionsCount}
-            </p>
-
-            <p className="text-sm text-gray-400">
-              {Math.round(surveyProgress)}%
-            </p>
+    <section className="mx-auto max-w-2xl" aria-labelledby="survey-question">
+        <div className="mb-4">
+          <div className="mb-2 flex items-center justify-between gap-2">
+            <p className="care-kicker">피부 설문 · 피부 상태</p>
+            <p className="text-xs font-semibold tabular-nums text-slate-600">{surveyIndex + 1} / {questionsCount}</p>
           </div>
-
-          <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+          <div role="progressbar" aria-label="피부 설문 진행률" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(surveyProgress)} className="h-1.5 overflow-hidden rounded-full bg-forest-100">
             <div
-              className="h-full bg-black rounded-full transition-all duration-300"
+              className="h-full rounded-full bg-forest-700 motion-safe:transition-[width] motion-safe:duration-300"
               style={{ width: `${surveyProgress}%` }}
             />
           </div>
         </div>
 
-        <div className="bg-white border border-gray-100 rounded-[2rem] shadow-sm p-6 sm:p-8">
-          <p className="text-sm text-gray-400 mb-3">{currentSurveyQuestion.supplemental ? "답변을 돕는 추가 질문" : `질문 ${surveyIndex + 1}`}</p>
+        <div className="care-panel">
+          <p className="care-kicker mb-2">{currentSurveyQuestion.supplemental ? "답변을 돕는 추가 질문" : `질문 ${surveyIndex + 1}`}</p>
 
-          <h2 className="text-2xl sm:text-3xl font-black leading-relaxed break-keep mb-6">
+          <h1 id="survey-question" ref={heading} tabIndex={-1} className="mb-4 scroll-mt-28 text-2xl font-bold leading-snug tracking-tight focus:outline-none sm:text-3xl">
             {currentSurveyQuestion.question}
-          </h2>
+          </h1>
 
           {currentSurveyQuestion.hint && <p className="mb-4 text-sm text-slate-600">{currentSurveyQuestion.hint}</p>}
           {currentSurveyQuestion.helper && <DetailDisclosure title="답변 기준 자세히 보기" className="mb-5"><p>{currentSurveyQuestion.helper}</p></DetailDisclosure>}
           <SkinObservationReference kind={currentSurveyQuestion.visual} />
-          <div className="space-y-3">
+          {multiple && <p className="mb-3 text-sm font-medium text-forest-700">해당하는 항목을 모두 골라주세요.</p>}
+          <div className="grid gap-2.5" role="group" aria-labelledby="survey-question">
             {currentSurveyQuestion.options.map((option) => {
               const active =
-                currentSurveyQuestion.type === "multi"
+                multiple
                   ? Array.isArray(currentSurveyAnswer) &&
                     currentSurveyAnswer.includes(option.label)
                   : currentSurveyAnswer === option.label;
 
               return (
-                <button
+                <SurveyChoice
                   key={option.label}
-                  aria-pressed={active}
-                  onClick={() =>
-                    handleSurveyAnswer(currentSurveyQuestion, option)
-                  }
-                  className={`w-full text-left px-5 py-4 rounded-2xl text-sm sm:text-base border transition active:scale-[0.98] break-keep ${
-                    active
-                      ? "bg-black text-white border-black shadow-sm"
-                      : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"
-                  }`}
+                  selected={active}
+                  multiple={multiple}
+                  onClick={() => handleSurveyAnswer(currentSurveyQuestion, option)}
                 >
                   {option.label}
-                </button>
+                </SurveyChoice>
               );
             })}
           </div>
 
-          {currentSurveyQuestion.type === "multi" && (
-            <p className="mt-4 text-xs sm:text-sm text-gray-400 leading-relaxed break-keep">
-              여러 개 선택할 수 있어요. 다 골랐으면 다음을 눌러주세요.
-            </p>
-          )}
         </div>
 
-        <div className="mt-8 flex gap-3 justify-between">
+        <div className="mt-4 flex justify-between gap-3 sm:mt-6">
           <button
+            type="button"
             onClick={handlePrevSurvey}
-            className="px-6 py-3 rounded-2xl text-sm sm:text-base font-medium border border-gray-300 bg-white hover:bg-gray-100 transition"
+            className="care-secondary"
           >
             {surveyIndex === 0 ? afterRoutineIntake ? "화장품 답변으로" : "시작 화면으로" : "이전"}
           </button>
@@ -105,7 +87,6 @@ export function SurveyScreen({
             {isLastSurveyQuestion ? simpleMode ? "추가 고민 선택" : "피부 고민 선택" : "다음"}
           </PrimaryButton>
         </div>
-      </div>
     </section>
   );
 }

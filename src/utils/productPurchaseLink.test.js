@@ -16,6 +16,8 @@ test("official and other retailer destinations are labelled accurately and never
   expect(getProductPurchaseLink({...base,link:"https://coupa.ng/test"}).affiliate).toBe(true);
 });
 test("unsafe schemes, fake affiliate hosts and credentials cannot create purchase destinations",()=>{
+  // This literal is an input fixture; the purchase link helper must reject it.
+  // eslint-disable-next-line no-script-url
   for(const link of ["javascript:alert(1)","data:text/html,test","http://www.coupang.com/test","https://user:password@www.coupang.com/test","#",""]) expect(getProductPurchaseLink({...base,link}).url).toBe("");
   for(const link of ["https://link.coupang.com.evil.test/a/1","https://evil.test/?next=link.coupang.com","https://coupa.ng:444/test"]) expect(isCoupangAffiliateUrl(link)).toBe(false);
 });

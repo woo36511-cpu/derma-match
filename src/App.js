@@ -132,7 +132,7 @@ export default function App() {
       Boolean(lastSymptom?.savedAt >= (savedSurvey?.savedAt ?? "") && lastSymptom?.symptomAssessment?.blockRoutine),
   };
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
+    <div className="min-h-screen bg-paper text-ink">
       <Header resetFlow={resetFlow} isStart={step === "start"} />
       <AccountPanel account={account} />
 

@@ -6,6 +6,12 @@ import { RoutineProductScroller } from "./RoutineProductScroller";
 import { RoutineProductLookup } from "./RoutineProductLookup";
 import { DetailDisclosure } from "./DetailDisclosure";
 
+const quickBrowseItems = [
+  { id: "products", title: "피부타입별 화장품", detail: "피부타입에 맞는 기초 제품 4종을 봐요.", icon: "M12 3c-2.4 4-6 7.4-6 11a6 6 0 0 0 12 0c0-3.6-3.6-7-6-11Z" },
+  { id: "medicines", title: "피부 고민별 약품 안내", detail: "여드름·모낭염 등에 쓰이는 약을 봐요.", icon: "M9 3h6v6h6v6h-6v6H9v-6H3V9h6V3Z" },
+  { id: "lookup", title: "지금 쓰는 화장품 찾기", detail: "쓰는 제품을 담아 그대로 쓸지 점검해요.", icon: "M16 16l4 4m-2-8a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z" },
+];
+
 export function MedicineReferenceCard({ medicine }) {
   return <article className="space-y-3 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5" aria-label={medicine.name}>
     <div className="flex items-center gap-4">
@@ -37,14 +43,24 @@ export function HomeQuickBrowse({ onStartSurvey, onStartRoutine, routineReview }
     ...current, basicOnly: true, personalProductFeedback: feedback,
     suppressedSlots: current ? getRoutinePreferences(current).suppressedSlots : undefined,
   }) : null, [skin, current, feedback]);
-  return <section aria-labelledby="home-quick-title" className="space-y-5">
-    <div><p className="text-xs font-semibold text-emerald-700">설문 없이 빠르게 보기</p><h2 id="home-quick-title" className="mt-1 text-xl font-bold text-slate-950 sm:text-2xl">필요한 정보만 바로 찾아봐요</h2></div>
-    <div className="grid gap-3 sm:grid-cols-3">
-      {[{id:"products",title:"피부타입별 화장품",detail:"타입을 고르면 기본 제품 4종을 바로 보여줘요.",number:"01"},{id:"medicines",title:"피부 고민별 약품 안내",detail:"어떤 고민에 어떤 약을 쓰는지 용도별로 살펴봐요.",number:"02"},{id:"lookup",title:"지금 쓰는 화장품 찾기",detail:"지금 쓰는 제품을 담고 유지할지 점검해요.",number:"03"}].map(item => <button key={item.id} type="button" aria-expanded={view === item.id} aria-controls="home-quick-content" onClick={() => setView(previous => previous === item.id ? null : item.id)} className={`rounded-2xl border p-5 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-700 ${view === item.id ? "border-emerald-600 bg-emerald-50" : "border-slate-200 bg-white hover:border-emerald-300"}`}>
-      <span className="text-xs font-bold text-emerald-700">{item.number}</span><span className="mt-2 block text-lg font-bold">{item.title}</span><span className="mt-1 block text-sm text-slate-600">{item.detail}</span><span className="mt-3 block text-sm font-semibold text-emerald-800">{view === item.id ? "접기 −" : "바로 보기 →"}</span>
-    </button>)}
+  return <section aria-labelledby="home-quick-title">
+    <h2 id="home-quick-title" className="mb-3 text-lg font-bold text-forest-900 sm:text-xl">설문 없이 빠르게 보기</h2>
+    <div className="grid gap-2.5 sm:grid-cols-3 sm:gap-3">
+      {quickBrowseItems.map(item => {
+        const active = view === item.id;
+        return <button key={item.id} type="button" aria-expanded={active} aria-controls="home-quick-content" onClick={() => setView(previous => previous === item.id ? null : item.id)} className={`flex items-center gap-3 rounded-2xl border p-3.5 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest-700 sm:flex-wrap sm:p-5 ${active ? "border-forest-700 bg-forest-50" : "border-line bg-white hover:border-forest-700"}`}>
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-forest-50 text-forest-700">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d={item.icon} /></svg>
+          </span>
+          <span className="min-w-0 flex-1 sm:basis-full">
+            <span className="block font-bold">{item.title}</span>
+            <span className="mt-0.5 block text-xs leading-relaxed text-slate-600 sm:text-sm">{item.detail}</span>
+          </span>
+          <span aria-hidden="true" className="ml-auto font-semibold text-forest-700">{active ? "−" : "→"}</span>
+        </button>;
+      })}
     </div>
-    <div id="home-quick-content">
+    <div id="home-quick-content" className={view ? "mt-4" : undefined}>
       {view === "lookup" && <RoutineProductLookup {...routineReview} onStartSurvey={onStartSurvey} />}
       {view === "products" && <section aria-label="피부타입별 화장품 빠른 보기" className="space-y-5 rounded-3xl border border-slate-200 bg-white p-4 sm:p-6">
         <div><h3 className="text-lg font-bold">내 피부타입을 골라주세요</h3><p className="mt-1 text-sm text-slate-600">선택한 타입에 맞는 기본 예시예요. 지금 피부 상태를 더 반영하려면 설문을 이용해요.</p></div>

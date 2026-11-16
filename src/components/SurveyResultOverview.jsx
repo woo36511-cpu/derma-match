@@ -20,30 +20,35 @@ export function SurveyResultOverview({ result }) {
 
   return (
     <section className="space-y-5">
-      <div className="rounded-[2rem] bg-slate-950 text-white p-6 sm:p-7 shadow-lg">
-        <p className="text-sm text-slate-300 mb-2">설문 분석 결과</p>
+      <div className="rounded-[1.75rem] bg-forest-900 p-5 text-white sm:p-8">
+        <p className="mb-2 text-xs font-semibold tracking-wide text-forest-100">내 피부 관리 결과</p>
         <h2 className="text-2xl sm:text-3xl font-black leading-tight">
           지금 피부는{" "}
-          <span className="text-emerald-300">{result.skinType}</span> 쪽에
+          <span className="text-forest-100">{result.skinType}</span> 쪽에
           가까워요
         </h2>
-        <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
+        <p className="mt-3 text-sm leading-relaxed text-forest-100 sm:text-base">
           답변을 기준으로 피부타입, 수분감 단계, 주요 고민을 함께 봤어요. 아래
           루틴은 처음 시작해도 부담이 적은 방향으로 구성했어요.
         </p>
 
-        <div className="grid grid-cols-3 gap-3 mt-6">
-          <div className="rounded-2xl bg-white/10 p-4">
+        {!!directions.length && <section className="mt-5 rounded-xl bg-paper p-4 text-ink sm:p-5" aria-label="지금 먼저 할 한 가지">
+          <p className="care-kicker">오늘 할 한 가지</p>
+          <p className="mt-1 font-semibold text-forest-900">{directions[0]}</p>
+        </section>}
+
+        <div className="mt-5 grid grid-cols-3 gap-2 sm:gap-3">
+          <div className="rounded-xl bg-white/10 p-2.5 sm:p-4">
             <p className="text-xs text-slate-300">피부 상태</p>
             <p className="mt-1 font-bold">{result.skinType}</p>
           </div>
 
-          <div className="rounded-2xl bg-white/10 p-4">
+          <div className="rounded-xl bg-white/10 p-2.5 sm:p-4">
             <p className="text-xs text-slate-300">수분감 단계</p>
             <p className="mt-1 font-bold">{result.hydrationLevel}단계</p>
           </div>
 
-          <div className="rounded-2xl bg-white/10 p-4">
+          <div className="rounded-xl bg-white/10 p-2.5 sm:p-4">
             <p className="text-xs text-slate-300">주요 고민</p>
             <p className="mt-1 font-bold">{result.issueLabel}</p>
           </div>
@@ -105,24 +110,6 @@ export function SurveyResultOverview({ result }) {
         </div>
 
       </DetailDisclosure>
-
-      <div className="rounded-[1.7rem] bg-emerald-50 p-5 sm:p-6 border border-emerald-100">
-        <p className="text-xs font-bold text-emerald-700 mb-2">관리 방향</p>
-        <h3 className="text-xl font-black text-slate-900 mb-4">
-          앞으로는 이렇게 관리해보세요
-        </h3>
-
-        <div className="space-y-3">
-          {directions.slice(0, 1).map((item) => (
-            <div key={item} className="flex gap-3">
-              <span className="mt-1 h-2 w-2 rounded-full bg-emerald-500 flex-shrink-0" />
-              <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-                {item}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {directions.length > 1 && <DetailDisclosure title="추가 관리 방법">
         <ul className="list-disc pl-5 space-y-2">

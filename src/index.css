@@ -17,4 +17,19 @@ body {
   overflow-wrap: break-word;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
+  background-color: #faf8f3;
+}
+
+@layer components {
+  .care-kicker {
+    @apply text-xs font-bold tracking-wide text-forest-700;
+  }
+
+  .care-panel {
+    @apply min-w-0 rounded-2xl border border-line bg-white p-5 sm:p-7;
+  }
+
+  .care-secondary {
+    @apply inline-flex min-h-11 items-center justify-center rounded-xl border border-line bg-white px-4 py-2 text-center text-sm font-semibold text-ink transition-colors hover:bg-forest-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest-700;
+  }
 }

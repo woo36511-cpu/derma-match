@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { RoutineProductLookup } from "../components/RoutineProductLookup";
 import { PrimaryButton } from "../components/PrimaryButton";
+import { SurveyChoice } from "../components/SurveyChoice";
+import { useScreenHeading } from "../hooks/useScreenHeading";
 
 const options = [["yes", "네, 지금 쓰는 제품이 있어요"], ["no", "아니요, 지금은 아무것도 안 써요"], ["skip", "제품 입력 없이 진행할래요"]];
 
 export function RoutineIntakeScreen({ previous, routineReview, onNext, onBack }) {
+  const heading = useScreenHeading("routine-intake");
   const [use, setUse] = useState(previous?.use ?? "");
   const [serum, setSerum] = useState(previous?.serumPreference ?? "");
   const [continuing, setContinuing] = useState(false);
@@ -16,14 +19,13 @@ export function RoutineIntakeScreen({ previous, routineReview, onNext, onBack })
     const entries = await routine.entriesAfterChecks();
     onNext(use, serum, entries);
   };
-  return <section className="mx-auto max-w-3xl space-y-5" aria-labelledby="routine-intake-title">
-    <div className="space-y-3 rounded-[2rem] border border-slate-200 bg-white p-5 sm:p-8">
-      <p className="text-sm font-semibold text-emerald-700">피부 설문 · 첫 질문</p>
-      <h1 id="routine-intake-title" className="text-2xl font-bold">지금 쓰는 화장품이 있나요?</h1>
-      <p className="text-sm text-slate-700">세안제·토너·세럼·로션·크림·선크림처럼 평소에 쓰는 제품을 떠올려요. 제품명과 사용감을 알면 세안 뒤 당김이나 화장품을 바른 뒤 광택을 구분하는 데 참고해요.</p>
-      <div className="grid gap-2" role="group" aria-label="현재 화장품 사용">
-        {options.map(([value, label]) => <button key={value} type="button" disabled={continuing} aria-pressed={use === value} onClick={() => { setUse(value); if (value === "yes") routine?.checkExisting?.(); }}
-          className={`min-h-12 rounded-xl border px-4 py-3 text-left text-sm font-semibold ${use === value ? "border-emerald-800 bg-emerald-50" : "border-slate-200 bg-white"}`}>{label}</button>)}
+  return <section className="mx-auto max-w-2xl space-y-5" aria-labelledby="routine-intake-title">
+    <div className="care-panel space-y-3">
+      <p className="care-kicker">피부 설문 · 첫 질문</p>
+      <h1 id="routine-intake-title" ref={heading} tabIndex={-1} className="scroll-mt-28 text-2xl font-bold leading-snug tracking-tight focus:outline-none sm:text-3xl">지금 쓰는 화장품이 있나요?</h1>
+      <p className="text-sm text-slate-700">세안제부터 토너·세럼·크림·선크림까지 평소에 쓰는 제품을 떠올려요. 이름과 사용감을 알려주면 유지할 제품을 찾는 데 참고해요.</p>
+      <div className="grid gap-2 pt-2" role="group" aria-label="현재 화장품 사용">
+        {options.map(([value, label]) => <SurveyChoice key={value} disabled={continuing} selected={use === value} onClick={() => { setUse(value); if (value === "yes") routine?.checkExisting?.(); }}>{label}</SurveyChoice>)}
       </div>
     </div>
     {use === "yes" && <div className="space-y-4">
@@ -40,7 +42,7 @@ export function RoutineIntakeScreen({ previous, routineReview, onNext, onBack })
       </label>}
     </div>}
     <div className="flex justify-between gap-3">
-      <button type="button" disabled={continuing} className="rounded-xl border px-4 py-3 text-sm" onClick={onBack}>시작 화면으로</button>
+      <button type="button" disabled={continuing} className="care-secondary" onClick={onBack}>시작 화면으로</button>
       <PrimaryButton disabled={!use || continuing} onClick={next}>{continuing ? "공식 자료 확인 중…" : "피부 상태 질문으로"}</PrimaryButton>
     </div>
   </section>;

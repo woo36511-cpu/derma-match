@@ -4,11 +4,37 @@ import { HomeQuickBrowse } from "../components/HomeQuickBrowse";
 import { SeoContentSection } from "../components/SeoContentSection";
 import React from "react";
 
-const examplePlan = [
-  { number: "01", title: "피부타입 확인", detail: "유분·당김·자극 경험으로 현재 피부 성향과 필요한 보습감을 살펴봐요." },
-  { number: "02", title: "세안제·기초 화장품", detail: "피부타입에 맞는 세안제·토너·세럼·크림을 추천해요." },
-  { number: "03", title: "고민별 제품 추가", detail: "여드름 같은 추가 고민이 있을 때만 모양과 쓰는 약을 확인해요." },
-];
+function CareIllustration() {
+  return (
+    <div aria-hidden="true" className="relative hidden min-h-80 overflow-hidden rounded-2xl bg-forest-100 md:block">
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 400 368" fill="none" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="care-art-ground" x1="350" x2="46" y1="20" y2="305" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#EEF0E5" /><stop offset="1" stopColor="#B4C8B4" />
+          </linearGradient>
+          <linearGradient id="care-art-drop" x1="136" x2="245" y1="64" y2="233" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#FAF8F3" stopOpacity=".97" /><stop offset=".51" stopColor="#DEEADB" stopOpacity=".5" />
+            <stop offset="1" stopColor="#6F997E" stopOpacity=".9" />
+          </linearGradient>
+        </defs>
+        <path fill="url(#care-art-ground)" d="M0 0h400v368H0z" />
+        <ellipse cx="200" cy="242" rx="155" ry="43" stroke="#285A46" strokeOpacity=".25" />
+        <ellipse cx="200" cy="242" rx="125" ry="33" stroke="#285A46" strokeOpacity=".35" />
+        <ellipse cx="200" cy="242" rx="93" ry="23" stroke="#285A46" strokeOpacity=".48" />
+        <ellipse cx="200" cy="242" rx="57" ry="13" stroke="#285A46" strokeOpacity=".6" />
+        <circle cx="200" cy="146" r="112" stroke="#FAF8F3" strokeOpacity=".75" />
+        <circle cx="200" cy="146" r="132" stroke="#FAF8F3" strokeOpacity=".55" strokeDasharray="1 5" />
+        <path d="M200 57c-20 35-66 88-66 122a66 66 0 1 0 132 0c0-34-46-87-66-122Z" fill="url(#care-art-drop)" stroke="#FAF8F3" strokeWidth="1.5" />
+        <path d="M198 79c-20 34-51 74-51 99 0 19 8 30 14 35" stroke="#FAF8F3" strokeOpacity=".9" strokeWidth="2" strokeLinecap="round" />
+        <path d="M296 67v18m-9-9h18M105 224v12m-6-6h12" stroke="#285A46" strokeOpacity=".7" strokeLinecap="round" />
+      </svg>
+      <div className="absolute inset-x-5 bottom-4 flex items-end justify-between border-t border-forest-700/25 pt-2 text-forest-900">
+        <span className="font-serif text-lg tracking-tight">The Daily Ritual</span>
+        <span className="text-[10px] font-bold tracking-[0.18em]">DEARSINCE · 01</span>
+      </div>
+    </div>
+  );
+}
 
 export function StartScreen({
   startSimpleSkinCare, startCheckedFlow, startSymptomRecheck, symptomCheck,
@@ -33,10 +59,10 @@ export function StartScreen({
   return (
     <div className="space-y-7">
       {hasSavedSurvey && !isQuickJourney && (
-        <section aria-label="최근 저장된 설문 결과" className="w-full rounded-3xl border border-gray-100 bg-white p-5 text-left shadow-sm sm:p-6">
+        <section aria-label="최근 저장된 설문 결과" className="care-panel">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <p className="text-sm text-gray-400 mb-2">
+              <p className="care-kicker mb-2">
                 최근 저장된 설문 결과 · {formatSavedAt(savedSurvey?.savedAt)}
               </p>
 
@@ -54,7 +80,7 @@ export function StartScreen({
             <div className="grid grid-cols-2 gap-2 lg:shrink-0">
               <button
                 onClick={openSavedSurveyResult}
-                className="break-keep rounded-2xl border border-gray-300 bg-white px-2 py-3 text-sm font-medium transition hover:bg-gray-100 sm:px-5"
+                className="care-secondary px-2 sm:px-5"
               >
                 최근 결과 다시 보기
               </button>
@@ -63,12 +89,12 @@ export function StartScreen({
                 2주 후 체크하기
               </PrimaryButton>
               {onQuickConcernCheck && <button type="button" onClick={startSavedFeedback}
-                className="break-keep rounded-2xl border border-gray-300 bg-white px-2 py-3 text-sm font-medium hover:bg-gray-100 sm:px-5">
+                className="care-secondary px-2 sm:px-5">
                 루틴·제품 자세히 체크하기
               </button>}
               <button
                 onClick={() => setStep("journey")}
-                className="break-keep rounded-2xl border border-emerald-100 bg-emerald-50 px-2 py-3 text-sm font-medium text-emerald-700 transition hover:bg-emerald-100 sm:px-5"
+                className="care-secondary px-2 sm:px-5"
               >
                 내 피부 변화 보기
               </button>
@@ -77,44 +103,29 @@ export function StartScreen({
         </section>
       )}
 
-      <section aria-labelledby="start-title" className="overflow-hidden rounded-[2rem] border border-emerald-100 bg-gradient-to-br from-emerald-50 via-white to-amber-50/60 px-5 py-8 sm:p-10 lg:p-12">
-        <div className="grid items-center gap-8 md:grid-cols-[1.15fr_1fr] lg:gap-10">
+      <section aria-labelledby="start-title" className="rounded-[1.75rem] border border-line bg-[#F4F0E6] p-6 sm:p-8 lg:p-10">
+        <div className="grid items-center gap-6 md:grid-cols-[1.12fr_1fr] lg:gap-10">
           <div>
-            <p className="mb-4 text-xs font-bold tracking-wide text-emerald-800 sm:text-sm">얼굴 피부 고민별 관리 가이드</p>
-            <h1 id="start-title" className="break-keep text-3xl font-extrabold leading-tight tracking-tight text-slate-950 sm:text-5xl md:text-4xl lg:text-5xl">
-              내 피부타입에 맞는 기초,<br />피부 고민에 맞는 관리.
+            <p className="care-kicker mb-4 flex items-center gap-2"><span aria-hidden="true" className="h-px w-5 bg-forest-700" /> 내 피부에 맞는 관리</p>
+            <h1 id="start-title" className="text-[clamp(1.85rem,6vw,3rem)] font-bold leading-[1.22] tracking-[-0.045em] text-forest-900 md:text-[clamp(2rem,4.4vw,3.25rem)]">
+              <span className="block">지금 피부에서</span>
+              <span className="block">뭐가 가장</span>
+              <span className="block">신경 쓰여요?</span>
             </h1>
-            <p className="mt-4 max-w-lg break-keep text-sm leading-relaxed text-slate-700 sm:text-base">
-              먼저 피부타입에 맞는 세안제와 기초 화장품을 찾아요.
-              여드름이나 모낭염 같은 고민이 있다면 모양과 쓰는 약을 확인해 추가 관리 정보를 붙여드려요.
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-700 sm:text-base">
+              지금 쓰는 화장품과 피부 상태를 보고, 그대로 쓸 제품과 오늘 먼저 할 관리를 알려드려요.
             </p>
             <div className="mt-6">
               <button type="button" onClick={() => {
                 setActiveJourneyId(null);
                 startSimpleSkinCare();
-              }} className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-2xl bg-emerald-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-emerald-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-800 sm:w-auto sm:text-base">
-                피부타입 확인하고 추천받기 <span aria-hidden="true">→</span>
+              }} className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl bg-forest-700 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-forest-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest-700 sm:w-auto sm:text-base">
+                내 피부에 맞는 관리 찾기 <span aria-hidden="true">→</span>
               </button>
-              <p className="mt-3 text-xs text-slate-600 sm:text-sm">피부타입을 몰라도 괜찮아요. 답변에 맞춰 기본 루틴부터 찾아요.</p>
-              {onQuickConcernCheck && !isQuickJourney && <button type="button" onClick={onQuickConcernCheck}
-                className="mt-4 text-sm font-semibold text-emerald-900 underline underline-offset-4">고민 변화 바로 기록</button>}
+              <p className="mt-3 text-xs text-slate-600 sm:text-sm">피부타입을 몰라도 시작할 수 있어요.</p>
             </div>
           </div>
-          <aside aria-labelledby="example-plan" className="rounded-3xl border border-emerald-100 bg-white p-5 shadow-sm sm:p-6">
-            <p className="text-xs font-bold text-emerald-800">간단한 이용 순서</p>
-            <h2 id="example-plan" className="mt-1 break-keep text-lg font-bold text-slate-950 sm:text-xl">기본 루틴에 필요한 관리만 더해요</h2>
-            <ol className="mt-4 divide-y divide-slate-100">
-              {examplePlan.map(({ number, title, detail }) => (
-                <li key={title} className="flex gap-3 py-3 last:pb-0">
-                  <span aria-hidden="true" className="h-fit rounded-lg bg-emerald-50 px-2 py-1 text-xs font-bold text-emerald-900">{number}</span>
-                  <div>
-                    <h3 className="text-sm font-bold text-slate-950">{title}</h3>
-                    <p className="mt-1 break-keep text-sm leading-relaxed text-slate-600">{detail}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </aside>
+          <CareIllustration />
         </div>
       </section>
 
@@ -126,9 +137,8 @@ export function StartScreen({
         <button type="button" onClick={() => { setActiveJourneyId(null); startCheckedFlow("guidedCare"); }} className="min-h-10 font-medium underline underline-offset-4">증상부터 자세히 확인하기</button>
         <button type="button" onClick={startSymptomRecheck} className="min-h-10 font-medium underline underline-offset-4">증상 변화·악화 재설문</button>
         {symptomCheck.latestRecord && <button type="button" onClick={symptomCheck.openLatest} className="min-h-10 font-medium underline underline-offset-4">지난 증상 확인 기록</button>}
+        {onQuickConcernCheck && !isQuickJourney && <button type="button" onClick={onQuickConcernCheck} className="min-h-10 font-medium underline underline-offset-4">고민 변화 바로 기록</button>}
       </div>
-
-
 
       {isQuickJourney && (
         <div className="mt-6 max-w-4xl w-full bg-white border border-emerald-100 rounded-3xl shadow-sm p-5 sm:p-6 text-left">
