@@ -513,7 +513,7 @@ test("facial flushing and acne-like bumps get a gentle facial action with prescr
   expect(screen.getByRole("heading", { name: "붉은 볼·코에는 스크럽을 쉬고 손끝으로 가볍게 씻어요" })).toBeVisible();
   expect(screen.queryByText("약국 일반의약품 후보")).not.toBeInTheDocument();
   fireEvent.click(screen.getByText("원인이 확인되면 쓰는 치료", { selector: "summary" }));
-  expect(screen.getAllByText(/성인 주사의 염증성 돌기에 허가된 처방약/).some(node => node.closest("details").open)).toBe(true);
+  expect(screen.getAllByText(/성인 주사의 염증성 돌기에 허가된 처방약/).some(node => node.matches("details[open] *"))).toBe(true);
 });
 
 test("an uncertain topical product answer can be corrected without repeating the survey", () => {

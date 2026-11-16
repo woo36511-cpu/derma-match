@@ -20,11 +20,12 @@ import { JOURNEY_HISTORY_KEY } from "./data/storageKeys";
 import { buildRoutineSurveyContext, readCurrentRoutine } from "./utils/currentRoutineReview";
 
 const click = name => fireEvent.click(screen.getByRole("button", { name }));
+const expectCollapsed = name => expect(screen.getByText(name, { selector: "summary" }).matches("details:not([open]) > summary")).toBe(true);
 const records = () => JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY) || "[]");
 const values = Object.fromEntries(skinSurveyQuestions.map(q => [q.id, q.type === "multi" ? [q.options[0].label] : q.options[0].label]));
 beforeEach(() => { localStorage.clear(); window.history.replaceState({}, "", "/"); });
 function baseSurvey(overrides = {}, { use = "skip", setup, serum } = {}) {
-  click("피부타입 확인하고 추천받기");
+  click("내 피부에 맞는 관리 찾기");
   expect(screen.getByRole("heading", { name: "지금 쓰는 화장품이 있나요?" })).toBeVisible();
   click({ skip: "제품 입력 없이 진행할래요", yes: "네, 지금 쓰는 제품이 있어요", no: "아니요, 지금은 아무것도 안 써요" }[use]);
   setup?.();
@@ -104,8 +105,7 @@ test("a first survey keeps a comfortable serum, prioritizes a heavy moisturizer 
   expect(screen.getByRole("region", { name: "지금 쓰는 세럼" })).toHaveTextContent(serum);
   expect(records()[0].routine.serum).toBeNull();
   expect(records()[0].routine.cream).not.toBeNull();
-  const compare = screen.getByText("보습제 대안 비교").closest("details");
-  expect(compare).not.toHaveAttribute("open");
+  expectCollapsed("보습제 대안 비교");
 });
 test("procedure options stay out of the result until requested and follow the chosen scar shape", () => {
   render(<App />); baseSurvey();
@@ -178,7 +178,7 @@ test("different acne appearances and traces retain priority and locations throug
 test("folliculitis shows common care and folded cause-specific information, without a trial antibiotic", () => {
   render(<App />); baseSurvey(); extraCare({ concern: "folliculitis", areaState: "comfortable", medicine: "none" });
   expect(screen.getByRole("region", { name: "모낭염 공통 관리와 약품 정보" })).toBeInTheDocument();
-  expect(screen.getByText("원인별 약품과 구분 단서 보기").closest("details")).not.toHaveAttribute("open");
+  expectCollapsed("원인별 약품과 구분 단서 보기");
   expect(screen.getByText(/무피로신 외용제/)).toBeInTheDocument();
   expect(screen.queryByRole("region", { name: "일반의약품 후보" })).not.toBeInTheDocument();
 });
@@ -228,7 +228,7 @@ function startFollowUp(onFeedback = () => {}) {
   screen.queryAllByRole("button", { name: "전혀 사용하지 않음", exact: true }).forEach(button => fireEvent.click(button));
   for (const q of feedbackQuestions) {
     const option = q.options.find(o => o.value === 0) || q.options[0];
-    const container = screen.getByText(q.q).parentElement;
+    const container = screen.getByRole("group", { name: q.q });
     fireEvent.click(within(container).getByRole("button", { name: option.label, exact: true }));
   }
   click("피부 상태 다시 확인하기");
@@ -236,7 +236,7 @@ function startFollowUp(onFeedback = () => {}) {
 function completeStandardRecheck() {
   const observed = { skinChange: "steady", observedOil: "tzone", drynessArea: "none", moisturizerUse: "comfortable", washResponse: "comfortable", reactionPattern: "none", surfaceObservation: "normal" };
   for (const q of getObservationQuestions()) {
-    const container = screen.getByText(q.question).parentElement;
+    const container = screen.getByRole("group", { name: q.question });
     fireEvent.click(within(container).getByRole("button", { name: q.options.find(o => o.value === observed[q.id]).label, exact: true }));
   }
   click("변화 저장하고 다음 추천 보기");
@@ -291,7 +291,7 @@ test("unknown follow-up observations suppress a new routine and do not crash on 
   render(<App />); baseSurvey(Object.fromEntries(observationQuestions.map(q => [q.id, "unknown"]))); extraCare({ concern: "none" }); startFollowUp();
   const unknownAnswers = Object.fromEntries([...observationQuestions, ...adaptiveSupportQuestions].map(q => [q.id, q.options.find(o => o.value === "unknown").label]));
   for (const q of getObservationQuestions(unknownAnswers)) {
-    const container = screen.getByText(q.question).parentElement;
+    const container = screen.getByRole("group", { name: q.question });
     fireEvent.click(within(container).getByRole("button", { name: unknownAnswers[q.id], exact: true }));
   }
   click("변화 저장하고 다음 추천 보기");
@@ -301,9 +301,9 @@ test("unknown follow-up observations suppress a new routine and do not crash on 
 });
 
 test("conflicting answers get a clarification instead of a forced type, and guidance starts folded", () => {
-  render(<App />); click("피부타입 확인하고 추천받기");
+  render(<App />); click("내 피부에 맞는 관리 찾기");
   click("제품 입력 없이 진행할래요"); click("피부 상태 질문으로");
-  expect(screen.getByText("답변 기준 자세히 보기").closest("details")).not.toHaveAttribute("open");
+  expectCollapsed("답변 기준 자세히 보기");
   click("화장품 답변으로"); click("시작 화면으로");
   baseSurvey({ drynessArea: "cheeks", drynessTiming: "persistent", moisturizerUse: "comfortable", drynessContext: "unknown", contextDryArea: "unknown" }); extraCare({ concern: "none" });
   expect(screen.getByRole("heading", { name: /유분 중심 관리부터 시작/ })).toBeInTheDocument();
@@ -453,6 +453,8 @@ test("recent environmental exposure is shown in the first result alongside obser
   render(<App />);
   baseSurvey({ skinChange: "changed", recentEnvironment: "dry_air", drynessArea: "cheeks", drynessTiming: "day" });
   extraCare({ concern: "none" });
+  expect(screen.getByText("최근 달라진 환경")).not.toBeVisible();
+  fireEvent.click(screen.getByText("피부 상태와 추천 근거"));
   expect(screen.getByRole("heading", { name: "최근 달라진 환경" })).toBeVisible();
   expect(screen.getByText(/볼·입 주변의 당김이 노출이 적은 날에도/)).toBeVisible();
   expect(records()[0].result.observationAssessment.environmentContext).toMatchObject({ value: "dry_air" });

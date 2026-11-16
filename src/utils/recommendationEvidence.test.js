@@ -21,8 +21,8 @@ test("all newly ranked candidates, including alternatives, have domestic formula
       const ranked = getRankedProductCandidates(category, level, ctx);
       for (const p of ranked) expect(getProductEvidenceStatus(p).eligible).toBe(true);
       const alternate = pickAlternativeNonExfoliatingProduct(category === "cleanser" ? "cleanser" : category, level, ctx);
-      if (alternate) expect(getProductEvidenceStatus(alternate).eligible).toBe(true);
-      if (isSensitive) expect(routine.products[category].sensitivitySafe).toBe(true);
+      expect(!alternate || getProductEvidenceStatus(alternate).eligible).toBe(true);
+      expect(!isSensitive || routine.products[category].sensitivitySafe).toBe(true);
     }
   }
 });

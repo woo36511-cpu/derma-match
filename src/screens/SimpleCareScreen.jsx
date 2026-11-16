@@ -23,6 +23,9 @@ import { buildRoutineAdvice, getRoutineComparison, getRoutinePreferences, routin
 import { getRoutineFitSignals } from "../utils/routineFitContext";
 import { ProcedureOptions } from "../components/ProcedureOptions";
 import { readRoutineSurveyContext } from "../data/routineSurveyContext";
+import { PrimaryButton } from "../components/PrimaryButton";
+import { SurveyChoice } from "../components/SurveyChoice";
+import { useScreenHeading } from "../hooks/useScreenHeading";
 
 const emptyRoutine = [];
 
@@ -56,35 +59,51 @@ export function applyObservationToCarePlan(plan, profile) {
   return plan;
 }
 
-export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, serumStatus, otherRetained = [], advice, recommendationContext, ownedIds }) {
-  return <div className="space-y-6">
-    <header className="space-y-2"><p className="text-sm font-semibold text-emerald-700">내 피부 관리 결과</p><h1 className="text-2xl sm:text-3xl font-bold">{profile.skinType} · 기본 루틴과 필요한 추가 관리</h1><p className="text-sm text-slate-600">설문으로 추정한 피부타입이에요. 질환·원인균을 확정한 결과는 아니에요.</p></header>
-    {onReviewRoutine && <button type="button" onClick={onReviewRoutine} className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-900">지금 쓰는 제품 점검하기</button>}
-    {advice && <section className="space-y-2 rounded-2xl border border-emerald-200 bg-emerald-50 p-5" aria-label="지금 먼저 할 한 가지">
-      <p className="text-xs font-semibold text-emerald-800">지금 먼저 할 한 가지</p>
-      <h2 className="text-lg font-bold">{advice.title}</h2><p className="text-sm">{advice.detail}</p>
-      {advice.slot && getRoutineFitSignals(advice.slot, recommendationContext)?.note && <p className="text-sm">{getRoutineFitSignals(advice.slot, recommendationContext).note}</p>}
-    </section>}
-    {serumStatus?.skipBasicSerum && !plan.blockNewBasics && <section aria-label="지금 쓰는 세럼" className="space-y-1 rounded-2xl border border-emerald-100 bg-emerald-50 p-4 text-sm">
+export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, serumStatus, otherRetained = [], advice, recommendationContext, ownedIds, notes, routineHasIrritation }) {
+  const heading = useScreenHeading("care-result");
+  const concernFirst = plan.blockNewBasics || (plan.answers.concern !== "none" && !routineHasIrritation);
+  const priority = concernFirst ? plan : advice;
+  const fitNote = !concernFirst && advice?.slot && getRoutineFitSignals(advice.slot, recommendationContext)?.note;
+  const firstCareAction = !concernFirst && !routineHasIrritation && profile.observationAssessment?.canRecommendBasics === false
+    ? profile.observationAssessment.careActions?.[0] : null;
+  return <div className="space-y-5 sm:space-y-6">
+    <section className="rounded-[1.75rem] bg-forest-900 p-5 text-white sm:p-8" aria-labelledby="simple-result-title">
+      <p className="text-xs font-semibold tracking-wide text-forest-100">내 피부 관리 결과</p>
+      <h1 id="simple-result-title" ref={heading} tabIndex={-1} className="mt-2 scroll-mt-28 text-2xl font-bold tracking-tight focus:outline-none sm:text-3xl">{profile.skinType}</h1>
+      <p className="mt-1 text-xs text-forest-100">답변을 바탕으로 한 관리 안내예요. 질환이나 원인균을 확정한 결과는 아니에요.</p>
+      {priority && <section className="mt-5 space-y-2 rounded-xl bg-paper p-4 text-ink sm:mt-6 sm:p-5" aria-label="지금 먼저 할 한 가지">
+        <p className="care-kicker">오늘 할 한 가지</p>
+        <h2 className="text-lg font-bold text-forest-900 sm:text-xl">{priority.title}</h2>
+        <p className="text-sm leading-relaxed">{priority.detail}</p>
+        {firstCareAction && <p className="text-sm text-slate-600">{firstCareAction}</p>}
+        {fitNote && <p className="text-sm text-slate-600">{fitNote}</p>}
+      </section>}
+    </section>
+    {serumStatus?.skipBasicSerum && !plan.blockNewBasics && <section aria-label="지금 쓰는 세럼" className="care-panel space-y-1 text-sm">
+      <p className="care-kicker">{serumStatus.hasIrritation ? "사용감 먼저 확인" : "그대로 쓸 제품"}</p>
       <h2 className="font-bold">{serumStatus.hasIrritation ? "세럼은 자극 여부부터 확인해요." : "편하게 쓰는 세럼은 그대로 유지해요."}</h2>
       {serumStatus.hasIrritation ? <p>새 세럼을 더하기보다, 어떤 제품을 쓸 때 불편했는지 먼저 확인해요.</p> : <>
         {serumStatus.keep.length > 0 && <p>{serumStatus.keep.map(entry => getCurrentRoutineProduct(entry)?.name).join(" · ")}</p>}
         <p>지금 조합이 편하다면 기본 세럼을 하나 더 살 필요는 없어요.</p>
       </>}
     </section>}
-    {otherRetained.length > 0 && !plan.blockNewBasics && <section aria-label="그대로 쓸 화장품" className="rounded-2xl border border-emerald-100 bg-emerald-50 p-4 text-sm">
+    {otherRetained.length > 0 && !plan.blockNewBasics && <section aria-label="그대로 쓸 화장품" className="care-panel space-y-1 text-sm">
+      <p className="care-kicker">그대로 쓸 제품</p>
       <h2 className="font-bold">편하게 쓰는 기초 제품도 유지해요.</h2>
-      <p className="mt-1">{otherRetained.flatMap(([, products]) => products).join(" · ")}</p>
+      <ul className="mt-2 grid gap-1">
+        {otherRetained.map(([slot, products]) => <li key={slot}><span className="font-semibold text-forest-700">{routineSlotNames[slot]}</span> · {products.join(" · ")}</li>)}
+      </ul>
     </section>}
-    <ObservationSummary profile={profile} />
-    <section className="space-y-3 rounded-2xl bg-white border border-slate-200 p-5" aria-label="추가 고민 관리">
+    {notes}
+    {(!concernFirst || plan.concernSummary || plan.pharmacy || plan.cosmetics?.length || plan.productNote || plan.recheck || plan.showFolliculitis || (plan.answers.shape === "deep" && plan.answers.medicine !== "none")) && <section className="care-panel space-y-3" aria-label="추가 고민 관리">
+      <p className="care-kicker">{concernFirst ? "이 고민에 맞는 관리" : "관리 방향"}</p>
       {plan.concernSummary && <p className="text-sm font-semibold text-emerald-800">먼저 고른 고민: {plan.concernSummary.primary.label}{plan.concernSummary.primary.area && ` · ${plan.concernSummary.primary.area}`}</p>}
-      <h2 className="text-lg font-bold">{plan.title}</h2><p>{plan.detail}</p>
+      {!concernFirst && <><h2 className="text-lg font-bold">{plan.title}</h2><p>{plan.detail}</p></>}
       <ConcernProductOptions plan={plan} />
       {plan.showFolliculitis && <FolliculitisOptions />}
       {plan.answers.shape === "deep" && plan.answers.medicine !== "none" && <p className="text-sm">깊은 덩이는 짜지 않아요. 계속 커지거나 통증·흉터가 생기면 확인이 필요해요.</p>}
-    </section>
-    {plan.concernSummary && <section className="space-y-3 rounded-2xl border border-slate-200 bg-white p-5" aria-label="함께 선택한 고민">
+    </section>}
+    {plan.concernSummary && <section className="care-panel space-y-3" aria-label="함께 선택한 고민">
       <h2 className="text-lg font-bold">함께 선택한 고민</h2>
       <ul className="space-y-3">{plan.concernSummary.secondary.map(item => <li key={item.shape}>
         <p className="font-semibold">{item.label}{item.area && ` · ${item.area}`}</p>
@@ -94,15 +113,22 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
     </section>}
     <AcneCareReview review={buildAcneCareReview(plan)} />
     {!plan.blockNewBasics && profile.observationAssessment?.canRecommendBasics !== false && Object.values(routine.products).some(Boolean) && <section className="space-y-4" aria-label="피부타입별 기본 화장품">
-      <h2 className="text-xl font-bold">피부타입에 맞는 기본 화장품</h2>
-      <p className="text-sm">아무 관리도 하지 않았다면 필요한 기초 제품을 비교해요. 세안제·보습제를 먼저 고르고, 토너·세럼은 필요할 때 추가해요. 이미 잘 맞는 제품이 있다면 그대로 유지해요.</p>
-      <RoutineProductScroller productsByCategory={routine.products} optionalSlots={["toner", "serum"]} userContext={{ ...recommendationContext, level: profile.hydrationLevel, acneSupport: plan.answers.concern === "acne" }} />
+      <div>
+        <p className="care-kicker">필요한 단계만</p>
+        <h2 className="mt-1 text-xl font-bold text-forest-900 sm:text-2xl">피부타입에 맞는 기본 화장품</h2>
+        <p className="mt-1 text-sm text-slate-700">기초 관리를 시작한다면 세안제와 보습제부터 골라요. 토너·세럼은 필요할 때만 하나씩 추가해요.</p>
+      </div>
+      <div className="grid grid-cols-2 divide-x divide-forest-100 rounded-xl border border-forest-100 bg-forest-50 text-sm">
+        <div className="p-3 sm:p-4"><p className="font-bold text-forest-900">아침</p><p className="mt-0.5 text-slate-700">기초 관리 후 선크림</p></div>
+        <div className="p-3 sm:p-4"><p className="font-bold text-forest-900">저녁</p><p className="mt-0.5 text-slate-700">세안 후 필요한 기초 관리</p></div>
+      </div>
+      <RoutineProductScroller layout="routine" productsByCategory={routine.products} optionalSlots={["toner", "serum"]} userContext={{ ...recommendationContext, level: profile.hydrationLevel, acneSupport: plan.answers.concern === "acne" }} />
       {!routine.isHistorical && Object.keys(routine.products).map(slot => {
         const comparison = getRoutineComparison(routine, slot, ownedIds);
         return comparison && <DetailDisclosure key={slot} title={`${routineSlotNames[slot]} 대안 비교`}>
           <p className="font-semibold">{comparison.alternative.name}</p><p>{comparison.reason}</p>
           {comparison.closeFit && <p className="mt-1 text-slate-600">두 후보 모두 비슷한 조건에 맞아요. 평소 선호하는 사용감으로 골라도 돼요.</p>}
-          <div className="mt-3 max-w-xs"><RoutineProductScroller productsByCategory={{ [slot]: comparison.alternative }} userContext={{ ...recommendationContext, level: profile.hydrationLevel }} /></div>
+          <div className="mt-3 max-w-xs"><RoutineProductScroller layout="routine" productsByCategory={{ [slot]: comparison.alternative }} userContext={{ ...recommendationContext, level: profile.hydrationLevel }} /></div>
         </DetailDisclosure>;
       })}
       <DetailDisclosure title="사용 순서·세안법·함께 쓸 때 주의점">
@@ -111,6 +137,8 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
         <p className="mt-2">현재 제품명을 모두 입력받는 방식은 아니므로 개별 제품 조합의 안전성을 보증하지 않아요. 새 제품은 한 가지씩 추가해 반응을 확인해요.</p>
       </DetailDisclosure>
     </section>}
+    <DetailDisclosure title="피부 상태와 추천 근거"><ObservationSummary profile={profile} /></DetailDisclosure>
+    {onReviewRoutine && <button type="button" onClick={onReviewRoutine} className="care-secondary">지금 쓰는 제품 점검하기</button>}
   </div>;
 }
 
@@ -182,20 +210,24 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     setRecord(next); setShowResult(true);
     try { onSave(next); setSaveError(false); } catch { setSaveError(true); }
   };
-  if (showResult && plan.complete) return <div className="space-y-6">
+  if (showResult && plan.complete) {
+    const notes = <>
     {recommendationContext.pricePreference === "important" && Object.values(displayRoutine.products).some(Boolean) && !historical && <p className="rounded-xl bg-slate-50 p-4 text-sm">가격을 중요하게 선택했어요. 피부에 비슷하게 맞는 제품 중 확인된 공식 기준가가 있는 제품을 우선해요. 실제 할인 가격과 배송비는 판매처에서 확인할 수 있어요.</p>}
     {displayRoutine.isHistorical && <p className="rounded-xl bg-slate-50 p-4 text-sm">저장 당시의 제품 후보를 보여드려요. 새 검수 기준으로 다시 추천받으려면 아래에서 다시 확인해요.</p>}
     {newReview && onRestart && <div className="space-y-2 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm">
       <p>전에는 보습 특성을 알 수 없었던 단계에 검수된 제품 정보가 있어요. 지금도 쓰는 제품이라면 새 설문에서 반영할 수 있어요.</p>
       <button type="button" className="font-semibold text-emerald-900 underline" onClick={onRestart}>검수된 제품 정보로 다시 확인</button>
     </div>}
-    <SimpleCareResult profile={profile} routine={displayRoutine} otherRetained={otherRetained} advice={advice} recommendationContext={recommendationContext} ownedIds={currentRoutine.ownedProductIds} plan={displayPlan} serumStatus={visibleSerumStatus} onReviewRoutine={saveError ? undefined : onReviewRoutine} />
+    </>;
+    return <div className="space-y-6">
+      <SimpleCareResult profile={profile} routine={displayRoutine} otherRetained={otherRetained} advice={advice} recommendationContext={recommendationContext} ownedIds={currentRoutine.ownedProductIds} plan={displayPlan} serumStatus={visibleSerumStatus} onReviewRoutine={saveError ? undefined : onReviewRoutine} notes={notes} routineHasIrritation={currentRoutine.irritated.length > 0} />
     {(profile.surveyVersion !== ADAPTIVE_SURVEY_VERSION || displayRoutine.isHistorical) && onRestart && <button onClick={onRestart} className="rounded-xl border px-4 py-3">새 기준으로 다시 확인</button>}
     {allowNewBasics && <CosmeticAddOnSection context={cosmeticContext} initialAnswers={cosmeticAnswers} onApply={save} />}
     <ProcedureOptions plan={displayPlan} profile={profile} />
     {saveError && <div role="alert" className="rounded-xl bg-amber-50 p-4">결과는 표시했지만 저장하지 못했어요. <button className="underline" onClick={() => save()}>저장 다시 시도</button></div>}
-    <div className="flex flex-wrap gap-3"><button className="rounded-xl border px-4 py-3" onClick={() => { setShowResult(false); setLegacyExtent(false); setIndex(0); }}>추가 고민 답변 바꾸기</button><button className="rounded-xl border px-4 py-3" onClick={onBack}>피부타입 답변 다시 보기</button><button className="rounded-xl bg-slate-900 text-white px-4 py-3" onClick={onHome}>시작 화면</button></div>
-  </div>;
+    <div className="flex flex-wrap gap-3"><button type="button" className="care-secondary" onClick={() => { setShowResult(false); setLegacyExtent(false); setIndex(0); }}>추가 고민 답변 바꾸기</button><button type="button" className="care-secondary" onClick={onBack}>피부타입 답변 다시 보기</button><PrimaryButton onClick={onHome}>시작 화면</PrimaryButton></div>
+    </div>;
+  }
   const changeAnswer = (id, value) => {
     const next = updateCareAnswer(answers, id, value);
     if (next !== answers) {
@@ -211,20 +243,23 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
 }
 
 export function SimpleCareQuestion({ question, index, total, answer, locations, onAnswer, onLocation, onPrev, onNext, serumPreference, onSerumPreference, routineReview }) {
+  const heading = useScreenHeading(question.id);
   const selected = question.multiple ? answer ?? [] : [];
   const isSelected = value => question.multiple ? selected.includes(value) : answer === value;
   const select = value => onAnswer(!question.multiple ? value : selected.includes(value)
     ? selected.filter(item => item !== value) : value === "unknown" ? ["unknown"] : [...selected.filter(item => item !== "unknown"), value]);
-  return <div className="max-w-2xl mx-auto space-y-6">
-    <p className="text-sm font-semibold text-emerald-700">피부 성향 답변 완료 · 추가 고민 {index + 1}/{total}</p>
-    <h1 className="text-2xl font-bold">{question.q}</h1>
-    {question.hint && <p className="text-sm text-slate-600">{question.hint}</p>}
-    {question.visual && <AcnePhotoReference />}
-    {question.multiple && <p className="text-sm text-slate-600">좁쌀, 붉은 돌기, 이전 트러블의 자국이 함께 있다면 모두 골라요.</p>}
-    {question.id === "concern" && <p className="text-sm text-slate-600">기본 관리와 별도로 필요한 관리를 확인해요. 아직 모르는 항목이 있어도 확인된 특징으로 가능한 관리부터 안내해요.</p>}
-    <div className="space-y-3" role="group" aria-label={question.q}>{question.options.map(option => <button key={option.value} aria-pressed={isSelected(option.value)} className={`w-full text-left rounded-2xl border p-4 ${isSelected(option.value) ? "border-emerald-600 bg-emerald-50" : "border-slate-200 bg-white"}`} onClick={() => select(option.value)}>
-      <span className="block font-semibold">{option.label}</span>{option.detail && <span className="mt-1 block text-sm text-slate-600">{option.detail}</span>}
-    </button>)}</div>
+  return <div className="mx-auto max-w-2xl space-y-5">
+    <section className="care-panel space-y-3" aria-labelledby="care-question">
+      <p className="care-kicker">피부 설문 · 추가 고민 {index + 1}/{total}</p>
+      <h1 id="care-question" ref={heading} tabIndex={-1} className="scroll-mt-28 text-2xl font-bold leading-snug tracking-tight focus:outline-none sm:text-3xl">{question.q}</h1>
+      {question.hint && <p className="text-sm text-slate-600">{question.hint}</p>}
+      {question.visual && <AcnePhotoReference />}
+      {question.multiple && <p className="text-sm font-medium text-forest-700">여러 고민이 함께 있다면 해당하는 항목을 모두 골라주세요.</p>}
+      {question.id === "concern" && <p className="text-sm text-slate-600">기초 관리에 더해 지금 필요한 관리가 있는지 확인해요.</p>}
+      <div className="grid gap-2.5 pt-2" role="group" aria-labelledby="care-question">{question.options.map(option => <SurveyChoice key={option.value} multiple={question.multiple} selected={isSelected(option.value)} onClick={() => select(option.value)}>
+        <span className="block">{option.label}</span>{option.detail && <span className="mt-0.5 block text-sm font-normal text-slate-600">{option.detail}</span>}
+      </SurveyChoice>)}</div>
+    </section>
     {question.id === "concern" && onSerumPreference && <section aria-label="지금 쓰는 화장품 확인" className="space-y-3 rounded-2xl border border-emerald-100 bg-emerald-50 p-4">
       <h2 className="font-semibold">지금 쓰는 화장품이 있나요?</h2>
       <p className="text-sm text-slate-700">잘 맞는 제품을 굳이 바꾸지 않도록, 아는 제품만 담고 사용감을 골라요. 건너뛰어도 돼요.</p>
@@ -247,7 +282,7 @@ export function SimpleCareQuestion({ question, index, total, answer, locations, 
         </select>
       </label>)}
     </fieldset>}
-    <div className="flex justify-between gap-3"><button className="rounded-xl border px-5 py-3" onClick={onPrev}>이전</button>
-      <button disabled={question.multiple ? !selected.length : !answer} className="rounded-xl bg-slate-900 px-5 py-3 text-white disabled:opacity-40" onClick={onNext}>{index === total - 1 ? "기본 루틴과 추가 관리 보기" : "다음"}</button></div>
+    <div className="flex justify-between gap-3"><button type="button" className="care-secondary" onClick={onPrev}>이전</button>
+      <PrimaryButton disabled={question.multiple ? !selected.length : !answer} onClick={onNext}>{index === total - 1 ? "기본 루틴과 추가 관리 보기" : "다음"}</PrimaryButton></div>
   </div>;
 }

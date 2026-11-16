@@ -104,9 +104,11 @@ export function FeedbackScreen({
         {feedbackQuestions.map((q) => (
           <div
             key={q.id}
+            role="group"
+            aria-labelledby={`feedback-question-${q.id}`}
             className="bg-white border border-gray-100 rounded-3xl shadow-sm p-5 sm:p-6 min-h-[132px]"
           >
-            <p className="text-base sm:text-lg font-semibold leading-relaxed break-keep mb-4">
+            <p id={`feedback-question-${q.id}`} className="text-base sm:text-lg font-semibold leading-relaxed break-keep mb-4">
               {q.q}
             </p>
 

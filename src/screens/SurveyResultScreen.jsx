@@ -27,7 +27,7 @@ export function SurveyResultScreen({
     <button onClick={() => setStep("start")} className="underline text-sm">시작 화면으로</button>
   </section>;
   return (
-    <section className="space-y-10">
+    <section className="space-y-6 sm:space-y-8">
       <div className="max-w-3xl mx-auto space-y-5"><SymptomCareSummary assessment={symptomAssessment} /></div>
       <SurveyResultOverview result={finalSkinProfile} />
 
@@ -39,6 +39,7 @@ export function SurveyResultScreen({
         />
 
         <RoutineProductScroller
+          layout="routine"
           productsByCategory={surveyRoutine.products}
           userContext={surveyUserContext}
         />

@@ -64,8 +64,8 @@ test("a cosmetic response is scoped to its goal and known matching area", () => 
     { value: 1, useDays: "28_plus", elapsedDays: 28, recordedAt: "2026-11-09T00:00:00Z" });
   const context = { sensitive: false, tracks: ["blackhead"], route: "texture", locations: { blackhead: "nose" },
     personalProductFeedback: collectPersonalProductFeedback([record]) };
-  const fit = override => getPersonalCosmeticFit(product, product.hydrationLevel, { ...context, ...override }, now.getTime());
-  expect(fit()).toBeGreaterThan(0);
-  expect(fit({ locations: { blackhead: "chin" } })).toBe(0);
-  expect(fit({ route: "tone" })).toBe(0);
+  const fitScore = override => getPersonalCosmeticFit(product, product.hydrationLevel, { ...context, ...override }, now.getTime());
+  expect(fitScore()).toBeGreaterThan(0);
+  expect(fitScore({ locations: { blackhead: "chin" } })).toBe(0);
+  expect(fitScore({ route: "tone" })).toBe(0);
 });

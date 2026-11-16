@@ -140,7 +140,7 @@ test("partial basics do not gain a treatment product through the recommendation 
     expect(Object.values(routine.products).filter(Boolean)).toHaveLength(4);
     for (const [category, product] of Object.entries(routine.products)) {
       expect(hasExfoliatingActive(product)).toBe(false);
-      if (category !== "cleanser") expect(isSpecializedTreatmentProduct(product)).toBe(false);
+      expect(category === "cleanser" || !isSpecializedTreatmentProduct(product)).toBe(true);
     }
   }
   expect(isProductAllowedForContext({ ingredients: ["살리실산"], isAvailable: true }, "toner", { basicOnly: true })).toBe(false);
