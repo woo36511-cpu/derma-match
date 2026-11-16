@@ -1,6 +1,7 @@
 import { observationQuestions } from "./observationSurvey";
 import { readRoutineSurveyContext, hasMoistureSupport, hasPossibleCoating } from "./routineSurveyContext";
 import { pricePreferenceQuestion } from "./pricePreference";
+import { getMakeupCleansingQuestions } from "./makeupCleansingSurvey";
 
 export const ADAPTIVE_SURVEY_VERSION = "adaptive-skin-v3";
 export const ADAPTIVE_MEASUREMENT_VERSION = "adaptive-skin-axes-v3";
@@ -143,7 +144,7 @@ export function getAdaptiveObservationQuestions(answers = {}) {
       }
     }
   }
-  if (routine) result.push(pricePreferenceQuestion);
+  if (routine) result.push(pricePreferenceQuestion, ...getMakeupCleansingQuestions(answers));
   return result;
 }
 export function cleanAdaptiveObservationAnswers(answers = {}) {

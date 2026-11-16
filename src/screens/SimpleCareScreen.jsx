@@ -26,6 +26,8 @@ import { readRoutineSurveyContext } from "../data/routineSurveyContext";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { SurveyChoice } from "../components/SurveyChoice";
 import { useScreenHeading } from "../hooks/useScreenHeading";
+import { MakeupCleansingSection } from "../components/MakeupCleansingSection";
+import { getMakeupCleansingPlan } from "../utils/makeupCleansingPlan";
 
 const emptyRoutine = [];
 
@@ -59,7 +61,7 @@ export function applyObservationToCarePlan(plan, profile) {
   return plan;
 }
 
-export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, serumStatus, otherRetained = [], advice, recommendationContext, ownedIds, notes, routineHasIrritation }) {
+export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, serumStatus, otherRetained = [], advice, recommendationContext, ownedIds, notes, routineHasIrritation, makeupCleansing }) {
   const heading = useScreenHeading("care-result");
   const concernFirst = plan.blockNewBasics || (plan.answers.concern !== "none" && !routineHasIrritation);
   const priority = concernFirst ? plan : advice;
@@ -112,6 +114,7 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
       <p className="text-sm text-slate-600">지금은 위의 관리부터 살펴보고, 다른 고민에 새 제품을 한꺼번에 추가하지 않아요.</p>
     </section>}
     <AcneCareReview review={buildAcneCareReview(plan)} />
+    <MakeupCleansingSection plan={makeupCleansing} />
     {!plan.blockNewBasics && profile.observationAssessment?.canRecommendBasics !== false && Object.values(routine.products).some(Boolean) && <section className="space-y-4" aria-label="피부타입별 기본 화장품">
       <div>
         <p className="care-kicker">필요한 단계만</p>
@@ -175,12 +178,18 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   const assessment = profile.observationAssessment;
   const observedSkin = assessment?.resolvedObservations;
   const preferences = getRoutinePreferences(currentRoutine, observedSkin, serumPreference);
+  const allowNewBasics = assessment?.canRecommendBasics !== false && !plan.blockNewBasics && !currentRoutine.irritated.length;
+  const makeupCleansing = getMakeupCleansingPlan(surveyAnswers, {
+    blocked: !allowNewBasics,
+    sensitive: assessment?.isSensitive ?? true,
+    cleanserDiscomfort: Boolean(currentRoutine.slotReactions.cleanser) || ["tight", "stings"].includes(observedSkin?.washResponse),
+  });
+  if (makeupCleansing?.skipNewCleanser) preferences.suppressedSlots.add("cleanser");
   const recommendationContext = { ...currentRoutine, suppressedSlots: preferences.suppressedSlots, mainConcern: "none",
     pricePreference: readPricePreference(surveyAnswers),
     skinType: profile.skinType, careNeeds: profile.careNeeds, basicOnly: profile.surveyVersion === ADAPTIVE_SURVEY_VERSION,
     isSensitive: assessment?.isSensitive ?? true, observationKinds: getObservationKinds(profile),
     observationTracks: getBasicObservationTracks(profile), observedSkin, personalProductFeedback };
-  const allowNewBasics = assessment?.canRecommendBasics !== false && !plan.blockNewBasics && !currentRoutine.irritated.length;
   const historical = initialRecord?.routine && initialRecord.recommendationAssessment?.ruleVersion !== RECOMMENDATION_RULE_VERSION &&
     JSON.stringify(cleanSimpleCareAnswers(initialRecord.additionalCare ?? {}, { legacyExtent })) === JSON.stringify(answers) &&
     (initialRecord.routinePreferences?.serum ?? priorSerumPreference ?? "") === serumPreference &&
@@ -220,7 +229,7 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     </div>}
     </>;
     return <div className="space-y-6">
-      <SimpleCareResult profile={profile} routine={displayRoutine} otherRetained={otherRetained} advice={advice} recommendationContext={recommendationContext} ownedIds={currentRoutine.ownedProductIds} plan={displayPlan} serumStatus={visibleSerumStatus} onReviewRoutine={saveError ? undefined : onReviewRoutine} notes={notes} routineHasIrritation={currentRoutine.irritated.length > 0} />
+      <SimpleCareResult profile={profile} routine={displayRoutine} otherRetained={otherRetained} advice={advice} recommendationContext={recommendationContext} ownedIds={currentRoutine.ownedProductIds} plan={displayPlan} serumStatus={visibleSerumStatus} onReviewRoutine={saveError ? undefined : onReviewRoutine} notes={notes} routineHasIrritation={currentRoutine.irritated.length > 0} makeupCleansing={makeupCleansing} />
     {(profile.surveyVersion !== ADAPTIVE_SURVEY_VERSION || displayRoutine.isHistorical) && onRestart && <button onClick={onRestart} className="rounded-xl border px-4 py-3">새 기준으로 다시 확인</button>}
     {allowNewBasics && <CosmeticAddOnSection context={cosmeticContext} initialAnswers={cosmeticAnswers} onApply={save} />}
     <ProcedureOptions plan={displayPlan} profile={profile} />
