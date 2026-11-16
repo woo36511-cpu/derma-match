@@ -531,7 +531,11 @@ export function useSkinCoach() {
   };
   const handleSurveyAnswer = (question, option) => {
     if (observationMode) {
-      setSurveyAnswers(prev => cleanVersionedSurveyAnswers(surveyVersion, { ...prev, [question.id]: option.label }));
+      setSurveyAnswers(prev => {
+        const next = { ...prev, [question.id]: option.label };
+        if (question.id === "makeupUse" && prev.makeupUse !== option.label) delete next.makeupRemoval;
+        return cleanVersionedSurveyAnswers(surveyVersion, next);
+      });
       return;
     }
     setSurveyAnswers((prev) => {

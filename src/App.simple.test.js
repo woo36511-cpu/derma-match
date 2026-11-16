@@ -1,4 +1,5 @@
 import { pricePreferenceQuestion } from "./data/pricePreference";
+import { getMakeupCleansingQuestions, makeupUseQuestion } from "./data/makeupCleansingSurvey";
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import App from "./App";
 import { SimpleCareScreen } from "./screens/SimpleCareScreen";
@@ -35,6 +36,9 @@ function baseSurvey(overrides = {}, { use = "skip", setup, serum } = {}) {
   const observed = { skinChange: "steady", observedOil: "tzone", routineOilTiming: overrides.observedOil ?? "tzone", routineDryTiming: "none", drynessArea: "none", moisturizerUse: "comfortable", reactionPattern: "none", washResponse: "comfortable", surfaceObservation: "normal", pricePreference: "any", ...overrides };
   const answers = Object.fromEntries([...observationQuestions, ...adaptiveSupportQuestions, pricePreferenceQuestion].map(q => [q.id, q.options.find(o => o.value === (observed[q.id] ?? "unknown"))?.label]));
   answers.routineIntake = buildRoutineSurveyContext(use, readCurrentRoutine(localStorage, "guest"), serum);
+  answers.makeupUse = makeupUseQuestion.options.find(option => option.value === (overrides.makeupUse ?? "none")).label;
+  const [, makeupRemoval] = getMakeupCleansingQuestions(answers);
+  if (makeupRemoval) answers.makeupRemoval = makeupRemoval.options.find(option => option.value === (overrides.makeupRemoval ?? "unknown")).label;
   const questions = getObservationQuestions(answers);
   for (const [index, question] of questions.entries()) {
     expect(screen.getByRole("heading", { name: question.question })).toBeInTheDocument();
@@ -61,8 +65,45 @@ test("the basic survey saves price preference and shows official-price guidance 
   baseSurvey({ pricePreference: "important" }, { use: "no" });
   extraCare({ concern: "none" });
   expect(records()[0].surveyAnswers.pricePreference).toBe("화장품 가격이 중요해요");
+  expect(records()[0].surveyAnswers).not.toHaveProperty("makeupRemoval");
   expect(screen.getByText(/가격을 중요하게 선택했어요/)).toBeInTheDocument();
   expect(screen.getByRole("region", { name: "피부타입별 기본 화장품" })).toBeInTheDocument();
+});
+test("comfortable makeup removal preserves the current cleanser without adding a remover", () => {
+  render(<App />);
+  baseSurvey({ makeupUse: "light", makeupRemoval: "keep" });
+  extraCare({ concern: "none" });
+  const makeup = screen.getByRole("region", { name: "지금 쓰는 클렌징 제품을 유지해요." });
+  expect(within(makeup).queryByRole("article")).not.toBeInTheDocument();
+  expect(records()[0].routine.cleanser).toBeNull();
+});
+test("point makeup residue presents just the dedicated product and reopens the same advice", () => {
+  render(<App />);
+  baseSurvey({ makeupUse: "both", makeupRemoval: "point" });
+  extraCare({ concern: "none" });
+  const regionName = "눈·입술에 남는 화장부터 지워요.";
+  const region = screen.getByRole("region", { name: regionName });
+  expect(within(region).getByRole("article", { name: "에뛰드 립 앤 아이 리무버" })).toBeVisible();
+  expect(within(region).getAllByRole("article")).toHaveLength(1);
+  expect(records()[0].routine.cleanser).toBeNull();
+  cleanup(); render(<App />); click("최근 결과 다시 보기");
+  expect(screen.getByRole("region", { name: regionName })).toBeVisible();
+});
+test("changing what makeup is used clears the previous removal answer", () => {
+  render(<App />);
+  baseSurvey({ makeupUse: "base", makeupRemoval: "face" });
+  click("이전"); click("이전");
+  click("얼굴 화장과 눈·입술 화장을 모두 해요");
+  click("다음");
+  expect(screen.getByRole("button", { name: "쿠션·베이스 같은 얼굴 화장이 남아요" })).toHaveAttribute("aria-pressed", "false");
+  expect(screen.getByRole("button", { name: "추가 고민 선택" })).toBeDisabled();
+});
+test("current irritation holds a makeup remover even when base makeup is left over", () => {
+  render(<App />);
+  baseSurvey({ surfaceObservation: "irritated", makeupUse: "base", makeupRemoval: "face" });
+  extraCare({ concern: "none" });
+  expect(screen.queryByRole("article", { name: "바이오더마 센시비오 H2O" })).not.toBeInTheDocument();
+  expect(records()[0].routine).toEqual({});
 });
 
 test("main flow preserves skin-type survey, saves four basic categories, and reopens its simple result", () => {
