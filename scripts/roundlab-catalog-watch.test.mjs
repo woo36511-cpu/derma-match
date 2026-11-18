@@ -29,3 +29,16 @@ test("new listings, changed formula and missing formula do not erase recorded ve
   assert.equal(missing.products[key].versions.length, 2);
   await assert.rejects(watchRoundLab({ ...options(""), fetcher: async () => new Response("", { status: 503 }), previous: missing }));
 });
+
+
+test("official detail image changes are tracked without treating them as verified ingredients", async () => {
+  const image = n => `<img src="https://gi.esmplus.com/roundlab/DOKDO/DC150/detail-${n}.jpg">
+    <img src="https://gi.esmplus.com/roundlab/etc/guide.jpg"><img src="https://example.org/detail.jpg">`;
+  const first = await watchRoundLab(options(image(1)));
+  const after = await watchRoundLab({ ...options(image(2)), previous: first });
+  const product = after.products["lookup:roundlab:22"];
+  assert.equal(product.state, "needs_review");
+  assert.equal(product.versions.length, 0);
+  assert.equal(product.detailImages.length, 1);
+  assert.deepEqual(after.events, [{ id: "lookup:roundlab:22", type: "detail_images_changed" }]);
+});
