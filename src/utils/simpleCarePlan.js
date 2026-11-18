@@ -1,6 +1,6 @@
 import { buildAcneCareReview } from "./acneCareReview";
 import { pharmacyOptions } from "../data/targetedCareProducts";
-import { acneAreas, acneShapes, acneTraceShapes, inflamedAcneShapes, isSimpleCareComplete, cleanSimpleCareAnswers } from "../data/simpleCare";
+import { acneAreas, acneShapes, acneTraceShapes, inflamedAcneShapes, isSimpleCareComplete, cleanSimpleCareAnswers, getBreakoutForSeparateReview } from "../data/simpleCare";
 
 export const SIMPLE_CARE_VERSION = "type-and-extra-care-v4";
 const traceGuidance = {
@@ -41,6 +41,9 @@ function buildBaseSimpleCarePlan(input, options) {
   if (a.areaState === "concerning") return { ...result, blockNewBasics: true,
     title: "퍼지는 붉어짐·심한 붓기나 통증은 오늘 확인받으세요.",
     detail: "새 약이나 화장품을 시험하지 말고 당일 진료받으세요. 눈 주위 붓기·시야 변화가 있으면 응급실로 가세요." };
+  if (a.areaState === "product_stings" && !["irritated", "worse"].includes(a.response)) return { ...result, blockNewBasics: true,
+    title: "따가웠던 화장품부터 확인해요.",
+    detail: "불편했던 단계의 대체 후보가 있으면 아래에 표시해요. 편하게 쓰는 나머지 제품은 그대로 두고, 새 트러블용 기능성 제품은 함께 추가하지 않아요." };
   if (a.areaState === "irritated" || a.response === "irritated") return { ...result, blockNewBasics: true,
     title: "새 약을 더하지 말고 따가웠던 제품을 쉬어요.",
     detail: "새로 추가한 일반의약품이나 화장품이 자극을 일으켰다면 중단해요. 처방약은 기존 안내를 확인하고, 자극이 이어지거나 붓기·통증이 심해지면 진료받으세요.",
@@ -53,14 +56,33 @@ function buildBaseSimpleCarePlan(input, options) {
     productNote: a.medicine !== "none" ? "지금 쓰는 제품의 사용 부위를 확인해요. 자국이나 흉터에 새 기능성 제품을 겹쳐 바르지 않아요." : null,
   };
   if (a.medicine !== "none") {
-    const early = a.medicine === "patima" && a.duration === "few_days" && a.response === "same";
-    return { ...result, showFolliculitis: a.concern !== "acne" || a.shape === "unknown",
-      title: early ? "파티마겔을 며칠 쓴 것만으로 새 약으로 바꾸지 않아요." : "지금 쓰는 제품에 새 여드름약을 겹치지 않아요.",
-      detail: early ? "1~3일만으로 효과가 없다고 판단하기 어려워요. 양이나 횟수를 늘리지 말고, 설명서의 사용 부위를 확인해요. 새 따가움·벗겨짐·붓기가 생기면 중단해요."
-        : a.medicine === "unknown" ? "포장에서 제품명과 성분을 확인한 뒤 답을 바꿔요. 무엇을 쓰는지 모르는 상태에서 새 약을 추가하지 않아요."
-        : a.medicine === "prescribed" ? "처방받은 사용법을 우선하고 새 기능성 제품은 추가하지 않아요."
-        : "지금 쓰는 제품명·기간·반응을 기준으로 먼저 판단해요. 계속 나아지지 않거나 악화하면 같은 약을 반복해서 덧바르기보다 원인을 확인받으세요." };
+    const uncertain = resultWith => ({ ...result, ...resultWith, showFolliculitis: a.concern !== "acne" || a.shape === "unknown" });
+    if (a.medicine === "prescribed") return uncertain({ title: "처방받은 사용법과 재평가 계획을 우선해요.", detail: "처방약은 설문 결과만으로 교체하지 않아요." });
+    if (a.concern !== "acne" || !["closed", "blackhead", "red", "pus"].includes(a.shape) ||
+        ["unknown", "salicylic", "other"].includes(a.medicine) || a.response === "unknown" || a.areaState === "unknown")
+      return uncertain({ title: "현재 제품과 돌기 유형을 먼저 확인해요.", detail: "포장의 정확한 제품명과 성분, 바른 부위와 반응을 확인해야 유지나 교체를 판단할 수 있어요." });
+    const inflamed = ["red", "pus"].includes(a.shape);
+    const clearteenMismatch = a.medicine === "clearteen" && inflamed;
+    const acnonDifferentTarget = a.medicine === "acnon" && !inflamed && a.response === "same" && a.duration === "long";
+    if (clearteenMismatch || acnonDifferentTarget) {
+      const alternative = buildBaseSimpleCarePlan({ ...a, medicine: "none" }, options).pharmacy;
+      return { ...result, pharmacy: alternative, replacementOnly: Boolean(alternative),
+        title: clearteenMismatch ? "클리어틴은 붉거나 염증이 있는 부위에 사용하지 않아요." : "변화가 없는 면포는 다른 후보를 비교해요.",
+        detail: alternative ? "고른 모양과 범위에 맞는 교체 검토 후보예요. 기존 제품과 함께 바르는 방법이 아니에요. 새 제품의 적용 부위와 주의사항을 먼저 확인해요."
+          : "설문에서 확인한 범위와 자극 상태로는 다른 약을 고르기 어려워요. 새 제품을 겹쳐 바르지 않아요." };
+    }
+    if (a.response === "better") return { ...result, title: "자극 없이 좋아지고 있다면 현재 사용법을 유지해요.",
+      detail: "제품 설명서에 맞는 부위라면 사용량이나 횟수를 늘리지 말고, 새로 생기는 돌기와 피부 반응을 살펴봐요." };
+    if (a.medicine === "patima" && a.duration === "few_days") return { ...result,
+      title: "파티마겔을 며칠 쓴 것만으로 새 약으로 바꾸지 않아요.",
+      detail: "1~3일만으로 효과를 판단하기 어려워요. 제품 설명서의 중단 기준이 우선이며, 새 자극이 생기면 먼저 확인해요." };
+    if (a.medicine === "acnon" || a.medicine === "clearteen") return { ...result,
+      title: "개선이 없다면 제품별 중단 기준을 확인해요.",
+      detail: "개별 약의 허가사항을 먼저 확인해요. 변화가 없다고 양을 늘리거나 같은 부위에 다른 약을 겹쳐 바르지 않아요." };
+    return { ...result, title: a.duration === "long" ? "변화가 없다면 현재 관리 계획을 다시 확인해요." : "사용 기간과 변화를 먼저 확인해요.",
+      detail: "같은 부위의 새 돌기 수와 크기를 비교해요. 사용 기간만으로 실패를 단정하거나 다른 약으로 자동 교체하지 않아요." };
   }
+
   if (a.breakoutExtent && a.breakoutExtent !== "local") return { ...result,
     showFolliculitis: a.concern !== "acne" || a.shape === "unknown",
     title: a.breakoutExtent === "unknown" ? "범위를 확인한 뒤 다음 관리를 골라요." : "돌기가 많은 곳에는 국소용 후보를 넓게 바르지 않아요.",
@@ -94,5 +116,28 @@ function buildBaseSimpleCarePlan(input, options) {
 
 export function buildSimpleCarePlan(input, options) {
   const plan = buildBaseSimpleCarePlan(input, options);
-  return { ...plan, careReview: buildAcneCareReview(plan) };
+  const a = plan.answers;
+  const breakoutShape = getBreakoutForSeparateReview(a);
+  let separateBreakout = null;
+  if (plan.complete && breakoutShape && a.areaState !== "concerning") {
+    const separateComfortable = a.breakoutSiteState === "separate_comfortable";
+    const siteState = separateComfortable ? "comfortable" : a.areaState;
+    const otherInflamed = a.shapes?.filter(shape => inflamedAcneShapes.includes(shape) && shape !== breakoutShape) ?? [];
+    const specificAreas = ["forehead", "cheeks", "nose", "chin", "other"];
+    const breakoutArea = a.locations?.[breakoutShape];
+    const overlapsInflamed = ["closed", "blackhead"].includes(breakoutShape) && otherInflamed.some(shape =>
+      !specificAreas.includes(breakoutArea) || !specificAreas.includes(a.locations?.[shape]) || a.locations[shape] === breakoutArea);
+    const canAssess = !overlapsInflamed && ["comfortable", "dry", "bump_pain"].includes(siteState) &&
+      !["irritated", "worse"].includes(a.response) && a.breakoutExtent === "local";
+    const evaluated = canAssess ? buildBaseSimpleCarePlan({ ...a, shapes: [breakoutShape], shape: breakoutShape,
+      areaState: siteState }, options) : null;
+    separateBreakout = { shape: breakoutShape, area: acneAreas.find(item => item.value === a.locations?.[breakoutShape])?.label,
+      title: evaluated?.title ?? "올라온 트러블은 따로 살펴봐요.",
+      detail: evaluated?.detail ?? (a.breakoutExtent === "multiple" || a.breakoutExtent === "crowded"
+        ? "한두 곳에 쓰는 제품 후보를 돌기가 많거나 넓은 부위에 적용하지 않아요. 편하게 쓰는 기본 제품을 유지하고, 돌기가 퍼지거나 통증이 늘어나는지 확인해요."
+        : overlapsInflamed ? "붉은 돌기와 막힌 피지의 위치가 겹치거나 구분되지 않아 각질 제품 후보는 표시하지 않아요."
+        : "트러블 부위의 자극과 범위를 확인하기 전에는 새 약국 제품을 표시하지 않아요."),
+      pharmacy: evaluated?.pharmacy ?? null, replacementOnly: evaluated?.replacementOnly ?? false, separateComfortable };
+  }
+  return { ...plan, separateBreakout, careReview: buildAcneCareReview(plan) };
 }

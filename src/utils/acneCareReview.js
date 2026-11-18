@@ -13,7 +13,7 @@ export function buildAcneCareReview(plan) {
   const a = plan.answers;
   if (!plan.complete || a.concern !== "acne" || (acneTraceShapes.includes(a.shape) && !a.shapes?.includes("deep"))) return null;
   const blocked = plan.blockNewBasics;
-  const medicine = a.medicine === "none" && plan.pharmacy ? ["closed", "blackhead"].includes(a.shape) ? "salicylic" : "acnon" : a.medicine;
+  const medicine = a.medicine === "none" && plan.pharmacy ? ["closed", "blackhead"].includes(a.shape) ? "clearteen" : "acnon" : a.medicine;
   const isComedone = ["closed", "blackhead"].includes(a.shape);
   const result = {
     version: ACNE_REVIEW_VERSION, clinicalOutcomeValidated: false,
@@ -26,7 +26,7 @@ export function buildAcneCareReview(plan) {
     sources: [acneEvidenceSources.timing],
   };
   if (blocked) return { ...result, effectCheck: "먼저 자극·악화 상태를 확인해요. 새 약을 추가하거나 사용량을 늘려 효과를 시험하지 않아요." };
-  if (medicine === "salicylic") return { ...result, effectCheck: "클리어틴은 허가사항상 수회 사용해도 개선이 없으면 중단하고 확인하도록 되어 있어요. 일반적인 여드름 관리 기간을 이유로 계속 사용하지 않아요.",
+  if (medicine === "clearteen" && !plan.replacementOnly) return { ...result, effectCheck: "클리어틴은 허가사항상 수회 사용해도 개선이 없으면 중단하고 확인하도록 되어 있어요. 일반적인 여드름 관리 기간을 이유로 계속 사용하지 않아요.",
     evidence: "살리실산은 면포 관리에 사용되는 성분이며 지침에서는 조건부 권고예요. 국내 클리어틴의 감염·염증·발적·자극 부위 사용 금지 등 허가사항이 우선해요.", sources: [acneEvidenceSources.salicylic, acneEvidenceSources.guideline] };
   if (medicine === "acnon") return { ...result, effectCheck: "애크논은 허가사항상 개선이 나타나지 않으면 사용을 중단하고 확인하도록 되어 있어요. 사용량·범위를 늘리거나 다른 약을 겹쳐 해결하지 않아요.",
     evidence: "애크논은 국내에서 여드름·뾰루지 용도로 허가된 제품이에요. 벤조일퍼옥사이드 등에 대한 지침 근거를 애크논의 효과나 우월성 근거로 대신 사용하지 않아요.", sources: [acneEvidenceSources.acnon, acneEvidenceSources.acnonLabel] };

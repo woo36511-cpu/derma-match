@@ -64,3 +64,29 @@ test("four basic categories stay free of exfoliants and targeted treatments acro
     }
   }
 });
+
+test("reviewing a current product distinguishes improvement, a use mismatch, and an unknown product", () => {
+  const base = { concern: "acne", shape: "red", areaState: "comfortable", breakoutExtent: "local", duration: "few_weeks" };
+  const improving = buildSimpleCarePlan({ ...base, medicine: "patima", response: "better" });
+  expect(improving.title).toContain("유지");
+  expect(improving.pharmacy).toBeNull();
+  const mismatch = buildSimpleCarePlan({ ...base, medicine: "clearteen", response: "same" });
+  expect(mismatch).toMatchObject({ replacementOnly: true, pharmacy: { name: "애크논크림" } });
+  expect(buildSimpleCarePlan({ ...base, medicine: "clearteen", response: "same", breakoutExtent: "multiple" }).pharmacy).toBeNull();
+  expect(buildSimpleCarePlan({ ...base, medicine: "salicylic", response: "same" }).pharmacy).toBeNull();
+});
+
+test.each(["dark_mark", "red_mark", "indented_scar", "raised_scar"])("evaluates a local active breakout independently of %s", trace => {
+  const input = { ...acne, shapes: ["pus", trace], primaryShape: trace, areaState: "irritated" };
+  for (const state of ["overlap", "unknown", undefined]) {
+    expect(buildSimpleCarePlan({ ...input, breakoutSiteState: state }).separateBreakout?.pharmacy ?? null).toBeNull();
+  }
+  const isolated = { ...input, breakoutSiteState: "separate_comfortable" };
+  expect(buildSimpleCarePlan(isolated)).toMatchObject({ blockNewBasics: true, pharmacy: null, separateBreakout: { shape: "pus", pharmacy: { name: "애크논크림" } } });
+  for (const extent of ["crowded", "multiple", "unknown"]) {
+    expect(buildSimpleCarePlan({ ...isolated, breakoutExtent: extent }).separateBreakout.pharmacy).toBeNull();
+  }
+  expect(buildSimpleCarePlan({ ...isolated, medicine: "prescribed", duration: "long", response: "same" }).separateBreakout.pharmacy).toBeNull();
+  expect(buildSimpleCarePlan({ ...isolated, medicine: "patima", duration: "long", response: "worse" }).separateBreakout.pharmacy).toBeNull();
+  expect(buildSimpleCarePlan({ ...isolated, areaState: "concerning" }).separateBreakout).toBeNull();
+});
