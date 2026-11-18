@@ -27,7 +27,7 @@ export function ConcernProductOptions({ plan }) {
       <div className="flex items-center gap-3">
         {pharmacy.image && <img src={pharmacy.image} alt={`${pharmacy.name} 제품 포장`} width="88" height="88" className="h-[88px] w-[88px] shrink-0 rounded-lg bg-white object-contain p-1" />}
         <div>
-          <p className="text-xs font-semibold text-emerald-800">약국 일반의약품 후보</p>
+          <p className="text-xs font-semibold text-emerald-800">{plan.replacementOnly ? "교체 검토용 일반의약품 후보" : "약국 일반의약품 후보"}</p>
           <h3 className="font-semibold">{pharmacy.name}</h3>
           <p className="mt-1 text-sm">{pharmacy.indication}</p>
         </div>

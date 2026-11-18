@@ -664,3 +664,24 @@ test("a first-time visitor can keep an unnamed serum without using product searc
   expect(records()[0].routine.serum).toBeNull();
   expect(records()[0].routinePreferences.serum).toBe("keep");
 });
+
+test("product-specific stinging shows a same-stage basic alternative and no new acne medicine", () => {
+  render(<App />);
+  baseSurvey();
+  extraCare({ concern: "acne", shape: "red", areaState: "product_stings", stingingSlot: "cream", medicine: "none" });
+  const replacement = screen.getByRole("region", { name: "불편했던 기본 제품 대안" });
+  expect(within(replacement).getByText(/이 단계 하나만 비교해요/)).toBeInTheDocument();
+  expect(screen.queryByRole("region", { name: "일반의약품 후보" })).not.toBeInTheDocument();
+});
+
+test("the scar-first result shows the separate breakout candidate and a basic alternative for the irritated routine", () => {
+  render(<App />);
+  baseSurvey();
+  extraCare({ concern: "acne", shapes: ["pus", "indented_scar", "raised_scar"], primaryShape: "indented_scar",
+    locations: { pus: "chin", indented_scar: "cheeks", raised_scar: "cheeks" }, areaState: "irritated",
+    breakoutSiteState: "separate_comfortable", medicine: "none" });
+  const active = screen.getByRole("region", { name: "지금 올라온 트러블 관리" });
+  expect(within(active).getByRole("heading", { name: "애크논크림" })).toBeInTheDocument();
+  expect(screen.getByRole("region", { name: "불편했던 기본 제품 대안" })).toBeInTheDocument();
+  expect(screen.getByRole("region", { name: "함께 선택한 고민" })).toHaveTextContent("솟은 흉터처럼 보여요");
+});

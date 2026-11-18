@@ -38,7 +38,15 @@ export const breakoutExtentOptions = [
   option("unknown", "범위를 잘 모르겠어요"),
 ];
 
-export function getSimpleCareQuestions(answers = {}, { legacyExtent = false } = {}) {
+export function getBreakoutForSeparateReview(answers = {}) {
+  const shapes = getSelectedAcneShapes(answers);
+  if (answers.concern !== "acne" || !shapes.some(shape => acneTraceShapes.includes(shape)) || shapes.includes("deep")) return null;
+  const active = ["pus", "red", "closed", "blackhead"].filter(shape => shapes.includes(shape));
+  if (acneTraceShapes.includes(answers.primaryShape)) return active[0] ?? null;
+  return ["product_stings", "irritated"].includes(answers.areaState) && active.includes(answers.primaryShape) ? answers.primaryShape : null;
+}
+
+export function getSimpleCareQuestions(answers = {}, { legacyExtent = false, knownReactionProduct = false } = {}) {
   const qs = [{ id: "concern", q: "기본 루틴 외에 추가로 관리할 고민이 있나요?", options: simpleConcernOptions }];
   if (!matches(simpleConcernOptions, answers.concern) || answers.concern === "none") return qs;
   const shapes = answers.concern === "acne" ? getSelectedAcneShapes(answers) : [];
@@ -55,22 +63,41 @@ export function getSimpleCareQuestions(answers = {}, { legacyExtent = false } = 
     hint: multiple ? "고른 부위 중 하나라도 붉은기가 빠르게 퍼지거나 붓기·통증이 심하면 그 상태를 골라요." : undefined, options: [
     option("comfortable", "심한 통증·따가움은 없어요"),
     option("dry", "조금 건조하지만 따갑거나 벗겨지지는 않아요"),
-    option("irritated", "평소 제품도 따갑거나 붉고 벗겨져요"),
+    option("product_stings", "특정 화장품을 바를 때만 따갑거나 붉어져요"),
+    option("bump_pain", "뾰루지 자체가 아프고 화장품을 바를 때는 괜찮아요"),
+    option("irritated", "여러 제품에서 따갑거나 피부가 벗겨져요"),
     option("concerning", "붉은기가 빠르게 퍼지거나 붓기·통증이 심해요"),
     option("unknown", "잘 모르겠어요"),
   ] });
   if (answers.areaState === "concerning") return qs;
+  if (answers.areaState === "product_stings" && !knownReactionProduct) qs.push({
+    id: "stingingSlot", q: "어떤 화장품을 바를 때 따가웠나요?",
+    hint: "제품을 정확히 확인하지 못해도 어떤 단계가 불편했는지 먼저 골라요.",
+    options: [option("cleanser", "세안제·클렌징"), option("toner", "토너·패드·미스트"),
+      option("serum", "세럼·앰플·에센스"), option("cream", "로션·크림·올인원"), option("sunscreen", "선크림"), option("unknown", "어떤 제품인지 잘 모르겠어요")],
+  });
   const primary = shapes.length === 1 ? shapes[0] : answers.primaryShape;
-  if (!legacyExtent && !acneTraceShapes.includes(primary)) qs.push({
+  const separateBreakout = getBreakoutForSeparateReview(answers);
+  if (separateBreakout && ["product_stings", "irritated"].includes(answers.areaState)) qs.push({
+    id: "breakoutSiteState", q: "지금 올라온 트러블이 있는 곳도 따갑거나 벗겨져요?",
+    hint: `‘${acneShapes.find(item => item.value === separateBreakout).label}’가 있는 곳을 기준으로 답해요.`,
+    options: [
+      option("separate_comfortable", "자극이 있는 곳과 완전히 달라요. 트러블 부위는 따갑거나 벗겨지지 않아요"),
+      option("overlap", "같은 곳이거나 트러블이 있는 곳도 따갑거나 벗겨져요"),
+      option("unknown", "같은 곳인지, 자극이 있는지 잘 모르겠어요"),
+    ],
+  });
+  if (!legacyExtent && (!acneTraceShapes.includes(primary) || separateBreakout)) qs.push({
     id: "breakoutExtent", q: "지금 올라온 돌기는 어느 정도 범위에 있나요?",
-    hint: multiple ? "먼저 살펴보기로 한 고민만 기준으로 답해요. 평평한 자국이나 흉터는 빼고 봐요." : "평평한 자국은 빼고, 지금 보이는 돌기나 막힌 피지를 기준으로 답해요.",
+    hint: separateBreakout ? `흉터나 평평한 자국은 빼고, ‘${acneShapes.find(item => item.value === separateBreakout).label}’가 보이는 범위만 답해요.` : multiple ? "먼저 살펴보기로 한 고민만 기준으로 답해요. 평평한 자국이나 흉터는 빼고 봐요." : "평평한 자국은 빼고, 지금 보이는 돌기나 막힌 피지를 기준으로 답해요.",
     options: breakoutExtentOptions,
   });
-  qs.push({ id: "medicine", q: multiple ? "고른 부위에 이미 바르는 약이나 기능성 제품이 있나요?" : "그 부위에 이미 바르는 약이나 기능성 제품이 있나요?", options: [
+  qs.push({ id: "medicine", q: separateBreakout ? "지금 올라온 트러블 부위에 이미 바르는 약이나 기능성 제품이 있나요?" : multiple ? "고른 부위에 이미 바르는 약이나 기능성 제품이 있나요?" : "그 부위에 이미 바르는 약이나 기능성 제품이 있나요?", options: [
     option("none", "없어요. 순한 세안제·보습제 정도만 써요"),
     option("patima", "파티마겔 같은 벤조일퍼옥사이드 제품"),
     option("acnon", "애크논크림"),
-    option("salicylic", "클리어틴·AHA·BHA 같은 각질 제품"),
+    option("clearteen", "클리어틴외용액 2%"),
+    option("salicylic", "AHA·BHA 화장품 또는 기타 각질 제품"),
     option("prescribed", "처방받은 약"),
     option("other", "레티놀이나 그 밖의 기능성 제품"),
     option("unknown", "무슨 제품인지 잘 모르겠어요"),
