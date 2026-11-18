@@ -179,8 +179,9 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   const intake = readRoutineSurveyContext(surveyAnswers?.routineIntake);
   const [legacySerumPreference, setSerumPreference] = useState(() => initialRecord?.routinePreferences?.serum ?? priorSerumPreference ?? "");
   const serumPreference = intake ? intake.serumPreference ?? "" : legacySerumPreference;
-  const activeRoutineEntries = useMemo(() => intake && intake.use !== "yes" ? emptyRoutine :
-    getEntriesForSurveyScope(currentRoutineEntries, intake?.routineScope), [currentRoutineEntries, intake?.use, intake?.routineScope]);
+  const intakeUse = intake?.use, routineScope = intake?.routineScope;
+  const activeRoutineEntries = useMemo(() => intakeUse && intakeUse !== "yes" ? emptyRoutine :
+    getEntriesForSurveyScope(currentRoutineEntries, routineScope), [currentRoutineEntries, intakeUse, routineScope]);
   const currentRoutine = useMemo(() => getCurrentRoutineContext(activeRoutineEntries), [activeRoutineEntries]);
   const serumStatus = getSerumRoutineSummary(activeRoutineEntries, serumPreference === "keep");
   const skipBasicSerum = (serumPreference !== "compare" && serumStatus.skipBasicSerum) || serumStatus.hasIrritation;
