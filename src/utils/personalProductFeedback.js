@@ -90,3 +90,21 @@ export function getPersonalCosmeticFit(product, level, context, now = Date.now()
   now);
   return direction === 1 ? 0.5 : direction === -1 ? -0.75 : 0;
 }
+
+
+// Describe only records that match the same scoring checks used for the next recommendation.
+export function getPersonalRoutineActions({ candidates = [], current = [], level, context, now = Date.now() }) {
+  const actions = [];
+  const owned = new Set(current.map(product => product.id));
+  for (const product of new Map([...current, ...candidates].filter(Boolean).map(product => [product.id, product])).values()) {
+    const inRoutine = owned.has(product.id);
+    if (avoidPersonalProduct(product, context.personalProductFeedback)) {
+      if (inRoutine) actions.push({ product, action: "review_irritation" });
+      continue;
+    }
+    const fit = getPersonalBasicFit(product, level, context, now);
+    if (fit > 0) actions.push({ product, action: inRoutine ? "keep_if_comfortable" : "previous_improvement" });
+    if (fit < 0) actions.push({ product, action: "check_remaining_concern" });
+  }
+  return actions;
+}

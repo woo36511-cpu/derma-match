@@ -1,7 +1,7 @@
 import { getProductById } from "./productCatalog";
 import { buildCosmeticAddOnPlan } from "./cosmeticAddOnPlan";
 import { getRankedProductCandidates } from "./routineRecommendation";
-import { collectPersonalProductFeedback, getPersonalCosmeticFit } from "./personalProductFeedback";
+import { collectPersonalProductFeedback, getPersonalCosmeticFit, getPersonalRoutineActions } from "./personalProductFeedback";
 
 const startedAt = "2026-10-12T00:00:00Z";
 const now = new Date("2026-11-12T00:00:00Z");
@@ -68,4 +68,18 @@ test("a cosmetic response is scoped to its goal and known matching area", () => 
   expect(fitScore()).toBeGreaterThan(0);
   expect(fitScore({ locations: { blackhead: "chin" } })).toBe(0);
   expect(fitScore({ route: "tone" })).toBe(0);
+});
+
+test("personal action messages distinguish comparable improvement, no improvement, and recorded irritation", () => {
+  const product = getProductById(5);
+  const action = (record, { current = true, observationKinds = ["serum"] } = {}) => getPersonalRoutineActions({
+    current: current ? [product] : [], candidates: [product], level: product.hydrationLevel, now: now.getTime(),
+    context: { isSensitive: false, observationKinds, personalProductFeedback: collectPersonalProductFeedback([record]) },
+  }).map(result => result.action);
+  expect(action(makeRecord(product))).toEqual(["keep_if_comfortable"]);
+  expect(action(makeRecord(product), { current: false })).toEqual(["previous_improvement"]);
+  expect(action(makeRecord(product, {}, { days: 5 }))).toEqual(["check_remaining_concern"]);
+  expect(action(makeRecord(product, {}, { otherChanges: "yes" }))).toEqual([]);
+  expect(action(makeRecord(product), { observationKinds: [] })).toEqual([]);
+  expect(action(makeRecord(product, { earlyCheck: { used: "recommended", reaction: "irritation" } }))).toEqual(["review_irritation"]);
 });
