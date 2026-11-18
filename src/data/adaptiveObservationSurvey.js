@@ -44,8 +44,27 @@ export const adaptiveSupportQuestions = [
   q("contextDryTiming", "방금 고른 부위의 당김은 언제 느껴지나요?", "다른 부위나 다른 날의 느낌과 나누어 답해요.", timing),
   q("contextReturn", "보습 후 편안해진 같은 부위가 낮에 다시 당기나요?", "보습 후 계속 편안한지, 시간이 지나 다시 당기는지 나눠봐요.", [["yes", "시간이 지나면 다시 당겨요"], ["no", "그 뒤에도 대체로 편안해요"], unknown]),
 ];
-const questionsById = Object.fromEntries([...observationQuestions, ...adaptiveSupportQuestions].map(item => [item.id, item]));
-export const adaptiveObservationQuestions = observationQuestions.map(question => ({ ...question }));
+const extraOptions = {
+  washResponse: [
+    ["tight_red", "당기고 붉어지지만 따갑지는 않아요"],
+    ["red_only", "붉어지지만 당기거나 따갑지는 않아요"],
+    ["sting_only", "붉어지지 않아도 따갑거나 화끈거려요"],
+  ],
+  moisturizerUse: [["heavy_tight", "겉은 무겁거나 끈적이는데 속당김이 남아요"]],
+  observedOil: [["cheek_oil", "이마·코보다 볼에 기름기가 더 느껴져요"]],
+  drynessTiming: [["delayed_dry", "세안 직후는 괜찮지만 시간이 지나면 당겨요"]],
+  skinChange: [["weather", "더운 날과 건조한 날의 상태가 달라요"]],
+};
+export const adaptiveObservationQuestions = observationQuestions.map(question => ({
+  ...question,
+  options: [...question.options.filter(option => option.value !== "unknown"),
+    ...(extraOptions[question.id] ?? []).map(([value, label]) => ({ value, label })),
+    ...question.options.filter(option => option.value === "unknown")],
+}));
+const washRednessQuestion = q("washRednessDuration", "세안 직후의 붉은기는 얼마나 남나요?", "평소 경험을 기준으로 답해요.", [
+  ["brief", "잠깐 붉어졌다가 가라앉아요"], ["lasting", "오래 남거나 반복될수록 심해져요"], unknown,
+]);
+const questionsById = Object.fromEntries([...adaptiveObservationQuestions, ...adaptiveSupportQuestions, washRednessQuestion].map(item => [item.id, item]));
 export function adaptiveValue(answers, id) {
   return questionsById[id]?.options.find(option => option.label === answers?.[id])?.value ?? "unknown";
 }
@@ -55,6 +74,13 @@ const hasArea = value => ["cheeks", "tzone", "whole"].includes(value);
 export function resolveAdaptiveBase(answers = {}) {
   const v = id => adaptiveValue(answers, id);
   const result = Object.fromEntries(observationQuestions.map(item => [item.id, v(item.id)]));
+  const wash = result.washResponse;
+  if (["tight_red", "red_only"].includes(wash)) result.washResponse = wash === "tight_red" ? "tight" : "comfortable";
+  if (wash === "sting_only") result.washResponse = "stings";
+  if (result.moisturizerUse === "heavy_tight") result.moisturizerUse = "persistent";
+  if (result.observedOil === "cheek_oil") result.observedOil = "unknown";
+  if (result.drynessTiming === "delayed_dry") result.drynessTiming = "day";
+  if (result.skinChange === "weather") result.skinChange = "varies";
   if (readRoutineSurveyContext(answers.routineIntake)?.use === "no") result.moisturizerUse = "none";
   if (result.skinChange === "unknown") result.skinChange = v("changeAnchor");
   if (["unknown", "coating"].includes(result.observedOil)) result.observedOil = v("oilTouch");
@@ -86,7 +112,7 @@ function resolveAdaptiveDryness(answers = {}) {
 }
 
 const routineOilQuestionApplies = (context, oil) => hasPossibleCoating(context) && ["whole", "tzone"].includes(oil);
-const routineDryQuestionApplies = (context, base) => hasMoistureSupport(context) && base.drynessArea === "none" && base.moisturizerUse !== "stings";
+const routineDryQuestionApplies = (context, base) => (hasMoistureSupport(context) || context?.cream?.allInOne) && base.drynessArea === "none" && base.moisturizerUse !== "stings";
 
 export function resolveAdaptiveObservations(answers = {}) {
   const base = resolveAdaptiveBase(answers);
@@ -109,7 +135,8 @@ export function getAdaptiveObservationQuestions(answers = {}) {
   for (const core of adaptiveObservationQuestions) {
     if (core.id === "drynessTiming" && !hasArea(base.drynessArea)) continue;
     if (core.id === "moisturizerUse" && routine?.use === "no") continue;
-    result.push(core);
+    result.push(core.id === "moisturizerUse" && routine?.cream?.allInOne
+      ? { ...core, question: "지금 쓰는 올인원 보습제를 바르면 어떤가요?" } : core);
     if (!answers[core.id]) continue;
     if (core.id === "skinChange") {
       if (v(core.id) === "unknown") add("changeAnchor");
@@ -128,6 +155,7 @@ export function getAdaptiveObservationQuestions(answers = {}) {
       add("routineDryTiming");
       if (["wash", "day", "persistent"].includes(v("routineDryTiming"))) add("routineDryArea");
     }
+    if (core.id === "washResponse" && ["tight_red", "red_only"].includes(v(core.id))) add("washRednessDuration");
     if (core.id === "washResponse" && v(core.id) === "unknown") add("washSensation");
     if (core.id === "reactionPattern" && v(core.id) === "unknown") add("reactionRecall");
     if (core.id === "surfaceObservation" && v(core.id) === "unknown") { add("surfaceCheck"); if (answers.surfaceCheck && v("surfaceCheck") === "unknown") add("surfaceComfort"); }

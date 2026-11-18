@@ -27,11 +27,12 @@ function StandaloneRoutineLookup(props) {
 
 function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onStartSurvey, routine, personalProductFeedback }) {
   const [query, setQuery] = useState("");
+  const [allInOneOnly, setAllInOneOnly] = useState(false);
   const [manualCategory, setManualCategory] = useState("");
   const reviewRef = useRef(null);
   const isFull = routine.entries.length >= CURRENT_ROUTINE_LIMIT;
   const manual = makeManualRoutineEntry(query, manualCategory);
-  const { matches, total } = searchRoutineProducts(query);
+  const { matches, total } = searchRoutineProducts(query, 12, allInOneOnly);
   const started = query.normalize("NFKC").replace(/[^\p{L}\p{N}]/gu, "").length >= 2;
   const signedIn = ownerKey.startsWith("account:");
   const exactReviewed = manual && getReviewedRoutineProduct(manual);
@@ -52,8 +53,9 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
       <input id="routine-lookup-input" type="search" maxLength={100} value={query} onChange={event => setQuery(event.target.value)}
         placeholder="예: 독도 클렌징 밀크" className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-700" />
     </div>
+    <button type="button" aria-pressed={allInOneOnly} onClick={() => setAllInOneOnly(value => !value)} className={`care-secondary ${allInOneOnly ? "border-forest-700 bg-forest-50" : ""}`}>올인원</button>
     <p role="status" className="text-sm text-slate-600">
-      {!started ? "두 글자 이상 입력해요." : total === 0
+      {!started && !allInOneOnly ? "두 글자 이상 입력해요." : total === 0
         ? "일치하는 제품이 없어요. 이름을 직접 담거나 공식 자료를 찾아 검수를 요청할 수 있어요."
         : `${total}개 찾았어요.${total > matches.length ? ` 앞의 ${matches.length}개만 표시해요. 제품명을 더 입력해보세요.` : ""}`}
     </p>
@@ -65,7 +67,7 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
         return <li key={product.id} className="flex items-start gap-3 rounded-2xl border border-slate-200 p-3">
         <LookupImage key={product.image} src={product.image} />
         <div className="min-w-0">
-          <p className="text-xs font-medium text-slate-600">{routineLookupCategories[product.category]}{product.volume && ` · ${product.volume}`}</p>
+          <p className="text-xs font-medium text-slate-600">{routineLookupCategories[product.category]}{product.allInOne && " · 올인원"}{product.volume && ` · ${product.volume}`}</p>
           <p className="mt-1 break-keep text-sm font-semibold text-slate-950">{product.name}</p>
           <p className="mt-1 text-xs text-slate-600">{product.formulaVerified ? "국내 전성분 확인됨" : product.listingOnly ? "국내 공식 목록 확인 · 전성분 검수 전" : "전성분 검수 전"}</p>
           {reviewed && <p className="mt-1 text-xs text-slate-700">{reviewed.label}</p>}

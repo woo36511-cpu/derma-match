@@ -83,7 +83,11 @@ for (const product of expansion.products) {
   }
   additional.push({ ...product, formulaVerified: false, listingOnly: true });
 }
-const entries = [...base, ...additional];
+const entries = [...base, ...additional, {
+  id: "lookup:iope:37", name: "아이오페 맨 올데이 퍼펙트 올인원", brand: "아이오페",
+  brandAlias: "IOPE", category: "moisturizer", volume: "120ml", listingOnly: true,
+  officialUrl: "https://iope.com/product/detail.html?product_no=37",
+}].map(product => ({ ...product, allInOne: /올인원|allinone/.test(normalize(product.name)) }));
 const entriesById = new Map(entries.map(product => [product.id, product]));
 
 const index = entries.map(product => {
@@ -101,11 +105,17 @@ export function exactRoutineLookupProducts(name, category) {
   return index.filter(item => item.product.category === category && item.names.includes(key)).map(item => item.product);
 }
 
-export function searchRoutineProducts(query, limit = 12) {
+export function searchRoutineProducts(query, limit = 12, allInOneOnly = false) {
   const normalized = normalize(query);
+  if (allInOneOnly && !normalized) {
+    const matches = entries.filter(product => product.allInOne);
+    return { total: matches.length, matches: matches.slice(0, limit) };
+  }
   if (normalized.length < 2) return { total: 0, matches: [] };
   const tokens = query.normalize("NFKC").split(/\s+/).map(normalize).filter(Boolean);
   const ranked = index.flatMap(({ product, names, description }) => {
+    if (allInOneOnly && !product.allInOne) return [];
+    if (product.allInOne && ["올인원", "allinone"].includes(normalized)) return [{ product, nameRank: 2 }];
     const nameRank = Math.max(...names.map(name => name === normalized ? 3 : name.startsWith(normalized) ? 2 : name.includes(normalized) ? 1 : 0));
     if (!nameRank && !tokens.every(token => description.includes(token))) return [];
     return [{ product, nameRank }];

@@ -13,6 +13,7 @@ export function readRoutineSurveyContext(value) {
     if (!row) continue;
     const bands = slot === "cleanser" ? ["comfort", "other", "unknown"] : ["light", "balanced", "higher_hydration", "unknown"];
     context[slot] = { band: isOneOf(row.band, bands) ? row.band : "unknown",
+      ...(slot !== "cleanser" && row.allInOne === true && { allInOne: true }),
       ...(row.fullerFinish === true && { fullerFinish: true }),
       ...(slot !== "cleanser" && row.listedHumectants === true && { listedHumectants: true }),
       reaction: isOneOf(row.reaction, ["heavy", "wash_tight", "moisture_tight"]) ? row.reaction : null };

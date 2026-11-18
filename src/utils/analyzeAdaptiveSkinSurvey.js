@@ -18,7 +18,8 @@ export function analyzeAdaptiveSkinSurvey(answers = {}) {
   const washOnly = Boolean(routine?.cleanser && resolved.washResponse === "tight" &&
     (resolved.drynessTiming === "wash" || resolved.drynessArea === "none"));
   const oilKnown = oil !== null, dryKnown = dry !== null;
-  const currentIrritation = profile.observationAssessment.currentIrritation || (adaptiveValue(answers, "surfaceObservation") === "unknown" && adaptiveValue(answers, "surfaceCheck") === "unknown" && adaptiveValue(answers, "surfaceComfort") === "stings");
+  const lastingWashRedness = adaptiveValue(answers, "washRednessDuration") === "lasting" && ["tight_red", "red_only"].includes(adaptiveValue(answers, "washResponse"));
+  const currentIrritation = lastingWashRedness || profile.observationAssessment.currentIrritation || (adaptiveValue(answers, "surfaceObservation") === "unknown" && adaptiveValue(answers, "surfaceCheck") === "unknown" && adaptiveValue(answers, "surfaceComfort") === "stings");
   const surfaceKnown = ["normal", "flakes"].includes(resolved.surfaceObservation);
   const typeComplete = oilKnown && dryKnown;
   const canRecommendBasics = !currentIrritation && surfaceKnown && (oilKnown || dryKnown);
@@ -41,7 +42,10 @@ export function analyzeAdaptiveSkinSurvey(answers = {}) {
     evidence.push("화장품을 바른 직후의 광택과 나중의 기름기를 나눠 봤어요.");
   if (hasMoistureSupport(routine) && refinements.some(item => item.questionId === "routineDryTiming") && adaptiveValue(answers, "routineDryTiming") !== "unknown")
     evidence.push("현재 보습 제품을 바르기 전과 바른 뒤의 당김을 나눠 봤어요.");
-  if (currentIrritation && !profile.observationAssessment.currentIrritation) evidence.push("현재 따갑거나 화끈거리는 느낌 있음");
+  if (lastingWashRedness) evidence.push("세안 뒤 붉은기가 오래 남거나 심해짐");
+  else if (currentIrritation && !profile.observationAssessment.currentIrritation) evidence.push("현재 따갑거나 화끈거리는 느낌 있음");
+  if (adaptiveValue(answers, "moisturizerUse") === "heavy_tight") evidence.push("보습제는 무겁지만 당김도 남음");
+  if (adaptiveValue(answers, "observedOil") === "cheek_oil") evidence.push("볼의 유분이 이마·코보다 두드러짐");
   const context = adaptiveValue(answers, "drynessContext");
   if (needsAdaptiveContext(resolveAdaptiveBase(answers)) && context !== "unknown") evidence.push(context === "area" ? "서로 다른 부위의 응답을 나눠 확인함" : context === "days" ? "서로 다른 날의 응답을 현재 상태와 나눠 확인함" : "보습 전후·현재 느낌을 다시 확인함");
   const careActions = currentIrritation
@@ -68,7 +72,7 @@ export function analyzeAdaptiveSkinSurvey(answers = {}) {
     skinType, hydrationLevel, reasons: evidence, solution: recommendationReason,
     observationAssessment: { ...profile.observationAssessment, status, canRecommendBasics, canRecommendActives: canRecommendBasics && typeComplete && !recentChange,
       typeComplete, currentIrritation, recentChange, evidence, uncertainties, nextObservations, careActions, recommendationReason, refinements,
-      resolvedObservations: { ...resolved, ...(washOnly && { washOnly: true, washProductBand: routine.cleanser.band }) },
+      resolvedObservations: { ...resolved, ...(adaptiveValue(answers, "moisturizerUse") === "heavy_tight" && { moisturizerHeavyAndTight: true }), ...(washOnly && { washOnly: true, washProductBand: routine.cleanser.band }) },
       ...(environmentContext ? { environmentContext } : {}), resolvedWithFollowUps: refinements.length > 0 },
   };
 }
