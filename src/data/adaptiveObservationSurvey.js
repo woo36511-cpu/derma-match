@@ -2,7 +2,7 @@ import { changedProductOptions, productChangeQuestions, reactionProductQuestion 
 import { getRoutineLookupProduct } from "../utils/routineLookup";
 import { observationQuestions } from "./observationSurvey";
 import { readRoutineSurveyContext, hasMoistureSupport, hasPossibleCoating } from "./routineSurveyContext";
-import { pricePreferenceQuestion } from "./pricePreference";
+import { pricePreferenceQuestion, readPricePreference } from "./pricePreference";
 import { getMakeupCleansingQuestions } from "./makeupCleansingSurvey";
 
 export const ADAPTIVE_SURVEY_VERSION = "adaptive-skin-v3";
@@ -185,7 +185,9 @@ export function cleanAdaptiveObservationAnswers(answers = {}) {
   const context = readRoutineSurveyContext(answers.routineIntake);
   const cleaned = { ...(context && { routineIntake: context }) };
   for (const question of visible) {
-    const raw = answers[question.id];
+    const raw = question.id === pricePreferenceQuestion.id
+      ? question.options.find(option => option.value === readPricePreference(answers))?.label
+      : answers[question.id];
     if (question.type === "multi" && Array.isArray(raw)) {
       const labels = [...new Set(raw)].filter(label => question.options.some(option => option.label === label));
       const unknownLabel = question.options.find(option => option.value === "unknown")?.label;

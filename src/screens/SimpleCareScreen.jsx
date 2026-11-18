@@ -1,3 +1,4 @@
+import { sunscreenOption } from "../data/targetedCareProducts";
 import { useVerifiedProductFormula } from "../hooks/useVerifiedProductFormula";
 import { getReactionIngredientClues } from "../utils/reactionIngredientFit";
 import { getRoutineLookupProduct } from "../utils/routineLookup";
@@ -116,7 +117,8 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
         <p className="font-semibold">{item.label}{item.area && ` · ${item.area}`}</p>
         <p className="text-sm text-slate-700">{item.observation}</p>
       </li>)}</ul>
-      <p className="text-sm text-slate-600">지금은 위의 관리부터 살펴보고, 다른 고민에 새 제품을 한꺼번에 추가하지 않아요.</p>
+      {plan.parallelCare ? <p className="text-sm text-slate-600">새 트러블 관리와 평평한 자국 관리는 함께 할 수 있어요. 아침에는 {plan.parallelCare.hasSunscreen ? "잘 맞는 선크림을 유지하고" : "위 선크림 후보로 자외선 차단을 챙기고"}, 트러블에 쓰는 제품은 해당 부위와 제품 안내에 맞춰 사용해요.</p>
+        : <p className="text-sm text-slate-600">지금은 위의 관리부터 살펴보고, 다른 고민에 새 제품을 한꺼번에 추가하지 않아요.</p>}
     </section>}
     <AcneCareReview review={buildAcneCareReview(plan)} />
     <MakeupCleansingSection plan={makeupCleansing} />
@@ -228,7 +230,18 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   const cosmeticContext = { profile, surveyAnswers, carePlan: plan, routine: displayRoutine, personalProductFeedback, currentRoutine: { ...currentRoutine, ...reactionContext } };
   const cosmeticPlan = cosmeticAnswers ? buildCosmeticAddOnPlan(cosmeticAnswers, cosmeticContext) : null;
   const applyCosmeticRoute = addon => addon?.suppressPharmacy ? { ...plan, pharmacy: null, title: "막힌 피지·거친 결은 선택한 화장품 후보로 살펴봐요.", detail: "아래 추가 화장품 영역에서 선택한 후보를 확인해요. 약품 후보 표시는 보류했어요.", productNote: "각질 관리 화장품과 여드름약을 같은 부위에 함께 새로 시작하지 않아요." } : plan;
-  const displayPlan = applyCosmeticRoute(cosmeticPlan);
+  const baseDisplayPlan = applyCosmeticRoute(cosmeticPlan);
+  const parallelMarks = plan.answers.shapes?.filter(shape => ["dark_mark", "red_mark"].includes(shape)) ?? [];
+  const hasBreakout = plan.answers.shapes?.some(shape => ["closed", "blackhead", "red", "pus"].includes(shape));
+  const parallelCare = allowNewBasics && hasBreakout && parallelMarks.length > 0 &&
+    !plan.answers.shapes.includes("deep") && ["comfortable", "dry"].includes(plan.answers.areaState);
+  const hasSunscreen = currentRoutine.hasSunscreen || ["with_sunscreen", "sunscreen_only"].includes(routineScope);
+  const displayPlan = parallelCare ? { ...baseDisplayPlan, parallelCare: { hasSunscreen },
+    ...(!hasSunscreen && { cosmetics: [...(baseDisplayPlan.cosmetics ?? []), {
+      ...sunscreenOption,
+      guidance: "잘 맞는 선크림이 없다면 자국 부위의 자외선 차단에 사용할 후보예요.",
+    }] }),
+  } : baseDisplayPlan;
   const liveIntake = showResult && intake?.use === "yes" ? buildRoutineSurveyContext("yes", activeRoutineEntries) : null;
   const newReview = ["cleanser", "toner", "serum", "cream"].some(slot => intake?.[slot]?.band === "unknown" &&
     ((liveIntake?.[slot]?.band && liveIntake[slot].band !== "unknown") ||
