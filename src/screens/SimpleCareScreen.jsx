@@ -1,3 +1,4 @@
+import ProductChangeReview from "../components/ProductChangeReview";
 import { readPricePreference } from "../data/pricePreference";
 import { getProductById } from "../utils/productCatalog";
 import { RECOMMENDATION_RULE_VERSION } from "../utils/productEvidence";
@@ -16,7 +17,7 @@ import { FolliculitisOptions } from "../components/FolliculitisOptions";
 import { ConcernProductOptions } from "../components/ConcernProductOptions";
 import { RoutineProductScroller } from "../components/RoutineProductScroller";
 import { getBasicObservationTracks, getObservationKinds } from "../utils/moisturizerObservation";
-import { buildRoutineSurveyContext, getCurrentRoutineContext, getCurrentRoutineProduct, getSerumRoutineSummary } from "../utils/currentRoutineReview";
+import { buildRoutineSurveyContext, getEntriesForSurveyScope, getCurrentRoutineContext, getCurrentRoutineProduct, getSerumRoutineSummary } from "../utils/currentRoutineReview";
 import { DetailDisclosure } from "../components/DetailDisclosure";
 import { RoutineProductLookup } from "../components/RoutineProductLookup";
 import { buildRoutineAdvice, getRoutineComparison, getRoutinePreferences, routineSlotNames } from "../utils/routineAdvice";
@@ -178,7 +179,9 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   const intake = readRoutineSurveyContext(surveyAnswers?.routineIntake);
   const [legacySerumPreference, setSerumPreference] = useState(() => initialRecord?.routinePreferences?.serum ?? priorSerumPreference ?? "");
   const serumPreference = intake ? intake.serumPreference ?? "" : legacySerumPreference;
-  const activeRoutineEntries = intake && intake.use !== "yes" ? emptyRoutine : currentRoutineEntries;
+  const intakeUse = intake?.use, routineScope = intake?.routineScope;
+  const activeRoutineEntries = useMemo(() => intakeUse && intakeUse !== "yes" ? emptyRoutine :
+    getEntriesForSurveyScope(currentRoutineEntries, routineScope), [currentRoutineEntries, intakeUse, routineScope]);
   const currentRoutine = useMemo(() => getCurrentRoutineContext(activeRoutineEntries), [activeRoutineEntries]);
   const serumStatus = getSerumRoutineSummary(activeRoutineEntries, serumPreference === "keep");
   const skipBasicSerum = (serumPreference !== "compare" && serumStatus.skipBasicSerum) || serumStatus.hasIrritation;
@@ -232,6 +235,7 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   };
   if (showResult && plan.complete) {
     const notes = <>
+    <ProductChangeReview answers={surveyAnswers} entries={currentRoutineEntries} />
     {recommendationContext.pricePreference === "important" && Object.values(displayRoutine.products).some(Boolean) && !historical && <p className="rounded-xl bg-slate-50 p-4 text-sm">가격을 중요하게 선택했어요. 피부에 비슷하게 맞는 제품 중 확인된 공식 기준가가 있는 제품을 우선해요. 실제 할인 가격과 배송비는 판매처에서 확인할 수 있어요.</p>}
     {displayRoutine.isHistorical && <p className="rounded-xl bg-slate-50 p-4 text-sm">저장 당시의 제품 후보를 보여드려요. 새 검수 기준으로 다시 추천받으려면 아래에서 다시 확인해요.</p>}
     {newReview && onRestart && <div className="space-y-2 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm">

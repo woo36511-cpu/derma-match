@@ -1,3 +1,5 @@
+import { changedProductOptions, productChangeQuestions } from "./productChangeSurvey";
+import { getRoutineLookupProduct } from "../utils/routineLookup";
 import { observationQuestions } from "./observationSurvey";
 import { readRoutineSurveyContext, hasMoistureSupport, hasPossibleCoating } from "./routineSurveyContext";
 import { pricePreferenceQuestion } from "./pricePreference";
@@ -139,6 +141,7 @@ export function getAdaptiveObservationQuestions(answers = {}) {
       ? { ...core, question: "지금 쓰는 올인원 보습제를 바르면 어떤가요?" } : core);
     if (!answers[core.id]) continue;
     if (core.id === "skinChange") {
+      if (routine && v(core.id) === "product") result.push(...productChangeQuestions);
       if (v(core.id) === "unknown") add("changeAnchor");
       if (["product", "changed", "varies"].includes(base.skinChange)) add("recentEnvironment");
     }
@@ -178,5 +181,18 @@ export function getAdaptiveObservationQuestions(answers = {}) {
 export function cleanAdaptiveObservationAnswers(answers = {}) {
   const visible = getAdaptiveObservationQuestions(answers);
   const context = readRoutineSurveyContext(answers.routineIntake);
-  return { ...(context && { routineIntake: context }), ...Object.fromEntries(visible.filter(question => question.options.some(option => option.label === answers[question.id])).map(question => [question.id, answers[question.id]])) };
+  const cleaned = { ...(context && { routineIntake: context }) };
+  for (const question of visible) {
+    const raw = answers[question.id];
+    if (question.type === "multi" && Array.isArray(raw)) {
+      const labels = [...new Set(raw)].filter(label => question.options.some(option => option.label === label));
+      const unknownLabel = question.options.find(option => option.value === "unknown")?.label;
+      if (labels.length) cleaned[question.id] = labels.includes(unknownLabel) ? [unknownLabel] : labels;
+    } else if (question.options.some(option => option.label === raw)) cleaned[question.id] = raw;
+  }
+  const product = getRoutineLookupProduct(answers.changedProductId);
+  if (product && changedProductOptions.some(option => option.value === product.category && option.label === cleaned.changedProduct)) {
+    cleaned.changedProductId = product.id;
+  }
+  return cleaned;
 }

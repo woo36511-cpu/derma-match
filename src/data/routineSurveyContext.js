@@ -8,6 +8,7 @@ export function readRoutineSurveyContext(value) {
   if (value?.version !== ROUTINE_INTAKE_VERSION || !isOneOf(value.use, ["yes", "no", "skip"])) return null;
   const context = { version: ROUTINE_INTAKE_VERSION, use: value.use };
   if (value.use !== "yes") return context;
+  if (isOneOf(value.routineScope, ["with_sunscreen", "without_sunscreen", "sunscreen_only"])) context.routineScope = value.routineScope;
   for (const slot of slots) {
     const row = value[slot];
     if (!row) continue;

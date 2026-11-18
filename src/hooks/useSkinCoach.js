@@ -533,6 +533,17 @@ export function useSkinCoach() {
     if (observationMode) {
       setSurveyAnswers(prev => {
         const next = { ...prev, [question.id]: option.label };
+        if (question.id === "changedProduct") {
+          if (option.productId == null) delete next.changedProductId;
+          else next.changedProductId = option.productId;
+          if (prev.changedProduct !== option.label || prev.changedProductId !== next.changedProductId) delete next.changedReaction;
+        }
+        if (question.id === "changedReaction") {
+          const selected = Array.isArray(prev.changedReaction) ? prev.changedReaction : [];
+          const unknownLabel = question.options.find(item => item.value === "unknown").label;
+          next.changedReaction = selected.includes(option.label) ? selected.filter(label => label !== option.label)
+            : option.value === "unknown" ? [unknownLabel] : [...selected.filter(label => label !== unknownLabel), option.label];
+        }
         if (question.id === "makeupUse" && prev.makeupUse !== option.label) delete next.makeupRemoval;
         return cleanVersionedSurveyAnswers(surveyVersion, next);
       });
@@ -780,8 +791,8 @@ export function useSkinCoach() {
     setSurveyAnswers({}); setSurveyIndex(0); setMainConcern(""); setIssueAnswers({});
     setActiveJourneyId(null); setStep("routineIntake");
   };
-  const completeRoutineIntake = (use, serumPreference, checkedEntries = currentRoutine.entries) => {
-    const routineIntake = buildRoutineSurveyContext(use, checkedEntries, serumPreference);
+  const completeRoutineIntake = (use, serumPreference, checkedEntries = currentRoutine.entries, routineScope) => {
+    const routineIntake = buildRoutineSurveyContext(use, checkedEntries, serumPreference, routineScope);
     if (!routineIntake) return;
     setSurveyAnswers(previous => {
       if (JSON.stringify(previous.routineIntake) === JSON.stringify(routineIntake)) return previous;
