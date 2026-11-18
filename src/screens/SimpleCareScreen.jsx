@@ -10,7 +10,7 @@ import { useMemo, useState } from "react";
 import { acneAreas, getSimpleCareQuestions, cleanSimpleCareAnswers } from "../data/simpleCare";
 import { buildSimpleCarePlan, SIMPLE_CARE_VERSION } from "../utils/simpleCarePlan";
 import { buildSimpleSkinRecord } from "../utils/simpleSkinRecord";
-import { buildDynamicRoutine } from "../utils/routineRecommendation";
+import { buildDynamicRoutine, getSeasonalMoisturizerPair } from "../utils/routineRecommendation";
 import { AcnePhotoReference } from "../components/AcnePhotoReference";
 import { FolliculitisOptions } from "../components/FolliculitisOptions";
 import { ConcernProductOptions } from "../components/ConcernProductOptions";
@@ -68,6 +68,7 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
   const fitNote = !concernFirst && advice?.slot && getRoutineFitSignals(advice.slot, recommendationContext)?.note;
   const firstCareAction = !concernFirst && !routineHasIrritation && profile.observationAssessment?.canRecommendBasics === false
     ? profile.observationAssessment.careActions?.[0] : null;
+  const seasonalPair = getSeasonalMoisturizerPair(profile.hydrationLevel, recommendationContext, routine);
   return <div className="space-y-5 sm:space-y-6">
     <section className="rounded-[1.75rem] bg-forest-900 p-5 text-white sm:p-8" aria-labelledby="simple-result-title">
       <p className="text-xs font-semibold tracking-wide text-forest-100">내 피부 관리 결과</p>
@@ -126,6 +127,16 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
         <div className="p-3 sm:p-4"><p className="font-bold text-forest-900">저녁</p><p className="mt-0.5 text-slate-700">세안 후 필요한 기초 관리</p></div>
       </div>
       <RoutineProductScroller layout="routine" productsByCategory={routine.products} optionalSlots={["toner", "serum"]} userContext={{ ...recommendationContext, level: profile.hydrationLevel, acneSupport: plan.answers.concern === "acne" }} />
+      {seasonalPair && <section className="care-panel space-y-3" aria-label="계절과 사용감에 따른 보습제 비교">
+        <h3 className="font-bold">같은 피부 성향, 다른 날의 보습제</h3>
+        <p className="text-sm text-slate-700">더울 때와 건조할 때 중 지금에 맞는 한 가지를 골라요. 두 제품을 함께 쓸 필요는 없어요.</p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {[["더울 때 · 가벼운 사용감", seasonalPair.light], ["건조할 때 · 더 있는 보습감", seasonalPair.rich]].map(([label, product]) =>
+            <div key={product.id} className="space-y-2"><p className="care-kicker">{label}</p>
+              <RoutineProductScroller layout="routine" productsByCategory={{ cream: product }} userContext={{ ...recommendationContext, level: profile.hydrationLevel }} />
+            </div>)}
+        </div>
+      </section>}
       {!routine.isHistorical && Object.keys(routine.products).map(slot => {
         const comparison = getRoutineComparison(routine, slot, ownedIds);
         return comparison && <DetailDisclosure key={slot} title={`${routineSlotNames[slot]} 대안 비교`}>

@@ -11,10 +11,12 @@ export function getRoutinePreferences(currentRoutine, observation, serumPreferen
   const retained = {};
   for (const slot of routineSlots) {
     const rows = currentRoutine.rowsBySlot[slot] ?? [];
-    const kept = rows.filter(comfortable);
+    const needsAllInOneAlternative = slot === "cream" && rows.some(row => row.allInOne) &&
+      (["heavy", "persistent"].includes(observation?.moisturizerUse) || ["day", "persistent"].includes(observation?.drynessTiming));
+    const kept = needsAllInOneAlternative ? [] : rows.filter(comfortable);
     const comparison = slot === "serum" && serumPreference === "compare";
     if (kept.length && !comparison) retained[slot] = kept.map(row => row.name);
-    if (!comparison && (kept.length || (rows.length && !currentRoutine.slotReactions[slot]))) suppressedSlots.add(slot);
+    if (!comparison && !needsAllInOneAlternative && (kept.length || (rows.length && !currentRoutine.slotReactions[slot]))) suppressedSlots.add(slot);
     if (!rows.length && observation && slot !== "serum") {
       const comfortableCream = slot === "cream" && observation.moisturizerUse === "comfortable" &&
         !["day", "persistent"].includes(observation.drynessTiming);

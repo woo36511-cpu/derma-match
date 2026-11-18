@@ -200,6 +200,18 @@ export function pickAlternativeNonExfoliatingProduct(
   return sorted[0] || null;
 }
 
+export function getSeasonalMoisturizerPair(level, context, routine) {
+  if (!routine?.products?.cream || routine.isHistorical) return null;
+  const pools = getRankedProductCandidates("cream", level, context);
+  const light = pools.find(product => product.careProfile.lightweightFit >= 7);
+  if (!light) return null;
+  const support = product => product.careProfile.hydrationSupport + product.careProfile.barrierSupport;
+  const rich = pools.find(product => product.id !== light.id &&
+    product.careProfile.lightweightFit <= light.careProfile.lightweightFit - 2 &&
+    support(product) >= support(light) + 2);
+  return rich ? { light, rich } : null;
+}
+
 export function buildDynamicRoutine(level, userContext = {}) {
   const categories = ["cleanser", "toner", "serum", "cream"];
   const pools = Object.fromEntries(categories.map(category => [category, getRankedProductCandidates(category, level, userContext)]));

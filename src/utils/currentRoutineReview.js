@@ -165,7 +165,7 @@ export function buildRoutineSurveyContext(use, entries, serumPreference) {
     for (const [slot, rows] of Object.entries(rowsBySlot)) {
       const catalog = rows.length === 1 ? getProductById(rows[0].productId) : null;
       input[slot] = { ...(getRoutineProductBand(catalog, slot) ?? { band: "unknown" }), reaction: slotReactions[slot],
-        listedHumectants: rows.some(row => row.officialFormula?.hydrationSignal) };
+        allInOne: rows.some(row => row.allInOne), listedHumectants: rows.some(row => row.officialFormula?.hydrationSignal) };
     }
     if (entries.some(entry => entry.reaction === "heavy" && getCurrentRoutineProduct(entry)?.category === "sunscreen"))
       input.sunscreen = { reaction: "heavy" };
@@ -194,7 +194,7 @@ export function getCurrentRoutineContext(entries = []) {
     if (leaveOn && !curatedFormula && !official &&
       (product.category !== "sunscreen" || families.length)) uncertainActives.push(product.name);
     if (!slot || (slot === "cleanser" && isFirstCleanse(product.name))) continue;
-    (rowsBySlot[slot] ??= []).push({ name: product.name, reaction: entry.reaction, productId: catalog?.id ?? null,
+    (rowsBySlot[slot] ??= []).push({ name: product.name, reaction: entry.reaction, productId: catalog?.id ?? null, allInOne: product.allInOne === true,
       officialFormula: official });
     if (replacementReactions.includes(entry.reaction) && !slotReactions[slot]) slotReactions[slot] = entry.reaction;
   }

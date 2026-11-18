@@ -11,7 +11,7 @@ export function getRoutineFitSignals(category, context = {}) {
   const oil = Math.max(0, Math.min(10, needs.lightTextureNeed ?? 0));
   const washTight = isWash && (reaction === "wash_tight" || observation?.washResponse === "tight");
   const postMoistureTight = !isWash && (reaction === "moisture_tight" || (category === "cream" && observation?.moisturizerUse === "persistent"));
-  const heavy = reaction === "heavy" || (category === "cream" && observation?.moisturizerUse === "heavy");
+  const heavy = reaction === "heavy" || (category === "cream" && (observation?.moisturizerUse === "heavy" || observation?.moisturizerHeavyAndTight === true));
   const zonedOil = observation?.observedOil === "tzone";
   const dryAfterMoisturizer = observation?.drynessTiming === "persistent";
   const distinctAreas = zonedOil && observation?.drynessArea === "cheeks" && dry > 0;
