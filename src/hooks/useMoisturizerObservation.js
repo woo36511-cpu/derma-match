@@ -28,7 +28,7 @@ export function useMoisturizerObservation({ ownerId, savedSurvey, storedHistory,
     setSelection(source); setError(false); setStep("moisturizerObservation");
   };
   return {
-    available: Boolean(savedSurvey || history.length), history, record, error, offer, offers, signedIn: Boolean(ownerId),
+    surveyId: savedSurvey?.id, available: Boolean(savedSurvey || history.length), history, record, error, offer, offers, signedIn: Boolean(ownerId),
     start: kind => { if (offers.some(item => item.kind === kind)) open({ kind }); },
     resume: () => open(null),
     selectRecord: id => { if (history.some(item => item.id === id)) open({ recordId: id }); },

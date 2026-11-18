@@ -229,7 +229,7 @@ export default function App() {
           />
         )}
 
-        {step === "simpleCare" && <SimpleCareScreen key={account.user?.id ?? "guest"} profile={surveyResult} surveyAnswers={surveyAnswers} initialRecord={simpleRecord} currentRoutineEntries={currentRoutine.entries} routineReview={routineReview} priorSerumPreference={savedSurvey?.routinePreferences?.serum} personalProductFeedback={personalProductFeedback} onRestart={startSimpleSkinCare} onReviewRoutine={() => setStep("routineReview")} onSave={saveSimpleSkinRecord} onBack={() => { setSurveyIndex(activeSurveyQuestions.length - 1); setStep("survey"); }} onHome={() => setStep("start")} />}
+        {step === "simpleCare" && <SimpleCareScreen key={account.user?.id ?? "guest"} profile={surveyResult} surveyAnswers={surveyAnswers} initialRecord={simpleRecord} currentRoutineEntries={currentRoutine.entries} routineReview={routineReview} priorSerumPreference={savedSurvey?.routinePreferences?.serum} personalProductFeedback={personalProductFeedback} observation={moisturizerObservation} onRestart={startSimpleSkinCare} onReviewRoutine={() => setStep("routineReview")} onSave={saveSimpleSkinRecord} onBack={() => { setSurveyIndex(activeSurveyQuestions.length - 1); setStep("survey"); }} onHome={() => setStep("start")} />}
 
         {step === "issueSelect" && (
           <IssueSelectScreen

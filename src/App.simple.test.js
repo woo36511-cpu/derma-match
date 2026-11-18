@@ -518,8 +518,9 @@ test("guests can track three product types separately and compare symptom-free d
     };
     expect(screen.queryByRole("button", { name: "보습제 사용 기록 시작" })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: changeLink })).not.toBeInTheDocument();
-    click("시작 화면"); click(changeLink);
-    begin("cream");
+    expect(within(screen.getByRole("region", { name: "지금 먼저 할 한 가지" })).getByRole("button", { name: "이 관리 시작·변화 기록" })).toBeInTheDocument();
+    const tracking = screen.getByRole("region", { name: "관리 변화 기록" });
+    fireEvent.click(within(tracking).getByRole("button", { name: /^볼 당김 ·.*기록 시작/ }));
     const prompt = OBSERVATION_KINDS.cream.question;
     expect(screen.queryByRole("checkbox", { name: /내부 분석에 동의/ })).not.toBeInTheDocument();
     choose(prompt, "unknown");
@@ -680,6 +681,9 @@ test("the scar-first result shows the separate breakout candidate and a basic al
   extraCare({ concern: "acne", shapes: ["pus", "indented_scar", "raised_scar"], primaryShape: "indented_scar",
     locations: { pus: "chin", indented_scar: "cheeks", raised_scar: "cheeks" }, areaState: "irritated",
     breakoutSiteState: "separate_comfortable", medicine: "none" });
+  const top = screen.getByRole("region", { name: "지금 먼저 할 한 가지" });
+  expect(top).toHaveTextContent("교체 검토");
+  expect(top).toHaveTextContent("트러블용 후보 · 애크논크림");
   const active = screen.getByRole("region", { name: "지금 올라온 트러블 관리" });
   expect(within(active).getByRole("heading", { name: "애크논크림" })).toBeInTheDocument();
   expect(screen.getByRole("region", { name: "불편했던 기본 제품 대안" })).toBeInTheDocument();
