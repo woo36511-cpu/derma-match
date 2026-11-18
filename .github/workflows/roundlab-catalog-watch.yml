@@ -26,7 +26,7 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Verify parser and change handling
-        run: node --test scripts/roundlab-catalog-watch.test.mjs
+        run: node --test scripts/roundlab-catalog-watch.test.mjs scripts/roundlab-image-review.test.mjs
       - name: Restore previous snapshot and collect changes
         shell: bash
         run: |
@@ -37,6 +37,11 @@ jobs:
           else
             node scripts/watch-roundlab-catalog.mjs roundlab-snapshot.json
           fi
+      - name: Read Korean detail images for review
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tesseract-ocr tesseract-ocr-kor imagemagick
+          node scripts/roundlab-image-review.mjs roundlab-snapshot.json
       - uses: actions/upload-artifact@v4
         with:
           name: roundlab-catalog-snapshot
