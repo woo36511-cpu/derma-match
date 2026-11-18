@@ -538,6 +538,10 @@ export function useSkinCoach() {
           else next.changedProductId = option.productId;
           if (prev.changedProduct !== option.label || prev.changedProductId !== next.changedProductId) delete next.changedReaction;
         }
+        if (question.id === "reactionProduct") {
+          if (option.productId == null) delete next.reactionProductId;
+          else next.reactionProductId = option.productId;
+        }
         if (question.id === "changedReaction") {
           const selected = Array.isArray(prev.changedReaction) ? prev.changedReaction : [];
           const unknownLabel = question.options.find(item => item.value === "unknown").label;

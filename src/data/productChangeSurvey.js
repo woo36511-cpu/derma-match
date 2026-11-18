@@ -17,3 +17,10 @@ export const productChangeQuestions = [
       ["bumps", "좁쌀·뾰루지가 생기거나 늘었어요"], ["better", "오히려 편해졌어요"], ["unknown", "어떻게 달라졌는지 잘 모르겠어요"],
     ].map(([value, label]) => ({ value, label })) },
 ];
+
+
+export const reactionProductQuestion = {
+  id: "reactionProduct", question: "어떤 제품을 바를 때 따갑거나 붉어졌나요?", supplemental: true,
+  hint: "제품명을 검색해서 골라주세요. 정확한 제품을 모르면 종류만 골라도 돼요.",
+  options: changedProductOptions.filter(option => option.value !== "multiple"),
+};

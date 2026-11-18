@@ -1,3 +1,4 @@
+import { getReactionIngredientFit } from "./reactionIngredientFit";
 import { readPricePreference } from "../data/pricePreference";
 import { getOfficialPriceReference, preferComparablePrice } from "./pricePreference";
 import { getProductEvidenceStatus } from "./productEvidence";
@@ -69,7 +70,7 @@ export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}
     if (Math.abs(product.hydrationLevel - level) > 3) return false;
     if ((answers.goal === "sebum" || observedSkin?.observedOil === "whole" || (!observedSkin && level >= 7)) && getProductCareProfile(product).lightweightFit < 5) return false;
     if ((isSensitive || sensitiveReaction) && (!product.sensitivitySafe || extra.intensity === "exfoliant" || extra.intensity === "high")) return false;
-    if (currentRoutine.ownedProductIds?.has(product.id)) return false;
+    if (product.id === currentRoutine.reactionProductId || currentRoutine.ownedProductIds?.has(product.id)) return false;
     const candidateFamilies = [...new Set([...extra.families, ...getIngredientFamilies(product)])];
     const intensive = ["high", "exfoliant"].includes(extra.intensity);
     if (getCompatibilityRisk(candidateFamilies, actives, intensive)) return false;
@@ -102,7 +103,7 @@ export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}
     const currentFit = fit ? (fit.hydration * axes.hydrationSupport + texture * axes.lightweightFit + fit.barrier * axes.barrierSupport) / 35 : 0;
     return getCareNeedMatchScore(p, profile.careNeeds) / 10 + currentFit + getDirectGoalFit(answers.goal, axes) -
       Math.abs(p.hydrationLevel - level) * (fit ? 3.5 : 5) + (p.sensitivitySafe ? 1 : 0) +
-      getPersonalCosmeticFit(p, level, observationContext) +
+      getPersonalCosmeticFit(p, level, observationContext) + getReactionIngredientFit(p, currentRoutine) +
       (getReviewedCosmeticObservation(p, getProductEvidenceStatus(p), level, observationContext) ? COSMETIC_OBSERVATION_FIT_BONUS : 0);
   };
   const scores = new Map(candidates.map(candidate => [candidate.id, score(candidate)]));

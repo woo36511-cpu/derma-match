@@ -1,3 +1,4 @@
+import { getReactionIngredientFit } from "./reactionIngredientFit";
 import { preferComparablePrice } from "./pricePreference";
 import { getPersonalBasicFit } from "./personalProductFeedback";
 import { RECOMMENDATION_RULE_VERSION, getProductEvidenceStatus } from "./productEvidence";
@@ -134,7 +135,8 @@ export function getRecommendationBreakdown(product, currentLevel, userContext = 
     serum: [0.15, 0.08, 0.09], cream: [0.16, 0.13, 0.16],
   }[slot] ?? [0.12, 0.08, 0.07];
   const oilOnlyInTZone = fit?.zonedOil && !fit.heavy;
-  const parts = { careFit, concernSupport,
+  const reactionFit = getReactionIngredientFit(product, userContext);
+  const parts = { careFit, concernSupport, ...(reactionFit && { reactionFit }),
     moistureFit: -moistureDistance * (fit ? (fit.washTight || fit.postMoistureTight || fit.heavy ? 0.9 : 1.6) : 2.5),
     ...(fit && {
       hydrationFit: fit.hydration * p.hydrationSupport * weights[0],
