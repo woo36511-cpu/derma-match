@@ -64,7 +64,7 @@ test("the basic survey saves price preference and shows official-price guidance 
   render(<App />);
   baseSurvey({ pricePreference: "important" }, { use: "no" });
   extraCare({ concern: "none" });
-  expect(records()[0].surveyAnswers.pricePreference).toBe("화장품 가격이 중요해요");
+  expect(records()[0].surveyAnswers.pricePreference).toBe("비싼 제품은 피하고 싶어요");
   expect(records()[0].surveyAnswers).not.toHaveProperty("makeupRemoval");
   expect(screen.getByText(/가격을 중요하게 선택했어요/)).toBeInTheDocument();
   expect(screen.getByRole("region", { name: "피부타입별 기본 화장품" })).toBeInTheDocument();
@@ -207,6 +207,8 @@ test("different acne appearances and traces retain priority and locations throug
   const secondary = screen.getByRole("region", { name: "함께 선택한 고민" });
   expect(within(secondary).getByText("살색·하얀 좁쌀 · 이마")).toBeInTheDocument();
   expect(within(secondary).getByText("평평한 갈색·회갈색 자국 · 볼")).toBeInTheDocument();
+  expect(within(secondary).getByText(/새 트러블 관리와 평평한 자국 관리는 함께 할 수 있어요/)).toBeInTheDocument();
+  expect(screen.getByRole("region", { name: "고민에 맞는 화장품" })).toHaveTextContent("라운드랩 자작나무 수분 선크림");
   expect(within(secondary).getByText("패인 흉터처럼 보여요 · 볼")).toBeInTheDocument();
   expect(screen.getAllByRole("region", { name: "일반의약품 후보" })).toHaveLength(1);
   expect(records()[0].additionalCare).toMatchObject({ ...chosen, shape: "red" });
