@@ -9,7 +9,7 @@ import { promisify } from "node:util";
 const exec = promisify(execFile);
 const maxImageBytes = 8_000_000;
 const heading = /(?:전\s*성\s*분|화장품법에\s*따라.{0,40}모든\s*성분)/u;
-const nextHeading = /(?:사용\s*할\s*때의\s*주의|사용\s*시의?\s*주의|기능성\s*화장품|품질\s*보증|소비자\s*상담|제조\s*번호)/u;
+const nextHeading = /(?:사용\s*할\s*때의\s*주의|사용\s*시의?\s*주의|기능성\s*화장품|품질\s*보증|소비자\s*상담|제조\s*번호|콘텐츠의\s*제작)/u;
 
 export function extractIngredientExcerpt(input) {
   const text = input.normalize("NFKC").replace(/[\u0000-\u0008\u000b-\u001f]/gu, " ");
@@ -56,9 +56,12 @@ export async function readImage(bytes) {
     await writeFile(source, bytes);
     await exec("convert", ["-limit", "memory", "128MiB", "-limit", "map", "256MiB", "-limit", "disk", "256MiB",
       `${source}[0]`, "-resize", "1200x10000>", "-colorspace", "Gray", png], { timeout: 12000 });
-    const { stdout } = await exec("tesseract", [png, "stdout", "-l", "kor+eng", "--psm", "11"],
-      { timeout: 20000, maxBuffer: 200000 });
-    return stdout;
+    const bottom = join(dir, "bottom.png");
+    await exec("convert", [png, "-gravity", "south", "-crop", "100%x40%+0+0", "+repage", bottom], { timeout: 12000 });
+    const recognize = async (path, mode) => (await exec("tesseract", [path, "stdout", "-l", "kor+eng", "--psm", mode],
+      { timeout: 20000, maxBuffer: 200000 })).stdout;
+    const bottomText = await recognize(bottom, "6").catch(() => "");
+    return extractIngredientExcerpt(bottomText) ? bottomText : recognize(png, "11");
   } finally { await rm(dir, { recursive: true, force: true }); }
 }
 
