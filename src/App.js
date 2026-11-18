@@ -219,6 +219,7 @@ export default function App() {
             questionsCount={activeSurveyQuestions.length}
             currentSurveyQuestion={currentSurveyQuestion}
             currentSurveyAnswer={currentSurveyAnswer}
+            changedProductId={surveyAnswers.changedProductId}
             handleSurveyAnswer={handleSurveyAnswer}
             handlePrevSurvey={handlePrevSurvey}
             handleNextSurvey={handleNextSurvey}

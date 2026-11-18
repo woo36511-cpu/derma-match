@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { searchRoutineProducts, getRoutineLookupProduct } from "../utils/routineLookup";
 import { SkinObservationReference } from "../components/SkinObservationReference";
 import { DetailDisclosure } from "../components/DetailDisclosure";
 import { skinSurveyQuestions } from "../data/skinSurvey";
@@ -6,11 +8,32 @@ import { SurveyChoice } from "../components/SurveyChoice";
 import { useScreenHeading } from "../hooks/useScreenHeading";
 import React from "react";
 
+function ChangedProductSearch({ question, selectedId, onSelect }) {
+  const [query, setQuery] = useState("");
+  const selected = getRoutineLookupProduct(selectedId);
+  const { matches } = searchRoutineProducts(query, 8);
+  return <div className="mb-4 space-y-2">
+    <label htmlFor="changed-product-search" className="text-sm font-semibold">바꾼 화장품 제품명</label>
+    <input id="changed-product-search" type="search" maxLength={100} value={query} onChange={event => setQuery(event.target.value)} className="w-full rounded-xl border border-stone-300 p-3" />
+    {selected && <p className="text-sm font-semibold text-forest-700">선택한 제품: {selected.name}{selected.volume && ` · ${selected.volume}`}</p>}
+    {query.trim().length >= 2 && !matches.length && <p className="text-sm">일치하는 제품이 없어요. 아래에서 종류를 골라도 돼요.</p>}
+    {matches.map(product => {
+      const category = question.options.find(option => option.value === product.category);
+      return category && <SurveyChoice key={product.id} selected={selectedId === product.id}
+        onClick={() => onSelect(question, { ...category, productId: product.id })}>
+        {product.name}{product.volume && ` · ${product.volume}`}
+      </SurveyChoice>;
+    })}
+    <p className="text-xs text-slate-600">제품명이 불확실하면 종류만 골라주세요.</p>
+  </div>;
+}
+
 export function SurveyScreen({
   surveyIndex,
   surveyProgress,
   currentSurveyQuestion,
   currentSurveyAnswer,
+  changedProductId,
   handleSurveyAnswer,
   handlePrevSurvey,
   handleNextSurvey,
@@ -48,13 +71,14 @@ export function SurveyScreen({
           {currentSurveyQuestion.helper && <DetailDisclosure title="답변 기준 자세히 보기" className="mb-5"><p>{currentSurveyQuestion.helper}</p></DetailDisclosure>}
           <SkinObservationReference kind={currentSurveyQuestion.visual} />
           {multiple && <p className="mb-3 text-sm font-medium text-forest-700">해당하는 항목을 모두 골라주세요.</p>}
+          {currentSurveyQuestion.id === "changedProduct" && <ChangedProductSearch question={currentSurveyQuestion} selectedId={changedProductId} onSelect={handleSurveyAnswer} />}
           <div className="grid gap-2.5" role="group" aria-labelledby="survey-question">
             {currentSurveyQuestion.options.map((option) => {
               const active =
                 multiple
                   ? Array.isArray(currentSurveyAnswer) &&
                     currentSurveyAnswer.includes(option.label)
-                  : currentSurveyAnswer === option.label;
+                  : currentSurveyAnswer === option.label && (currentSurveyQuestion.id !== "changedProduct" || changedProductId == null);
 
               return (
                 <SurveyChoice
