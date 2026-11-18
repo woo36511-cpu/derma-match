@@ -22,6 +22,22 @@ function* walk(node) {
   yield node;
   for (const child of node.childNodes ?? []) yield* walk(child);
 }
+function getDetailImages(html) {
+  const images = new Set();
+  for (const node of walk(parse5.parse(html))) {
+    if (node.nodeName !== "img") continue;
+    const src = node.attrs?.find(attr => attr.name === "src")?.value;
+    if (!src) continue;
+    try {
+      const url = new URL(src, `https://${host}`);
+      if (url.origin !== "https://gi.esmplus.com" || url.username || url.password ||
+          !/^\/roundlab\/(?!HOME\/|etc\/)[^?#]+\.(?:jpe?g|png|webp|gif)$/iu.test(url.pathname)) continue;
+      images.add(url.href);
+    } catch { /* Ignore non-URL image references. */ }
+  }
+  return [...images].slice(0, 40);
+}
+
 function fieldValues(html) {
   const fields = new Map();
   for (const row of walk(parse5.parse(html))) {
@@ -106,6 +122,11 @@ export async function watchRoundLab({ previous = {}, fetcher = fetch, sources = 
     let html;
     try { html = await fetchSource(product.officialUrl, fetcher); }
     catch { row.lastAttempt = "fetch_failed"; continue; }
+    const detailImages = getDetailImages(html);
+    if (row.detailImages?.length && detailImages.length && JSON.stringify(row.detailImages) !== JSON.stringify(detailImages)) {
+      events.push({ id: product.id, type: "detail_images_changed" });
+    }
+    if (detailImages.length) row.detailImages = detailImages;
     const formula = readRoundLabFormula(html, product);
     if (!formula) {
       if (row.state === "formula_captured") events.push({ id: product.id, type: "formula_needs_recheck" });
