@@ -112,7 +112,7 @@ export function isProductAllowedForContext(
   category,
   userContext = {},
 ) {
-  if (product?.recommendationScope === "addon_only" || userContext.personalProductFeedback?.avoided?.has(product?.id) || userContext.ownedProductIds?.has(product?.id)) return false;
+  if ((userContext.reactionProductId != null && product?.id === userContext.reactionProductId) || product?.recommendationScope === "addon_only" || userContext.personalProductFeedback?.avoided?.has(product?.id) || userContext.ownedProductIds?.has(product?.id)) return false;
   if (!getProductEvidenceStatus(product).eligible) return false;
   if (userContext.basicOnly && (hasExfoliatingActive(product) || (["toner", "serum", "cream"].includes(category) && isSpecializedTreatmentProduct(product)))) return false;
 

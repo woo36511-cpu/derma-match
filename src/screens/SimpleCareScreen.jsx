@@ -1,3 +1,6 @@
+import { useVerifiedProductFormula } from "../hooks/useVerifiedProductFormula";
+import { getReactionIngredientClues } from "../utils/reactionIngredientFit";
+import { getRoutineLookupProduct } from "../utils/routineLookup";
 import ProductChangeReview from "../components/ProductChangeReview";
 import { readPricePreference } from "../data/pricePreference";
 import { getProductById } from "../utils/productCatalog";
@@ -182,8 +185,15 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   const intakeUse = intake?.use, routineScope = intake?.routineScope;
   const activeRoutineEntries = useMemo(() => intakeUse && intakeUse !== "yes" ? emptyRoutine :
     getEntriesForSurveyScope(currentRoutineEntries, routineScope), [currentRoutineEntries, intakeUse, routineScope]);
-  const currentRoutine = useMemo(() => getCurrentRoutineContext(activeRoutineEntries), [activeRoutineEntries]);
-  const serumStatus = getSerumRoutineSummary(activeRoutineEntries, serumPreference === "keep");
+  const reactionProduct = surveyAnswers?.reactionProduct ? getRoutineLookupProduct(surveyAnswers.reactionProductId) : null;
+  const { formula: reactionFormula, pending: reactionPending } = useVerifiedProductFormula(showResult ? reactionProduct : null, currentRoutineEntries);
+  const reactionClues = reactionFormula ? getReactionIngredientClues(reactionFormula.ingredients) : [];
+  const reactionContext = { reactionProductId: reactionProduct?.id, reactionIngredientFamilies: reactionClues.map(({ family }) => family) };
+  const reviewEntries = useMemo(() => reactionProduct
+    ? activeRoutineEntries?.filter(entry => getCurrentRoutineProduct(entry)?.id !== reactionProduct.id)
+    : activeRoutineEntries, [activeRoutineEntries, reactionProduct]);
+  const currentRoutine = useMemo(() => getCurrentRoutineContext(reviewEntries), [reviewEntries]);
+  const serumStatus = getSerumRoutineSummary(reviewEntries, serumPreference === "keep");
   const skipBasicSerum = (serumPreference !== "compare" && serumStatus.skipBasicSerum) || serumStatus.hasIrritation;
   const [cosmeticAnswers, setCosmeticAnswers] = useState(() => initialRecord?.cosmeticAddOn?.answers ?? null);
   const questions = getSimpleCareQuestions(answers, { legacyExtent });
@@ -199,12 +209,12 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     cleanserDiscomfort: Boolean(currentRoutine.slotReactions.cleanser) || ["tight", "stings"].includes(observedSkin?.washResponse),
   });
   if (makeupCleansing?.skipNewCleanser) preferences.suppressedSlots.add("cleanser");
-  const recommendationContext = { ...currentRoutine, suppressedSlots: preferences.suppressedSlots, mainConcern: "none",
+  const recommendationContext = { ...currentRoutine, ...reactionContext, suppressedSlots: preferences.suppressedSlots, mainConcern: "none",
     pricePreference: readPricePreference(surveyAnswers),
     skinType: profile.skinType, careNeeds: profile.careNeeds, basicOnly: profile.surveyVersion === ADAPTIVE_SURVEY_VERSION,
     isSensitive: assessment?.isSensitive ?? true, observationKinds: getObservationKinds(profile),
     observationTracks: getBasicObservationTracks(profile), observedSkin, personalProductFeedback };
-  const historical = initialRecord?.routine && initialRecord.recommendationAssessment?.ruleVersion !== RECOMMENDATION_RULE_VERSION &&
+  const historical = !reactionProduct && initialRecord?.routine && initialRecord.recommendationAssessment?.ruleVersion !== RECOMMENDATION_RULE_VERSION &&
     JSON.stringify(cleanSimpleCareAnswers(initialRecord.additionalCare ?? {}, { legacyExtent })) === JSON.stringify(answers) &&
     (initialRecord.routinePreferences?.serum ?? priorSerumPreference ?? "") === serumPreference &&
     Object.values(initialRecord.routine).some(Boolean) && !currentRoutine.ownedProductIds.size && !Object.keys(currentRoutine.rowsBySlot).length;
@@ -215,7 +225,7 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   const otherRetained = Object.entries(preferences.retained).filter(([slot]) => slot !== "serum");
   const advice = buildRoutineAdvice({ currentRoutine, routine: displayRoutine, assessment, plan, retained: preferences.retained });
   const visibleSerumStatus = { ...serumStatus, skipBasicSerum };
-  const cosmeticContext = { profile, surveyAnswers, carePlan: plan, routine: displayRoutine, personalProductFeedback, currentRoutine };
+  const cosmeticContext = { profile, surveyAnswers, carePlan: plan, routine: displayRoutine, personalProductFeedback, currentRoutine: { ...currentRoutine, ...reactionContext } };
   const cosmeticPlan = cosmeticAnswers ? buildCosmeticAddOnPlan(cosmeticAnswers, cosmeticContext) : null;
   const applyCosmeticRoute = addon => addon?.suppressPharmacy ? { ...plan, pharmacy: null, title: "막힌 피지·거친 결은 선택한 화장품 후보로 살펴봐요.", detail: "아래 추가 화장품 영역에서 선택한 후보를 확인해요. 약품 후보 표시는 보류했어요.", productNote: "각질 관리 화장품과 여드름약을 같은 부위에 함께 새로 시작하지 않아요." } : plan;
   const displayPlan = applyCosmeticRoute(cosmeticPlan);
@@ -236,6 +246,17 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   if (showResult && plan.complete) {
     const notes = <>
     <ProductChangeReview answers={surveyAnswers} entries={currentRoutineEntries} />
+    {surveyAnswers?.reactionProduct && <details className="rounded-xl border border-slate-200 p-4 text-sm">
+      <summary className="cursor-pointer font-semibold">따갑거나 붉어진 제품을 추천에 어떻게 반영했나요?</summary>
+      <div className="mt-3 space-y-2">
+        {reactionProduct && <p>{reactionProduct.name}은 새로 추천하거나 유지할 제품으로 표시하지 않아요.</p>}
+        {reactionPending ? <p role="status">공식 전성분을 확인하고 있어요.</p> : reactionClues.length ? <>
+          <p>확인된 전성분 중 살펴볼 성분: {reactionClues.map(({ ingredient }) => ingredient).join(", ")}.</p>
+          <p>같은 계열이 확인된 새 후보는 추천 순위를 낮췄어요. 성분표만으로 어떤 성분이 반응의 원인인지는 알 수 없어요.</p>
+        </> : <p>{reactionFormula ? "전성분은 확인했지만 이번 반응과 연결해 볼 만한 성분을 찾지 못했어요." : "제품이나 전성분을 확인하지 못해 성분별 추천 조정은 하지 않았어요."}</p>}
+        {reactionFormula?.sourceUrl && <a className="underline" href={reactionFormula.sourceUrl} target="_blank" rel="noreferrer">공식 제품 정보 보기</a>}
+      </div>
+    </details>}
     {recommendationContext.pricePreference === "important" && Object.values(displayRoutine.products).some(Boolean) && !historical && <p className="rounded-xl bg-slate-50 p-4 text-sm">가격을 중요하게 선택했어요. 피부에 비슷하게 맞는 제품 중 확인된 공식 기준가가 있는 제품을 우선해요. 실제 할인 가격과 배송비는 판매처에서 확인할 수 있어요.</p>}
     {displayRoutine.isHistorical && <p className="rounded-xl bg-slate-50 p-4 text-sm">저장 당시의 제품 후보를 보여드려요. 새 검수 기준으로 다시 추천받으려면 아래에서 다시 확인해요.</p>}
     {newReview && onRestart && <div className="space-y-2 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm">

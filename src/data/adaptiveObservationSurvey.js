@@ -1,4 +1,4 @@
-import { changedProductOptions, productChangeQuestions } from "./productChangeSurvey";
+import { changedProductOptions, productChangeQuestions, reactionProductQuestion } from "./productChangeSurvey";
 import { getRoutineLookupProduct } from "../utils/routineLookup";
 import { observationQuestions } from "./observationSurvey";
 import { readRoutineSurveyContext, hasMoistureSupport, hasPossibleCoating } from "./routineSurveyContext";
@@ -161,6 +161,8 @@ export function getAdaptiveObservationQuestions(answers = {}) {
     if (core.id === "washResponse" && ["tight_red", "red_only"].includes(v(core.id))) add("washRednessDuration");
     if (core.id === "washResponse" && v(core.id) === "unknown") add("washSensation");
     if (core.id === "reactionPattern" && v(core.id) === "unknown") add("reactionRecall");
+    if (core.id === "reactionPattern" && routine &&
+      (v(core.id) === "one" || (v(core.id) === "unknown" && v("reactionRecall") === "one"))) result.push(reactionProductQuestion);
     if (core.id === "surfaceObservation" && v(core.id) === "unknown") { add("surfaceCheck"); if (answers.surfaceCheck && v("surfaceCheck") === "unknown") add("surfaceComfort"); }
   }
   if (needsAdaptiveContext(base)) {
@@ -193,6 +195,10 @@ export function cleanAdaptiveObservationAnswers(answers = {}) {
   const product = getRoutineLookupProduct(answers.changedProductId);
   if (product && changedProductOptions.some(option => option.value === product.category && option.label === cleaned.changedProduct)) {
     cleaned.changedProductId = product.id;
+  }
+  const reactionProduct = getRoutineLookupProduct(answers.reactionProductId);
+  if (reactionProduct && reactionProductQuestion.options.some(option => option.value === reactionProduct.category && option.label === cleaned.reactionProduct)) {
+    cleaned.reactionProductId = reactionProduct.id;
   }
   return cleaned;
 }

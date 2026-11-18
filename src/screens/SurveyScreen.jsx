@@ -8,13 +8,13 @@ import { SurveyChoice } from "../components/SurveyChoice";
 import { useScreenHeading } from "../hooks/useScreenHeading";
 import React from "react";
 
-function ChangedProductSearch({ question, selectedId, onSelect }) {
+function SurveyProductSearch({ question, selectedId, onSelect }) {
   const [query, setQuery] = useState("");
   const selected = getRoutineLookupProduct(selectedId);
   const { matches } = searchRoutineProducts(query, 8);
   return <div className="mb-4 space-y-2">
-    <label htmlFor="changed-product-search" className="text-sm font-semibold">바꾼 화장품 제품명</label>
-    <input id="changed-product-search" type="search" maxLength={100} value={query} onChange={event => setQuery(event.target.value)} className="w-full rounded-xl border border-stone-300 p-3" />
+    <label htmlFor="survey-product-search" className="text-sm font-semibold">{question.id === "reactionProduct" ? "반응이 있었던 제품명" : "바꾼 화장품 제품명"}</label>
+    <input id="survey-product-search" type="search" maxLength={100} value={query} onChange={event => setQuery(event.target.value)} className="w-full rounded-xl border border-stone-300 p-3" />
     {selected && <p className="text-sm font-semibold text-forest-700">선택한 제품: {selected.name}{selected.volume && ` · ${selected.volume}`}</p>}
     {query.trim().length >= 2 && !matches.length && <p className="text-sm">일치하는 제품이 없어요. 아래에서 종류를 골라도 돼요.</p>}
     {matches.map(product => {
@@ -34,6 +34,7 @@ export function SurveyScreen({
   currentSurveyQuestion,
   currentSurveyAnswer,
   changedProductId,
+  reactionProductId,
   handleSurveyAnswer,
   handlePrevSurvey,
   handleNextSurvey,
@@ -45,6 +46,8 @@ export function SurveyScreen({
 }) {
   const heading = useScreenHeading(currentSurveyQuestion.id);
   const multiple = currentSurveyQuestion.type === "multi";
+  const productSearch = ["changedProduct", "reactionProduct"].includes(currentSurveyQuestion.id);
+  const selectedProductId = currentSurveyQuestion.id === "reactionProduct" ? reactionProductId : changedProductId;
   return (
     <section className="mx-auto max-w-2xl" aria-labelledby="survey-question">
         <div className="mb-4">
@@ -69,16 +72,21 @@ export function SurveyScreen({
 
           {currentSurveyQuestion.hint && <p className="mb-4 text-sm text-slate-600">{currentSurveyQuestion.hint}</p>}
           {currentSurveyQuestion.helper && <DetailDisclosure title="답변 기준 자세히 보기" className="mb-5"><p>{currentSurveyQuestion.helper}</p></DetailDisclosure>}
+          {currentSurveyQuestion.id === "moisturizerUse" && currentSurveyQuestion.options.some(option => option.value === "heavy_tight") &&
+            <DetailDisclosure title="속당김이 어떤 느낌인지 모르겠나요?" className="mb-5">
+              <p>크림을 발라 겉은 촉촉하거나 끈적이는데도 피부가 팽팽하게 조이는 듯한 느낌이에요. 예를 들어 입을 벌리거나 웃을 때 볼이나 입 주변이 잡아당겨지는 듯할 수 있어요.</p>
+              <p className="mt-2">겉이 무겁거나 끈적이기만 하고 조이는 느낌은 없다면 ‘따갑지는 않지만 무겁거나 끈적여요’를 골라요.</p>
+            </DetailDisclosure>}
           <SkinObservationReference kind={currentSurveyQuestion.visual} />
           {multiple && <p className="mb-3 text-sm font-medium text-forest-700">해당하는 항목을 모두 골라주세요.</p>}
-          {currentSurveyQuestion.id === "changedProduct" && <ChangedProductSearch question={currentSurveyQuestion} selectedId={changedProductId} onSelect={handleSurveyAnswer} />}
+          {productSearch && <SurveyProductSearch key={currentSurveyQuestion.id} question={currentSurveyQuestion} selectedId={selectedProductId} onSelect={handleSurveyAnswer} />}
           <div className="grid gap-2.5" role="group" aria-labelledby="survey-question">
             {currentSurveyQuestion.options.map((option) => {
               const active =
                 multiple
                   ? Array.isArray(currentSurveyAnswer) &&
                     currentSurveyAnswer.includes(option.label)
-                  : currentSurveyAnswer === option.label && (currentSurveyQuestion.id !== "changedProduct" || changedProductId == null);
+                  : currentSurveyAnswer === option.label && (!productSearch || selectedProductId == null);
 
               return (
                 <SurveyChoice

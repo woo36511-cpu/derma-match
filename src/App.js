@@ -220,6 +220,7 @@ export default function App() {
             currentSurveyQuestion={currentSurveyQuestion}
             currentSurveyAnswer={currentSurveyAnswer}
             changedProductId={surveyAnswers.changedProductId}
+            reactionProductId={surveyAnswers.reactionProductId}
             handleSurveyAnswer={handleSurveyAnswer}
             handlePrevSurvey={handlePrevSurvey}
             handleNextSurvey={handleNextSurvey}
