@@ -28,7 +28,7 @@ beforeEach(() => { localStorage.clear(); window.history.replaceState({}, "", "/"
 function baseSurvey(overrides = {}, { use = "skip", setup, serum } = {}) {
   click("내 피부에 맞는 관리 찾기");
   expect(screen.getByRole("heading", { name: "지금 쓰는 화장품이 있나요?" })).toBeVisible();
-  click({ skip: "제품 입력 없이 진행할래요", yes: "네, 지금 쓰는 제품이 있어요", no: "아니요, 지금은 아무것도 안 써요" }[use]);
+  click({ skip: "제품 입력 없이 진행할래요", yes: "세안제나 기초 화장품도 쓰고, 선크림도 발라요", no: "아니요, 지금은 아무것도 안 써요" }[use]);
   setup?.();
   if (serum) fireEvent.change(screen.getByRole("combobox", { name: /지금 쓰는 세럼은 어때요/ }), { target: { value: serum } });
   click("피부 상태 질문으로");

@@ -158,16 +158,23 @@ export function getReviewedRoutineProduct(product) {
   return { catalog, label, officialUrl };
 }
 
-export function buildRoutineSurveyContext(use, entries, serumPreference) {
-  const input = { version: ROUTINE_INTAKE_VERSION, use, serumPreference };
+export function getEntriesForSurveyScope(entries = [], routineScope) {
+  if (routineScope === "without_sunscreen") return entries.filter(entry => getCurrentRoutineProduct(entry)?.category !== "sunscreen");
+  if (routineScope === "sunscreen_only") return entries.filter(entry => ["sunscreen", "cleanser"].includes(getCurrentRoutineProduct(entry)?.category));
+  return entries;
+}
+
+export function buildRoutineSurveyContext(use, entries, serumPreference, routineScope) {
+  const input = { version: ROUTINE_INTAKE_VERSION, use, serumPreference, routineScope };
   if (use === "yes") {
-    const { rowsBySlot, slotReactions } = getCurrentRoutineContext(entries);
+    const scopedEntries = getEntriesForSurveyScope(entries, routineScope);
+    const { rowsBySlot, slotReactions } = getCurrentRoutineContext(scopedEntries);
     for (const [slot, rows] of Object.entries(rowsBySlot)) {
       const catalog = rows.length === 1 ? getProductById(rows[0].productId) : null;
       input[slot] = { ...(getRoutineProductBand(catalog, slot) ?? { band: "unknown" }), reaction: slotReactions[slot],
         allInOne: rows.some(row => row.allInOne), listedHumectants: rows.some(row => row.officialFormula?.hydrationSignal) };
     }
-    if (entries.some(entry => entry.reaction === "heavy" && getCurrentRoutineProduct(entry)?.category === "sunscreen"))
+    if (scopedEntries.some(entry => entry.reaction === "heavy" && getCurrentRoutineProduct(entry)?.category === "sunscreen"))
       input.sunscreen = { reaction: "heavy" };
   }
   return readRoutineSurveyContext(input);

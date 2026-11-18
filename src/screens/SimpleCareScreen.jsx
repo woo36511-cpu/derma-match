@@ -17,7 +17,7 @@ import { FolliculitisOptions } from "../components/FolliculitisOptions";
 import { ConcernProductOptions } from "../components/ConcernProductOptions";
 import { RoutineProductScroller } from "../components/RoutineProductScroller";
 import { getBasicObservationTracks, getObservationKinds } from "../utils/moisturizerObservation";
-import { buildRoutineSurveyContext, getCurrentRoutineContext, getCurrentRoutineProduct, getSerumRoutineSummary } from "../utils/currentRoutineReview";
+import { buildRoutineSurveyContext, getEntriesForSurveyScope, getCurrentRoutineContext, getCurrentRoutineProduct, getSerumRoutineSummary } from "../utils/currentRoutineReview";
 import { DetailDisclosure } from "../components/DetailDisclosure";
 import { RoutineProductLookup } from "../components/RoutineProductLookup";
 import { buildRoutineAdvice, getRoutineComparison, getRoutinePreferences, routineSlotNames } from "../utils/routineAdvice";
@@ -179,7 +179,8 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   const intake = readRoutineSurveyContext(surveyAnswers?.routineIntake);
   const [legacySerumPreference, setSerumPreference] = useState(() => initialRecord?.routinePreferences?.serum ?? priorSerumPreference ?? "");
   const serumPreference = intake ? intake.serumPreference ?? "" : legacySerumPreference;
-  const activeRoutineEntries = intake && intake.use !== "yes" ? emptyRoutine : currentRoutineEntries;
+  const activeRoutineEntries = useMemo(() => intake && intake.use !== "yes" ? emptyRoutine :
+    getEntriesForSurveyScope(currentRoutineEntries, intake?.routineScope), [currentRoutineEntries, intake?.use, intake?.routineScope]);
   const currentRoutine = useMemo(() => getCurrentRoutineContext(activeRoutineEntries), [activeRoutineEntries]);
   const serumStatus = getSerumRoutineSummary(activeRoutineEntries, serumPreference === "keep");
   const skipBasicSerum = (serumPreference !== "compare" && serumStatus.skipBasicSerum) || serumStatus.hasIrritation;

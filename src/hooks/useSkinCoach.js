@@ -791,8 +791,8 @@ export function useSkinCoach() {
     setSurveyAnswers({}); setSurveyIndex(0); setMainConcern(""); setIssueAnswers({});
     setActiveJourneyId(null); setStep("routineIntake");
   };
-  const completeRoutineIntake = (use, serumPreference, checkedEntries = currentRoutine.entries) => {
-    const routineIntake = buildRoutineSurveyContext(use, checkedEntries, serumPreference);
+  const completeRoutineIntake = (use, serumPreference, checkedEntries = currentRoutine.entries, routineScope) => {
+    const routineIntake = buildRoutineSurveyContext(use, checkedEntries, serumPreference, routineScope);
     if (!routineIntake) return;
     setSurveyAnswers(previous => {
       if (JSON.stringify(previous.routineIntake) === JSON.stringify(routineIntake)) return previous;
