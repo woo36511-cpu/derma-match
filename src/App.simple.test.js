@@ -685,3 +685,14 @@ test("the scar-first result shows the separate breakout candidate and a basic al
   expect(screen.getByRole("region", { name: "불편했던 기본 제품 대안" })).toBeInTheDocument();
   expect(screen.getByRole("region", { name: "함께 선택한 고민" })).toHaveTextContent("솟은 흉터처럼 보여요");
 });
+
+test("a current serum with earlier recorded irritation is not presented as a product to keep", () => {
+  const profile = analyzeSkinSurvey(values, skinSurveyQuestions);
+  render(<SimpleCareScreen profile={profile} surveyAnswers={values} onSave={() => {}} onBack={() => {}} onHome={() => {}}
+    priorSerumPreference="keep" currentRoutineEntries={[{ id: 5, reaction: "comfortable" }]}
+    personalProductFeedback={{ avoided: new Set([5]), comparisons: new Map() }} />);
+  extraCare({ concern: "none" });
+  const personal = screen.getByRole("region", { name: "지난 사용 기록 반영" });
+  expect(personal).toHaveTextContent("이번에는 유지 제품이나 새 추천에 넣지 않았어요");
+  expect(screen.queryByRole("region", { name: "지금 쓰는 세럼" })).not.toBeInTheDocument();
+});

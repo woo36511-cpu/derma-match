@@ -1,3 +1,4 @@
+import { avoidPersonalProduct, getPersonalRoutineActions } from "../utils/personalProductFeedback";
 import { sunscreenOption } from "../data/targetedCareProducts";
 import { useVerifiedProductFormula } from "../hooks/useVerifiedProductFormula";
 import { getReactionIngredientClues } from "../utils/reactionIngredientFit";
@@ -21,7 +22,7 @@ import { FolliculitisOptions } from "../components/FolliculitisOptions";
 import { ConcernProductOptions } from "../components/ConcernProductOptions";
 import { RoutineProductScroller } from "../components/RoutineProductScroller";
 import { getBasicObservationTracks, getObservationKinds } from "../utils/moisturizerObservation";
-import { buildRoutineSurveyContext, getEntriesForSurveyScope, getCurrentRoutineContext, getCurrentRoutineProduct, getSerumRoutineSummary } from "../utils/currentRoutineReview";
+import { buildRoutineSurveyContext, getEntriesForSurveyScope, getCurrentRoutineContext, getCurrentRoutineProduct, getExactCatalogProduct, getSerumRoutineSummary } from "../utils/currentRoutineReview";
 import { DetailDisclosure } from "../components/DetailDisclosure";
 import { RoutineProductLookup } from "../components/RoutineProductLookup";
 import { buildRoutineAdvice, getRoutineComparison, getRoutinePreferences, routineSlotNames } from "../utils/routineAdvice";
@@ -201,16 +202,26 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   const reviewEntries = useMemo(() => reactionProduct
     ? activeRoutineEntries?.filter(entry => getCurrentRoutineProduct(entry)?.id !== reactionProduct.id)
     : activeRoutineEntries, [activeRoutineEntries, reactionProduct]);
+  const entryCatalog = entry => getExactCatalogProduct(getCurrentRoutineProduct(entry));
+  const ownedCatalog = (activeRoutineEntries ?? []).map(entryCatalog).filter(Boolean);
+  const hasEarlierIrritation = entry => avoidPersonalProduct(entryCatalog(entry), personalProductFeedback);
+  const comfortEntries = (reviewEntries ?? []).filter(entry => !hasEarlierIrritation(entry));
   const currentRoutine = useMemo(() => getCurrentRoutineContext(reviewEntries), [reviewEntries]);
-  const serumStatus = getSerumRoutineSummary(reviewEntries, serumPreference === "keep");
-  const skipBasicSerum = (serumPreference !== "compare" && serumStatus.skipBasicSerum) || serumStatus.hasIrritation;
+  const comfortRoutine = getCurrentRoutineContext(comfortEntries);
+  const removedUnsafeSerum = Boolean(currentRoutine.rowsBySlot.serum?.length && !comfortRoutine.rowsBySlot.serum?.length);
+  const effectiveSerumPreference = removedUnsafeSerum ? "" : serumPreference;
+  const serumStatus = getSerumRoutineSummary(comfortEntries, effectiveSerumPreference === "keep");
+  const skipBasicSerum = (effectiveSerumPreference !== "compare" && serumStatus.skipBasicSerum) || serumStatus.hasIrritation;
   const [cosmeticAnswers, setCosmeticAnswers] = useState(() => initialRecord?.cosmeticAddOn?.answers ?? null);
   const questions = getSimpleCareQuestions(answers, careQuestionOptions);
   const question = questions[Math.min(index, questions.length - 1)];
   const plan = applyObservationToCarePlan(buildSimpleCarePlan(answers, careQuestionOptions), profile);
   const assessment = profile.observationAssessment;
   const observedSkin = assessment?.resolvedObservations;
-  const preferences = getRoutinePreferences(currentRoutine, observedSkin, serumPreference);
+  const preferences = getRoutinePreferences(comfortRoutine, observedSkin, effectiveSerumPreference);
+  for (const slot of ["cleanser", "toner", "serum", "cream"]) {
+    if (currentRoutine.rowsBySlot[slot]?.length && !comfortRoutine.rowsBySlot[slot]?.length) preferences.suppressedSlots.delete(slot);
+  }
   const allowNewBasics = assessment?.canRecommendBasics !== false && !plan.blockNewBasics && !currentRoutine.irritated.length;
   const makeupCleansing = getMakeupCleansingPlan(surveyAnswers, {
     blocked: !allowNewBasics,
@@ -242,7 +253,11 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
       selectionEvidence: initialRecord.recommendationAssessment?.selectionEvidence ?? null, isHistorical: true }
     : buildDynamicRoutine(profile.hydrationLevel, recommendationContext);
   const otherRetained = Object.entries(preferences.retained).filter(([slot]) => slot !== "serum");
-  const advice = buildRoutineAdvice({ currentRoutine, routine: displayRoutine, assessment, plan, retained: preferences.retained });
+  const pastIrritationProduct = ownedCatalog.find(product => avoidPersonalProduct(product, personalProductFeedback));
+  const advice = pastIrritationProduct && allowNewBasics ? {
+    title: "이전에 불편했던 제품부터 점검해요.",
+    detail: `${pastIrritationProduct.name} 사용 후 자극을 기록했어요. 해당 제품은 이번 유지 목록에서 빼고, 편하게 쓰는 나머지 제품은 유지해요.`,
+  } : buildRoutineAdvice({ currentRoutine: comfortRoutine, routine: displayRoutine, assessment, plan, retained: preferences.retained });
   const visibleSerumStatus = { ...serumStatus, skipBasicSerum };
   const cosmeticContext = { profile, surveyAnswers, carePlan: plan, routine: displayRoutine, personalProductFeedback, currentRoutine: { ...currentRoutine, ...reactionContext } };
   const cosmeticPlan = cosmeticAnswers ? buildCosmeticAddOnPlan(cosmeticAnswers, cosmeticContext) : null;
@@ -280,7 +295,22 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     try { onSave(next); setSaveError(false); } catch { setSaveError(true); }
   };
   if (showResult && plan.complete) {
+    const personalActions = getPersonalRoutineActions({
+      candidates: displayRoutine.isHistorical ? [] : [...Object.values(displayRoutine.products), replacement],
+      current: ownedCatalog, level: profile.hydrationLevel, context: recommendationContext,
+    });
     const notes = <>
+    {personalActions.length > 0 && <section className="care-panel space-y-2" aria-label="지난 사용 기록 반영">
+      <h2 className="font-bold">지난 사용 기록을 반영했어요</h2>
+      <ul className="space-y-2 text-sm">{personalActions.map(({ product, action }) => <li key={product.id}>
+        <strong>{product.name}</strong> · {{
+          review_irritation: "지난번 사용 후 자극을 기록해 이번에는 유지 제품이나 새 추천에 넣지 않았어요. 지금도 불편한지 제품 점검에서 확인해요.",
+          keep_if_comfortable: "비슷한 상태에서 피부 고민이 줄었다고 기록했어요. 지금도 편하게 쓰고 있다면 유지해요.",
+          previous_improvement: "비슷한 상태에서 피부 고민이 줄었다고 기록해 이번 후보를 고를 때 참고했어요.",
+          check_remaining_concern: "비슷한 상태에서 사용 후 개선이 기록되지 않았어요. 지금 남아 있는 고민과 사용감을 다시 확인해요.",
+        }[action]}
+      </li>)}</ul>
+    </section>}
     <ProductChangeReview answers={surveyAnswers} entries={currentRoutineEntries} />
     {replacement && <section className="care-panel space-y-3" aria-label="불편했던 기본 제품 대안">
       <h2 className="font-bold">불편했던 기본 제품 대안</h2>
