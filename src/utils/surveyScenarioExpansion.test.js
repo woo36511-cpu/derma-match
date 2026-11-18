@@ -1,7 +1,8 @@
 import { adaptiveObservationQuestions, getAdaptiveObservationQuestions, cleanAdaptiveObservationAnswers } from "../data/adaptiveObservationSurvey";
 import { analyzeAdaptiveSkinSurvey } from "./analyzeAdaptiveSkinSurvey";
 import { searchRoutineProducts } from "./routineLookup";
-import { buildRoutineSurveyContext } from "./currentRoutineReview";
+import { getRoutinePreferences } from "./routineAdvice";
+import { buildRoutineSurveyContext, getCurrentRoutineContext } from "./currentRoutineReview";
 
 test("redness without stinging can be reported and clarified without overwriting tightness", () => {
   const wash = adaptiveObservationQuestions.find(q => q.id === "washResponse");
@@ -20,4 +21,10 @@ test("an all-in-one moisturiser enters the survey as one existing step without i
   expect(context.cream).toMatchObject({ band: "unknown", reaction: "heavy", allInOne: true });
   expect(context).not.toHaveProperty("toner");
   expect(getAdaptiveObservationQuestions({ routineIntake: context }).find(q => q.id === "moisturizerUse").question).toMatch(/올인원/);
+});
+
+test("survey discomfort can unlock a replacement for an all-in-one without a separate product rating", () => {
+  const current = getCurrentRoutineContext([{ id: "lookup:roundlab:234", reaction: null }]);
+  expect(getRoutinePreferences(current, { moisturizerUse: "comfortable" }).suppressedSlots.has("cream")).toBe(true);
+  expect(getRoutinePreferences(current, { moisturizerUse: "heavy" }).suppressedSlots.has("cream")).toBe(false);
 });
