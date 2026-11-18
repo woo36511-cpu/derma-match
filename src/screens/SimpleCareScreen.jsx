@@ -67,7 +67,7 @@ export function applyObservationToCarePlan(plan, profile) {
   return plan;
 }
 
-export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, serumStatus, otherRetained = [], advice, recommendationContext, ownedIds, notes, routineHasIrritation, makeupCleansing }) {
+export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, serumStatus, otherRetained = [], advice, recommendationContext, ownedIds, notes, routineHasIrritation, makeupCleansing, replacement, tracking }) {
   const heading = useScreenHeading("care-result");
   const concernFirst = plan.blockNewBasics || (plan.answers.concern !== "none" && !routineHasIrritation);
   const priority = concernFirst ? plan : advice;
@@ -86,6 +86,15 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
         <p className="text-sm leading-relaxed">{priority.detail}</p>
         {firstCareAction && <p className="text-sm text-slate-600">{firstCareAction}</p>}
         {fitNote && <p className="text-sm text-slate-600">{fitNote}</p>}
+        <dl className="grid gap-1 border-t border-stone-200 pt-2 text-sm">
+          {(!plan.blockNewBasics && (otherRetained.length > 0 || serumStatus?.keep?.length > 0)) && <div><dt className="inline font-semibold">유지 · </dt><dd className="inline">편하게 쓰는 {[
+            ...otherRetained.map(([slot]) => routineSlotNames[slot]), ...(serumStatus?.keep?.length ? ["세럼"] : []),
+          ].join("·")}</dd></div>}
+          {replacement && <div><dt className="inline font-semibold">교체 검토 · </dt><dd className="inline">{replacement.name}</dd></div>}
+          {(plan.pharmacy || plan.separateBreakout?.pharmacy) && <div><dt className="inline font-semibold">트러블용 후보 · </dt><dd className="inline">{(plan.pharmacy ?? plan.separateBreakout.pharmacy).name} — 해당 부위와 주의사항은 아래에서 확인해요.</dd></div>}
+          {plan.separateBreakout && !plan.separateBreakout.pharmacy && <div><dt className="inline font-semibold">같이 살펴볼 고민 · </dt><dd className="inline">{plan.separateBreakout.title}</dd></div>}
+        </dl>
+        {tracking && <button type="button" className="care-secondary" onClick={tracking}>이 관리 시작·변화 기록</button>}
       </section>}
     </section>
     {serumStatus?.skipBasicSerum && !plan.blockNewBasics && <section aria-label="지금 쓰는 세럼" className="care-panel space-y-1 text-sm">
@@ -179,7 +188,7 @@ function updateCareAnswer(previous, id, value, options) {
   return cleanSimpleCareAnswers(next, options);
 }
 
-export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave, onBack, onHome, onRestart, onReviewRoutine, currentRoutineEntries, routineReview, priorSerumPreference, personalProductFeedback }) {
+export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave, onBack, onHome, onRestart, onReviewRoutine, currentRoutineEntries, routineReview, priorSerumPreference, personalProductFeedback, observation }) {
   const [legacyExtent, setLegacyExtent] = useState(() => Boolean(initialRecord &&
     initialRecord.symptomAssessment?.ruleVersion !== SIMPLE_CARE_VERSION && !initialRecord.additionalCare?.breakoutExtent));
   const priorReactionProduct = surveyAnswers?.reactionProduct ? getRoutineLookupProduct(surveyAnswers.reactionProductId) : null;
@@ -295,6 +304,12 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     try { onSave(next); setSaveError(false); } catch { setSaveError(true); }
   };
   if (showResult && plan.complete) {
+    const canTrackThisResult = !saveError && observation?.surveyId && observation.surveyId === record?.id;
+    const offers = canTrackThisResult ? observation.offers : [];
+    const tracked = canTrackThisResult ? observation.history.filter(item => (item.productObservation ?? item.moisturizerObservation)?.surveyId === record.id) : [];
+    const openTracking = offers.length === 1 && !tracked.length
+      ? () => observation.start(offers[0].kind)
+      : offers.length || tracked.length ? () => document.getElementById("care-result-tracking")?.scrollIntoView?.({ block: "center" }) : undefined;
     const personalActions = getPersonalRoutineActions({
       candidates: displayRoutine.isHistorical ? [] : [...Object.values(displayRoutine.products), replacement],
       current: ownedCatalog, level: profile.hydrationLevel, context: recommendationContext,
@@ -336,9 +351,15 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     </div>}
     </>;
     return <div className="space-y-6">
-      <SimpleCareResult profile={profile} routine={displayRoutine} otherRetained={otherRetained} advice={advice} recommendationContext={recommendationContext} ownedIds={currentRoutine.ownedProductIds} plan={displayPlan} serumStatus={visibleSerumStatus} onReviewRoutine={saveError ? undefined : onReviewRoutine} notes={notes} routineHasIrritation={currentRoutine.irritated.length > 0} makeupCleansing={makeupCleansing} />
+      <SimpleCareResult profile={profile} routine={displayRoutine} otherRetained={otherRetained} advice={advice} recommendationContext={recommendationContext} ownedIds={currentRoutine.ownedProductIds} plan={displayPlan} serumStatus={visibleSerumStatus} onReviewRoutine={saveError ? undefined : onReviewRoutine} notes={notes} replacement={replacement} tracking={openTracking} routineHasIrritation={currentRoutine.irritated.length > 0} makeupCleansing={makeupCleansing} />
     {(profile.surveyVersion !== ADAPTIVE_SURVEY_VERSION || displayRoutine.isHistorical) && onRestart && <button onClick={onRestart} className="rounded-xl border px-4 py-3">새 기준으로 다시 확인</button>}
     {allowNewBasics && <CosmeticAddOnSection context={cosmeticContext} initialAnswers={cosmeticAnswers} onApply={save} />}
+    {(offers.length > 0 || tracked.length > 0) && <section id="care-result-tracking" className="care-panel space-y-3" aria-label="관리 변화 기록">
+      <h2 className="font-bold">제품과 고민별로 변화 기록하기</h2>
+      <p className="text-sm">실제로 사용했는지, 고민이 줄었는지, 자극이 있었는지를 따로 기록해요.</p>
+      {offers.map(({ kind, config, product }) => <button type="button" key={kind} className="care-secondary mr-2" onClick={() => observation.start(kind)}>{config.symptom} · {product.name} 기록 시작</button>)}
+      {tracked.length > 0 && <button type="button" className="care-secondary" onClick={observation.resume}>진행 중인 변화 기록 보기</button>}
+    </section>}
     <ProcedureOptions plan={displayPlan} profile={profile} />
     {saveError && <div role="alert" className="rounded-xl bg-amber-50 p-4">결과는 표시했지만 저장하지 못했어요. <button className="underline" onClick={() => save()}>저장 다시 시도</button></div>}
     <div className="flex flex-wrap gap-3"><button type="button" className="care-secondary" onClick={() => { setShowResult(false); setLegacyExtent(false); setIndex(0); }}>추가 고민 답변 바꾸기</button><button type="button" className="care-secondary" onClick={onBack}>피부타입 답변 다시 보기</button><PrimaryButton onClick={onHome}>시작 화면</PrimaryButton></div>
