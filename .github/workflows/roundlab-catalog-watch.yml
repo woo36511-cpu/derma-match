@@ -1,0 +1,45 @@
+name: Round Lab catalog watch
+on:
+  schedule:
+    - cron: '37 18 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: roundlab-catalog-watch
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Verify parser and change handling
+        run: node --test scripts/roundlab-catalog-watch.test.mjs
+      - name: Restore previous snapshot and collect changes
+        shell: bash
+        run: |
+          prior=$(gh run list --workflow roundlab-catalog-watch.yml --branch main --status success --limit 1 --json databaseId --jq '.[0].databaseId // empty')
+          if [[ -n "$prior" ]]; then
+            gh run download "$prior" --name roundlab-catalog-snapshot --dir prior
+            node scripts/watch-roundlab-catalog.mjs roundlab-snapshot.json prior/roundlab-snapshot.json
+          else
+            node scripts/watch-roundlab-catalog.mjs roundlab-snapshot.json
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: roundlab-catalog-snapshot
+          path: roundlab-snapshot.json
+          if-no-files-found: error
+          retention-days: 90
