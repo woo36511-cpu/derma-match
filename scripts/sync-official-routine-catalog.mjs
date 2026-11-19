@@ -9,6 +9,11 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  imfrom: {
+    ...cafe("아임프롬", "I'm From", "www.imfrom.co.kr",
+      [1, 2, 3].map(page => [`list${page}`, `/product/list.html?cate_no=166&page=${page}`])),
+    detailQuery: true,
+  },
   skinrxlab: cafe("스킨알엑스랩", "SKINRx LAB", "skinrxlab.com", [["list", "/product/list.html?cate_no=23"]]),
   tocobo: cafe("토코보", "TOCOBO", "tocobo.co.kr", [24, 43, 61, 64].map(cate => [`list${cate}`, `/product/list.html?cate_no=${cate}`])),
   beautyofjoseon: cafe("조선미녀", "Beauty of Joseon", "beautyofjoseon.co.kr",
@@ -147,7 +152,11 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
     const image = imageUrl(attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
-    if (store.type === "cafe") {
+    if (store.detailQuery && url.pathname === "/product/detail.html") {
+      id = url.searchParams.get("product_no");
+      if (!/^\d{1,12}$/.test(id ?? "")) continue;
+      sourceUrl = `https://${store.domain}/product/detail.html?product_no=${id}`;
+    } else if (store.type === "cafe") {
       const m = url.pathname.match(/^\/product\/([^/]+)\/(\d+)(?:\/|$)/);
       if (!m) continue;
       id = m[2];
