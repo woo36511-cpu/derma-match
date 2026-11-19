@@ -99,6 +99,12 @@
       "usefulPages": 2,
       "fetchedListings": 24
     },
+    "lagom": {
+      "name": "라곰",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 4,
+      "fetchedListings": 19
+    },
     "manyo": {
       "name": "마녀공장",
       "checkedAt": "2026-11-15",
@@ -6098,6 +6104,177 @@
       "category": "moisturizer",
       "volume": "80ml",
       "officialUrl": "https://jumiso.co.kr/product/%EC%9E%A5%EB%B2%BD%ED%9A%8C%EB%B3%B5%EA%B8%B0%EB%8A%A5%EC%84%B1-d-%ED%8C%90%ED%85%8C%EB%86%80-%EB%B2%A0%EB%A6%AC%EC%96%B4-%EC%88%98%EB%94%A9-%ED%81%AC%EB%A6%BC-80ml/99/"
+    },
+    {
+      "id": "lookup:lagom:13",
+      "name": "라곰 화이트 모이스처 크림",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=13"
+    },
+    {
+      "id": "lookup:lagom:132",
+      "name": "라곰 마이크로 클렌징 워터",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "cleanser",
+      "volume": "350ml",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=132"
+    },
+    {
+      "id": "lookup:lagom:14",
+      "name": "라곰 미스트 토너",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=14"
+    },
+    {
+      "id": "lookup:lagom:15",
+      "name": "라곰 마일드 모이스처 크림",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "moisturizer",
+      "volume": "80ml",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=15"
+    },
+    {
+      "id": "lookup:lagom:154",
+      "name": "라곰 아쿠알렌 세럼",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=154"
+    },
+    {
+      "id": "lookup:lagom:184",
+      "name": "라곰 선 젤 플러스",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "sunscreen",
+      "volume": "40ml",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=184"
+    },
+    {
+      "id": "lookup:lagom:219",
+      "name": "라곰 브라이트닝 톤업 선",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=219"
+    },
+    {
+      "id": "lookup:lagom:33",
+      "name": "라곰 리바이브 에센 토너",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=33"
+    },
+    {
+      "id": "lookup:lagom:414",
+      "name": "라곰 에어리 벨벳 선 스틱",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "sunscreen",
+      "volume": "18g",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=414"
+    },
+    {
+      "id": "lookup:lagom:454",
+      "name": "라곰 나이아신 하이드로 세럼",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=454"
+    },
+    {
+      "id": "lookup:lagom:484",
+      "name": "라곰 마이크로 포어 클렌징 오일",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=484"
+    },
+    {
+      "id": "lookup:lagom:611",
+      "name": "라곰 딥 모이스쳐 크림",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "moisturizer",
+      "volume": "60ml",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=611"
+    },
+    {
+      "id": "lookup:lagom:661",
+      "name": "라곰 오트 미셀라 클렌징 밀크",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=661"
+    },
+    {
+      "id": "lookup:lagom:679",
+      "name": "라곰 아쿠아 씨켈프 캡슐 세럼",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=679"
+    },
+    {
+      "id": "lookup:lagom:680",
+      "name": "라곰 아쿠아 씨켈프 모이스처 크림",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "moisturizer",
+      "volume": "60ml",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=680"
+    },
+    {
+      "id": "lookup:lagom:681",
+      "name": "라곰 아쿠아 씨켈프 부스팅 겔 패드",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "toner",
+      "volume": "70매",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=681"
+    },
+    {
+      "id": "lookup:lagom:682",
+      "name": "라곰 아쿠아 씨켈프 선세럼",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=682"
+    },
+    {
+      "id": "lookup:lagom:80",
+      "name": "라곰 센서티브 시카 크림",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "moisturizer",
+      "volume": "60ml",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=80"
+    },
+    {
+      "id": "lookup:lagom:9",
+      "name": "라곰 마이크로 폼 클렌저",
+      "brand": "라곰",
+      "brandAlias": "LAGOM",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://lagom.kr/product/detail.html?product_no=9"
     },
     {
       "id": "lookup:manyo:1000000019",
