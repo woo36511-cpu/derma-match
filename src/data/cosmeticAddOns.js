@@ -77,6 +77,7 @@ export function isCosmeticComplete(input, carePlan = {}) {
 
 // Labels describe the product, not the presence of one ingredient alone.
 export const cosmeticProductProfiles = {
+  82: { goals: ["support"], families: ["niacinamide"], intensity: "support", label: "수분 보완 세럼" },
   2: { goals: ["support"], families: [], intensity: "support", label: "가벼운 수분 보충 세럼" },
   5: { goals: ["texture"], families: ["acid", "niacinamide"], intensity: "exfoliant", label: "각질 관리 화장품", source: "https://www.cosrx.co.kr/m/product_detail.html?brand_uid=1173596" },
   13: { goals: ["sebum"], families: ["niacinamide"], intensity: "high", label: "유분감 관리 화장품", source: "https://www.cosdebaha.co.kr/product/n-세럼-30ml/70/" },

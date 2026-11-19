@@ -5979,5 +5979,135 @@
       "source": "https://cosrxinc.jpg3.kr/cosrximg/cosrx/product/The-Peptide-serum/1000_6_Peptide_08.jpg",
       "verifiedAt": "2026-11-13"
     }
+  },
+  {
+    "id": 82,
+    "name": "메디힐 마데카소사이드 흔적 리페어 세럼",
+    "brand": "메디힐",
+    "category": "serum",
+    "volume": "40ml",
+    "hydrationLevel": 5,
+    "texture": "balanced",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "글리세린",
+      "판테놀",
+      "마데카소사이드",
+      "나이아신아마이드"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "부틸렌글라이콜",
+      "프로판다이올",
+      "1,2-헥산다이올",
+      "나이아신아마이드",
+      "글리세릴폴리메타크릴레이트",
+      "판테놀",
+      "베타인",
+      "폴리글리세릴-10라우레이트",
+      "아크릴레이트/C10-30알킬아크릴레이트크로스폴리머",
+      "다이페닐다이메티콘",
+      "트라이에틸헥사노인",
+      "트로메타민",
+      "마데카소사이드",
+      "에틸헥실글리세린",
+      "하이드로제네이티드레시틴",
+      "잔탄검",
+      "소듐하이알루로네이트",
+      "병풀추출물",
+      "아시아티코사이드",
+      "서양배추추출물",
+      "연필향나무오일",
+      "병풀잎추출물",
+      "베타-글루칸",
+      "다마스크장미꽃수",
+      "멜론추출물",
+      "오리스뿌리추출물",
+      "서양송악잎/줄기추출물",
+      "호호바씨오일",
+      "광곽향오일",
+      "불가리스쑥오일",
+      "로즈마리잎오일",
+      "토코페롤",
+      "다이프로필렌글라이콜",
+      "펜틸렌글라이콜",
+      "카프릴릴/카프릴글루코사이드",
+      "마데카식애씨드",
+      "아시아틱애씨드",
+      "세라마이드엔피"
+    ],
+    "careProfile": {
+      "hydrationSupport": 6,
+      "lightweightFit": 5,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 2
+    },
+    "catalogAudit": {
+      "careProfileSource": "internal_conservative_assessment",
+      "reviewedAt": "2026-11-19"
+    },
+    "evidence": {
+      "evidenceLevel": "B",
+      "officialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-19",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://medihealshop.com/product/detail.html?product_no=955"
+        }
+      ],
+      "note": "공식 표시: 마데카소사이드 540 ppm, 병풀추출물 51 ppm, 아시아티코사이드 39 ppm, 병풀잎추출물 21 ppm, 마데카식애씨드 0.00004 ppm, 아시아틱애씨드 0.00003 ppm. 나이아신아마이드 함량은 미확인.",
+      "priceVerified": false,
+      "purchaseLinkVerified": false
+    },
+    "description": "공식 전성분에서 보습 성분을 확인한 추가 세럼. 여러 식물 오일을 포함해 민감성 추천에서는 제외해요.",
+    "sensitivitySafe": false,
+    "beginnerFriendly": false,
+    "isAvailable": true,
+    "recommendationScope": "addon_only",
+    "legacyLookupIds": [
+      "lookup:mediheal:955"
+    ],
+    "link": "https://medihealshop.com/product/detail.html?product_no=955",
+    "price": null,
+    "disclosedConcentrations": [
+      {
+        "name": "마데카소사이드",
+        "concentration": 540,
+        "unit": "ppm"
+      },
+      {
+        "name": "병풀추출물",
+        "concentration": 51,
+        "unit": "ppm"
+      },
+      {
+        "name": "아시아티코사이드",
+        "concentration": 39,
+        "unit": "ppm"
+      },
+      {
+        "name": "병풀잎추출물",
+        "concentration": 21,
+        "unit": "ppm"
+      },
+      {
+        "name": "마데카식애씨드",
+        "concentration": 4e-05,
+        "unit": "ppm"
+      },
+      {
+        "name": "아시아틱애씨드",
+        "concentration": 3e-05,
+        "unit": "ppm"
+      }
+    ]
   }
 ]
