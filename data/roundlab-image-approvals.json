@@ -1,0 +1,11 @@
+{
+  "lookup:roundlab:22": {
+    "catalogId": 1,
+    "volume": "200ml",
+    "imageUrl": "https://gi.esmplus.com/roundlab/DOKDO/DT200/DT200_3.jpg",
+    "imageSha256": "84fe42dc9d8a623ee247d6a31b44f5a209e4318fe8c42db75cf67b2b352a3fc7",
+    "reviewedAt": "2026-11-19",
+    "reviewedIngredientCount": 16,
+    "catalogMatch": "unchanged"
+  }
+}
