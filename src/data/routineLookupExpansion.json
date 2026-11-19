@@ -177,6 +177,12 @@
       "usefulPages": 1,
       "fetchedListings": 65
     },
+    "ninewishes": {
+      "name": "나인위시스",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 3,
+      "fetchedListings": 31
+    },
     "numbuzin": {
       "name": "넘버즈인",
       "checkedAt": "2026-11-15",
@@ -11212,6 +11218,285 @@
       "category": "toner",
       "volume": "80ml",
       "officialUrl": "https://www.neogenlab.co.kr/product/%ED%99%94%EC%9D%B4%ED%8A%B8-%ED%8A%B8%EB%9F%AC%ED%94%8C-%EC%95%B0%ED%94%8C-%EB%93%9C%EB%A1%AD-%EB%AF%B8%EC%8A%A4%ED%8A%B8-80ml/99/"
+    },
+    {
+      "id": "lookup:ninewishes:105",
+      "name": "나인위시스 캄 앰플 세럼",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "serum",
+      "volume": "25ml",
+      "officialUrl": "https://www.9wishes.shop/product/%EC%BA%84-%EC%95%B0%ED%94%8C-%EC%84%B8%EB%9F%BC-25ml/105/"
+    },
+    {
+      "id": "lookup:ninewishes:110",
+      "name": "나인위시스 라이스 72 토너",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://www.9wishes.shop/product/%EB%9D%BC%EC%9D%B4%EC%8A%A4-72-%ED%86%A0%EB%84%88-150ml/110/"
+    },
+    {
+      "id": "lookup:ninewishes:117",
+      "name": "나인위시스 하이드라 앰플 토너",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://www.9wishes.shop/product/%ED%95%98%EC%9D%B4%EB%93%9C%EB%9D%BC-%EC%95%B0%ED%94%8C-%ED%86%A0%EB%84%88-150ml/117/"
+    },
+    {
+      "id": "lookup:ninewishes:118",
+      "name": "나인위시스 하이드라 앰플 크림",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.9wishes.shop/product/%ED%95%98%EC%9D%B4%EB%93%9C%EB%9D%BC-%EC%95%B0%ED%94%8C-%ED%81%AC%EB%A6%BC-50ml/118/"
+    },
+    {
+      "id": "lookup:ninewishes:135",
+      "name": "나인위시스 하이드라 클렌징 앰플",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://www.9wishes.shop/product/%ED%95%98%EC%9D%B4%EB%93%9C%EB%9D%BC-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%95%B0%ED%94%8C-200ml/135/"
+    },
+    {
+      "id": "lookup:ninewishes:143",
+      "name": "나인위시스 하이드라 앰플 II",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.9wishes.shop/product/%ED%95%98%EC%9D%B4%EB%93%9C%EB%9D%BC-%EC%95%B0%ED%94%8C-30ml/143/"
+    },
+    {
+      "id": "lookup:ninewishes:146",
+      "name": "나인위시스 PH 캄 아이스 크림",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.9wishes.shop/product/ph-%EC%BA%84-%EC%95%84%EC%9D%B4%EC%8A%A4-%ED%81%AC%EB%A6%BC-50ml-%EC%82%AC%EC%9A%A9%EA%B8%B0%ED%95%9C-271229/146/"
+    },
+    {
+      "id": "lookup:ninewishes:155",
+      "name": "나인위시스 하이드라 크림 앰플",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.9wishes.shop/product/%ED%95%98%EC%9D%B4%EB%93%9C%EB%9D%BC-%ED%81%AC%EB%A6%BC-%EC%95%B0%ED%94%8C-30ml/155/"
+    },
+    {
+      "id": "lookup:ninewishes:161",
+      "name": "나인위시스 더마틱 시카 토너",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://www.9wishes.shop/product/%EB%8D%94%EB%A7%88%ED%8B%B1-%EC%8B%9C%EC%B9%B4-%ED%86%A0%EB%84%88-150ml-%EC%82%AC%EC%9A%A9%EA%B8%B0%ED%95%9C270804/161/"
+    },
+    {
+      "id": "lookup:ninewishes:162",
+      "name": "나인위시스 더마틱 시카 폼클렌저",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.9wishes.shop/product/%EB%8D%94%EB%A7%88%ED%8B%B1-%EC%8B%9C%EC%B9%B4-%ED%8F%BC%ED%81%B4%EB%A0%8C%EC%A0%80-150ml-%EC%82%AC%EC%9A%A9%EA%B8%B0%ED%95%9C270806/162/"
+    },
+    {
+      "id": "lookup:ninewishes:163",
+      "name": "나인위시스 더마틱 시카 앰플",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.9wishes.shop/product/%EB%8D%94%EB%A7%88%ED%8B%B1-%EC%8B%9C%EC%B9%B4-%EC%95%B0%ED%94%8C-30ml-%EC%82%AC%EC%9A%A9%EA%B8%B0%ED%95%9C270804/163/"
+    },
+    {
+      "id": "lookup:ninewishes:164",
+      "name": "나인위시스 더마틱 시카 크림",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.9wishes.shop/product/%EB%8D%94%EB%A7%88%ED%8B%B1-%EC%8B%9C%EC%B9%B4-%ED%81%AC%EB%A6%BC-50ml-%EC%82%AC%EC%9A%A9%EA%B8%B0%ED%95%9C270721/164/"
+    },
+    {
+      "id": "lookup:ninewishes:172",
+      "name": "나인위시스 비건 콜라겐 앰플 아이앤페이스 크림",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "moisturizer",
+      "volume": "40ml",
+      "officialUrl": "https://www.9wishes.shop/product/%EB%B9%84%EA%B1%B4-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EC%95%B0%ED%94%8C-%EC%95%84%EC%9D%B4%EC%95%A4%ED%8E%98%EC%9D%B4%EC%8A%A4-%ED%81%AC%EB%A6%BC-40ml/172/"
+    },
+    {
+      "id": "lookup:ninewishes:192",
+      "name": "나인위시스 하이드라 앰플 나노 플러스",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.9wishes.shop/product/%ED%95%98%EC%9D%B4%EB%93%9C%EB%9D%BC-%EC%95%B0%ED%94%8C-%EB%82%98%EB%85%B8-%ED%94%8C%EB%9F%AC%EC%8A%A4-30ml/192/"
+    },
+    {
+      "id": "lookup:ninewishes:216",
+      "name": "나인위시스 하이드라 앰플 토너 나노 플러스",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://www.9wishes.shop/product/%ED%95%98%EC%9D%B4%EB%93%9C%EB%9D%BC-%EC%95%B0%ED%94%8C-%ED%86%A0%EB%84%88-%EB%82%98%EB%85%B8-%ED%94%8C%EB%9F%AC%EC%8A%A4-150ml-%EC%82%AC%EC%9A%A9%EA%B8%B0%ED%95%9C270612/216/"
+    },
+    {
+      "id": "lookup:ninewishes:217",
+      "name": "나인위시스 하이드라 앰플 크림 나노 플러스",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.9wishes.shop/product/%ED%95%98%EC%9D%B4%EB%93%9C%EB%9D%BC-%EC%95%B0%ED%94%8C-%ED%81%AC%EB%A6%BC-%EB%82%98%EB%85%B8-%ED%94%8C%EB%9F%AC%EC%8A%A4-50ml-%EC%82%AC%EC%9A%A9%EA%B8%B0%ED%95%9C-270620/217/"
+    },
+    {
+      "id": "lookup:ninewishes:218",
+      "name": "나인위시스 미라클 화이트 크림",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.9wishes.shop/product/%EB%AF%B8%EB%9D%BC%ED%81%B4-%ED%99%94%EC%9D%B4%ED%8A%B8-%ED%81%AC%EB%A6%BC-50ml-%EC%82%AC%EC%9A%A9%EA%B8%B0%ED%95%9C270612/218/"
+    },
+    {
+      "id": "lookup:ninewishes:219",
+      "name": "나인위시스 VB 톤업 선크림 시그니처",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.9wishes.shop/product/vb-%ED%86%A4%EC%97%85-%EC%84%A0%ED%81%AC%EB%A6%BC-%EC%8B%9C%EA%B7%B8%EB%8B%88%EC%B2%98-50ml/219/"
+    },
+    {
+      "id": "lookup:ninewishes:253",
+      "name": "나인위시스 PDRN 콜라겐 앰플",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.9wishes.shop/product/pdrn-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EC%95%B0%ED%94%8C-30ml/253/"
+    },
+    {
+      "id": "lookup:ninewishes:256",
+      "name": "나인위시스 글루타치온 블랑 앰플",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.9wishes.shop/product/%EA%B8%80%EB%A3%A8%ED%83%80%EC%B9%98%EC%98%A8-%EB%B8%94%EB%9E%91-%EC%95%B0%ED%94%8C-30ml/256/"
+    },
+    {
+      "id": "lookup:ninewishes:257",
+      "name": "나인위시스 센텔라 PDRN 캄 앰플",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.9wishes.shop/product/%EC%84%BC%ED%85%94%EB%9D%BC-pdrn-%EC%BA%84-%EC%95%B0%ED%94%8C-30ml/257/"
+    },
+    {
+      "id": "lookup:ninewishes:262",
+      "name": "나인위시스 세라 베리어 앰플",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.9wishes.shop/product/%EC%84%B8%EB%9D%BC-%EB%B2%A0%EB%A6%AC%EC%96%B4-%EC%95%B0%ED%94%8C-30ml/262/"
+    },
+    {
+      "id": "lookup:ninewishes:263",
+      "name": "나인위시스 제주 청귤 씨 비타민 앰플",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.9wishes.shop/product/%EC%A0%9C%EC%A3%BC-%EC%B2%AD%EA%B7%A4-%EC%94%A8-%EB%B9%84%ED%83%80%EB%AF%BC-%EC%95%B0%ED%94%8C-30ml/263/"
+    },
+    {
+      "id": "lookup:ninewishes:269",
+      "name": "나인위시스 레티놀 모공 앰플",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.9wishes.shop/product/%EB%A0%88%ED%8B%B0%EB%86%80-%EB%AA%A8%EA%B3%B5-%EC%95%B0%ED%94%8C-30ml/269/"
+    },
+    {
+      "id": "lookup:ninewishes:278",
+      "name": "나인위시스 하이드라 마일드 폼 클렌저",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://www.9wishes.shop/product/%ED%95%98%EC%9D%B4%EB%93%9C%EB%9D%BC-%EB%A7%88%EC%9D%BC%EB%93%9C-%ED%8F%BC-%ED%81%B4%EB%A0%8C%EC%A0%80-200ml/278/"
+    },
+    {
+      "id": "lookup:ninewishes:281",
+      "name": "나인위시스 하이드라 판테톨 베리어 미스트",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "toner",
+      "volume": "120ml",
+      "officialUrl": "https://www.9wishes.shop/product/%ED%95%98%EC%9D%B4%EB%93%9C%EB%9D%BC-%ED%8C%90%ED%85%8C%ED%86%A8-%EB%B2%A0%EB%A6%AC%EC%96%B4-%EB%AF%B8%EC%8A%A4%ED%8A%B8-120ml/281/"
+    },
+    {
+      "id": "lookup:ninewishes:95",
+      "name": "나인위시스 밀크 화이트닝 세럼",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.9wishes.shop/product/%EB%B0%80%ED%81%AC-%ED%99%94%EC%9D%B4%ED%8A%B8%EB%8B%9D-%EC%84%B8%EB%9F%BC-30ml/95/"
+    },
+    {
+      "id": "lookup:ninewishes:96",
+      "name": "나인위시스 프로폴리스 앰플",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.9wishes.shop/product/%ED%94%84%EB%A1%9C%ED%8F%B4%EB%A6%AC%EC%8A%A4-%EC%95%B0%ED%94%8C-30ml/96/"
+    },
+    {
+      "id": "lookup:ninewishes:97",
+      "name": "나인위시스 라이스 레디안스 크림",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.9wishes.shop/product/%EB%9D%BC%EC%9D%B4%EC%8A%A4-%EB%A0%88%EB%94%94%EC%95%88%EC%8A%A4-%ED%81%AC%EB%A6%BC-50ml/97/"
+    },
+    {
+      "id": "lookup:ninewishes:98",
+      "name": "나인위시스 라이스 포밍 클렌저",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://www.9wishes.shop/product/%EB%9D%BC%EC%9D%B4%EC%8A%A4-%ED%8F%AC%EB%B0%8D-%ED%81%B4%EB%A0%8C%EC%A0%80-120ml/98/"
+    },
+    {
+      "id": "lookup:ninewishes:99",
+      "name": "나인위시스 라이스 72 세럼",
+      "brand": "나인위시스",
+      "brandAlias": "9wishes",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.9wishes.shop/product/%EB%9D%BC%EC%9D%B4%EC%8A%A4-72-%EC%84%B8%EB%9F%BC-50ml/99/"
     },
     {
       "id": "lookup:numbuzin:131",
