@@ -5211,6 +5211,213 @@
       "officialUrl": "https://jmsolution.com/product/detail.html?product_no=3455"
     },
     {
+      "id": "lookup:jumiso:109",
+      "name": "주미소 D-판테놀 베리어 수딩 세럼",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "serum",
+      "volume": "70ml",
+      "officialUrl": "https://jumiso.co.kr/product/d-%ED%8C%90%ED%85%8C%EB%86%80-%EB%B2%A0%EB%A6%AC%EC%96%B4-%EC%88%98%EB%94%A9-%EC%84%B8%EB%9F%BC-70ml/109/"
+    },
+    {
+      "id": "lookup:jumiso:110",
+      "name": "주미소 워터풀 히알루론산 클렌징 폼",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://jumiso.co.kr/product/%EC%9B%8C%ED%84%B0%ED%92%80-%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8F%BC-150ml/110/"
+    },
+    {
+      "id": "lookup:jumiso:111",
+      "name": "주미소 나이아신아마이드 10 세럼",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "serum",
+      "volume": "40ml",
+      "officialUrl": "https://jumiso.co.kr/product/%EB%8D%B0%EC%9D%BC%EB%A6%AC-%ED%86%A4%EA%B2%B0-%EC%BC%80%EC%96%B4-%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-10-%EC%84%B8%EB%9F%BC-40ml/111/"
+    },
+    {
+      "id": "lookup:jumiso:112",
+      "name": "주미소 나이아신아마이드 20 세럼",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "serum",
+      "volume": "40ml",
+      "officialUrl": "https://jumiso.co.kr/product/%ED%9D%94%EC%A0%81%EB%AA%A8%EA%B3%B5%EC%BC%80%EC%96%B4-%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-20-%EC%84%B8%EB%9F%BC-40ml/112/"
+    },
+    {
+      "id": "lookup:jumiso:113",
+      "name": "주미소 디 판테놀 베리어 수딩 클렌징 밀크",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "cleanser",
+      "volume": "300ml",
+      "officialUrl": "https://jumiso.co.kr/product/%EB%B3%B4%EC%8A%B5%EC%9E%A5%EB%B2%BD%ED%81%B4%EB%A0%8C%EC%A7%95-%EB%94%94-%ED%8C%90%ED%85%8C%EB%86%80-%EB%B2%A0%EB%A6%AC%EC%96%B4-%EC%88%98%EB%94%A9-%ED%81%B4%EB%A0%8C%EC%A7%95-%EB%B0%80%ED%81%AC-300ml/113/"
+    },
+    {
+      "id": "lookup:jumiso:114",
+      "name": "주미소 나이아신아마이드 2 플러스 포어 스무딩 토너",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "toner",
+      "volume": "205ml",
+      "officialUrl": "https://jumiso.co.kr/product/%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-2-%ED%94%8C%EB%9F%AC%EC%8A%A4-%ED%8F%AC%EC%96%B4-%EC%8A%A4%EB%AC%B4%EB%94%A9-%ED%86%A0%EB%84%88-205ml/114/"
+    },
+    {
+      "id": "lookup:jumiso:115",
+      "name": "주미소 나이아신아마이드 5 플러스 오버나이트 크림",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://jumiso.co.kr/product/%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-5-%ED%94%8C%EB%9F%AC%EC%8A%A4-%EC%98%A4%EB%B2%84%EB%82%98%EC%9D%B4%ED%8A%B8-%ED%81%AC%EB%A6%BC-50ml/115/"
+    },
+    {
+      "id": "lookup:jumiso:116",
+      "name": "주미소 나이아신아마이드 2 플러스 오일 컨트롤 크림",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "moisturizer",
+      "volume": "80ml",
+      "officialUrl": "https://jumiso.co.kr/product/new-%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-2-%ED%94%8C%EB%9F%AC%EC%8A%A4-%EC%98%A4%EC%9D%BC-%EC%BB%A8%ED%8A%B8%EB%A1%A4-%ED%81%AC%EB%A6%BC-80ml/116/"
+    },
+    {
+      "id": "lookup:jumiso:122",
+      "name": "주미소 나이아신아마이드 3 플러스 톤업 선스크린",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "sunscreen",
+      "volume": "40ml",
+      "officialUrl": "https://jumiso.co.kr/product/new-%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-3-%ED%94%8C%EB%9F%AC%EC%8A%A4-%ED%86%A4%EC%97%85-%EC%84%A0%EC%8A%A4%ED%81%AC%EB%A6%B0-40ml/122/"
+    },
+    {
+      "id": "lookup:jumiso:137",
+      "name": "주미소 레티날 0.1 피디알엔 5000 크림",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "moisturizer",
+      "volume": "20ml",
+      "officialUrl": "https://jumiso.co.kr/product/%EC%A3%BC%EB%AF%B8%EC%86%8C-%EB%A0%88%ED%8B%B0%EB%82%A0-01-%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-5000-%ED%81%AC%EB%A6%BC-20ml/137/"
+    },
+    {
+      "id": "lookup:jumiso:25",
+      "name": "주미소 워터풀 히알루론산 토너",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "toner",
+      "volume": "250ml",
+      "officialUrl": "https://jumiso.co.kr/product/%EC%9B%8C%ED%84%B0%ED%92%80-%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%ED%86%A0%EB%84%88-250ml/25/"
+    },
+    {
+      "id": "lookup:jumiso:26",
+      "name": "주미소 워터풀 히알루론산 크림",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://jumiso.co.kr/product/%EC%9B%8C%ED%84%B0%ED%92%80-%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%ED%81%AC%EB%A6%BC-50ml/26/"
+    },
+    {
+      "id": "lookup:jumiso:29",
+      "name": "주미소 올데이 비타민 브라이트닝&밸런싱 페이셜 세럼",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://jumiso.co.kr/product/%EB%B9%84%EA%B1%B4-%EC%98%AC%EB%8D%B0%EC%9D%B4-%EB%B9%84%ED%83%80%EB%AF%BC-%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%8B%9D%EB%B0%B8%EB%9F%B0%EC%8B%B1-%ED%8E%98%EC%9D%B4%EC%85%9C-%EC%84%B8%EB%9F%BC-30ml/29/"
+    },
+    {
+      "id": "lookup:jumiso:35",
+      "name": "주미소 워터풀 히알루론산 세럼",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://jumiso.co.kr/product/%EC%9B%8C%ED%84%B0%ED%92%80-%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%EC%84%B8%EB%9F%BC-50ml/35/"
+    },
+    {
+      "id": "lookup:jumiso:57",
+      "name": "주미소 워터풀 히알루론산 크림",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://jumiso.co.kr/product/%EC%9B%8C%ED%84%B0%ED%92%80-%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%ED%81%AC%EB%A6%BC-100ml/57/"
+    },
+    {
+      "id": "lookup:jumiso:58",
+      "name": "주미소 스네일 뮤신95+ 펩타이드 페이셜 에센스",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "serum",
+      "volume": "140ml",
+      "officialUrl": "https://jumiso.co.kr/product/%EC%8A%A4%EB%84%A4%EC%9D%BC-%EB%AE%A4%EC%8B%A095-%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C-%ED%8E%98%EC%9D%B4%EC%85%9C-%EC%97%90%EC%84%BC%EC%8A%A4-140ml/58/"
+    },
+    {
+      "id": "lookup:jumiso:65",
+      "name": "주미소 스네일 뮤신95+ 펩타이드 페이셜 에센스",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://jumiso.co.kr/product/%EC%8A%A4%EB%84%A4%EC%9D%BC-%EB%AE%A4%EC%8B%A095-%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C-%ED%8E%98%EC%9D%B4%EC%85%9C-%EC%97%90%EC%84%BC%EC%8A%A4-50ml/65/"
+    },
+    {
+      "id": "lookup:jumiso:66",
+      "name": "주미소 포어 퓨리파잉 살리실산 포밍 클렌저",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "cleanser",
+      "volume": "120g",
+      "officialUrl": "https://jumiso.co.kr/product/%EA%B8%80%EB%A1%9C%EC%9A%B0%ED%94%BD1%EC%9C%84-%ED%8F%AC%EC%96%B4-%ED%93%A8%EB%A6%AC%ED%8C%8C%EC%9E%89-%EC%82%B4%EB%A6%AC%EC%8B%A4%EC%82%B0-%ED%8F%AC%EB%B0%8D-%ED%81%B4%EB%A0%8C%EC%A0%80-120g/66/"
+    },
+    {
+      "id": "lookup:jumiso:77",
+      "name": "주미소 스네일 뮤신 88 + 펩타이드 크림",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://jumiso.co.kr/product/%EC%8A%A4%EB%84%A4%EC%9D%BC-%EB%AE%A4%EC%8B%A0-88-%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C-%ED%81%AC%EB%A6%BC-100ml/77/"
+    },
+    {
+      "id": "lookup:jumiso:83",
+      "name": "주미소 포어 클리어링 클렌징 오일",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://jumiso.co.kr/product/%ED%8F%AC%EC%96%B4-%ED%81%B4%EB%A6%AC%EC%96%B4%EB%A7%81-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-200ml/83/"
+    },
+    {
+      "id": "lookup:jumiso:95",
+      "name": "주미소 히알루론산 워터 플럼핑 수분 세럼",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://jumiso.co.kr/product/%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%EC%9B%8C%ED%84%B0-%ED%94%8C%EB%9F%BC%ED%95%91-%EC%88%98%EB%B6%84-%EC%84%B8%EB%9F%BC-50ml/95/"
+    },
+    {
+      "id": "lookup:jumiso:96",
+      "name": "주미소 히알루론산 워터 플럼핑 수분 크림",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://jumiso.co.kr/product/%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%EC%9B%8C%ED%84%B0-%ED%94%8C%EB%9F%BC%ED%95%91-%EC%88%98%EB%B6%84-%ED%81%AC%EB%A6%BC-100ml/96/"
+    },
+    {
+      "id": "lookup:jumiso:99",
+      "name": "주미소 D-판테놀 베리어 수딩 크림",
+      "brand": "주미소",
+      "brandAlias": "JUMISO",
+      "category": "moisturizer",
+      "volume": "80ml",
+      "officialUrl": "https://jumiso.co.kr/product/%EC%9E%A5%EB%B2%BD%ED%9A%8C%EB%B3%B5%EA%B8%B0%EB%8A%A5%EC%84%B1-d-%ED%8C%90%ED%85%8C%EB%86%80-%EB%B2%A0%EB%A6%AC%EC%96%B4-%EC%88%98%EB%94%A9-%ED%81%AC%EB%A6%BC-80ml/99/"
+    },
+    {
       "id": "lookup:manyo:1000000019",
       "name": "마녀공장 파데프리 선크림 모이스처",
       "brand": "마녀공장",
