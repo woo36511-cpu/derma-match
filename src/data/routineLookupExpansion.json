@@ -48,8 +48,8 @@
     "blab": {
       "name": "비랩",
       "checkedAt": "2026-11-19",
-      "usefulPages": 1,
-      "fetchedListings": 4
+      "usefulPages": 2,
+      "fetchedListings": 12
     },
     "blancdoux": {
       "name": "더랩바이블랑두",
@@ -146,6 +146,12 @@
       "checkedAt": "2026-11-15",
       "usefulPages": 1,
       "fetchedListings": 84
+    },
+    "nacific": {
+      "name": "네시픽",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 2,
+      "fetchedListings": 8
     },
     "neogen": {
       "name": "네오젠",
@@ -2120,6 +2126,70 @@
       "brandAlias": "B.LAB",
       "category": "cleanser",
       "officialUrl": "https://www.b-labskincare.com/product/8-2-squalene-reset-pore-deep-cleansing-oil/126/"
+    },
+    {
+      "id": "lookup:blab:145",
+      "name": "비랩 Yul-mu Deep Dive Milky Toner",
+      "brand": "비랩",
+      "brandAlias": "B.LAB",
+      "category": "toner",
+      "officialUrl": "https://www.b-labskincare.com/product/9-1-yul-mu-deep-dive-milky-toner/145/"
+    },
+    {
+      "id": "lookup:blab:146",
+      "name": "비랩 Ji-chi Hydro Boost Layer Serum",
+      "brand": "비랩",
+      "brandAlias": "B.LAB",
+      "category": "serum",
+      "officialUrl": "https://www.b-labskincare.com/product/8-2-ji-chi-hydro-boost-layer-serum/146/"
+    },
+    {
+      "id": "lookup:blab:147",
+      "name": "비랩 Yuja Anti-Dark Spot Serum",
+      "brand": "비랩",
+      "brandAlias": "B.LAB",
+      "category": "serum",
+      "officialUrl": "https://www.b-labskincare.com/product/6-4-yuja-anti-dark-spot-serum/147/"
+    },
+    {
+      "id": "lookup:blab:148",
+      "name": "비랩 Rosehip Please Youthful Serum",
+      "brand": "비랩",
+      "brandAlias": "B.LAB",
+      "category": "serum",
+      "officialUrl": "https://www.b-labskincare.com/product/7-3-rosehip-please-youthful-serum/148/"
+    },
+    {
+      "id": "lookup:blab:149",
+      "name": "비랩 Apple Cera Overnight Calming Cream",
+      "brand": "비랩",
+      "brandAlias": "B.LAB",
+      "category": "moisturizer",
+      "officialUrl": "https://www.b-labskincare.com/product/9-1-apple-cera-overnight-calming-cream/149/"
+    },
+    {
+      "id": "lookup:blab:150",
+      "name": "비랩 Matcha Airyfit Sun Stick",
+      "brand": "비랩",
+      "brandAlias": "B.LAB",
+      "category": "sunscreen",
+      "officialUrl": "https://www.b-labskincare.com/product/9-1-matcha-airyfit-sun-stick/150/"
+    },
+    {
+      "id": "lookup:blab:151",
+      "name": "비랩 Bamboo 365 Super Aqua Sunscreen",
+      "brand": "비랩",
+      "brandAlias": "B.LAB",
+      "category": "sunscreen",
+      "officialUrl": "https://www.b-labskincare.com/product/6-4-bamboo-365-super-aqua-sunscreen/151/"
+    },
+    {
+      "id": "lookup:blab:160",
+      "name": "비랩 Essence Toner Pad",
+      "brand": "비랩",
+      "brandAlias": "B.LAB",
+      "category": "toner",
+      "officialUrl": "https://www.b-labskincare.com/product/essence-toner-pad/160/"
     },
     {
       "id": "lookup:blancdoux:159",
@@ -9341,6 +9411,76 @@
       "category": "moisturizer",
       "volume": "60ml",
       "officialUrl": "https://mixsoon.co.kr/product/%ED%9E%88%EC%95%8C%EB%A0%88%EB%B0%B0-%EC%9B%8C%ED%84%B0%ED%92%80-%EC%A0%A4-%ED%81%AC%EB%A6%BC-60ml/999/"
+    },
+    {
+      "id": "lookup:nacific:211",
+      "name": "네시픽 피토 나이아신 브라이트닝 톤업크림",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://nacific.com/product/%ED%94%BC%ED%86%A0-%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0-%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%8B%9D-%ED%86%A4%EC%97%85%ED%81%AC%EB%A6%BC-50ml/211/"
+    },
+    {
+      "id": "lookup:nacific:2189",
+      "name": "네시픽 라이스 펩타 콜라겐 샤베트 클렌징 밤",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "cleanser",
+      "volume": "80g",
+      "officialUrl": "https://nacific.com/product/%EB%84%A4%EC%8B%9C%ED%94%BD-%EB%9D%BC%EC%9D%B4%EC%8A%A4-%ED%8E%A9%ED%83%80-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EC%83%A4%EB%B2%A0%ED%8A%B8-%ED%81%B4%EB%A0%8C%EC%A7%95-%EB%B0%A4-80g/2189/"
+    },
+    {
+      "id": "lookup:nacific:2232",
+      "name": "네시픽 라이스 펩타 콜라겐 젤라또 팩 클렌저",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "cleanser",
+      "officialUrl": "https://nacific.com/product/%EB%84%A4%EC%8B%9C%ED%94%BD-%EB%9D%BC%EC%9D%B4%EC%8A%A4-%ED%8E%A9%ED%83%80-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EC%A0%A4%EB%9D%BC%EB%98%90-%ED%8C%A9-%ED%81%B4%EB%A0%8C%EC%A0%80/2232/"
+    },
+    {
+      "id": "lookup:nacific:2243",
+      "name": "네시픽 라이스 펩타 콜라겐 젤리 겔패드",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "toner",
+      "officialUrl": "https://nacific.com/product/%EB%84%A4%EC%8B%9C%ED%94%BD-%EB%9D%BC%EC%9D%B4%EC%8A%A4-%ED%8E%A9%ED%83%80-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EC%A0%A4%EB%A6%AC-%EA%B2%94%ED%8C%A8%EB%93%9C/2243/"
+    },
+    {
+      "id": "lookup:nacific:241",
+      "name": "네시픽 프레쉬 허브 오리진 선블록 카렌둘라",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://nacific.com/product/%ED%94%84%EB%A0%88%EC%89%AC-%ED%97%88%EB%B8%8C-%EC%98%A4%EB%A6%AC%EC%A7%84-%EC%84%A0%EB%B8%94%EB%A1%9D-%EC%B9%B4%EB%A0%8C%EB%91%98%EB%9D%BC-50ml/241/"
+    },
+    {
+      "id": "lookup:nacific:244",
+      "name": "네시픽 프레쉬 허브 오리진 클렌징 폼 카렌둘라",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://nacific.com/product/%ED%94%84%EB%A0%88%EC%89%AC-%ED%97%88%EB%B8%8C-%EC%98%A4%EB%A6%AC%EC%A7%84-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8F%BC-%EC%B9%B4%EB%A0%8C%EB%91%98%EB%9D%BC-150ml/244/"
+    },
+    {
+      "id": "lookup:nacific:278",
+      "name": "네시픽 오리진 토너",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://nacific.com/product/%EC%A7%84%EC%A0%95%EC%B2%9C%EC%9E%AC-%EC%98%A4%EB%A6%AC%EC%A7%84-%ED%86%A0%EB%84%88-150ml/278/"
+    },
+    {
+      "id": "lookup:nacific:808",
+      "name": "네시픽 블랙헤드 올킬 버블 클렌징 팩",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "cleanser",
+      "volume": "140ml",
+      "officialUrl": "https://nacific.com/product/%EB%B8%94%EB%9E%99%ED%97%A4%EB%93%9C-%EC%98%AC%ED%82%AC-%EB%B2%84%EB%B8%94-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8C%A9-140ml/808/"
     },
     {
       "id": "lookup:needly:108",
