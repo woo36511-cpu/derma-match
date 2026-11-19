@@ -63,6 +63,12 @@
       "usefulPages": 2,
       "fetchedListings": 47
     },
+    "drceuracle": {
+      "name": "닥터슈라클",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 5,
+      "fetchedListings": 41
+    },
     "drdifferent": {
       "name": "닥터디퍼런트",
       "checkedAt": "2026-11-15",
@@ -4084,6 +4090,334 @@
       "category": "cleanser",
       "volume": "400ml",
       "officialUrl": "https://www.dewytree.com/product/detail.html?product_no=963"
+    },
+    {
+      "id": "lookup:drceuracle:1003",
+      "name": "닥터슈라클 프로 밸런스 나이트 엔자임 워시",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "cleanser",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1003"
+    },
+    {
+      "id": "lookup:drceuracle:1020",
+      "name": "닥터슈라클 프로 밸런스 크리미 딥 클렌징 폼",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "cleanser",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1020"
+    },
+    {
+      "id": "lookup:drceuracle:1044",
+      "name": "닥터슈라클 로얄 비타 프로폴리스 33 크림",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "moisturizer",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1044"
+    },
+    {
+      "id": "lookup:drceuracle:1052",
+      "name": "닥터슈라클 프로 밸런스 퓨어 클렌징 오일",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "cleanser",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1052"
+    },
+    {
+      "id": "lookup:drceuracle:1059",
+      "name": "닥터슈라클 티트리 퓨리파인 클렌징 폼",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "cleanser",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1059"
+    },
+    {
+      "id": "lookup:drceuracle:1060",
+      "name": "닥터슈라클 티트리 퓨리파인 크림",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "moisturizer",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1060"
+    },
+    {
+      "id": "lookup:drceuracle:1077",
+      "name": "닥터슈라클 히알 리유쓰 나이트 크림",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "moisturizer",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1077"
+    },
+    {
+      "id": "lookup:drceuracle:1109",
+      "name": "닥터슈라클 프로 밸런스 바이오틱스 토너",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "toner",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1109"
+    },
+    {
+      "id": "lookup:drceuracle:1115",
+      "name": "닥터슈라클 프로 밸런스 바이오틱스 모이스처라이저",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "moisturizer",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1115"
+    },
+    {
+      "id": "lookup:drceuracle:1119",
+      "name": "닥터슈라클 프로 밸런스 모닝 엔자임 워시",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "cleanser",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1119"
+    },
+    {
+      "id": "lookup:drceuracle:1130",
+      "name": "닥터슈라클 시카 리젠 95 수딩젤",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "moisturizer",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1130"
+    },
+    {
+      "id": "lookup:drceuracle:1131",
+      "name": "닥터슈라클 히알 리유쓰 토너",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "toner",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1131"
+    },
+    {
+      "id": "lookup:drceuracle:1248",
+      "name": "닥터슈라클 시카 리젠 92 토너",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "toner",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1248"
+    },
+    {
+      "id": "lookup:drceuracle:1357",
+      "name": "닥터슈라클 비건 콤부차 티 에센스",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "serum",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1357"
+    },
+    {
+      "id": "lookup:drceuracle:1380",
+      "name": "닥터슈라클 시카 리젠 비건 선 SPF50+,PA++++",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "sunscreen",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1380"
+    },
+    {
+      "id": "lookup:drceuracle:1395",
+      "name": "닥터슈라클 비건 콤부차 티 젤 크림",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "moisturizer",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1395"
+    },
+    {
+      "id": "lookup:drceuracle:1413",
+      "name": "닥터슈라클 PLC 비타K 리포솜 오일 앰플",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "serum",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1413"
+    },
+    {
+      "id": "lookup:drceuracle:1427",
+      "name": "닥터슈라클 히알 리유쓰 모이스트 선 SPF50+,PA++++",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "sunscreen",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1427"
+    },
+    {
+      "id": "lookup:drceuracle:1529",
+      "name": "닥터슈라클 히알 리유쓰 멜팅 포밍 밤",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "cleanser",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1529"
+    },
+    {
+      "id": "lookup:drceuracle:1540",
+      "name": "닥터슈라클 비건 액티브 베리 리프팅 크림",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "moisturizer",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1540"
+    },
+    {
+      "id": "lookup:drceuracle:1543",
+      "name": "닥터슈라클 티트리 퓨리파인 그린 업 선 SPF50, PA++++",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "sunscreen",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1543"
+    },
+    {
+      "id": "lookup:drceuracle:1547",
+      "name": "닥터슈라클 시카 리젠 워터프루프 선 SPF50+,PA++++",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "sunscreen",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1547"
+    },
+    {
+      "id": "lookup:drceuracle:1551",
+      "name": "닥터슈라클 퓨어VC 멜라이트 부스팅 에센스",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "serum",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1551"
+    },
+    {
+      "id": "lookup:drceuracle:1566",
+      "name": "닥터슈라클 히알 리유쓰 오일 드롭 미스트",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "toner",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1566"
+    },
+    {
+      "id": "lookup:drceuracle:1576",
+      "name": "닥터슈라클 프로 밸런스 컴포트 선스틱 SPF50+, PA++++",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "sunscreen",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1576"
+    },
+    {
+      "id": "lookup:drceuracle:1581",
+      "name": "닥터슈라클 프로 밸런스 수딩 클렌징 폼",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "cleanser",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1581"
+    },
+    {
+      "id": "lookup:drceuracle:1598",
+      "name": "닥터슈라클 비건 콤부차 티 미스트",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "toner",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1598"
+    },
+    {
+      "id": "lookup:drceuracle:1601",
+      "name": "닥터슈라클 퓨어VC 멜라이트 에이-티놀 크림",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "moisturizer",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1601"
+    },
+    {
+      "id": "lookup:drceuracle:1628",
+      "name": "닥터슈라클 제주 말차 티 에센스",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "serum",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1628"
+    },
+    {
+      "id": "lookup:drceuracle:1629",
+      "name": "닥터슈라클 비건 콤부차 티 버블 클렌징 밀크",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "cleanser",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=1629"
+    },
+    {
+      "id": "lookup:drceuracle:311",
+      "name": "닥터슈라클 티트리 퓨리파인 에센스",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "serum",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=311"
+    },
+    {
+      "id": "lookup:drceuracle:771",
+      "name": "닥터슈라클 5알파 컨트롤 클리어링 클렌징 폼",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "cleanser",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=771"
+    },
+    {
+      "id": "lookup:drceuracle:87",
+      "name": "닥터슈라클 5알파 컨트롤 노세범 선로션 SPF50+ PA++++",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "sunscreen",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=87"
+    },
+    {
+      "id": "lookup:drceuracle:905",
+      "name": "닥터슈라클 5알파 컨트롤 멜팅 클렌징 젤",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "cleanser",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=905"
+    },
+    {
+      "id": "lookup:drceuracle:907",
+      "name": "닥터슈라클 5알파 컨트롤 클리어링 크림",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "moisturizer",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=907"
+    },
+    {
+      "id": "lookup:drceuracle:909",
+      "name": "닥터슈라클 5알파 컨트롤 클리어링 토너",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "toner",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=909"
+    },
+    {
+      "id": "lookup:drceuracle:937",
+      "name": "닥터슈라클 히알 리유쓰 앰플",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "serum",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=937"
+    },
+    {
+      "id": "lookup:drceuracle:960",
+      "name": "닥터슈라클 AC 큐어 솔루션 메디케어 솝",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "cleanser",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=960"
+    },
+    {
+      "id": "lookup:drceuracle:962",
+      "name": "닥터슈라클 로얄 비타 프로폴리스 33 앰플",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "serum",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=962"
+    },
+    {
+      "id": "lookup:drceuracle:968",
+      "name": "닥터슈라클 5알파 컨트롤 클리어링 세럼 인 에멀전",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "serum",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=968"
+    },
+    {
+      "id": "lookup:drceuracle:986",
+      "name": "닥터슈라클 시카 리젠 70 크림",
+      "brand": "닥터슈라클",
+      "brandAlias": "Dr.Ceuracle",
+      "category": "moisturizer",
+      "officialUrl": "https://www.lghmall.co.kr/goods/goods_view.php?goodsNo=986"
     },
     {
       "id": "lookup:drdifferent:121",

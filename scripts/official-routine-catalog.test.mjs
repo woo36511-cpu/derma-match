@@ -122,3 +122,13 @@ test("Bonajour parses the official product title and ignores marketing image lab
   assert.deepEqual(extractOfficialListings(html, "bonajour", stores.bonajour).map(p => [p.id, p.name, p.volume]),
     [["lookup:bonajour:24", "보나쥬르 비건 그린티 워터크림", "100ml"]]);
 });
+
+test("Dr.Ceuracle reads the product title without taglines and rejects cleansing bundles", () => {
+  const card = (id, title) => `<a href="../goods/goods_view.php?goodsNo=${id}"><em>토너 증정</em><strong class="prdName">${title}</strong></a>`;
+  const html = card(100, "프로 밸런스<br>모닝 엔자임 워시 50g") +
+    card(200, "5알파 클렌징 2종 SET") +
+    card(201, "비건 콤부차 티 비비 SPF30 PA++") +
+    '<a href="../goods/goods_view.php?goodsNo=300"><img alt="클렌징 젤"></a>';
+  assert.deepEqual(extractOfficialListings(html, "drceuracle", stores.drceuracle).map(p => [p.name, p.volume, p.category]),
+    [["닥터슈라클 프로 밸런스 모닝 엔자임 워시", "50g", "cleanser"]]);
+});

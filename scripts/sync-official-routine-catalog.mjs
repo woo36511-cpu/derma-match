@@ -9,6 +9,9 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  drceuracle: { brand: "닥터슈라클", alias: "Dr.Ceuracle", domain: "www.lghmall.co.kr", type: "godo",
+    paths: ["001", "002", "003", "004", "006"].map(category =>
+      [category, `/goods/goods_list.php?cateCd=013001${category}&pageNum=60`]) },
   bonajour: { brand: "보나쥬르", alias: "BONAJOUR", domain: "www.bonajour.com", type: "cafe",
     paths: [1, 2, 3, 4, 5].map(page => [`list${page}`, `/product/list.html?cate_no=331&page=${page}`]) },
   needly: cafe("니들리", "NEEDLY", "needly.co.kr", [1, 2].map(page => [`list${page}`, `/product/list.html?cate_no=55&page=${page}`])),
@@ -97,6 +100,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
     if (name.includes("+") || /크림\s*카밍\s*팩/u.test(name)) return null;
     name = name.replace(/^\[속건조 수분크림\]\s*/u, "");
   }
+  if (storeKey === "drceuracle" && /(?:^|\s)비비(?:\s|$)/u.test(name)) return null;
   if (storeKey === "needly" && /패드\s*케이스|코튼\s*패드/u.test(name)) return null;
   if (storeKey === "vt" && /신규회원|군인할인|최저가|샤워\s*필터|[x×]\s*\d+\s*개/iu.test(name)) return null;
   if (storeKey === "vt") name = name.replace(/^(?:약국 입점|(?:우찬|올데이 프로젝트) pick)\s+/iu, "");
@@ -113,7 +117,9 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   const volume = volumes[0];
   name = name.replaceAll(volumePattern, " ").replace(/[ ]{2,}/g, " ").replace(/\(\s*\)|^\s*[:–-]\s*|\s*[:–-]\s*$/g, "").trim();
   if (name.length < 4 || !/[가-힣]/.test(name)) return null;
-  const category = storeKey === "vt" && /^리들샷\s+(?:50|100|300|700|1000)$/u.test(name) ? "serum" : classify(name);
+  let category = classify(name);
+  if (storeKey === "vt" && /^리들샷\s+(?:50|100|300|700|1000)$/u.test(name)) category = "serum";
+  if (storeKey === "drceuracle" && /멜팅 포밍 밤|메디케어 솝|엔자임 워시/u.test(name)) category = "cleanser";
   if (!category) return null;
   if (!normalize(name).startsWith(normalize(store.brand))) name = `${store.brand} ${name}`;
   return { id: `lookup:${storeKey}:${id}`, name, brand: store.brand, brandAlias: store.alias, category,
@@ -187,6 +193,11 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     if (storeKey === "vt" && !sitemap) {
       if (!/(?:^|\s)name(?:\s|$)/.test(attr(node, "class") ?? "")) continue;
       rawName = textOf(node);
+    }
+    if (storeKey === "drceuracle") {
+      const title = descendants.find(child => /(?:^|\s)prdName(?:\s|$)/.test(attr(child, "class") ?? ""));
+      if (!title) continue;
+      rawName = textOf(title);
     }
     if (storeKey === "primera" && !sitemap) {
       const title = descendants.find(child => /(?:^|\s)title(?:\s|$)/.test(attr(child, "class") ?? ""));
