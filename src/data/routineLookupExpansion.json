@@ -33,6 +33,12 @@
       "usefulPages": 2,
       "fetchedListings": 22
     },
+    "biodance": {
+      "name": "바이오던스",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 6,
+      "fetchedListings": 19
+    },
     "blancdoux": {
       "name": "더랩바이블랑두",
       "checkedAt": "2026-11-15",
@@ -1693,6 +1699,165 @@
       "volume": "120ml",
       "officialUrl": "https://beplain.co.kr/shop/shopdetail.html?branduid=165",
       "image": "https://beplain.co.kr/shopimages/beplain01/0120010000042.jpg"
+    },
+    {
+      "id": "lookup:biodance:10",
+      "name": "바이오던스 스킨 글로우 에센스 크림",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "moisturizer",
+      "officialUrl": "https://www.biodance.co.kr/product/%EA%B3%B5%EC%8B%9D%EB%AA%B0-1%EB%93%B1-%ED%81%AC%EB%A6%BC-%EC%8A%A4%ED%82%A8-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EC%97%90%EC%84%BC%EC%8A%A4-%ED%81%AC%EB%A6%BC/10/"
+    },
+    {
+      "id": "lookup:biodance:119",
+      "name": "바이오던스 스킨 마일드 파하 토너",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "toner",
+      "officialUrl": "https://www.biodance.co.kr/product/%EC%8A%A4%ED%82%A8-%EB%A7%88%EC%9D%BC%EB%93%9C-%ED%8C%8C%ED%95%98-%ED%86%A0%EB%84%88/119/"
+    },
+    {
+      "id": "lookup:biodance:138",
+      "name": "바이오던스 스킨 글로우 바이탈 앰플",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.biodance.co.kr/product/%EC%8A%A4%ED%82%A8-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EB%B0%94%EC%9D%B4%ED%83%88-%EC%95%B0%ED%94%8C-30ml/138/"
+    },
+    {
+      "id": "lookup:biodance:174",
+      "name": "바이오던스 세라마이드 클렌징 파우더 30EA",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "cleanser",
+      "officialUrl": "https://www.biodance.co.kr/product/%EC%84%B8%EB%9D%BC%EB%A7%88%EC%9D%B4%EB%93%9C-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8C%8C%EC%9A%B0%EB%8D%94-30ea/174/"
+    },
+    {
+      "id": "lookup:biodance:22",
+      "name": "바이오던스 퍼스트 시너지 토너",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "toner",
+      "officialUrl": "https://www.biodance.co.kr/product/%ED%8D%BC%EC%8A%A4%ED%8A%B8-%EC%8B%9C%EB%84%88%EC%A7%80-%ED%86%A0%EB%84%88/22/"
+    },
+    {
+      "id": "lookup:biodance:266",
+      "name": "바이오던스 세라놀 겔 토너 패드",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "toner",
+      "officialUrl": "https://www.biodance.co.kr/product/%EC%84%B8%EB%9D%BC%EB%86%80-%EA%B2%94-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C/266/"
+    },
+    {
+      "id": "lookup:biodance:323",
+      "name": "바이오던스 비타 겔 토너 패드",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "toner",
+      "officialUrl": "https://www.biodance.co.kr/product/%EB%B9%84%ED%83%80-%EA%B2%94-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C/323/"
+    },
+    {
+      "id": "lookup:biodance:324",
+      "name": "바이오던스 씨 켈프 겔 토너 패드",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "toner",
+      "officialUrl": "https://www.biodance.co.kr/product/%EC%94%A8-%EC%BC%88%ED%94%84-%EA%B2%94-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C/324/"
+    },
+    {
+      "id": "lookup:biodance:335",
+      "name": "바이오던스 콜라겐 팩 투 폼 클렌저",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "cleanser",
+      "officialUrl": "https://www.biodance.co.kr/product/%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%8C%A9-%ED%88%AC-%ED%8F%BC-%ED%81%B4%EB%A0%8C%EC%A0%80/335/"
+    },
+    {
+      "id": "lookup:biodance:336",
+      "name": "바이오던스 콜라겐 클렌징 오일",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "cleanser",
+      "officialUrl": "https://www.biodance.co.kr/product/%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC/336/"
+    },
+    {
+      "id": "lookup:biodance:392",
+      "name": "바이오던스 포어 퍼펙팅 콜라겐 펩타이드 크림",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "moisturizer",
+      "officialUrl": "https://www.biodance.co.kr/product/%ED%8F%AC%EC%96%B4-%ED%8D%BC%ED%8E%99%ED%8C%85-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C-%ED%81%AC%EB%A6%BC/392/"
+    },
+    {
+      "id": "lookup:biodance:410",
+      "name": "바이오던스 화잘먹 세럼 포어 퍼펙팅 콜라겐 펩타이드 세럼",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.biodance.co.kr/product/%ED%99%94%EC%9E%98%EB%A8%B9-%EC%84%B8%EB%9F%BC-%ED%8F%AC%EC%96%B4-%ED%8D%BC%ED%8E%99%ED%8C%85-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C-%EC%84%B8%EB%9F%BC-30ml/410/"
+    },
+    {
+      "id": "lookup:biodance:453",
+      "name": "바이오던스 래디언트 비타 나이아신아마이드 크림",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.biodance.co.kr/product/%EB%9E%98%EB%94%94%EC%96%B8%ED%8A%B8-%EB%B9%84%ED%83%80-%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-%ED%81%AC%EB%A6%BC-50ml/453/"
+    },
+    {
+      "id": "lookup:biodance:454",
+      "name": "바이오던스 래디언트 비타 나이아신아마이드 세럼",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.biodance.co.kr/product/%EB%9E%98%EB%94%94%EC%96%B8%ED%8A%B8-%EB%B9%84%ED%83%80-%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-%EC%84%B8%EB%9F%BC-30ml/454/"
+    },
+    {
+      "id": "lookup:biodance:490",
+      "name": "바이오던스 하이드로 세라놀 세럼",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.biodance.co.kr/product/%ED%95%98%EC%9D%B4%EB%93%9C%EB%A1%9C-%EC%84%B8%EB%9D%BC%EB%86%80-%EC%84%B8%EB%9F%BC-30ml/490/"
+    },
+    {
+      "id": "lookup:biodance:568",
+      "name": "바이오던스 콜라겐 펩타이드 젤리 세럼 미스트",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "toner",
+      "volume": "50ml",
+      "officialUrl": "https://www.biodance.co.kr/product/%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C-%EC%A0%A4%EB%A6%AC-%EC%84%B8%EB%9F%BC-%EB%AF%B8%EC%8A%A4%ED%8A%B8-50ml/568/"
+    },
+    {
+      "id": "lookup:biodance:570",
+      "name": "바이오던스 캐비어 피디알엔 젤리 세럼 미스트",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "toner",
+      "volume": "50ml",
+      "officialUrl": "https://www.biodance.co.kr/product/%EB%BF%8C%EB%A6%AC%EB%8A%94-%EA%B2%94%EB%A7%88%EC%8A%A4%ED%81%AC-%EC%BA%90%EB%B9%84%EC%96%B4-%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EC%A0%A4%EB%A6%AC-%EC%84%B8%EB%9F%BC-%EB%AF%B8%EC%8A%A4%ED%8A%B8-50ml/570/"
+    },
+    {
+      "id": "lookup:biodance:785",
+      "name": "바이오던스 리쥬비네이팅 캐비어 PDRN 캡슐 크림",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "moisturizer",
+      "officialUrl": "https://www.biodance.co.kr/product/new-%EB%A6%AC%EC%A5%AC%EB%B9%84%EB%84%A4%EC%9D%B4%ED%8C%85-%EC%BA%90%EB%B9%84%EC%96%B4-pdrn-%EC%BA%A1%EC%8A%90-%ED%81%AC%EB%A6%BC/785/"
+    },
+    {
+      "id": "lookup:biodance:801",
+      "name": "바이오던스 캐비어 PDRN 듀얼 겔 토너 패드",
+      "brand": "바이오던스",
+      "brandAlias": "Biodance",
+      "category": "toner",
+      "officialUrl": "https://www.biodance.co.kr/product/%EC%BA%90%EB%B9%84%EC%96%B4-%ED%8E%98%EC%8A%A4%ED%83%80-%EC%BA%90%EB%B9%84%EC%96%B4-pdrn-%EB%93%80%EC%96%BC-%EA%B2%94-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C/801/"
     },
     {
       "id": "lookup:blancdoux:159",

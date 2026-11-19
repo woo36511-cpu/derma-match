@@ -9,6 +9,8 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  biodance: { brand: "바이오던스", alias: "Biodance", domain: "www.biodance.co.kr", type: "cafe",
+    paths: [1, 2, 3, 4, 5, 6].map(page => [`list${page}`, `/product/list.html?cate_no=28&page=${page}`]) },
   pcalm: { brand: "피캄", alias: "P.CALM", domain: "pcalm.co.kr", type: "cafe",
     paths: [["list1", "/product/list.html?cate_no=78&page=1"], ["home", "/"]] },
   snature: { brand: "에스네이처", alias: "S.NATURE", domain: "www.snature.co.kr", type: "cafe",
@@ -102,6 +104,10 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (storeKey === "biodance") {
+    name = name.replace(/^\[(?:NEW✨?|공식몰 1등 크림✨?|캐비어 페스타|뿌리는 겔마스크)\]\s*/iu, "");
+    if (/듀오|코튼 패드|토너\s*\+\s*파하 토너|\s\+\s|\d+\s*매\s*\/|\d+\s*개/u.test(name)) return null;
+  }
   if (storeKey === "snature" && /카밍패드\s+\d+매\s*\(\d+ml\)$/u.test(name)) {
     name = name.replace(/\s*\(\d+ml\)$/u, "");
   }
@@ -132,6 +138,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   name = name.replaceAll(volumePattern, " ").replace(/[ ]{2,}/g, " ").replace(/\(\s*\)|^\s*[:–-]\s*|\s*[:–-]\s*$/g, "").trim();
   if (name.length < 4 || !/[가-힣]/.test(name)) return null;
   let category = classify(name);
+  if (storeKey === "biodance" && /스킨 글로우 에센스 크림$/u.test(name)) category = "moisturizer";
   if (storeKey === "pcalm" && /앰플 샷 크림$/u.test(name)) category = "moisturizer";
   if (storeKey === "snature" && /쌀떡팩폼|립앤아이 리무버/u.test(name)) category = "cleanser";
   if (storeKey === "lagom" && /톤업 선$/u.test(name)) category = "sunscreen";
@@ -225,7 +232,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const volume = descendants.find(child => attr(child, "rel") === "용량");
       if (title) rawName = [textOf(title), textOf(volume)].join(" ").trim();
     }
-    if (["pcalm", "lagom", "bonajour", "jmsolution", "jumiso"].includes(storeKey)) {
+    if (["biodance", "pcalm", "lagom", "bonajour", "jmsolution", "jumiso"].includes(storeKey)) {
       if (!/(?:^|\s)name(?:\s|$)/.test(attr(node.parentNode, "class") ?? "")) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "").replace(/^JMsolution\s+(?=제이엠솔루션)/iu, "");
     }

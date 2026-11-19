@@ -157,3 +157,10 @@ test("P.CALM classifies Ampoule Shot Cream as moisturizer and excludes cotton ac
   assert.deepEqual(extractOfficialListings(card(1, "피캄 레티놀라겐 앰플 샷 크림") +
     card(2, "피캄 토너팩 화장솜 80컷"), "pcalm", stores.pcalm).map(p => p.category), ["moisturizer"]);
 });
+
+test("Biodance indexes branded cream titles while rejecting toner bundles and accessories", () => {
+  const card = (id, title) => `<div class="name"><a href="/product/detail.html?product_no=${id}">${title}</a></div>`;
+  assert.deepEqual(extractOfficialListings(card(1, "[공식몰 1등 크림✨] 스킨 글로우 에센스 크림") +
+    card(2, "시너지 토너+파하 토너") + card(3, "코튼 패드"), "biodance", stores.biodance)
+    .map(p => [p.name, p.category]), [["바이오던스 스킨 글로우 에센스 크림", "moisturizer"]]);
+});
