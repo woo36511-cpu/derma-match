@@ -7161,6 +7161,626 @@
       "officialUrl": "https://numbuzin.com/product/9%EB%B2%88-nad-bio-%EB%A6%AC%ED%94%84%ED%8C%85-%EC%9B%90%EC%95%A1-%EC%97%90%EC%84%BC%EC%8A%A4-50ml/59/"
     },
     {
+      "id": "lookup:pyunkangyul:102",
+      "name": "편강율 모이스처 크림",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B2%98-%ED%81%AC%EB%A6%BC-100ml/102/"
+    },
+    {
+      "id": "lookup:pyunkangyul:130",
+      "name": "편강율 아토크림 블루라벨",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "120ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%95%84%ED%86%A0%ED%81%AC%EB%A6%BC-%EB%B8%94%EB%A3%A8%EB%9D%BC%EB%B2%A8-120ml/130/"
+    },
+    {
+      "id": "lookup:pyunkangyul:134",
+      "name": "편강율 약산성 모공 딥 클렌징폼",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "cleanser",
+      "volume": "100ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%95%BD%EC%82%B0%EC%84%B1-%EB%AA%A8%EA%B3%B5-%EB%94%A5-%ED%81%B4%EB%A0%8C%EC%A7%95%ED%8F%BC-100ml/134/"
+    },
+    {
+      "id": "lookup:pyunkangyul:137",
+      "name": "편강율 아토 수분강화 수딩젤 로션",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "150ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%95%84%ED%86%A0-%EC%88%98%EB%B6%84%EA%B0%95%ED%99%94-%EC%88%98%EB%94%A9%EC%A0%A4-%EB%A1%9C%EC%85%98-150ml/137/"
+    },
+    {
+      "id": "lookup:pyunkangyul:163",
+      "name": "편강율 클렌징폼",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://pyunkangyul.com/product/%ED%81%B4%EB%A0%8C%EC%A7%95%ED%8F%BC-150ml/163/"
+    },
+    {
+      "id": "lookup:pyunkangyul:165",
+      "name": "편강율 고보습 세라마이드 로션",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "500ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EA%B3%A0%EB%B3%B4%EC%8A%B5-%EC%84%B8%EB%9D%BC%EB%A7%88%EC%9D%B4%EB%93%9C-%EB%A1%9C%EC%85%98-500ml/165/"
+    },
+    {
+      "id": "lookup:pyunkangyul:178",
+      "name": "편강율 미스트 토너",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%AF%B8%EC%8A%A4%ED%8A%B8-%ED%86%A0%EB%84%88-100ml/178/"
+    },
+    {
+      "id": "lookup:pyunkangyul:179",
+      "name": "편강율 아토 마일드 선크림 spf50 pa",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "sunscreen",
+      "volume": "75ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%95%84%ED%86%A0-%EB%A7%88%EC%9D%BC%EB%93%9C-%EC%84%A0%ED%81%AC%EB%A6%BC-spf50-pa-75ml/179/"
+    },
+    {
+      "id": "lookup:pyunkangyul:187",
+      "name": "편강율 약산성 클렌징 워터",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "cleanser",
+      "volume": "290ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%95%BD%EC%82%B0%EC%84%B1-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%9B%8C%ED%84%B0-290ml/187/"
+    },
+    {
+      "id": "lookup:pyunkangyul:189",
+      "name": "편강율 딥 클렌징 오일",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "cleanser",
+      "volume": "290ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%94%A5-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-290ml/189/"
+    },
+    {
+      "id": "lookup:pyunkangyul:195",
+      "name": "편강율 진정 수분 장벽 크림",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%A7%84%EC%A0%95-%EC%88%98%EB%B6%84-%EC%9E%A5%EB%B2%BD-%ED%81%AC%EB%A6%BC-50ml/195/"
+    },
+    {
+      "id": "lookup:pyunkangyul:203",
+      "name": "편강율 진정 약산성 포밍 클렌저",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%A7%84%EC%A0%95-%EC%95%BD%EC%82%B0%EC%84%B1-%ED%8F%AC%EB%B0%8D-%ED%81%B4%EB%A0%8C%EC%A0%80-150ml/203/"
+    },
+    {
+      "id": "lookup:pyunkangyul:204",
+      "name": "편강율 진정 수분강화 토너",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%A7%84%EC%A0%95-%EC%88%98%EB%B6%84%EA%B0%95%ED%99%94-%ED%86%A0%EB%84%88-150ml/204/"
+    },
+    {
+      "id": "lookup:pyunkangyul:225",
+      "name": "편강율 딥 클리어 클렌징밤",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "cleanser",
+      "volume": "100ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%94%A5-%ED%81%B4%EB%A6%AC%EC%96%B4-%ED%81%B4%EB%A0%8C%EC%A7%95%EB%B0%A4-100ml/225/"
+    },
+    {
+      "id": "lookup:pyunkangyul:247",
+      "name": "편강율 키즈앤베이비 페이스로션",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "200ml",
+      "officialUrl": "https://pyunkangyul.com/product/%ED%82%A4%EC%A6%88%EC%95%A4%EB%B2%A0%EC%9D%B4%EB%B9%84-%ED%8E%98%EC%9D%B4%EC%8A%A4%EB%A1%9C%EC%85%98-200ml/247/"
+    },
+    {
+      "id": "lookup:pyunkangyul:260",
+      "name": "편강율 진정 수분 미스트",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%A7%84%EC%A0%95-%EC%88%98%EB%B6%84-%EB%AF%B8%EC%8A%A4%ED%8A%B8-100ml/260/"
+    },
+    {
+      "id": "lookup:pyunkangyul:264",
+      "name": "편강율 키즈앤베이비 크림",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "400ml",
+      "officialUrl": "https://pyunkangyul.com/product/%ED%82%A4%EC%A6%88%EC%95%A4%EB%B2%A0%EC%9D%B4%EB%B9%84-%ED%81%AC%EB%A6%BC-400ml/264/"
+    },
+    {
+      "id": "lookup:pyunkangyul:266",
+      "name": "편강율 진정 토너 패드",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "toner",
+      "volume": "70매",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%A7%84%EC%A0%95-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C-70%EB%A7%A4/266/"
+    },
+    {
+      "id": "lookup:pyunkangyul:268",
+      "name": "편강율 아토로션 블루라벨",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "500ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%95%84%ED%86%A0%EB%A1%9C%EC%85%98-%EB%B8%94%EB%A3%A8%EB%9D%BC%EB%B2%A8-500ml/268/"
+    },
+    {
+      "id": "lookup:pyunkangyul:276",
+      "name": "편강율 진정 수분 세럼",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%A7%84%EC%A0%95-%EC%88%98%EB%B6%84-%EC%84%B8%EB%9F%BC-30ml/276/"
+    },
+    {
+      "id": "lookup:pyunkangyul:278",
+      "name": "편강율 키즈앤베이비 로션",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "590ml",
+      "officialUrl": "https://pyunkangyul.com/product/%ED%82%A4%EC%A6%88%EC%95%A4%EB%B2%A0%EC%9D%B4%EB%B9%84-%EB%A1%9C%EC%85%98-590ml/278/"
+    },
+    {
+      "id": "lookup:pyunkangyul:295",
+      "name": "편강율 고보습 세라마이드 로션",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "290ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EA%B3%A0%EB%B3%B4%EC%8A%B5-%EC%84%B8%EB%9D%BC%EB%A7%88%EC%9D%B4%EB%93%9C-%EB%A1%9C%EC%85%98-290ml/295/"
+    },
+    {
+      "id": "lookup:pyunkangyul:307",
+      "name": "편강율 블랙티 딥 인퓨전 토너",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "toner",
+      "volume": "130ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%B8%94%EB%9E%99%ED%8B%B0-%EB%94%A5-%EC%9D%B8%ED%93%A8%EC%A0%84-%ED%86%A0%EB%84%88-130ml/307/"
+    },
+    {
+      "id": "lookup:pyunkangyul:308",
+      "name": "편강율 블랙티 부스팅 세럼",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "serum",
+      "volume": "45ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%B8%94%EB%9E%99%ED%8B%B0-%EB%B6%80%EC%8A%A4%ED%8C%85-%EC%84%B8%EB%9F%BC-45ml/308/"
+    },
+    {
+      "id": "lookup:pyunkangyul:314",
+      "name": "편강율 블랙티 인리치드 크림",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "60ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%B8%94%EB%9E%99%ED%8B%B0-%EC%9D%B8%EB%A6%AC%EC%B9%98%EB%93%9C-%ED%81%AC%EB%A6%BC-60ml/314/"
+    },
+    {
+      "id": "lookup:pyunkangyul:331",
+      "name": "편강율 디어 맘 토탈케어 수분크림",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%94%94%EC%96%B4-%EB%A7%98-%ED%86%A0%ED%83%88%EC%BC%80%EC%96%B4-%EC%88%98%EB%B6%84%ED%81%AC%EB%A6%BC-100ml/331/"
+    },
+    {
+      "id": "lookup:pyunkangyul:357",
+      "name": "편강율 아토 인텐시브 수딩 미스트",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "toner",
+      "volume": "145ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%95%84%ED%86%A0-%EC%9D%B8%ED%85%90%EC%8B%9C%EB%B8%8C-%EC%88%98%EB%94%A9-%EB%AF%B8%EC%8A%A4%ED%8A%B8-145ml/357/"
+    },
+    {
+      "id": "lookup:pyunkangyul:369",
+      "name": "편강율 딥 블루 오일 미스트",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%94%A5-%EB%B8%94%EB%A3%A8-%EC%98%A4%EC%9D%BC-%EB%AF%B8%EC%8A%A4%ED%8A%B8-100ml/369/"
+    },
+    {
+      "id": "lookup:pyunkangyul:374",
+      "name": "편강율 진정 아크네 클렌징폼",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "cleanser",
+      "volume": "100ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%A7%84%EC%A0%95-%EC%95%84%ED%81%AC%EB%84%A4-%ED%81%B4%EB%A0%8C%EC%A7%95%ED%8F%BC-100ml/374/"
+    },
+    {
+      "id": "lookup:pyunkangyul:380",
+      "name": "편강율 진정 선크림 spf50 pa",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%A7%84%EC%A0%95-%EC%84%A0%ED%81%AC%EB%A6%BC-spf50-pa-50ml/380/"
+    },
+    {
+      "id": "lookup:pyunkangyul:381",
+      "name": "편강율 진정 수분 영양 크림",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%A7%84%EC%A0%95-%EC%88%98%EB%B6%84-%EC%98%81%EC%96%91-%ED%81%AC%EB%A6%BC-50ml/381/"
+    },
+    {
+      "id": "lookup:pyunkangyul:386",
+      "name": "편강율 키즈앤베이비 촉촉 선크림 spf50 pa",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "sunscreen",
+      "volume": "75ml",
+      "officialUrl": "https://pyunkangyul.com/product/%ED%82%A4%EC%A6%88%EC%95%A4%EB%B2%A0%EC%9D%B4%EB%B9%84-%EC%B4%89%EC%B4%89-%EC%84%A0%ED%81%AC%EB%A6%BC-spf50-pa-75ml/386/"
+    },
+    {
+      "id": "lookup:pyunkangyul:39",
+      "name": "편강율 에센스 토너",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%97%90%EC%84%BC%EC%8A%A4-%ED%86%A0%EB%84%88-100ml/39/"
+    },
+    {
+      "id": "lookup:pyunkangyul:393",
+      "name": "편강율 진정 수분 장벽 크림",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%A7%84%EC%A0%95-%EC%88%98%EB%B6%84-%EC%9E%A5%EB%B2%BD-%ED%81%AC%EB%A6%BC-100ml/393/"
+    },
+    {
+      "id": "lookup:pyunkangyul:40",
+      "name": "편강율 미스트 토너",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%AF%B8%EC%8A%A4%ED%8A%B8-%ED%86%A0%EB%84%88-200ml/40/"
+    },
+    {
+      "id": "lookup:pyunkangyul:412",
+      "name": "편강율 키즈앤베이비 모이스처 선크림 spf50 pa",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "sunscreen",
+      "volume": "150ml",
+      "officialUrl": "https://pyunkangyul.com/product/%ED%82%A4%EC%A6%88%EC%95%A4%EB%B2%A0%EC%9D%B4%EB%B9%84-%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B2%98-%EC%84%A0%ED%81%AC%EB%A6%BC-spf50-pa-150ml/412/"
+    },
+    {
+      "id": "lookup:pyunkangyul:43",
+      "name": "편강율 모이스처 세럼",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "serum",
+      "volume": "100ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B2%98-%EC%84%B8%EB%9F%BC-100ml/43/"
+    },
+    {
+      "id": "lookup:pyunkangyul:430",
+      "name": "편강율 키즈앤베이비 워터프루프 선스틱 spf50 pa",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "sunscreen",
+      "volume": "15g",
+      "officialUrl": "https://pyunkangyul.com/product/%ED%82%A4%EC%A6%88%EC%95%A4%EB%B2%A0%EC%9D%B4%EB%B9%84-%EC%9B%8C%ED%84%B0%ED%94%84%EB%A3%A8%ED%94%84-%EC%84%A0%EC%8A%A4%ED%8B%B1-spf50-pa-15g/430/"
+    },
+    {
+      "id": "lookup:pyunkangyul:44",
+      "name": "편강율 모이스처 앰플",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "serum",
+      "volume": "100ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B2%98-%EC%95%B0%ED%94%8C-100ml/44/"
+    },
+    {
+      "id": "lookup:pyunkangyul:443",
+      "name": "편강율 에센스 토너 패드",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "toner",
+      "volume": "70매",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%97%90%EC%84%BC%EC%8A%A4-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C-70%EB%A7%A4/443/"
+    },
+    {
+      "id": "lookup:pyunkangyul:447",
+      "name": "편강율 약산성 클렌징 패드",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "cleanser",
+      "volume": "70매",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%95%BD%EC%82%B0%EC%84%B1-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8C%A8%EB%93%9C-70%EB%A7%A4%EC%9E%85/447/"
+    },
+    {
+      "id": "lookup:pyunkangyul:45",
+      "name": "편강율 뉴트리션 크림",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%89%B4%ED%8A%B8%EB%A6%AC%EC%85%98-%ED%81%AC%EB%A6%BC-100ml/45/"
+    },
+    {
+      "id": "lookup:pyunkangyul:450",
+      "name": "편강율 키즈앤베이비 모이스처 선쿠션 spf50 pa",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "sunscreen",
+      "volume": "15g",
+      "officialUrl": "https://pyunkangyul.com/product/%ED%82%A4%EC%A6%88%EC%95%A4%EB%B2%A0%EC%9D%B4%EB%B9%84-%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B2%98-%EC%84%A0%EC%BF%A0%EC%85%98-spf50-pa-15g/450/"
+    },
+    {
+      "id": "lookup:pyunkangyul:457",
+      "name": "편강율 에어리 프로텍션 선스틱 spf50 pa",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "sunscreen",
+      "volume": "17g",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%97%90%EC%96%B4%EB%A6%AC-%ED%94%84%EB%A1%9C%ED%85%8D%EC%85%98-%EC%84%A0%EC%8A%A4%ED%8B%B1-spf50-pa-17g/457/"
+    },
+    {
+      "id": "lookup:pyunkangyul:481",
+      "name": "편강율 브라이트닝 광채 크림",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%8B%9D-%EA%B4%91%EC%B1%84-%ED%81%AC%EB%A6%BC-50ml/481/"
+    },
+    {
+      "id": "lookup:pyunkangyul:482",
+      "name": "편강율 브라이트닝 잡티 세럼",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%8B%9D-%EC%9E%A1%ED%8B%B0-%EC%84%B8%EB%9F%BC-30ml/482/"
+    },
+    {
+      "id": "lookup:pyunkangyul:483",
+      "name": "편강율 브라이트닝 비타 토너",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%8B%9D-%EB%B9%84%ED%83%80-%ED%86%A0%EB%84%88-150ml/483/"
+    },
+    {
+      "id": "lookup:pyunkangyul:497",
+      "name": "편강율 얼티밋 진정 솔루션 토너",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "toner",
+      "volume": "110ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%96%BC%ED%8B%B0%EB%B0%8B-%EC%A7%84%EC%A0%95-%EC%86%94%EB%A3%A8%EC%85%98-%ED%86%A0%EB%84%88-110ml/497/"
+    },
+    {
+      "id": "lookup:pyunkangyul:498",
+      "name": "편강율 얼티밋 진정 솔루션 앰플",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%96%BC%ED%8B%B0%EB%B0%8B-%EC%A7%84%EC%A0%95-%EC%86%94%EB%A3%A8%EC%85%98-%EC%95%B0%ED%94%8C-30ml/498/"
+    },
+    {
+      "id": "lookup:pyunkangyul:499",
+      "name": "편강율 얼티밋 진정 솔루션 크림",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "30ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%96%BC%ED%8B%B0%EB%B0%8B-%EC%A7%84%EC%A0%95-%EC%86%94%EB%A3%A8%EC%85%98-%ED%81%AC%EB%A6%BC-30ml/499/"
+    },
+    {
+      "id": "lookup:pyunkangyul:506",
+      "name": "편강율 키즈앤베이비 수딩 젤",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "200ml",
+      "officialUrl": "https://pyunkangyul.com/product/%ED%82%A4%EC%A6%88%EC%95%A4%EB%B2%A0%EC%9D%B4%EB%B9%84-%EC%88%98%EB%94%A9-%EC%A0%A4-200ml/506/"
+    },
+    {
+      "id": "lookup:pyunkangyul:518",
+      "name": "편강율 키즈앤베이비 퍼펙트 수딩 미스트",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://pyunkangyul.com/product/%ED%82%A4%EC%A6%88%EC%95%A4%EB%B2%A0%EC%9D%B4%EB%B9%84-%ED%8D%BC%ED%8E%99%ED%8A%B8-%EC%88%98%EB%94%A9-%EB%AF%B8%EC%8A%A4%ED%8A%B8-100ml/518/"
+    },
+    {
+      "id": "lookup:pyunkangyul:521",
+      "name": "편강율 키즈앤베이비 티어프리 클렌징폼",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "cleanser",
+      "volume": "300ml",
+      "officialUrl": "https://pyunkangyul.com/product/%ED%82%A4%EC%A6%88%EC%95%A4%EB%B2%A0%EC%9D%B4%EB%B9%84-%ED%8B%B0%EC%96%B4%ED%94%84%EB%A6%AC-%ED%81%B4%EB%A0%8C%EC%A7%95%ED%8F%BC-300ml/521/"
+    },
+    {
+      "id": "lookup:pyunkangyul:542",
+      "name": "편강율 모공 찰떡 클렌저",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "cleanser",
+      "volume": "100g",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%AA%A8%EA%B3%B5-%EC%B0%B0%EB%96%A1-%ED%81%B4%EB%A0%8C%EC%A0%80-100g/542/"
+    },
+    {
+      "id": "lookup:pyunkangyul:556",
+      "name": "편강율 얼티밋 진정 솔루션 토너 패드",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "toner",
+      "volume": "70매",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%96%BC%ED%8B%B0%EB%B0%8B-%EC%A7%84%EC%A0%95-%EC%86%94%EB%A3%A8%EC%85%98-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C-70%EB%A7%A4/556/"
+    },
+    {
+      "id": "lookup:pyunkangyul:562",
+      "name": "편강율 겟 레디 퀵 클리어 미스트",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "toner",
+      "volume": "15ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EA%B2%9F-%EB%A0%88%EB%94%94-%ED%80%B5-%ED%81%B4%EB%A6%AC%EC%96%B4-%EB%AF%B8%EC%8A%A4%ED%8A%B8-15ml/562/"
+    },
+    {
+      "id": "lookup:pyunkangyul:58",
+      "name": "편강율 아토로션 블루라벨",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "350ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%95%84%ED%86%A0%EB%A1%9C%EC%85%98-%EB%B8%94%EB%A3%A8%EB%9D%BC%EB%B2%A8-350ml/58/"
+    },
+    {
+      "id": "lookup:pyunkangyul:658",
+      "name": "편강율 모이스처 크림",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B2%98-%ED%81%AC%EB%A6%BC-50ml/658/"
+    },
+    {
+      "id": "lookup:pyunkangyul:659",
+      "name": "편강율 모이스처 세럼",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B2%98-%EC%84%B8%EB%9F%BC-50ml/659/"
+    },
+    {
+      "id": "lookup:pyunkangyul:699",
+      "name": "편강율 레드 진생 프로폴리스 부스터 토너",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "toner",
+      "volume": "110ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%A0%88%EB%93%9C-%EC%A7%84%EC%83%9D-%ED%94%84%EB%A1%9C%ED%8F%B4%EB%A6%AC%EC%8A%A4-%EB%B6%80%EC%8A%A4%ED%84%B0-%ED%86%A0%EB%84%88-110ml/699/"
+    },
+    {
+      "id": "lookup:pyunkangyul:700",
+      "name": "편강율 레드 진생 프로폴리스 리페어링 크림",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "30ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%A0%88%EB%93%9C-%EC%A7%84%EC%83%9D-%ED%94%84%EB%A1%9C%ED%8F%B4%EB%A6%AC%EC%8A%A4-%EB%A6%AC%ED%8E%98%EC%96%B4%EB%A7%81-%ED%81%AC%EB%A6%BC-30ml/700/"
+    },
+    {
+      "id": "lookup:pyunkangyul:701",
+      "name": "편강율 레드 진생 프로폴리스 딥 에센스 세럼",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%A0%88%EB%93%9C-%EC%A7%84%EC%83%9D-%ED%94%84%EB%A1%9C%ED%8F%B4%EB%A6%AC%EC%8A%A4-%EB%94%A5-%EC%97%90%EC%84%BC%EC%8A%A4-%EC%84%B8%EB%9F%BC-30ml/701/"
+    },
+    {
+      "id": "lookup:pyunkangyul:712",
+      "name": "편강율 에어리 프로텍션 선쿠션 sfp 50 pa",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "sunscreen",
+      "volume": "15g",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%97%90%EC%96%B4%EB%A6%AC-%ED%94%84%EB%A1%9C%ED%85%8D%EC%85%98-%EC%84%A0%EC%BF%A0%EC%85%98-sfp-50-pa-15g/712/"
+    },
+    {
+      "id": "lookup:pyunkangyul:720",
+      "name": "편강율 광채 톤업 크림",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EA%B4%91%EC%B1%84-%ED%86%A4%EC%97%85-%ED%81%AC%EB%A6%BC-50ml/720/"
+    },
+    {
+      "id": "lookup:pyunkangyul:721",
+      "name": "편강율 키즈앤베이비 마일드 선 클렌징워터",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://pyunkangyul.com/product/%ED%82%A4%EC%A6%88%EC%95%A4%EB%B2%A0%EC%9D%B4%EB%B9%84-%EB%A7%88%EC%9D%BC%EB%93%9C-%EC%84%A0-%ED%81%B4%EB%A0%8C%EC%A7%95%EC%9B%8C%ED%84%B0-200ml/721/"
+    },
+    {
+      "id": "lookup:pyunkangyul:723",
+      "name": "편강율 키즈앤베이비 징크 무기자차 마일드 선로션 sfp 50 pa",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://pyunkangyul.com/product/%ED%82%A4%EC%A6%88%EC%95%A4%EB%B2%A0%EC%9D%B4%EB%B9%84-%EC%A7%95%ED%81%AC-%EB%AC%B4%EA%B8%B0%EC%9E%90%EC%B0%A8-%EB%A7%88%EC%9D%BC%EB%93%9C-%EC%84%A0%EB%A1%9C%EC%85%98-sfp-50-pa-50ml/723/"
+    },
+    {
+      "id": "lookup:pyunkangyul:75",
+      "name": "편강율 인텐시브 리페어 크림",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%9D%B8%ED%85%90%EC%8B%9C%EB%B8%8C-%EB%A6%AC%ED%8E%98%EC%96%B4-%ED%81%AC%EB%A6%BC-50ml/75/"
+    },
+    {
+      "id": "lookup:pyunkangyul:757",
+      "name": "편강율 수분 진정 선크림 spf50 pa",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EC%88%98%EB%B6%84-%EC%A7%84%EC%A0%95-%EC%84%A0%ED%81%AC%EB%A6%BC-spf50-pa-50ml/757/"
+    },
+    {
+      "id": "lookup:pyunkangyul:804",
+      "name": "편강율 건조한 겨울 보습 레이어링 크림 11 탄탄한 영양 케어",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "officialUrl": "https://pyunkangyul.com/product/%EA%B1%B4%EC%A1%B0%ED%95%9C-%EA%B2%A8%EC%9A%B8-%EB%B3%B4%EC%8A%B5-%EB%A0%88%EC%9D%B4%EC%96%B4%EB%A7%81-%ED%81%AC%EB%A6%BC-11-%ED%83%84%ED%83%84%ED%95%9C-%EC%98%81%EC%96%91-%EC%BC%80%EC%96%B4/804/"
+    },
+    {
       "id": "lookup:roundlab:137",
       "name": "라운드랩 1025 독도 미스트",
       "brand": "라운드랩",
@@ -8351,6 +8971,384 @@
       "brandAlias": "SKIN1004",
       "category": "moisturizer",
       "officialUrl": "https://www.skin1004korea.com/product/%EB%A7%88%EB%8B%A4%EA%B0%80%EC%8A%A4%EC%B9%B4%EB%A5%B4-%EC%84%BC%ED%85%94%EB%9D%BC-%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-15-%ED%81%AC%EB%A6%BC/454/"
+    },
+    {
+      "id": "lookup:skinfood:10321583",
+      "name": "스킨푸드 캐롯 카로틴 릴리프 크림",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "moisturizer",
+      "volume": "70ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10321583"
+    },
+    {
+      "id": "lookup:skinfood:10321606",
+      "name": "스킨푸드 유자씨 잡티 맑음 세럼",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10321606"
+    },
+    {
+      "id": "lookup:skinfood:10321822",
+      "name": "스킨푸드 베리 진정 선크림",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10321822"
+    },
+    {
+      "id": "lookup:skinfood:10321846",
+      "name": "스킨푸드 유자씨 잡티 맑음 토너",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10321846"
+    },
+    {
+      "id": "lookup:skinfood:10321965",
+      "name": "스킨푸드 캐롯 카로틴 밸런싱 클렌징 폼",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10321965"
+    },
+    {
+      "id": "lookup:skinfood:10321966",
+      "name": "스킨푸드 판토테닉 워터 파슬리 리프레쉬 클렌징 폼",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10321966"
+    },
+    {
+      "id": "lookup:skinfood:10322036",
+      "name": "스킨푸드 핑크 자몽 아하 토너",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10322036"
+    },
+    {
+      "id": "lookup:skinfood:10322163",
+      "name": "스킨푸드 나주배 딥 클렌징 오일",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "cleanser",
+      "volume": "55ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10322163"
+    },
+    {
+      "id": "lookup:skinfood:10322169",
+      "name": "스킨푸드 파인애플 바하 필링 클렌징 폼",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10322169"
+    },
+    {
+      "id": "lookup:skinfood:10322172",
+      "name": "스킨푸드 판토테닉 워터 파슬리 앰플",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10322172"
+    },
+    {
+      "id": "lookup:skinfood:10322410",
+      "name": "스킨푸드 라이스 브라이트닝 토너",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "toner",
+      "volume": "160ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10322410"
+    },
+    {
+      "id": "lookup:skinfood:10322411",
+      "name": "스킨푸드 라이스 브라이트닝 세럼",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "serum",
+      "volume": "55ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10322411"
+    },
+    {
+      "id": "lookup:skinfood:10322412",
+      "name": "스킨푸드 라이스 브라이트닝 크림",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "moisturizer",
+      "volume": "60ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10322412"
+    },
+    {
+      "id": "lookup:skinfood:10322504",
+      "name": "스킨푸드 샤인머스캣 시카 바하 크림",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "moisturizer",
+      "volume": "70ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10322504"
+    },
+    {
+      "id": "lookup:skinfood:10322541",
+      "name": "스킨푸드 레몬그라스 나이아신아마이드 20 세럼",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10322541"
+    },
+    {
+      "id": "lookup:skinfood:10322589",
+      "name": "스킨푸드 블랙슈가 퍼펙트 파하 앰플",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10322589"
+    },
+    {
+      "id": "lookup:skinfood:10322593",
+      "name": "스킨푸드 샤인머스캣 시카 바하 세럼",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10322593"
+    },
+    {
+      "id": "lookup:skinfood:10322666",
+      "name": "스킨푸드 캐롯 에어리 보송 선스틱",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "sunscreen",
+      "volume": "18.5g",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10322666"
+    },
+    {
+      "id": "lookup:skinfood:10322994",
+      "name": "스킨푸드 바질 티트리시닉 쿨링 토너",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10322994"
+    },
+    {
+      "id": "lookup:skinfood:10323037",
+      "name": "스킨푸드 피치뽀송 징크 PCA 토닝 크림",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10323037"
+    },
+    {
+      "id": "lookup:skinfood:10323038",
+      "name": "스킨푸드 피치뽀송 징크 PCA 에센스",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10323038"
+    },
+    {
+      "id": "lookup:skinfood:10323051",
+      "name": "스킨푸드 블루 캐모마일 히알루로닉 토너 미스트",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10323051"
+    },
+    {
+      "id": "lookup:skinfood:10323067",
+      "name": "스킨푸드 블루 캐모마일 히알루로닉 겔 패드",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "toner",
+      "volume": "70매",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10323067"
+    },
+    {
+      "id": "lookup:skinfood:10323341",
+      "name": "스킨푸드 바나나 피디알엔 부스터 세럼",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "serum",
+      "volume": "80ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10323341"
+    },
+    {
+      "id": "lookup:skinfood:10323342",
+      "name": "스킨푸드 바나나 피디알엔 글로우 크림",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "moisturizer",
+      "volume": "70ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10323342"
+    },
+    {
+      "id": "lookup:skinfood:10323362",
+      "name": "스킨푸드 레드빈 트라넥사믹애씨드 토너",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10323362"
+    },
+    {
+      "id": "lookup:skinfood:10323363",
+      "name": "스킨푸드 레드빈 트라넥사믹애씨드 세럼",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10323363"
+    },
+    {
+      "id": "lookup:skinfood:10323364",
+      "name": "스킨푸드 레드빈 트라넥사믹애씨드 크림",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "moisturizer",
+      "volume": "55ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10323364"
+    },
+    {
+      "id": "lookup:skinfood:10323501",
+      "name": "스킨푸드 베리 수분 선크림",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10323501"
+    },
+    {
+      "id": "lookup:skinfood:10323653",
+      "name": "스킨푸드 레몬그라스 나이아신아마이드 10 크림",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "moisturizer",
+      "volume": "70ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10323653"
+    },
+    {
+      "id": "lookup:skinfood:10323704",
+      "name": "스킨푸드 감자 마데카소사이드 흔적 진정 세럼",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=10323704"
+    },
+    {
+      "id": "lookup:skinfood:12248",
+      "name": "스킨푸드 로열허니 프로폴리스 인리치 크림 미스트",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "toner",
+      "volume": "120ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=12248"
+    },
+    {
+      "id": "lookup:skinfood:12305",
+      "name": "스킨푸드 블랙슈가 퍼펙트 첫세럼 더 에센셜 부스터",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "serum",
+      "volume": "150ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=12305"
+    },
+    {
+      "id": "lookup:skinfood:1461",
+      "name": "스킨푸드 라이스 데일리 브라이트닝 클렌징 티슈",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "cleanser",
+      "volume": "80매",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=1461"
+    },
+    {
+      "id": "lookup:skinfood:1464",
+      "name": "스킨푸드 라이스 데일리 브라이트닝 클렌징 폼",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=1464"
+    },
+    {
+      "id": "lookup:skinfood:1526",
+      "name": "스킨푸드 로열허니 프로폴리스 인리치 에센스",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=1526"
+    },
+    {
+      "id": "lookup:skinfood:1528",
+      "name": "스킨푸드 로열허니 프로폴리스 인리치 토너",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "toner",
+      "volume": "160ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=1528"
+    },
+    {
+      "id": "lookup:skinfood:1792",
+      "name": "스킨푸드 에그 화이트 퍼펙트 포어 클렌징 오일",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=1792"
+    },
+    {
+      "id": "lookup:skinfood:1796",
+      "name": "스킨푸드 에그 화이트 퍼펙트 포어 클렌징 폼",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=1796"
+    },
+    {
+      "id": "lookup:skinfood:676",
+      "name": "스킨푸드 로열허니 프로폴리스 인리치 배리어 크림",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "moisturizer",
+      "volume": "63ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=676"
+    },
+    {
+      "id": "lookup:skinfood:699",
+      "name": "스킨푸드 유자씨 잡티 맑음 크림",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "moisturizer",
+      "volume": "70ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=699"
+    },
+    {
+      "id": "lookup:skinfood:777",
+      "name": "스킨푸드 토마토 톤 업 선크림",
+      "brand": "스킨푸드",
+      "brandAlias": "SKINFOOD",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.theskinfood.com/shop/shopdetail.html?branduid=777"
     },
     {
       "id": "lookup:skinrxlab:10",
