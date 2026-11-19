@@ -202,3 +202,10 @@ test("B.LAB reads the English cleanser title from its Korean official catalog", 
     [["lookup:blab:123", "비랩 Matcha Hydrating Foam Cleanser", "cleanser"],
       ["lookup:blab:150", "비랩 Matcha Airyfit Sun Stick", "sunscreen"]]);
 });
+
+test("Sidmool distinguishes ampoule soaps and creams from serums", () => {
+  const card = (id, name) => `<a href="/shop/shopdetail.html?branduid=${id}"><span class="prd-name">${name}</span></a>`;
+  assert.deepEqual(extractOfficialListings(card(1, "병풀 앰플 솝 100ml") +
+    card(2, "카렌듈라 앰플 수분크림 80ml"), "sidmool", stores.sidmool).map(p => p.category),
+    ["cleanser", "moisturizer"]);
+});

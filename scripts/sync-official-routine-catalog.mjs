@@ -9,6 +9,11 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  miguhara: { brand: "미구하라", alias: "MIGUHARA", domain: "www.miguhara.com", type: "cafe",
+    paths: [175, 176, 177, 178, 179, 180, 182].map(category => [String(category), `/product/list.html?cate_no=${category}`]) },
+  sidmool: { brand: "시드물", alias: "SIDMOOL", domain: "www.sidmool.com", type: "makeshop",
+    paths: ["005", "006", "009", "010", "012"].map(category =>
+      [category, `/shop/shopbrand.html?type=N&xcode=017&mcode=${category}&viewtype=gallery`]) },
   nacific: { brand: "네시픽", alias: "NACIFIC", domain: "nacific.com", type: "cafe",
     paths: [...[1, 2].map(page => [`list${page}`, `/category/%241/98/?page=${page}`]),
       ...[345, 346, 347, 348].map(category => [String(category), `/product/list.html?cate_no=${category}`])] },
@@ -172,6 +177,11 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   name = name.replaceAll(volumePattern, " ").replace(/[ ]{2,}/g, " ").replace(/\(\s*\)|^\s*[:–-]\s*|\s*[:–-]\s*$/g, "").trim();
   if (name.length < 4 || !nameScript.test(name)) return null;
   let category = classify(name);
+  if (storeKey === "sidmool" && /\s솝$/u.test(name)) category = "cleanser";
+  if (storeKey === "sidmool" && /앰플 수분크림$/u.test(name)) category = "moisturizer";
+  if (storeKey === "miguhara" && /^EGF 크리스탈 10 PPM 오리진$/iu.test(name)) category = "serum";
+  if (storeKey === "miguhara" && /에센스 크림 오리진$|올인원 플루이드$/u.test(name)) category = "moisturizer";
+  if (storeKey === "miguhara" && /클렌즈 토너$/u.test(name)) category = "toner";
   if (storeKey === "nacific" && /선블록/u.test(name)) category = "sunscreen";
   if (storeKey === "nacific" && /^(?:프레쉬 EM 솝|블랙헤드 올킬 블랙블럭)$/u.test(name)) category = "cleanser";
   if (storeKey === "blab") {
@@ -307,7 +317,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const volume = descendants.find(child => attr(child, "rel") === "용량");
       if (title) rawName = [textOf(title), textOf(volume)].join(" ").trim();
     }
-    if (["blab", "ongredients", "onedaysyou", "biodance", "pcalm", "lagom", "bonajour", "jmsolution", "jumiso"].includes(storeKey)) {
+    if (["miguhara", "blab", "ongredients", "onedaysyou", "biodance", "pcalm", "lagom", "bonajour", "jmsolution", "jumiso"].includes(storeKey)) {
       if (!/(?:^|\s)name(?:\s|$)/.test(attr(node.parentNode, "class") ?? "")) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "").replace(/^JMsolution\s+(?=제이엠솔루션)/iu, "");
     }
