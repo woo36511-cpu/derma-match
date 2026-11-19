@@ -164,3 +164,14 @@ test("Biodance indexes branded cream titles while rejecting toner bundles and ac
     card(2, "시너지 토너+파하 토너") + card(3, "코튼 패드"), "biodance", stores.biodance)
     .map(p => [p.name, p.category]), [["바이오던스 스킨 글로우 에센스 크림", "moisturizer"]]);
 });
+
+test("the two catalog sources read product card titles and preserve skincare variants", () => {
+  const card = (id, name) => `<p class="name"><a href="/product/detail.html?product_no=${id}"><span>상품명 :</span>${name}</a></p>`;
+  assert.deepEqual(extractOfficialListings(card(1, "헬프미 시카밍 닥토패드") + card(2, "닥토패드 리필 60매"),
+    "onedaysyou", stores.onedaysyou).map(p => p.name), ["원데이즈유 헬프미 시카밍 닥토패드"]);
+  assert.deepEqual(extractOfficialListings(card(1, "[진정토너]온그리디언츠 밸런싱 스킨 소프너 250ml") +
+    card(2, "[각질패드]온그리디언츠 리바이탈라이징 토너패드 60ea") +
+    card(3, "[속광장벽]온그리디언츠 로션 4ml+크림 5ml"),
+    "ongredients", stores.ongredients).map(p => [p.category, p.volume]),
+  [["toner", "250ml"], ["toner", "60매"]]);
+});
