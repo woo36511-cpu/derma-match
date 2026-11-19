@@ -7,5 +7,14 @@
     "reviewedAt": "2026-11-19",
     "reviewedIngredientCount": 16,
     "catalogMatch": "unchanged"
+  },
+  "lookup:roundlab:14": {
+    "volume": "500ml",
+    "imageUrl": "https://gi.esmplus.com/roundlab/DOKDO/DT500/DT500_05.jpg",
+    "imageSha256": "329ce4a2a80a6e19803818c1a839255553a1401a16d4152db0ae8b688607985e",
+    "reviewedAt": "2026-11-19",
+    "reviewedIngredientCount": 16,
+    "comparedWithCatalogId": 1,
+    "catalogMatch": "same_declared_ingredients_and_order"
   }
 }
