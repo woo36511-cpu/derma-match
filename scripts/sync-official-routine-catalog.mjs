@@ -9,6 +9,9 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  beautyofjoseon: cafe("조선미녀", "Beauty of Joseon", "beautyofjoseon.co.kr",
+    [1, 2, 3].map(page => [`skin${page}`, `/product/list.html?cate_no=71&page=${page}`])),
+  mixsoon: cafe("믹순", "mixsoon", "mixsoon.co.kr"),
   mediheal: cafe("메디힐", "MEDIHEAL", "www.medihealshop.com", [["skin", "/product/list.html?cate_no=97"], ["new", "/product/list.html?cate_no=92"]]),
   roundlab: cafe("라운드랩", "Round Lab", "roundlab.co.kr"),
   cosrx: cafe("코스알엑스", "COSRX", "www.cosrx.co.kr"),
@@ -206,7 +209,9 @@ async function main() {
   const products = new Map(prior.products.map(p => [p.id, p]));
   const brands = { ...prior.brands };
   const date = process.env.ROUTINE_CATALOG_DATE ?? new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Seoul" });
-  const queue = Object.entries(stores);
+  const selection = process.argv.find(arg => arg.startsWith("--brands="))?.slice(9).split(",");
+  if (selection?.some(key => !Object.hasOwn(stores, key))) throw new Error("Unknown brand in --brands");
+  const queue = Object.entries(stores).filter(([key]) => !selection || selection.includes(key));
   await Promise.all(Array.from({ length: 4 }, async () => {
     for (let item; (item = queue.shift()); ) {
       const [key, store] = item;
