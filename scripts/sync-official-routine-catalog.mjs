@@ -9,6 +9,8 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  ninewishes: { brand: "나인위시스", alias: "9wishes", domain: "www.9wishes.shop", type: "cafe",
+    paths: [1, 2, 3].map(page => [`list${page}`, `/product/list.html?cate_no=96&page=${page}`]) },
   kaine: { brand: "카이네", alias: "KAINE", domain: "kaine.co.kr", type: "cafe",
     paths: [1, 2].map(page => [`list${page}`, `/category/all/23/?page=${page}`]) },
   urang: { brand: "유랑", alias: "URANG", domain: "www.urangnatural.com", type: "cafe",
@@ -138,6 +140,7 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (storeKey === "ninewishes") name = name.replace(/\s*\[사용기한:\s*\d{2}(?:\.\d{2}){2}\]$/u, "");
   if (storeKey === "urang") name = name.replace(/\s*(?:사용기한\s*)?20\d{2}\.\d{1,2}\.\d{1,2}까지$/u, "")
     .replace(/\s+\d{2}[A-Z]\d{4}\s*\/\s*$/u, "").trim();
   if (storeKey === "sidmool" && /개당|골라담기|버라이어티/u.test(name)) return null;
@@ -192,6 +195,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   name = name.replaceAll(volumePattern, " ").replace(/[ ]{2,}/g, " ").replace(/\(\s*\)|^\s*[:–-]\s*|\s*[:–-]\s*$/g, "").trim();
   if (name.length < 4 || !nameScript.test(name)) return null;
   let category = classify(name);
+  if (storeKey === "ninewishes" && /앰플 (?:아이앤페이스 )?크림(?: 나노 플러스)?$/u.test(name)) category = "moisturizer";
   if (storeKey === "kaine" && /쿨링 부스터 겔$/u.test(name)) category = "moisturizer";
   if (storeKey === "sidmool" && /\s솝$/u.test(name)) category = "cleanser";
   if (storeKey === "sidmool" && /(?:앰플 수분크림|에센스로션|수분젤|에센셜(?:\s*\/겔타입|\s*\[선택구입\])?)$/u.test(name)) category = "moisturizer";
@@ -305,6 +309,11 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
     const image = imageUrl(attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
+    if (storeKey === "ninewishes") {
+      const title = descendants.find(child => child.nodeName === "div" && attr(child, "class")?.split(/\s+/).includes("name"));
+      if (!title) continue;
+      rawName = textOf(title);
+    }
     if (storeKey === "kaine") {
       const title = descendants.find(child => child.nodeName === "strong" && attr(child, "class")?.split(/\s+/).includes("name"));
       if (!title) continue;
