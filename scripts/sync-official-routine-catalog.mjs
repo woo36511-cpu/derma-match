@@ -9,6 +9,8 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  jumiso: { brand: "주미소", alias: "JUMISO", domain: "jumiso.co.kr", type: "cafe",
+    paths: [["home", "/"], ["list", "/product/list.html?cate_no=24"], ["list2", "/product/list.html?cate_no=24&page=2"]] },
   medipeel: cafe("메디필", "MEDI-PEEL", "www.medipeel.co.kr",
     [1, 2, 3, 4, 5].map(page => [`list${page}`, `/product/list.html?cate_no=795&page=${page}`])),
   dewytree: cafe("듀이트리", "DEWYTREE", "www.dewytree.com", [["list", "/category/product/64/"]]),
@@ -88,6 +90,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   if (storeKey === "medipeel" &&
     /해외\s*전용|클렌징\s*해면|풋\s*크림|제품\s*이미지|\d\s*(?:ml|g)\s+11$/iu.test(name)) return null;
   if (skip.test(name) || /\b[2345]\s*[xX]\b|[\d.]\s*(?:ml|g)\s*[xX×*]|\bset\b/i.test(name)) return null;
+  if (storeKey === "jumiso") name = name.replace(/^\[(?:글로우픽\s*1위|흔적\/모공케어|데일리 톤\/결 케어|보습장벽클렌징|항산화광채케어|장벽회복기능성)\]\s*/u, "");
   name = name.replace(/^\s*(?:\[(?:NEW|대용량|단품|정품|비건|한정)\]\s*)+/iu, "");
   name = name.replace(/^\[(리뉴얼(?: 출시)?)\]\s*/u, "$1 ");
   if (/^\[|^[#?!+]|\ufffd|\u0000|https?:|선택옵션|프로모션|격리종료/u.test(name) || name.length > 110 || !/[가-힣]/.test(name)) return null;
@@ -167,7 +170,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
     const image = imageUrl(attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
-    if (storeKey === "jmsolution") {
+    if (storeKey === "jmsolution" || storeKey === "jumiso") {
       if (!/(?:^|\s)name(?:\s|$)/.test(attr(node.parentNode, "class") ?? "")) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "").replace(/^JMsolution\s+(?=제이엠솔루션)/iu, "");
     }

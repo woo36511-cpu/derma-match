@@ -76,3 +76,13 @@ test("MEDI-PEEL keeps domestic skincare and skips export, accessory, image and m
   const listings = extractOfficialListings(sitemap, "medipeel", stores.medipeel, true);
   assert.deepEqual(listings.map(p => [p.id, p.category, p.volume]), [["lookup:medipeel:1", "serum", "30ml"]]);
 });
+
+test("JUMISO preserves decimals from the product title and excludes bundles", () => {
+  const html = [
+    ["retinal-01", "주미소 레티날 0.1 피디알엔 5000 크림 20ml"],
+    ["아이템-토너", "[2개묶음] 토너 200ml"],
+    ["세럼", "[흔적/모공케어] 나이아신아마이드 20 세럼 40ml"],
+  ].map(([slug, name], i) => `<strong class="name"><a href="/product/${slug}/${i + 1}/">상품명 : ${name}</a></strong>`).join("");
+  assert.deepEqual(extractOfficialListings(html, "jumiso", stores.jumiso).map(p => [p.name, p.volume]),
+    [["주미소 레티날 0.1 피디알엔 5000 크림", "20ml"], ["주미소 나이아신아마이드 20 세럼", "40ml"]]);
+});
