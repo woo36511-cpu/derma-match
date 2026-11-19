@@ -45,6 +45,12 @@
       "usefulPages": 6,
       "fetchedListings": 19
     },
+    "blab": {
+      "name": "비랩",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 1,
+      "fetchedListings": 4
+    },
     "blancdoux": {
       "name": "더랩바이블랑두",
       "checkedAt": "2026-11-15",
@@ -2082,6 +2088,38 @@
       "brandAlias": "Biodance",
       "category": "toner",
       "officialUrl": "https://www.biodance.co.kr/product/%EC%BA%90%EB%B9%84%EC%96%B4-%ED%8E%98%EC%8A%A4%ED%83%80-%EC%BA%90%EB%B9%84%EC%96%B4-pdrn-%EB%93%80%EC%96%BC-%EA%B2%94-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C/801/"
+    },
+    {
+      "id": "lookup:blab:123",
+      "name": "비랩 Matcha Hydrating Foam Cleanser",
+      "brand": "비랩",
+      "brandAlias": "B.LAB",
+      "category": "cleanser",
+      "officialUrl": "https://www.b-labskincare.com/product/8-2-matcha-hydrating-foam-cleanser/123/"
+    },
+    {
+      "id": "lookup:blab:124",
+      "name": "비랩 CICA Barrier Gentle Morning Cleanser",
+      "brand": "비랩",
+      "brandAlias": "B.LAB",
+      "category": "cleanser",
+      "officialUrl": "https://www.b-labskincare.com/product/7-3-cica-barrier-gentle-morning-cleanser/124/"
+    },
+    {
+      "id": "lookup:blab:125",
+      "name": "비랩 CICA Soft Meltaway Cleansing Balm",
+      "brand": "비랩",
+      "brandAlias": "B.LAB",
+      "category": "cleanser",
+      "officialUrl": "https://www.b-labskincare.com/product/5-5-cica-soft-meltaway-cleansing-balm/125/"
+    },
+    {
+      "id": "lookup:blab:126",
+      "name": "비랩 Squalene Reset Pore Deep Cleansing Oil",
+      "brand": "비랩",
+      "brandAlias": "B.LAB",
+      "category": "cleanser",
+      "officialUrl": "https://www.b-labskincare.com/product/8-2-squalene-reset-pore-deep-cleansing-oil/126/"
     },
     {
       "id": "lookup:blancdoux:159",

@@ -193,3 +193,11 @@ test("Banila uses product card names and excludes cleansing accessories", () => 
   assert.deepEqual(extractOfficialListings(card(1, "정한PICK💗 클린 잇 제로 클렌징밤 100ml") + card(2, "핑크 세안밴드"),
     "banila", stores.banila).map(p => [p.name, p.volume]), [["바닐라코 클린 잇 제로 클렌징밤", "100ml"]]);
 });
+
+test("B.LAB reads the English cleanser title from its Korean official catalog", () => {
+  const card = (id, name) => `<p class="name"><a href="/product/detail.html?product_no=${id}">${name}</a></p>`;
+  const listings = extractOfficialListings(card(123, "[ 8 : 2 ] Matcha Hydrating Foam Cleanser") +
+    card(150, "Matcha Airyfit Sun Stick"), "blab", stores.blab);
+  assert.deepEqual(listings.map(p => [p.id, p.name, p.category]),
+    [["lookup:blab:123", "비랩 Matcha Hydrating Foam Cleanser", "cleanser"]]);
+});

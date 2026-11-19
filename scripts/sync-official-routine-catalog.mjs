@@ -9,6 +9,8 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  blab: { brand: "비랩", alias: "B.LAB", domain: "www.b-labskincare.com", type: "cafe",
+    paths: [["list", "/category/cleanser/163/"]] },
   banila: { brand: "바닐라코", alias: "BANILA CO", domain: "www.banila.com", type: "cafe",
     paths: [...[1, 2, 3, 4].map(page => [`list${page}`, `/product/list.html?cate_no=214&page=${page}`]),
       ["204", "/product/list.html?cate_no=204"], ["220", "/product/list.html?cate_no=220"]] },
@@ -116,6 +118,8 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (storeKey === "blab") name = name.replace(/^\[\s*\d+\s*:\s*\d+\s*\]\s*/u, "");
+  const nameScript = storeKey === "blab" ? /[a-z]/i : /[가-힣]/;
   if (storeKey === "banila") {
     name = name.replace(/^정한\s*PICK💗?\s*/iu, "");
     if (/세안밴드|더블|골라담기|\d+\s*개/u.test(name)) return null;
@@ -153,13 +157,14 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   if (storeKey === "jumiso") name = name.replace(/^\[(?:글로우픽\s*1위|흔적\/모공케어|데일리 톤\/결 케어|보습장벽클렌징|항산화광채케어|장벽회복기능성)\]\s*/u, "");
   name = name.replace(/^\s*(?:\[(?:NEW|대용량|단품|정품|비건|한정)\]\s*)+/iu, "");
   name = name.replace(/^\[(리뉴얼(?: 출시)?)\]\s*/u, "$1 ");
-  if (/^\[|^[#?!+]|\ufffd|\u0000|https?:|선택옵션|프로모션|격리종료/u.test(name) || name.length > 110 || !/[가-힣]/.test(name)) return null;
+  if (/^\[|^[#?!+]|\ufffd|\u0000|https?:|선택옵션|프로모션|격리종료/u.test(name) || name.length > 110 || !nameScript.test(name)) return null;
   const volumes = Array.from(name.matchAll(volumePattern)).map(([, number, unit]) => `${Number(number)}${unit.toLowerCase().replace("매입", "매")}`);
   if (new Set(volumes).size > 1) return null;
   const volume = volumes[0];
   name = name.replaceAll(volumePattern, " ").replace(/[ ]{2,}/g, " ").replace(/\(\s*\)|^\s*[:–-]\s*|\s*[:–-]\s*$/g, "").trim();
-  if (name.length < 4 || !/[가-힣]/.test(name)) return null;
+  if (name.length < 4 || !nameScript.test(name)) return null;
   let category = classify(name);
+  if (storeKey === "blab" && /cleanser|cleansing (?:oil|balm)/i.test(name)) category = "cleanser";
   if (storeKey === "ongredients" && /톤업 선 로션$/u.test(name)) category = "sunscreen";
   if (storeKey === "ongredients" && /소프너$/u.test(name)) category = "toner";
   if (storeKey === "biodance" && /스킨 글로우 에센스 크림$/u.test(name)) category = "moisturizer";
@@ -281,7 +286,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const volume = descendants.find(child => attr(child, "rel") === "용량");
       if (title) rawName = [textOf(title), textOf(volume)].join(" ").trim();
     }
-    if (["ongredients", "onedaysyou", "biodance", "pcalm", "lagom", "bonajour", "jmsolution", "jumiso"].includes(storeKey)) {
+    if (["blab", "ongredients", "onedaysyou", "biodance", "pcalm", "lagom", "bonajour", "jmsolution", "jumiso"].includes(storeKey)) {
       if (!/(?:^|\s)name(?:\s|$)/.test(attr(node.parentNode, "class") ?? "")) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "").replace(/^JMsolution\s+(?=제이엠솔루션)/iu, "");
     }
@@ -290,7 +295,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       if (!m) {
         const numericId = url.searchParams.get("product_no");
         if (sitemap || url.pathname !== "/product/detail.html" || !/^\d{1,12}$/.test(numericId ?? "") ||
-          !rawName || !/[가-힣]/.test(rawName)) continue;
+          !rawName || (storeKey !== "blab" && !/[가-힣]/.test(rawName))) continue;
         id = numericId;
         sourceUrl = `https://${store.domain}/product/detail.html?product_no=${id}`;
       } else {
@@ -299,7 +304,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
         try { slug = decodeURIComponent(m[1]).replace(/-/g, " "); } catch { continue; }
         // Product links can contain image alt text like “thumb.” The official slug still carries the readable listing name.
         if (storeKey === "vt" && sitemap && /레티\s*에이|레티날/u.test(slug)) continue;
-      if (!/[가-힣]/.test(rawName) || rawName.length > 110 || /제품 이미지|제품 사진|사용감|돕는|상세 이미지/.test(rawName)) rawName = slug;
+      if ((storeKey !== "blab" && !/[가-힣]/.test(rawName)) || rawName.length > 110 || /제품 이미지|제품 사진|사용감|돕는|상세 이미지/.test(rawName)) rawName = slug;
         sourceUrl = `https://${store.domain}/product/${m[1]}/${id}/`;
       }
     } else {
