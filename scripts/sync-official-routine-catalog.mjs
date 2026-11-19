@@ -9,6 +9,8 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  somebymi: { brand: "썸바이미", alias: "SOME BY MI", domain: "www.somebymi.co.kr", type: "cafe",
+    paths: [1, 2, 3].map(page => [`list${page}`, `/product/list.html?cate_no=383&page=${page}`]) },
   ninewishes: { brand: "나인위시스", alias: "9wishes", domain: "www.9wishes.shop", type: "cafe",
     paths: [1, 2, 3].map(page => [`list${page}`, `/product/list.html?cate_no=96&page=${page}`]) },
   kaine: { brand: "카이네", alias: "KAINE", domain: "kaine.co.kr", type: "cafe",
@@ -140,6 +142,7 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (storeKey === "somebymi") name = name.replace(/\s*\[(\d+(?:\.\d+)?\s*(?:ml|g|매))\]$/iu, " $1");
   if (storeKey === "ninewishes") name = name.replace(/\s*\[사용기한:\s*\d{2}(?:\.\d{2}){2}\]$/u, "");
   if (storeKey === "urang") name = name.replace(/\s*(?:사용기한\s*)?20\d{2}\.\d{1,2}\.\d{1,2}까지$/u, "")
     .replace(/\s+\d{2}[A-Z]\d{4}\s*\/\s*$/u, "").trim();
@@ -309,6 +312,10 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
     const image = imageUrl(attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
+    if (storeKey === "somebymi") {
+      if (attr(node, "spec") !== "prd_name") continue;
+      rawName = textOf(node);
+    }
     if (storeKey === "ninewishes") {
       const title = descendants.find(child => child.nodeName === "div" && attr(child, "class")?.split(/\s+/).includes("name"));
       if (!title) continue;
