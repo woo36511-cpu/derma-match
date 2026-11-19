@@ -35,12 +35,14 @@ jobs:
             export ROUTINE_CATALOG_PREVIOUS=prior/official-brand-discovery.json
           fi
           ROUTINE_CATALOG_OUTPUT=official-brand-discovery.json node scripts/sync-official-routine-catalog.mjs "${RUNNER_TEMP}/dearsince-brand-pages" --fetch --scheduled
+          node scripts/build-catalog-review-queue.mjs official-brand-discovery.json catalog-review-queue.json
           node scripts/import-oliveyoung-feed.mjs data/oliveyoung-discovery-seed.json oliveyoung-discovery.json
       - uses: actions/upload-artifact@v4
         with:
           name: official-brand-discovery
           path: |
             official-brand-discovery.json
+            catalog-review-queue.json
             oliveyoung-discovery.json
           if-no-files-found: error
           retention-days: 90
