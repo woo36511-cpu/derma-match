@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   actions: read
 concurrency:
   group: brand-discovery-watch
@@ -44,3 +44,13 @@ jobs:
             oliveyoung-discovery.json
           if-no-files-found: error
           retention-days: 90
+      - name: Update product search when listings change
+        if: github.ref == 'refs/heads/main'
+        run: |
+          node scripts/publish-brand-search-snapshot.mjs official-brand-discovery.json
+          if git diff --quiet -- src/data/routineLookupExpansion.json; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/routineLookupExpansion.json
+          git commit -m "Refresh verified-source search listings"
+          git push origin HEAD:main
