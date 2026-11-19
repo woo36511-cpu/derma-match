@@ -26,3 +26,11 @@ test("a product card keeps the brand name and rejects links that masquerade as t
   assert.equal(product.name, "마녀공장 수분 세럼");
   assert.equal(product.officialUrl, "https://www.manyo.co.kr/goods/goods_view.php?goodsNo=123");
 });
+
+test("scheduled discovery honors wildcard robot exclusions and more specific allowed paths", async () => {
+  const { allowsPublicCatalogPath } = await import("./sync-official-routine-catalog.mjs");
+  const robots = "User-agent: AnotherBot\nAllow: /\n\nUser-agent: *\nDisallow: /\nAllow: /product/list\nDisallow: /product/list?preview=*";
+  assert.equal(allowsPublicCatalogPath(robots, "/sitemap.xml"), false);
+  assert.equal(allowsPublicCatalogPath(robots, "/product/list"), true);
+  assert.equal(allowsPublicCatalogPath(robots, "/product/list?preview=1"), false);
+});
