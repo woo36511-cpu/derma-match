@@ -9,6 +9,8 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  aromatica: cafe("아로마티카", "AROMATICA", "www.aromatica.co.kr", [["skin", "/category/%EC%8A%A4%ED%82%A8/858/"]]),
+  tiam: cafe("티암", "TIA'M", "tiam.co.kr", [["shop", "/category/shop/24/"]]),
   skinrxlab: cafe("스킨알엑스랩", "SKINRx LAB", "skinrxlab.com", [["list", "/product/list.html?cate_no=23"]]),
   tocobo: cafe("토코보", "TOCOBO", "tocobo.co.kr", [24, 43, 61, 64].map(cate => [`list${cate}`, `/product/list.html?cate_no=${cate}`])),
   beautyofjoseon: cafe("조선미녀", "Beauty of Joseon", "beautyofjoseon.co.kr",
