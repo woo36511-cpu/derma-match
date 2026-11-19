@@ -175,3 +175,21 @@ test("the two catalog sources read product card titles and preserve skincare var
     "ongredients", stores.ongredients).map(p => [p.category, p.volume]),
   [["toner", "250ml"], ["toner", "60매"]]);
 });
+
+test("US cleanser sources keep official names, market and product URLs without importing body washes", () => {
+  const cerave = '<template slot="face"><a class="results__card-front" href="/skincare/cleansers/cream-cleanser"><h3>Hydrating Cream Cleanser</h3></a></template>';
+  assert.deepEqual(extractOfficialListings(cerave, "ceraveus", stores.ceraveus), [{
+    id: "lookup:ceraveus:cream-cleanser", name: "세라비 Hydrating Cream Cleanser", brand: "세라비", brandAlias: "CeraVe",
+    category: "cleanser", officialUrl: "https://www.cerave.com/skincare/cleansers/cream-cleanser", sourceMarket: "US",
+  }]);
+  const card = (path, name) => `<h2 class="c-product-tile__name"><a href="/our-products/${path}.html">${name}</a></h2>`;
+  const html = card("face/face-wash/wash", "Purifying Face Wash") + card("body/body-wash/wash", "Face and Body Wash");
+  assert.deepEqual(extractOfficialListings(html, "larocheposayus", stores.larocheposayus).map(p => p.name),
+    ["라로슈포제 Purifying Face Wash"]);
+});
+
+test("Banila uses product card names and excludes cleansing accessories", () => {
+  const card = (id, name) => `<a href="/product/detail.html?product_no=${id}"><p class="name">${name}</p></a>`;
+  assert.deepEqual(extractOfficialListings(card(1, "정한PICK💗 클린 잇 제로 클렌징밤 100ml") + card(2, "핑크 세안밴드"),
+    "banila", stores.banila).map(p => [p.name, p.volume]), [["바닐라코 클린 잇 제로 클렌징밤", "100ml"]]);
+});

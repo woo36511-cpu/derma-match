@@ -10,9 +10,9 @@ if (fresh.market !== "KR" || fresh.provenance !== "official_listing_identity_onl
 const items = new Map(existing.products.map(item => [item.id, item]));
 const host = name => name.replace(/^(?:www|m)\./i, "");
 for (const candidate of fresh.products) {
-  const match = /^lookup:([a-z0-9]+):\d{1,12}$/.exec(candidate?.id);
+  const match = /^lookup:([a-z0-9]+):([a-z0-9-]{1,120})$/.exec(candidate?.id);
   const store = match && Object.hasOwn(stores, match[1]) && stores[match[1]];
-  if (!store || candidate.brand !== store.brand || typeof candidate.name !== "string" || !candidate.name.trim() ||
+  if (!store || (!store.sourceMarket && !/^\d{1,12}$/.test(match[2])) || candidate.brand !== store.brand || typeof candidate.name !== "string" || !candidate.name.trim() ||
       candidate.name.length > 128 || !["cleanser", "toner", "serum", "moisturizer", "sunscreen"].includes(candidate.category)) continue;
   let url;
   try { url = new URL(candidate.officialUrl); } catch { continue; }
@@ -25,7 +25,7 @@ for (const candidate of fresh.products) {
   items.set(id, { id, name, brand, brandAlias: store.alias, category,
     ...(candidate.volume === undefined ? (old?.volume ? { volume: old.volume } : {}) :
       typeof candidate.volume === "string" && /^\d+(?:\.\d+)?(?:ml|g|매)$/.test(candidate.volume) ? { volume: candidate.volume } : {}),
-    officialUrl: url.href, ...(old?.image && { image: old.image }) });
+    officialUrl: url.href, ...(store.sourceMarket && { sourceMarket: store.sourceMarket }), ...(old?.image && { image: old.image }) });
 }
 const products = [...items.values()].sort((a, b) => a.id.localeCompare(b.id, "en"));
 const canonical = item => JSON.stringify(Object.entries(item).sort(([a], [b]) => a.localeCompare(b)));

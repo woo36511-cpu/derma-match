@@ -9,6 +9,12 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  banila: { brand: "바닐라코", alias: "BANILA CO", domain: "www.banila.com", type: "cafe",
+    paths: [1, 2, 3, 4].map(page => [`list${page}`, `/product/list.html?cate_no=214&page=${page}`]) },
+  ceraveus: { brand: "세라비", alias: "CeraVe", domain: "www.cerave.com", type: "cerave", sourceMarket: "US",
+    paths: [["facial", "/skincare/cleansers/facial-cleansers"], ["all", "/skincare/cleansers"]] },
+  larocheposayus: { brand: "라로슈포제", alias: "La Roche-Posay", domain: "www.laroche-posay.us", type: "larocheposay", sourceMarket: "US",
+    paths: [["facial", "/our-products/face/face-wash"]] },
   onedaysyou: { brand: "원데이즈유", alias: "One-day's You", domain: "onedaysyou.com", type: "cafe",
     paths: [161, 162, 163, 164, 166, 167].map(category => [String(category), `/product/list.html?cate_no=${category}`]) },
   ongredients: { brand: "온그리디언츠", alias: "Ongredients", domain: "www.ongredients.co.kr", type: "cafe",
@@ -108,6 +114,10 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (storeKey === "banila") {
+    name = name.replace(/^정한\s*PICK💗?\s*/iu, "");
+    if (/세안밴드|더블|골라담기|\d+\s*개/u.test(name)) return null;
+  }
   if (storeKey === "onedaysyou" && /선비비/u.test(name)) return null;
   if (storeKey === "ongredients") {
     name = name.replace(/^\[(?:진정장벽|속광장벽|딥클렌징|클렌징밤|진정케어|트러블모공|수분장벽|탄력케어|수분케어|24시간속보습|보습진정|클렌징패드|수분세안|항산화세안|진정세안|각질패드|진정토너|생기토너|선스틱|선크림)\]\s*/u, "");
@@ -156,17 +166,17 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   if (storeKey === "lagom" && /톤업 선$/u.test(name)) category = "sunscreen";
   if (storeKey === "vt" && /^리들샷\s+(?:50|100|300|700|1000)$/u.test(name)) category = "serum";
   if (storeKey === "drceuracle" && /멜팅 포밍 밤|메디케어 솝|엔자임 워시/u.test(name)) category = "cleanser";
-  if (!category) return null;
+  if (!category || (storeKey === "banila" && category !== "cleanser")) return null;
   if (!normalize(name).startsWith(normalize(store.brand))) name = `${store.brand} ${name}`;
   return { id: `lookup:${storeKey}:${id}`, name, brand: store.brand, brandAlias: store.alias, category,
     ...(volume && { volume }), officialUrl: url, ...(image && { image }) };
 }
 
 const children = n => n?.childNodes ?? [];
-function* walk(n) {
-  if (!n || ["#comment", "script", "style", "template", "noscript"].includes(n.nodeName)) return;
+function* walk(n, includeTemplates = false) {
+  if (!n || ["#comment", "script", "style", "noscript"].includes(n.nodeName) || (!includeTemplates && n.nodeName === "template")) return;
   yield n;
-  for (const child of children(n)) yield* walk(child);
+  for (const child of children(n.content ?? n)) yield* walk(child, includeTemplates);
 }
 const attr = (node, key) => node?.attrs?.find(x => x.name === key)?.value;
 const textOf = node => Array.from(walk(node)).map(n => n.value ?? (n.nodeName === "br" ? " " : "")).join("").trim();
@@ -210,7 +220,27 @@ function extractInnisfree(source, storeKey, store) {
 export function extractOfficialListings(source, storeKey, store, sitemap = false) {
   if (store.type === "innisfree") return extractInnisfree(source, storeKey, store);
   const candidates = [];
-  const tree = Array.from(walk(parse5.parse(source)));
+  const tree = Array.from(walk(parse5.parse(source), store.type === "cerave"));
+  if (store.sourceMarket === "US") {
+    return tree.flatMap(node => {
+      if (node.nodeName !== "a") return [];
+      const url = urlWithHost(attr(node, "href"), store.domain, false);
+      if (!url) return [];
+      const isCerave = store.type === "cerave";
+      const className = isCerave ? attr(node, "class") : attr(node.parentNode, "class");
+      const listingClass = isCerave ? "results__card-front" : "c-product-tile__name";
+      if (!className?.split(/\s+/).includes(listingClass)) return [];
+      const path = isCerave ? /^\/skincare\/cleansers\/(?:facial-cleansers\/)?([a-z0-9-]+)\/?$/ :
+        /^\/our-products\/face\/(?:face-wash|acne-products)\/([a-z0-9-]+)\.html$/;
+      const slug = url.pathname.match(path)?.[1];
+      const title = isCerave ? Array.from(walk(node)).find(child => child.nodeName === "h3") : node;
+      const label = textOf(title).replace(/\u200B/gu, "").replace(/\s+/g, " ").trim();
+      if (!slug || !label || !/cleanser|face wash|facial wash|micellar water|makeup remov|makeup melt|cleansing balm|cleansing bar|cleansing wipes|cream wash/i.test(label) ||
+        /\b(?:set|bundle|kit|body wash)\b/i.test(label)) return [];
+      return [{ id: `lookup:${storeKey}:${slug}`, name: `${store.brand} ${label}`, brand: store.brand,
+        brandAlias: store.alias, category: "cleanser", officialUrl: url.origin + url.pathname, sourceMarket: store.sourceMarket }];
+    });
+  }
   if (store.type === "aestura") return tree.flatMap(node => {
     const name = attr(node, "prdnm"), id = attr(node, "prdseq");
     if (node.nodeName !== "a" || !name || !/^\d{1,12}$/.test(id ?? "") || /의약품|의료기기|의약외품/.test(attr(node, "catcd2ndnm") ?? "")) return [];
@@ -226,6 +256,11 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
     const image = imageUrl(attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
+    if (storeKey === "banila") {
+      const title = descendants.find(child => child.nodeName === "p" && attr(child, "class")?.split(/\s+/).includes("name"));
+      if (!title) continue;
+      rawName = textOf(title);
+    }
     if (storeKey === "vt" && !sitemap) {
       if (!/(?:^|\s)name(?:\s|$)/.test(attr(node, "class") ?? "")) continue;
       rawName = textOf(node);

@@ -21,6 +21,12 @@
       "usefulPages": 5,
       "fetchedListings": 20
     },
+    "banila": {
+      "name": "바닐라코",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 1,
+      "fetchedListings": 15
+    },
     "benton": {
       "name": "벤튼",
       "checkedAt": "2026-11-15",
@@ -62,6 +68,12 @@
       "checkedAt": "2026-11-15",
       "usefulPages": 2,
       "fetchedListings": 63
+    },
+    "ceraveus": {
+      "name": "세라비",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 2,
+      "fetchedListings": 12
     },
     "cosrx": {
       "name": "코스알엑스",
@@ -110,6 +122,12 @@
       "checkedAt": "2026-11-19",
       "usefulPages": 4,
       "fetchedListings": 19
+    },
+    "larocheposayus": {
+      "name": "라로슈포제",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 1,
+      "fetchedListings": 4
     },
     "manyo": {
       "name": "마녀공장",
@@ -934,6 +952,155 @@
       "category": "serum",
       "volume": "300ml",
       "officialUrl": "https://www.aromatica.co.kr/product/detail.html?product_no=2697"
+    },
+    {
+      "id": "lookup:banila:665",
+      "name": "바닐라코 클린 잇 제로 너리싱 클렌징밤",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "100ml",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=665",
+      "image": "https://www.banila.com/web/product/medium/202606/e39498bb4a3d94a005c2ef9519bc3fba.jpg"
+    },
+    {
+      "id": "lookup:banila:668",
+      "name": "바닐라코 클린 잇 제로 오리지널 클렌징밤",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "50ml",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=668",
+      "image": "https://www.banila.com/web/product/medium/202606/b306ef4aa09ced0f1dc8cc322da16f73.jpg"
+    },
+    {
+      "id": "lookup:banila:670",
+      "name": "바닐라코 클린 잇 제로 카밍 클렌징밤",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "100ml",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=670",
+      "image": "https://www.banila.com/web/product/medium/202607/a541472a204502fa02cf7f0f06a398c0.jpg"
+    },
+    {
+      "id": "lookup:banila:671",
+      "name": "바닐라코 클린 잇 제로 포어 클래리파잉 클렌징밤",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "100ml",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=671",
+      "image": "https://www.banila.com/web/product/medium/202606/0776b0046301588ca23dd422ea06f4ea.jpg"
+    },
+    {
+      "id": "lookup:banila:676",
+      "name": "바닐라코 클린 잇 제로 아나스타티카 쉽틸르 클렌징밤 리밸런싱",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "25ml",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=676",
+      "image": "https://www.banila.com/web/product/medium/202611/79b01ff2adb406871f4033d516728413.jpg"
+    },
+    {
+      "id": "lookup:banila:677",
+      "name": "바닐라코 클린 잇 제로 아나스타티카 쉽틸르 클렌징밤 리밸런싱",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "50ml",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=677",
+      "image": "https://www.banila.com/web/product/medium/202606/2e3ee1c2dddecc63fedd09dcd1c129a8.jpg"
+    },
+    {
+      "id": "lookup:banila:679",
+      "name": "바닐라코 클린 잇 제로 카밍 젤 클렌저",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=679",
+      "image": "https://www.banila.com/web/product/medium/202611/fa7e95563058da7db54e65c6210ed500.jpg"
+    },
+    {
+      "id": "lookup:banila:680",
+      "name": "바닐라코 클린 잇 제로 카밍 폼 클렌저",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=680",
+      "image": "https://www.banila.com/web/product/medium/202606/d5b885a85074b4a035242c637b4a0965.jpg"
+    },
+    {
+      "id": "lookup:banila:682",
+      "name": "바닐라코 클린 잇 제로 포어 클래리파잉 폼 클렌저",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=682",
+      "image": "https://www.banila.com/web/product/medium/202608/aaeeb5dce3f43db721acf93107a87959.jpg"
+    },
+    {
+      "id": "lookup:banila:683",
+      "name": "바닐라코 클린 잇 제로 퓨어 클렌징워터",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=683",
+      "image": "https://www.banila.com/web/product/medium/202606/3a07e1096155cd6175abaf9b91ecf5df.jpg"
+    },
+    {
+      "id": "lookup:banila:685",
+      "name": "바닐라코 클린 잇 제로 리치 비타 클렌징 티슈",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "30매",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=685",
+      "image": "https://www.banila.com/web/product/medium/202606/20cefae20f99cbeceaa04af462f4ac94.jpg"
+    },
+    {
+      "id": "lookup:banila:687",
+      "name": "바닐라코 클린 잇 제로 폼 클렌저",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=687",
+      "image": "https://www.banila.com/web/product/medium/202606/7e6e2c47ae50ce5f3df533abae2b34aa.jpg"
+    },
+    {
+      "id": "lookup:banila:688",
+      "name": "바닐라코 클린 잇 제로 피그베리 모이스처 팩 클렌저",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "180g",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=688",
+      "image": "https://www.banila.com/web/product/medium/202606/f7c78e8ca1a5dbbf993d66d6810e2917.jpg"
+    },
+    {
+      "id": "lookup:banila:689",
+      "name": "바닐라코 클린 잇 제로 키위케일 포어 팩 클렌저",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "180g",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=689",
+      "image": "https://www.banila.com/web/product/medium/202606/156492a7dd8902816c2b84096662661a.jpg"
+    },
+    {
+      "id": "lookup:banila:691",
+      "name": "바닐라코 클린 잇 제로 티트리 포어 필링 젤",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=691",
+      "image": "https://www.banila.com/web/product/medium/202606/3a4b65ee142d69db08fe7995c6920f0d.jpg"
     },
     {
       "id": "lookup:beautyofjoseon:11",
@@ -3262,6 +3429,114 @@
       "category": "toner",
       "volume": "55ml",
       "officialUrl": "https://cellfusionc.co.kr/product/%EC%84%B8%EB%9D%BC-%EB%93%80%EC%9D%B4-%EC%84%B8%ED%8C%85-%EB%AF%B8%EC%8A%A4%ED%8A%B8-55ml/693/"
+    },
+    {
+      "id": "lookup:ceraveus:-acne-foaming-cream-wash-",
+      "name": "세라비 Acne Foaming Cream Wash",
+      "brand": "세라비",
+      "brandAlias": "CeraVe",
+      "category": "cleanser",
+      "officialUrl": "https://www.cerave.com/skincare/cleansers/facial-cleansers/-acne-foaming-cream-wash-",
+      "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:ceraveus:acne-salicylic-acid-cleanser",
+      "name": "세라비 Acne Control Cleanser",
+      "brand": "세라비",
+      "brandAlias": "CeraVe",
+      "category": "cleanser",
+      "officialUrl": "https://www.cerave.com/skincare/cleansers/acne-salicylic-acid-cleanser",
+      "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:ceraveus:air-foam-foaming-facial-cleanser",
+      "name": "세라비 Balancing Air Foam Facial Cleanser",
+      "brand": "세라비",
+      "brandAlias": "CeraVe",
+      "category": "cleanser",
+      "officialUrl": "https://www.cerave.com/skincare/cleansers/air-foam-foaming-facial-cleanser",
+      "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:ceraveus:brightening-vitamin-c-cleanser",
+      "name": "세라비 Brightening Vitamin C Cleanser",
+      "brand": "세라비",
+      "brandAlias": "CeraVe",
+      "category": "cleanser",
+      "officialUrl": "https://www.cerave.com/skincare/cleansers/brightening-vitamin-c-cleanser",
+      "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:ceraveus:clay-to-foam-cleanser",
+      "name": "세라비 Acne Clay To Foam Cleanser",
+      "brand": "세라비",
+      "brandAlias": "CeraVe",
+      "category": "cleanser",
+      "officialUrl": "https://www.cerave.com/skincare/cleansers/clay-to-foam-cleanser",
+      "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:ceraveus:comforting-eye-makeup-remover",
+      "name": "세라비 Comforting Eye Makeup Remover",
+      "brand": "세라비",
+      "brandAlias": "CeraVe",
+      "category": "cleanser",
+      "officialUrl": "https://www.cerave.com/skincare/cleansers/comforting-eye-makeup-remover",
+      "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:ceraveus:foaming-facial-cleanser",
+      "name": "세라비 Foaming Facial Cleanser",
+      "brand": "세라비",
+      "brandAlias": "CeraVe",
+      "category": "cleanser",
+      "officialUrl": "https://www.cerave.com/skincare/cleansers/foaming-facial-cleanser",
+      "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:ceraveus:hydrating-facial-cleanser",
+      "name": "세라비 Hydrating Facial Cleanser",
+      "brand": "세라비",
+      "brandAlias": "CeraVe",
+      "category": "cleanser",
+      "officialUrl": "https://www.cerave.com/skincare/cleansers/hydrating-facial-cleanser",
+      "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:ceraveus:hydrating-foaming-oil-cleanser",
+      "name": "세라비 Hydrating Foaming Oil Cleanser",
+      "brand": "세라비",
+      "brandAlias": "CeraVe",
+      "category": "cleanser",
+      "officialUrl": "https://www.cerave.com/skincare/cleansers/facial-cleansers/hydrating-foaming-oil-cleanser",
+      "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:ceraveus:hydrating-makeup-removing-plant-based-wipes",
+      "name": "세라비 Hydrating Makeup Removing Plant-Based Wipes",
+      "brand": "세라비",
+      "brandAlias": "CeraVe",
+      "category": "cleanser",
+      "officialUrl": "https://www.cerave.com/skincare/cleansers/hydrating-makeup-removing-plant-based-wipes",
+      "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:ceraveus:makeup-melter",
+      "name": "세라비 Cream to Water Makeup Melter",
+      "brand": "세라비",
+      "brandAlias": "CeraVe",
+      "category": "cleanser",
+      "officialUrl": "https://www.cerave.com/skincare/cleansers/makeup-melter",
+      "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:ceraveus:micellar-water",
+      "name": "세라비 Hydrating Micellar Water",
+      "brand": "세라비",
+      "brandAlias": "CeraVe",
+      "category": "cleanser",
+      "officialUrl": "https://www.cerave.com/skincare/cleansers/micellar-water",
+      "sourceMarket": "US"
     },
     {
       "id": "lookup:cosrx:164",
@@ -6464,6 +6739,42 @@
       "category": "cleanser",
       "volume": "150ml",
       "officialUrl": "https://lagom.kr/product/detail.html?product_no=9"
+    },
+    {
+      "id": "lookup:larocheposayus:effaclar-medicated-acne-face-wash-effaclaracnewash",
+      "name": "라로슈포제 Effaclar Medicated Acne Face Wash",
+      "brand": "라로슈포제",
+      "brandAlias": "La Roche-Posay",
+      "category": "cleanser",
+      "officialUrl": "https://www.laroche-posay.us/our-products/face/acne-products/effaclar-medicated-acne-face-wash-effaclaracnewash.html",
+      "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:larocheposayus:toleriane-hydrating-gentle-facial-cleanser-tolerianehydratinggentlefacialcleanser",
+      "name": "라로슈포제 Toleriane Hydrating Gentle Facial Cleanser",
+      "brand": "라로슈포제",
+      "brandAlias": "La Roche-Posay",
+      "category": "cleanser",
+      "officialUrl": "https://www.laroche-posay.us/our-products/face/face-wash/toleriane-hydrating-gentle-facial-cleanser-tolerianehydratinggentlefacialcleanser.html",
+      "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:larocheposayus:toleriane-purifying-foaming-face-wash-tolerianepurifyingfoamingfacialwash",
+      "name": "라로슈포제 Toleriane Purifying Foaming Face Wash",
+      "brand": "라로슈포제",
+      "brandAlias": "La Roche-Posay",
+      "category": "cleanser",
+      "officialUrl": "https://www.laroche-posay.us/our-products/face/face-wash/toleriane-purifying-foaming-face-wash-tolerianepurifyingfoamingfacialwash.html",
+      "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:larocheposayus:vitamin-c-brightening-facial-cleanser-3337875924726",
+      "name": "라로슈포제 Vitamin C Brightening Facial Cleanser",
+      "brand": "라로슈포제",
+      "brandAlias": "La Roche-Posay",
+      "category": "cleanser",
+      "officialUrl": "https://www.laroche-posay.us/our-products/face/face-wash/vitamin-c-brightening-facial-cleanser-3337875924726.html",
+      "sourceMarket": "US"
     },
     {
       "id": "lookup:manyo:1000000019",
