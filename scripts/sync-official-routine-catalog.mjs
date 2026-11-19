@@ -9,6 +9,8 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  dewytree: cafe("듀이트리", "DEWYTREE", "www.dewytree.com", [["list", "/category/product/64/"]]),
+  skinnlab: cafe("스킨앤랩", "SKIN&LAB", "www.skinnlab.com", [["list", "/product/list.html?cate_no=72"]]),
   pyunkangyul: cafe("편강율", "Pyunkang Yul", "pyunkangyul.com",
     [227, 231, 186].map(category => [`list${category}`, `/product/list_thumb.html?cate_no=${category}`])),
   skinfood: { brand: "스킨푸드", alias: "SKINFOOD", domain: "www.theskinfood.com", type: "makeshop", encoding: "utf-8",
@@ -59,7 +61,7 @@ export const stores = {
     [1, 2, 3].map(page => [`list${page}`, `/product/list.html?cate_no=166&page=${page}`])),
 };
 
-const skip = /세트|증정|기획|사은품|\d\s*개\s*묶음|(?:묶음|샘플|리필|공병|랜덤|체험용|테스터|키트|미니어처|미니어쳐)|\d\s*종|\d\s*[+×]\s*\d|^(?:11|12|21|22)(?=[^\d])|(?:\dml\s*\+)|바디|헤어|샴푸|여성청결|탑투토|탑 투 토|립\s*(?:밤|마스크|글로스|오일|에센스|세럼)|아이\s*(?:크림|패치|세럼)|팔레트|쿠션팩트|커버\s*(?:팩트|(?:슬림\s*)?쿠션)|핸드\s*크림|메이크업베이스|파운데이션|브러시|사용권|교환권|탈취제|트리트먼트|치약|향수|연고|비밀|특가|공구|공동구매|vip샵|비매품|환불무료|환불 무료|(?:사용|유통)\s*기한|선착순|첫\s*구매|(?:[2-9]|\d{2,})\s*(?:개입|팩)(?!\p{L})|구매전용|이벤트|쿠폰|얼리버드|온리딜|블프|블랙프라이데이|프로모션|아울렛|클리어런스|판매종료|판매 종료/iu;
+const skip = /세트|증정|기획|사은품|\d\s*개\s*묶음|(?:묶음|샘플|리필|공병|랜덤|체험용|테스터|키트|미니어처|미니어쳐)|\d\s*종|\d\s*[+×]\s*\d|^(?:11|12|21|22)(?=[^\d])|(?:\dml\s*\+)|바디|헤어|샴푸|여성청결|탑투토|탑 투 토|립\s*(?:밤|마스크|글로스|오일|에센스|세럼)|아이\s*(?:크림|패치|세럼)|팔레트|쿠션팩트|커버\s*(?:팩트|(?:슬림\s*)?쿠션)|핸드\s*크림|메이크업베이스|(?:비비|BB)\s*크림|파운데이션|브러시|사용권|교환권|탈취제|트리트먼트|치약|향수|연고|비밀|특가|공구|공동구매|vip샵|비매품|환불무료|환불 무료|(?:사용|유통)\s*기한|선착순|첫\s*구매|(?:[2-9]|\d{2,})\s*(?:개입|팩)(?!\p{L})|구매전용|이벤트|쿠폰|얼리버드|온리딜|블프|블랙프라이데이|프로모션|아울렛|클리어런스|판매종료|판매 종료/iu;
 const volumePattern = /(\d+(?:\.\d+)?)\s*(ml|g|매입|매)(?=$|[^a-zA-Z0-9])/giu;
 const normalize = value => String(value ?? "").normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
 const entryKey = (product, ignoreVolume = false) => {
@@ -69,7 +71,7 @@ const entryKey = (product, ignoreVolume = false) => {
 const hostKey = h => h.replace(/^(?:m|www)\./i, "");
 
 function classify(name) {
-  if (/선크림|선 크림|썬크림|썬 크림|선스크린|썬스크린|선세럼|선 세럼|선스틱|선 스틱|선쿠션|선 쿠션|선플루이드|선로션|선젤|선 젤|선밤|선\s*미스트|유브이|spf\s*\d/i.test(name)) return "sunscreen";
+  if (/선크림|선 크림|썬크림|썬 크림|[선썬]\s*스크린|선세럼|선 세럼|선스틱|선 스틱|선쿠션|선 쿠션|선플루이드|선로션|선젤|선 젤|선밤|선\s*미스트|유브이|spf\s*\d/i.test(name)) return "sunscreen";
   if (/클렌|클랜|세안|페이셜워시|페이셜 워시|앰플 폼|약산성 폼|필링젤|필링 젤|필링패드|필링 패드/u.test(name)) return "cleanser";
   if (/수면팩|마스크|모델링팩|모델링 팩|세럼팩|세럼 팩|(?:수분|진정)팩/u.test(name)) return null;
   if (/토너|패드|미스트|스킨토너|스킨$/u.test(name)) return "toner";
