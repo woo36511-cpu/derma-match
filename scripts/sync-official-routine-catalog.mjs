@@ -9,6 +9,8 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  snature: { brand: "에스네이처", alias: "S.NATURE", domain: "www.snature.co.kr", type: "cafe",
+    paths: [1, 2].map(page => [`list${page}`, `/product/list.html?cate_no=87&page=${page}`]) },
   lagom: { brand: "라곰", alias: "LAGOM", domain: "lagom.kr", type: "cafe",
     paths: [1, 2, 3, 4].map(page => [`list${page}`, `/product/list.html?cate_no=48&page=${page}`]) },
   drceuracle: { brand: "닥터슈라클", alias: "Dr.Ceuracle", domain: "www.lghmall.co.kr", type: "godo",
@@ -98,6 +100,9 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (storeKey === "snature" && /카밍패드\s+\d+매\s*\(\d+ml\)$/u.test(name)) {
+    name = name.replace(/\s*\(\d+ml\)$/u, "");
+  }
   if (storeKey === "lagom") {
     name = name.replace(/^(?:\[(?:이사배 PICK|블프|공식몰 단독)\]\s*)+/iu, "");
     if (name.includes("+") || /더블|트리플|듀오|본품|브러쉬|넥 크림|^미니\s/u.test(name)) return null;
@@ -124,6 +129,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   name = name.replaceAll(volumePattern, " ").replace(/[ ]{2,}/g, " ").replace(/\(\s*\)|^\s*[:–-]\s*|\s*[:–-]\s*$/g, "").trim();
   if (name.length < 4 || !/[가-힣]/.test(name)) return null;
   let category = classify(name);
+  if (storeKey === "snature" && /쌀떡팩폼|립앤아이 리무버/u.test(name)) category = "cleanser";
   if (storeKey === "lagom" && /톤업 선$/u.test(name)) category = "sunscreen";
   if (storeKey === "vt" && /^리들샷\s+(?:50|100|300|700|1000)$/u.test(name)) category = "serum";
   if (storeKey === "drceuracle" && /멜팅 포밍 밤|메디케어 솝|엔자임 워시/u.test(name)) category = "cleanser";
@@ -200,6 +206,10 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     if (storeKey === "vt" && !sitemap) {
       if (!/(?:^|\s)name(?:\s|$)/.test(attr(node, "class") ?? "")) continue;
       rawName = textOf(node);
+    }
+    if (storeKey === "snature") {
+      if (!/(?:^|\s)df-prl-name(?:\s|$)/.test(attr(node, "class") ?? "")) continue;
+      rawName = textOf(node).replace(/^상품명\s*:\s*/u, "");
     }
     if (storeKey === "drceuracle") {
       const title = descendants.find(child => /(?:^|\s)prdName(?:\s|$)/.test(attr(child, "class") ?? ""));
