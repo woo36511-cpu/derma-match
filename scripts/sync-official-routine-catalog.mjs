@@ -9,8 +9,10 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  nacific: { brand: "네시픽", alias: "NACIFIC", domain: "nacific.com", type: "cafe",
+    paths: [1, 2].map(page => [`list${page}`, `/category/%241/98/?page=${page}`]) },
   blab: { brand: "비랩", alias: "B.LAB", domain: "www.b-labskincare.com", type: "cafe",
-    paths: [["list", "/category/cleanser/163/"]] },
+    paths: [["list", "/category/cleanser/163/"], ["skincare", "/category/skin-care/168/"]] },
   banila: { brand: "바닐라코", alias: "BANILA CO", domain: "www.banila.com", type: "cafe",
     paths: [...[1, 2, 3, 4].map(page => [`list${page}`, `/product/list.html?cate_no=214&page=${page}`]),
       ["204", "/product/list.html?cate_no=204"], ["220", "/product/list.html?cate_no=220"]] },
@@ -118,6 +120,7 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (storeKey === "nacific") name = name.replace(/^★[^★]+★\s*/u, "");
   if (storeKey === "blab") name = name.replace(/^\[\s*\d+\s*:\s*\d+\s*\]\s*/u, "");
   const nameScript = storeKey === "blab" ? /[a-z]/i : /[가-힣]/;
   if (storeKey === "banila") {
@@ -164,7 +167,14 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   name = name.replaceAll(volumePattern, " ").replace(/[ ]{2,}/g, " ").replace(/\(\s*\)|^\s*[:–-]\s*|\s*[:–-]\s*$/g, "").trim();
   if (name.length < 4 || !nameScript.test(name)) return null;
   let category = classify(name);
-  if (storeKey === "blab" && /cleanser|cleansing (?:oil|balm)/i.test(name)) category = "cleanser";
+  if (storeKey === "nacific" && /선블록/u.test(name)) category = "sunscreen";
+  if (storeKey === "blab") {
+    if (/\b(?:sunscreen|sun stick)\b/i.test(name)) category = "sunscreen";
+    else if (/\b(?:toner|pads?)\b/i.test(name)) category = "toner";
+    else if (/\b(?:cleanser|cleansing (?:oil|balm))\b/i.test(name)) category = "cleanser";
+    else if (/\b(?:serum|ampoule|essence)\b/i.test(name)) category = "serum";
+    else if (/\b(?:cream|lotion)\b/i.test(name)) category = "moisturizer";
+  }
   if (storeKey === "ongredients" && /톤업 선 로션$/u.test(name)) category = "sunscreen";
   if (storeKey === "ongredients" && /소프너$/u.test(name)) category = "toner";
   if (storeKey === "biodance" && /스킨 글로우 에센스 크림$/u.test(name)) category = "moisturizer";
@@ -263,6 +273,11 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
     const image = imageUrl(attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
+    if (storeKey === "nacific") {
+      const title = descendants.find(child => child.nodeName === "strong" && attr(child, "class")?.split(/\s+/).includes("name"));
+      if (!title) continue;
+      rawName = textOf(title).replace(/^상품명\s*:\s*/u, "");
+    }
     if (storeKey === "banila") {
       const title = descendants.find(child => child.nodeName === "p" && attr(child, "class")?.split(/\s+/).includes("name"));
       if (!title) continue;

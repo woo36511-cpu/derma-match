@@ -199,5 +199,6 @@ test("B.LAB reads the English cleanser title from its Korean official catalog", 
   const listings = extractOfficialListings(card(123, "[ 8 : 2 ] Matcha Hydrating Foam Cleanser") +
     card(150, "Matcha Airyfit Sun Stick"), "blab", stores.blab);
   assert.deepEqual(listings.map(p => [p.id, p.name, p.category]),
-    [["lookup:blab:123", "비랩 Matcha Hydrating Foam Cleanser", "cleanser"]]);
+    [["lookup:blab:123", "비랩 Matcha Hydrating Foam Cleanser", "cleanser"],
+      ["lookup:blab:150", "비랩 Matcha Airyfit Sun Stick", "sunscreen"]]);
 });
