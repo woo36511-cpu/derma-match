@@ -106,3 +106,11 @@ test("VT indexes plain Reedle Shots, drops promotions and preserves decimals fro
   const sitemap = '<urlset><url><loc>https://www.vt-cosmetics.com/product/시카-레티-에이-에센스-03/773/</loc></url></urlset>';
   assert.deepEqual(extractOfficialListings(sitemap, "vt", stores.vt, true), []);
 });
+
+test("NEEDLY excludes pad accessories and categorizes moisture sun and essence lotion", () => {
+  const names = ["마이 패드 케이스", "마일드 멀티 코튼 패드 100매",
+    "비건 마일드 모이스처 선 50ml", "pH 밸런싱 에센스 로션 145ml"];
+  const html = names.map((name, i) => `<a href="/product/detail.html?product_no=${i + 1}"><img alt="${name}"></a>`).join("");
+  assert.deepEqual(extractOfficialListings(html, "needly", stores.needly).map(p => [p.category, p.volume]),
+    [["sunscreen", "50ml"], ["moisturizer", "145ml"]]);
+});
