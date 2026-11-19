@@ -135,6 +135,18 @@
       "usefulPages": 2,
       "fetchedListings": 21
     },
+    "onedaysyou": {
+      "name": "원데이즈유",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 5,
+      "fetchedListings": 33
+    },
+    "ongredients": {
+      "name": "온그리디언츠",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 5,
+      "fetchedListings": 24
+    },
     "pcalm": {
       "name": "피캄",
       "checkedAt": "2026-11-19",
@@ -9911,6 +9923,515 @@
       "category": "serum",
       "volume": "50ml",
       "officialUrl": "https://numbuzin.com/product/9%EB%B2%88-nad-bio-%EB%A6%AC%ED%94%84%ED%8C%85-%EC%9B%90%EC%95%A1-%EC%97%90%EC%84%BC%EC%8A%A4-50ml/59/"
+    },
+    {
+      "id": "lookup:onedaysyou:1012",
+      "name": "원데이즈유 세라마이드 앰플패드",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "toner",
+      "volume": "90매",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=1012"
+    },
+    {
+      "id": "lookup:onedaysyou:1013",
+      "name": "원데이즈유 꿀광 브라이트닝 패드",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "toner",
+      "volume": "60매",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=1013"
+    },
+    {
+      "id": "lookup:onedaysyou:1014",
+      "name": "원데이즈유 리얼 콜라겐 패드",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "toner",
+      "volume": "70매",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=1014"
+    },
+    {
+      "id": "lookup:onedaysyou:1016",
+      "name": "원데이즈유 포어 타이트닝 모공패드",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "toner",
+      "volume": "60매",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=1016"
+    },
+    {
+      "id": "lookup:onedaysyou:1026",
+      "name": "원데이즈유 아이스 쿨링패드",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "toner",
+      "volume": "80매",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=1026"
+    },
+    {
+      "id": "lookup:onedaysyou:1037",
+      "name": "원데이즈유 피토피디알엔 캡슐 샷 앰플 2000",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "serum",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=1037"
+    },
+    {
+      "id": "lookup:onedaysyou:1038",
+      "name": "원데이즈유 피토피디알엔 캡슐 샷 앰플 5000",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "serum",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=1038"
+    },
+    {
+      "id": "lookup:onedaysyou:1068",
+      "name": "원데이즈유 센테놀 EX 크림 365",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "moisturizer",
+      "volume": "80ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=1068"
+    },
+    {
+      "id": "lookup:onedaysyou:111",
+      "name": "원데이즈유 매직 문라이트 피지쓱싹 필링 클렌징팩",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "cleanser",
+      "volume": "5매",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=111"
+    },
+    {
+      "id": "lookup:onedaysyou:1120",
+      "name": "원데이즈유 헬프미 시카밍 닥토패드",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "toner",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=1120"
+    },
+    {
+      "id": "lookup:onedaysyou:165",
+      "name": "원데이즈유 프로바이타씨 브라이트닝 크림",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=165"
+    },
+    {
+      "id": "lookup:onedaysyou:169",
+      "name": "원데이즈유 프로 바이타씨 브라이트닝 앰플세럼",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=169"
+    },
+    {
+      "id": "lookup:onedaysyou:174",
+      "name": "원데이즈유 포어 타이트닝 포밍 클렌저",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=174"
+    },
+    {
+      "id": "lookup:onedaysyou:176",
+      "name": "원데이즈유 포어 타이트닝 토너",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=176"
+    },
+    {
+      "id": "lookup:onedaysyou:177",
+      "name": "원데이즈유 포어 타이트닝 앰플세럼",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=177"
+    },
+    {
+      "id": "lookup:onedaysyou:244",
+      "name": "원데이즈유 프로바이타씨 브라이트닝 앰플미스트",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=244"
+    },
+    {
+      "id": "lookup:onedaysyou:249",
+      "name": "원데이즈유 프로바이타씨 브라이트닝 클렌징 밤",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=249"
+    },
+    {
+      "id": "lookup:onedaysyou:289",
+      "name": "원데이즈유 시카밍 앰플 세럼",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=289"
+    },
+    {
+      "id": "lookup:onedaysyou:290",
+      "name": "원데이즈유 시카밍 크림",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=290"
+    },
+    {
+      "id": "lookup:onedaysyou:472",
+      "name": "원데이즈유 시카밍 폼클렌저",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=472"
+    },
+    {
+      "id": "lookup:onedaysyou:473",
+      "name": "원데이즈유 시카밍 필링젤",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=473"
+    },
+    {
+      "id": "lookup:onedaysyou:492",
+      "name": "원데이즈유 피지쓱싹 버블톡스 클렌징 팩",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "cleanser",
+      "volume": "100ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=492"
+    },
+    {
+      "id": "lookup:onedaysyou:754",
+      "name": "원데이즈유 피지쓱싹 딥 클렌징 오일",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=754"
+    },
+    {
+      "id": "lookup:onedaysyou:755",
+      "name": "원데이즈유 피지쓱싹 딥 클렌징 폼",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=755"
+    },
+    {
+      "id": "lookup:onedaysyou:814",
+      "name": "원데이즈유 피지쓱싹 노 모어 블랙헤드 블루 앰플세럼",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=814"
+    },
+    {
+      "id": "lookup:onedaysyou:815",
+      "name": "원데이즈유 노모어 블랙헤드 젤크림",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "moisturizer",
+      "volume": "25ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=815"
+    },
+    {
+      "id": "lookup:onedaysyou:884",
+      "name": "원데이즈유 리얼 콜라겐 집중크림",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "moisturizer",
+      "volume": "30ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=884"
+    },
+    {
+      "id": "lookup:onedaysyou:894",
+      "name": "원데이즈유 시카밍 토너",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=894"
+    },
+    {
+      "id": "lookup:onedaysyou:895",
+      "name": "원데이즈유 피지쓱싹 버블 클렌징 패드",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "cleanser",
+      "volume": "60매",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=895"
+    },
+    {
+      "id": "lookup:onedaysyou:900",
+      "name": "원데이즈유 S.O.S 아크네 스팟 클리어링 토너",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=900"
+    },
+    {
+      "id": "lookup:onedaysyou:901",
+      "name": "원데이즈유 S.O.S 아크네 스팟 클리어링 앰플 세럼",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=901"
+    },
+    {
+      "id": "lookup:onedaysyou:902",
+      "name": "원데이즈유 S.O.S 아크네 스팟 클리어링 크림",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "moisturizer",
+      "volume": "25ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=902"
+    },
+    {
+      "id": "lookup:onedaysyou:937",
+      "name": "원데이즈유 포어 타이트닝 크림",
+      "brand": "원데이즈유",
+      "brandAlias": "One-day's You",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://onedaysyou.com/product/detail.html?product_no=937"
+    },
+    {
+      "id": "lookup:ongredients:108",
+      "name": "온그리디언츠 버터플라이피 클렌징 볼",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "cleanser",
+      "volume": "110g",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=108"
+    },
+    {
+      "id": "lookup:ongredients:109",
+      "name": "온그리디언츠 제주 시카 클렌징 볼",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "cleanser",
+      "volume": "110g",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=109"
+    },
+    {
+      "id": "lookup:ongredients:168",
+      "name": "온그리디언츠 리바이탈라이징 세럼",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=168"
+    },
+    {
+      "id": "lookup:ongredients:169",
+      "name": "온그리디언츠 세라 카밍 세럼",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=169"
+    },
+    {
+      "id": "lookup:ongredients:198",
+      "name": "온그리디언츠 리바이탈라이징 토너",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "toner",
+      "volume": "250ml",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=198"
+    },
+    {
+      "id": "lookup:ongredients:199",
+      "name": "온그리디언츠 밸런싱 스킨 소프너",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "toner",
+      "volume": "250ml",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=199"
+    },
+    {
+      "id": "lookup:ongredients:200",
+      "name": "온그리디언츠 리바이탈라이징 토너패드",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "toner",
+      "volume": "60매",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=200"
+    },
+    {
+      "id": "lookup:ongredients:201",
+      "name": "온그리디언츠 포어 클렌징 패드",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "cleanser",
+      "volume": "60매",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=201"
+    },
+    {
+      "id": "lookup:ongredients:206",
+      "name": "온그리디언츠 블루 톤업 선 로션",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=206"
+    },
+    {
+      "id": "lookup:ongredients:249",
+      "name": "온그리디언츠 데일리 프레쉬 선스틱",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "sunscreen",
+      "volume": "15g",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=249"
+    },
+    {
+      "id": "lookup:ongredients:258",
+      "name": "온그리디언츠 아크 밸런싱 세럼",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=258"
+    },
+    {
+      "id": "lookup:ongredients:260",
+      "name": "온그리디언츠 더 산뜻한 수딩크림",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=260"
+    },
+    {
+      "id": "lookup:ongredients:276",
+      "name": "온그리디언츠 딥 포밍 클렌징젤",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=276"
+    },
+    {
+      "id": "lookup:ongredients:288",
+      "name": "온그리디언츠 퍼펙트 멜팅 클렌징밤",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "cleanser",
+      "volume": "100ml",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=288"
+    },
+    {
+      "id": "lookup:ongredients:291",
+      "name": "온그리디언츠 스킨 베리어 카밍 로션",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "moisturizer",
+      "volume": "220ml",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=291"
+    },
+    {
+      "id": "lookup:ongredients:305",
+      "name": "온그리디언츠 모이스처 카밍 에센스",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "serum",
+      "volume": "150ml",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=305"
+    },
+    {
+      "id": "lookup:ongredients:320",
+      "name": "온그리디언츠 스킨 베리어 카밍 소프너",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "toner",
+      "volume": "250ml",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=320"
+    },
+    {
+      "id": "lookup:ongredients:323",
+      "name": "온그리디언츠 스킨 베리어 모이스처 딥 클렌저",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "cleanser",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=323"
+    },
+    {
+      "id": "lookup:ongredients:43",
+      "name": "온그리디언츠 안티 링클 에센스",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "serum",
+      "volume": "150ml",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=43"
+    },
+    {
+      "id": "lookup:ongredients:51",
+      "name": "온그리디언츠 아쿠아 차징 에센스",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "serum",
+      "volume": "150ml",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=51"
+    },
+    {
+      "id": "lookup:ongredients:69",
+      "name": "온그리디언츠 더 촉촉한 물차오름 크림",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=69"
+    },
+    {
+      "id": "lookup:ongredients:70",
+      "name": "온그리디언츠 더 꾸덕한 진정크림",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=70"
+    },
+    {
+      "id": "lookup:ongredients:71",
+      "name": "온그리디언츠 더 쫀쫀한 탄력크림",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=71"
+    },
+    {
+      "id": "lookup:ongredients:90",
+      "name": "온그리디언츠 제주 그린티 클렌징 볼",
+      "brand": "온그리디언츠",
+      "brandAlias": "Ongredients",
+      "category": "cleanser",
+      "volume": "110g",
+      "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=90"
     },
     {
       "id": "lookup:pcalm:115",

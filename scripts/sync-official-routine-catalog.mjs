@@ -9,6 +9,10 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  onedaysyou: { brand: "원데이즈유", alias: "One-day's You", domain: "onedaysyou.com", type: "cafe",
+    paths: [161, 162, 163, 164, 166, 167].map(category => [String(category), `/product/list.html?cate_no=${category}`]) },
+  ongredients: { brand: "온그리디언츠", alias: "Ongredients", domain: "www.ongredients.co.kr", type: "cafe",
+    paths: [49, 58, 62, 91, 111].map(category => [String(category), `/product/list.html?cate_no=${category}`]) },
   biodance: { brand: "바이오던스", alias: "Biodance", domain: "www.biodance.co.kr", type: "cafe",
     paths: [1, 2, 3, 4, 5, 6].map(page => [`list${page}`, `/product/list.html?cate_no=28&page=${page}`]) },
   pcalm: { brand: "피캄", alias: "P.CALM", domain: "pcalm.co.kr", type: "cafe",
@@ -104,6 +108,12 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (storeKey === "onedaysyou" && /선비비/u.test(name)) return null;
+  if (storeKey === "ongredients") {
+    name = name.replace(/^\[(?:진정장벽|속광장벽|딥클렌징|클렌징밤|진정케어|트러블모공|수분장벽|탄력케어|수분케어|24시간속보습|보습진정|클렌징패드|수분세안|항산화세안|진정세안|각질패드|진정토너|생기토너|선스틱|선크림)\]\s*/u, "");
+    if (/쿠션|화장솜|듀오|\+/u.test(name)) return null;
+    name = name.replace(/(패드\s+\d+)\s*ea$/iu, "$1매");
+  }
   if (storeKey === "biodance") {
     name = name.replace(/^\[(?:NEW✨?|공식몰 1등 크림✨?|캐비어 페스타|뿌리는 겔마스크)\]\s*/iu, "");
     if (/듀오|코튼 패드|토너\s*\+\s*파하 토너|\s\+\s|\d+\s*매\s*\/|\d+\s*개/u.test(name)) return null;
@@ -138,6 +148,8 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   name = name.replaceAll(volumePattern, " ").replace(/[ ]{2,}/g, " ").replace(/\(\s*\)|^\s*[:–-]\s*|\s*[:–-]\s*$/g, "").trim();
   if (name.length < 4 || !/[가-힣]/.test(name)) return null;
   let category = classify(name);
+  if (storeKey === "ongredients" && /톤업 선 로션$/u.test(name)) category = "sunscreen";
+  if (storeKey === "ongredients" && /소프너$/u.test(name)) category = "toner";
   if (storeKey === "biodance" && /스킨 글로우 에센스 크림$/u.test(name)) category = "moisturizer";
   if (storeKey === "pcalm" && /앰플 샷 크림$/u.test(name)) category = "moisturizer";
   if (storeKey === "snature" && /쌀떡팩폼|립앤아이 리무버/u.test(name)) category = "cleanser";
@@ -232,7 +244,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const volume = descendants.find(child => attr(child, "rel") === "용량");
       if (title) rawName = [textOf(title), textOf(volume)].join(" ").trim();
     }
-    if (["biodance", "pcalm", "lagom", "bonajour", "jmsolution", "jumiso"].includes(storeKey)) {
+    if (["ongredients", "onedaysyou", "biodance", "pcalm", "lagom", "bonajour", "jmsolution", "jumiso"].includes(storeKey)) {
       if (!/(?:^|\s)name(?:\s|$)/.test(attr(node.parentNode, "class") ?? "")) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "").replace(/^JMsolution\s+(?=제이엠솔루션)/iu, "");
     }
