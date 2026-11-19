@@ -12,8 +12,14 @@ export const stores = {
   miguhara: { brand: "미구하라", alias: "MIGUHARA", domain: "www.miguhara.com", type: "cafe",
     paths: [175, 176, 177, 178, 179, 180, 182].map(category => [String(category), `/product/list.html?cate_no=${category}`]) },
   sidmool: { brand: "시드물", alias: "SIDMOOL", domain: "www.sidmool.com", type: "makeshop",
-    paths: ["005", "006", "009", "010", "012"].map(category =>
-      [category, `/shop/shopbrand.html?type=N&xcode=017&mcode=${category}&viewtype=gallery`]) },
+    paths: [
+      ...["005", "006", "009", "010", "012"].map(category =>
+        [category, `/shop/shopbrand.html?type=N&xcode=017&mcode=${category}&viewtype=gallery`]),
+      ...["007", "008", "010", "011", "013", "018", "020"].map(category =>
+        [`main${category}`, `/shop/shopbrand.html?type=N&xcode=019&mcode=${category}&viewtype=gallery`]),
+      ...[["007", 2], ["010", 2], ["011", 2], ["013", 2], ["013", 3], ["018", 2]].map(([category, page]) =>
+        [`main${category}-${page}`, `/shop/shopbrand.html?type=Y&xcode=019&mcode=${category}&sort=&page=${page}`]),
+    ] },
   nacific: { brand: "네시픽", alias: "NACIFIC", domain: "nacific.com", type: "cafe",
     paths: [...[1, 2].map(page => [`list${page}`, `/category/%241/98/?page=${page}`]),
       ...[345, 346, 347, 348].map(category => [String(category), `/product/list.html?cate_no=${category}`])] },
@@ -126,6 +132,7 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (storeKey === "sidmool" && /개당|골라담기|버라이어티/u.test(name)) return null;
   if (storeKey === "nacific") {
     name = name.replace(/^★[^★]+★\s*/u, "").replace(/(\d\s*ml)\s*1구$/iu, "$1")
       .replace(/(패드\s+\d+매)\s*\/\s*\d+\s*(?:g|ml)$/iu, "$1")
