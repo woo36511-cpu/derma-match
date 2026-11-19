@@ -10,7 +10,8 @@ const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
   nacific: { brand: "네시픽", alias: "NACIFIC", domain: "nacific.com", type: "cafe",
-    paths: [1, 2].map(page => [`list${page}`, `/category/%241/98/?page=${page}`]) },
+    paths: [...[1, 2].map(page => [`list${page}`, `/category/%241/98/?page=${page}`]),
+      ...[345, 346, 347, 348].map(category => [String(category), `/product/list.html?cate_no=${category}`])] },
   blab: { brand: "비랩", alias: "B.LAB", domain: "www.b-labskincare.com", type: "cafe",
     paths: [["list", "/category/cleanser/163/"], ["skincare", "/category/skin-care/168/"]] },
   banila: { brand: "바닐라코", alias: "BANILA CO", domain: "www.banila.com", type: "cafe",
@@ -120,7 +121,11 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
-  if (storeKey === "nacific") name = name.replace(/^★[^★]+★\s*/u, "");
+  if (storeKey === "nacific") {
+    name = name.replace(/^★[^★]+★\s*/u, "").replace(/(\d\s*ml)\s*1구$/iu, "$1")
+      .replace(/(패드\s+\d+매)\s*\/\s*\d+\s*(?:g|ml)$/iu, "$1")
+      .replace(/(에어크림)(\d+ml)$/iu, "$1 $2");
+  }
   if (storeKey === "blab") name = name.replace(/^\[\s*\d+\s*:\s*\d+\s*\]\s*/u, "");
   const nameScript = storeKey === "blab" ? /[a-z]/i : /[가-힣]/;
   if (storeKey === "banila") {
@@ -168,6 +173,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   if (name.length < 4 || !nameScript.test(name)) return null;
   let category = classify(name);
   if (storeKey === "nacific" && /선블록/u.test(name)) category = "sunscreen";
+  if (storeKey === "nacific" && /^(?:프레쉬 EM 솝|블랙헤드 올킬 블랙블럭)$/u.test(name)) category = "cleanser";
   if (storeKey === "blab") {
     if (/\b(?:sunscreen|sun stick)\b/i.test(name)) category = "sunscreen";
     else if (/\b(?:toner|pads?)\b/i.test(name)) category = "toner";
