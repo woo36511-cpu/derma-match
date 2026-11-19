@@ -9,11 +9,8 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
-  imfrom: {
-    ...cafe("아임프롬", "I'm From", "www.imfrom.co.kr",
-      [1, 2, 3].map(page => [`list${page}`, `/product/list.html?cate_no=166&page=${page}`])),
-    detailQuery: true,
-  },
+  aromatica: cafe("아로마티카", "AROMATICA", "www.aromatica.co.kr", [["skin", "/category/%EC%8A%A4%ED%82%A8/858/"]]),
+  tiam: cafe("티암", "TIA'M", "tiam.co.kr", [["shop", "/category/shop/24/"]]),
   skinrxlab: cafe("스킨알엑스랩", "SKINRx LAB", "skinrxlab.com", [["list", "/product/list.html?cate_no=23"]]),
   tocobo: cafe("토코보", "TOCOBO", "tocobo.co.kr", [24, 43, 61, 64].map(cate => [`list${cate}`, `/product/list.html?cate_no=${cate}`])),
   beautyofjoseon: cafe("조선미녀", "Beauty of Joseon", "beautyofjoseon.co.kr",
@@ -49,6 +46,8 @@ export const stores = {
   sioris: cafe("시오리스", "SIORIS", "sioris.co.kr"),
   tirtir: cafe("티르티르", "TIRTIR", "tirtir.co.kr"),
   hanyul: cafe("한율", "HANYUL", "www.hanyul.com"),
+  imfrom: cafe("아임프롬", "I'm From", "www.imfrom.co.kr",
+    [1, 2, 3].map(page => [`list${page}`, `/product/list.html?cate_no=166&page=${page}`])),
 };
 
 const skip = /세트|증정|기획|사은품|\d\s*개\s*묶음|(?:묶음|샘플|리필|공병|랜덤|체험용|테스터|키트|미니어처|미니어쳐)|\d\s*종|\d\s*[+×]\s*\d|^(?:11|12|21|22)(?=[^\d])|(?:\dml\s*\+)|바디|헤어|샴푸|여성청결|탑투토|탑 투 토|립\s*(?:밤|마스크|글로스|오일|에센스|세럼)|아이\s*(?:크림|패치|세럼)|팔레트|쿠션팩트|메이크업베이스|파운데이션|브러시|사용권|교환권|탈취제|트리트먼트|치약|향수|연고|비밀|특가|공구|공동구매|vip샵|비매품|환불무료|환불 무료|(?:사용|유통)\s*기한|선착순|구매전용|이벤트|쿠폰|얼리버드|온리딜|프로모션|아울렛|클리어런스|판매종료|판매 종료/iu;
@@ -152,19 +151,22 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
     const image = imageUrl(attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
-    if (store.detailQuery && url.pathname === "/product/detail.html") {
-      id = url.searchParams.get("product_no");
-      if (!/^\d{1,12}$/.test(id ?? "")) continue;
-      sourceUrl = `https://${store.domain}/product/detail.html?product_no=${id}`;
-    } else if (store.type === "cafe") {
+    if (store.type === "cafe") {
       const m = url.pathname.match(/^\/product\/([^/]+)\/(\d+)(?:\/|$)/);
-      if (!m) continue;
-      id = m[2];
-      let slug;
-      try { slug = decodeURIComponent(m[1]).replace(/-/g, " "); } catch { continue; }
-      // Product links can contain image alt text like “thumb.” The official slug still carries the readable listing name.
-      if (!/[가-힣]/.test(rawName) || rawName.length > 110 || /제품 이미지|제품 사진|사용감|돕는|상세 이미지/.test(rawName)) rawName = slug;
-      sourceUrl = `https://${store.domain}/product/${m[1]}/${id}/`;
+      if (!m) {
+        const numericId = url.searchParams.get("product_no");
+        if (sitemap || url.pathname !== "/product/detail.html" || !/^\d{1,12}$/.test(numericId ?? "") ||
+          !rawName || !/[가-힣]/.test(rawName)) continue;
+        id = numericId;
+        sourceUrl = `https://${store.domain}/product/detail.html?product_no=${id}`;
+      } else {
+        id = m[2];
+        let slug;
+        try { slug = decodeURIComponent(m[1]).replace(/-/g, " "); } catch { continue; }
+        // Product links can contain image alt text like “thumb.” The official slug still carries the readable listing name.
+        if (!/[가-힣]/.test(rawName) || rawName.length > 110 || /제품 이미지|제품 사진|사용감|돕는|상세 이미지/.test(rawName)) rawName = slug;
+        sourceUrl = `https://${store.domain}/product/${m[1]}/${id}/`;
+      }
     } else {
       const [path, key] = store.type === "godo" ? ["/goods/goods_view.php", "goodsNo"] : ["/shop/shopdetail.html", "branduid"];
       if (url.pathname !== path || !/^\d{1,12}$/.test(url.searchParams.get(key) ?? "")) continue;
