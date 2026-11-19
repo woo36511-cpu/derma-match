@@ -150,8 +150,8 @@
     "nacific": {
       "name": "네시픽",
       "checkedAt": "2026-11-19",
-      "usefulPages": 2,
-      "fetchedListings": 8
+      "usefulPages": 6,
+      "fetchedListings": 35
     },
     "neogen": {
       "name": "네오젠",
@@ -9413,6 +9413,105 @@
       "officialUrl": "https://mixsoon.co.kr/product/%ED%9E%88%EC%95%8C%EB%A0%88%EB%B0%B0-%EC%9B%8C%ED%84%B0%ED%92%80-%EC%A0%A4-%ED%81%AC%EB%A6%BC-60ml/999/"
     },
     {
+      "id": "lookup:nacific:1132",
+      "name": "네시픽 프레쉬 허브 오리진 미스트 세럼",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://nacific.com/product/%ED%94%84%EB%A0%88%EC%89%AC-%ED%97%88%EB%B8%8C-%EC%98%A4%EB%A6%AC%EC%A7%84-%EB%AF%B8%EC%8A%A4%ED%8A%B8-%EC%84%B8%EB%9F%BC-100ml/1132/"
+    },
+    {
+      "id": "lookup:nacific:1170",
+      "name": "네시픽 클렌징 오일 바쿠치올",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "cleanser",
+      "volume": "300ml",
+      "officialUrl": "https://nacific.com/product/%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-%EB%B0%94%EC%BF%A0%EC%B9%98%EC%98%AC-300ml/1170/"
+    },
+    {
+      "id": "lookup:nacific:1171",
+      "name": "네시픽 클렌징 워터 바쿠치올",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "cleanser",
+      "volume": "300ml",
+      "officialUrl": "https://nacific.com/product/%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%9B%8C%ED%84%B0-%EB%B0%94%EC%BF%A0%EC%B9%98%EC%98%AC-300ml/1171/"
+    },
+    {
+      "id": "lookup:nacific:1294",
+      "name": "네시픽 우유 크림 토너",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://nacific.com/product/%EC%9A%B0%EC%9C%A0-%ED%81%AC%EB%A6%BC-%ED%86%A0%EB%84%88-150ml/1294/"
+    },
+    {
+      "id": "lookup:nacific:1295",
+      "name": "네시픽 우유 크림 앰플",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://nacific.com/product/%EC%9A%B0%EC%9C%A0-%ED%81%AC%EB%A6%BC-%EC%95%B0%ED%94%8C-50ml/1295/"
+    },
+    {
+      "id": "lookup:nacific:1296",
+      "name": "네시픽 우유 크림",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "moisturizer",
+      "volume": "50g",
+      "officialUrl": "https://nacific.com/product/%EC%9A%B0%EC%9C%A0-%ED%81%AC%EB%A6%BC-50g/1296/"
+    },
+    {
+      "id": "lookup:nacific:1636",
+      "name": "네시픽 히알 부스터앰플",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://nacific.com/product/%ED%9E%88%EC%95%8C-%EB%B6%80%EC%8A%A4%ED%84%B0%EC%95%B0%ED%94%8C-50ml/1636/"
+    },
+    {
+      "id": "lookup:nacific:1638",
+      "name": "네시픽 히알 부스터크림",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://nacific.com/product/%ED%9E%88%EC%95%8C-%EB%B6%80%EC%8A%A4%ED%84%B0%ED%81%AC%EB%A6%BC-50ml/1638/"
+    },
+    {
+      "id": "lookup:nacific:1640",
+      "name": "네시픽 히알부스터 토너",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://nacific.com/product/%ED%9E%88%EC%95%8C%EB%B6%80%EC%8A%A4%ED%84%B0-%ED%86%A0%EB%84%88-150ml/1640/"
+    },
+    {
+      "id": "lookup:nacific:2082",
+      "name": "네시픽 피토 나이아신 브라이트닝 토너 패드",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "toner",
+      "volume": "80매",
+      "officialUrl": "https://nacific.com/product/%ED%94%BC%ED%86%A0-%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0-%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%8B%9D-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C-80%EB%A7%A4165ml/2082/"
+    },
+    {
+      "id": "lookup:nacific:2083",
+      "name": "네시픽 프레쉬 허브 오리진 토너 패드",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "toner",
+      "volume": "60매",
+      "officialUrl": "https://nacific.com/product/%ED%94%84%EB%A0%88%EC%89%AC-%ED%97%88%EB%B8%8C-%EC%98%A4%EB%A6%AC%EC%A7%84-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C-60%EB%A7%A4180g/2083/"
+    },
+    {
       "id": "lookup:nacific:211",
       "name": "네시픽 피토 나이아신 브라이트닝 톤업크림",
       "brand": "네시픽",
@@ -9422,6 +9521,15 @@
       "officialUrl": "https://nacific.com/product/%ED%94%BC%ED%86%A0-%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0-%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%8B%9D-%ED%86%A4%EC%97%85%ED%81%AC%EB%A6%BC-50ml/211/"
     },
     {
+      "id": "lookup:nacific:212",
+      "name": "네시픽 피토 나이아신 브라이트닝 에센스",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://nacific.com/product/%EC%9E%90%EC%B2%B4%EB%B0%9C%EA%B4%91-%ED%94%BC%ED%86%A0-%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0-%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%8B%9D-%EC%97%90%EC%84%BC%EC%8A%A4-50ml/212/"
+    },
+    {
       "id": "lookup:nacific:2189",
       "name": "네시픽 라이스 펩타 콜라겐 샤베트 클렌징 밤",
       "brand": "네시픽",
@@ -9429,6 +9537,47 @@
       "category": "cleanser",
       "volume": "80g",
       "officialUrl": "https://nacific.com/product/%EB%84%A4%EC%8B%9C%ED%94%BD-%EB%9D%BC%EC%9D%B4%EC%8A%A4-%ED%8E%A9%ED%83%80-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EC%83%A4%EB%B2%A0%ED%8A%B8-%ED%81%B4%EB%A0%8C%EC%A7%95-%EB%B0%A4-80g/2189/"
+    },
+    {
+      "id": "lookup:nacific:2195",
+      "name": "네시픽 피토 나이아신 브라이트닝 토너",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://nacific.com/product/%ED%94%BC%ED%86%A0-%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0-%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%8B%9D-%ED%86%A0%EB%84%88-150ml/2195/"
+    },
+    {
+      "id": "lookup:nacific:2224",
+      "name": "네시픽 새싹 시카 피디알엔 젤 클렌저",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "cleanser",
+      "officialUrl": "https://nacific.com/product/%EC%83%88%EC%8B%B9-%EC%8B%9C%EC%B9%B4-%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EC%A0%A4-%ED%81%B4%EB%A0%8C%EC%A0%80/2224/"
+    },
+    {
+      "id": "lookup:nacific:2225",
+      "name": "네시픽 새싹 시카 피디알엔 퍼스트 토너",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "toner",
+      "officialUrl": "https://nacific.com/product/%EC%83%88%EC%8B%B9-%EC%8B%9C%EC%B9%B4-%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%ED%8D%BC%EC%8A%A4%ED%8A%B8-%ED%86%A0%EB%84%88/2225/"
+    },
+    {
+      "id": "lookup:nacific:2226",
+      "name": "네시픽 새싹 시카 피디알엔 카밍 세럼",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "serum",
+      "officialUrl": "https://nacific.com/product/%EC%83%88%EC%8B%B9-%EC%8B%9C%EC%B9%B4-%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EC%B9%B4%EB%B0%8D-%EC%84%B8%EB%9F%BC/2226/"
+    },
+    {
+      "id": "lookup:nacific:2227",
+      "name": "네시픽 새싹 시카 피디알엔 배리어 크림",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "moisturizer",
+      "officialUrl": "https://nacific.com/product/%EC%83%88%EC%8B%B9-%EC%8B%9C%EC%B9%B4-%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EB%B0%B0%EB%A6%AC%EC%96%B4-%ED%81%AC%EB%A6%BC/2227/"
     },
     {
       "id": "lookup:nacific:2232",
@@ -9445,6 +9594,42 @@
       "brandAlias": "NACIFIC",
       "category": "toner",
       "officialUrl": "https://nacific.com/product/%EB%84%A4%EC%8B%9C%ED%94%BD-%EB%9D%BC%EC%9D%B4%EC%8A%A4-%ED%8E%A9%ED%83%80-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EC%A0%A4%EB%A6%AC-%EA%B2%94%ED%8C%A8%EB%93%9C/2243/"
+    },
+    {
+      "id": "lookup:nacific:2266",
+      "name": "네시픽 라이스 펩타 콜라겐 글로우 밀키 세럼",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://nacific.com/product/%EB%9D%BC%EC%9D%B4%EC%8A%A4-%ED%8E%A9%ED%83%80-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EB%B0%80%ED%82%A4-%EC%84%B8%EB%9F%BC-50ml-1%EA%B5%AC/2266/"
+    },
+    {
+      "id": "lookup:nacific:2267",
+      "name": "네시픽 라이스 펩타 콜라겐 글로우 바운시 크림",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://nacific.com/product/%EB%9D%BC%EC%9D%B4%EC%8A%A4-%ED%8E%A9%ED%83%80-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EB%B0%94%EC%9A%B4%EC%8B%9C-%ED%81%AC%EB%A6%BC-50ml1%EA%B5%AC/2267/"
+    },
+    {
+      "id": "lookup:nacific:2268",
+      "name": "네시픽 라이스 펩타 콜라겐 글로우 버블 토너",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://nacific.com/product/%EB%9D%BC%EC%9D%B4%EC%8A%A4-%ED%8E%A9%ED%83%80-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EB%B2%84%EB%B8%94-%ED%86%A0%EB%84%88-100ml-1%EA%B5%AC/2268/"
+    },
+    {
+      "id": "lookup:nacific:232",
+      "name": "네시픽 리얼 플로럴 카렌둘라에어크림",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://nacific.com/product/%EB%A6%AC%EC%96%BC-%ED%94%8C%EB%A1%9C%EB%9F%B4-%EC%B9%B4%EB%A0%8C%EB%91%98%EB%9D%BC%EC%97%90%EC%96%B4%ED%81%AC%EB%A6%BC100ml/232/"
     },
     {
       "id": "lookup:nacific:241",
@@ -9474,6 +9659,51 @@
       "officialUrl": "https://nacific.com/product/%EC%A7%84%EC%A0%95%EC%B2%9C%EC%9E%AC-%EC%98%A4%EB%A6%AC%EC%A7%84-%ED%86%A0%EB%84%88-150ml/278/"
     },
     {
+      "id": "lookup:nacific:28",
+      "name": "네시픽 리뉴얼 오리진 세럼",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://nacific.com/product/%EA%B2%B0%EA%B4%91%EC%B2%9C%EC%9E%AC-%EB%A6%AC%EB%89%B4%EC%96%BC-%EC%98%A4%EB%A6%AC%EC%A7%84-%EC%84%B8%EB%9F%BC-50ml/28/"
+    },
+    {
+      "id": "lookup:nacific:29",
+      "name": "네시픽 오리진 크림",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://nacific.com/product/%EC%A7%84%EC%A0%95%EC%B2%9C%EC%9E%AC-%EC%98%A4%EB%A6%AC%EC%A7%84-%ED%81%AC%EB%A6%BC-50ml/29/"
+    },
+    {
+      "id": "lookup:nacific:597",
+      "name": "네시픽 프레쉬 EM 솝",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "cleanser",
+      "volume": "100g",
+      "officialUrl": "https://nacific.com/product/%ED%94%84%EB%A0%88%EC%89%AC-em-%EC%86%9D-100g/597/"
+    },
+    {
+      "id": "lookup:nacific:755",
+      "name": "네시픽 리얼 플로럴 카렌둘라 에센스",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "serum",
+      "volume": "50g",
+      "officialUrl": "https://nacific.com/product/%EB%A6%AC%EC%96%BC-%ED%94%8C%EB%A1%9C%EB%9F%B4-%EC%B9%B4%EB%A0%8C%EB%91%98%EB%9D%BC-%EC%97%90%EC%84%BC%EC%8A%A4-50g/755/"
+    },
+    {
+      "id": "lookup:nacific:761",
+      "name": "네시픽 비타민 C 뉴페어 크림",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "moisturizer",
+      "volume": "15ml",
+      "officialUrl": "https://nacific.com/product/%EB%B9%84%ED%83%80%EB%AF%BC-c-%EB%89%B4%ED%8E%98%EC%96%B4-%ED%81%AC%EB%A6%BC-15ml/761/"
+    },
+    {
       "id": "lookup:nacific:808",
       "name": "네시픽 블랙헤드 올킬 버블 클렌징 팩",
       "brand": "네시픽",
@@ -9481,6 +9711,15 @@
       "category": "cleanser",
       "volume": "140ml",
       "officialUrl": "https://nacific.com/product/%EB%B8%94%EB%9E%99%ED%97%A4%EB%93%9C-%EC%98%AC%ED%82%AC-%EB%B2%84%EB%B8%94-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8C%A9-140ml/808/"
+    },
+    {
+      "id": "lookup:nacific:834",
+      "name": "네시픽 블랙헤드 올킬 블랙블럭",
+      "brand": "네시픽",
+      "brandAlias": "NACIFIC",
+      "category": "cleanser",
+      "volume": "100g",
+      "officialUrl": "https://nacific.com/product/%EB%B8%94%EB%9E%99%ED%97%A4%EB%93%9C-%EC%98%AC%ED%82%AC-%EB%B8%94%EB%9E%99%EB%B8%94%EB%9F%AD-100g/834/"
     },
     {
       "id": "lookup:needly:108",
