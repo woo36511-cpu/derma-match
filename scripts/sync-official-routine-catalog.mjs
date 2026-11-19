@@ -46,6 +46,8 @@ export const stores = {
   sioris: cafe("시오리스", "SIORIS", "sioris.co.kr"),
   tirtir: cafe("티르티르", "TIRTIR", "tirtir.co.kr"),
   hanyul: cafe("한율", "HANYUL", "www.hanyul.com"),
+  imfrom: cafe("아임프롬", "I'm From", "www.imfrom.co.kr",
+    [1, 2, 3].map(page => [`list${page}`, `/product/list.html?cate_no=166&page=${page}`])),
 };
 
 const skip = /세트|증정|기획|사은품|\d\s*개\s*묶음|(?:묶음|샘플|리필|공병|랜덤|체험용|테스터|키트|미니어처|미니어쳐)|\d\s*종|\d\s*[+×]\s*\d|^(?:11|12|21|22)(?=[^\d])|(?:\dml\s*\+)|바디|헤어|샴푸|여성청결|탑투토|탑 투 토|립\s*(?:밤|마스크|글로스|오일|에센스|세럼)|아이\s*(?:크림|패치|세럼)|팔레트|쿠션팩트|메이크업베이스|파운데이션|브러시|사용권|교환권|탈취제|트리트먼트|치약|향수|연고|비밀|특가|공구|공동구매|vip샵|비매품|환불무료|환불 무료|(?:사용|유통)\s*기한|선착순|구매전용|이벤트|쿠폰|얼리버드|온리딜|프로모션|아울렛|클리어런스|판매종료|판매 종료/iu;
