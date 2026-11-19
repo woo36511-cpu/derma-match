@@ -15,7 +15,7 @@ export const stores = {
     paths: [
       ...["005", "006", "009", "010", "012"].map(category =>
         [category, `/shop/shopbrand.html?type=N&xcode=017&mcode=${category}&viewtype=gallery`]),
-      ...["007", "008", "010", "011", "013", "018", "020"].map(category =>
+      ...["007", "008", "009", "010", "011", "012", "013", "017", "018", "020", "024"].map(category =>
         [`main${category}`, `/shop/shopbrand.html?type=N&xcode=019&mcode=${category}&viewtype=gallery`]),
       ...[["007", 2], ["010", 2], ["011", 2], ["013", 2], ["013", 3], ["018", 2]].map(([category, page]) =>
         [`main${category}-${page}`, `/shop/shopbrand.html?type=Y&xcode=019&mcode=${category}&sort=&page=${page}`]),
@@ -185,7 +185,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   if (name.length < 4 || !nameScript.test(name)) return null;
   let category = classify(name);
   if (storeKey === "sidmool" && /\s솝$/u.test(name)) category = "cleanser";
-  if (storeKey === "sidmool" && /앰플 수분크림$/u.test(name)) category = "moisturizer";
+  if (storeKey === "sidmool" && /(?:앰플 수분크림|에센스로션|수분젤|에센셜(?:\s*\/겔타입|\s*\[선택구입\])?)$/u.test(name)) category = "moisturizer";
   if (storeKey === "miguhara" && /^EGF 크리스탈 10 PPM 오리진$/iu.test(name)) category = "serum";
   if (storeKey === "miguhara" && /에센스 크림 오리진$|올인원 플루이드$/u.test(name)) category = "moisturizer";
   if (storeKey === "miguhara" && /클렌즈 토너$/u.test(name)) category = "toner";
