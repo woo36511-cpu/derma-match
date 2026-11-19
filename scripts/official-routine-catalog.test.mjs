@@ -58,3 +58,12 @@ test("d'Alba distinguishes sunscreen mist and serum lotion from makeup and hand 
   ].map((name, i) => `<a href="/goods/goods_view.php?goodsNo=${i + 1}"><strong class="item_name">${name}</strong></a>`).join("");
   assert.deepEqual(extractOfficialListings(html, "dalba", stores.dalba).map(p => p.category), ["sunscreen", "moisturizer"]);
 });
+
+test("a spaced sunscreen name is indexed while BB cream is excluded", () => {
+  const html = [
+    "틴티드 선 스크린",
+    "이지에프 커버 비비 크림",
+  ].map((name, i) => `<a href="/product/detail.html?product_no=${i + 1}"><img alt="${name}"></a>`).join("");
+  assert.deepEqual(extractOfficialListings(html, "skinnlab", stores.skinnlab).map(p => [p.name, p.category]),
+    [["스킨앤랩 틴티드 선 스크린", "sunscreen"]]);
+});
