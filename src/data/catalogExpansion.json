@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 53123)
-Total output lines: 6112
-
 [
   {
     "id": 52,
@@ -2566,7 +2563,896 @@ Total output lines: 6112
       "winter"
     ],
     "ratingTags": [
-      "보습 …8123 tokens truncated…lValue": "무거운 마무리 대신 젤 크림을 선호하는 지성·복합성",
+      "보습 후보"
+    ],
+    "volume": "300ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-64.webp",
+    "imageSource": {
+      "url": "https://isntree.com/web/product/extra/small/202608/06bb278bd0767f0a8dfc90d7c6bd9511.png",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.coupang.com/vp/products/1380963?itemId=18180489250&vendorItemId=85329521095",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "url": "https://www.coupang.com/vp/products/1380963?itemId=18180489250&vendorItemId=85329521095",
+      "checkedAt": "2026-11-09",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "판매 옵션·포장 성분표를 확인해요. 가격과 재고는 판매처 기준이에요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/1380963?itemId=18180489250&vendorItemId=85329521095",
+      "productName": "이즈앤트리 초저분자 히아루론산 토너",
+      "volume": "300ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "toner",
+    "usage": {
+      "when": "세안 후 토너 단계",
+      "howToUse": [
+        "세안 후 적당량을 화장솜이나 손에 덜어 얼굴 전체에 가볍게 두드려 흡수",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "현재 공식 성분에는 버지니아풍년화·편백잎추출물 포함. 식물 원료 반응 이력이 있으면 제외."
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  },
+  {
+    "id": 65,
+    "name": "이즈앤트리 초저분자 히아루론산 세럼",
+    "brand": "이즈앤트리",
+    "category": "serum",
+    "hydrationLevel": 5,
+    "texture": "light",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "글리세린",
+      "베타인",
+      "판테놀",
+      "알란토인"
+    ],
+    "fullIngredients": [
+      "해수",
+      "정제수",
+      "메틸프로판다이올",
+      "글리세린",
+      "부틸렌글라이콜",
+      "1,2-헥산다이올",
+      "하이드롤라이즈드하이알루로닉애씨드",
+      "소듐하이알루로네이트",
+      "하이드롤라이즈드소듐하이알루로네이트",
+      "포타슘하이알루로네이트",
+      "소듐아세틸레이티드하이알루로네이트",
+      "하이드록시프로필트라이모늄하이알루로네이트",
+      "소듐하이알루로네이트크로스폴리머",
+      "다이메틸실란올하이알루로네이트",
+      "하이드롤라이즈드칼슘하이알루로네이트",
+      "소듐설페이티드하이알루로네이트",
+      "소듐스테아로일하이알루로네이트",
+      "소듐글리오일하이알루로네이트",
+      "하이알루로닉애씨드",
+      "베타인",
+      "펜틸렌글라이콜",
+      "카보머",
+      "카프릴릴글라이콜",
+      "알란토인",
+      "트로메타민",
+      "에틸헥실글리세린",
+      "잔탄검",
+      "판테놀",
+      "말라카이트추출물",
+      "다이소듐이디티에이",
+      "글리세릴아크릴레이트/아크릴릭애씨드코폴리머",
+      "글리세릴글루코사이드",
+      "마데카소사이드",
+      "베타-글루칸"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "베타인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "판테놀",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "알란토인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "14종 복합 히알루론산",
+        "concentration": 270,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": "혼합물 총 함량. 이미지에 열거된 별표 성분은 13개이며 브랜드 총종수 주장을 임의로 보완하지 않음",
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/ultra-low_serum/20_infor.png",
+        "sourceType": "official_disclosed_concentration"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "14종 복합 히알루론산",
+        "concentration": 270,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": "혼합물 총 함량. 이미지에 열거된 별표 성분은 13개이며 브랜드 총종수 주장을 임의로 보완하지 않음",
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/ultra-low_serum/20_infor.png"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 7,
+      "lightweightFit": 8,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 1
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partial",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://isntree.com/product/detail.html?product_no=55"
+        },
+        {
+          "sourceType": "official_domestic_ingredients_image",
+          "url": "https://isntree01.openhost.cafe24.com/product/ultra-low_serum/20_infor.png"
+        }
+      ],
+      "note": "국내 공식 상세 HTML이 직접 포함하는 상품 고시 이미지를 다운로드하여 육안 검수. 가격·리뷰·재고는 검증하지 않음. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "크림 전 수분 보충용 세럼을 한 가지 비교할 때; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "크림 전 수분 보충용 세럼을 한 가지 비교할 때",
+    "shortReason": "크림 전 수분 보충용 세럼을 한 가지 비교할 때",
+    "situationalValue": "크림 전 수분 보충용 세럼을 한 가지 비교할 때",
+    "caution": [
+      "분자 크기나 성분명만으로 보습 지속력·치료효과를 확정하지 않음."
+    ],
+    "sensitivitySafe": true,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "50ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-65.webp",
+    "imageSource": {
+      "url": "https://isntree.com/web/product/extra/small/202312/cb3b46444e9bfac9a3f4d4b3b67ab4bc.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.coupang.com/vp/products/7193938073",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "url": "https://www.coupang.com/vp/products/7193938073",
+      "checkedAt": "2026-11-09",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "판매 옵션·포장 성분표를 확인해요. 가격과 재고는 판매처 기준이에요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/7193938073",
+      "productName": "이즈앤트리 초저분자 히아루론산 세럼",
+      "volume": "50ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "serum",
+    "usage": {
+      "when": "세안 후 세럼 단계",
+      "howToUse": [
+        "세럼 단계에서 2~3방울을 얼굴 전체에 펴 바르고 가볍게 흡수",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "분자 크기나 성분명만으로 보습 지속력·치료효과를 확정하지 않음."
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  },
+  {
+    "id": 66,
+    "name": "이즈앤트리 참마 비건 밀크 클렌저",
+    "brand": "이즈앤트리",
+    "category": "cleansing_milk",
+    "hydrationLevel": 2,
+    "texture": "rich",
+    "concerns": [
+      "cleansing"
+    ],
+    "ingredients": [
+      "해바라기씨오일",
+      "글리세린",
+      "참마뿌리추출물"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "해바라기씨오일",
+      "에틸헥실팔미테이트",
+      "1,2-헥산다이올",
+      "폴리글리세릴-10미리스테이트",
+      "아라키딜알코올",
+      "글리세린",
+      "세테아릴알코올",
+      "베헤닐알코올",
+      "부틸렌글라이콜",
+      "글리세릴스테아레이트",
+      "코코-글루코사이드",
+      "아라키딜글루코사이드",
+      "글루코오스",
+      "참마뿌리추출물",
+      "시트릭애씨드",
+      "잔탄검",
+      "소듐폴리아크릴레이트",
+      "미역추출물",
+      "연꽃뿌리추출물",
+      "다시마추출물",
+      "오크라열매추출물",
+      "스위트아몬드추출물",
+      "쌀추출물",
+      "콩추출물",
+      "코코넛야자열매추출물",
+      "귀리가루추출물"
+    ],
+    "activeIngredients": [
+      {
+        "name": "해바라기씨오일",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "참마뿌리추출물",
+        "concentration": 1000,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "sourceType": "official_disclosed_concentration",
+        "note": null,
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/yam_root_cleanser/10_infor.png"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "참마뿌리추출물",
+        "concentration": 1000,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": null,
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/yam_root_cleanser/10_infor.png"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 4,
+      "lightweightFit": 4,
+      "soothingSupport": 1,
+      "congestionSupport": 0,
+      "barrierSupport": 2
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partial",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://isntree.com/product/detail.html?product_no=115"
+        },
+        {
+          "sourceType": "official_domestic_ingredients_image",
+          "url": "https://isntree01.openhost.cafe24.com/product/yam_root_cleanser/10_infor.png"
+        }
+      ],
+      "note": "국내 공식 상세 HTML이 직접 포함하는 상품 고시 이미지를 다운로드하여 육안 검수. 가격·리뷰·재고는 검증하지 않음. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "거품이 적은 밀크형 세안을 원하는 건성의 세정 후보; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "건성",
+      "중성"
+    ],
+    "description": "거품이 적은 밀크형 세안을 원하는 건성의 세정 후보",
+    "shortReason": "거품이 적은 밀크형 세안을 원하는 건성의 세정 후보",
+    "situationalValue": "거품이 적은 밀크형 세안을 원하는 건성의 세정 후보",
+    "caution": [
+      "아몬드·콩·곡물 등 식물 원료 반응 이력을 확인.",
+      "진한 메이크업·내수성 자외선차단제 세정은 해당 제품 표시와 세정 상태를 별도로 확인."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "세안 후보"
+    ],
+    "volume": "220ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-66.webp",
+    "imageSource": {
+      "url": "https://isntree.com/web/product/big/202606/5c033c1d6adf5423f05d8393504b1237.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.coupang.com/vp/products/6672035072?itemId=22212894871&vendorItemId=82573797010",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "url": "https://www.coupang.com/vp/products/6672035072?itemId=22212894871&vendorItemId=82573797010",
+      "checkedAt": "2026-11-09",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "판매 옵션·포장 성분표를 확인해요. 가격과 재고는 판매처 기준이에요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/6672035072?itemId=22212894871&vendorItemId=82573797010",
+      "productName": "이즈앤트리 참마 비건 밀크 클렌저",
+      "volume": "220ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "cleansing_milk",
+    "usage": {
+      "when": "세안 단계",
+      "howToUse": [
+        "물기 없는 얼굴에 적당량을 덜어 약 1분 부드럽게 마사지한 뒤 미온수로 헹구거나 화장솜으로 닦아 마무리",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "아몬드·콩·곡물 등 식물 원료 반응 이력을 확인.",
+        "진한 메이크업·내수성 자외선차단제 세정은 해당 제품 표시와 세정 상태를 별도로 확인."
+      ]
+    },
+    "usageAmount": {
+      "oily": "제품 안내의 적당량",
+      "normal": "제품 안내의 적당량",
+      "dry": "적은 양부터 조절"
+    }
+  },
+  {
+    "id": 67,
+    "name": "이즈앤트리 히아루론산 모이스트 크림",
+    "brand": "이즈앤트리",
+    "category": "cream",
+    "hydrationLevel": 2,
+    "texture": "rich",
+    "concerns": [
+      "hydration",
+      "barrier"
+    ],
+    "ingredients": [
+      "글리세린",
+      "시어버터",
+      "베타인"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "하이드로제네이티드폴리데센",
+      "카프릴릭/카프릭트라이글리세라이드",
+      "다이프로필렌글라이콜",
+      "사이클로헥사실록세인",
+      "시어버터",
+      "폴리글리세릴-3메틸글루코오스다이스테아레이트",
+      "세틸알코올",
+      "글리세레스-26",
+      "글리세릴스테아레이트",
+      "베타인",
+      "베헤닐알코올",
+      "비닐다이메티콘",
+      "펜틸렌글라이콜",
+      "다시마추출물",
+      "한련초잎추출물",
+      "귀리커넬추출물",
+      "아티초크잎추출물",
+      "살구씨오일",
+      "아르간커넬오일",
+      "잇꽃씨오일",
+      "소듐하이알루로네이트",
+      "하이드로제네이티드레시틴",
+      "녹차수",
+      "폴리글리세릴-10라우레이트",
+      "1,2-헥산다이올",
+      "펜타에리스리틸다이스테아레이트",
+      "암모늄아크릴로일다이메틸타우레이트/브이피코폴리머",
+      "하이드록시아세토페논",
+      "글리세릴카프릴레이트",
+      "소듐스테아로일글루타메이트",
+      "에틸헥실글리세린",
+      "메틸프로판다이올",
+      "프룩토올리고사카라이드",
+      "다이소듐이디티에이",
+      "베타-글루칸",
+      "하이드롤라이즈드하이알루로닉애씨드",
+      "폴리쿼터늄-51",
+      "부틸렌글라이콜",
+      "하이드록시프로필트라이모늄하이알루로네이트",
+      "다이메틸실란올하이알루로네이트",
+      "하이드롤라이즈드소듐하이알루로네이트",
+      "토코페롤",
+      "포타슘하이알루로네이트",
+      "하이알루로닉애씨드",
+      "소듐하이알루로네이트크로스폴리머",
+      "소듐아세틸레이티드하이알루로네이트",
+      "소듐하이알루로네이트다이메틸실란올"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "시어버터",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "베타인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "히아루론산 총량",
+        "concentration": 622.1,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": null,
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/hyaluronic_acid_cream/hyaluronic_acid_cream_23.jpg",
+        "sourceType": "official_disclosed_concentration"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "히아루론산 총량",
+        "concentration": 622.1,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": null,
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/hyaluronic_acid_cream/hyaluronic_acid_cream_23.jpg"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 8,
+      "lightweightFit": 3,
+      "soothingSupport": 2,
+      "congestionSupport": 0,
+      "barrierSupport": 6
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partial",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://isntree.com/product/detail.html?product_no=173"
+        },
+        {
+          "sourceType": "official_domestic_ingredients_image",
+          "url": "https://isntree01.openhost.cafe24.com/product/hyaluronic_acid_cream/hyaluronic_acid_cream_23.jpg"
+        }
+      ],
+      "note": "국내 공식 상세 HTML이 직접 포함하는 상품 고시 이미지를 다운로드하여 육안 검수. 가격·리뷰·재고는 검증하지 않음. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "식물성 오일·시어버터를 포함한 중성·건성용 보습 크림 비교; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "건성",
+      "중성"
+    ],
+    "description": "식물성 오일·시어버터를 포함한 중성·건성용 보습 크림 비교",
+    "shortReason": "식물성 오일·시어버터를 포함한 중성·건성용 보습 크림 비교",
+    "situationalValue": "식물성 오일·시어버터를 포함한 중성·건성용 보습 크림 비교",
+    "caution": [
+      "시어버터·식물성 오일을 포함한 크림. 번들거림이 부담스러우면 양을 조절."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "ratingTags": [
+      "보습 후보"
+    ],
+    "volume": "100ml",
+    "price": null,
+    "isAvailable": true,
+    "image": "/products/catalog-67.webp",
+    "imageSource": {
+      "url": "https://isntree.com/web/product/big/202606/b3b7ec1f5d3ff5008f4c4ca51e1a53e4.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-09"
+    },
+    "link": "https://www.coupang.com/vp/products/2175826053?itemId=3702494636&vendorItemId=71687776755",
+    "purchaseSource": {
+      "provider": "coupang",
+      "label": "쿠팡",
+      "url": "https://www.coupang.com/vp/products/2175826053?itemId=3702494636&vendorItemId=71687776755",
+      "checkedAt": "2026-11-09",
+      "verification": "search_index_identity_match",
+      "liveStockVerified": false,
+      "note": "판매 옵션·포장 성분표를 확인해요. 가격과 재고는 판매처 기준이에요."
+    },
+    "marketplaceListing": {
+      "provider": "coupang",
+      "url": "https://www.coupang.com/vp/products/2175826053?itemId=3702494636&vendorItemId=71687776755",
+      "productName": "이즈앤트리 히아루론산 모이스트 크림",
+      "volume": "100ml",
+      "verification": "search_index_identity_match",
+      "checkedAt": "2026-11-09",
+      "liveStockVerified": false,
+      "formulaMatchVerified": false
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "세안 후 보습 마무리 단계",
+      "howToUse": [
+        "스킨케어 마무리 단계에서 얼굴 전체에 가볍게 펴 발라 흡수",
+        "이미 같은 역할의 제품이 잘 맞으면 모두 새로 구매할 필요는 없어요."
+      ],
+      "caution": [
+        "시어버터·식물성 오일을 포함한 크림. 번들거림이 부담스러우면 양을 조절."
+      ]
+    },
+    "usageAmount": {
+      "oily": "소량부터 얇게",
+      "normal": "얼굴에 얇게 펴 바를 정도",
+      "dry": "얇게 펴 바른 뒤 건조한 부위만 추가"
+    }
+  },
+  {
+    "id": 68,
+    "name": "이즈앤트리 히아루론산 아쿠아 젤 크림",
+    "brand": "이즈앤트리",
+    "category": "cream",
+    "hydrationLevel": 7,
+    "texture": "light",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "글리세린",
+      "베타인",
+      "스쿠알란",
+      "알란토인"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "메틸프로판다이올",
+      "코코-카프릴레이트/카프레이트",
+      "1,2-헥산다이올",
+      "글리세린",
+      "바이오사카라이드검-1",
+      "베타인",
+      "암모늄아크릴로일다이메틸타우레이트/브이피코폴리머",
+      "트레할로오스",
+      "소듐하이알루로네이트",
+      "하이드롤라이즈드하이알루로닉애씨드",
+      "병풀추출물",
+      "호장근뿌리추출물",
+      "황금추출물",
+      "녹차추출물",
+      "쇠비름추출물",
+      "스페인감초뿌리추출물",
+      "약모밀추출물",
+      "로즈마리잎추출물",
+      "마트리카리아꽃추출물",
+      "소듐하이알루로네이트크로스폴리머",
+      "소듐피씨에이",
+      "스쿠알란",
+      "아이소스테아릴알코올",
+      "부틸렌글라이콜코코에이트",
+      "세테아릴올리베이트",
+      "솔비탄올리베이트",
+      "하이알루로닉애씨드",
+      "하이드롤라이즈드호호바에스터",
+      "하이드로제네이티드올리브오일불검화물",
+      "부틸렌글라이콜",
+      "하이드롤라이즈드소듐하이알루로네이트",
+      "알란토인",
+      "잔탄검",
+      "에틸셀룰로오스",
+      "프로판다이올",
+      "페닐트라이메티콘",
+      "펜틸렌글라이콜",
+      "에틸헥실글리세린"
+    ],
+    "activeIngredients": [
+      {
+        "name": "글리세린",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "베타인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "스쿠알란",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "알란토인",
+        "concentration": null,
+        "unit": "%",
+        "concentrationVerified": false,
+        "sourceType": "official_full_ingredient_list"
+      },
+      {
+        "name": "5종 히아루론산 총량",
+        "concentration": 702,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": "별도 표기에 히아루론산1% 솔루션5% 함유. 솔루션 함량과 순수 성분 함량을 혼동하지 않음",
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/hyaluronic_acid_gel_cream/hyaluronic_acid_gel_cream_20.jpg",
+        "sourceType": "official_disclosed_concentration"
+      }
+    ],
+    "disclosedConcentrations": [
+      {
+        "name": "5종 히아루론산 총량",
+        "concentration": 702,
+        "unit": "ppm",
+        "concentrationVerified": true,
+        "note": "별도 표기에 히아루론산1% 솔루션5% 함유. 솔루션 함량과 순수 성분 함량을 혼동하지 않음",
+        "sourceUrl": "https://isntree01.openhost.cafe24.com/product/hyaluronic_acid_gel_cream/hyaluronic_acid_gel_cream_20.jpg"
+      }
+    ],
+    "careProfile": {
+      "hydrationSupport": 6,
+      "lightweightFit": 8,
+      "soothingSupport": 2,
+      "congestionSupport": 0,
+      "barrierSupport": 3
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "domesticFormulaVerified": true,
+      "concentrationDisclosure": "partial",
+      "purchaseLinkVerified": false,
+      "priceVerified": false,
+      "lastVerifiedAt": "2026-11-09",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://isntree.com/product/detail.html?product_no=174"
+        },
+        {
+          "sourceType": "official_domestic_ingredients_image",
+          "url": "https://isntree01.openhost.cafe24.com/product/hyaluronic_acid_gel_cream/hyaluronic_acid_gel_cream_20.jpg"
+        }
+      ],
+      "note": "국내 공식 상세 HTML이 직접 포함하는 상품 고시 이미지를 다운로드하여 육안 검수. 가격·리뷰·재고는 검증하지 않음. 국내 공식 처방 정보 검수이며 치료 효능·개별 사용자 적합성 검증은 아닙니다."
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-09",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "reviewScope": [
+        "official_product_identity",
+        "full_ingredient_list",
+        "concentration_disclosure",
+        "internal_care_profile",
+        "situational_value",
+        "product_image",
+        "retailer_link"
+      ],
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "무거운 마무리 대신 젤 크림을 선호하는 지성·복합성; 제형·보습 역할에 대한 보수적 내부 평가이며 성분 수·리뷰·판매량으로 효능 점수를 만들지 않았습니다.",
+      "remainingGaps": [
+        "clinical_outcome",
+        "live_stock",
+        "retailer_batch_formula_match",
+        "price"
+      ]
+    },
+    "clinicalEvidence": {
+      "humanStudyAvailable": null,
+      "independentEvidenceVerified": false,
+      "studyFormulaMatchVerified": false,
+      "note": "브랜드 시험 수치·후기·만족도를 검증된 개선율로 저장하지 않았습니다.",
+      "humanStudyVerified": false
+    },
+    "skinTypes": [
+      "지성",
+      "복합성"
+    ],
+    "description": "무거운 마무리 대신 젤 크림을 선호하는 지성·복합성",
+    "shortReason": "무거운 마무리 대신 젤 크림을 선호하는 지성·복합성",
+    "situationalValue": "무거운 마무리 대신 젤 크림을 선호하는 지성·복합성",
     "caution": [
       "여러 식물추출물이 있어 기존 반응 이력을 확인. 무자극을 보증하지 않음."
     ],
