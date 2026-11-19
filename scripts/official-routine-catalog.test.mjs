@@ -34,3 +34,25 @@ test("scheduled discovery honors wildcard robot exclusions and more specific all
   assert.equal(allowsPublicCatalogPath(robots, "/product/list"), true);
   assert.equal(allowsPublicCatalogPath(robots, "/product/list?preview=1"), false);
 });
+
+test("JMsolution uses the official product title when the image alt text is generic", () => {
+  const html = `<a href="/product/detail.html?product_no=10"><img alt="광채 세럼 제품 이미지"></a>
+    <div class="name"><a href="/product/detail.html?product_no=10&amp;cate_no=649">
+      <span class="title displaynone">상품명 :</span> <span>JMsolution 제이엠솔루션 히알루로닉 세럼 30ml</span>
+    </a></div>`;
+  const [product, ...other] = extractOfficialListings(html, "jmsolution", stores.jmsolution);
+  assert.deepEqual(other, []);
+  assert.equal(product.name, "제이엠솔루션 히알루로닉 세럼");
+  assert.equal(product.volume, "30ml");
+  assert.equal(product.officialUrl, "https://jmsolution.com/product/detail.html?product_no=10");
+});
+
+test("d'Alba distinguishes sunscreen mist and serum lotion from makeup and hand care", () => {
+  const html = [
+    "워터풀 에센스 선 미스트",
+    "비타 토닝 세럼 로션",
+    "글로우 핏 세럼 커버 슬림 쿠션",
+    "화이트 트러플 아로마틱 핸드크림",
+  ].map((name, i) => `<a href="/goods/goods_view.php?goodsNo=${i + 1}"><strong class="item_name">${name}</strong></a>`).join("");
+  assert.deepEqual(extractOfficialListings(html, "dalba", stores.dalba).map(p => p.category), ["sunscreen", "moisturizer"]);
+});
