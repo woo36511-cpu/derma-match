@@ -151,3 +151,9 @@ test("S.Nature uses the visible title and retains the pad count when liquid volu
   assert.deepEqual(extractOfficialListings(html, "snature", stores.snature).map(p => [p.category, p.volume]),
     [["toner", "60매"], ["serum", "50ml"]]);
 });
+
+test("P.CALM classifies Ampoule Shot Cream as moisturizer and excludes cotton accessories", () => {
+  const card = (id, title) => `<span class="name"><a href="/product/detail.html?product_no=${id}">상품명 : ${title}</a></span>`;
+  assert.deepEqual(extractOfficialListings(card(1, "피캄 레티놀라겐 앰플 샷 크림") +
+    card(2, "피캄 토너팩 화장솜 80컷"), "pcalm", stores.pcalm).map(p => p.category), ["moisturizer"]);
+});
