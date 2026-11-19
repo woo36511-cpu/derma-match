@@ -24,8 +24,8 @@
     "banila": {
       "name": "바닐라코",
       "checkedAt": "2026-11-19",
-      "usefulPages": 1,
-      "fetchedListings": 15
+      "usefulPages": 3,
+      "fetchedListings": 20
     },
     "benton": {
       "name": "벤튼",
@@ -72,8 +72,8 @@
     "ceraveus": {
       "name": "세라비",
       "checkedAt": "2026-11-19",
-      "usefulPages": 2,
-      "fetchedListings": 12
+      "usefulPages": 4,
+      "fetchedListings": 17
     },
     "cosrx": {
       "name": "코스알엑스",
@@ -954,6 +954,24 @@
       "officialUrl": "https://www.aromatica.co.kr/product/detail.html?product_no=2697"
     },
     {
+      "id": "lookup:banila:1498",
+      "name": "바닐라코 클린 잇 제로 카밍 클렌징밤",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "25ml",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=1498"
+    },
+    {
+      "id": "lookup:banila:1552",
+      "name": "바닐라코 클린 잇 제로 말차 클렌징밤",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "25ml",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=1552"
+    },
+    {
       "id": "lookup:banila:665",
       "name": "바닐라코 클린 잇 제로 너리싱 클렌징밤",
       "brand": "바닐라코",
@@ -1101,6 +1119,33 @@
       "volume": "120ml",
       "officialUrl": "https://www.banila.com/product/detail.html?product_no=691",
       "image": "https://www.banila.com/web/product/medium/202606/3a4b65ee142d69db08fe7995c6920f0d.jpg"
+    },
+    {
+      "id": "lookup:banila:917",
+      "name": "바닐라코 클린 잇 제로 오리지널 클렌징밤",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "25ml",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=917"
+    },
+    {
+      "id": "lookup:banila:918",
+      "name": "바닐라코 클린 잇 제로 포어 클래리파잉 클렌징밤",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "25ml",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=918"
+    },
+    {
+      "id": "lookup:banila:966",
+      "name": "바닐라코 클린 잇 제로 아나스타티카 쉽틸르 클렌징밤 리밸런싱",
+      "brand": "바닐라코",
+      "brandAlias": "BANILA CO",
+      "category": "cleanser",
+      "volume": "100ml",
+      "officialUrl": "https://www.banila.com/product/detail.html?product_no=966"
     },
     {
       "id": "lookup:beautyofjoseon:11",
@@ -3440,6 +3485,15 @@
       "sourceMarket": "US"
     },
     {
+      "id": "lookup:ceraveus:acne-benzoyl-peroxide-cleanser",
+      "name": "세라비 Acne Foaming Cream Cleanser",
+      "brand": "세라비",
+      "brandAlias": "CeraVe",
+      "category": "cleanser",
+      "officialUrl": "https://www.cerave.com/skincare/cleansers/acne-benzoyl-peroxide-cleanser",
+      "sourceMarket": "US"
+    },
+    {
       "id": "lookup:ceraveus:acne-salicylic-acid-cleanser",
       "name": "세라비 Acne Control Cleanser",
       "brand": "세라비",
@@ -3485,12 +3539,39 @@
       "sourceMarket": "US"
     },
     {
+      "id": "lookup:ceraveus:foaming-cleanser-bar",
+      "name": "세라비 Foaming Cleanser Bar",
+      "brand": "세라비",
+      "brandAlias": "CeraVe",
+      "category": "cleanser",
+      "officialUrl": "https://www.cerave.com/skincare/cleansers/foaming-cleanser-bar",
+      "sourceMarket": "US"
+    },
+    {
       "id": "lookup:ceraveus:foaming-facial-cleanser",
       "name": "세라비 Foaming Facial Cleanser",
       "brand": "세라비",
       "brandAlias": "CeraVe",
       "category": "cleanser",
       "officialUrl": "https://www.cerave.com/skincare/cleansers/foaming-facial-cleanser",
+      "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:ceraveus:hydrating-cleanser-bar",
+      "name": "세라비 Hydrating Cleanser Bar",
+      "brand": "세라비",
+      "brandAlias": "CeraVe",
+      "category": "cleanser",
+      "officialUrl": "https://www.cerave.com/skincare/cleansers/hydrating-cleanser-bar",
+      "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:ceraveus:hydrating-cream-to-foam-cleanser",
+      "name": "세라비 Hydrating Cream-to-Foam Cleanser",
+      "brand": "세라비",
+      "brandAlias": "CeraVe",
+      "category": "cleanser",
+      "officialUrl": "https://www.cerave.com/skincare/cleansers/hydrating-cream-to-foam-cleanser",
       "sourceMarket": "US"
     },
     {
@@ -3536,6 +3617,15 @@
       "brandAlias": "CeraVe",
       "category": "cleanser",
       "officialUrl": "https://www.cerave.com/skincare/cleansers/micellar-water",
+      "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:ceraveus:sa-cleanser-bar-for-rough-and-bumpy-skin",
+      "name": "세라비 SA Cleanser Bar for Rough & Bumpy Skin",
+      "brand": "세라비",
+      "brandAlias": "CeraVe",
+      "category": "cleanser",
+      "officialUrl": "https://www.cerave.com/skincare/cleansers/sa-cleanser-bar-for-rough-and-bumpy-skin",
       "sourceMarket": "US"
     },
     {
