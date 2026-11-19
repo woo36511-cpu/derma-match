@@ -101,13 +101,33 @@ export async function addImageReviews(snapshot, { fetcher = fetch, ocr = readIma
   return updated;
 }
 
+export async function reconcileImageApprovals(snapshot, approvals, { fetcher = fetch, now = new Date() } = {}) {
+  const results = {};
+  for (const [id, approval] of Object.entries(approvals)) {
+    const row = snapshot.products?.[id];
+    const listedSource = row?.listing?.volume === approval.volume && row.detailImages?.includes(approval.imageUrl);
+    let status = "source_not_confirmed", currentImageSha256 = null;
+    if (listedSource) {
+      try {
+        const bytes = await downloadImage(approval.imageUrl, fetcher);
+        currentImageSha256 = createHash("sha256").update(bytes).digest("hex");
+        status = currentImageSha256 === approval.imageSha256 ? "matches_reviewed_image" : "image_changed_needs_review";
+      } catch { status = "image_unavailable"; }
+    }
+    results[id] = { ...approval, status, currentImageSha256, checkedAt: now.toISOString() };
+  }
+  return { ...snapshot, imageApprovalChecks: results };
+}
+
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const path = process.argv[2];
   if (!path) throw new Error("Pass a Round Lab snapshot file");
   await exec("tesseract", ["--list-langs"]).then(({ stdout }) => {
     if (!/^kor$/m.test(stdout)) throw new Error("Korean Tesseract language data is required");
   });
-  const snapshot = await addImageReviews(JSON.parse(await readFile(path, "utf8")));
+  const approvals = JSON.parse(await readFile(new URL("../data/roundlab-image-approvals.json", import.meta.url), "utf8"));
+  const withOcr = await addImageReviews(JSON.parse(await readFile(path, "utf8")));
+  const snapshot = await reconcileImageApprovals(withOcr, approvals);
   await writeFile(path, JSON.stringify(snapshot, null, 2) + "\n");
   console.log("Round Lab image review completed; recognition results require verification.");
 }
