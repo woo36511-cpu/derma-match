@@ -9,6 +9,8 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  pcalm: { brand: "피캄", alias: "P.CALM", domain: "pcalm.co.kr", type: "cafe",
+    paths: [["list1", "/product/list.html?cate_no=78&page=1"], ["home", "/"]] },
   snature: { brand: "에스네이처", alias: "S.NATURE", domain: "www.snature.co.kr", type: "cafe",
     paths: [1, 2].map(page => [`list${page}`, `/product/list.html?cate_no=87&page=${page}`]) },
   lagom: { brand: "라곰", alias: "LAGOM", domain: "lagom.kr", type: "cafe",
@@ -103,6 +105,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   if (storeKey === "snature" && /카밍패드\s+\d+매\s*\(\d+ml\)$/u.test(name)) {
     name = name.replace(/\s*\(\d+ml\)$/u, "");
   }
+  if (storeKey === "pcalm" && /화장솜/u.test(name)) return null;
   if (storeKey === "lagom") {
     name = name.replace(/^(?:\[(?:이사배 PICK|블프|공식몰 단독)\]\s*)+/iu, "");
     if (name.includes("+") || /더블|트리플|듀오|본품|브러쉬|넥 크림|^미니\s/u.test(name)) return null;
@@ -129,6 +132,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   name = name.replaceAll(volumePattern, " ").replace(/[ ]{2,}/g, " ").replace(/\(\s*\)|^\s*[:–-]\s*|\s*[:–-]\s*$/g, "").trim();
   if (name.length < 4 || !/[가-힣]/.test(name)) return null;
   let category = classify(name);
+  if (storeKey === "pcalm" && /앰플 샷 크림$/u.test(name)) category = "moisturizer";
   if (storeKey === "snature" && /쌀떡팩폼|립앤아이 리무버/u.test(name)) category = "cleanser";
   if (storeKey === "lagom" && /톤업 선$/u.test(name)) category = "sunscreen";
   if (storeKey === "vt" && /^리들샷\s+(?:50|100|300|700|1000)$/u.test(name)) category = "serum";
@@ -221,7 +225,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const volume = descendants.find(child => attr(child, "rel") === "용량");
       if (title) rawName = [textOf(title), textOf(volume)].join(" ").trim();
     }
-    if (["lagom", "bonajour", "jmsolution", "jumiso"].includes(storeKey)) {
+    if (["pcalm", "lagom", "bonajour", "jmsolution", "jumiso"].includes(storeKey)) {
       if (!/(?:^|\s)name(?:\s|$)/.test(attr(node.parentNode, "class") ?? "")) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "").replace(/^JMsolution\s+(?=제이엠솔루션)/iu, "");
     }
@@ -353,7 +357,8 @@ async function main() {
   const list = [...canonical.values()].sort((a, b) => a.id.localeCompare(b.id, "en"));
   await writeFile(output, JSON.stringify({ market: "KR", checkedAt: date,
     provenance: "official_listing_identity_only", brands: Object.fromEntries(Object.entries(brands).sort()), products: list }, null, 2) + "\n");
-  console.log(`${list.length} official listings in the expansion snapshot. No formula or recommendation scores added.`);
+  const indexedBrands = new Set(list.map(product => product.brand)).size;
+  console.log(`${list.length} official listings across ${indexedBrands} indexed brands (${Object.keys(brands).length} with crawl metadata).`);
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) await main();
