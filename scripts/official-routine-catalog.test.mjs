@@ -132,3 +132,13 @@ test("Dr.Ceuracle reads the product title without taglines and rejects cleansing
   assert.deepEqual(extractOfficialListings(html, "drceuracle", stores.drceuracle).map(p => [p.name, p.volume, p.category]),
     [["닥터슈라클 프로 밸런스 모닝 엔자임 워시", "50g", "cleanser"]]);
 });
+
+test("Lagom indexes titled skincare singles and excludes bundles and accessories", () => {
+  const card = (id, title) => `<strong class="name"><a href="/product/detail.html?product_no=${id}">${title}</a></strong>`;
+  const html = card(1, "[블프] 브라이트닝 톤업 선 50ml") +
+    card(2, "[이사배 PICK] 마이크로 폼 클렌저 150ml 더블 SET") +
+    card(3, "클렌징 브러쉬") +
+    card(4, "[이사배 PICK]오트 미셀라 클렌징 밀크 200ml");
+  assert.deepEqual(extractOfficialListings(html, "lagom", stores.lagom).map(p => [p.name, p.category, p.volume]),
+    [["라곰 브라이트닝 톤업 선", "sunscreen", "50ml"], ["라곰 오트 미셀라 클렌징 밀크", "cleanser", "200ml"]]);
+});

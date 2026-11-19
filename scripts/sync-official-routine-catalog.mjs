@@ -9,6 +9,8 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  lagom: { brand: "라곰", alias: "LAGOM", domain: "lagom.kr", type: "cafe",
+    paths: [1, 2, 3, 4].map(page => [`list${page}`, `/product/list.html?cate_no=48&page=${page}`]) },
   drceuracle: { brand: "닥터슈라클", alias: "Dr.Ceuracle", domain: "www.lghmall.co.kr", type: "godo",
     paths: ["001", "002", "003", "004", "006"].map(category =>
       [category, `/goods/goods_list.php?cateCd=013001${category}&pageNum=60`]) },
@@ -96,6 +98,10 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (storeKey === "lagom") {
+    name = name.replace(/^(?:\[(?:이사배 PICK|블프|공식몰 단독)\]\s*)+/iu, "");
+    if (name.includes("+") || /더블|트리플|듀오|본품|브러쉬|넥 크림|^미니\s/u.test(name)) return null;
+  }
   if (storeKey === "bonajour") {
     if (name.includes("+") || /크림\s*카밍\s*팩/u.test(name)) return null;
     name = name.replace(/^\[속건조 수분크림\]\s*/u, "");
@@ -118,6 +124,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   name = name.replaceAll(volumePattern, " ").replace(/[ ]{2,}/g, " ").replace(/\(\s*\)|^\s*[:–-]\s*|\s*[:–-]\s*$/g, "").trim();
   if (name.length < 4 || !/[가-힣]/.test(name)) return null;
   let category = classify(name);
+  if (storeKey === "lagom" && /톤업 선$/u.test(name)) category = "sunscreen";
   if (storeKey === "vt" && /^리들샷\s+(?:50|100|300|700|1000)$/u.test(name)) category = "serum";
   if (storeKey === "drceuracle" && /멜팅 포밍 밤|메디케어 솝|엔자임 워시/u.test(name)) category = "cleanser";
   if (!category) return null;
@@ -204,7 +211,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const volume = descendants.find(child => attr(child, "rel") === "용량");
       if (title) rawName = [textOf(title), textOf(volume)].join(" ").trim();
     }
-    if (storeKey === "bonajour" || storeKey === "jmsolution" || storeKey === "jumiso") {
+    if (["lagom", "bonajour", "jmsolution", "jumiso"].includes(storeKey)) {
       if (!/(?:^|\s)name(?:\s|$)/.test(attr(node.parentNode, "class") ?? "")) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "").replace(/^JMsolution\s+(?=제이엠솔루션)/iu, "");
     }
