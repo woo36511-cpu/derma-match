@@ -153,6 +153,12 @@
       "usefulPages": 3,
       "fetchedListings": 57
     },
+    "snature": {
+      "name": "에스네이처",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 2,
+      "fetchedListings": 28
+    },
     "tirtir": {
       "name": "티르티르",
       "checkedAt": "2026-11-15",
@@ -12323,6 +12329,258 @@
       "category": "moisturizer",
       "volume": "50ml",
       "officialUrl": "https://skinrxlab.com/product/%EB%A7%88%EB%8D%B0%EC%84%B8%EB%9D%BC-%ED%81%AC%EB%A6%BC-50ml/92/"
+    },
+    {
+      "id": "lookup:snature:10",
+      "name": "에스네이처 블랑쉬로션",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "moisturizer",
+      "volume": "200ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=10"
+    },
+    {
+      "id": "lookup:snature:101",
+      "name": "에스네이처 아쿠아 라이스클렌징 오일",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=101"
+    },
+    {
+      "id": "lookup:snature:102",
+      "name": "에스네이처 아쿠아 오아시스 판테알란 카밍패드",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "toner",
+      "volume": "60매",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=102"
+    },
+    {
+      "id": "lookup:snature:103",
+      "name": "에스네이처 화이트 글로우 앰플",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=103"
+    },
+    {
+      "id": "lookup:snature:106",
+      "name": "에스네이처 아쿠아 라이스 클렌징 밤",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "cleanser",
+      "volume": "90ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=106"
+    },
+    {
+      "id": "lookup:snature:108",
+      "name": "에스네이처 아쿠아 스쿠알란 미스트",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=108"
+    },
+    {
+      "id": "lookup:snature:128",
+      "name": "에스네이처 아쿠아 라이스 립앤아이 리무버",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "cleanser",
+      "volume": "145ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=128"
+    },
+    {
+      "id": "lookup:snature:135",
+      "name": "에스네이처 아쿠아 라이스 클렌징 밀크",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "cleanser",
+      "volume": "280ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=135"
+    },
+    {
+      "id": "lookup:snature:147",
+      "name": "에스네이처 아쿠아 스쿠알란 세럼",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "serum",
+      "volume": "70ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=147"
+    },
+    {
+      "id": "lookup:snature:148",
+      "name": "에스네이처 아쿠아 스쿠알란 세럼",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "serum",
+      "volume": "100ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=148"
+    },
+    {
+      "id": "lookup:snature:149",
+      "name": "에스네이처 아쿠아 오아시스 토너",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "toner",
+      "volume": "210ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=149"
+    },
+    {
+      "id": "lookup:snature:150",
+      "name": "에스네이처 아쿠아 라이스 약산성 클렌징 폼",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "cleanser",
+      "volume": "80ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=150"
+    },
+    {
+      "id": "lookup:snature:151",
+      "name": "에스네이처 아쿠아 스쿠알란 수분크림",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "moisturizer",
+      "volume": "80ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=151"
+    },
+    {
+      "id": "lookup:snature:159",
+      "name": "에스네이처 아쿠아 라이스 클렌징 밀크",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=159"
+    },
+    {
+      "id": "lookup:snature:223",
+      "name": "에스네이처 아쿠아 콜라겐 펩타이드 NAD+ 앰플",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=223"
+    },
+    {
+      "id": "lookup:snature:225",
+      "name": "에스네이처 아쿠아 365 유브이 글로우 핏 톤업선",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "sunscreen",
+      "volume": "40ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=225"
+    },
+    {
+      "id": "lookup:snature:227",
+      "name": "에스네이처 아쿠아 오아시스 블루 카밍 앰플",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "serum",
+      "volume": "50g",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=227"
+    },
+    {
+      "id": "lookup:snature:229",
+      "name": "에스네이처 아쿠아 라이스 모공 쌀떡팩폼",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=229"
+    },
+    {
+      "id": "lookup:snature:231",
+      "name": "에스네이처 딥 아쿠아 스쿠알란 베리어 세럼",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=231"
+    },
+    {
+      "id": "lookup:snature:234",
+      "name": "에스네이처 딥 아쿠아 스쿠알란 베리어 토너",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=234"
+    },
+    {
+      "id": "lookup:snature:65",
+      "name": "에스네이처 블랑쉬 클렌저",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "cleanser",
+      "volume": "260ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=65"
+    },
+    {
+      "id": "lookup:snature:72",
+      "name": "에스네이처 아쿠아 콜라겐 펩타이드 트리플 젤 에센스",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=72"
+    },
+    {
+      "id": "lookup:snature:74",
+      "name": "에스네이처 아쿠아 스쿠알란 수분크림",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "moisturizer",
+      "volume": "60ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=74"
+    },
+    {
+      "id": "lookup:snature:79",
+      "name": "에스네이처 아쿠아 오아시스 토너",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "toner",
+      "volume": "300ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=79"
+    },
+    {
+      "id": "lookup:snature:83",
+      "name": "에스네이처 아쿠아 스쿠알란 세럼",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=83"
+    },
+    {
+      "id": "lookup:snature:86",
+      "name": "에스네이처 아쿠아 라이스 약산성 클렌징 폼",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "cleanser",
+      "volume": "160ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=86"
+    },
+    {
+      "id": "lookup:snature:96",
+      "name": "에스네이처 아쿠아 365 유브이 선크림",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "sunscreen",
+      "volume": "40ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=96"
+    },
+    {
+      "id": "lookup:snature:99",
+      "name": "에스네이처 아쿠아 오아시스 수분 젤크림",
+      "brand": "에스네이처",
+      "brandAlias": "S.NATURE",
+      "category": "moisturizer",
+      "volume": "80ml",
+      "officialUrl": "https://www.snature.co.kr/product/detail.html?product_no=99"
     },
     {
       "id": "lookup:tiam:142",

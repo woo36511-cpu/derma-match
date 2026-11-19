@@ -142,3 +142,12 @@ test("Lagom indexes titled skincare singles and excludes bundles and accessories
   assert.deepEqual(extractOfficialListings(html, "lagom", stores.lagom).map(p => [p.name, p.category, p.volume]),
     [["라곰 브라이트닝 톤업 선", "sunscreen", "50ml"], ["라곰 오트 미셀라 클렌징 밀크", "cleanser", "200ml"]]);
 });
+
+test("S.Nature uses the visible title and retains the pad count when liquid volume is also shown", () => {
+  const card = (id, title) => `<a class="df-prl-name" href="/product/detail.html?product_no=${id}"><strong>상품명 :</strong> <span>${title}</span></a>`;
+  const html = card(1, "아쿠아 오아시스 판테알란 카밍패드 60매 (190ml)") +
+    card(2, "아쿠아 콜라겐 펩타이드 NAD+ 앰플 50ml") +
+    card(3, "아쿠아 스쿠알란 수분크림 60ml+세럼 50ml 2종세트");
+  assert.deepEqual(extractOfficialListings(html, "snature", stores.snature).map(p => [p.category, p.volume]),
+    [["toner", "60매"], ["serum", "50ml"]]);
+});
