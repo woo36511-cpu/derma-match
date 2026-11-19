@@ -204,8 +204,8 @@
     "sidmool": {
       "name": "시드물",
       "checkedAt": "2026-11-19",
-      "usefulPages": 17,
-      "fetchedListings": 183
+      "usefulPages": 21,
+      "fetchedListings": 207
     },
     "sioris": {
       "name": "시오리스",
@@ -13274,6 +13274,15 @@
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=10"
     },
     {
+      "id": "lookup:sidmool:100",
+      "name": "시드물 오리지널 웰빙 녹차 로션",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "150ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=100"
+    },
+    {
       "id": "lookup:sidmool:101",
       "name": "시드물 옴므 허브 스킨",
       "brand": "시드물",
@@ -13281,6 +13290,15 @@
       "category": "toner",
       "volume": "150ml",
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=101"
+    },
+    {
+      "id": "lookup:sidmool:102",
+      "name": "시드물 옴므 허브 로션for man",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "150ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=102"
     },
     {
       "id": "lookup:sidmool:13",
@@ -13325,6 +13343,15 @@
       "category": "toner",
       "volume": "150ml",
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=157"
+    },
+    {
+      "id": "lookup:sidmool:165",
+      "name": "시드물 무향 / 원래 버전(주니퍼향) 울트라 수분 로션 [선택구입]",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "80ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=165"
     },
     {
       "id": "lookup:sidmool:17",
@@ -13498,6 +13525,15 @@
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=251"
     },
     {
+      "id": "lookup:sidmool:26",
+      "name": "시드물 비 테라피 에센스로션",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "120ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=26"
+    },
+    {
       "id": "lookup:sidmool:30",
       "name": "시드물 비 테라피 미네랄 세럼",
       "brand": "시드물",
@@ -13505,6 +13541,15 @@
       "category": "serum",
       "volume": "60ml",
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=30"
+    },
+    {
+      "id": "lookup:sidmool:32",
+      "name": "시드물 알로에 에센셜 [선택구입]",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "165ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=32"
     },
     {
       "id": "lookup:sidmool:55",
@@ -13633,6 +13678,15 @@
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=76901"
     },
     {
+      "id": "lookup:sidmool:76906",
+      "name": "시드물 포어 실키 에너지 수분젤",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "60ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=76906"
+    },
+    {
       "id": "lookup:sidmool:76912",
       "name": "시드물 사카로 오일 미스트",
       "brand": "시드물",
@@ -13669,6 +13723,15 @@
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=76921"
     },
     {
+      "id": "lookup:sidmool:76922",
+      "name": "시드물 티트리 에센셜 /겔타입",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "165ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=76922"
+    },
+    {
       "id": "lookup:sidmool:76926",
       "name": "시드물 패스트 턴오버 리빌딩 앰플",
       "brand": "시드물",
@@ -13694,6 +13757,15 @@
       "category": "cleanser",
       "volume": "150ml",
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=76936"
+    },
+    {
+      "id": "lookup:sidmool:76941",
+      "name": "시드물 알로에 베라 96 수딩겔",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "120ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=76941"
     },
     {
       "id": "lookup:sidmool:76943",
@@ -13822,6 +13894,15 @@
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=76995"
     },
     {
+      "id": "lookup:sidmool:76997",
+      "name": "시드물 아사이베리 맑고 생기넘치는 화이트닝 에센셜",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "165ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=76997"
+    },
+    {
       "id": "lookup:sidmool:76999",
       "name": "시드물 사카로 광채 탄력 크림",
       "brand": "시드물",
@@ -13865,6 +13946,15 @@
       "category": "toner",
       "volume": "150ml",
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77009"
+    },
+    {
+      "id": "lookup:sidmool:77010",
+      "name": "시드물 닥터트럽 마일드 로션",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "150ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77010"
     },
     {
       "id": "lookup:sidmool:77012",
@@ -13938,6 +14028,33 @@
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77032"
     },
     {
+      "id": "lookup:sidmool:77033",
+      "name": "시드물 센텔라에센셜",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "165ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77033"
+    },
+    {
+      "id": "lookup:sidmool:77045",
+      "name": "시드물 황금 동백 로션",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "128ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77045"
+    },
+    {
+      "id": "lookup:sidmool:77050",
+      "name": "시드물 NEW 사카로 광채 로션",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "128ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77050"
+    },
+    {
       "id": "lookup:sidmool:77051",
       "name": "시드물 마다가스카르 리얼 수분크림",
       "brand": "시드물",
@@ -13990,6 +14107,15 @@
       "category": "serum",
       "volume": "11ml",
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77073"
+    },
+    {
+      "id": "lookup:sidmool:77075",
+      "name": "시드물 비타민 C 에너지 수분젤",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "150ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77075"
     },
     {
       "id": "lookup:sidmool:77076",
@@ -14062,6 +14188,15 @@
       "category": "moisturizer",
       "volume": "80ml",
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77098"
+    },
+    {
+      "id": "lookup:sidmool:77105",
+      "name": "시드물 프로폴리스 울트라 에센셜",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "80ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77105"
     },
     {
       "id": "lookup:sidmool:77107",
@@ -14145,6 +14280,15 @@
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77126"
     },
     {
+      "id": "lookup:sidmool:77127",
+      "name": "시드물 닥터갈라톡 블래미쉬 케어 에센셜",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "150ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77127"
+    },
+    {
       "id": "lookup:sidmool:77130",
       "name": "시드물 꿀 펩타이드 미스트",
       "brand": "시드물",
@@ -14199,6 +14343,15 @@
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77142"
     },
     {
+      "id": "lookup:sidmool:77149",
+      "name": "시드물 불가리안 로즈 에센셜",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "40ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77149"
+    },
+    {
       "id": "lookup:sidmool:77153",
       "name": "시드물 다당류 리얼 수분 에센스",
       "brand": "시드물",
@@ -14206,6 +14359,15 @@
       "category": "serum",
       "volume": "50ml",
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77153"
+    },
+    {
+      "id": "lookup:sidmool:77154",
+      "name": "시드물 마다가스카르 병풀 로션",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "150ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77154"
     },
     {
       "id": "lookup:sidmool:77156",
@@ -14262,6 +14424,15 @@
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77166"
     },
     {
+      "id": "lookup:sidmool:77168",
+      "name": "시드물 울트라 페이셜 모이스처라이징카밀레 데콘젤",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "80ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77168"
+    },
+    {
       "id": "lookup:sidmool:77170",
       "name": "시드물 병풀 앰플 솝",
       "brand": "시드물",
@@ -14314,6 +14485,15 @@
       "category": "serum",
       "volume": "12ml",
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77181"
+    },
+    {
+      "id": "lookup:sidmool:77184",
+      "name": "시드물 노니 수분 에센셜",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "165ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77184"
     },
     {
       "id": "lookup:sidmool:77185",
@@ -14514,6 +14694,15 @@
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77269"
     },
     {
+      "id": "lookup:sidmool:77271",
+      "name": "시드물 진한 어성초 시카 에센셜",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "165ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77271"
+    },
+    {
       "id": "lookup:sidmool:77273",
       "name": "시드물 아크바이TM 스킨",
       "brand": "시드물",
@@ -14611,6 +14800,15 @@
       "category": "serum",
       "volume": "32g",
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77310"
+    },
+    {
+      "id": "lookup:sidmool:77315",
+      "name": "시드물 바쿠치올 수분젤",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "80ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77315"
     },
     {
       "id": "lookup:sidmool:77317",
@@ -14890,6 +15088,15 @@
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=82"
     },
     {
+      "id": "lookup:sidmool:92",
+      "name": "시드물 알로에 로션 링클리페어",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "150ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=92"
+    },
+    {
       "id": "lookup:sidmool:96",
       "name": "시드물 아크바이TM 스킨",
       "brand": "시드물",
@@ -14897,6 +15104,15 @@
       "category": "toner",
       "volume": "120ml",
       "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=96"
+    },
+    {
+      "id": "lookup:sidmool:97",
+      "name": "시드물 아크바이TM 로션",
+      "brand": "시드물",
+      "brandAlias": "SIDMOOL",
+      "category": "moisturizer",
+      "volume": "120ml",
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=97"
     },
     {
       "id": "lookup:sidmool:99",
