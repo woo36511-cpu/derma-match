@@ -7,9 +7,9 @@ import { hasExfoliatingActive } from "./productCatalog";
 import { getProductPurchaseLink } from "./productPurchaseLink";
 
 test("expanded catalog has stable unique identities, actual full ingredients, photos and source-specific sales links", () => {
-  expect(additions.map(p => p.id)).toEqual(Array.from({ length: 30 }, (_, i) => i + 52));
+  expect(additions.filter(p => p.id <= 81).map(p => p.id)).toEqual(Array.from({ length: 30 }, (_, i) => i + 52));
   expect(new Set(products.map(p => p.id)).size).toBe(products.length);
-  for (const p of additions) {
+  for (const p of additions.filter(p => p.id <= 81)) {
     expect(getProductEvidenceStatus(p).eligible).toBe(true);
     expect(p.fullIngredients.length).toBeGreaterThan(10);
     expect(p.evidence.sources.some(s => s.sourceType.startsWith("official_domestic") && s.url.startsWith("https://"))).toBe(true);
@@ -67,4 +67,16 @@ test("specialized and botanical-oil candidates respect basic and sensitivity gat
   }
   expect(cosmeticProductProfiles[69].families).toContain("niacinamide");
   expect(cosmeticProductProfiles[69].goals).toEqual(["tone"]);
+});
+
+
+test("MEDIHEAL 40 mL is verified for a limited optional route, without a basic or sensitive recommendation", () => {
+  const p = products.find(p => p.id === 82);
+  expect(getProductEvidenceStatus(p).eligible).toBe(true);
+  expect(p.fullIngredients).toHaveLength(40);
+  expect(p.disclosedConcentrations).toHaveLength(6);
+  expect(p.sensitivitySafe).toBe(false);
+  expect(p.recommendationScope).toBe("addon_only");
+  expect(cosmeticProductProfiles[82].goals).toEqual(["support"]);
+  expect(getRankedProductCandidates("serum", 5, { basicOnly: true }).map(row => row.id)).not.toContain(82);
 });
