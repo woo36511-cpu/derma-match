@@ -151,13 +151,20 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
     if (store.type === "cafe") {
       const m = url.pathname.match(/^\/product\/([^/]+)\/(\d+)(?:\/|$)/);
-      if (!m) continue;
-      id = m[2];
-      let slug;
-      try { slug = decodeURIComponent(m[1]).replace(/-/g, " "); } catch { continue; }
-      // Product links can contain image alt text like “thumb.” The official slug still carries the readable listing name.
-      if (!/[가-힣]/.test(rawName) || rawName.length > 110 || /제품 이미지|제품 사진|사용감|돕는|상세 이미지/.test(rawName)) rawName = slug;
-      sourceUrl = `https://${store.domain}/product/${m[1]}/${id}/`;
+      if (!m) {
+        const numericId = url.searchParams.get("product_no");
+        if (sitemap || url.pathname !== "/product/detail.html" || !/^\d{1,12}$/.test(numericId ?? "") ||
+          !rawName || !/[가-힣]/.test(rawName)) continue;
+        id = numericId;
+        sourceUrl = `https://${store.domain}/product/detail.html?product_no=${id}`;
+      } else {
+        id = m[2];
+        let slug;
+        try { slug = decodeURIComponent(m[1]).replace(/-/g, " "); } catch { continue; }
+        // Product links can contain image alt text like “thumb.” The official slug still carries the readable listing name.
+        if (!/[가-힣]/.test(rawName) || rawName.length > 110 || /제품 이미지|제품 사진|사용감|돕는|상세 이미지/.test(rawName)) rawName = slug;
+        sourceUrl = `https://${store.domain}/product/${m[1]}/${id}/`;
+      }
     } else {
       const [path, key] = store.type === "godo" ? ["/goods/goods_view.php", "goodsNo"] : ["/shop/shopdetail.html", "branduid"];
       if (url.pathname !== path || !/^\d{1,12}$/.test(url.searchParams.get(key) ?? "")) continue;
