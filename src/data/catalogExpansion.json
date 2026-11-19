@@ -6047,7 +6047,8 @@
       "barrierSupport": 2
     },
     "catalogAudit": {
-      "careProfileSource": "internal_conservative_assessment"
+      "careProfileSource": "internal_conservative_assessment",
+      "reviewedAt": "2026-11-19"
     },
     "evidence": {
       "evidenceLevel": "B",
