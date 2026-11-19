@@ -1,0 +1,9 @@
+{
+  "coverage": "manually_verified_public_search_sample",
+  "asOf": "2026-11-19",
+  "products": [
+    { "goodsNo": "A000000125507", "name": "라운드랩 1025 독도 토너 200ml", "kind": "single", "brand": "라운드랩", "volumeMl": 200 },
+    { "goodsNo": "A000000132162", "name": "라운드랩 1025 독도 토너 200ml 기획 (+50ml)", "kind": "bundle", "brand": "라운드랩", "volumeMl": 200 },
+    { "goodsNo": "A000000137180", "name": "라운드랩 1025 독도 토너 500ml 기획 (+100ml)", "kind": "bundle", "brand": "라운드랩", "volumeMl": 500 }
+  ]
+}

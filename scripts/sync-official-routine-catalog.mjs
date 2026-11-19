@@ -166,13 +166,40 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
 
 const decodeBody = (buffer, store) => new TextDecoder(store.type === "makeshop" ? "euc-kr" : "utf-8").decode(buffer);
 
+export function allowsPublicCatalogPath(robots, path) {
+  let agents = [], directives = false;
+  const rules = [];
+  for (const line of robots.split(/\r?\n/)) {
+    const match = line.split("#")[0].trim().match(/^(user-agent|allow|disallow|crawl-delay)\s*:\s*(.*)$/i);
+    if (!match) continue;
+    const [, rawType, value] = match;
+    const type = rawType.toLowerCase();
+    if (type === "user-agent") {
+      if (directives) { agents = []; directives = false; }
+      agents.push(value.toLowerCase());
+    } else {
+      directives = true;
+      if (agents.includes("*") && value && type !== "crawl-delay") {
+        const end = value.endsWith("$");
+        const literal = end ? value.slice(0, -1) : value;
+        const pattern = literal.split("*").map(x => x.replace(/[|\\{}()[\]^$+?.]/g, "\\$&")).join(".*");
+        if (new RegExp("^" + pattern + (end ? "$" : "")).test(path)) rules.push({ type, length: literal.replaceAll("*", "").length });
+      }
+    }
+  }
+  rules.sort((a, b) => b.length - a.length || Number(b.type === "allow") - Number(a.type === "allow"));
+  return rules[0]?.type !== "disallow";
+}
+
 async function main() {
   const input = process.argv[2];
   if (!input) throw new Error("Usage: node scripts/sync-official-routine-catalog.mjs <html-cache-dir> [--fetch]");
   const refresh = process.argv.includes("--fetch");
+  const scheduled = process.argv.includes("--scheduled");
+  const output = process.env.ROUTINE_CATALOG_OUTPUT ?? "src/data/routineLookupExpansion.json";
   await mkdir(input, { recursive: true });
   const existing = JSON.parse(await readFile("src/data/routineLookupProducts.json", "utf8")).products;
-  const prior = await readFile("src/data/routineLookupExpansion.json", "utf8").then(JSON.parse).catch(() => ({ products: [], brands: {} }));
+  const prior = await readFile(process.env.ROUTINE_CATALOG_PREVIOUS ?? "src/data/routineLookupExpansion.json", "utf8").then(JSON.parse);
   const knownIds = new Set(existing.map(p => p.id));
   const knownNames = new Set(existing.map(p => entryKey(p)));
   const products = new Map(prior.products.map(p => [p.id, p]));
@@ -182,12 +209,20 @@ async function main() {
   await Promise.all(Array.from({ length: 4 }, async () => {
     for (let item; (item = queue.shift()); ) {
       const [key, store] = item;
+      let robots = "";
+      if (scheduled) {
+        try { robots = (await exec("curl", ["-fsS", "--max-time", "10", "-A", "DearSinceCatalog/1.0", `https://${store.domain}/robots.txt`], { maxBuffer: 100000 })).stdout; }
+        catch { console.log(`${store.brand}: robots unavailable; skipped`); continue; }
+        if (!/^\s*(user-agent|sitemap)\s*:/im.test(robots)) { console.log(`${store.brand}: unrecognized robots; skipped`); continue; }
+      }
       const fresh = new Map();
       let useful = 0, missed = 0;
       for (const [kind, path] of store.paths) {
         const file = resolve(input, `${key}-${kind}`);
+        if (scheduled && !allowsPublicCatalogPath(robots, path)) { missed++; continue; }
+        if (scheduled) await new Promise(resolve => setTimeout(resolve, 5000));
         if (refresh) {
-          try { await exec("curl", ["-fsS", "--max-time", "19", "-o", file + ".new", `https://${store.domain}${path}`]);
+          try { await exec("curl", ["-fsS", "--max-time", "19", ...(scheduled ? ["-A", "DearSinceCatalog/1.0"] : []), "-o", file + ".new", `https://${store.domain}${path}`]);
             await writeFile(file, await readFile(file + ".new")); }
           catch { missed++; continue; }
         }
@@ -222,7 +257,7 @@ async function main() {
     if (!knownIds.has(p.id) && !knownNames.has(key) && !canonical.has(key)) canonical.set(key, p);
   }
   const list = [...canonical.values()].sort((a, b) => a.id.localeCompare(b.id, "en"));
-  await writeFile("src/data/routineLookupExpansion.json", JSON.stringify({ market: "KR", checkedAt: date,
+  await writeFile(output, JSON.stringify({ market: "KR", checkedAt: date,
     provenance: "official_listing_identity_only", brands: Object.fromEntries(Object.entries(brands).sort()), products: list }, null, 2) + "\n");
   console.log(`${list.length} official listings in the expansion snapshot. No formula or recommendation scores added.`);
 }

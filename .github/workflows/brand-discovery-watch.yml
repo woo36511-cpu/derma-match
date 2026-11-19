@@ -1,0 +1,46 @@
+name: Brand catalog discovery watch
+on:
+  schedule:
+    - cron: '19 19 * * 1,4'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: brand-discovery-watch
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: node --test scripts/official-routine-catalog.test.mjs scripts/import-oliveyoung-feed.test.mjs
+      - name: Update official brand listing snapshot
+        env:
+          OLIVEYOUNG_APPROVED_FEED_URL: ${{ secrets.OLIVEYOUNG_APPROVED_FEED_URL }}
+        run: |
+          prior=$(gh run list --workflow brand-discovery-watch.yml --branch main --status success --limit 1 --json databaseId --jq '.[0].databaseId // empty')
+          if [[ -n "$prior" ]]; then
+            gh run download "$prior" --name official-brand-discovery --dir prior
+            export ROUTINE_CATALOG_PREVIOUS=prior/official-brand-discovery.json
+          fi
+          ROUTINE_CATALOG_OUTPUT=official-brand-discovery.json node scripts/sync-official-routine-catalog.mjs "${RUNNER_TEMP}/dearsince-brand-pages" --fetch --scheduled
+          node scripts/import-oliveyoung-feed.mjs data/oliveyoung-discovery-seed.json oliveyoung-discovery.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: official-brand-discovery
+          path: |
+            official-brand-discovery.json
+            oliveyoung-discovery.json
+          if-no-files-found: error
+          retention-days: 90
