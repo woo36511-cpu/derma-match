@@ -9,6 +9,8 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  needly: cafe("니들리", "NEEDLY", "needly.co.kr", [1, 2].map(page => [`list${page}`, `/product/list.html?cate_no=55&page=${page}`])),
+  wellage: cafe("웰라쥬", "WELLAGE", "www.wellage.co.kr", [["list1", "/product/list.html?cate_no=427&page=1"]]),
   vt: cafe("브이티", "VT Cosmetics", "www.vt-cosmetics.com", [72, 119, 218, 326].map(category => [`list${category}`, `/product/list.html?cate_no=${category}`])),
   primera: cafe("프리메라", "primera", "prmrbeauty.com", [1, 2, 3].map(page => [`list${page}`, `/product/list.html?cate_no=42&page=${page}`])),
   jumiso: { brand: "주미소", alias: "JUMISO", domain: "jumiso.co.kr", type: "cafe",
@@ -77,11 +79,11 @@ const entryKey = (product, ignoreVolume = false) => {
 const hostKey = h => h.replace(/^(?:m|www)\./i, "");
 
 function classify(name) {
-  if (/선크림|선 크림|썬크림|썬 크림|[선썬]\s*스크린|선세럼|선 세럼|선스틱|선 스틱|선쿠션|선 쿠션|선플루이드|선로션|선젤|선 젤|선밤|선\s*미스트|유브이|uv\s*프로텍터|spf\s*\d/i.test(name)) return "sunscreen";
+  if (/선크림|선 크림|썬크림|썬 크림|[선썬]\s*스크린|선세럼|선 세럼|선스틱|선 스틱|선쿠션|선 쿠션|선플루이드|선로션|선젤|선 젤|선밤|선\s*미스트|모이스처 선$|유브이|uv\s*프로텍터|spf\s*\d/i.test(name)) return "sunscreen";
   if (/클렌|클랜|세안|페이셜워시|페이셜 워시|앰플 폼|약산성 폼|필링젤|필링 젤|필링패드|필링 패드/u.test(name)) return "cleanser";
   if (/수면팩|마스크|모델링팩|모델링 팩|세럼팩|세럼 팩|(?:수분|진정)팩/u.test(name)) return null;
   if (/토너|패드|미스트|스킨토너|스킨$/u.test(name)) return "toner";
-  if (/세럼\s+로션|올인원\s+멀티밤/u.test(name)) return "moisturizer";
+  if (/(?:세럼|에센스)\s+로션|올인원\s+멀티밤/u.test(name)) return "moisturizer";
   if (/세럼|앰플|에센스|세럼오일/u.test(name)) return "serum";
   if (/크림|로션|모이스[처쳐]|에멀전|수딩젤|수딩 젤|젤크림|수딩겔/u.test(name)) return "moisturizer";
   return null;
@@ -89,6 +91,7 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (storeKey === "needly" && /패드\s*케이스|코튼\s*패드/u.test(name)) return null;
   if (storeKey === "vt" && /신규회원|군인할인|최저가|샤워\s*필터|[x×]\s*\d+\s*개/iu.test(name)) return null;
   if (storeKey === "vt") name = name.replace(/^(?:약국 입점|(?:우찬|올데이 프로젝트) pick)\s+/iu, "");
   if (storeKey === "primera" && /크림\s*쿠션|모이스처 스무딩 케어/u.test(name)) return null;
