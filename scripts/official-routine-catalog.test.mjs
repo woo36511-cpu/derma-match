@@ -86,3 +86,13 @@ test("JUMISO preserves decimals from the product title and excludes bundles", ()
   assert.deepEqual(extractOfficialListings(html, "jumiso", stores.jumiso).map(p => [p.name, p.volume]),
     [["주미소 레티날 0.1 피디알엔 5000 크림", "20ml"], ["주미소 나이아신아마이드 20 세럼", "40ml"]]);
 });
+
+test("Primera uses the official title and declared volume and indexes UV protectors as sunscreen", () => {
+  const html = `<a href="/product/리페어링-세라캡슐-uv-프로텍터/90/">
+    <img alt="Primera Repairing Cera-capsule UV Protector">
+    <span class="title">리페어링 세라캡슐 UV 프로텍터</span>
+    <ul><li rel="판매가">100원</li><li rel="용량">40ml</li></ul>
+  </a><a href="/product/나이아-시카-워터리-크림-쿠션/89/">쿠션</a>`;
+  assert.deepEqual(extractOfficialListings(html, "primera", stores.primera).map(p => [p.name, p.volume, p.category]),
+    [["프리메라 리페어링 세라캡슐 UV 프로텍터", "40ml", "sunscreen"]]);
+});
