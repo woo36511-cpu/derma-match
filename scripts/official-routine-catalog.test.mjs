@@ -67,3 +67,12 @@ test("a spaced sunscreen name is indexed while BB cream is excluded", () => {
   assert.deepEqual(extractOfficialListings(html, "skinnlab", stores.skinnlab).map(p => [p.name, p.category]),
     [["스킨앤랩 틴티드 선 스크린", "sunscreen"]]);
 });
+
+test("MEDI-PEEL keeps domestic skincare and skips export, accessory, image and multipack records", () => {
+  const slugs = ["히알루론산-레이어-물톡스-앰플-30ml", "해외전용-상품-피토-시카놀-토너",
+    "딥-클렌징-해면", "메조-콜라겐-토너-제품-이미지", "클리어-폼-클렌저-20-120ml-11"];
+  const sitemap = `<urlset>${slugs.map((slug, i) =>
+    `<url><loc>https://www.medipeel.co.kr/product/${slug}/${i + 1}/</loc></url>`).join("")}</urlset>`;
+  const listings = extractOfficialListings(sitemap, "medipeel", stores.medipeel, true);
+  assert.deepEqual(listings.map(p => [p.id, p.category, p.volume]), [["lookup:medipeel:1", "serum", "30ml"]]);
+});

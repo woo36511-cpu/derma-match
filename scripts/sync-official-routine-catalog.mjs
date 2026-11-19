@@ -9,6 +9,8 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  medipeel: cafe("메디필", "MEDI-PEEL", "www.medipeel.co.kr",
+    [1, 2, 3, 4, 5].map(page => [`list${page}`, `/product/list.html?cate_no=795&page=${page}`])),
   dewytree: cafe("듀이트리", "DEWYTREE", "www.dewytree.com", [["list", "/category/product/64/"]]),
   skinnlab: cafe("스킨앤랩", "SKIN&LAB", "www.skinnlab.com", [["list", "/product/list.html?cate_no=72"]]),
   pyunkangyul: cafe("편강율", "Pyunkang Yul", "pyunkangyul.com",
@@ -83,6 +85,8 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (storeKey === "medipeel" &&
+    /해외\s*전용|클렌징\s*해면|풋\s*크림|제품\s*이미지|\d\s*(?:ml|g)\s+11$/iu.test(name)) return null;
   if (skip.test(name) || /\b[2345]\s*[xX]\b|[\d.]\s*(?:ml|g)\s*[xX×*]|\bset\b/i.test(name)) return null;
   name = name.replace(/^\s*(?:\[(?:NEW|대용량|단품|정품|비건|한정)\]\s*)+/iu, "");
   name = name.replace(/^\[(리뉴얼(?: 출시)?)\]\s*/u, "$1 ");
