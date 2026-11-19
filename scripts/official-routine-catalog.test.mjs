@@ -10,6 +10,8 @@ test("an official sitemap keeps single product variants without copying promo li
     <url><loc>https://numbuzin.com/product/비밀링크-1번-수딩세럼-50ml/45/</loc></url>
     <url><loc>https://numbuzin.com/product/1번-수딩세럼-50ml-100ml/46/</loc></url>
     <url><loc>https://notnumbuzin.com/product/1번-수딩세럼-50ml/47/</loc></url>
+    <url><loc>https://numbuzin.com/product/1번-수딩세럼-50ml-2개입/48/</loc></url>
+    <url><loc>https://numbuzin.com/product/첫구매-4900원-수딩세럼-50ml/49/</loc></url>
   </urlset>`;
   const products = extractOfficialListings(source, "numbuzin", stores.numbuzin, true);
   assert.deepEqual(products.map(({ id, category, volume }) => [id, category, volume]), [

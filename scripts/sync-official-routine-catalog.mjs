@@ -9,6 +9,10 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  pyunkangyul: cafe("편강율", "Pyunkang Yul", "pyunkangyul.com",
+    [227, 231, 186].map(category => [`list${category}`, `/product/list_thumb.html?cate_no=${category}`])),
+  skinfood: { brand: "스킨푸드", alias: "SKINFOOD", domain: "www.theskinfood.com", type: "makeshop", encoding: "utf-8",
+    paths: [1, 2, 3, 4, 5, 6, 7, 8].map(page => [`list${page}`, `/shop/shopbrand.html?type=Y&xcode=060&mcode=001&sort=regdate&page=${page}`]) },
   jmsolution: { brand: "제이엠솔루션", alias: "JMsolution", domain: "jmsolution.com", type: "cafe",
     paths: [1, 2, 3, 4].map(page => [`list${page}`, `/product/list.html?cate_no=649&page=${page}`]) },
   dalba: { brand: "달바", alias: "d'Alba", domain: "www.dalba.co.kr", type: "godo",
@@ -55,7 +59,7 @@ export const stores = {
     [1, 2, 3].map(page => [`list${page}`, `/product/list.html?cate_no=166&page=${page}`])),
 };
 
-const skip = /세트|증정|기획|사은품|\d\s*개\s*묶음|(?:묶음|샘플|리필|공병|랜덤|체험용|테스터|키트|미니어처|미니어쳐)|\d\s*종|\d\s*[+×]\s*\d|^(?:11|12|21|22)(?=[^\d])|(?:\dml\s*\+)|바디|헤어|샴푸|여성청결|탑투토|탑 투 토|립\s*(?:밤|마스크|글로스|오일|에센스|세럼)|아이\s*(?:크림|패치|세럼)|팔레트|쿠션팩트|커버\s*(?:팩트|(?:슬림\s*)?쿠션)|핸드\s*크림|메이크업베이스|파운데이션|브러시|사용권|교환권|탈취제|트리트먼트|치약|향수|연고|비밀|특가|공구|공동구매|vip샵|비매품|환불무료|환불 무료|(?:사용|유통)\s*기한|선착순|구매전용|이벤트|쿠폰|얼리버드|온리딜|블프|블랙프라이데이|프로모션|아울렛|클리어런스|판매종료|판매 종료/iu;
+const skip = /세트|증정|기획|사은품|\d\s*개\s*묶음|(?:묶음|샘플|리필|공병|랜덤|체험용|테스터|키트|미니어처|미니어쳐)|\d\s*종|\d\s*[+×]\s*\d|^(?:11|12|21|22)(?=[^\d])|(?:\dml\s*\+)|바디|헤어|샴푸|여성청결|탑투토|탑 투 토|립\s*(?:밤|마스크|글로스|오일|에센스|세럼)|아이\s*(?:크림|패치|세럼)|팔레트|쿠션팩트|커버\s*(?:팩트|(?:슬림\s*)?쿠션)|핸드\s*크림|메이크업베이스|파운데이션|브러시|사용권|교환권|탈취제|트리트먼트|치약|향수|연고|비밀|특가|공구|공동구매|vip샵|비매품|환불무료|환불 무료|(?:사용|유통)\s*기한|선착순|첫\s*구매|(?:[2-9]|\d{2,})\s*(?:개입|팩)(?!\p{L})|구매전용|이벤트|쿠폰|얼리버드|온리딜|블프|블랙프라이데이|프로모션|아울렛|클리어런스|판매종료|판매 종료/iu;
 const volumePattern = /(\d+(?:\.\d+)?)\s*(ml|g|매입|매)(?=$|[^a-zA-Z0-9])/giu;
 const normalize = value => String(value ?? "").normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
 const entryKey = (product, ignoreVolume = false) => {
@@ -191,7 +195,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
   return candidates;
 }
 
-const decodeBody = (buffer, store) => new TextDecoder(store.type === "makeshop" ? "euc-kr" : "utf-8").decode(buffer);
+const decodeBody = (buffer, store) => new TextDecoder(store.encoding ?? (store.type === "makeshop" ? "euc-kr" : "utf-8")).decode(buffer);
 
 export function allowsPublicCatalogPath(robots, path) {
   let agents = [], directives = false;
