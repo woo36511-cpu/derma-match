@@ -96,3 +96,13 @@ test("Primera uses the official title and declared volume and indexes UV protect
   assert.deepEqual(extractOfficialListings(html, "primera", stores.primera).map(p => [p.name, p.volume, p.category]),
     [["프리메라 리페어링 세라캡슐 UV 프로텍터", "40ml", "sunscreen"]]);
 });
+
+test("VT indexes plain Reedle Shots, drops promotions and preserves decimals from displayed titles", () => {
+  const html = [
+    [770, "리들샷 300"], [771, "[증정] 리들샷 700"], [773, "시카 레티 에이 에센스 0.3"],
+  ].map(([id, name]) => `<a class="name" href="/product/detail.html?product_no=${id}">${name}</a>`).join("");
+  assert.deepEqual(extractOfficialListings(html, "vt", stores.vt).map(p => [p.name, p.category]),
+    [["브이티 리들샷 300", "serum"], ["브이티 시카 레티 에이 에센스 0.3", "serum"]]);
+  const sitemap = '<urlset><url><loc>https://www.vt-cosmetics.com/product/시카-레티-에이-에센스-03/773/</loc></url></urlset>';
+  assert.deepEqual(extractOfficialListings(sitemap, "vt", stores.vt, true), []);
+});
