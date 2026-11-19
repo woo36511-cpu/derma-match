@@ -10,9 +10,11 @@ const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
   banila: { brand: "바닐라코", alias: "BANILA CO", domain: "www.banila.com", type: "cafe",
-    paths: [1, 2, 3, 4].map(page => [`list${page}`, `/product/list.html?cate_no=214&page=${page}`]) },
+    paths: [...[1, 2, 3, 4].map(page => [`list${page}`, `/product/list.html?cate_no=214&page=${page}`]),
+      ["204", "/product/list.html?cate_no=204"], ["220", "/product/list.html?cate_no=220"]] },
   ceraveus: { brand: "세라비", alias: "CeraVe", domain: "www.cerave.com", type: "cerave", sourceMarket: "US",
-    paths: [["facial", "/skincare/cleansers/facial-cleansers"], ["all", "/skincare/cleansers"]] },
+    paths: [["facial", "/skincare/cleansers/facial-cleansers"], ["all", "/skincare/cleansers"],
+      ["cream", "/skincare/cleansers/cream-facial-cleansers"], ["foam", "/skincare/cleansers/foaming-facial-cleansers"]] },
   larocheposayus: { brand: "라로슈포제", alias: "La Roche-Posay", domain: "www.laroche-posay.us", type: "larocheposay", sourceMarket: "US",
     paths: [["facial", "/our-products/face/face-wash"]] },
   onedaysyou: { brand: "원데이즈유", alias: "One-day's You", domain: "onedaysyou.com", type: "cafe",
@@ -236,7 +238,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const title = isCerave ? Array.from(walk(node)).find(child => child.nodeName === "h3") : node;
       const label = textOf(title).replace(/\u200B/gu, "").replace(/\s+/g, " ").trim();
       if (!slug || !label || !/cleanser|face wash|facial wash|micellar water|makeup remov|makeup melt|cleansing balm|cleansing bar|cleansing wipes|cream wash/i.test(label) ||
-        /\b(?:set|bundle|kit|body wash)\b/i.test(label)) return [];
+        /\b(?:set|bundle|kit|refill|body wash)\b/i.test(label)) return [];
       return [{ id: `lookup:${storeKey}:${slug}`, name: `${store.brand} ${label}`, brand: store.brand,
         brandAlias: store.alias, category: "cleanser", officialUrl: url.origin + url.pathname, sourceMarket: store.sourceMarket }];
     });
