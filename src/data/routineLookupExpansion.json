@@ -39,6 +39,12 @@
       "usefulPages": 1,
       "fetchedListings": 20
     },
+    "bonajour": {
+      "name": "보나쥬르",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 4,
+      "fetchedListings": 38
+    },
     "celimax": {
       "name": "셀리맥스",
       "checkedAt": "2026-11-15",
@@ -1842,6 +1848,348 @@
       "category": "moisturizer",
       "volume": "80ml",
       "officialUrl": "https://blancdoux.com/product/%EC%98%AC%EB%A6%AC%EA%B3%A0-%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%EC%B9%B4%EB%B0%8D%ED%81%AC%EB%A6%BC-80ml/91/"
+    },
+    {
+      "id": "lookup:bonajour:106",
+      "name": "보나쥬르 프로폴리스 세럼",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "serum",
+      "volume": "100ml",
+      "officialUrl": "https://www.bonajour.com/product/%ED%94%84%EB%A1%9C%ED%8F%B4%EB%A6%AC%EC%8A%A4-%EC%84%B8%EB%9F%BC-100ml/106/"
+    },
+    {
+      "id": "lookup:bonajour:114",
+      "name": "보나쥬르 아크 컨트롤 그린티 로션",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "moisturizer",
+      "volume": "150ml",
+      "officialUrl": "https://www.bonajour.com/product/%EC%95%84%ED%81%AC-%EC%BB%A8%ED%8A%B8%EB%A1%A4-%EA%B7%B8%EB%A6%B0%ED%8B%B0-%EB%A1%9C%EC%85%98-150ml/114/"
+    },
+    {
+      "id": "lookup:bonajour:115",
+      "name": "보나쥬르 아크 컨트롤 그린티 스킨",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://www.bonajour.com/product/%EC%95%84%ED%81%AC-%EC%BB%A8%ED%8A%B8%EB%A1%A4-%EA%B7%B8%EB%A6%B0%ED%8B%B0-%EC%8A%A4%ED%82%A8-150ml/115/"
+    },
+    {
+      "id": "lookup:bonajour:116",
+      "name": "보나쥬르 비건 그린티 워터크림",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://www.bonajour.com/product/%EC%86%8D%EA%B1%B4%EC%A1%B0-%EC%88%98%EB%B6%84%ED%81%AC%EB%A6%BC-%EB%B9%84%EA%B1%B4-%EA%B7%B8%EB%A6%B0%ED%8B%B0-%EC%9B%8C%ED%84%B0%ED%81%AC%EB%A6%BC-100ml/116/"
+    },
+    {
+      "id": "lookup:bonajour:160",
+      "name": "보나쥬르 아쥬라 센서티브 패밀리 케어 로션",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "moisturizer",
+      "volume": "300ml",
+      "officialUrl": "https://www.bonajour.com/product/%EC%95%84%EC%A5%AC%EB%9D%BC-%EC%84%BC%EC%84%9C%ED%8B%B0%EB%B8%8C-%ED%8C%A8%EB%B0%80%EB%A6%AC-%EC%BC%80%EC%96%B4-%EB%A1%9C%EC%85%98-300ml/160/"
+    },
+    {
+      "id": "lookup:bonajour:171",
+      "name": "보나쥬르 익스트림 스팟 세럼",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.bonajour.com/product/%EC%9D%B5%EC%8A%A4%ED%8A%B8%EB%A6%BC-%EC%8A%A4%ED%8C%9F-%EC%84%B8%EB%9F%BC-50ml/171/"
+    },
+    {
+      "id": "lookup:bonajour:206",
+      "name": "보나쥬르 EGF 타임 리커버리 솔루션 크림",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.bonajour.com/product/egf-%ED%83%80%EC%9E%84-%EB%A6%AC%EC%BB%A4%EB%B2%84%EB%A6%AC-%EC%86%94%EB%A3%A8%EC%85%98-%ED%81%AC%EB%A6%BC-50ml/206/"
+    },
+    {
+      "id": "lookup:bonajour:211",
+      "name": "보나쥬르 바이오 액티브 에센스 (부활초 에센스)",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.bonajour.com/product/%EB%B0%94%EC%9D%B4%EC%98%A4-%EC%95%A1%ED%8B%B0%EB%B8%8C-%EC%97%90%EC%84%BC%EC%8A%A4-50ml-%EB%B6%80%ED%99%9C%EC%B4%88-%EC%97%90%EC%84%BC%EC%8A%A4/211/"
+    },
+    {
+      "id": "lookup:bonajour:220",
+      "name": "보나쥬르 익스트림 스팟 세럼 (대용량)",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "serum",
+      "volume": "100ml",
+      "officialUrl": "https://www.bonajour.com/product/%EC%9D%B5%EC%8A%A4%ED%8A%B8%EB%A6%BC-%EC%8A%A4%ED%8C%9F-%EC%84%B8%EB%9F%BC-100ml-%EB%8C%80%EC%9A%A9%EB%9F%89/220/"
+    },
+    {
+      "id": "lookup:bonajour:235",
+      "name": "보나쥬르 더마 MDK 리페어 앰플",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "serum",
+      "volume": "13g",
+      "officialUrl": "https://www.bonajour.com/product/%EB%8D%94%EB%A7%88-mdk-%EB%A6%AC%ED%8E%98%EC%96%B4-%EC%95%B0%ED%94%8C-13g/235/"
+    },
+    {
+      "id": "lookup:bonajour:24",
+      "name": "보나쥬르 비건 펩타이드 워터크림",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://www.bonajour.com/product/%EB%B9%84%EA%B1%B4-%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C-%EC%9B%8C%ED%84%B0%ED%81%AC%EB%A6%BC-100ml/24/"
+    },
+    {
+      "id": "lookup:bonajour:248",
+      "name": "보나쥬르 퓨어마일드 맨 올인원 모이스쳐라이저",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "moisturizer",
+      "volume": "120ml",
+      "officialUrl": "https://www.bonajour.com/product/%ED%93%A8%EC%96%B4%EB%A7%88%EC%9D%BC%EB%93%9C-%EB%A7%A8-%EC%98%AC%EC%9D%B8%EC%9B%90-%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B3%90%EB%9D%BC%EC%9D%B4%EC%A0%80-120ml/248/"
+    },
+    {
+      "id": "lookup:bonajour:338",
+      "name": "보나쥬르 에그플랜트(가지) 데일리 BHA 토너",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "toner",
+      "volume": "205ml",
+      "officialUrl": "https://www.bonajour.com/product/%EC%97%90%EA%B7%B8%ED%94%8C%EB%9E%9C%ED%8A%B8%EA%B0%80%EC%A7%80-%EB%8D%B0%EC%9D%BC%EB%A6%AC-bha-%ED%86%A0%EB%84%88-205ml/338/"
+    },
+    {
+      "id": "lookup:bonajour:348",
+      "name": "보나쥬르 그린티 워터 토너",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "toner",
+      "volume": "205ml",
+      "officialUrl": "https://www.bonajour.com/product/%EA%B7%B8%EB%A6%B0%ED%8B%B0-%EC%9B%8C%ED%84%B0-%ED%86%A0%EB%84%88-205ml/348/"
+    },
+    {
+      "id": "lookup:bonajour:355",
+      "name": "보나쥬르 에그플랜트(가지) BHA 워터크림",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.bonajour.com/product/%EC%97%90%EA%B7%B8%ED%94%8C%EB%9E%9C%ED%8A%B8%EA%B0%80%EC%A7%80-bha-%EC%9B%8C%ED%84%B0%ED%81%AC%EB%A6%BC-50ml/355/"
+    },
+    {
+      "id": "lookup:bonajour:376",
+      "name": "보나쥬르 EGF 고보습 타임 리커버리 마이크로 에센스",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "serum",
+      "volume": "130ml",
+      "officialUrl": "https://www.bonajour.com/product/egf-%EA%B3%A0%EB%B3%B4%EC%8A%B5-%ED%83%80%EC%9E%84-%EB%A6%AC%EC%BB%A4%EB%B2%84%EB%A6%AC-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C-%EC%97%90%EC%84%BC%EC%8A%A4-130ml/376/"
+    },
+    {
+      "id": "lookup:bonajour:414",
+      "name": "보나쥬르 그린 멀티비타민 바이탈 뉴트리션 세럼 (초록 비타민)",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "serum",
+      "volume": "35ml",
+      "officialUrl": "https://www.bonajour.com/product/%EA%B7%B8%EB%A6%B0-%EB%A9%80%ED%8B%B0%EB%B9%84%ED%83%80%EB%AF%BC-%EB%B0%94%EC%9D%B4%ED%83%88-%EB%89%B4%ED%8A%B8%EB%A6%AC%EC%85%98-%EC%84%B8%EB%9F%BC-35ml-%EC%B4%88%EB%A1%9D-%EB%B9%84%ED%83%80%EB%AF%BC/414/"
+    },
+    {
+      "id": "lookup:bonajour:415",
+      "name": "보나쥬르 그린 멀티비타민 바이탈 뉴트리션 크림 (초록 비타민)",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.bonajour.com/product/%EA%B7%B8%EB%A6%B0-%EB%A9%80%ED%8B%B0%EB%B9%84%ED%83%80%EB%AF%BC-%EB%B0%94%EC%9D%B4%ED%83%88-%EB%89%B4%ED%8A%B8%EB%A6%AC%EC%85%98-%ED%81%AC%EB%A6%BC-50ml-%EC%B4%88%EB%A1%9D-%EB%B9%84%ED%83%80%EB%AF%BC/415/"
+    },
+    {
+      "id": "lookup:bonajour:453",
+      "name": "보나쥬르 멜팅 글로우 카밍 크림",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.bonajour.com/product/%EB%A9%9C%ED%8C%85-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EC%B9%B4%EB%B0%8D-%ED%81%AC%EB%A6%BC-50ml/453/"
+    },
+    {
+      "id": "lookup:bonajour:465",
+      "name": "보나쥬르 라이스브랜 90 클렌징 오일",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://www.bonajour.com/product/%EB%9D%BC%EC%9D%B4%EC%8A%A4%EB%B8%8C%EB%9E%9C-90-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-200ml/465/"
+    },
+    {
+      "id": "lookup:bonajour:466",
+      "name": "보나쥬르 멜로우 마일드 밀크 클렌저",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://www.bonajour.com/product/%EB%A9%9C%EB%A1%9C%EC%9A%B0-%EB%A7%88%EC%9D%BC%EB%93%9C-%EB%B0%80%ED%81%AC-%ED%81%B4%EB%A0%8C%EC%A0%80-200ml/466/"
+    },
+    {
+      "id": "lookup:bonajour:471",
+      "name": "보나쥬르 익스트림 시카 크림",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.bonajour.com/product/%EC%9D%B5%EC%8A%A4%ED%8A%B8%EB%A6%BC-%EC%8B%9C%EC%B9%B4-%ED%81%AC%EB%A6%BC-50ml/471/"
+    },
+    {
+      "id": "lookup:bonajour:475",
+      "name": "보나쥬르 EGF 링클 이레이저 크림",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "moisturizer",
+      "volume": "30ml",
+      "officialUrl": "https://www.bonajour.com/product/egf-%EB%A7%81%ED%81%B4-%EC%9D%B4%EB%A0%88%EC%9D%B4%EC%A0%80-%ED%81%AC%EB%A6%BC-30ml/475/"
+    },
+    {
+      "id": "lookup:bonajour:555",
+      "name": "보나쥬르 로즈스템셀 크림",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.bonajour.com/product/%EB%A1%9C%EC%A6%88%EC%8A%A4%ED%85%9C%EC%85%80-%ED%81%AC%EB%A6%BC-50ml/555/"
+    },
+    {
+      "id": "lookup:bonajour:613",
+      "name": "보나쥬르 레티치놀 파워 컨센트레이트 크림",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "moisturizer",
+      "volume": "20ml",
+      "officialUrl": "https://www.bonajour.com/product/%EB%A0%88%ED%8B%B0%EC%B9%98%EB%86%80-%ED%8C%8C%EC%9B%8C-%EC%BB%A8%EC%84%BC%ED%8A%B8%EB%A0%88%EC%9D%B4%ED%8A%B8-%ED%81%AC%EB%A6%BC-20ml/613/"
+    },
+    {
+      "id": "lookup:bonajour:626",
+      "name": "보나쥬르 레티치놀 파워 부스팅 세럼",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.bonajour.com/product/%EB%A0%88%ED%8B%B0%EC%B9%98%EB%86%80-%ED%8C%8C%EC%9B%8C-%EB%B6%80%EC%8A%A4%ED%8C%85-%EC%84%B8%EB%9F%BC-30ml/626/"
+    },
+    {
+      "id": "lookup:bonajour:645",
+      "name": "보나쥬르 진저 아쿠아 릴리프 패드",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "toner",
+      "volume": "60매",
+      "officialUrl": "https://www.bonajour.com/product/%EC%A7%84%EC%A0%80-%EC%95%84%EC%BF%A0%EC%95%84-%EB%A6%B4%EB%A6%AC%ED%94%84-%ED%8C%A8%EB%93%9C-60%EB%A7%A4/645/"
+    },
+    {
+      "id": "lookup:bonajour:648",
+      "name": "보나쥬르 얼티메이트 글로우 세럼",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.bonajour.com/product/%EC%96%BC%ED%8B%B0%EB%A9%94%EC%9D%B4%ED%8A%B8-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EC%84%B8%EB%9F%BC-30ml/648/"
+    },
+    {
+      "id": "lookup:bonajour:650",
+      "name": "보나쥬르 진저 아쿠아 릴리프 선크림",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "sunscreen",
+      "volume": "40ml",
+      "officialUrl": "https://www.bonajour.com/product/%EC%A7%84%EC%A0%80-%EC%95%84%EC%BF%A0%EC%95%84-%EB%A6%B4%EB%A6%AC%ED%94%84-%EC%84%A0%ED%81%AC%EB%A6%BC-40ml/650/"
+    },
+    {
+      "id": "lookup:bonajour:651",
+      "name": "보나쥬르 진저 아쿠아 릴리프 폼클렌저",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.bonajour.com/product/%EC%A7%84%EC%A0%80-%EC%95%84%EC%BF%A0%EC%95%84-%EB%A6%B4%EB%A6%AC%ED%94%84-%ED%8F%BC%ED%81%B4%EB%A0%8C%EC%A0%80-150ml/651/"
+    },
+    {
+      "id": "lookup:bonajour:717",
+      "name": "보나쥬르 진저 아쿠아 릴리프 세럼",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.bonajour.com/product/%EC%A7%84%EC%A0%80-%EC%95%84%EC%BF%A0%EC%95%84-%EB%A6%B4%EB%A6%AC%ED%94%84-%EC%84%B8%EB%9F%BC-50ml/717/"
+    },
+    {
+      "id": "lookup:bonajour:718",
+      "name": "보나쥬르 진저 아쿠아 릴리프 크림",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.bonajour.com/product/%EC%A7%84%EC%A0%80-%EC%95%84%EC%BF%A0%EC%95%84-%EB%A6%B4%EB%A6%AC%ED%94%84-%ED%81%AC%EB%A6%BC-50ml/718/"
+    },
+    {
+      "id": "lookup:bonajour:743",
+      "name": "보나쥬르 얼티메이트 글로우 크림",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.bonajour.com/product/%EC%96%BC%ED%8B%B0%EB%A9%94%EC%9D%B4%ED%8A%B8-%EA%B8%80%EB%A1%9C%EC%9A%B0-%ED%81%AC%EB%A6%BC-50ml/743/"
+    },
+    {
+      "id": "lookup:bonajour:768",
+      "name": "보나쥬르 PDRN 로즈스템셀 세럼",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.bonajour.com/product/pdrn-%EB%A1%9C%EC%A6%88%EC%8A%A4%ED%85%9C%EC%85%80-%EC%84%B8%EB%9F%BC-30ml/768/"
+    },
+    {
+      "id": "lookup:bonajour:846",
+      "name": "보나쥬르 그린티 PDRN 캡슐 수분 세럼",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.bonajour.com/product/%EA%B7%B8%EB%A6%B0%ED%8B%B0-pdrn-%EC%BA%A1%EC%8A%90-%EC%88%98%EB%B6%84-%EC%84%B8%EB%9F%BC-50ml/846/"
+    },
+    {
+      "id": "lookup:bonajour:853",
+      "name": "보나쥬르 그린티 PDRN 캡슐 장벽 크림",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.bonajour.com/product/%EA%B7%B8%EB%A6%B0%ED%8B%B0-pdrn-%EC%BA%A1%EC%8A%90-%EC%9E%A5%EB%B2%BD-%ED%81%AC%EB%A6%BC-50ml/853/"
+    },
+    {
+      "id": "lookup:bonajour:91",
+      "name": "보나쥬르 그린티 폼 클렌징",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.bonajour.com/product/%EA%B7%B8%EB%A6%B0%ED%8B%B0-%ED%8F%BC-%ED%81%B4%EB%A0%8C%EC%A7%95-150ml/91/"
+    },
+    {
+      "id": "lookup:bonajour:94",
+      "name": "보나쥬르 제주밀크 포밍 클렌저",
+      "brand": "보나쥬르",
+      "brandAlias": "BONAJOUR",
+      "category": "cleanser",
+      "volume": "160ml",
+      "officialUrl": "https://www.bonajour.com/product/%EC%A0%9C%EC%A3%BC%EB%B0%80%ED%81%AC-%ED%8F%AC%EB%B0%8D-%ED%81%B4%EB%A0%8C%EC%A0%80-160ml/94/"
     },
     {
       "id": "lookup:celimax:19",

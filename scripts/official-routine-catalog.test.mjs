@@ -114,3 +114,11 @@ test("NEEDLY excludes pad accessories and categorizes moisture sun and essence l
   assert.deepEqual(extractOfficialListings(html, "needly", stores.needly).map(p => [p.category, p.volume]),
     [["sunscreen", "50ml"], ["moisturizer", "145ml"]]);
 });
+
+test("Bonajour parses the official product title and ignores marketing image labels", () => {
+  const html = '<a href="/product/크림/24/"><img alt="보나쥬르 수분크림,그린티크림"></a>' +
+    '<strong class="name"><a href="/product/크림/24/"><span>[속건조 수분크림] 비건 그린티 워터크림 100ml</span></a></strong>' +
+    '<strong class="name"><a href="/product/크림/25/">쑥 크림 카밍 팩 55g</a></strong>';
+  assert.deepEqual(extractOfficialListings(html, "bonajour", stores.bonajour).map(p => [p.id, p.name, p.volume]),
+    [["lookup:bonajour:24", "보나쥬르 비건 그린티 워터크림", "100ml"]]);
+});

@@ -9,6 +9,8 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  bonajour: { brand: "보나쥬르", alias: "BONAJOUR", domain: "www.bonajour.com", type: "cafe",
+    paths: [1, 2, 3, 4, 5].map(page => [`list${page}`, `/product/list.html?cate_no=331&page=${page}`]) },
   needly: cafe("니들리", "NEEDLY", "needly.co.kr", [1, 2].map(page => [`list${page}`, `/product/list.html?cate_no=55&page=${page}`])),
   wellage: cafe("웰라쥬", "WELLAGE", "www.wellage.co.kr", [["list1", "/product/list.html?cate_no=427&page=1"]]),
   vt: cafe("브이티", "VT Cosmetics", "www.vt-cosmetics.com", [72, 119, 218, 326].map(category => [`list${category}`, `/product/list.html?cate_no=${category}`])),
@@ -91,6 +93,10 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (storeKey === "bonajour") {
+    if (name.includes("+") || /크림\s*카밍\s*팩/u.test(name)) return null;
+    name = name.replace(/^\[속건조 수분크림\]\s*/u, "");
+  }
   if (storeKey === "needly" && /패드\s*케이스|코튼\s*패드/u.test(name)) return null;
   if (storeKey === "vt" && /신규회원|군인할인|최저가|샤워\s*필터|[x×]\s*\d+\s*개/iu.test(name)) return null;
   if (storeKey === "vt") name = name.replace(/^(?:약국 입점|(?:우찬|올데이 프로젝트) pick)\s+/iu, "");
@@ -187,7 +193,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const volume = descendants.find(child => attr(child, "rel") === "용량");
       if (title) rawName = [textOf(title), textOf(volume)].join(" ").trim();
     }
-    if (storeKey === "jmsolution" || storeKey === "jumiso") {
+    if (storeKey === "bonajour" || storeKey === "jmsolution" || storeKey === "jumiso") {
       if (!/(?:^|\s)name(?:\s|$)/.test(attr(node.parentNode, "class") ?? "")) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "").replace(/^JMsolution\s+(?=제이엠솔루션)/iu, "");
     }
