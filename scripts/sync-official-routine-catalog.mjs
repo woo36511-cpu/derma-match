@@ -9,6 +9,8 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  aromatica: cafe("아로마티카", "AROMATICA", "www.aromatica.co.kr", [["skin", "/category/%EC%8A%A4%ED%82%A8/858/"]]),
+  tiam: cafe("티암", "TIA'M", "tiam.co.kr", [["shop", "/category/shop/24/"]]),
   skinrxlab: cafe("스킨알엑스랩", "SKINRx LAB", "skinrxlab.com", [["list", "/product/list.html?cate_no=23"]]),
   tocobo: cafe("토코보", "TOCOBO", "tocobo.co.kr", [24, 43, 61, 64].map(cate => [`list${cate}`, `/product/list.html?cate_no=${cate}`])),
   beautyofjoseon: cafe("조선미녀", "Beauty of Joseon", "beautyofjoseon.co.kr",
@@ -149,13 +151,20 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
     if (store.type === "cafe") {
       const m = url.pathname.match(/^\/product\/([^/]+)\/(\d+)(?:\/|$)/);
-      if (!m) continue;
-      id = m[2];
-      let slug;
-      try { slug = decodeURIComponent(m[1]).replace(/-/g, " "); } catch { continue; }
-      // Product links can contain image alt text like “thumb.” The official slug still carries the readable listing name.
-      if (!/[가-힣]/.test(rawName) || rawName.length > 110 || /제품 이미지|제품 사진|사용감|돕는|상세 이미지/.test(rawName)) rawName = slug;
-      sourceUrl = `https://${store.domain}/product/${m[1]}/${id}/`;
+      if (!m) {
+        const numericId = url.searchParams.get("product_no");
+        if (sitemap || url.pathname !== "/product/detail.html" || !/^\d{1,12}$/.test(numericId ?? "") ||
+          !rawName || !/[가-힣]/.test(rawName)) continue;
+        id = numericId;
+        sourceUrl = `https://${store.domain}/product/detail.html?product_no=${id}`;
+      } else {
+        id = m[2];
+        let slug;
+        try { slug = decodeURIComponent(m[1]).replace(/-/g, " "); } catch { continue; }
+        // Product links can contain image alt text like “thumb.” The official slug still carries the readable listing name.
+        if (!/[가-힣]/.test(rawName) || rawName.length > 110 || /제품 이미지|제품 사진|사용감|돕는|상세 이미지/.test(rawName)) rawName = slug;
+        sourceUrl = `https://${store.domain}/product/${m[1]}/${id}/`;
+      }
     } else {
       const [path, key] = store.type === "godo" ? ["/goods/goods_view.php", "goodsNo"] : ["/shop/shopdetail.html", "branduid"];
       if (url.pathname !== path || !/^\d{1,12}$/.test(url.searchParams.get(key) ?? "")) continue;
