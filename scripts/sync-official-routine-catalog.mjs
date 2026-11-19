@@ -9,6 +9,11 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  jmsolution: { brand: "제이엠솔루션", alias: "JMsolution", domain: "jmsolution.com", type: "cafe",
+    paths: [1, 2, 3, 4].map(page => [`list${page}`, `/product/list.html?cate_no=649&page=${page}`]) },
+  dalba: { brand: "달바", alias: "d'Alba", domain: "www.dalba.co.kr", type: "godo",
+    paths: ["001010", "001021", "001002", "001003", "001005", "001006"]
+      .map(category => [category, `/goods/goods_list.php?cateCd=${category}&pageNum=60`]) },
   aromatica: cafe("아로마티카", "AROMATICA", "www.aromatica.co.kr", [["skin", "/category/%EC%8A%A4%ED%82%A8/858/"]]),
   tiam: cafe("티암", "TIA'M", "tiam.co.kr", [["shop", "/category/shop/24/"]]),
   skinrxlab: cafe("스킨알엑스랩", "SKINRx LAB", "skinrxlab.com", [["list", "/product/list.html?cate_no=23"]]),
@@ -50,7 +55,7 @@ export const stores = {
     [1, 2, 3].map(page => [`list${page}`, `/product/list.html?cate_no=166&page=${page}`])),
 };
 
-const skip = /세트|증정|기획|사은품|\d\s*개\s*묶음|(?:묶음|샘플|리필|공병|랜덤|체험용|테스터|키트|미니어처|미니어쳐)|\d\s*종|\d\s*[+×]\s*\d|^(?:11|12|21|22)(?=[^\d])|(?:\dml\s*\+)|바디|헤어|샴푸|여성청결|탑투토|탑 투 토|립\s*(?:밤|마스크|글로스|오일|에센스|세럼)|아이\s*(?:크림|패치|세럼)|팔레트|쿠션팩트|메이크업베이스|파운데이션|브러시|사용권|교환권|탈취제|트리트먼트|치약|향수|연고|비밀|특가|공구|공동구매|vip샵|비매품|환불무료|환불 무료|(?:사용|유통)\s*기한|선착순|구매전용|이벤트|쿠폰|얼리버드|온리딜|프로모션|아울렛|클리어런스|판매종료|판매 종료/iu;
+const skip = /세트|증정|기획|사은품|\d\s*개\s*묶음|(?:묶음|샘플|리필|공병|랜덤|체험용|테스터|키트|미니어처|미니어쳐)|\d\s*종|\d\s*[+×]\s*\d|^(?:11|12|21|22)(?=[^\d])|(?:\dml\s*\+)|바디|헤어|샴푸|여성청결|탑투토|탑 투 토|립\s*(?:밤|마스크|글로스|오일|에센스|세럼)|아이\s*(?:크림|패치|세럼)|팔레트|쿠션팩트|커버\s*(?:팩트|(?:슬림\s*)?쿠션)|핸드\s*크림|메이크업베이스|파운데이션|브러시|사용권|교환권|탈취제|트리트먼트|치약|향수|연고|비밀|특가|공구|공동구매|vip샵|비매품|환불무료|환불 무료|(?:사용|유통)\s*기한|선착순|구매전용|이벤트|쿠폰|얼리버드|온리딜|블프|블랙프라이데이|프로모션|아울렛|클리어런스|판매종료|판매 종료/iu;
 const volumePattern = /(\d+(?:\.\d+)?)\s*(ml|g|매입|매)(?=$|[^a-zA-Z0-9])/giu;
 const normalize = value => String(value ?? "").normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
 const entryKey = (product, ignoreVolume = false) => {
@@ -60,10 +65,11 @@ const entryKey = (product, ignoreVolume = false) => {
 const hostKey = h => h.replace(/^(?:m|www)\./i, "");
 
 function classify(name) {
-  if (/선크림|선 크림|썬크림|썬 크림|선스크린|썬스크린|선세럼|선 세럼|선스틱|선 스틱|선쿠션|선 쿠션|선플루이드|선로션|선젤|선 젤|선밤|유브이|spf\s*\d/i.test(name)) return "sunscreen";
+  if (/선크림|선 크림|썬크림|썬 크림|선스크린|썬스크린|선세럼|선 세럼|선스틱|선 스틱|선쿠션|선 쿠션|선플루이드|선로션|선젤|선 젤|선밤|선\s*미스트|유브이|spf\s*\d/i.test(name)) return "sunscreen";
   if (/클렌|클랜|세안|페이셜워시|페이셜 워시|앰플 폼|약산성 폼|필링젤|필링 젤|필링패드|필링 패드/u.test(name)) return "cleanser";
   if (/수면팩|마스크|모델링팩|모델링 팩|세럼팩|세럼 팩|(?:수분|진정)팩/u.test(name)) return null;
   if (/토너|패드|미스트|스킨토너|스킨$/u.test(name)) return "toner";
+  if (/세럼\s+로션|올인원\s+멀티밤/u.test(name)) return "moisturizer";
   if (/세럼|앰플|에센스|세럼오일/u.test(name)) return "serum";
   if (/크림|로션|모이스[처쳐]|에멀전|수딩젤|수딩 젤|젤크림|수딩겔/u.test(name)) return "moisturizer";
   return null;
@@ -151,6 +157,10 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
     const image = imageUrl(attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
+    if (storeKey === "jmsolution") {
+      if (!/(?:^|\s)name(?:\s|$)/.test(attr(node.parentNode, "class") ?? "")) continue;
+      rawName = textOf(node).replace(/^상품명\s*:\s*/u, "").replace(/^JMsolution\s+(?=제이엠솔루션)/iu, "");
+    }
     if (store.type === "cafe") {
       const m = url.pathname.match(/^\/product\/([^/]+)\/(\d+)(?:\/|$)/);
       if (!m) {
