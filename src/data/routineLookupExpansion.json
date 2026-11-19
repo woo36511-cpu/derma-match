@@ -12070,6 +12070,501 @@
       "category": "toner",
       "volume": "80매",
       "officialUrl": "https://torriden.com/goods/goods_view.php?goodsNo=92"
+    },
+    {
+      "id": "lookup:vt:1000",
+      "name": "브이티 리들샷 리프팅 세럼",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EB%A6%AC%EB%93%A4%EC%83%B7-%EB%A6%AC%ED%94%84%ED%8C%85-%EC%84%B8%EB%9F%BC/1000/"
+    },
+    {
+      "id": "lookup:vt:1013",
+      "name": "브이티 리들샷 리프팅 크림",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EB%A6%AC%EB%93%A4%EC%83%B7-%EB%A6%AC%ED%94%84%ED%8C%85-%ED%81%AC%EB%A6%BC/1013/"
+    },
+    {
+      "id": "lookup:vt:1031",
+      "name": "브이티 리들샷 1000",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EB%A6%AC%EB%93%A4%EC%83%B7-1000/1031/"
+    },
+    {
+      "id": "lookup:vt:1041",
+      "name": "브이티 리들샷 시너지 스파클링 토너 패드",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "toner",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EB%A6%AC%EB%93%A4%EC%83%B7-%EC%8B%9C%EB%84%88%EC%A7%80-%EC%8A%A4%ED%8C%8C%ED%81%B4%EB%A7%81-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C/1041/"
+    },
+    {
+      "id": "lookup:vt:111",
+      "name": "브이티 시카 마일드 토너 패드",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "toner",
+      "volume": "60매",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%8B%9C%EC%B9%B4-%EB%A7%88%EC%9D%BC%EB%93%9C-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C-60%EB%A7%A4%EC%9E%85/111/"
+    },
+    {
+      "id": "lookup:vt:1181",
+      "name": "브이티 리들샷 시너지 스파클링 토너",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "toner",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EB%A6%AC%EB%93%A4%EC%83%B7-%EC%8B%9C%EB%84%88%EC%A7%80-%EC%8A%A4%ED%8C%8C%ED%81%B4%EB%A7%81-%ED%86%A0%EB%84%88/1181/"
+    },
+    {
+      "id": "lookup:vt:1282",
+      "name": "브이티 피디알엔 리들샷 크림",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EB%A6%AC%EB%93%A4%EC%83%B7-%ED%81%AC%EB%A6%BC/1282/"
+    },
+    {
+      "id": "lookup:vt:1313",
+      "name": "브이티 피디알엔 에센스 글로우 선 팩트",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EC%97%90%EC%84%BC%EC%8A%A4-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EC%84%A0-%ED%8C%A9%ED%8A%B8/1313/"
+    },
+    {
+      "id": "lookup:vt:1413",
+      "name": "브이티 티엑스토닝 에센스 1000샷",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%8B%B0%EC%97%91%EC%8A%A4%ED%86%A0%EB%8B%9D-%EC%97%90%EC%84%BC%EC%8A%A4-1000%EC%83%B7/1413/"
+    },
+    {
+      "id": "lookup:vt:1414",
+      "name": "브이티 티엑스토닝 에센스 2000샷",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%8B%B0%EC%97%91%EC%8A%A4%ED%86%A0%EB%8B%9D-%EC%97%90%EC%84%BC%EC%8A%A4-2000%EC%83%B7/1414/"
+    },
+    {
+      "id": "lookup:vt:1415",
+      "name": "브이티 티엑스토닝 토너",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "toner",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%8B%B0%EC%97%91%EC%8A%A4%ED%86%A0%EB%8B%9D-%ED%86%A0%EB%84%88/1415/"
+    },
+    {
+      "id": "lookup:vt:1418",
+      "name": "브이티 티엑스토닝 크림",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%8B%B0%EC%97%91%EC%8A%A4%ED%86%A0%EB%8B%9D-%ED%81%AC%EB%A6%BC/1418/"
+    },
+    {
+      "id": "lookup:vt:1517",
+      "name": "브이티 시카 크림 플러스",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%8B%9C%EC%B9%B4-%ED%81%AC%EB%A6%BC-%ED%94%8C%EB%9F%AC%EC%8A%A4-100ml/1517/"
+    },
+    {
+      "id": "lookup:vt:1540",
+      "name": "브이티 시카 크림 플러스",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "volume": "30ml",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%8B%9C%EC%B9%B4-%ED%81%AC%EB%A6%BC-%ED%94%8C%EB%9F%AC%EC%8A%A4-30ml/1540/"
+    },
+    {
+      "id": "lookup:vt:1630",
+      "name": "브이티 피디알엔 에센스 rx",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%95%BD%EA%B5%AD-%EC%9E%85%EC%A0%90-%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EC%97%90%EC%84%BC%EC%8A%A4-rx/1630/"
+    },
+    {
+      "id": "lookup:vt:1631",
+      "name": "브이티 피디알엔 크림 rx",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%95%BD%EA%B5%AD-%EC%9E%85%EC%A0%90-%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%ED%81%AC%EB%A6%BC-rx/1631/"
+    },
+    {
+      "id": "lookup:vt:1653",
+      "name": "브이티 글루카뮨 에센스",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EA%B8%80%EB%A3%A8%EC%B9%B4%EB%AE%A8-%EC%97%90%EC%84%BC%EC%8A%A4/1653/"
+    },
+    {
+      "id": "lookup:vt:1655",
+      "name": "브이티 피디알엔 에센스 스틱 밤",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EC%97%90%EC%84%BC%EC%8A%A4-%EC%8A%A4%ED%8B%B1-%EB%B0%A4/1655/"
+    },
+    {
+      "id": "lookup:vt:1656",
+      "name": "브이티 피디알엔 글로우 앰플",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%9A%B0%EC%B0%AC-pick-%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EC%95%B0%ED%94%8C/1656/"
+    },
+    {
+      "id": "lookup:vt:1668",
+      "name": "브이티 r5 pdrn 퍼밍 앰플",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/r5-pdrn-%ED%8D%BC%EB%B0%8D-%EC%95%B0%ED%94%8C/1668/"
+    },
+    {
+      "id": "lookup:vt:1669",
+      "name": "브이티 s4 스쿠알란 모이스처 앰플",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/s4-%EC%8A%A4%EC%BF%A0%EC%95%8C%EB%9E%80-%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B2%98-%EC%95%B0%ED%94%8C/1669/"
+    },
+    {
+      "id": "lookup:vt:1684",
+      "name": "브이티 글루카뮨 토너",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "toner",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EA%B8%80%EB%A3%A8%EC%B9%B4%EB%AE%A8-%ED%86%A0%EB%84%88/1684/"
+    },
+    {
+      "id": "lookup:vt:1688",
+      "name": "브이티 피디알엔 리들샷 에센스",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EB%A6%AC%EB%93%A4%EC%83%B7-%EC%97%90%EC%84%BC%EC%8A%A4/1688/"
+    },
+    {
+      "id": "lookup:vt:1690",
+      "name": "브이티 피디알엔 리들샷 미스트",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "toner",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EB%A6%AC%EB%93%A4%EC%83%B7-%EB%AF%B8%EC%8A%A4%ED%8A%B8/1690/"
+    },
+    {
+      "id": "lookup:vt:1741",
+      "name": "브이티 리들샷 시너지 리페어 크림 ex 플러스",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EB%A6%AC%EB%93%A4%EC%83%B7-%EC%8B%9C%EB%84%88%EC%A7%80-%EB%A6%AC%ED%8E%98%EC%96%B4-%ED%81%AC%EB%A6%BC-ex-%ED%94%8C%EB%9F%AC%EC%8A%A4/1741/"
+    },
+    {
+      "id": "lookup:vt:1763",
+      "name": "브이티 에어리 선크림",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "sunscreen",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%97%90%EC%96%B4%EB%A6%AC-%EC%84%A0%ED%81%AC%EB%A6%BC/1763/"
+    },
+    {
+      "id": "lookup:vt:1797",
+      "name": "브이티 갈릭 ac 리들샷 스팟 크림",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EA%B0%88%EB%A6%AD-ac-%EB%A6%AC%EB%93%A4%EC%83%B7-%EC%8A%A4%ED%8C%9F-%ED%81%AC%EB%A6%BC/1797/"
+    },
+    {
+      "id": "lookup:vt:1814",
+      "name": "브이티 갈릭 ac 리들샷 젤 크림",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EA%B0%88%EB%A6%AD-ac-%EB%A6%AC%EB%93%A4%EC%83%B7-%EC%A0%A4-%ED%81%AC%EB%A6%BC/1814/"
+    },
+    {
+      "id": "lookup:vt:1823",
+      "name": "브이티 g2 글루타치온 브라이트닝 앰플",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/g2-%EA%B8%80%EB%A3%A8%ED%83%80%EC%B9%98%EC%98%A8-%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%8B%9D-%EC%95%B0%ED%94%8C/1823/"
+    },
+    {
+      "id": "lookup:vt:1827",
+      "name": "브이티 피디알엔 리들샷 골드 에센스",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EB%A6%AC%EB%93%A4%EC%83%B7-%EA%B3%A8%EB%93%9C-%EC%97%90%EC%84%BC%EC%8A%A4/1827/"
+    },
+    {
+      "id": "lookup:vt:1828",
+      "name": "브이티 피디알엔 리들샷 골드 크림",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EB%A6%AC%EB%93%A4%EC%83%B7-%EA%B3%A8%EB%93%9C-%ED%81%AC%EB%A6%BC/1828/"
+    },
+    {
+      "id": "lookup:vt:1831",
+      "name": "브이티 시카 마스크 클렌저",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "cleanser",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%8B%9C%EC%B9%B4-%EB%A7%88%EC%8A%A4%ED%81%AC-%ED%81%B4%EB%A0%8C%EC%A0%80/1831/"
+    },
+    {
+      "id": "lookup:vt:1841",
+      "name": "브이티 h3 히알루론산 하이드로 앰플",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/h3-%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%ED%95%98%EC%9D%B4%EB%93%9C%EB%A1%9C-%EC%95%B0%ED%94%8C/1841/"
+    },
+    {
+      "id": "lookup:vt:1954",
+      "name": "브이티 피디알엔 그라인딩 클렌징 밤",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "cleanser",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EA%B7%B8%EB%9D%BC%EC%9D%B8%EB%94%A9-%ED%81%B4%EB%A0%8C%EC%A7%95-%EB%B0%A4/1954/"
+    },
+    {
+      "id": "lookup:vt:1958",
+      "name": "브이티 피디알엔 히알루론산 민트 마이크로 버블 세럼",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%EB%AF%BC%ED%8A%B8-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C-%EB%B2%84%EB%B8%94-%EC%84%B8%EB%9F%BC/1958/"
+    },
+    {
+      "id": "lookup:vt:1961",
+      "name": "브이티 레티놀 콜라겐 핑크 마이크로 버블 세럼",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EB%A0%88%ED%8B%B0%EB%86%80-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%95%91%ED%81%AC-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C-%EB%B2%84%EB%B8%94-%EC%84%B8%EB%9F%BC/1961/"
+    },
+    {
+      "id": "lookup:vt:1962",
+      "name": "브이티 나이아신아마이드 글루타치온 옐로우 마이크로 버블 세럼",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-%EA%B8%80%EB%A3%A8%ED%83%80%EC%B9%98%EC%98%A8-%EC%98%90%EB%A1%9C%EC%9A%B0-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C-%EB%B2%84%EB%B8%94-%EC%84%B8%EB%9F%BC/1962/"
+    },
+    {
+      "id": "lookup:vt:1971",
+      "name": "브이티 리들샷 비타 라이트 크림",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EB%A6%AC%EB%93%A4%EC%83%B7-%EB%B9%84%ED%83%80-%EB%9D%BC%EC%9D%B4%ED%8A%B8-%ED%81%AC%EB%A6%BC/1971/"
+    },
+    {
+      "id": "lookup:vt:1993",
+      "name": "브이티 피디알엔 텐션 토너 패드",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "toner",
+      "volume": "60매",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%ED%85%90%EC%85%98-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C-60%EB%A7%A4/1993/"
+    },
+    {
+      "id": "lookup:vt:2018",
+      "name": "브이티 비타 라이트 리들샷 크림 50el",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EB%B9%84%ED%83%80-%EB%9D%BC%EC%9D%B4%ED%8A%B8-%EB%A6%AC%EB%93%A4%EC%83%B7-%ED%81%AC%EB%A6%BC-50el/2018/"
+    },
+    {
+      "id": "lookup:vt:2019",
+      "name": "브이티 프로 시카 리들샷 크림 50el",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%94%84%EB%A1%9C-%EC%8B%9C%EC%B9%B4-%EB%A6%AC%EB%93%A4%EC%83%B7-%ED%81%AC%EB%A6%BC-50el/2019/"
+    },
+    {
+      "id": "lookup:vt:2020",
+      "name": "브이티 하이드롭 리들샷 크림 50el",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%95%98%EC%9D%B4%EB%93%9C%EB%A1%AD-%EB%A6%AC%EB%93%A4%EC%83%B7-%ED%81%AC%EB%A6%BC-50el/2020/"
+    },
+    {
+      "id": "lookup:vt:2108",
+      "name": "브이티 바쿠치올 리들샷 크림",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EB%B0%94%EC%BF%A0%EC%B9%98%EC%98%AC-%EB%A6%AC%EB%93%A4%EC%83%B7-%ED%81%AC%EB%A6%BC/2108/"
+    },
+    {
+      "id": "lookup:vt:2274",
+      "name": "브이티 글루타치온 톤온 세럼",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EA%B8%80%EB%A3%A8%ED%83%80%EC%B9%98%EC%98%A8-%ED%86%A4%EC%98%A8-%EC%84%B8%EB%9F%BC/2274/"
+    },
+    {
+      "id": "lookup:vt:2277",
+      "name": "브이티 글루타치온 글로우 클렌징 오일",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "cleanser",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EA%B8%80%EB%A3%A8%ED%83%80%EC%B9%98%EC%98%A8-%EA%B8%80%EB%A1%9C%EC%9A%B0-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC/2277/"
+    },
+    {
+      "id": "lookup:vt:2289",
+      "name": "브이티 말차 시카 레이어 세럼",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EB%A7%90%EC%B0%A8-%EC%8B%9C%EC%B9%B4-%EB%A0%88%EC%9D%B4%EC%96%B4-%EC%84%B8%EB%9F%BC/2289/"
+    },
+    {
+      "id": "lookup:vt:2312",
+      "name": "브이티 피디알엔 베리어 클렌저",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "cleanser",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EB%B2%A0%EB%A6%AC%EC%96%B4-%ED%81%B4%EB%A0%8C%EC%A0%80/2312/"
+    },
+    {
+      "id": "lookup:vt:2313",
+      "name": "브이티 라이스 세라마이드 캡슐 크림",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EB%9D%BC%EC%9D%B4%EC%8A%A4-%EC%84%B8%EB%9D%BC%EB%A7%88%EC%9D%B4%EB%93%9C-%EC%BA%A1%EC%8A%90-%ED%81%AC%EB%A6%BC/2313/"
+    },
+    {
+      "id": "lookup:vt:2347",
+      "name": "브이티 세라마이드 아쿠아 클렌징 오일",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "cleanser",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%84%B8%EB%9D%BC%EB%A7%88%EC%9D%B4%EB%93%9C-%EC%95%84%EC%BF%A0%EC%95%84-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC/2347/"
+    },
+    {
+      "id": "lookup:vt:2387",
+      "name": "브이티 피디알엔 에어 클라우드 선스크린",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "sunscreen",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%98%AC%EB%8D%B0%EC%9D%B4-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-pick-%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EC%97%90%EC%96%B4-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%84%A0%EC%8A%A4%ED%81%AC%EB%A6%B0/2387/"
+    },
+    {
+      "id": "lookup:vt:2441",
+      "name": "브이티 에어 클라우드 밸런스 레이어 선스틱",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "sunscreen",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%98%AC%EB%8D%B0%EC%9D%B4-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-pick-%EC%97%90%EC%96%B4-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EB%B0%B8%EB%9F%B0%EC%8A%A4-%EB%A0%88%EC%9D%B4%EC%96%B4-%EC%84%A0%EC%8A%A4%ED%8B%B1/2441/"
+    },
+    {
+      "id": "lookup:vt:2445",
+      "name": "브이티 스킨 베리어 시너지 크림 ex 플러스",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%8A%A4%ED%82%A8-%EB%B2%A0%EB%A6%AC%EC%96%B4-%EC%8B%9C%EB%84%88%EC%A7%80-%ED%81%AC%EB%A6%BC-ex-%ED%94%8C%EB%9F%AC%EC%8A%A4/2445/"
+    },
+    {
+      "id": "lookup:vt:2446",
+      "name": "브이티 에어 클라우드 워터 파우더 선 쿠션 01 블루",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "sunscreen",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%97%90%EC%96%B4-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EC%9B%8C%ED%84%B0-%ED%8C%8C%EC%9A%B0%EB%8D%94-%EC%84%A0-%EC%BF%A0%EC%85%98-01-%EB%B8%94%EB%A3%A8/2446/"
+    },
+    {
+      "id": "lookup:vt:27",
+      "name": "브이티 에센스 선 팩트",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%97%90%EC%84%BC%EC%8A%A4-%EC%84%A0-%ED%8C%A9%ED%8A%B8/27/"
+    },
+    {
+      "id": "lookup:vt:42",
+      "name": "브이티 시카 크림",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%8B%9C%EC%B9%B4-%ED%81%AC%EB%A6%BC-50ml/42/"
+    },
+    {
+      "id": "lookup:vt:56",
+      "name": "브이티 시카 마일드 클렌징 티슈",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "cleanser",
+      "volume": "50매",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%8B%9C%EC%B9%B4-%EB%A7%88%EC%9D%BC%EB%93%9C-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8B%B0%EC%8A%88-50%EB%A7%A4%EC%9E%85/56/"
+    },
+    {
+      "id": "lookup:vt:65",
+      "name": "브이티 시카 마일드 폼 클렌저",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "cleanser",
+      "volume": "300ml",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%8B%9C%EC%B9%B4-%EB%A7%88%EC%9D%BC%EB%93%9C-%ED%8F%BC-%ED%81%B4%EB%A0%8C%EC%A0%80-300ml/65/"
+    },
+    {
+      "id": "lookup:vt:650",
+      "name": "브이티 시카 콜라겐 크림",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "moisturizer",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%8B%9C%EC%B9%B4-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%81%AC%EB%A6%BC/650/"
+    },
+    {
+      "id": "lookup:vt:652",
+      "name": "브이티 시카 콜라겐 에센스",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EC%8B%9C%EC%B9%B4-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EC%97%90%EC%84%BC%EC%8A%A4/652/"
+    },
+    {
+      "id": "lookup:vt:770",
+      "name": "브이티 리들샷 300",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EB%A6%AC%EB%93%A4%EC%83%B7-300/770/"
+    },
+    {
+      "id": "lookup:vt:771",
+      "name": "브이티 리들샷 700",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "serum",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EB%A6%AC%EB%93%A4%EC%83%B7-700/771/"
     }
   ]
 }

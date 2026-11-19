@@ -9,6 +9,7 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  vt: cafe("브이티", "VT Cosmetics", "www.vt-cosmetics.com", [72, 119, 218, 326].map(category => [`list${category}`, `/product/list.html?cate_no=${category}`])),
   primera: cafe("프리메라", "primera", "prmrbeauty.com", [1, 2, 3].map(page => [`list${page}`, `/product/list.html?cate_no=42&page=${page}`])),
   jumiso: { brand: "주미소", alias: "JUMISO", domain: "jumiso.co.kr", type: "cafe",
     paths: [["home", "/"], ["list", "/product/list.html?cate_no=24"], ["list2", "/product/list.html?cate_no=24&page=2"]] },
@@ -88,6 +89,8 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (storeKey === "vt" && /신규회원|군인할인|최저가|샤워\s*필터|[x×]\s*\d+\s*개/iu.test(name)) return null;
+  if (storeKey === "vt") name = name.replace(/^(?:약국 입점|(?:우찬|올데이 프로젝트) pick)\s+/iu, "");
   if (storeKey === "primera" && /크림\s*쿠션|모이스처 스무딩 케어/u.test(name)) return null;
   if (storeKey === "medipeel" &&
     /해외\s*전용|클렌징\s*해면|풋\s*크림|제품\s*이미지|\d\s*(?:ml|g)\s+11$/iu.test(name)) return null;
@@ -101,7 +104,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   const volume = volumes[0];
   name = name.replaceAll(volumePattern, " ").replace(/[ ]{2,}/g, " ").replace(/\(\s*\)|^\s*[:–-]\s*|\s*[:–-]\s*$/g, "").trim();
   if (name.length < 4 || !/[가-힣]/.test(name)) return null;
-  const category = classify(name);
+  const category = storeKey === "vt" && /^리들샷\s+(?:50|100|300|700|1000)$/u.test(name) ? "serum" : classify(name);
   if (!category) return null;
   if (!normalize(name).startsWith(normalize(store.brand))) name = `${store.brand} ${name}`;
   return { id: `lookup:${storeKey}:${id}`, name, brand: store.brand, brandAlias: store.alias, category,
@@ -172,6 +175,10 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
     const image = imageUrl(attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
+    if (storeKey === "vt" && !sitemap) {
+      if (!/(?:^|\s)name(?:\s|$)/.test(attr(node, "class") ?? "")) continue;
+      rawName = textOf(node);
+    }
     if (storeKey === "primera" && !sitemap) {
       const title = descendants.find(child => /(?:^|\s)title(?:\s|$)/.test(attr(child, "class") ?? ""));
       const volume = descendants.find(child => attr(child, "rel") === "용량");
@@ -194,7 +201,8 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
         let slug;
         try { slug = decodeURIComponent(m[1]).replace(/-/g, " "); } catch { continue; }
         // Product links can contain image alt text like “thumb.” The official slug still carries the readable listing name.
-        if (!/[가-힣]/.test(rawName) || rawName.length > 110 || /제품 이미지|제품 사진|사용감|돕는|상세 이미지/.test(rawName)) rawName = slug;
+        if (storeKey === "vt" && sitemap && /레티\s*에이|레티날/u.test(slug)) continue;
+      if (!/[가-힣]/.test(rawName) || rawName.length > 110 || /제품 이미지|제품 사진|사용감|돕는|상세 이미지/.test(rawName)) rawName = slug;
         sourceUrl = `https://${store.domain}/product/${m[1]}/${id}/`;
       }
     } else {
