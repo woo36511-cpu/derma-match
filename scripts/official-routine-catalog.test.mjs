@@ -209,3 +209,9 @@ test("Sidmool distinguishes ampoule soaps and creams from serums", () => {
     card(2, "카렌듈라 앰플 수분크림 80ml"), "sidmool", stores.sidmool).map(p => p.category),
     ["cleanser", "moisturizer"]);
 });
+
+test("Kaine uses a standalone volume in the product summary", () => {
+  const card = '<a href="/product/로즈마리-젤-클렌저/15/"><strong class="name">상품명 : 로즈마리 젤 클렌저</strong><ul><li>상품요약정보 : 150ml</li></ul></a>';
+  assert.deepEqual(extractOfficialListings(card, "kaine", stores.kaine).map(p => [p.name, p.volume]),
+    [["카이네 로즈마리 젤 클렌저", "150ml"]]);
+});

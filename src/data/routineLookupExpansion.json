@@ -63,6 +63,12 @@
       "usefulPages": 4,
       "fetchedListings": 38
     },
+    "bonamedusa": {
+      "name": "보나메두사",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 4,
+      "fetchedListings": 11
+    },
     "celimax": {
       "name": "셀리맥스",
       "checkedAt": "2026-11-15",
@@ -122,6 +128,12 @@
       "checkedAt": "2026-11-15",
       "usefulPages": 2,
       "fetchedListings": 24
+    },
+    "kaine": {
+      "name": "카이네",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 2,
+      "fetchedListings": 16
     },
     "lagom": {
       "name": "라곰",
@@ -236,6 +248,12 @@
       "checkedAt": "2026-11-15",
       "usefulPages": 4,
       "fetchedListings": 42
+    },
+    "urang": {
+      "name": "유랑",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 3,
+      "fetchedListings": 14
     }
   },
   "products": [
@@ -2723,6 +2741,94 @@
       "category": "cleanser",
       "volume": "160ml",
       "officialUrl": "https://www.bonajour.com/product/%EC%A0%9C%EC%A3%BC%EB%B0%80%ED%81%AC-%ED%8F%AC%EB%B0%8D-%ED%81%B4%EB%A0%8C%EC%A0%80-160ml/94/"
+    },
+    {
+      "id": "lookup:bonamedusa:110",
+      "name": "보나메두사 오리엔탈 병풀세럼",
+      "brand": "보나메두사",
+      "brandAlias": "BONA MEDUSA",
+      "category": "serum",
+      "officialUrl": "https://www.bonamedusa.com/product/%EC%98%A4%EB%A6%AC%EC%97%94%ED%83%88-%EB%B3%91%ED%92%80%EC%84%B8%EB%9F%BC/110/"
+    },
+    {
+      "id": "lookup:bonamedusa:123",
+      "name": "보나메두사 알피 스노우 크림 SPF42 PA++",
+      "brand": "보나메두사",
+      "brandAlias": "BONA MEDUSA",
+      "category": "sunscreen",
+      "officialUrl": "https://www.bonamedusa.com/product/%EC%95%8C%ED%94%BC-%EC%8A%A4%EB%85%B8%EC%9A%B0-%ED%81%AC%EB%A6%BC-spf42-pa/123/"
+    },
+    {
+      "id": "lookup:bonamedusa:13",
+      "name": "보나메두사 오리엔탈 필링스킨",
+      "brand": "보나메두사",
+      "brandAlias": "BONA MEDUSA",
+      "category": "toner",
+      "officialUrl": "https://www.bonamedusa.com/product/%EC%98%A4%EB%A6%AC%EC%97%94%ED%83%88-%ED%95%84%EB%A7%81%EC%8A%A4%ED%82%A8/13/"
+    },
+    {
+      "id": "lookup:bonamedusa:313",
+      "name": "보나메두사 벌스데이 퓨어 밀크 로션",
+      "brand": "보나메두사",
+      "brandAlias": "BONA MEDUSA",
+      "category": "moisturizer",
+      "officialUrl": "https://www.bonamedusa.com/product/%EB%B2%8C%EC%8A%A4%EB%8D%B0%EC%9D%B4-%ED%93%A8%EC%96%B4-%EB%B0%80%ED%81%AC-%EB%A1%9C%EC%85%98/313/"
+    },
+    {
+      "id": "lookup:bonamedusa:317",
+      "name": "보나메두사 프로덕티브 쏘일크림",
+      "brand": "보나메두사",
+      "brandAlias": "BONA MEDUSA",
+      "category": "moisturizer",
+      "officialUrl": "https://www.bonamedusa.com/product/%ED%94%84%EB%A1%9C%EB%8D%95%ED%8B%B0%EB%B8%8C-%EC%8F%98%EC%9D%BC%ED%81%AC%EB%A6%BC/317/"
+    },
+    {
+      "id": "lookup:bonamedusa:484",
+      "name": "보나메두사 투데이스 타이어드 스킨 딜리트 오일겔 클렌저",
+      "brand": "보나메두사",
+      "brandAlias": "BONA MEDUSA",
+      "category": "cleanser",
+      "officialUrl": "https://www.bonamedusa.com/product/%ED%88%AC%EB%8D%B0%EC%9D%B4%EC%8A%A4-%ED%83%80%EC%9D%B4%EC%96%B4%EB%93%9C-%EC%8A%A4%ED%82%A8-%EB%94%9C%EB%A6%AC%ED%8A%B8-%EC%98%A4%EC%9D%BC%EA%B2%94-%ED%81%B4%EB%A0%8C%EC%A0%80/484/"
+    },
+    {
+      "id": "lookup:bonamedusa:485",
+      "name": "보나메두사 투데이스 타이어드 스킨 딜리트 아쿠아 클렌저",
+      "brand": "보나메두사",
+      "brandAlias": "BONA MEDUSA",
+      "category": "cleanser",
+      "officialUrl": "https://www.bonamedusa.com/product/%ED%88%AC%EB%8D%B0%EC%9D%B4%EC%8A%A4-%ED%83%80%EC%9D%B4%EC%96%B4%EB%93%9C-%EC%8A%A4%ED%82%A8-%EB%94%9C%EB%A6%AC%ED%8A%B8-%EC%95%84%EC%BF%A0%EC%95%84-%ED%81%B4%EB%A0%8C%EC%A0%80/485/"
+    },
+    {
+      "id": "lookup:bonamedusa:599",
+      "name": "보나메두사 크랙 딜리트 리치 로션",
+      "brand": "보나메두사",
+      "brandAlias": "BONA MEDUSA",
+      "category": "moisturizer",
+      "officialUrl": "https://www.bonamedusa.com/product/%ED%81%AC%EB%9E%99-%EB%94%9C%EB%A6%AC%ED%8A%B8-%EB%A6%AC%EC%B9%98-%EB%A1%9C%EC%85%98/599/"
+    },
+    {
+      "id": "lookup:bonamedusa:600",
+      "name": "보나메두사 크랙 딜리트 미드나잇 크림",
+      "brand": "보나메두사",
+      "brandAlias": "BONA MEDUSA",
+      "category": "moisturizer",
+      "officialUrl": "https://www.bonamedusa.com/product/%ED%81%AC%EB%9E%99-%EB%94%9C%EB%A6%AC%ED%8A%B8-%EB%AF%B8%EB%93%9C%EB%82%98%EC%9E%87-%ED%81%AC%EB%A6%BC/600/"
+    },
+    {
+      "id": "lookup:bonamedusa:601",
+      "name": "보나메두사 쓰리 쏠츠 이펙트 클렌징 오일",
+      "brand": "보나메두사",
+      "brandAlias": "BONA MEDUSA",
+      "category": "cleanser",
+      "officialUrl": "https://www.bonamedusa.com/product/%EC%93%B0%EB%A6%AC-%EC%8F%A0%EC%B8%A0-%EC%9D%B4%ED%8E%99%ED%8A%B8-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC/601/"
+    },
+    {
+      "id": "lookup:bonamedusa:660",
+      "name": "보나메두사 라이크 워터 크림 선블록 SPF50+ PA++++",
+      "brand": "보나메두사",
+      "brandAlias": "BONA MEDUSA",
+      "category": "sunscreen",
+      "officialUrl": "https://www.bonamedusa.com/product/%EB%9D%BC%EC%9D%B4%ED%81%AC-%EC%9B%8C%ED%84%B0-%ED%81%AC%EB%A6%BC-%EC%84%A0%EB%B8%94%EB%A1%9D-spf50-pa/660/"
     },
     {
       "id": "lookup:celimax:19",
@@ -6778,6 +6884,151 @@
       "category": "moisturizer",
       "volume": "80ml",
       "officialUrl": "https://jumiso.co.kr/product/%EC%9E%A5%EB%B2%BD%ED%9A%8C%EB%B3%B5%EA%B8%B0%EB%8A%A5%EC%84%B1-d-%ED%8C%90%ED%85%8C%EB%86%80-%EB%B2%A0%EB%A6%AC%EC%96%B4-%EC%88%98%EB%94%A9-%ED%81%AC%EB%A6%BC-80ml/99/"
+    },
+    {
+      "id": "lookup:kaine:15",
+      "name": "카이네 로즈마리 릴리프 젤 클렌저",
+      "brand": "카이네",
+      "brandAlias": "KAINE",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://kaine.co.kr/product/%EC%B9%B4%EC%9D%B4%EB%84%A4-%EB%A1%9C%EC%A6%88%EB%A7%88%EB%A6%AC-%EB%A6%B4%EB%A6%AC%ED%94%84-%EC%A0%A4-%ED%81%B4%EB%A0%8C%EC%A0%80/15/",
+      "image": "https://ecimg.cafe24img.com/pg1203b21370950059/vegankaine/web/upload/icon_202408091248565700.png"
+    },
+    {
+      "id": "lookup:kaine:16",
+      "name": "카이네 콤부 밸런싱 앰플 토너",
+      "brand": "카이네",
+      "brandAlias": "KAINE",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://kaine.co.kr/product/%EC%B9%B4%EC%9D%B4%EB%84%A4-%EC%BD%A4%EB%B6%80-%EB%B0%B8%EB%9F%B0%EC%8B%B1-%EC%95%B0%ED%94%8C-%ED%86%A0%EB%84%88/16/"
+    },
+    {
+      "id": "lookup:kaine:17",
+      "name": "카이네 콤부 하이드레이팅 데일리 클렌져",
+      "brand": "카이네",
+      "brandAlias": "KAINE",
+      "category": "cleanser",
+      "volume": "155g",
+      "officialUrl": "https://kaine.co.kr/product/%EC%B9%B4%EC%9D%B4%EB%84%A4-%EC%BD%A4%EB%B6%80-%ED%95%98%EC%9D%B4%EB%93%9C%EB%A0%88%EC%9D%B4%ED%8C%85-%EB%8D%B0%EC%9D%BC%EB%A6%AC-%ED%81%B4%EB%A0%8C%EC%A0%B8/17/"
+    },
+    {
+      "id": "lookup:kaine:18",
+      "name": "카이네 콤부 젤리 오일 클렌져",
+      "brand": "카이네",
+      "brandAlias": "KAINE",
+      "category": "cleanser",
+      "volume": "145ml",
+      "officialUrl": "https://kaine.co.kr/product/%EC%B9%B4%EC%9D%B4%EB%84%A4-%EC%BD%A4%EB%B6%80-%EC%A0%A4%EB%A6%AC-%EC%98%A4%EC%9D%BC-%ED%81%B4%EB%A0%8C%EC%A0%B8/18/"
+    },
+    {
+      "id": "lookup:kaine:20",
+      "name": "카이네 그린 핏 프로 선 (혼합자차 선크림 SPF50+ PA++++)",
+      "brand": "카이네",
+      "brandAlias": "KAINE",
+      "category": "sunscreen",
+      "volume": "55ml",
+      "officialUrl": "https://kaine.co.kr/product/%EC%B9%B4%EC%9D%B4%EB%84%A4-%EA%B7%B8%EB%A6%B0-%ED%95%8F-%ED%94%84%EB%A1%9C-%EC%84%A0-%ED%98%BC%ED%95%A9%EC%9E%90%EC%B0%A8-%EC%84%A0%ED%81%AC%EB%A6%BC-spf50-pa/20/"
+    },
+    {
+      "id": "lookup:kaine:21",
+      "name": "카이네 그린 캄 아쿠아 수딩 크림",
+      "brand": "카이네",
+      "brandAlias": "KAINE",
+      "category": "moisturizer",
+      "volume": "70ml",
+      "officialUrl": "https://kaine.co.kr/product/%EC%B9%B4%EC%9D%B4%EB%84%A4-%EA%B7%B8%EB%A6%B0-%EC%BA%84-%EC%95%84%EC%BF%A0%EC%95%84-%EC%88%98%EB%94%A9-%ED%81%AC%EB%A6%BC/21/"
+    },
+    {
+      "id": "lookup:kaine:22",
+      "name": "카이네 비건 콜라겐 크림",
+      "brand": "카이네",
+      "brandAlias": "KAINE",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://kaine.co.kr/product/%EC%B9%B4%EC%9D%B4%EB%84%A4-%EB%B9%84%EA%B1%B4-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%81%AC%EB%A6%BC/22/"
+    },
+    {
+      "id": "lookup:kaine:24",
+      "name": "카이네 차가 콜라겐 차징 세럼",
+      "brand": "카이네",
+      "brandAlias": "KAINE",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://kaine.co.kr/product/%EC%B9%B4%EC%9D%B4%EB%84%A4-%EC%B0%A8%EA%B0%80-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EC%B0%A8%EC%A7%95-%EC%84%B8%EB%9F%BC/24/"
+    },
+    {
+      "id": "lookup:kaine:25",
+      "name": "카이네 콤부 베리어 앰플",
+      "brand": "카이네",
+      "brandAlias": "KAINE",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://kaine.co.kr/product/%EC%B9%B4%EC%9D%B4%EB%84%A4-%EC%BD%A4%EB%B6%80-%EB%B2%A0%EB%A6%AC%EC%96%B4-%EC%95%B0%ED%94%8C/25/"
+    },
+    {
+      "id": "lookup:kaine:26",
+      "name": "카이네 로즈마리 아하 나이트 세럼",
+      "brand": "카이네",
+      "brandAlias": "KAINE",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://kaine.co.kr/product/%EC%B9%B4%EC%9D%B4%EB%84%A4-%EB%A1%9C%EC%A6%88%EB%A7%88%EB%A6%AC-%EC%95%84%ED%95%98-%EB%82%98%EC%9D%B4%ED%8A%B8-%EC%84%B8%EB%9F%BC/26/"
+    },
+    {
+      "id": "lookup:kaine:30",
+      "name": "카이네 카페티날 크림",
+      "brand": "카이네",
+      "brandAlias": "KAINE",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://kaine.co.kr/product/%EC%B9%B4%ED%8E%98%ED%8B%B0%EB%82%A0-%ED%81%AC%EB%A6%BC/30/"
+    },
+    {
+      "id": "lookup:kaine:36",
+      "name": "카이네 로즈마리 아크네 약산성 클렌징 바",
+      "brand": "카이네",
+      "brandAlias": "KAINE",
+      "category": "cleanser",
+      "volume": "100g",
+      "officialUrl": "https://kaine.co.kr/product/%EC%B9%B4%EC%9D%B4%EB%84%A4-%EB%A1%9C%EC%A6%88%EB%A7%88%EB%A6%AC-%EC%95%84%ED%81%AC%EB%84%A4-%EC%95%BD%EC%82%B0%EC%84%B1-%ED%81%B4%EB%A0%8C%EC%A7%95-%EB%B0%94/36/"
+    },
+    {
+      "id": "lookup:kaine:38",
+      "name": "카이네 라벤더 PDRN 리바이탈라이징 토너",
+      "brand": "카이네",
+      "brandAlias": "KAINE",
+      "category": "toner",
+      "volume": "300ml",
+      "officialUrl": "https://kaine.co.kr/product/%EC%B9%B4%EC%9D%B4%EB%84%A4-%EB%9D%BC%EB%B2%A4%EB%8D%94-pdrn-%EB%A6%AC%EB%B0%94%EC%9D%B4%ED%83%88%EB%9D%BC%EC%9D%B4%EC%A7%95-%ED%86%A0%EB%84%88/38/"
+    },
+    {
+      "id": "lookup:kaine:40",
+      "name": "카이네 애플 사이다 비니거 그라인딩 클렌징 밤",
+      "brand": "카이네",
+      "brandAlias": "KAINE",
+      "category": "cleanser",
+      "volume": "50ml",
+      "officialUrl": "https://kaine.co.kr/product/%EC%B9%B4%EC%9D%B4%EB%84%A4-%EC%95%A0%ED%94%8C-%EC%82%AC%EC%9D%B4%EB%8B%A4-%EB%B9%84%EB%8B%88%EA%B1%B0-%EA%B7%B8%EB%9D%BC%EC%9D%B8%EB%94%A9-%ED%81%B4%EB%A0%8C%EC%A7%95-%EB%B0%A4/40/"
+    },
+    {
+      "id": "lookup:kaine:42",
+      "name": "카이네 청귤 엔자임 클렌징 파우더",
+      "brand": "카이네",
+      "brandAlias": "KAINE",
+      "category": "cleanser",
+      "volume": "60g",
+      "officialUrl": "https://kaine.co.kr/product/%EC%B2%AD%EA%B7%A4-%EC%97%94%EC%9E%90%EC%9E%84-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8C%8C%EC%9A%B0%EB%8D%94/42/"
+    },
+    {
+      "id": "lookup:kaine:44",
+      "name": "카이네 히알루로닉 쿨링 부스터 겔",
+      "brand": "카이네",
+      "brandAlias": "KAINE",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://kaine.co.kr/product/%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%9C%EB%8B%89-%EC%BF%A8%EB%A7%81-%EB%B6%80%EC%8A%A4%ED%84%B0-%EA%B2%94/44/"
     },
     {
       "id": "lookup:lagom:13",
@@ -17388,6 +17639,121 @@
       "category": "toner",
       "volume": "80매",
       "officialUrl": "https://torriden.com/goods/goods_view.php?goodsNo=92"
+    },
+    {
+      "id": "lookup:urang:109",
+      "name": "유랑 트루 로즈 리페어 에센스 (붉은기케어)",
+      "brand": "유랑",
+      "brandAlias": "URANG",
+      "category": "serum",
+      "officialUrl": "https://www.urangnatural.com/product/%ED%8A%B8%EB%A3%A8-%EB%A1%9C%EC%A6%88-%EB%A6%AC%ED%8E%98%EC%96%B4-%EC%97%90%EC%84%BC%EC%8A%A4-%EB%B6%89%EC%9D%80%EA%B8%B0%EC%BC%80%EC%96%B4/109/"
+    },
+    {
+      "id": "lookup:urang:110",
+      "name": "유랑 크리미 버블 폼 클렌저 (저자극/온가족케어)",
+      "brand": "유랑",
+      "brandAlias": "URANG",
+      "category": "cleanser",
+      "officialUrl": "https://www.urangnatural.com/product/%ED%81%AC%EB%A6%AC%EB%AF%B8-%EB%B2%84%EB%B8%94-%ED%8F%BC-%ED%81%B4%EB%A0%8C%EC%A0%80-%EC%A0%80%EC%9E%90%EA%B7%B9%EC%98%A8%EA%B0%80%EC%A1%B1%EC%BC%80%EC%96%B4-20281029%EA%B9%8C%EC%A7%80/110/"
+    },
+    {
+      "id": "lookup:urang:127",
+      "name": "유랑 브라이트닝 블루 오일 세럼(기미/잡티케어)",
+      "brand": "유랑",
+      "brandAlias": "URANG",
+      "category": "serum",
+      "officialUrl": "https://www.urangnatural.com/product/%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%8B%9D-%EB%B8%94%EB%A3%A8-%EC%98%A4%EC%9D%BC-%EC%84%B8%EB%9F%BC%EA%B8%B0%EB%AF%B8%EC%9E%A1%ED%8B%B0%EC%BC%80%EC%96%B4-%EC%82%AC%EC%9A%A9%EA%B8%B0%ED%95%9C-20281103%EA%B9%8C%EC%A7%80/127/"
+    },
+    {
+      "id": "lookup:urang:164",
+      "name": "유랑 핑크 에버라스팅 앰플 (항산화테스트완료/탄력케어)",
+      "brand": "유랑",
+      "brandAlias": "URANG",
+      "category": "serum",
+      "officialUrl": "https://www.urangnatural.com/product/%ED%95%91%ED%81%AC-%EC%97%90%EB%B2%84%EB%9D%BC%EC%8A%A4%ED%8C%85-%EC%95%B0%ED%94%8C-%ED%95%AD%EC%82%B0%ED%99%94%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%84%EB%A3%8C%ED%83%84%EB%A0%A5%EC%BC%80%EC%96%B4-%EC%82%AC%EC%9A%A9%EA%B8%B0%ED%95%9C-20271029%EA%B9%8C%EC%A7%80/164/"
+    },
+    {
+      "id": "lookup:urang:197",
+      "name": "유랑 퍼펙트 데일리 미스트 (약산성케어)",
+      "brand": "유랑",
+      "brandAlias": "URANG",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://www.urangnatural.com/product/%ED%8D%BC%ED%8E%99%ED%8A%B8-%EB%8D%B0%EC%9D%BC%EB%A6%AC-%EB%AF%B8%EC%8A%A4%ED%8A%B8-100ml-%EC%95%BD%EC%82%B0%EC%84%B1%EC%BC%80%EC%96%B4-%EC%82%AC%EC%9A%A9%EA%B8%B0%ED%95%9C-20270110%EA%B9%8C%EC%A7%80/197/"
+    },
+    {
+      "id": "lookup:urang:200",
+      "name": "유랑 유자 비타 앰플 (잡티/미백케어)",
+      "brand": "유랑",
+      "brandAlias": "URANG",
+      "category": "serum",
+      "officialUrl": "https://www.urangnatural.com/product/%EC%9C%A0%EC%9E%90-%EB%B9%84%ED%83%80-%EC%95%B0%ED%94%8C-%EC%9E%A1%ED%8B%B0%EB%AF%B8%EB%B0%B1%EC%BC%80%EC%96%B4-20280912%EA%B9%8C%EC%A7%80/200/"
+    },
+    {
+      "id": "lookup:urang:212",
+      "name": "유랑 시카 수딩 앰플 (트러블진정)",
+      "brand": "유랑",
+      "brandAlias": "URANG",
+      "category": "serum",
+      "officialUrl": "https://www.urangnatural.com/product/%EC%8B%9C%EC%B9%B4-%EC%88%98%EB%94%A9-%EC%95%B0%ED%94%8C-%ED%8A%B8%EB%9F%AC%EB%B8%94%EC%A7%84%EC%A0%95-24k0401-20270403%EA%B9%8C%EC%A7%80/212/"
+    },
+    {
+      "id": "lookup:urang:244",
+      "name": "유랑 선인장 오아시스 크림 (시즌2) (수분부족/지성/밀리지않는)",
+      "brand": "유랑",
+      "brandAlias": "URANG",
+      "category": "moisturizer",
+      "officialUrl": "https://www.urangnatural.com/product/%EC%84%A0%EC%9D%B8%EC%9E%A5-%EC%98%A4%EC%95%84%EC%8B%9C%EC%8A%A4-%ED%81%AC%EB%A6%BC-%EC%8B%9C%EC%A6%8C2-%EC%88%98%EB%B6%84%EB%B6%80%EC%A1%B1%EC%A7%80%EC%84%B1%EB%B0%80%EB%A6%AC%EC%A7%80%EC%95%8A%EB%8A%94-%EC%82%AC%EC%9A%A9%EA%B8%B0%ED%95%9C-20281105%EA%B9%8C%EC%A7%80/244/"
+    },
+    {
+      "id": "lookup:urang:270",
+      "name": "유랑 프레스티지 퍼플 쉴드 에센스 토너 (항산화테스트완료)",
+      "brand": "유랑",
+      "brandAlias": "URANG",
+      "category": "toner",
+      "officialUrl": "https://www.urangnatural.com/product/%EC%9C%A0%EB%9E%91-%ED%94%84%EB%A0%88%EC%8A%A4%ED%8B%B0%EC%A7%80%ED%8D%BC%ED%94%8C-%EC%89%B4%EB%93%9C-%EC%97%90%EC%84%BC%EC%8A%A4-%ED%86%A0%EB%84%88-%ED%95%AD%EC%82%B0%ED%99%94%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%84%EB%A3%8C-%EC%82%AC%EC%9A%A9%EA%B8%B0%ED%95%9C-20270312%EA%B9%8C%EC%A7%80/270/"
+    },
+    {
+      "id": "lookup:urang:56",
+      "name": "유랑 글로우 오일 세럼 (민감성/건성케어)",
+      "brand": "유랑",
+      "brandAlias": "URANG",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.urangnatural.com/product/%EA%B8%80%EB%A1%9C%EC%9A%B0-%EC%98%A4%EC%9D%BC-%EC%84%B8%EB%9F%BC-30ml-%EB%AF%BC%EA%B0%90%EC%84%B1%EA%B1%B4%EC%84%B1%EC%BC%80%EC%96%B4-20270810%EA%B9%8C%EC%A7%80/56/"
+    },
+    {
+      "id": "lookup:urang:58",
+      "name": "유랑 로즈 세라마이드 크림 (고보습/장벽강화)",
+      "brand": "유랑",
+      "brandAlias": "URANG",
+      "category": "moisturizer",
+      "officialUrl": "https://www.urangnatural.com/product/%EB%A1%9C%EC%A6%88-%EC%84%B8%EB%9D%BC%EB%A7%88%EC%9D%B4%EB%93%9C-%ED%81%AC%EB%A6%BC-%EA%B3%A0%EB%B3%B4%EC%8A%B5%EC%9E%A5%EB%B2%BD%EA%B0%95%ED%99%94-%EC%82%AC%EC%9A%A9%EA%B8%B0%ED%95%9C-20280409%EA%B9%8C%EC%A7%80/58/"
+    },
+    {
+      "id": "lookup:urang:65",
+      "name": "유랑 2026/27 시즌 오가닉 로즈 미스트",
+      "brand": "유랑",
+      "brandAlias": "URANG",
+      "category": "toner",
+      "officialUrl": "https://www.urangnatural.com/product/202627-%EC%8B%9C%EC%A6%8C-%EC%98%A4%EA%B0%80%EB%8B%89-%EB%A1%9C%EC%A6%88-%EB%AF%B8%EC%8A%A4%ED%8A%B8-%EC%82%AC%EC%9A%A9%EA%B8%B0%ED%95%9C-20280817%EA%B9%8C%EC%A7%80/65/"
+    },
+    {
+      "id": "lookup:urang:66",
+      "name": "유랑 비타민 오일 세럼 (생기/탄력케어)",
+      "brand": "유랑",
+      "brandAlias": "URANG",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.urangnatural.com/product/%EB%B9%84%ED%83%80%EB%AF%BC-%EC%98%A4%EC%9D%BC-%EC%84%B8%EB%9F%BC-30ml-%EC%83%9D%EA%B8%B0%ED%83%84%EB%A0%A5%EC%BC%80%EC%96%B4/66/"
+    },
+    {
+      "id": "lookup:urang:74",
+      "name": "유랑 네추럴 클렌징 오일 (저자극/순한케어)",
+      "brand": "유랑",
+      "brandAlias": "URANG",
+      "category": "cleanser",
+      "officialUrl": "https://www.urangnatural.com/product/%EB%84%A4%EC%B6%94%EB%9F%B4-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-%EC%A0%80%EC%9E%90%EA%B7%B9%EC%88%9C%ED%95%9C%EC%BC%80%EC%96%B4-20281002%EA%B9%8C%EC%A7%80/74/"
     },
     {
       "id": "lookup:vt:1000",
