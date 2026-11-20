@@ -121,6 +121,10 @@ export const stores = {
   blancdoux: cafe("더랩바이블랑두", "the lab by blanc doux", "blancdoux.com", [["list", "/product/list.html?cate_no=4"]]),
   neogen: cafe("네오젠", "NEOGEN", "www.neogenlab.co.kr"),
   drdifferent: cafe("닥터디퍼런트", "Dr.Different", "drdifferent.com"),
+  realbarrier: { brand: "리얼베리어", alias: "Real Barrier", domain: "myrealbarrier.co.kr", type: "cafe",
+    paths: [42, 48, 49].map(category => [`list${category}`, `/product/list.html?cate_no=${category}&sort_method=5`]) },
+  mamonde: { brand: "마몽드", alias: "Mamonde", domain: "www.mamonde.com", type: "cafe",
+    paths: [28, 29, 30, 32, 33].map(category => [`list${category}`, `/product/list.html?cate_no=${category}`]) },
   aprilskin: { brand: "에이프릴스킨", alias: "APRILSKIN", domain: "www.aprilskin.com", type: "cafe",
     paths: [["skin1", "/product/list.html?cate_no=42&page=1"]] },
   onething: { brand: "원씽", alias: "ONE THING", domain: "www.onething.kr", type: "cafe",
@@ -245,6 +249,8 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
     else if (/\b(?:serum|ampoule|essence)\b/i.test(name)) category = "serum";
     else if (/\b(?:cream|lotion)\b/i.test(name)) category = "moisturizer";
   }
+  if (storeKey === "mamonde" && /(?:에센스 워터|스킨 소프너)$/u.test(name)) category = "toner";
+  if (storeKey === "mamonde" && /에멀젼$/u.test(name)) category = "moisturizer";
   if (storeKey === "ongredients" && /톤업 선 로션$/u.test(name)) category = "sunscreen";
   if (storeKey === "ongredients" && /소프너$/u.test(name)) category = "toner";
   if (storeKey === "biodance" && /스킨 글로우 에센스 크림$/u.test(name)) category = "moisturizer";
