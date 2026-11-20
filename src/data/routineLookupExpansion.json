@@ -105,6 +105,12 @@
       "usefulPages": 1,
       "fetchedListings": 21
     },
+    "frankly": {
+      "name": "프랭클리",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 2,
+      "fetchedListings": 16
+    },
     "hanyul": {
       "name": "한율",
       "checkedAt": "2026-11-15",
@@ -146,6 +152,12 @@
       "checkedAt": "2026-11-19",
       "usefulPages": 2,
       "fetchedListings": 16
+    },
+    "klairs": {
+      "name": "클레어스",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 6,
+      "fetchedListings": 21
     },
     "klavuu": {
       "name": "클라뷰",
@@ -5537,6 +5549,151 @@
       "officialUrl": "https://drdifferent.com/product/2710-%EA%B9%8C%EC%A7%80%EB%B9%84%ED%83%80%EC%95%84%ED%81%AC%EB%82%A0-tx-%EB%82%98%EC%9D%B4%ED%8A%B8-%ED%81%AC%EB%A6%BC-20g/98/"
     },
     {
+      "id": "lookup:frankly:106",
+      "name": "프랭클리 PDRN 바운스 볼 크림",
+      "brand": "프랭클리",
+      "brandAlias": "FRANKLY",
+      "category": "moisturizer",
+      "officialUrl": "https://www.frankly.co.kr/product/pdrn-%EB%B0%94%EC%9A%B4%EC%8A%A4-%EB%B3%BC-%ED%81%AC%EB%A6%BC/106/",
+      "image": "https://www.frankly.co.kr/web/product/medium/202608/d328c18f53b656b9b10092f9b0ec6fe4.jpg"
+    },
+    {
+      "id": "lookup:frankly:12",
+      "name": "프랭클리 선데이 글로우 세럼",
+      "brand": "프랭클리",
+      "brandAlias": "FRANKLY",
+      "category": "serum",
+      "officialUrl": "https://www.frankly.co.kr/product/1%EC%B4%88%EA%B4%91%EC%B1%84-%EC%84%A0%EB%8D%B0%EC%9D%B4-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EC%84%B8%EB%9F%BC/12/",
+      "image": "https://www.frankly.co.kr/web/product/medium/202608/ff4d95960c7e1ae32abdbb13f64fac09.jpg"
+    },
+    {
+      "id": "lookup:frankly:13",
+      "name": "프랭클리 비타 밤 세럼",
+      "brand": "프랭클리",
+      "brandAlias": "FRANKLY",
+      "category": "serum",
+      "officialUrl": "https://www.frankly.co.kr/product/%EA%B8%89%EC%86%8D%EC%A7%84%EC%A0%95-%EB%B9%84%ED%83%80-%EB%B0%A4-%EC%84%B8%EB%9F%BC-%EC%86%8C%EB%B9%84%EA%B8%B0%ED%95%9C-2027-08-14/13/",
+      "image": "https://www.frankly.co.kr/web/product/medium/202608/acd9b78a67f0b4bb28e29b35baa8e514.jpg"
+    },
+    {
+      "id": "lookup:frankly:18",
+      "name": "프랭클리 헤이데이 세럼",
+      "brand": "프랭클리",
+      "brandAlias": "FRANKLY",
+      "category": "serum",
+      "officialUrl": "https://www.frankly.co.kr/product/%EC%88%98%EB%B6%84%EC%B6%A9%EC%A0%84-%ED%97%A4%EC%9D%B4%EB%8D%B0%EC%9D%B4-%EC%84%B8%EB%9F%BC/18/",
+      "image": "https://www.frankly.co.kr/web/product/medium/202608/cb933031e00e40dea4243efd4adbb432.jpg"
+    },
+    {
+      "id": "lookup:frankly:19",
+      "name": "프랭클리 버터 쏘 머치 크림",
+      "brand": "프랭클리",
+      "brandAlias": "FRANKLY",
+      "category": "moisturizer",
+      "officialUrl": "https://www.frankly.co.kr/product/%EB%B9%84%EA%B1%B4%EB%B2%84%ED%84%B0-%ED%83%84%EB%A0%A5%EB%B3%B4%EC%8A%B5-%EB%B2%84%ED%84%B0-%EC%8F%98-%EB%A8%B8%EC%B9%98-%ED%81%AC%EB%A6%BC/19/",
+      "image": "https://www.frankly.co.kr/web/product/medium/202608/9ae746a596b9cd9a50ff7d832bba795e.jpg"
+    },
+    {
+      "id": "lookup:frankly:22",
+      "name": "프랭클리 레티놀 0.1 크림",
+      "brand": "프랭클리",
+      "brandAlias": "FRANKLY",
+      "category": "moisturizer",
+      "officialUrl": "https://www.frankly.co.kr/product/%EC%9E%85%EB%AC%B8%EC%9A%A9-%EB%A0%88%ED%8B%B0%EB%86%80-01-%ED%81%AC%EB%A6%BC/22/",
+      "image": "https://www.frankly.co.kr/web/product/medium/202608/c553842810d5f4fd93ea95fe13f58aeb.jpg"
+    },
+    {
+      "id": "lookup:frankly:28",
+      "name": "프랭클리 시카80 히알루론산 수분 토너",
+      "brand": "프랭클리",
+      "brandAlias": "FRANKLY",
+      "category": "toner",
+      "officialUrl": "https://www.frankly.co.kr/product/%EB%AF%BC%EA%B0%90%EC%A7%84%EC%A0%95-%EC%8B%9C%EC%B9%B480-%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%EC%88%98%EB%B6%84-%ED%86%A0%EB%84%88/28/",
+      "image": "https://www.frankly.co.kr/web/product/medium/202608/073cb55144417f62415a3e8087441b52.jpg"
+    },
+    {
+      "id": "lookup:frankly:32",
+      "name": "프랭클리 AHA 8.05% 토너",
+      "brand": "프랭클리",
+      "brandAlias": "FRANKLY",
+      "category": "toner",
+      "officialUrl": "https://www.frankly.co.kr/product/%EA%B0%81%EC%A7%88%EB%AA%A8%EA%B3%B5%EC%82%AD%EC%A0%9C-aha-805-%ED%86%A0%EB%84%88/32/",
+      "image": "https://www.frankly.co.kr/web/product/medium/202608/23400bf580a201735fb066c7aa9071ee.jpg"
+    },
+    {
+      "id": "lookup:frankly:34",
+      "name": "프랭클리 레티놀 0.3 크림",
+      "brand": "프랭클리",
+      "brandAlias": "FRANKLY",
+      "category": "moisturizer",
+      "officialUrl": "https://www.frankly.co.kr/product/%EA%B3%A0%EA%B0%95%EB%8F%84-%EB%A0%88%ED%8B%B0%EB%86%80-03-%ED%81%AC%EB%A6%BC/34/",
+      "image": "https://www.frankly.co.kr/web/product/medium/202608/c40fb859e11af8e8df1fb262460ce567.jpg"
+    },
+    {
+      "id": "lookup:frankly:36",
+      "name": "프랭클리 시카해 수분 선크림 SPF 50+ PA++++",
+      "brand": "프랭클리",
+      "brandAlias": "FRANKLY",
+      "category": "sunscreen",
+      "officialUrl": "https://www.frankly.co.kr/product/%EC%8B%9C%EC%B9%B4%ED%95%B4-%EC%88%98%EB%B6%84-%EC%84%A0%ED%81%AC%EB%A6%BC-spf-50-pa/36/",
+      "image": "https://www.frankly.co.kr/web/product/medium/202608/15d068f99abb81f75ceb2754e7c588c3.jpg"
+    },
+    {
+      "id": "lookup:frankly:37",
+      "name": "프랭클리 화사해 핑크톤업 선크림 SPF 50+ PA++++",
+      "brand": "프랭클리",
+      "brandAlias": "FRANKLY",
+      "category": "sunscreen",
+      "officialUrl": "https://www.frankly.co.kr/product/%ED%99%94%EC%82%AC%ED%95%B4-%ED%95%91%ED%81%AC%ED%86%A4%EC%97%85-%EC%84%A0%ED%81%AC%EB%A6%BC-spf-50-pa/37/",
+      "image": "https://www.frankly.co.kr/web/product/medium/202608/7a44a7838b18e582ccb9c4162f9db680.jpg"
+    },
+    {
+      "id": "lookup:frankly:50",
+      "name": "프랭클리 딥 클렌징 오일",
+      "brand": "프랭클리",
+      "brandAlias": "FRANKLY",
+      "category": "cleanser",
+      "officialUrl": "https://www.frankly.co.kr/product/%ED%94%BC%EC%A7%80%EB%B8%94%EB%9E%99%ED%97%A4%EB%93%9C-%EC%82%AD%EC%A0%9C-%EB%94%A5-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC/50/",
+      "image": "https://www.frankly.co.kr/web/product/medium/202608/abcd84d613d2459a62450c398b1868f5.jpg"
+    },
+    {
+      "id": "lookup:frankly:59",
+      "name": "프랭클리 나이아신아마이드 15% 징크 비즈 세럼",
+      "brand": "프랭클리",
+      "brandAlias": "FRANKLY",
+      "category": "serum",
+      "officialUrl": "https://www.frankly.co.kr/product/%ED%8A%B8%EB%9F%AC%EB%B8%94%ED%94%BC%EC%A7%80-%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-15-%EC%A7%95%ED%81%AC-%EB%B9%84%EC%A6%88-%EC%84%B8%EB%9F%BC/59/",
+      "image": "https://www.frankly.co.kr/web/product/medium/202608/c365d8d48dc8a0f51194ff5c0d489324.jpg"
+    },
+    {
+      "id": "lookup:frankly:61",
+      "name": "프랭클리 클로저 모공 토너패드",
+      "brand": "프랭클리",
+      "brandAlias": "FRANKLY",
+      "category": "toner",
+      "volume": "70매",
+      "officialUrl": "https://www.frankly.co.kr/product/%EC%9E%84%EC%83%81%EC%9E%85%EC%A6%9D-%ED%81%B4%EB%A1%9C%EC%A0%80-%EB%AA%A8%EA%B3%B5-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-70%EB%A7%A4/61/",
+      "image": "https://www.frankly.co.kr/web/product/medium/202608/7af1568018982b409e76032b824a1d73.jpg"
+    },
+    {
+      "id": "lookup:frankly:76",
+      "name": "프랭클리 PDRN 바운스 볼 세럼",
+      "brand": "프랭클리",
+      "brandAlias": "FRANKLY",
+      "category": "serum",
+      "officialUrl": "https://www.frankly.co.kr/product/pdrn-%EB%B0%94%EC%9A%B4%EC%8A%A4-%EB%B3%BC-%EC%84%B8%EB%9F%BC/76/",
+      "image": "https://www.frankly.co.kr/web/product/medium/202608/6e0b7bcf63f660343fa71a318146ed3a.jpg"
+    },
+    {
+      "id": "lookup:frankly:80",
+      "name": "프랭클리 초강력 기미/잡티케어 비타민 C 23 세럼",
+      "brand": "프랭클리",
+      "brandAlias": "FRANKLY",
+      "category": "serum",
+      "officialUrl": "https://www.frankly.co.kr/product/%EC%B4%88%EA%B0%95%EB%A0%A5-%EA%B8%B0%EB%AF%B8%EC%9E%A1%ED%8B%B0%EC%BC%80%EC%96%B4-%EB%B9%84%ED%83%80%EB%AF%BC-c-23-%EC%84%B8%EB%9F%BC/80/",
+      "image": "https://www.frankly.co.kr/web/product/medium/202608/ed796ffcd9d5848070dac3ac961c2d7b.jpg"
+    },
+    {
       "id": "lookup:hanyul:104",
       "name": "한율 어린쑥 수분진정 패드",
       "brand": "한율",
@@ -7570,6 +7727,215 @@
       "category": "moisturizer",
       "volume": "100ml",
       "officialUrl": "https://kaine.co.kr/product/%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%9C%EB%8B%89-%EC%BF%A8%EB%A7%81-%EB%B6%80%EC%8A%A4%ED%84%B0-%EA%B2%94/44/"
+    },
+    {
+      "id": "lookup:klairs:16",
+      "name": "클레어스 서플 프레퍼레이션 페이셜 토너",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "toner",
+      "volume": "180ml",
+      "officialUrl": "https://www.klairs.co.kr/product/%EC%84%9C%ED%94%8C-%ED%94%84%EB%A0%88%ED%8D%BC%EB%A0%88%EC%9D%B4%EC%85%98-%ED%8E%98%EC%9D%B4%EC%85%9C-%ED%86%A0%EB%84%88-180ml/16/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202406/ec46d8374d49cd2bb92cb6879513568a.png"
+    },
+    {
+      "id": "lookup:klairs:17",
+      "name": "클레어스 리치 모이스트 포밍 클렌저",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "cleanser",
+      "volume": "100ml",
+      "officialUrl": "https://www.klairs.co.kr/product/%EB%A6%AC%EC%B9%98-%EB%AA%A8%EC%9D%B4%EC%8A%A4%ED%8A%B8-%ED%8F%AC%EB%B0%8D-%ED%81%B4%EB%A0%8C%EC%A0%80-100ml/17/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202406/7e40d811d0436a06b5670362b17ed893.png"
+    },
+    {
+      "id": "lookup:klairs:18",
+      "name": "클레어스 리치 모이스트 수딩 세럼",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "serum",
+      "volume": "80ml",
+      "officialUrl": "https://www.klairs.co.kr/product/%EB%A6%AC%EC%B9%98-%EB%AA%A8%EC%9D%B4%EC%8A%A4%ED%8A%B8-%EC%88%98%EB%94%A9-%EC%84%B8%EB%9F%BC-80ml/18/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202607/18cde0a8fbae99a721cbc8da77373a42.png"
+    },
+    {
+      "id": "lookup:klairs:22",
+      "name": "클레어스 젠틀 블랙 딥 클렌징 오일",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.klairs.co.kr/product/%EC%A0%A0%ED%8B%80-%EB%B8%94%EB%9E%99-%EB%94%A5-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-150ml/22/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202406/7a4661c3ad913e8780a98f338514534b.png"
+    },
+    {
+      "id": "lookup:klairs:263",
+      "name": "클레어스 메이플 에너지 인퓨징 세럼",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.klairs.co.kr/product/%EB%A9%94%EC%9D%B4%ED%94%8C-%EC%97%90%EB%84%88%EC%A7%80-%EC%9D%B8%ED%93%A8%EC%A7%95-%EC%84%B8%EB%9F%BC-30ml/263/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202412/a9405857f5b826f869598730ecca5118.jpg"
+    },
+    {
+      "id": "lookup:klairs:273",
+      "name": "클레어스 미드나잇 블루 클리어링 워터 크림",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "moisturizer",
+      "volume": "50g",
+      "officialUrl": "https://www.klairs.co.kr/product/%EB%AF%B8%EB%93%9C%EB%82%98%EC%9E%87-%EB%B8%94%EB%A3%A8-%ED%81%B4%EB%A6%AC%EC%96%B4%EB%A7%81-%EC%9B%8C%ED%84%B0-%ED%81%AC%EB%A6%BC-50g/273/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202412/a0e104a0220f9daaf9f2e1fc28c152a7.png"
+    },
+    {
+      "id": "lookup:klairs:310",
+      "name": "클레어스 메이플 에너지 인퓨징 크림",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "moisturizer",
+      "volume": "15g",
+      "officialUrl": "https://www.klairs.co.kr/product/%EB%A9%94%EC%9D%B4%ED%94%8C-%EC%97%90%EB%84%88%EC%A7%80-%EC%9D%B8%ED%93%A8%EC%A7%95-%ED%81%AC%EB%A6%BC-15g/310/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202502/e7d4813bfa8a62e4c70451a624496a08.png"
+    },
+    {
+      "id": "lookup:klairs:311",
+      "name": "클레어스 메이플 에너지 인퓨징 세럼",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "serum",
+      "volume": "10ml",
+      "officialUrl": "https://www.klairs.co.kr/product/%EB%A9%94%EC%9D%B4%ED%94%8C-%EC%97%90%EB%84%88%EC%A7%80-%EC%9D%B8%ED%93%A8%EC%A7%95-%EC%84%B8%EB%9F%BC-10ml/311/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202502/c8b361e26fd8465cf2a567be72a50d78.png"
+    },
+    {
+      "id": "lookup:klairs:317",
+      "name": "클레어스 프레쉴리 쥬스드 비타민 잡티 토너",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "toner",
+      "volume": "180ml",
+      "officialUrl": "https://www.klairs.co.kr/product/%ED%94%84%EB%A0%88%EC%89%B4%EB%A6%AC-%EC%A5%AC%EC%8A%A4%EB%93%9C-%EB%B9%84%ED%83%80%EB%AF%BC-%EC%9E%A1%ED%8B%B0-%ED%86%A0%EB%84%88-180ml/317/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202504/9f6f36aedf19eba66b75fa355b168e28.png"
+    },
+    {
+      "id": "lookup:klairs:318",
+      "name": "클레어스 프레쉴리 쥬스드 비타민 화잘먹 패드",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "toner",
+      "volume": "80매",
+      "officialUrl": "https://www.klairs.co.kr/product/%ED%94%84%EB%A0%88%EC%89%B4%EB%A6%AC-%EC%A5%AC%EC%8A%A4%EB%93%9C-%EB%B9%84%ED%83%80%EB%AF%BC-%ED%99%94%EC%9E%98%EB%A8%B9-%ED%8C%A8%EB%93%9C-80%EB%A7%A4/318/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202605/cf3afbd03fa1e386fdd0ebda37813a9e.png"
+    },
+    {
+      "id": "lookup:klairs:319",
+      "name": "클레어스 프레쉴리 쥬스드 비타민 팩 클렌저",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.klairs.co.kr/product/%ED%94%84%EB%A0%88%EC%89%B4%EB%A6%AC-%EC%A5%AC%EC%8A%A4%EB%93%9C-%EB%B9%84%ED%83%80%EB%AF%BC-%ED%8C%A9-%ED%81%B4%EB%A0%8C%EC%A0%80-150ml/319/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202504/576c82123ec425afbff689f49e1c3de8.png"
+    },
+    {
+      "id": "lookup:klairs:32",
+      "name": "클레어스 서플 프레퍼레이션 언센티드 토너",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "toner",
+      "volume": "180ml",
+      "officialUrl": "https://www.klairs.co.kr/product/%EC%84%9C%ED%94%8C-%ED%94%84%EB%A0%88%ED%8D%BC%EB%A0%88%EC%9D%B4%EC%85%98-%EC%96%B8%EC%84%BC%ED%8B%B0%EB%93%9C-%ED%86%A0%EB%84%88-180ml/32/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202406/04bd58d26194f89aee44cfec8238dcc9.png"
+    },
+    {
+      "id": "lookup:klairs:321",
+      "name": "클레어스 EGF 블루 진정 토너 패드",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "toner",
+      "volume": "60매",
+      "officialUrl": "https://www.klairs.co.kr/product/egf-%EB%B8%94%EB%A3%A8-%EC%A7%84%EC%A0%95-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C-60%EB%A7%A4/321/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202506/6ebbdcb600e914a1f77e5fb474f9a8b0.png"
+    },
+    {
+      "id": "lookup:klairs:337",
+      "name": "클레어스 비타민 토닝 베리어 크림",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "moisturizer",
+      "volume": "60g",
+      "officialUrl": "https://www.klairs.co.kr/product/%EB%B9%84%ED%83%80%EB%AF%BC-%ED%86%A0%EB%8B%9D-%EB%B2%A0%EB%A6%AC%EC%96%B4-%ED%81%AC%EB%A6%BC-60g/337/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202512/ded05592819a993fe5dd848cf56bc386.png"
+    },
+    {
+      "id": "lookup:klairs:338",
+      "name": "클레어스 비타민 PDRN 모공 탄력 세럼",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "serum",
+      "volume": "35ml",
+      "officialUrl": "https://www.klairs.co.kr/product/%EB%B9%84%ED%83%80%EB%AF%BC-pdrn-%EB%AA%A8%EA%B3%B5-%ED%83%84%EB%A0%A5-%EC%84%B8%EB%9F%BC-35ml/338/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202512/52be51c2dd95cdf55e5f72681f37626c.png"
+    },
+    {
+      "id": "lookup:klairs:36",
+      "name": "클레어스 블루 카밍 크림",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "moisturizer",
+      "volume": "60g",
+      "officialUrl": "https://www.klairs.co.kr/product/%EB%B8%94%EB%A3%A8-%EC%B9%B4%EB%B0%8D-%ED%81%AC%EB%A6%BC-60g/36/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202608/42521bb01afa601c16c69fbbe304ed66.jpg"
+    },
+    {
+      "id": "lookup:klairs:379",
+      "name": "클레어스 블루 이지에프 인텐시브 프로 크림",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "moisturizer",
+      "volume": "30g",
+      "officialUrl": "https://www.klairs.co.kr/product/%EB%B8%94%EB%A3%A8-%EC%9D%B4%EC%A7%80%EC%97%90%ED%94%84-%EC%9D%B8%ED%85%90%EC%8B%9C%EB%B8%8C-%ED%94%84%EB%A1%9C-%ED%81%AC%EB%A6%BC-30g/379/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202609/00d8e76d2126fca06483524f59150b19.jpg"
+    },
+    {
+      "id": "lookup:klairs:38",
+      "name": "클레어스 펀더멘탈 앰플 미스트",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "toner",
+      "officialUrl": "https://www.klairs.co.kr/product/%ED%8E%80%EB%8D%94%EB%A9%98%ED%83%88-%EC%95%B0%ED%94%8C-%EB%AF%B8%EC%8A%A4%ED%8A%B8/38/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202406/7b955d75b22b9bc5b69f034f315f66c8.png"
+    },
+    {
+      "id": "lookup:klairs:52",
+      "name": "클레어스 리치 모이스트 수딩크림",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "moisturizer",
+      "volume": "80g",
+      "officialUrl": "https://www.klairs.co.kr/product/%EB%A6%AC%EC%B9%98-%EB%AA%A8%EC%9D%B4%EC%8A%A4%ED%8A%B8-%EC%88%98%EB%94%A9%ED%81%AC%EB%A6%BC-80g/52/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202410/a7c0e032cdf2d8a13f6fa15c26accbc6.jpg"
+    },
+    {
+      "id": "lookup:klairs:62",
+      "name": "클레어스 올 데이 에어리 선크림 SPF50+ PA++++",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "sunscreen",
+      "volume": "50g",
+      "officialUrl": "https://www.klairs.co.kr/product/%EC%98%AC-%EB%8D%B0%EC%9D%B4-%EC%97%90%EC%96%B4%EB%A6%AC-%EC%84%A0%ED%81%AC%EB%A6%BC-50g-spf50-pa/62/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202406/19eca86ec5cf3c2fa9bba73dad6be388.png"
+    },
+    {
+      "id": "lookup:klairs:80",
+      "name": "클레어스 올 데이 에어리 무기자차 선크림 SPF50+ PA++++",
+      "brand": "클레어스",
+      "brandAlias": "Dear, Klairs",
+      "category": "sunscreen",
+      "volume": "60g",
+      "officialUrl": "https://www.klairs.co.kr/product/%EC%98%AC-%EB%8D%B0%EC%9D%B4-%EC%97%90%EC%96%B4%EB%A6%AC-%EB%AC%B4%EA%B8%B0%EC%9E%90%EC%B0%A8-%EC%84%A0%ED%81%AC%EB%A6%BC-60g-spf50-pa/80/",
+      "image": "https://www.klairs.co.kr/web/product/medium/202406/b707d4d77e023ef479752ace051fbfe3.png"
     },
     {
       "id": "lookup:klavuu:447",
