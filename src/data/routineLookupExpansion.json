@@ -261,6 +261,12 @@
       "usefulPages": 5,
       "fetchedListings": 24
     },
+    "paparecipe": {
+      "name": "파파레서피",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 6,
+      "fetchedListings": 42
+    },
     "pcalm": {
       "name": "피캄",
       "checkedAt": "2026-11-19",
@@ -14594,6 +14600,425 @@
       "category": "cleanser",
       "volume": "110g",
       "officialUrl": "https://www.ongredients.co.kr/product/detail.html?product_no=90"
+    },
+    {
+      "id": "lookup:paparecipe:1041",
+      "name": "파파레서피 티트리 컨트롤 패드",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "toner",
+      "volume": "70매",
+      "officialUrl": "https://www.paparecipe.com/product/%ED%8B%B0%ED%8A%B8%EB%A6%AC-%EC%BB%A8%ED%8A%B8%EB%A1%A4-%ED%8C%A8%EB%93%9C-70%EB%A7%A4/1041/",
+      "image": "https://www.paparecipe.com/web/product/medium/202602/ba5167e3903fb45a2975f17903d3b9ee.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1059",
+      "name": "파파레서피 가지 클리어링 마일드 클렌징 폼",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EA%B0%80%EC%A7%80-%ED%81%B4%EB%A6%AC%EC%96%B4%EB%A7%81-%EB%A7%88%EC%9D%BC%EB%93%9C-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8F%BC-120ml/1059/",
+      "image": "https://www.paparecipe.com/web/product/medium/202112/d9c14a702747dccc646a08a2453133c0.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1069",
+      "name": "파파레서피 블레미쉬 세럼",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "serum",
+      "volume": "150ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%B8%94%EB%A0%88%EB%AF%B8%EC%89%AC-%EC%84%B8%EB%9F%BC-150ml/1069/",
+      "image": "https://www.paparecipe.com/web/product/medium/202112/3502f3f0c9fc478f1346b6cfe32eb5bd.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1147",
+      "name": "파파레서피 가지 클리어링 루페올 크림",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EA%B0%80%EC%A7%80-%ED%81%B4%EB%A6%AC%EC%96%B4%EB%A7%81-%EB%A3%A8%ED%8E%98%EC%98%AC-%ED%81%AC%EB%A6%BC-100ml/1147/",
+      "image": "https://www.paparecipe.com/web/product/medium/202202/9103bf55bab98b0883b7ab6af75ca0a4.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1170",
+      "name": "파파레서피 티트리 컨트롤 마일드 선 크림",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.paparecipe.com/product/%ED%8B%B0%ED%8A%B8%EB%A6%AC-%EC%BB%A8%ED%8A%B8%EB%A1%A4-%EB%A7%88%EC%9D%BC%EB%93%9C-%EC%84%A0-%ED%81%AC%EB%A6%BC-50ml/1170/",
+      "image": "https://www.paparecipe.com/web/product/medium/202603/008b2f3d4298938d3ac56f9c60640776.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1171",
+      "name": "파파레서피 가지 클리어링 선 크림",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EA%B0%80%EC%A7%80-%ED%81%B4%EB%A6%AC%EC%96%B4%EB%A7%81-%EC%84%A0-%ED%81%AC%EB%A6%BC-50ml/1171/",
+      "image": "https://www.paparecipe.com/web/product/medium/202206/ac49bdf1f42fbd1b69854f1a0f21331b.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1194",
+      "name": "파파레서피 티트리 컨트롤 시카 앰플",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.paparecipe.com/product/%ED%8B%B0%ED%8A%B8%EB%A6%AC-%EC%BB%A8%ED%8A%B8%EB%A1%A4-%EC%8B%9C%EC%B9%B4-%EC%95%B0%ED%94%8C-30ml/1194/",
+      "image": "https://www.paparecipe.com/web/product/medium/202608/17e219e9827d217c325be92fcb7d1e5b.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1209",
+      "name": "파파레서피 티트리 컨트롤 수딩 크림",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://www.paparecipe.com/product/%ED%8B%B0%ED%8A%B8%EB%A6%AC-%EC%BB%A8%ED%8A%B8%EB%A1%A4-%EC%88%98%EB%94%A9-%ED%81%AC%EB%A6%BC-100ml/1209/",
+      "image": "https://www.paparecipe.com/web/product/medium/202206/6fcf4b21519039f0a58454bdd98433e0.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1213",
+      "name": "파파레서피 티트리 컨트롤 클렌징 폼",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://www.paparecipe.com/product/%ED%8B%B0%ED%8A%B8%EB%A6%AC-%EC%BB%A8%ED%8A%B8%EB%A1%A4-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8F%BC-120ml/1213/",
+      "image": "https://www.paparecipe.com/web/product/medium/202608/a46c9a8fdaab206e4f93b2a4baa147a5.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1276",
+      "name": "파파레서피 가지 클리어링 필링 패드 토너",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "cleanser",
+      "volume": "70매",
+      "officialUrl": "https://www.paparecipe.com/product/%EA%B0%80%EC%A7%80-%ED%81%B4%EB%A6%AC%EC%96%B4%EB%A7%81-%ED%95%84%EB%A7%81-%ED%8C%A8%EB%93%9C-%ED%86%A0%EB%84%88-70%EB%A7%A4/1276/",
+      "image": "https://www.paparecipe.com/web/product/medium/202602/6dc94009382af9078f29a3a3b3ecf033.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1357",
+      "name": "파파레서피 가지 클리어링 효소 파우더 클렌저",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "cleanser",
+      "volume": "50g",
+      "officialUrl": "https://www.paparecipe.com/product/%EA%B0%80%EC%A7%80-%ED%81%B4%EB%A6%AC%EC%96%B4%EB%A7%81-%ED%9A%A8%EC%86%8C-%ED%8C%8C%EC%9A%B0%EB%8D%94-%ED%81%B4%EB%A0%8C%EC%A0%80-50g/1357/",
+      "image": "https://www.paparecipe.com/web/product/medium/202610/391d4166060fa22cd88448cdfe6d2cc0.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1358",
+      "name": "파파레서피 티트리 컨트롤 효소 파우더 클렌저",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "cleanser",
+      "volume": "50g",
+      "officialUrl": "https://www.paparecipe.com/product/%ED%8B%B0%ED%8A%B8%EB%A6%AC-%EC%BB%A8%ED%8A%B8%EB%A1%A4-%ED%9A%A8%EC%86%8C-%ED%8C%8C%EC%9A%B0%EB%8D%94-%ED%81%B4%EB%A0%8C%EC%A0%80-50g/1358/",
+      "image": "https://www.paparecipe.com/web/product/medium/202610/f11cdc5b816d4c07e0544232590b2420.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1366",
+      "name": "파파레서피 레티놀 바쿠치올 세럼",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%A0%88%ED%8B%B0%EB%86%80-%EB%B0%94%EC%BF%A0%EC%B9%98%EC%98%AC-%EC%84%B8%EB%9F%BC-30ml/1366/",
+      "image": "https://www.paparecipe.com/web/product/medium/202309/d0876515d9580ae4f166c39aac9042f8.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1368",
+      "name": "파파레서피 나이아신아마이드 징크 세럼",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-%EC%A7%95%ED%81%AC-%EC%84%B8%EB%9F%BC-30ml/1368/",
+      "image": "https://www.paparecipe.com/web/product/medium/202608/972ecc9719c2c2930361505633c8b2d5.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1369",
+      "name": "파파레서피 콜라겐 펩타이드 세럼",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C-%EC%84%B8%EB%9F%BC-30ml/1369/",
+      "image": "https://www.paparecipe.com/web/product/medium/202608/c4cb42af64d42a7218e9a7e4f73ff067.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1400",
+      "name": "파파레서피 블레미쉬 필링 토너",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "toner",
+      "volume": "120ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%B8%94%EB%A0%88%EB%AF%B8%EC%89%AC-%ED%95%84%EB%A7%81-%ED%86%A0%EB%84%88-120ml/1400/",
+      "image": "https://www.paparecipe.com/web/product/medium/202602/cd7850207ead26bc2225a4242dc1dc1b.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1436",
+      "name": "파파레서피 블레미쉬 클렌징 오일",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "cleanser",
+      "volume": "300ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%B8%94%EB%A0%88%EB%AF%B8%EC%89%AC-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-300ml/1436/",
+      "image": "https://www.paparecipe.com/web/product/medium/202602/2452c55696d9412144ec45c4c4d9c39d.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1502",
+      "name": "파파레서피 블레미쉬 세럼",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%B8%94%EB%A0%88%EB%AF%B8%EC%89%AC-%EC%84%B8%EB%9F%BC-30ml/1502/",
+      "image": "https://www.paparecipe.com/web/product/medium/202404/be8fe13a85a6e466eeb71080f6f14581.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1506",
+      "name": "파파레서피 가지 클리어링 앰플",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EA%B0%80%EC%A7%80-%ED%81%B4%EB%A6%AC%EC%96%B4%EB%A7%81-%EC%95%B0%ED%94%8C-30ml/1506/",
+      "image": "https://www.paparecipe.com/web/product/medium/202404/c85c855a8bae0de97dbadf2220a0dcad.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1649",
+      "name": "파파레서피 블레미쉬 효소 파우더 클렌저 대용량",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "cleanser",
+      "volume": "130g",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%B8%94%EB%A0%88%EB%AF%B8%EC%89%AC-%ED%9A%A8%EC%86%8C-%ED%8C%8C%EC%9A%B0%EB%8D%94-%ED%81%B4%EB%A0%8C%EC%A0%80-%EB%8C%80%EC%9A%A9%EB%9F%89-130g/1649/",
+      "image": "https://www.paparecipe.com/web/product/medium/202604/080f26e3566f58360e89d0ab360c056e.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1678",
+      "name": "파파레서피 리얼 센텔라 시카 수딩 토너",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%A6%AC%EC%96%BC-%EC%84%BC%ED%85%94%EB%9D%BC-%EC%8B%9C%EC%B9%B4-%EC%88%98%EB%94%A9-%ED%86%A0%EB%84%88-150ml/1678/",
+      "image": "https://www.paparecipe.com/web/product/medium/202504/addc25bf338179b05c42fa9de4738672.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1679",
+      "name": "파파레서피 리얼 센텔라 시카 카밍 세럼",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%A6%AC%EC%96%BC-%EC%84%BC%ED%85%94%EB%9D%BC-%EC%8B%9C%EC%B9%B4-%EC%B9%B4%EB%B0%8D-%EC%84%B8%EB%9F%BC-30ml/1679/",
+      "image": "https://www.paparecipe.com/web/product/medium/202504/267b29fa0e77e360a239cca8a17f786c.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1680",
+      "name": "파파레서피 리얼 센텔라 시카 인텐시브 크림",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%A6%AC%EC%96%BC-%EC%84%BC%ED%85%94%EB%9D%BC-%EC%8B%9C%EC%B9%B4-%EC%9D%B8%ED%85%90%EC%8B%9C%EB%B8%8C-%ED%81%AC%EB%A6%BC-50ml/1680/",
+      "image": "https://www.paparecipe.com/web/product/medium/202608/54b7ead2b576039753271fe8d9fb9112.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1681",
+      "name": "파파레서피 리얼 센텔라 시카 인텐시브 크림",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%A6%AC%EC%96%BC-%EC%84%BC%ED%85%94%EB%9D%BC-%EC%8B%9C%EC%B9%B4-%EC%9D%B8%ED%85%90%EC%8B%9C%EB%B8%8C-%ED%81%AC%EB%A6%BC-100ml/1681/",
+      "image": "https://www.paparecipe.com/web/product/medium/202608/3214472c57240a762ac3c29e87db7df7.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1682",
+      "name": "파파레서피 리얼 센텔라 시카 쿨링 워터 핏 토너패드",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "toner",
+      "volume": "80매",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%A6%AC%EC%96%BC-%EC%84%BC%ED%85%94%EB%9D%BC-%EC%8B%9C%EC%B9%B4-%EC%BF%A8%EB%A7%81-%EC%9B%8C%ED%84%B0-%ED%95%8F-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-80%EB%A7%A4/1682/",
+      "image": "https://www.paparecipe.com/web/product/medium/202504/9878cd07916b99e833256f80efe8740f.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1685",
+      "name": "파파레서피 리얼 센텔라 시카 워터리 클렌징 티슈",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "cleanser",
+      "volume": "100매",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%A6%AC%EC%96%BC-%EC%84%BC%ED%85%94%EB%9D%BC-%EC%8B%9C%EC%B9%B4-%EC%9B%8C%ED%84%B0%EB%A6%AC-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8B%B0%EC%8A%88-100%EB%A7%A4/1685/",
+      "image": "https://www.paparecipe.com/web/product/medium/202504/2baec532545204ba396c1d071970853a.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1686",
+      "name": "파파레서피 리얼 센텔라 시카 에어리 매트 세범 선스틱",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "sunscreen",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%A6%AC%EC%96%BC-%EC%84%BC%ED%85%94%EB%9D%BC-%EC%8B%9C%EC%B9%B4-%EC%97%90%EC%96%B4%EB%A6%AC-%EB%A7%A4%ED%8A%B8-%EC%84%B8%EB%B2%94-%EC%84%A0%EC%8A%A4%ED%8B%B1/1686/",
+      "image": "https://www.paparecipe.com/web/product/medium/202504/3f5b7a069ba43add2be6c517e39531af.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1737",
+      "name": "파파레서피 블레미쉬 클렌징 오일",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%B8%94%EB%A0%88%EB%AF%B8%EC%89%AC-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-120ml/1737/",
+      "image": "https://www.paparecipe.com/web/product/medium/202504/a7744587d3add08ee78b093efaaaa264.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1872",
+      "name": "파파레서피 라이스 블레미쉬 딥 모이스트 선크림",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%9D%BC%EC%9D%B4%EC%8A%A4-%EB%B8%94%EB%A0%88%EB%AF%B8%EC%89%AC-%EB%94%A5-%EB%AA%A8%EC%9D%B4%EC%8A%A4%ED%8A%B8-%EC%84%A0%ED%81%AC%EB%A6%BC-50ml/1872/",
+      "image": "https://www.paparecipe.com/web/product/medium/202601/9c4d105931265db00aafae1c7a17a615.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1877",
+      "name": "파파레서피 나이아신아마이드 PDRN 브라이트닝 톤 업 듀얼 페이즈 미스트",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-pdrn-%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%8B%9D-%ED%86%A4-%EC%97%85-%EB%93%80%EC%96%BC-%ED%8E%98%EC%9D%B4%EC%A6%88-%EB%AF%B8%EC%8A%A4%ED%8A%B8-100ml/1877/",
+      "image": "https://www.paparecipe.com/web/product/medium/202601/16e9304be0ac13f1f22411b33b467aa0.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1878",
+      "name": "파파레서피 레티놀 바쿠치올 PDRN 리파인 글로우 듀얼 페이즈 미스트",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%A0%88%ED%8B%B0%EB%86%80-%EB%B0%94%EC%BF%A0%EC%B9%98%EC%98%AC-pdrn-%EB%A6%AC%ED%8C%8C%EC%9D%B8-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EB%93%80%EC%96%BC-%ED%8E%98%EC%9D%B4%EC%A6%88-%EB%AF%B8%EC%8A%A4%ED%8A%B8-100ml/1878/",
+      "image": "https://www.paparecipe.com/web/product/medium/202601/16083cc327e8cf45f13880b229a4be5f.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1879",
+      "name": "파파레서피 콜라겐 PDRN 레디언스 퍼밍 듀얼 페이즈 미스트",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EC%BD%9C%EB%9D%BC%EA%B2%90-pdrn-%EB%A0%88%EB%94%94%EC%96%B8%EC%8A%A4-%ED%8D%BC%EB%B0%8D-%EB%93%80%EC%96%BC-%ED%8E%98%EC%9D%B4%EC%A6%88-%EB%AF%B8%EC%8A%A4%ED%8A%B8-100ml/1879/",
+      "image": "https://www.paparecipe.com/web/product/medium/202601/259fc71d922406272d57cac37382093d.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1880",
+      "name": "파파레서피 히알루론산PDRN 딥 모이스트 베리어 듀얼 페이즈 미스트",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://www.paparecipe.com/product/%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0pdrn-%EB%94%A5-%EB%AA%A8%EC%9D%B4%EC%8A%A4%ED%8A%B8-%EB%B2%A0%EB%A6%AC%EC%96%B4-%EB%93%80%EC%96%BC-%ED%8E%98%EC%9D%B4%EC%A6%88-%EB%AF%B8%EC%8A%A4%ED%8A%B8-100ml/1880/",
+      "image": "https://www.paparecipe.com/web/product/medium/202601/92510743fa83b050d420a474de785cd7.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1881",
+      "name": "파파레서피 가지 클리어링 포어 리파인 토너",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EA%B0%80%EC%A7%80-%ED%81%B4%EB%A6%AC%EC%96%B4%EB%A7%81-%ED%8F%AC%EC%96%B4-%EB%A6%AC%ED%8C%8C%EC%9D%B8-%ED%86%A0%EB%84%88-150ml/1881/",
+      "image": "https://www.paparecipe.com/web/product/medium/202601/c26136f0fa7a4a4a4937eb88a56b4dd3.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1882",
+      "name": "파파레서피 가지 클리어링 포어 핏 세럼",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EA%B0%80%EC%A7%80-%ED%81%B4%EB%A6%AC%EC%96%B4%EB%A7%81-%ED%8F%AC%EC%96%B4-%ED%95%8F-%EC%84%B8%EB%9F%BC-30ml/1882/",
+      "image": "https://www.paparecipe.com/web/product/medium/202601/7f8489fa8a319a89e33ac7fce8715fdb.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1883",
+      "name": "파파레서피 가지 클리어링 퓨어 워터리 클렌징 오일",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EA%B0%80%EC%A7%80-%ED%81%B4%EB%A6%AC%EC%96%B4%EB%A7%81-%ED%93%A8%EC%96%B4-%EC%9B%8C%ED%84%B0%EB%A6%AC-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-150ml/1883/",
+      "image": "https://www.paparecipe.com/web/product/medium/202608/431b8b04b520c5a996216bba4ccbc234.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1893",
+      "name": "파파레서피 가지 클리어링 포어 타이트닝 모이스처 크림",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EA%B0%80%EC%A7%80-%ED%81%B4%EB%A6%AC%EC%96%B4%EB%A7%81-%ED%8F%AC%EC%96%B4-%ED%83%80%EC%9D%B4%ED%8A%B8%EB%8B%9D-%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B2%98-%ED%81%AC%EB%A6%BC-100ml/1893/",
+      "image": "https://www.paparecipe.com/web/product/medium/202603/c473d84f8854286709f5a9cd2e5bab0e.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:1913",
+      "name": "파파레서피 라이스 블레미쉬 밀키 스무딩 토너패드",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "toner",
+      "volume": "80매",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%9D%BC%EC%9D%B4%EC%8A%A4-%EB%B8%94%EB%A0%88%EB%AF%B8%EC%89%AC-%EB%B0%80%ED%82%A4-%EC%8A%A4%EB%AC%B4%EB%94%A9-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-80%EB%A7%A4/1913/",
+      "image": "https://www.paparecipe.com/web/product/medium/202611/ee57018d07fda6ea433ec5c24007bd89.png"
+    },
+    {
+      "id": "lookup:paparecipe:32",
+      "name": "파파레서피 티트리 컨트롤 스킨",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://www.paparecipe.com/product/%ED%8B%B0%ED%8A%B8%EB%A6%AC-%EC%BB%A8%ED%8A%B8%EB%A1%A4-%EC%8A%A4%ED%82%A8-200ml/32/",
+      "image": "https://www.paparecipe.com/web/product/medium/202308/79e199cb19a0905de55755f9279a1de2.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:538",
+      "name": "파파레서피 가지 클리어링 스킨",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EA%B0%80%EC%A7%80-%ED%81%B4%EB%A6%AC%EC%96%B4%EB%A7%81-%EC%8A%A4%ED%82%A8-200ml/538/",
+      "image": "https://www.paparecipe.com/web/product/medium/202602/9f21572c7a32c61efbb67b45f3a190a7.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:872",
+      "name": "파파레서피 봄비 모이스트 선 에센스",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%B4%84%EB%B9%84-%EB%AA%A8%EC%9D%B4%EC%8A%A4%ED%8A%B8-%EC%84%A0-%EC%97%90%EC%84%BC%EC%8A%A4-50ml/872/",
+      "image": "https://www.paparecipe.com/web/product/medium/202608/90fcbc37c364ad86a87df99bf5678f47.jpg"
+    },
+    {
+      "id": "lookup:paparecipe:986",
+      "name": "파파레서피 블레미쉬 효소 파우더 클렌저",
+      "brand": "파파레서피",
+      "brandAlias": "Papa Recipe",
+      "category": "cleanser",
+      "volume": "50g",
+      "officialUrl": "https://www.paparecipe.com/product/%EB%B8%94%EB%A0%88%EB%AF%B8%EC%89%AC-%ED%9A%A8%EC%86%8C-%ED%8C%8C%EC%9A%B0%EB%8D%94-%ED%81%B4%EB%A0%8C%EC%A0%80-50g/986/",
+      "image": "https://www.paparecipe.com/web/product/medium/202610/6658dcd40dbbf10c728f7d19ef4cc509.jpg"
     },
     {
       "id": "lookup:pcalm:115",

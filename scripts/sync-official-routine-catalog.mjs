@@ -121,6 +121,8 @@ export const stores = {
   blancdoux: cafe("더랩바이블랑두", "the lab by blanc doux", "blancdoux.com", [["list", "/product/list.html?cate_no=4"]]),
   neogen: cafe("네오젠", "NEOGEN", "www.neogenlab.co.kr"),
   drdifferent: cafe("닥터디퍼런트", "Dr.Different", "drdifferent.com"),
+  paparecipe: { brand: "파파레서피", alias: "Papa Recipe", domain: "www.paparecipe.com", type: "cafe",
+    paths: [288, 289, 297, 292, 293, 346, 295].map(category => [`list${category}`, `/product/list.html?cate_no=${category}`]) },
   etude: { brand: "에뛰드", alias: "ETUDE", domain: "www.etude.com", type: "etude",
     paths: [["list", "/product/category/skin-care/"], ["skin2", "/product/category/skin-care/page/2/"],
       ["cleanser", "/product/category/cleanser/"], ["cleanser2", "/product/category/cleanser/page/2/"]] },
@@ -366,6 +368,14 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
     let image = imageUrl((storeKey === "frankly" ? attr(img, "data-src") : null) || attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
+    if (storeKey === "paparecipe") {
+      if (!attr(node.parentNode, "class")?.split(/\s+/).includes("sp__product_title_247")) continue;
+      rawName = textOf(node);
+      const card = node.parentNode?.parentNode?.parentNode;
+      const photo = Array.from(walk(card)).find(child => child.nodeName === "img" &&
+        attr(child.parentNode, "class")?.split(/\s+/).includes("sp__product_image"));
+      image = imageUrl(attr(photo, "src"), store.domain);
+    }
     if (storeKey === "banobagi" || storeKey === "onething") {
       if (!attr(node.parentNode, "class")?.split(/\s+/).includes("name")) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "");
