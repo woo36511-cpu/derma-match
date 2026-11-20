@@ -247,3 +247,16 @@ test("Etude keeps the named 2x barrier cream and excludes multipacks", () => {
   assert.deepEqual(extractOfficialListings(html, "etude", stores.etude).map(p => [p.name, p.volume]),
     [["에뛰드 순정 2x 베리어 보습 크림", "60ml"]]);
 });
+
+test("Papa Recipe reads the product card title and image without image alt text", () => {
+  const html = `<div class="sp__product_box_247">
+    <p class="sp__product_image"><img src="/web/product/cleanser.jpg"></p>
+    <div><div class="sp__product_title_247">
+      <a href="/product/cleanser/986/">블레미쉬 효소 파우더 클렌저 50g</a>
+    </div></div>
+  </div>`;
+  const [product] = extractOfficialListings(html, "paparecipe", stores.paparecipe);
+  assert.equal(product.name, "파파레서피 블레미쉬 효소 파우더 클렌저");
+  assert.equal(product.volume, "50g");
+  assert.equal(product.image, "https://www.paparecipe.com/web/product/cleanser.jpg");
+});
