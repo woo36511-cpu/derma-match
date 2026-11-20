@@ -207,6 +207,12 @@
       "usefulPages": 2,
       "fetchedListings": 16
     },
+    "kioskin": {
+      "name": "키오스킨",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 1,
+      "fetchedListings": 17
+    },
     "klairs": {
       "name": "클레어스",
       "checkedAt": "2026-11-20",
@@ -9503,6 +9509,150 @@
       "category": "moisturizer",
       "volume": "100ml",
       "officialUrl": "https://kaine.co.kr/product/%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%9C%EB%8B%89-%EC%BF%A8%EB%A7%81-%EB%B6%80%EC%8A%A4%ED%84%B0-%EA%B2%94/44/"
+    },
+    {
+      "id": "lookup:kioskin:108",
+      "name": "키오스킨 엑소좀 시카 워터 선크림",
+      "brand": "키오스킨",
+      "brandAlias": "KIOSKIN",
+      "category": "sunscreen",
+      "officialUrl": "https://kioskin.co.kr/product/detail.html?product_no=108",
+      "image": "https://kioskin.co.kr/web/product/medium/202607/fa3058882a714ec552141d448677438c.jpg"
+    },
+    {
+      "id": "lookup:kioskin:109",
+      "name": "키오스킨 엑소좀 수딩 선스틱",
+      "brand": "키오스킨",
+      "brandAlias": "KIOSKIN",
+      "category": "sunscreen",
+      "officialUrl": "https://kioskin.co.kr/product/detail.html?product_no=109",
+      "image": "https://kioskin.co.kr/web/product/medium/202607/ebf03e75c027fb05cc185ecac3ea46ba.jpg"
+    },
+    {
+      "id": "lookup:kioskin:1283",
+      "name": "키오스킨 디판테놀 시카 엑소좀 클렌징 폼",
+      "brand": "키오스킨",
+      "brandAlias": "KIOSKIN",
+      "category": "cleanser",
+      "officialUrl": "https://kioskin.co.kr/product/detail.html?product_no=1283",
+      "image": "https://kioskin.co.kr/web/product/medium/202608/3b3e9fcc60f1f06fb886dcf498f9f311.jpg"
+    },
+    {
+      "id": "lookup:kioskin:1451",
+      "name": "키오스킨 엘시스테인 멜라케어 라이트업 선크림 (SPF50+ PA++++)",
+      "brand": "키오스킨",
+      "brandAlias": "KIOSKIN",
+      "category": "sunscreen",
+      "officialUrl": "https://kioskin.co.kr/product/detail.html?product_no=1451",
+      "image": "https://kioskin.co.kr/web/product/medium/202512/b7f0483e49dfcbcda98beb314694d6b0.jpg"
+    },
+    {
+      "id": "lookup:kioskin:3155",
+      "name": "키오스킨 디판테놀 18.5 크림",
+      "brand": "키오스킨",
+      "brandAlias": "KIOSKIN",
+      "category": "moisturizer",
+      "officialUrl": "https://kioskin.co.kr/product/detail.html?product_no=3155",
+      "image": "https://kioskin.co.kr/web/product/medium/202607/bb50029e7d0f6d306b1c533749085bd4.jpg"
+    },
+    {
+      "id": "lookup:kioskin:3340",
+      "name": "키오스킨 엘시스테인 멜라케어 앰플",
+      "brand": "키오스킨",
+      "brandAlias": "KIOSKIN",
+      "category": "serum",
+      "officialUrl": "https://kioskin.co.kr/product/detail.html?product_no=3340",
+      "image": "https://kioskin.co.kr/web/product/medium/202609/3c46678626499c7da13402dec59f8e73.jpg"
+    },
+    {
+      "id": "lookup:kioskin:3370",
+      "name": "키오스킨 디판테놀 스킨 커버 선크림",
+      "brand": "키오스킨",
+      "brandAlias": "KIOSKIN",
+      "category": "sunscreen",
+      "officialUrl": "https://kioskin.co.kr/product/detail.html?product_no=3370",
+      "image": "https://kioskin.co.kr/web/product/medium/202610/1b5c441583013b868cff5b536ed0e045.jpg"
+    },
+    {
+      "id": "lookup:kioskin:39",
+      "name": "키오스킨 이데베논 인리치드 세럼",
+      "brand": "키오스킨",
+      "brandAlias": "KIOSKIN",
+      "category": "serum",
+      "officialUrl": "https://kioskin.co.kr/product/detail.html?product_no=39",
+      "image": "https://kioskin.co.kr/web/product/medium/202512/49e5f897c1f0b6e92740bceeea3dbbcd.jpg"
+    },
+    {
+      "id": "lookup:kioskin:47",
+      "name": "키오스킨 이데베논 에이지 리와인드 세럼",
+      "brand": "키오스킨",
+      "brandAlias": "KIOSKIN",
+      "category": "serum",
+      "officialUrl": "https://kioskin.co.kr/product/detail.html?product_no=47",
+      "image": "https://kioskin.co.kr/web/product/medium/202607/b60960d2c9f5c7c7dd446d4b1ffc7be9.jpg"
+    },
+    {
+      "id": "lookup:kioskin:51",
+      "name": "키오스킨 엘시스테인 멜라케어 선크림 (SPF 50+ PA++++)",
+      "brand": "키오스킨",
+      "brandAlias": "KIOSKIN",
+      "category": "sunscreen",
+      "officialUrl": "https://kioskin.co.kr/product/detail.html?product_no=51",
+      "image": "https://kioskin.co.kr/web/product/medium/202607/39f3d6f542ca5cf94b0ce17abf9b7ff2.jpg"
+    },
+    {
+      "id": "lookup:kioskin:58",
+      "name": "키오스킨 펩톡스 유스 안티에이징 크림",
+      "brand": "키오스킨",
+      "brandAlias": "KIOSKIN",
+      "category": "moisturizer",
+      "officialUrl": "https://kioskin.co.kr/product/detail.html?product_no=58",
+      "image": "https://kioskin.co.kr/web/product/medium/202607/ae41fffddfe37115b069a0677ea4583f.jpg"
+    },
+    {
+      "id": "lookup:kioskin:788",
+      "name": "키오스킨 디판테놀 15.5 크림",
+      "brand": "키오스킨",
+      "brandAlias": "KIOSKIN",
+      "category": "moisturizer",
+      "officialUrl": "https://kioskin.co.kr/product/detail.html?product_no=788",
+      "image": "https://kioskin.co.kr/web/product/medium/202608/853c244775cc0a76d8709ee7d60a1e99.jpg"
+    },
+    {
+      "id": "lookup:kioskin:790",
+      "name": "키오스킨 엑소좀 스킨 밸런싱 패드",
+      "brand": "키오스킨",
+      "brandAlias": "KIOSKIN",
+      "category": "toner",
+      "officialUrl": "https://kioskin.co.kr/product/detail.html?product_no=790",
+      "image": "https://kioskin.co.kr/web/product/medium/202608/9fdb4fd6297edbbe9bead4bc8a120225.jpg"
+    },
+    {
+      "id": "lookup:kioskin:791",
+      "name": "키오스킨 엘시스테인 멜라케어 엑스퍼트 앰플",
+      "brand": "키오스킨",
+      "brandAlias": "KIOSKIN",
+      "category": "serum",
+      "officialUrl": "https://kioskin.co.kr/product/detail.html?product_no=791",
+      "image": "https://kioskin.co.kr/web/product/medium/202608/f92300dd15e3b4cd66947293629a41f4.jpg"
+    },
+    {
+      "id": "lookup:kioskin:95",
+      "name": "키오스킨 엘시스테인 멜라케어 인텐시브 크림",
+      "brand": "키오스킨",
+      "brandAlias": "KIOSKIN",
+      "category": "moisturizer",
+      "officialUrl": "https://kioskin.co.kr/product/detail.html?product_no=95",
+      "image": "https://kioskin.co.kr/web/product/medium/202512/0420966428be17f0ccbee0a73d6003b4.jpg"
+    },
+    {
+      "id": "lookup:kioskin:98",
+      "name": "키오스킨 ADP 스킨 리페어 앰플",
+      "brand": "키오스킨",
+      "brandAlias": "KIOSKIN",
+      "category": "serum",
+      "officialUrl": "https://kioskin.co.kr/product/detail.html?product_no=98",
+      "image": "https://kioskin.co.kr/web/product/medium/202512/78d02db0e6dc55479a78a556789ef047.jpg"
     },
     {
       "id": "lookup:klairs:16",
