@@ -121,6 +121,10 @@ export const stores = {
   blancdoux: cafe("더랩바이블랑두", "the lab by blanc doux", "blancdoux.com", [["list", "/product/list.html?cate_no=4"]]),
   neogen: cafe("네오젠", "NEOGEN", "www.neogenlab.co.kr"),
   drdifferent: cafe("닥터디퍼런트", "Dr.Different", "drdifferent.com"),
+  frankly: { brand: "프랭클리", alias: "FRANKLY", domain: "www.frankly.co.kr", type: "cafe",
+    paths: [1, 2].map(page => [`list${page}`, `/category/%EC%A0%84-%EC%A0%9C%ED%92%88/23/?page=${page}`]) },
+  klairs: { brand: "클레어스", alias: "Dear, Klairs", domain: "www.klairs.co.kr", type: "cafe",
+    paths: [["home", "/"], ...[25, 43, 26, 44, 27].map(category => [`list${category}`, `/product/list.html?cate_no=${category}`])] },
   sioris: cafe("시오리스", "SIORIS", "sioris.co.kr"),
   tirtir: cafe("티르티르", "TIRTIR", "tirtir.co.kr"),
   hanyul: cafe("한율", "HANYUL", "www.hanyul.com"),
@@ -150,6 +154,11 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (storeKey === "frankly") {
+    if (/톤업\s*크림|EVENT/u.test(name)) return null;
+    name = name.replace(/^\[[^\]]+\]\s*/u, "").replace(/\s*\(?소비기한.*$/u, "");
+  }
+  if (storeKey === "klairs" && /반반솜|클렌징 퍼프|블레미쉬 크림|더블구성|[x×]\s*\d|\d\s*개(?:\s|$)/iu.test(name)) return null;
   if (storeKey === "klavuu" && /액트리스 백스테이지|선비비|씨씨\s*크림/u.test(name)) return null;
   if (storeKey === "tyf") {
     name = name.replace(/^1등\*토너\s*/u, "");
@@ -325,8 +334,16 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const descendants = sitemap ? [] : Array.from(walk(node));
     const img = descendants.find(child => child.nodeName === "img" && attr(child, "alt"));
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
-    const image = imageUrl(attr(img, "src"), store.domain);
+    const image = imageUrl((storeKey === "frankly" ? attr(img, "data-src") : null) || attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
+    if (storeKey === "frankly" || storeKey === "klairs") {
+      if (!img) continue;
+      let card = node.parentNode;
+      while (card && !/^anchorBoxId_\d+$/.test(attr(card, "id") ?? "")) card = card.parentNode;
+      const title = Array.from(walk(card)).find(child => child.nodeName === "strong" && attr(child, "class")?.split(/\s+/).includes("name"));
+      if (!title) continue;
+      rawName = textOf(title).replace(/^상품명\s*:\s*/u, "");
+    }
     if (storeKey === "heimish") {
       const id = attr(node, "name")?.match(/^anchorBoxName_(\d+)$/)?.[1];
       if (!id || url.searchParams.get("product_no") !== id) continue;

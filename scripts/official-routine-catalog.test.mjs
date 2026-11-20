@@ -221,3 +221,20 @@ test("Heimish matches thumbnail links to their titled product card", () => {
   assert.deepEqual(extractOfficialListings(html, "heimish", stores.heimish).map(p => [p.name, p.volume]),
     [["헤이미쉬 말차바이옴 토너", "150ml"]]);
 });
+
+test("Frankly uses the product card title and lazy-loaded image", () => {
+  const html = `<li id="anchorBoxId_106">
+    <a href="/product/pdrn-바운스-볼-크림/106/"><img alt="프랭클리 PDRN 크림" src="/empty.png" data-src="/web/product/cream.jpg"></a>
+    <strong class="name"><span>상품명 :</span> PDRN 바운스 볼 크림</strong>
+  </li>`;
+  const [product] = extractOfficialListings(html, "frankly", stores.frankly);
+  assert.equal(product.name, "프랭클리 PDRN 바운스 볼 크림");
+  assert.equal(product.image, "https://www.frankly.co.kr/web/product/cream.jpg");
+});
+
+test("Klairs skips accessory and multi-unit cards", () => {
+  const html = ["토너 짝꿍 반반솜", "수딩 세럼X2", "서플 프레퍼레이션 페이셜 토너 180ml"]
+    .map((name, index) => `<li id="anchorBoxId_${index}"><a href="/product/item/${index}/">
+      <img alt="${name}" src="/web/product/item.jpg"></a><strong class="name">${name}</strong></li>`).join("");
+  assert.deepEqual(extractOfficialListings(html, "klairs", stores.klairs).map(p => p.volume), ["180ml"]);
+});
