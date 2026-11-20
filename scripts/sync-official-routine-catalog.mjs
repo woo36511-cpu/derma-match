@@ -121,6 +121,8 @@ export const stores = {
   blancdoux: cafe("더랩바이블랑두", "the lab by blanc doux", "blancdoux.com", [["list", "/product/list.html?cate_no=4"]]),
   neogen: cafe("네오젠", "NEOGEN", "www.neogenlab.co.kr"),
   drdifferent: cafe("닥터디퍼런트", "Dr.Different", "drdifferent.com"),
+  thera: { brand: "더라", alias: "THE RA", domain: "www.thera.co.kr", type: "imweb",
+    paths: [["home", "/"]] },
   sonatural: { brand: "쏘내추럴", alias: "SO NATURAL", domain: "www.sonatural.co.kr", type: "makeshop",
     paths: ["001", "002", "004", "015", "005", "007"].map(category => [`list${category}`, `/shop/shopbrand.html?xcode=015&type=N&mcode=${category}`]) },
   yadah: { brand: "야다", alias: "YADAH", domain: "www.yadah.co.kr", type: "cafe",
@@ -243,6 +245,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   name = name.replaceAll(volumePattern, " ").replace(/[ ]{2,}/g, " ").replace(/\(\s*\)|^\s*[:–-]\s*|\s*[:–-]\s*$/g, "").trim();
   if (name.length < 4 || !nameScript.test(name)) return null;
   let category = classify(name);
+  if (storeKey === "thera" && /선블럭$/u.test(name)) category = "sunscreen";
   if (storeKey === "tyf" && /선 프로젝트.*선 에센스/u.test(name)) category = "sunscreen";
   if (storeKey === "tyf" && /필링 크림$/u.test(name)) category = "cleanser";
   if (storeKey === "ninewishes" && /앰플 (?:아이앤페이스 )?크림(?: 나노 플러스)?$/u.test(name)) category = "moisturizer";
@@ -326,6 +329,20 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
   if (store.type === "innisfree") return extractInnisfree(source, storeKey, store);
   const candidates = [];
   const tree = Array.from(walk(parse5.parse(source), store.type === "cerave"));
+  if (store.type === "imweb") return tree.flatMap(node => {
+    if (node.nodeName !== "a" || !attr(node, "class")?.split(/\s+/).includes("ra-card")) return [];
+    const url = urlWithHost(attr(node, "href"), store.domain, false);
+    const id = url?.searchParams.get("idx");
+    if (!/^\d{1,12}$/.test(id ?? "") || url.pathname !== "/shop_view/") return [];
+    const descendants = Array.from(walk(node));
+    const title = descendants.find(child => child.nodeName === "h3");
+    const volume = descendants.find(child => /^\d+\s*(?:ml|g)$/i.test(textOf(child)));
+    const photo = descendants.find(child => child.nodeName === "img");
+    const src = attr(photo, "src") ?? "";
+    const image = imageUrl(src, store.domain) || (src.startsWith("https://cdn.imweb.me/") ? src.split("?")[0] : null);
+    const candidate = makeCandidate(storeKey, store, [textOf(title), textOf(volume)].join(" "), url.origin + url.pathname + "?idx=" + id, id, image);
+    return candidate ? [candidate] : [];
+  });
   if (store.type === "etude") return tree.flatMap(card => {
     const classes = attr(card, "class")?.split(/\s+/) ?? [];
     if (!classes.includes("product-grid-item")) return [];
