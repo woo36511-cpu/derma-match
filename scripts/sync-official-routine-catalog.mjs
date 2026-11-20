@@ -121,6 +121,10 @@ export const stores = {
   blancdoux: cafe("더랩바이블랑두", "the lab by blanc doux", "blancdoux.com", [["list", "/product/list.html?cate_no=4"]]),
   neogen: cafe("네오젠", "NEOGEN", "www.neogenlab.co.kr"),
   drdifferent: cafe("닥터디퍼런트", "Dr.Different", "drdifferent.com"),
+  bioturm: { brand: "비오투름", alias: "BIOTURM 비오텀", domain: "www.bioturm.co.kr", type: "cafe",
+    paths: [["best", "/category/best-seller/115/"], ["list", "/product/list.html?cate_no=116"]] },
+  easydew: { brand: "이지듀", alias: "Easydew", domain: "www.easydew.co.kr", type: "cafe",
+    paths: [69, 70, 71, 203, 210].map(category => [`list${category}`, `/product/list.html?cate_no=${category}`]) },
   droracle: { brand: "닥터오라클", alias: "Dr.Oracle", domain: "www.droracle.co.kr", type: "cafe",
     paths: [1, 2, 3, 4, 5, 6].map(page => [`list${page}`, `/product/list.html?cate_no=361&page=${page}`]) },
   dermora: { brand: "더모라", alias: "DERMORA", domain: "www.dermora.co.kr", type: "cafe",
@@ -180,6 +184,8 @@ function classify(name) {
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
   if (["banobagi", "onething"].includes(storeKey) && /[2-9]\d*\s*개(?:\s|$)/u.test(name)) return null;
+  if (storeKey === "bioturm") name = name.replace(/^\[비오투름\]\s*/u, "").replace(/클렌징밀크/gu, "클렌징 밀크");
+  if (storeKey === "easydew" && /쿠션|비비|특가|프라이머|브러쉬|대비 용량|\bMD\b|아이\s*크림|[2-9]\d*\s*개|\s\+\s/u.test(name)) return null;
   if (storeKey === "droracle") {
     if (/씨씨|비비|마스크|아이\s*크림|위클리|디바이스|\d\s*개|\s\+\s/u.test(name)) return null;
     name = name.replace(/^\[(?:리뉴얼 재입고|리뉴얼|재입고)\]\s*/u, "");
@@ -253,6 +259,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   name = name.replaceAll(volumePattern, " ").replace(/[ ]{2,}/g, " ").replace(/\(\s*\)|^\s*[:–-]\s*|\s*[:–-]\s*$/g, "").trim();
   if (name.length < 4 || !nameScript.test(name)) return null;
   let category = classify(name);
+  if (storeKey === "easydew" && /앰플 크림$/u.test(name)) category = "moisturizer";
   if (["thera", "droracle"].includes(storeKey) && /선블[럭록]/u.test(name)) category = "sunscreen";
   if (storeKey === "tyf" && /선 프로젝트.*선 에센스/u.test(name)) category = "sunscreen";
   if (storeKey === "tyf" && /필링 크림$/u.test(name)) category = "cleanser";
@@ -399,7 +406,17 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
     let image = imageUrl((storeKey === "frankly" ? attr(img, "data-src") : null) || attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
-    if (storeKey === "dermora" || storeKey === "droracle") {
+    if (storeKey === "easydew") {
+      if (!attr(node.parentNode, "class")?.split(/\s+/).includes("name")) continue;
+      let card = node.parentNode;
+      while (card && !/^anchorBoxId_\d+$/.test(attr(card, "id") ?? "")) card = card.parentNode;
+      const contents = Array.from(walk(card));
+      const identity = contents.find(child => attr(child, "class")?.split(/\s+/).includes("display실상품명"));
+      rawName = identity ? textOf(identity).replace(/^실상품명\s*:\s*/u, "") : textOf(node).replace(/^상품명\s*:\s*/u, "");
+      const photo = contents.find(child => child.nodeName === "img" && /^eListPrdImage\d+_\d+$/.test(attr(child, "id") ?? ""));
+      image = imageUrl(attr(photo, "src"), store.domain);
+    }
+    if (["dermora", "droracle", "bioturm"].includes(storeKey)) {
       if (!attr(node.parentNode, "class")?.split(/\s+/).includes("name")) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "");
       let card = node.parentNode;
