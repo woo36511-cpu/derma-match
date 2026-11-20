@@ -27,6 +27,12 @@
       "usefulPages": 1,
       "fetchedListings": 18
     },
+    "avene": {
+      "name": "아벤느",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 7,
+      "fetchedListings": 20
+    },
     "banila": {
       "name": "바닐라코",
       "checkedAt": "2026-11-19",
@@ -302,6 +308,12 @@
       "checkedAt": "2026-11-19",
       "usefulPages": 2,
       "fetchedListings": 20
+    },
+    "physiogel": {
+      "name": "피지오겔",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 6,
+      "fetchedListings": 13
     },
     "realbarrier": {
       "name": "리얼베리어",
@@ -1369,6 +1381,159 @@
       "category": "serum",
       "volume": "300ml",
       "officialUrl": "https://www.aromatica.co.kr/product/detail.html?product_no=2697"
+    },
+    {
+      "id": "lookup:avene:3282770037111",
+      "name": "아벤느 클리낭스 클렌징 젤",
+      "brand": "아벤느",
+      "brandAlias": "Avène Avene",
+      "category": "cleanser",
+      "officialUrl": "https://www.eau-thermale-avene.co.kr/p/keulrinangseu-keulrenjing-jel-3282770037111-dc3af3fd",
+      "image": "https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5sexiqr1u1oj1ho98oqxwu9tmn4po/u5wa3z31qn5sexiqr1u1oj1ho98oqxwu9tmn4po"
+    },
+    {
+      "id": "lookup:avene:3282770074734",
+      "name": "아벤느 트릭세라 뉴트리-플루이드 로션",
+      "brand": "아벤느",
+      "brandAlias": "Avène Avene",
+      "category": "moisturizer",
+      "officialUrl": "https://www.eau-thermale-avene.co.kr/p/teurigsera-nyuteurisyeon-nyuteuri-peulruideu-rosyeon-3282770074734-dc3af3fd",
+      "image": "https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5sjhk8mbfuh4h1ewfr1p93eocgqro/u5wa3z31qn5sjhk8mbfuh4h1ewfr1p93eocgqro"
+    },
+    {
+      "id": "lookup:avene:3282770138801",
+      "name": "아벤느 컨트롤 크림",
+      "brand": "아벤느",
+      "brandAlias": "Avène Avene",
+      "category": "moisturizer",
+      "officialUrl": "https://www.eau-thermale-avene.co.kr/p/ddolrerangseu-keonteurol-keurim-3282770138801-dc3af3fd",
+      "image": "https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5sj3otasr4g38ci19phkwz4qu384y/u5wa3z31qn5sj3otasr4g38ci19phkwz4qu384y"
+    },
+    {
+      "id": "lookup:avene:3282770144130",
+      "name": "아벤느 이드랑스 아쿠아 크림-인-젤 EX",
+      "brand": "아벤느",
+      "brandAlias": "Avène Avene",
+      "category": "moisturizer",
+      "officialUrl": "https://www.eau-thermale-avene.co.kr/p/ideurangseu-akua-keurim-in-jel-ex-3282770144130-dc3af3fd",
+      "image": "https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5semmgg4ka3dtfk49phkwz4qu384y/u5wa3z31qn5semmgg4ka3dtfk49phkwz4qu384y"
+    },
+    {
+      "id": "lookup:avene:3282770146394",
+      "name": "아벤느 클리낭스 아쿠아 크림-인-젤",
+      "brand": "아벤느",
+      "brandAlias": "Avène Avene",
+      "category": "moisturizer",
+      "officialUrl": "https://www.eau-thermale-avene.co.kr/p/keulrinangseu-akua-keurim-in-jel-3282770146394-dc3af3fd",
+      "image": "https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5sjox7r35zrg5776zph3ibr8dswge/u5wa3z31qn5sjox7r35zrg5776zph3ibr8dswge"
+    },
+    {
+      "id": "lookup:avene:3282770148763",
+      "name": "아벤느 시칼파트 플러스 하이드레이팅 에멀전",
+      "brand": "아벤느",
+      "brandAlias": "Avène Avene",
+      "category": "moisturizer",
+      "officialUrl": "https://www.eau-thermale-avene.co.kr/p/244590sikalpateu-peulreoseu-ripeeoring-moiseuceoraijeo-3282770148763-dc3af3fd",
+      "image": "https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5sj6xpgcxj1jeqfxhitc8msdhumpy/u5wa3z31qn5sj6xpgcxj1jeqfxhitc8msdhumpy"
+    },
+    {
+      "id": "lookup:avene:3282770152371",
+      "name": "아벤느 젠틀 포밍 클렌저",
+      "brand": "아벤느",
+      "brandAlias": "Avène Avene",
+      "category": "cleanser",
+      "officialUrl": "https://www.eau-thermale-avene.co.kr/p/jenteul-poming-keulrenjeo-3282770152371-dc3af3fd",
+      "image": "https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5seq954sw87rk55yxuee5jn54fmie/u5wa3z31qn5seq954sw87rk55yxuee5jn54fmie"
+    },
+    {
+      "id": "lookup:avene:3282770201161",
+      "name": "아벤느 선 미네랄 크림 SPF50+/ PA++++",
+      "brand": "아벤느",
+      "brandAlias": "Avène Avene",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.eau-thermale-avene.co.kr/p/seon-mineral-keurim-spf-50-3282770201161-dc3af3fd",
+      "image": "https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5sj94qy6x7gocteyfr1p93eocgqro/u5wa3z31qn5sj94qy6x7gocteyfr1p93eocgqro"
+    },
+    {
+      "id": "lookup:avene:3282770203493",
+      "name": "아벤느 이드랑스 아쿠아 크림-인-젤",
+      "brand": "아벤느",
+      "brandAlias": "Avène Avene",
+      "category": "moisturizer",
+      "officialUrl": "https://www.eau-thermale-avene.co.kr/p/ideurangseu-akua-keurim-in-jel-3282770203493-dc3af3fd",
+      "image": "https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5sjqfkxqz75jw7yspyeobbdpzg9ya/u5wa3z31qn5sjqfkxqz75jw7yspyeobbdpzg9ya"
+    },
+    {
+      "id": "lookup:avene:3282770204667",
+      "name": "아벤느 시칼파트 플러스 S.O.S 크림",
+      "brand": "아벤느",
+      "brandAlias": "Avène Avene",
+      "category": "moisturizer",
+      "officialUrl": "https://www.eau-thermale-avene.co.kr/p/sikalpateu-peulreoseu-ripeeoring-peurotegtibeu-keurim-3282770204667-dc3af3fd",
+      "image": "https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5sj75m6ga58us6wrkqcmm9o3j3m8y/u5wa3z31qn5sj75m6ga58us6wrkqcmm9o3j3m8y"
+    },
+    {
+      "id": "lookup:avene:3282770209150",
+      "name": "아벤느 이드랑스 에센스-인-로션",
+      "brand": "아벤느",
+      "brandAlias": "Avène Avene",
+      "category": "toner",
+      "officialUrl": "https://www.eau-thermale-avene.co.kr/p/ideurangseu-esenseu-in-rosyeon-3282770209150-dc3af3fd",
+      "image": "https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5sjq4rz8bm457wprcmkyegqo3bqiy/u5wa3z31qn5sjq4rz8bm457wprcmkyegqo3bqiy"
+    },
+    {
+      "id": "lookup:avene:3282770209730",
+      "name": "아벤느 이드랑스 딥 모이스트 로션",
+      "brand": "아벤느",
+      "brandAlias": "Avène Avene",
+      "category": "moisturizer",
+      "officialUrl": "https://www.eau-thermale-avene.co.kr/p/ideurangseu-dib-moiseuteu-rosyeon-3282770209730-dc3af3fd",
+      "image": "https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5sjq4rz8bm457wp88oqxwu9tmn4po/u5wa3z31qn5sjq4rz8bm457wp88oqxwu9tmn4po"
+    },
+    {
+      "id": "lookup:avene:3282770388954",
+      "name": "아벤느 이드랑스 부스트 세럼",
+      "brand": "아벤느",
+      "brandAlias": "Avène Avene",
+      "category": "serum",
+      "officialUrl": "https://www.eau-thermale-avene.co.kr/p/ideurangseu-buseuteu-sereom-3282770388954-dc3af3fd",
+      "image": "https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5sehhhh5n1unes3rkqcmm9o3j3m8y/u5wa3z31qn5sehhhh5n1unes3rkqcmm9o3j3m8y"
+    },
+    {
+      "id": "lookup:avene:3282770390179",
+      "name": "아벤느 미셀라 클렌징 워터",
+      "brand": "아벤느",
+      "brandAlias": "Avène Avene",
+      "category": "cleanser",
+      "officialUrl": "https://www.eau-thermale-avene.co.kr/p/miselra-keulrenjing-weoteo-3282770390179-dc3af3fd",
+      "image": "https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5sjwy9ja1s4nsonf6srdeasour17a/u5wa3z31qn5sjwy9ja1s4nsonf6srdeasour17a"
+    },
+    {
+      "id": "lookup:avene:3282770395396",
+      "name": "아벤느 선시티브 선 플루이드 SPF50+",
+      "brand": "아벤느",
+      "brandAlias": "Avène Avene",
+      "category": "sunscreen",
+      "officialUrl": "https://www.eau-thermale-avene.co.kr/p/seonsitibeu-seon-peulruideu-spf50-3282770395396-dc3af3fd",
+      "image": "https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5seyumnu6rexfy3p6srdeasour17a/u5wa3z31qn5seyumnu6rexfy3p6srdeasour17a"
+    },
+    {
+      "id": "lookup:avene:3282779003131",
+      "name": "아벤느 오 떼르말",
+      "brand": "아벤느",
+      "brandAlias": "Avène Avene",
+      "category": "toner",
+      "officialUrl": "https://www.eau-thermale-avene.co.kr/p/o-ddereumal-3282779003131-dc3af3fd"
+    },
+    {
+      "id": "lookup:avene:3282779402903",
+      "name": "아벤느 선 레 앙팡SPF 50+/ PA+++",
+      "brand": "아벤느",
+      "brandAlias": "Avène Avene",
+      "category": "sunscreen",
+      "officialUrl": "https://www.eau-thermale-avene.co.kr/p/seon-re-angpangspf-50-pa-3282779402903-dc3af3fd",
+      "image": "https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5seu799nzjtnygyqzph3ibr8dswge/u5wa3z31qn5seu799nzjtnygyqzph3ibr8dswge"
     },
     {
       "id": "lookup:banila:1498",
@@ -11719,180 +11884,9 @@
       "id": "lookup:medipeel:2779",
       "name": "메디필 탄력강화 프리미엄 콜라겐 나이테 실 넥크림 30",
       "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "moisturizer",
-      "volume": "100ml",
-      "officialUrl": "https://www.medipeel.co.kr/product/%ED%83%84%EB%A0%A5%EA%B0%95%ED%99%94-%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EB%82%98%EC%9D%B4%ED%85%8C-%EC%8B%A4-%EB%84%A5%ED%81%AC%EB%A6%BC-30-100ml/2779/"
-    },
-    {
-      "id": "lookup:medipeel:2781",
-      "name": "메디필 펩타이드9 볼륨 앤 텐션 톡스 크림 프로",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "moisturizer",
-      "volume": "50g",
-      "officialUrl": "https://www.medipeel.co.kr/product/%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EB%B3%BC%EB%A5%A8-%EC%95%A4-%ED%85%90%EC%85%98-%ED%86%A1%EC%8A%A4-%ED%81%AC%EB%A6%BC-%ED%94%84%EB%A1%9C-50g/2781/"
-    },
-    {
-      "id": "lookup:medipeel:2786",
-      "name": "메디필 펩타이드9 볼륨 바이오 톡스 앰플 프로",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "serum",
-      "volume": "100ml",
-      "officialUrl": "https://www.medipeel.co.kr/product/%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EB%B3%BC%EB%A5%A8-%EB%B0%94%EC%9D%B4%EC%98%A4-%ED%86%A1%EC%8A%A4-%EC%95%B0%ED%94%8C-%ED%94%84%EB%A1%9C-100ml/2786/"
-    },
-    {
-      "id": "lookup:medipeel:2799",
-      "name": "메디필 펩타이드9 볼륨 올인원 에센스 프로",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "serum",
-      "volume": "100ml",
-      "officialUrl": "https://www.medipeel.co.kr/product/%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EB%B3%BC%EB%A5%A8-%EC%98%AC%EC%9D%B8%EC%9B%90-%EC%97%90%EC%84%BC%EC%8A%A4-%ED%94%84%EB%A1%9C-100ml/2799/"
-    },
-    {
-      "id": "lookup:medipeel:2800",
-      "name": "메디필 펩타이드9 볼륨 화이트 시카 에센스 프로",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "serum",
-      "volume": "100ml",
-      "officialUrl": "https://www.medipeel.co.kr/product/%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EB%B3%BC%EB%A5%A8-%ED%99%94%EC%9D%B4%ED%8A%B8-%EC%8B%9C%EC%B9%B4-%EC%97%90%EC%84%BC%EC%8A%A4-%ED%94%84%EB%A1%9C-100ml/2800/"
-    },
-    {
-      "id": "lookup:medipeel:2805",
-      "name": "메디필 히알루론산 레이어 물톡스 앰플",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "serum",
-      "volume": "30ml",
-      "officialUrl": "https://www.medipeel.co.kr/product/%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%EB%A0%88%EC%9D%B4%EC%96%B4-%EB%AC%BC%ED%86%A1%EC%8A%A4-%EC%95%B0%ED%94%8C-30ml/2805/"
-    },
-    {
-      "id": "lookup:medipeel:2807",
-      "name": "메디필 펩타이드9 볼륨 톡스 크림 프로",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "moisturizer",
-      "volume": "50g",
-      "officialUrl": "https://www.medipeel.co.kr/product/%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EB%B3%BC%EB%A5%A8-%ED%86%A1%EC%8A%A4-%ED%81%AC%EB%A6%BC-%ED%94%84%EB%A1%9C-50g/2807/"
-    },
-    {
-      "id": "lookup:medipeel:2821",
-      "name": "메디필 메이크업 딥 클렌징 비건 비타민 딥톡스 클렌징 오일",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "cleanser",
-      "volume": "200ml",
-      "officialUrl": "https://www.medipeel.co.kr/product/%EB%A9%94%EC%9D%B4%ED%81%AC%EC%97%85-%EB%94%A5-%ED%81%B4%EB%A0%8C%EC%A7%95-%EB%B9%84%EA%B1%B4-%EB%B9%84%ED%83%80%EB%AF%BC-%EB%94%A5%ED%86%A1%EC%8A%A4-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-200ml/2821/"
-    },
-    {
-      "id": "lookup:medipeel:2824",
-      "name": "메디필 히알루론산 레이어 물톡스 크림",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "moisturizer",
-      "volume": "50g",
-      "officialUrl": "https://www.medipeel.co.kr/product/%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%EB%A0%88%EC%9D%B4%EC%96%B4-%EB%AC%BC%ED%86%A1%EC%8A%A4-%ED%81%AC%EB%A6%BC-50g/2824/"
-    },
-    {
-      "id": "lookup:medipeel:2855",
-      "name": "메디필 레드 락토 콜라겐 클렌징 오일 20",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "cleanser",
-      "volume": "155ml",
-      "officialUrl": "https://www.medipeel.co.kr/product/%EB%A0%88%EB%93%9C-%EB%9D%BD%ED%86%A0-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-20-155ml/2855/"
-    },
-    {
-      "id": "lookup:medipeel:2858",
-      "name": "메디필 펩타이드9 볼륨 리프팅 올인원 에센스 프로",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "serum",
-      "volume": "100ml",
-      "officialUrl": "https://www.medipeel.co.kr/product/%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EB%B3%BC%EB%A5%A8-%EB%A6%AC%ED%94%84%ED%8C%85-%EC%98%AC%EC%9D%B8%EC%9B%90-%EC%97%90%EC%84%BC%EC%8A%A4-%ED%94%84%EB%A1%9C-100ml/2858/"
-    },
-    {
-      "id": "lookup:medipeel:2863",
-      "name": "메디필 펩타이드9 볼륨 바이오 톡스 토너 프로",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "toner",
-      "volume": "250ml",
-      "officialUrl": "https://www.medipeel.co.kr/product/%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EB%B3%BC%EB%A5%A8-%EB%B0%94%EC%9D%B4%EC%98%A4-%ED%86%A1%EC%8A%A4-%ED%86%A0%EB%84%88-%ED%94%84%EB%A1%9C-250ml/2863/"
-    },
-    {
-      "id": "lookup:medipeel:2904",
-      "name": "메디필 레드 락토 콜라겐 클렌징 오일 20",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "cleanser",
-      "volume": "200ml",
-      "officialUrl": "https://www.medipeel.co.kr/product/%EB%A0%88%EB%93%9C-%EB%9D%BD%ED%86%A0-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-20-200ml/2904/"
-    },
-    {
-      "id": "lookup:medipeel:2917",
-      "name": "메디필 히알루론산 레이어 물톡스 앰플",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "serum",
-      "volume": "50ml",
-      "officialUrl": "https://www.medipeel.co.kr/product/%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%EB%A0%88%EC%9D%B4%EC%96%B4-%EB%AC%BC%ED%86%A1%EC%8A%A4-%EC%95%B0%ED%94%8C-50ml/2917/"
-    },
-    {
-      "id": "lookup:medipeel:2931",
-      "name": "메디필 2주 기미케어 펩타이드9 비타놀 크림 프로",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "moisturizer",
-      "volume": "50g",
-      "officialUrl": "https://www.medipeel.co.kr/product/2%EC%A3%BC-%EA%B8%B0%EB%AF%B8%EC%BC%80%EC%96%B4-%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EB%B9%84%ED%83%80%EB%86%80-%ED%81%AC%EB%A6%BC-%ED%94%84%EB%A1%9C-50g/2931/"
-    },
-    {
-      "id": "lookup:medipeel:3167",
-      "name": "메디필 펩타이드9 아쿠아 볼륨 톡스 미스트 프로",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "toner",
-      "volume": "50ml",
-      "officialUrl": "https://www.medipeel.co.kr/product/%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EC%95%84%EC%BF%A0%EC%95%84-%EB%B3%BC%EB%A5%A8-%ED%86%A1%EC%8A%A4-%EB%AF%B8%EC%8A%A4%ED%8A%B8-%ED%94%84%EB%A1%9C-50ml/3167/"
-    },
-    {
-      "id": "lookup:medipeel:3168",
-      "name": "메디필 피토 시카놀 b5 샷 세럼 3000",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "serum",
-      "volume": "50g",
-      "officialUrl": "https://www.medipeel.co.kr/product/%ED%94%BC%ED%86%A0-%EC%8B%9C%EC%B9%B4%EB%86%80-b5-%EC%83%B7-%EC%84%B8%EB%9F%BC-3000-50g/3168/"
-    },
-    {
-      "id": "lookup:medipeel:3169",
-      "name": "메디필 피토 시카놀 b5 샷 세럼 6000",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "serum",
-      "volume": "50g",
-      "officialUrl": "https://www.medipeel.co.kr/product/%ED%94%BC%ED%86%A0-%EC%8B%9C%EC%B9%B4%EB%86%80-b5-%EC%83%B7-%EC%84%B8%EB%9F%BC-6000-50g/3169/"
-    },
-    {
-      "id": "lookup:medipeel:3197",
-      "name": "메디필 레드 락토 콜라겐 베리어 크림",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "moisturizer",
-      "volume": "80ml",
-      "officialUrl": "https://www.medipeel.co.kr/product/%EB%A0%88%EB%93%9C-%EB%9D%BD%ED%86%A0-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EB%B2%A0%EB%A6%AC%EC%96%B4-%ED%81%AC%EB%A6%BC-80ml/3197/"
-    },
-    {
-      "id": "lookup:medipeel:3199",
-      "name": "메디필 레드 락토 콜라겐 수딩 에센스 토너",
-      "brand": "메디필",
-      "brandAlias": "MEDI-PEEL",
-      "category": "toner",
-      "volume": "200ml",
+      "b
+... 8438 bytes omitted ...
+     "volume": "200ml",
       "officialUrl": "https://www.medipeel.co.kr/product/%EB%A0%88%EB%93%9C-%EB%9D%BD%ED%86%A0-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EC%88%98%EB%94%A9-%EC%97%90%EC%84%BC%EC%8A%A4-%ED%86%A0%EB%84%88-200ml/3199/"
     },
     {
@@ -16155,6 +16149,135 @@
       "brandAlias": "P.CALM",
       "category": "cleanser",
       "officialUrl": "https://pcalm.co.kr/product/%ED%94%BC%EC%BA%84-%EB%A0%88%ED%8B%B0%EB%86%80%EB%9D%BC%EA%B2%90-%EC%95%B0%ED%94%8C-%EC%83%B7-%ED%8F%BC%ED%81%B4%EB%A0%8C%EC%A0%80/518/"
+    },
+    {
+      "id": "lookup:physiogel:1048",
+      "name": "피지오겔 레드수딩 AI 손상장벽 리페어 진정크림",
+      "brand": "피지오겔",
+      "brandAlias": "Physiogel",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://www.physiogel.co.kr/product/detail.html?product_no=1048",
+      "image": "https://www.physiogel.co.kr/web/product/medium/202609/da2a67259369039ec6556e2833867a36.jpg"
+    },
+    {
+      "id": "lookup:physiogel:1491",
+      "name": "피지오겔 시카밸런스 포어 컨트롤 모공 세럼",
+      "brand": "피지오겔",
+      "brandAlias": "Physiogel",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.physiogel.co.kr/product/detail.html?product_no=1491",
+      "image": "https://www.physiogel.co.kr/web/product/medium/202503/0c77e70a6e029244d0ca4f4d88bbce17.png"
+    },
+    {
+      "id": "lookup:physiogel:1583",
+      "name": "피지오겔 레드수딩 AI 릴리프 모이스처라이저 로션 플러스 (가려움 개선)",
+      "brand": "피지오겔",
+      "brandAlias": "Physiogel",
+      "category": "moisturizer",
+      "officialUrl": "https://www.physiogel.co.kr/product/detail.html?product_no=1583",
+      "image": "https://www.physiogel.co.kr/web/product/medium/202511/be29efd79217487a0000216409db16ff.png"
+    },
+    {
+      "id": "lookup:physiogel:1586",
+      "name": "피지오겔 DMT 속건조/속당김케어 리제너러티브(리젠) 크림",
+      "brand": "피지오겔",
+      "brandAlias": "Physiogel",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://www.physiogel.co.kr/product/detail.html?product_no=1586",
+      "image": "https://www.physiogel.co.kr/web/product/medium/202609/7b5c0234ca35113f9cf81b71e5c6ba65.jpg"
+    },
+    {
+      "id": "lookup:physiogel:1649",
+      "name": "피지오겔 대용량 DMT 페이셜 크림 (고보습/수분 장벽강화)",
+      "brand": "피지오겔",
+      "brandAlias": "Physiogel",
+      "category": "moisturizer",
+      "volume": "180ml",
+      "officialUrl": "https://www.physiogel.co.kr/product/detail.html?product_no=1649",
+      "image": "https://www.physiogel.co.kr/web/product/medium/202609/0438b1fa3d6f7be52343f6681970bb5e.jpg"
+    },
+    {
+      "id": "lookup:physiogel:1961",
+      "name": "피지오겔 레드수딩 AI 손상장벽 리페어 민감진정 에센스",
+      "brand": "피지오겔",
+      "brandAlias": "Physiogel",
+      "category": "serum",
+      "volume": "200ml",
+      "officialUrl": "https://www.physiogel.co.kr/product/detail.html?product_no=1961",
+      "image": "https://www.physiogel.co.kr/web/product/medium/202609/3be37d138b0a71d45711344c4e581433.jpg"
+    },
+    {
+      "id": "lookup:physiogel:2007",
+      "name": "피지오겔 데일리뮨 UV디펜스 앰플 썬세럼 유기자차 SPF 50+ PA++++ (광노화/열노화 리페어)",
+      "brand": "피지오겔",
+      "brandAlias": "Physiogel",
+      "category": "sunscreen",
+      "volume": "30ml",
+      "officialUrl": "https://www.physiogel.co.kr/product/detail.html?product_no=2007",
+      "image": "https://www.physiogel.co.kr/web/product/medium/202609/165d37c518a7aaf17f0c4806f4f33947.jpg"
+    },
+    {
+      "id": "lookup:physiogel:2361",
+      "name": "피지오겔 콜라겐 리뉴 엑소좀 퍼밍캡슐 앰플 (미세주름 탄력리프팅 PDRN 항노화NMN)",
+      "brand": "피지오겔",
+      "brandAlias": "Physiogel",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.physiogel.co.kr/product/detail.html?product_no=2361",
+      "image": "https://www.physiogel.co.kr/web/product/medium/202509/5e73bf336bf6ad33cdcd5131204383f7.png"
+    },
+    {
+      "id": "lookup:physiogel:2362",
+      "name": "피지오겔 콜라겐 리뉴 엑소좀 링클크림 (팔자,목 굵은주름 탄력리프팅 PDRN 항노화NMN)",
+      "brand": "피지오겔",
+      "brandAlias": "Physiogel",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.physiogel.co.kr/product/detail.html?product_no=2362",
+      "image": "https://www.physiogel.co.kr/web/product/medium/202509/c33ef3797ac395d873814649b23742de.png"
+    },
+    {
+      "id": "lookup:physiogel:2711",
+      "name": "피지오겔 레드수딩 로자테카 레드니스 세럼",
+      "brand": "피지오겔",
+      "brandAlias": "Physiogel",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.physiogel.co.kr/product/detail.html?product_no=2711",
+      "image": "https://www.physiogel.co.kr/web/product/medium/202609/b14248165f6a25190ad0041c94d00097.jpg"
+    },
+    {
+      "id": "lookup:physiogel:326",
+      "name": "피지오겔 레드수딩 시카밸런스 수분 토너 (모공 노폐물 정화)",
+      "brand": "피지오겔",
+      "brandAlias": "Physiogel",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://www.physiogel.co.kr/product/detail.html?product_no=326",
+      "image": "https://www.physiogel.co.kr/web/product/medium/202503/b9564f2402607c0e5ab6c2fc9a76b6d2.png"
+    },
+    {
+      "id": "lookup:physiogel:34",
+      "name": "피지오겔 DMT 인텐시브 페이셜 크림",
+      "brand": "피지오겔",
+      "brandAlias": "Physiogel",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://www.physiogel.co.kr/product/detail.html?product_no=34",
+      "image": "https://www.physiogel.co.kr/web/product/medium/202611/5faaccd2bf10578b9fad0a49fe6cb473.png"
+    },
+    {
+      "id": "lookup:physiogel:374",
+      "name": "피지오겔 레드수딩 시카밸런스 약알칼리 AC 폼클렌저 (여드름성 피부 완화 기능성)",
+      "brand": "피지오겔",
+      "brandAlias": "Physiogel",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://www.physiogel.co.kr/product/detail.html?product_no=374",
+      "image": "https://www.physiogel.co.kr/web/product/medium/202503/a62a1e1b2d4df18d0f81d7e70ce8f6c1.png"
     },
     {
       "id": "lookup:primera:100",

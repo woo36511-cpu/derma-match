@@ -121,6 +121,12 @@ export const stores = {
   blancdoux: cafe("더랩바이블랑두", "the lab by blanc doux", "blancdoux.com", [["list", "/product/list.html?cate_no=4"]]),
   neogen: cafe("네오젠", "NEOGEN", "www.neogenlab.co.kr"),
   drdifferent: cafe("닥터디퍼런트", "Dr.Different", "drdifferent.com"),
+  avene: { brand: "아벤느", alias: "Avène Avene", domain: "www.eau-thermale-avene.co.kr", type: "avene",
+    paths: [["list", "/ongajog/peiseu-keeo/mingamhan-pibureul-wihan-seukinkeeo"],
+      ...["keulrenjeo", "keurim", "sereom", "meikeueob-rimubeo"].map(key => [key, `/ongajog/peiseu-keeo/${key}`]),
+      ["sun", "/ongajog/seonkeeo"], ["hydrance", "/jepum-rain/ideurangseu"], ["mist", "/jepum-rain/abenneu-o-ddereumal"]] },
+  physiogel: { brand: "피지오겔", alias: "Physiogel", domain: "www.physiogel.co.kr", type: "cafe",
+    paths: [26, 27].flatMap(category => [1, 2, 3].map(page => [`list${category}-${page}`, `/product/list.html?cate_no=${category}&page=${page}`])) },
   bioderma: { brand: "바이오더마", alias: "BIODERMA", domain: "naosmall.kr", type: "cafe",
     paths: [["sensibio", "/product/list.html?cate_no=122"], ["sun", "/product/list.html?cate_no=104"],
       ...Array.from({ length: 7 }, (_, i) => [`list${i + 1}`, `/product/list.html?cate_no=121&page=${i + 1}`])] },
@@ -187,6 +193,7 @@ function classify(name) {
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
   if (["banobagi", "onething"].includes(storeKey) && /[2-9]\d*\s*개(?:\s|$)/u.test(name)) return null;
+  if (storeKey === "physiogel" && /특별구성|듀오|쿠션|\d\s*개|\s\+\s/u.test(name)) return null;
   if (storeKey === "bioderma") {
     name = name.replace(/^\[[^\]]*PICK!?\]\s*/iu, "");
     if (!/^바이오더마\s/u.test(name) || /듀오|트리오|립스틱|에이비씨덤|신생아|핸드|아이\s*크림|마스크|쿠션|\d\s*개|\s\+\s/u.test(name)) return null;
@@ -266,6 +273,11 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   name = name.replaceAll(volumePattern, " ").replace(/[ ]{2,}/g, " ").replace(/\(\s*\)|^\s*[:–-]\s*|\s*[:–-]\s*$/g, "").trim();
   if (name.length < 4 || !nameScript.test(name)) return null;
   let category = classify(name);
+  if (storeKey === "avene") {
+    if (/^오 떼르말$|토닝 로션|에센스.?인.?로션/u.test(name)) category = "toner";
+    if (/모이스처라이저|모이스춰라이저/u.test(name)) category = "moisturizer";
+    if (/선 플루이드|선 밀크/u.test(name)) category = "sunscreen";
+  }
   if (storeKey === "bioderma") {
     if (/\bH2O\b|젤 무쌍|젤 무상/u.test(name)) category = "cleanser";
     if (/하이드라비오 에센스 로션|세비엄 로션/u.test(name)) category = "toner";
@@ -357,6 +369,19 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
   if (store.type === "innisfree") return extractInnisfree(source, storeKey, store);
   const candidates = [];
   const tree = Array.from(walk(parse5.parse(source), store.type === "cerave"));
+  if (store.type === "avene") return tree.flatMap(node => {
+    if (node.nodeName !== "a") return [];
+    const isCard = attr(node, "class")?.split(/\s+/).includes("c-card-product__link-overlay");
+    if (!isCard && textOf(node) !== "오 떼르말 자세히 보기") return [];
+    const url = urlWithHost(attr(node, "href"), store.domain, false);
+    const id = url?.pathname.match(/^\/p\/[^/]+-(\d{13})-[a-f0-9]+\/?$/)?.[1];
+    if (!id) return [];
+    const photo = Array.from(walk(node.parentNode)).find(child => child.nodeName === "img");
+    const src = attr(photo, "src") ?? "";
+    const image = src.startsWith("https://media-pierre-fabre.wedia-group.com/") ? src.split("?")[0] : null;
+    const candidate = makeCandidate(storeKey, store, textOf(node).replace(/ 자세히 보기$/u, ""), url.origin + url.pathname, id, image);
+    return candidate ? [candidate] : [];
+  });
   if (store.type === "imweb") return tree.flatMap(node => {
     if (node.nodeName !== "a" || !attr(node, "class")?.split(/\s+/).includes("ra-card")) return [];
     const url = urlWithHost(attr(node, "href"), store.domain, false);
@@ -429,7 +454,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const photo = contents.find(child => child.nodeName === "img" && /^eListPrdImage\d+_\d+$/.test(attr(child, "id") ?? ""));
       image = imageUrl(attr(photo, "src"), store.domain);
     }
-    if (["dermora", "droracle", "bioturm", "bioderma"].includes(storeKey)) {
+    if (["dermora", "droracle", "bioturm", "bioderma", "physiogel"].includes(storeKey)) {
       if (!attr(node.parentNode, "class")?.split(/\s+/).includes("name")) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "");
       let card = node.parentNode;
