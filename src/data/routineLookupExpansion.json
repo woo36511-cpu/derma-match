@@ -111,6 +111,12 @@
       "usefulPages": 1,
       "fetchedListings": 29
     },
+    "huxley": {
+      "name": "헉슬리",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 3,
+      "fetchedListings": 22
+    },
     "illiyoon": {
       "name": "일리윤",
       "checkedAt": "2026-11-15",
@@ -259,6 +265,12 @@
       "name": "토리든",
       "checkedAt": "2026-11-15",
       "usefulPages": 4,
+      "fetchedListings": 42
+    },
+    "tyf": {
+      "name": "땡큐파머",
+      "checkedAt": "2026-11-19",
+      "usefulPages": 1,
       "fetchedListings": 42
     },
     "urang": {
@@ -5634,6 +5646,189 @@
       "brandAlias": "HANYUL",
       "category": "toner",
       "officialUrl": "https://www.hanyul.com/product/%EA%B7%B9%EC%A7%84-%EC%8A%A4%ED%82%A8/97/"
+    },
+    {
+      "id": "lookup:huxley:12",
+      "name": "헉슬리 오일에센스 에센스라이크 오일라이크",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "serum",
+      "officialUrl": "https://huxley.co.kr/product/%EC%98%A4%EC%9D%BC%EC%97%90%EC%84%BC%EC%8A%A4-%EC%97%90%EC%84%BC%EC%8A%A4%EB%9D%BC%EC%9D%B4%ED%81%AC-%EC%98%A4%EC%9D%BC%EB%9D%BC%EC%9D%B4%ED%81%AC/12/"
+    },
+    {
+      "id": "lookup:huxley:13",
+      "name": "헉슬리 토너 익스트랙트 잇",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "toner",
+      "officialUrl": "https://huxley.co.kr/product/%ED%86%A0%EB%84%88-%EC%9D%B5%EC%8A%A4%ED%8A%B8%EB%9E%99%ED%8A%B8-%EC%9E%87/13/"
+    },
+    {
+      "id": "lookup:huxley:14",
+      "name": "헉슬리 크림 모어 댄 모이스트",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "moisturizer",
+      "officialUrl": "https://huxley.co.kr/product/%ED%81%AC%EB%A6%BC-%EB%AA%A8%EC%96%B4-%EB%8C%84-%EB%AA%A8%EC%9D%B4%EC%8A%A4%ED%8A%B8/14/"
+    },
+    {
+      "id": "lookup:huxley:15",
+      "name": "헉슬리 크림 안티 그래비티",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "moisturizer",
+      "officialUrl": "https://huxley.co.kr/product/%ED%81%AC%EB%A6%BC-%EC%95%88%ED%8B%B0-%EA%B7%B8%EB%9E%98%EB%B9%84%ED%8B%B0/15/"
+    },
+    {
+      "id": "lookup:huxley:21",
+      "name": "헉슬리 에센스 그랩 워터",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "serum",
+      "officialUrl": "https://huxley.co.kr/product/%EC%97%90%EC%84%BC%EC%8A%A4-%EA%B7%B8%EB%9E%A9-%EC%9B%8C%ED%84%B0/21/"
+    },
+    {
+      "id": "lookup:huxley:22",
+      "name": "헉슬리 크림 프레시 앤 모어",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "moisturizer",
+      "officialUrl": "https://huxley.co.kr/product/%ED%81%AC%EB%A6%BC-%ED%94%84%EB%A0%88%EC%8B%9C-%EC%95%A4-%EB%AA%A8%EC%96%B4/22/"
+    },
+    {
+      "id": "lookup:huxley:227",
+      "name": "헉슬리 컨디셔닝 에센스 토너 프리쉐이프",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "toner",
+      "officialUrl": "https://huxley.co.kr/product/%EC%BB%A8%EB%94%94%EC%85%94%EB%8B%9D-%EC%97%90%EC%84%BC%EC%8A%A4-%ED%86%A0%EB%84%88-%ED%94%84%EB%A6%AC%EC%89%90%EC%9D%B4%ED%94%84/227/"
+    },
+    {
+      "id": "lookup:huxley:232",
+      "name": "헉슬리 스킨 글로우 토너 비타 래디언스",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "toner",
+      "officialUrl": "https://huxley.co.kr/product/%EC%8A%A4%ED%82%A8-%EA%B8%80%EB%A1%9C%EC%9A%B0-%ED%86%A0%EB%84%88-%EB%B9%84%ED%83%80-%EB%9E%98%EB%94%94%EC%96%B8%EC%8A%A4/232/"
+    },
+    {
+      "id": "lookup:huxley:249",
+      "name": "헉슬리 바이오시스 360 앰플",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://huxley.co.kr/product/%EB%B0%94%EC%9D%B4%EC%98%A4%EC%8B%9C%EC%8A%A4-360-%EC%95%B0%ED%94%8C-30ml/249/"
+    },
+    {
+      "id": "lookup:huxley:250",
+      "name": "헉슬리 바이오시스 360 크림",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "moisturizer",
+      "volume": "30ml",
+      "officialUrl": "https://huxley.co.kr/product/%EB%B0%94%EC%9D%B4%EC%98%A4%EC%8B%9C%EC%8A%A4-360-%ED%81%AC%EB%A6%BC-30ml/250/"
+    },
+    {
+      "id": "lookup:huxley:257",
+      "name": "헉슬리 컨디셔닝 세럼 프리쉐이프",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "serum",
+      "officialUrl": "https://huxley.co.kr/product/%EC%BB%A8%EB%94%94%EC%85%94%EB%8B%9D-%EC%84%B8%EB%9F%BC-%ED%94%84%EB%A6%AC%EC%89%90%EC%9D%B4%ED%94%84/257/"
+    },
+    {
+      "id": "lookup:huxley:258",
+      "name": "헉슬리 컨디셔닝 크림 프리쉐이프",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://huxley.co.kr/product/%EC%BB%A8%EB%94%94%EC%85%94%EB%8B%9D-%ED%81%AC%EB%A6%BC-%ED%94%84%EB%A6%AC%EC%89%90%EC%9D%B4%ED%94%84-50ml/258/"
+    },
+    {
+      "id": "lookup:huxley:317",
+      "name": "헉슬리 리바운싱 토너 하이드로 쉐이드",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://huxley.co.kr/product/%EB%A6%AC%EB%B0%94%EC%9A%B4%EC%8B%B1-%ED%86%A0%EB%84%88-%ED%95%98%EC%9D%B4%EB%93%9C%EB%A1%9C-%EC%89%90%EC%9D%B4%EB%93%9C-200ml/317/"
+    },
+    {
+      "id": "lookup:huxley:318",
+      "name": "헉슬리 리바운싱 세럼 하이드로 쉐이드",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://huxley.co.kr/product/%EB%A6%AC%EB%B0%94%EC%9A%B4%EC%8B%B1-%EC%84%B8%EB%9F%BC-%ED%95%98%EC%9D%B4%EB%93%9C%EB%A1%9C-%EC%89%90%EC%9D%B4%EB%93%9C-50ml/318/"
+    },
+    {
+      "id": "lookup:huxley:319",
+      "name": "헉슬리 리바운싱 크림 하이드로 쉐이드",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://huxley.co.kr/product/%EB%A6%AC%EB%B0%94%EC%9A%B4%EC%8B%B1-%ED%81%AC%EB%A6%BC-%ED%95%98%EC%9D%B4%EB%93%9C%EB%A1%9C-%EC%89%90%EC%9D%B4%EB%93%9C-50ml/319/"
+    },
+    {
+      "id": "lookup:huxley:337",
+      "name": "헉슬리 리바운싱 클렌저 하이드로 쉐이드",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "cleanser",
+      "volume": "150g",
+      "officialUrl": "https://huxley.co.kr/product/%EB%A6%AC%EB%B0%94%EC%9A%B4%EC%8B%B1-%ED%81%B4%EB%A0%8C%EC%A0%80-%ED%95%98%EC%9D%B4%EB%93%9C%EB%A1%9C-%EC%89%90%EC%9D%B4%EB%93%9C-150g/337/"
+    },
+    {
+      "id": "lookup:huxley:45",
+      "name": "헉슬리 클렌징 젤 비 클린 비 모이스트",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "cleanser",
+      "officialUrl": "https://huxley.co.kr/product/%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%A0%A4-%EB%B9%84-%ED%81%B4%EB%A6%B0-%EB%B9%84-%EB%AA%A8%EC%9D%B4%EC%8A%A4%ED%8A%B8/45/"
+    },
+    {
+      "id": "lookup:huxley:59",
+      "name": "헉슬리 에센스 브라이틀리 에버 애프터",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "serum",
+      "officialUrl": "https://huxley.co.kr/product/%EC%97%90%EC%84%BC%EC%8A%A4-%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8B%80%EB%A6%AC-%EC%97%90%EB%B2%84-%EC%95%A0%ED%94%84%ED%84%B0/59/"
+    },
+    {
+      "id": "lookup:huxley:60",
+      "name": "헉슬리 크림 글로우 어웨이크닝",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "moisturizer",
+      "officialUrl": "https://huxley.co.kr/product/%ED%81%AC%EB%A6%BC-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EC%96%B4%EC%9B%A8%EC%9D%B4%ED%81%AC%EB%8B%9D/60/"
+    },
+    {
+      "id": "lookup:huxley:79",
+      "name": "헉슬리 클렌징 폼 비 클린 비 모이스트",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "cleanser",
+      "officialUrl": "https://huxley.co.kr/product/%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8F%BC-%EB%B9%84-%ED%81%B4%EB%A6%B0-%EB%B9%84-%EB%AA%A8%EC%9D%B4%EC%8A%A4%ED%8A%B8/79/"
+    },
+    {
+      "id": "lookup:huxley:91",
+      "name": "헉슬리 에센셜 미스트 센스 오브 밸런스",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "toner",
+      "officialUrl": "https://huxley.co.kr/product/%EC%97%90%EC%84%BC%EC%85%9C-%EB%AF%B8%EC%8A%A4%ED%8A%B8-%EC%84%BC%EC%8A%A4-%EC%98%A4%EB%B8%8C-%EB%B0%B8%EB%9F%B0%EC%8A%A4/91/"
+    },
+    {
+      "id": "lookup:huxley:92",
+      "name": "헉슬리 오일 미스트 센스 오브 밸런스",
+      "brand": "헉슬리",
+      "brandAlias": "Huxley",
+      "category": "toner",
+      "officialUrl": "https://huxley.co.kr/product/%EC%98%A4%EC%9D%BC-%EB%AF%B8%EC%8A%A4%ED%8A%B8-%EC%84%BC%EC%8A%A4-%EC%98%A4%EB%B8%8C-%EB%B0%B8%EB%9F%B0%EC%8A%A4/92/"
     },
     {
       "id": "lookup:illiyoon:104",
@@ -18279,6 +18474,384 @@
       "category": "toner",
       "volume": "80매",
       "officialUrl": "https://torriden.com/goods/goods_view.php?goodsNo=92"
+    },
+    {
+      "id": "lookup:tyf:100",
+      "name": "땡큐파머 바쿠비타 베리어 크림",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EB%B0%94%EC%BF%A0%EB%B9%84%ED%83%80-%EB%B2%A0%EB%A6%AC%EC%96%B4-%ED%81%AC%EB%A6%BC-50ml/100/"
+    },
+    {
+      "id": "lookup:tyf:11",
+      "name": "땡큐파머 트루 워터 딥 토너",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%ED%8A%B8%EB%A3%A8-%EC%9B%8C%ED%84%B0-%EB%94%A5-%ED%86%A0%EB%84%88-150ml/11/"
+    },
+    {
+      "id": "lookup:tyf:12",
+      "name": "땡큐파머 트루 워터 딥 에멀전",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "moisturizer",
+      "volume": "130ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%ED%8A%B8%EB%A3%A8-%EC%9B%8C%ED%84%B0-%EB%94%A5-%EC%97%90%EB%A9%80%EC%A0%84-130ml/12/"
+    },
+    {
+      "id": "lookup:tyf:13",
+      "name": "땡큐파머 트루 워터 라이트 젤 크림",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%ED%8A%B8%EB%A3%A8-%EC%9B%8C%ED%84%B0-%EB%9D%BC%EC%9D%B4%ED%8A%B8-%EC%A0%A4-%ED%81%AC%EB%A6%BC-50ml/13/"
+    },
+    {
+      "id": "lookup:tyf:14",
+      "name": "땡큐파머 트루 워터 딥 크림",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%ED%8A%B8%EB%A3%A8-%EC%9B%8C%ED%84%B0-%EB%94%A5-%ED%81%AC%EB%A6%BC-50ml/14/"
+    },
+    {
+      "id": "lookup:tyf:145",
+      "name": "땡큐파머 청포도 아쿠아 바이옴 세럼",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EC%B2%AD%ED%8F%AC%EB%8F%84-%EC%95%84%EC%BF%A0%EC%95%84-%EB%B0%94%EC%9D%B4%EC%98%B4-%EC%84%B8%EB%9F%BC-50ml/145/"
+    },
+    {
+      "id": "lookup:tyf:146",
+      "name": "땡큐파머 청포도 아쿠아 바이옴 크림",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "moisturizer",
+      "volume": "80ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EC%B2%AD%ED%8F%AC%EB%8F%84-%EC%95%84%EC%BF%A0%EC%95%84-%EB%B0%94%EC%9D%B4%EC%98%B4-%ED%81%AC%EB%A6%BC-80ml/146/"
+    },
+    {
+      "id": "lookup:tyf:15",
+      "name": "땡큐파머 미라클 에이지 리페어 세럼",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "serum",
+      "volume": "60ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EB%AF%B8%EB%9D%BC%ED%81%B4-%EC%97%90%EC%9D%B4%EC%A7%80-%EB%A6%AC%ED%8E%98%EC%96%B4-%EC%84%B8%EB%9F%BC-60ml/15/"
+    },
+    {
+      "id": "lookup:tyf:16",
+      "name": "땡큐파머 백 투 퓨어 데일리 포밍 젤 클렌저",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EB%B0%B1-%ED%88%AC-%ED%93%A8%EC%96%B4-%EB%8D%B0%EC%9D%BC%EB%A6%AC-%ED%8F%AC%EB%B0%8D-%EC%A0%A4-%ED%81%B4%EB%A0%8C%EC%A0%80-200ml/16/"
+    },
+    {
+      "id": "lookup:tyf:162",
+      "name": "땡큐파머 강화 교동쌀 맑음 세라 캡슐 크림",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "moisturizer",
+      "volume": "80ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EA%B0%95%ED%99%94-%EA%B5%90%EB%8F%99%EC%8C%80-%EB%A7%91%EC%9D%8C-%EC%84%B8%EB%9D%BC-%EC%BA%A1%EC%8A%90-%ED%81%AC%EB%A6%BC-80ml/162/"
+    },
+    {
+      "id": "lookup:tyf:175",
+      "name": "땡큐파머 선 프로젝트 글로우 선 에센스",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "sunscreen",
+      "volume": "40ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EC%84%A0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EC%84%A0-%EC%97%90%EC%84%BC%EC%8A%A4-40ml/175/"
+    },
+    {
+      "id": "lookup:tyf:189",
+      "name": "땡큐파머 강화 교동쌀 맑음 워터리 미스트",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EA%B0%95%ED%99%94-%EA%B5%90%EB%8F%99%EC%8C%80-%EB%A7%91%EC%9D%8C-%EC%9B%8C%ED%84%B0%EB%A6%AC-%EB%AF%B8%EC%8A%A4%ED%8A%B8-100ml/189/"
+    },
+    {
+      "id": "lookup:tyf:19",
+      "name": "땡큐파머 미라클 에이지 리페어 토너",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EB%AF%B8%EB%9D%BC%ED%81%B4-%EC%97%90%EC%9D%B4%EC%A7%80-%EB%A6%AC%ED%8E%98%EC%96%B4-%ED%86%A0%EB%84%88-150ml/19/"
+    },
+    {
+      "id": "lookup:tyf:196",
+      "name": "땡큐파머 강화 교동쌀 맑음 밀키 클렌징 오일",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EA%B0%95%ED%99%94-%EA%B5%90%EB%8F%99%EC%8C%80-%EB%A7%91%EC%9D%8C-%EB%B0%80%ED%82%A4-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-200ml/196/"
+    },
+    {
+      "id": "lookup:tyf:20",
+      "name": "땡큐파머 미라클 에이지 리페어 에멀전",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "moisturizer",
+      "volume": "130ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EB%AF%B8%EB%9D%BC%ED%81%B4-%EC%97%90%EC%9D%B4%EC%A7%80-%EB%A6%AC%ED%8E%98%EC%96%B4-%EC%97%90%EB%A9%80%EC%A0%84-130ml/20/"
+    },
+    {
+      "id": "lookup:tyf:206",
+      "name": "땡큐파머 강화 교동쌀 맑음 베리어 크림 미스트",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EA%B0%95%ED%99%94-%EA%B5%90%EB%8F%99%EC%8C%80-%EB%A7%91%EC%9D%8C-%EB%B2%A0%EB%A6%AC%EC%96%B4-%ED%81%AC%EB%A6%BC-%EB%AF%B8%EC%8A%A4%ED%8A%B8-100ml/206/"
+    },
+    {
+      "id": "lookup:tyf:21",
+      "name": "땡큐파머 미라클 에이지 리페어 크림",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EB%AF%B8%EB%9D%BC%ED%81%B4-%EC%97%90%EC%9D%B4%EC%A7%80-%EB%A6%AC%ED%8E%98%EC%96%B4-%ED%81%AC%EB%A6%BC-50ml/21/"
+    },
+    {
+      "id": "lookup:tyf:210",
+      "name": "땡큐파머 강화 교동쌀 맑음 나이아신아마이드 캡슐 세럼",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://tyfmall.co.kr/product/new-%EA%B0%95%ED%99%94-%EA%B5%90%EB%8F%99%EC%8C%80-%EB%A7%91%EC%9D%8C-%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-%EC%BA%A1%EC%8A%90-%EC%84%B8%EB%9F%BC-30ml/210/"
+    },
+    {
+      "id": "lookup:tyf:211",
+      "name": "땡큐파머 피토 릴리풀TM 시카 컨트롤 세럼",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://tyfmall.co.kr/product/new-%ED%94%BC%ED%86%A0-%EB%A6%B4%EB%A6%AC%ED%92%80-%EC%8B%9C%EC%B9%B4-%EC%BB%A8%ED%8A%B8%EB%A1%A4-%EC%84%B8%EB%9F%BC-30ml/211/"
+    },
+    {
+      "id": "lookup:tyf:212",
+      "name": "땡큐파머 선 프로젝트 실키 카밍 선 스틱",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "sunscreen",
+      "volume": "18g",
+      "officialUrl": "https://tyfmall.co.kr/product/new-%EC%84%A0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%A4%ED%82%A4-%EC%B9%B4%EB%B0%8D-%EC%84%A0-%EC%8A%A4%ED%8B%B1-18g/212/"
+    },
+    {
+      "id": "lookup:tyf:27",
+      "name": "땡큐파머 백 투 아이슬란드 클렌징 폼",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EB%B0%B1-%ED%88%AC-%EC%95%84%EC%9D%B4%EC%8A%AC%EB%9E%80%EB%93%9C-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8F%BC-120ml/27/"
+    },
+    {
+      "id": "lookup:tyf:28",
+      "name": "땡큐파머 백 투 아이슬란드 필링 크림",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EB%B0%B1-%ED%88%AC-%EC%95%84%EC%9D%B4%EC%8A%AC%EB%9E%80%EB%93%9C-%ED%95%84%EB%A7%81-%ED%81%AC%EB%A6%BC-150ml/28/"
+    },
+    {
+      "id": "lookup:tyf:29",
+      "name": "땡큐파머 트루 워터 비타 미스트",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "toner",
+      "volume": "105ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%ED%8A%B8%EB%A3%A8-%EC%9B%8C%ED%84%B0-%EB%B9%84%ED%83%80-%EB%AF%B8%EC%8A%A4%ED%8A%B8-105ml/29/"
+    },
+    {
+      "id": "lookup:tyf:43",
+      "name": "땡큐파머 트루 워터 딥 세럼 EX",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "serum",
+      "volume": "60ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%ED%8A%B8%EB%A3%A8-%EC%9B%8C%ED%84%B0-%EB%94%A5-%EC%84%B8%EB%9F%BC-ex-60ml/43/"
+    },
+    {
+      "id": "lookup:tyf:44",
+      "name": "땡큐파머 강화 교동쌀 맑음 에센셜 토너",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://tyfmall.co.kr/product/1%EB%93%B1%ED%86%A0%EB%84%88-%EA%B0%95%ED%99%94-%EA%B5%90%EB%8F%99%EC%8C%80-%EB%A7%91%EC%9D%8C-%EC%97%90%EC%84%BC%EC%85%9C-%ED%86%A0%EB%84%88-200ml/44/"
+    },
+    {
+      "id": "lookup:tyf:45",
+      "name": "땡큐파머 강화 교동쌀 맑음 팩 폼 클렌저",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EA%B0%95%ED%99%94-%EA%B5%90%EB%8F%99%EC%8C%80-%EB%A7%91%EC%9D%8C-%ED%8C%A9-%ED%8F%BC-%ED%81%B4%EB%A0%8C%EC%A0%80-150ml/45/"
+    },
+    {
+      "id": "lookup:tyf:47",
+      "name": "땡큐파머 강화 교동쌀 맑음 젤 안에 크림",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "moisturizer",
+      "volume": "80ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EA%B0%95%ED%99%94-%EA%B5%90%EB%8F%99%EC%8C%80-%EB%A7%91%EC%9D%8C-%EC%A0%A4-%EC%95%88%EC%97%90-%ED%81%AC%EB%A6%BC-80ml/47/"
+    },
+    {
+      "id": "lookup:tyf:53",
+      "name": "땡큐파머 폴루프리TM 블랙헤드 딥 클렌징 오일",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%ED%8F%B4%EB%A3%A8%ED%94%84%EB%A6%AC-%EB%B8%94%EB%9E%99%ED%97%A4%EB%93%9C-%EB%94%A5-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-200ml/53/"
+    },
+    {
+      "id": "lookup:tyf:57",
+      "name": "땡큐파머 선 프로젝트 워터 선 크림",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EC%84%A0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%9B%8C%ED%84%B0-%EC%84%A0-%ED%81%AC%EB%A6%BC-50ml/57/"
+    },
+    {
+      "id": "lookup:tyf:58",
+      "name": "땡큐파머 선 프로젝트 라이트 선 에센스",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "sunscreen",
+      "volume": "40ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EC%84%A0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%9D%BC%EC%9D%B4%ED%8A%B8-%EC%84%A0-%EC%97%90%EC%84%BC%EC%8A%A4-40ml/58/"
+    },
+    {
+      "id": "lookup:tyf:59",
+      "name": "땡큐파머 선 프로젝트 쉬머 선 에센스",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "sunscreen",
+      "volume": "40ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EC%84%A0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%89%AC%EB%A8%B8-%EC%84%A0-%EC%97%90%EC%84%BC%EC%8A%A4-40ml/59/"
+    },
+    {
+      "id": "lookup:tyf:60",
+      "name": "땡큐파머 트루 워터 딥 모이스처 크림 EX",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "moisturizer",
+      "volume": "80ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%ED%8A%B8%EB%A3%A8-%EC%9B%8C%ED%84%B0-%EB%94%A5-%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B2%98-%ED%81%AC%EB%A6%BC-ex-80ml/60/"
+    },
+    {
+      "id": "lookup:tyf:63",
+      "name": "땡큐파머 피토 릴리풀TM 시카 앰플",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%ED%94%BC%ED%86%A0-%EB%A6%B4%EB%A6%AC%ED%92%80-%EC%8B%9C%EC%B9%B4-%EC%95%B0%ED%94%8C-50ml/63/"
+    },
+    {
+      "id": "lookup:tyf:64",
+      "name": "땡큐파머 피토 릴리풀TM 시카 크림",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "moisturizer",
+      "volume": "80ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%ED%94%BC%ED%86%A0-%EB%A6%B4%EB%A6%AC%ED%92%80-%EC%8B%9C%EC%B9%B4-%ED%81%AC%EB%A6%BC-80ml/64/"
+    },
+    {
+      "id": "lookup:tyf:65",
+      "name": "땡큐파머 선 프로젝트 실키 카밍 선 스틱",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "sunscreen",
+      "volume": "14g",
+      "officialUrl": "https://tyfmall.co.kr/product/%EC%84%A0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%A4%ED%82%A4-%EC%B9%B4%EB%B0%8D-%EC%84%A0-%EC%8A%A4%ED%8B%B1-14g/65/"
+    },
+    {
+      "id": "lookup:tyf:70",
+      "name": "땡큐파머 폴루프리TM 5.5 약산성 클렌징 폼",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%ED%8F%B4%EB%A3%A8%ED%94%84%EB%A6%AC-55-%EC%95%BD%EC%82%B0%EC%84%B1-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8F%BC-120ml/70/"
+    },
+    {
+      "id": "lookup:tyf:74",
+      "name": "땡큐파머 선 프로젝트 라이트 선 에센스 (대용량)",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "sunscreen",
+      "volume": "120ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EC%84%A0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%9D%BC%EC%9D%B4%ED%8A%B8-%EC%84%A0-%EC%97%90%EC%84%BC%EC%8A%A4-120ml-%EB%8C%80%EC%9A%A9%EB%9F%89/74/"
+    },
+    {
+      "id": "lookup:tyf:75",
+      "name": "땡큐파머 선 프로젝트 스킨 릴리프 선 크림",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EC%84%A0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8A%A4%ED%82%A8-%EB%A6%B4%EB%A6%AC%ED%94%84-%EC%84%A0-%ED%81%AC%EB%A6%BC-50ml/75/"
+    },
+    {
+      "id": "lookup:tyf:84",
+      "name": "땡큐파머 피토 릴리풀TM 시카 젤 클렌저",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%ED%94%BC%ED%86%A0-%EB%A6%B4%EB%A6%AC%ED%92%80-%EC%8B%9C%EC%B9%B4-%EC%A0%A4-%ED%81%B4%EB%A0%8C%EC%A0%80-120ml/84/"
+    },
+    {
+      "id": "lookup:tyf:85",
+      "name": "땡큐파머 피토 릴리풀TM 시카 부스팅 토너",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%ED%94%BC%ED%86%A0-%EB%A6%B4%EB%A6%AC%ED%92%80-%EC%8B%9C%EC%B9%B4-%EB%B6%80%EC%8A%A4%ED%8C%85-%ED%86%A0%EB%84%88-200ml/85/"
+    },
+    {
+      "id": "lookup:tyf:89",
+      "name": "땡큐파머 강화 교동쌀 맑음 크림 인 앰플",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EA%B0%95%ED%99%94-%EA%B5%90%EB%8F%99%EC%8C%80-%EB%A7%91%EC%9D%8C-%ED%81%AC%EB%A6%BC-%EC%9D%B8-%EC%95%B0%ED%94%8C-50ml/89/"
+    },
+    {
+      "id": "lookup:tyf:98",
+      "name": "땡큐파머 바쿠비타 리바이탈라이징 앰플",
+      "brand": "땡큐파머",
+      "brandAlias": "THANK YOU FARMER",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://tyfmall.co.kr/product/%EB%B0%94%EC%BF%A0%EB%B9%84%ED%83%80-%EB%A6%AC%EB%B0%94%EC%9D%B4%ED%83%88%EB%9D%BC%EC%9D%B4%EC%A7%95-%EC%95%B0%ED%94%8C-50ml/98/"
     },
     {
       "id": "lookup:urang:109",
