@@ -260,3 +260,13 @@ test("Papa Recipe reads the product card title and image without image alt text"
   assert.equal(product.volume, "50g");
   assert.equal(product.image, "https://www.paparecipe.com/web/product/cleanser.jpg");
 });
+
+test("So Natural reads the title and product thumbnail while excluding cream masks", () => {
+  const html = ["픽스 리무버 올 데이 클렌징 오일", "살버터 글로우 크림 팩 10매"]
+    .map((name, index) => `<div>
+      <a class="figure" href="/shop/shopdetail.html?branduid=${index}"><img src="/shopimages/photo.jpg"></a>
+      <a class="title" href="/shop/shopdetail.html?branduid=${index}"><span>${name}</span></a>
+    </div>`).join("");
+  assert.deepEqual(extractOfficialListings(html, "sonatural", stores.sonatural).map(p => [p.category, p.image]),
+    [["cleanser", "https://www.sonatural.co.kr/shopimages/photo.jpg"]]);
+});

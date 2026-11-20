@@ -121,6 +121,8 @@ export const stores = {
   blancdoux: cafe("더랩바이블랑두", "the lab by blanc doux", "blancdoux.com", [["list", "/product/list.html?cate_no=4"]]),
   neogen: cafe("네오젠", "NEOGEN", "www.neogenlab.co.kr"),
   drdifferent: cafe("닥터디퍼런트", "Dr.Different", "drdifferent.com"),
+  sonatural: { brand: "쏘내추럴", alias: "SO NATURAL", domain: "www.sonatural.co.kr", type: "makeshop",
+    paths: ["001", "002", "004", "015", "005", "007"].map(category => [`list${category}`, `/shop/shopbrand.html?xcode=015&type=N&mcode=${category}`]) },
   yadah: { brand: "야다", alias: "YADAH", domain: "www.yadah.co.kr", type: "cafe",
     paths: [1, 2, 3, 4].map(page => [`list${page}`, `/product/list.html?cate_no=100&page=${page}`]) },
   paparecipe: { brand: "파파레서피", alias: "Papa Recipe", domain: "www.paparecipe.com", type: "cafe",
@@ -172,6 +174,7 @@ function classify(name) {
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
   if (["banobagi", "onething"].includes(storeKey) && /[2-9]\d*\s*개(?:\s|$)/u.test(name)) return null;
+  if (storeKey === "sonatural" && /크림 팩|프렙 픽서|커버 픽싱 크림|쿠션|아이밤|[2-9]\d*\s*개(?:\s|$)/u.test(name)) return null;
   if (storeKey === "yadah" && /쿠션|아이패치|여행용|[2-9]\d*\s*개(?:\s|$)/u.test(name)) return null;
   if (storeKey === "frankly") {
     if (/톤업\s*크림|EVENT/u.test(name)) return null;
@@ -371,6 +374,13 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
     let image = imageUrl((storeKey === "frankly" ? attr(img, "data-src") : null) || attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
+    if (storeKey === "sonatural") {
+      if (!attr(node, "class")?.split(/\s+/).includes("title")) continue;
+      rawName = textOf(node);
+      const photo = Array.from(walk(node.parentNode)).find(child => child.nodeName === "img" &&
+        attr(child.parentNode, "class")?.split(/\s+/).includes("figure"));
+      image = imageUrl(attr(photo, "src"), store.domain);
+    }
     if (storeKey === "yadah") {
       if (attr(node.parentNode, "data-tc-product-card-name") == null) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "")
