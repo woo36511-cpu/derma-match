@@ -270,3 +270,10 @@ test("So Natural reads the title and product thumbnail while excluding cream mas
   assert.deepEqual(extractOfficialListings(html, "sonatural", stores.sonatural).map(p => [p.category, p.image]),
     [["cleanser", "https://www.sonatural.co.kr/shopimages/photo.jpg"]]);
 });
+
+test("Bioderma indexes H2O as cleanser and skips bundled or different-brand cards", () => {
+  const html = ["바이오더마 센시비오 H2O 250ml", "바이오더마 센시비오 H2O 250ml 듀오", "에스테덤 클렌저 100ml"]
+    .map((name, index) => `<div class="name"><a href="/product/detail.html?product_no=${index + 1}">${name}</a></div>`).join("");
+  assert.deepEqual(extractOfficialListings(html, "bioderma", stores.bioderma).map(p => [p.category, p.name, p.volume]),
+    [["cleanser", "바이오더마 센시비오 H2O", "250ml"]]);
+});
