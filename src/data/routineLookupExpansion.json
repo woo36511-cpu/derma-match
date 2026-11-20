@@ -1,6 +1,6 @@
 {
   "market": "KR",
-  "checkedAt": "2026-11-19",
+  "checkedAt": "2026-11-20",
   "provenance": "official_listing_identity_only",
   "brands": {
     "abib": {
@@ -831,11 +831,11 @@
     },
     {
       "id": "lookup:anua:123",
-      "name": "아누아 자작나무 70 수분 부스팅 토너",
+      "name": "아누아 자작나무 70 수분 부스팅 토너 - 아누아 Anua",
       "brand": "아누아",
       "brandAlias": "Anua",
       "category": "toner",
-      "officialUrl": "https://anua.kr/product/%EC%9E%90%EC%9E%91%EB%82%98%EB%AC%B4-70-%EC%88%98%EB%B6%84-%EB%B6%80%EC%8A%A4%ED%8C%85-%ED%86%A0%EB%84%88/123/"
+      "officialUrl": "https://anua.kr/product/detail.html?product_no=123"
     },
     {
       "id": "lookup:anua:231",
@@ -846,20 +846,68 @@
       "officialUrl": "https://anua.kr/product/%EC%96%B4%EC%84%B1%EC%B4%88-%EC%8B%A4%ED%82%A4-%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B2%98-%EC%84%A0%ED%81%AC%EB%A6%BC/231/"
     },
     {
-      "id": "lookup:anua:347",
-      "name": "아누아 라이스 70 글로우 밀키 토너",
-      "brand": "아누아",
-      "brandAlias": "Anua",
-      "category": "toner",
-      "officialUrl": "https://anua.kr/product/%EB%9D%BC%EC%9D%B4%EC%8A%A4-70-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EB%B0%80%ED%82%A4-%ED%86%A0%EB%84%88/347/"
-    },
-    {
-      "id": "lookup:anua:420",
-      "name": "아누아 비타민 15 포어 클리어 클렌징 밤",
+      "id": "lookup:anua:253",
+      "name": "아누아 어성초 LHA 모이스처 필링젤 - 아누아 Anua",
       "brand": "아누아",
       "brandAlias": "Anua",
       "category": "cleanser",
-      "officialUrl": "https://anua.kr/product/%EB%B9%84%ED%83%80%EB%AF%BC-15-%ED%8F%AC%EC%96%B4-%ED%81%B4%EB%A6%AC%EC%96%B4-%ED%81%B4%EB%A0%8C%EC%A7%95-%EB%B0%A4/420/"
+      "officialUrl": "https://anua.kr/product/detail.html?product_no=253"
+    },
+    {
+      "id": "lookup:anua:294",
+      "name": "아누아 복숭아 77 나이아신 인리치드 크림 - 아누아 Anua",
+      "brand": "아누아",
+      "brandAlias": "Anua",
+      "category": "moisturizer",
+      "officialUrl": "https://anua.kr/product/detail.html?product_no=294"
+    },
+    {
+      "id": "lookup:anua:347",
+      "name": "아누아 라이스 70 글로우 밀키 토너 - 아누아 Anua",
+      "brand": "아누아",
+      "brandAlias": "Anua",
+      "category": "toner",
+      "officialUrl": "https://anua.kr/product/detail.html?product_no=347"
+    },
+    {
+      "id": "lookup:anua:349",
+      "name": "아누아 7 라이스 세라마이드 하이드레이팅 베리어 세럼 - 아누아 Anua",
+      "brand": "아누아",
+      "brandAlias": "Anua",
+      "category": "serum",
+      "officialUrl": "https://anua.kr/product/detail.html?product_no=349"
+    },
+    {
+      "id": "lookup:anua:350",
+      "name": "아누아 라이스 70 인텐시브 모이스처라이징 밀크 - 아누아 Anua",
+      "brand": "아누아",
+      "brandAlias": "Anua",
+      "category": "moisturizer",
+      "officialUrl": "https://anua.kr/product/detail.html?product_no=350"
+    },
+    {
+      "id": "lookup:anua:395",
+      "name": "아누아 PDRN 100 히알루론산 글로우 패드 - 아누아 Anua",
+      "brand": "아누아",
+      "brandAlias": "Anua",
+      "category": "toner",
+      "officialUrl": "https://anua.kr/product/detail.html?product_no=395"
+    },
+    {
+      "id": "lookup:anua:403",
+      "name": "아누아 나이아신아마이드 5 TXA 브라이트닝 패드 - 아누아 Anua",
+      "brand": "아누아",
+      "brandAlias": "Anua",
+      "category": "toner",
+      "officialUrl": "https://anua.kr/product/detail.html?product_no=403"
+    },
+    {
+      "id": "lookup:anua:420",
+      "name": "아누아 비타민 15 포어 클리어 클렌징 밤 - 아누아 Anua",
+      "brand": "아누아",
+      "brandAlias": "Anua",
+      "category": "cleanser",
+      "officialUrl": "https://anua.kr/product/detail.html?product_no=420"
     },
     {
       "id": "lookup:anua:432",
@@ -894,6 +942,15 @@
       "officialUrl": "https://anua.kr/product/%EB%B9%84%ED%83%80-10-%ED%8F%AC%EC%96%B4%EC%8A%A4%ED%8A%B8%EB%A6%AD%EC%8A%A4-%EB%AF%B8%EB%B0%B1-%ED%86%A0%EB%8B%9D-%EC%84%B8%EB%9F%BC/450/"
     },
     {
+      "id": "lookup:anua:466",
+      "name": "아누아 PDRN 히알루론산 수분 캡슐 미스트 - 아누아 Anua",
+      "brand": "아누아",
+      "brandAlias": "Anua",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://anua.kr/product/detail.html?product_no=466"
+    },
+    {
       "id": "lookup:anua:468",
       "name": "아누아 나이아신아마이드 txa 브라이트닝 부스터 토너",
       "brand": "아누아",
@@ -925,6 +982,24 @@
       "brandAlias": "Anua",
       "category": "moisturizer",
       "officialUrl": "https://anua.kr/product/%EC%BD%9C%EB%9D%BC%EA%B2%90-%EB%A0%88%ED%8B%B0%EB%86%80-%EB%A6%AC%ED%8C%8C%EC%9D%B4%EB%8B%9D-%EA%B4%84%EC%82%AC-%ED%81%AC%EB%A6%BC/538/"
+    },
+    {
+      "id": "lookup:anua:586",
+      "name": "아누아 비타 C 글루타치온 브라이트닝 캡슐 미스트 - 아누아 Anua",
+      "brand": "아누아",
+      "brandAlias": "Anua",
+      "category": "toner",
+      "volume": "30ml",
+      "officialUrl": "https://anua.kr/product/detail.html?product_no=586"
+    },
+    {
+      "id": "lookup:anua:587",
+      "name": "아누아 비타 C 캡슐 브라이트닝 미스트 - 미스트 분사 제품 이미지",
+      "brand": "아누아",
+      "brandAlias": "Anua",
+      "category": "toner",
+      "volume": "30ml",
+      "officialUrl": "https://anua.kr/product/detail.html?product_no=587"
     },
     {
       "id": "lookup:aromatica:1146",
@@ -3239,6 +3314,24 @@
       "officialUrl": "https://cellfusionc.co.kr/product/%EC%95%BD%EC%82%B0%EC%84%B1-%ED%8C%A8%EB%A6%AC%EC%96%B4-%ED%81%B4%EB%A0%8C%EC%A7%95%ED%8F%BC-165ml/267/"
     },
     {
+      "id": "lookup:cellfusionc:292",
+      "name": "셀퓨전씨 1123일 이후 순차배송약산성 패리어 클렌징 워터",
+      "brand": "셀퓨전씨",
+      "brandAlias": "Cell Fusion C",
+      "category": "cleanser",
+      "volume": "500ml",
+      "officialUrl": "https://cellfusionc.co.kr/product/1123%EC%9D%BC-%EC%9D%B4%ED%9B%84-%EC%88%9C%EC%B0%A8%EB%B0%B0%EC%86%A1%EC%95%BD%EC%82%B0%EC%84%B1-%ED%8C%A8%EB%A6%AC%EC%96%B4-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%9B%8C%ED%84%B0-500ml/292/"
+    },
+    {
+      "id": "lookup:cellfusionc:305",
+      "name": "셀퓨전씨 1123일 이후 순차배송11 약산성 패리어 클렌징 워터",
+      "brand": "셀퓨전씨",
+      "brandAlias": "Cell Fusion C",
+      "category": "cleanser",
+      "volume": "500ml",
+      "officialUrl": "https://cellfusionc.co.kr/product/1123%EC%9D%BC-%EC%9D%B4%ED%9B%84-%EC%88%9C%EC%B0%A8%EB%B0%B0%EC%86%A111-%EC%95%BD%EC%82%B0%EC%84%B1-%ED%8C%A8%EB%A6%AC%EC%96%B4-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%9B%8C%ED%84%B0-500ml/305/"
+    },
+    {
       "id": "lookup:cellfusionc:350",
       "name": "셀퓨전씨 111 더마 릴리프 썬스크린",
       "brand": "셀퓨전씨",
@@ -5360,6 +5453,14 @@
       "officialUrl": "https://drdifferent.com/product/%EC%A0%9C%EB%A1%9C-%ED%81%B4%EB%A0%8C%EC%A0%80-200ml%EC%A7%80%EC%84%B1/29/"
     },
     {
+      "id": "lookup:drdifferent:464",
+      "name": "닥터디퍼런트 레티나이아신 10 세럼 대표 이미지",
+      "brand": "닥터디퍼런트",
+      "brandAlias": "Dr.Different",
+      "category": "serum",
+      "officialUrl": "https://drdifferent.com/product/detail.html?product_no=464"
+    },
+    {
       "id": "lookup:drdifferent:465",
       "name": "닥터디퍼런트 ceq 안티옥시던트 캡슐 크림",
       "brand": "닥터디퍼런트",
@@ -5367,6 +5468,14 @@
       "category": "moisturizer",
       "volume": "50g",
       "officialUrl": "https://drdifferent.com/product/ceq-%EC%95%88%ED%8B%B0%EC%98%A5%EC%8B%9C%EB%8D%98%ED%8A%B8-%EC%BA%A1%EC%8A%90-%ED%81%AC%EB%A6%BC-50g/465/"
+    },
+    {
+      "id": "lookup:drdifferent:479",
+      "name": "닥터디퍼런트 포어 클리어 세럼 대표 이미지",
+      "brand": "닥터디퍼런트",
+      "brandAlias": "Dr.Different",
+      "category": "serum",
+      "officialUrl": "https://drdifferent.com/product/detail.html?product_no=479"
     },
     {
       "id": "lookup:drdifferent:480",
@@ -5642,7 +5751,7 @@
       "brandAlias": "Illiyoon",
       "category": "moisturizer",
       "volume": "564ml",
-      "officialUrl": "https://www.illiyoon.com/product/%EC%9D%BC%EB%A6%AC%EC%9C%A4-%EC%84%B8%EB%9D%BC%EB%A7%88%EC%9D%B4%EB%93%9C-%EC%95%84%ED%86%A0-%EB%A1%9C%EC%85%98-564ml/104/"
+      "officialUrl": "https://www.illiyoon.com/product/detail.html?product_no=104"
     },
     {
       "id": "lookup:illiyoon:105",
@@ -5777,7 +5886,16 @@
       "brandAlias": "Illiyoon",
       "category": "toner",
       "volume": "250ml",
-      "officialUrl": "https://www.illiyoon.com/product/%EC%9D%BC%EB%A6%AC%EC%9C%A4-%EC%84%B8%EB%9D%BC%EB%A7%88%EC%9D%B4%EB%93%9C-%EC%95%84%ED%86%A0-%EC%86%8D%EB%B3%B4%EC%8A%B5-%EC%8A%A4%ED%82%A8-250ml/179/"
+      "officialUrl": "https://www.illiyoon.com/product/detail.html?product_no=179"
+    },
+    {
+      "id": "lookup:illiyoon:224",
+      "name": "일리윤 세라마이드 아토 젠틀 스킨 클렌져",
+      "brand": "일리윤",
+      "brandAlias": "Illiyoon",
+      "category": "cleanser",
+      "volume": "400ml",
+      "officialUrl": "https://www.illiyoon.com/product/detail.html?product_no=224"
     },
     {
       "id": "lookup:illiyoon:90",
@@ -5975,6 +6093,14 @@
       "officialUrl": "https://www.imfrom.co.kr/product/%EB%9D%BC%EC%9D%B4%EC%8A%A4-%ED%86%A0%EB%84%88/229/"
     },
     {
+      "id": "lookup:imfrom:233",
+      "name": "아임프롬 라이스 선 스크린",
+      "brand": "아임프롬",
+      "brandAlias": "I'm From",
+      "category": "sunscreen",
+      "officialUrl": "https://www.imfrom.co.kr/product/%EB%9D%BC%EC%9D%B4%EC%8A%A4-%EC%84%A0-%EC%8A%A4%ED%81%AC%EB%A6%B0/233/"
+    },
+    {
       "id": "lookup:imfrom:234",
       "name": "아임프롬 라이스 휩 페이셜 클렌저",
       "brand": "아임프롬",
@@ -6047,6 +6173,14 @@
       "officialUrl": "https://www.imfrom.co.kr/product/%ED%94%BC%EA%B7%B8-%EC%86%8C%ED%94%84%ED%8A%B8-%ED%81%B4%EB%A0%8C%EC%A7%95%EB%B0%A4/248/"
     },
     {
+      "id": "lookup:innisfree:100331",
+      "name": "이니스프리 비타민C 피치 톤업 선크림",
+      "brand": "이니스프리",
+      "brandAlias": "innisfree",
+      "category": "sunscreen",
+      "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/100331"
+    },
+    {
       "id": "lookup:innisfree:102015",
       "name": "이니스프리 애플씨드 립앤아이 메이크업 리무버 / 마스카라 클렌징 워터리 세안제",
       "brand": "이니스프리",
@@ -6065,8 +6199,24 @@
       "image": "https://inm-cdn.innisfree.com/origin-image/product/product/00/00/10/32/67/322dc68e-4ce9-4b76-9887-999e84cc9324.webp"
     },
     {
+      "id": "lookup:innisfree:104527",
+      "name": "이니스프리 그린티 수분 세럼 대용량×토이스토리 5 에디션",
+      "brand": "이니스프리",
+      "brandAlias": "innisfree",
+      "category": "serum",
+      "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/104527"
+    },
+    {
+      "id": "lookup:innisfree:104789",
+      "name": "이니스프리 블랙 화산송이 파하 모공 클렌징 오일",
+      "brand": "이니스프리",
+      "brandAlias": "innisfree",
+      "category": "cleanser",
+      "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/104789"
+    },
+    {
       "id": "lookup:innisfree:105379",
-      "name": "이니스프리 ✨신상어워즈✨그린티 판테놀 카밍 토너 패드",
+      "name": "이니스프리 그린티 판테놀 카밍 토너 패드",
       "brand": "이니스프리",
       "brandAlias": "innisfree",
       "category": "toner",
@@ -6110,6 +6260,14 @@
       "image": "https://inm-cdn.innisfree.com/origin-image/product/product/00/00/03/45/13/ed5756ac-10cd-4f05-8644-5a3da08c53c9.webp"
     },
     {
+      "id": "lookup:innisfree:34514",
+      "name": "이니스프리 화산송이 바하 모공 폼 클렌징 [대용량]",
+      "brand": "이니스프리",
+      "brandAlias": "innisfree",
+      "category": "cleanser",
+      "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/34514"
+    },
+    {
       "id": "lookup:innisfree:34621",
       "name": "이니스프리 비자 트러블 폼 클렌징",
       "brand": "이니스프리",
@@ -6146,6 +6304,14 @@
       "image": "https://inm-cdn.innisfree.com/origin-image/product/product/00/00/03/50/99/8a72401f-8a05-4dda-bbe8-471e13f82a11.webp"
     },
     {
+      "id": "lookup:innisfree:35137",
+      "name": "이니스프리 왕벚꽃 글로우 톤업 크림 [스킨핏] SPF50+ PA++++",
+      "brand": "이니스프리",
+      "brandAlias": "innisfree",
+      "category": "sunscreen",
+      "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/35137"
+    },
+    {
       "id": "lookup:innisfree:35216",
       "name": "이니스프리 애플씨드 클렌징 오일",
       "brand": "이니스프리",
@@ -6153,6 +6319,14 @@
       "category": "cleanser",
       "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/35216",
       "image": "https://inm-cdn.innisfree.com/origin-image/product/product/00/00/03/52/16/c1347298-1402-41ef-b4e7-19798ef82de8.webp"
+    },
+    {
+      "id": "lookup:innisfree:35218",
+      "name": "이니스프리 애플씨드 클렌징 크림",
+      "brand": "이니스프리",
+      "brandAlias": "innisfree",
+      "category": "cleanser",
+      "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/35218"
     },
     {
       "id": "lookup:innisfree:35220",
@@ -6207,6 +6381,14 @@
       "category": "cleanser",
       "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/36923",
       "image": "https://inm-cdn.innisfree.com/origin-image/product/product/00/00/03/69/23/fa945d85-a599-4445-b27c-c6a497e945b3.webp"
+    },
+    {
+      "id": "lookup:innisfree:37066",
+      "name": "이니스프리 블루베리 리밸런싱 5.5 클렌저 [대용량]",
+      "brand": "이니스프리",
+      "brandAlias": "innisfree",
+      "category": "cleanser",
+      "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/37066"
     },
     {
       "id": "lookup:innisfree:37401",
@@ -7797,6 +7979,14 @@
       "officialUrl": "https://themedicube.co.kr/product/%EC%95%84%EC%9D%B4%EB%8F%8C-pick-pdrn-%EA%B2%94-%ED%8C%A8%EB%93%9C/2185/"
     },
     {
+      "id": "lookup:medicube:2189",
+      "name": "메디큐브 트라넥삼산 기미토닝 세럼",
+      "brand": "메디큐브",
+      "brandAlias": "medicube",
+      "category": "serum",
+      "officialUrl": "https://themedicube.co.kr/product/%ED%8A%B8%EB%9D%BC%EB%84%A5%EC%82%BC%EC%82%B0-%EA%B8%B0%EB%AF%B8%ED%86%A0%EB%8B%9D-%EC%84%B8%EB%9F%BC/2189/"
+    },
+    {
       "id": "lookup:medicube:2196",
       "name": "메디큐브 pdrn 핑크 톤업 선크림",
       "brand": "메디큐브",
@@ -7811,6 +8001,14 @@
       "brandAlias": "medicube",
       "category": "moisturizer",
       "officialUrl": "https://themedicube.co.kr/product/%EC%97%AC%EB%B0%B0%EC%9A%B0-pick-pdrn-%ED%95%91%ED%81%AC-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EC%BA%A1%EC%8A%90%ED%81%AC%EB%A6%BC/2198/"
+    },
+    {
+      "id": "lookup:medicube:2245",
+      "name": "메디큐브 트라넥삼산 기미토닝 캡슐크림",
+      "brand": "메디큐브",
+      "brandAlias": "medicube",
+      "category": "moisturizer",
+      "officialUrl": "https://themedicube.co.kr/product/%ED%8A%B8%EB%9D%BC%EB%84%A5%EC%82%BC%EC%82%B0-%EA%B8%B0%EB%AF%B8%ED%86%A0%EB%8B%9D-%EC%BA%A1%EC%8A%90%ED%81%AC%EB%A6%BC/2245/"
     },
     {
       "id": "lookup:medicube:2250",
@@ -8214,6 +8412,265 @@
       "brandAlias": "medicube",
       "category": "sunscreen",
       "officialUrl": "https://themedicube.co.kr/product/%EB%A6%AC%EB%89%B4%EC%96%BC-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%8D%BC%EB%B0%8D-%EC%84%A0%ED%81%AC%EB%A6%BC/989/"
+    },
+    {
+      "id": "lookup:mediheal:1014",
+      "name": "메디힐 마데카소사이드 모공 리페어 세럼",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "serum",
+      "volume": "40ml",
+      "officialUrl": "https://www.medihealshop.com/product/%EB%A7%88%EB%8D%B0%EC%B9%B4%EC%86%8C%EC%82%AC%EC%9D%B4%EB%93%9C-%EB%AA%A8%EA%B3%B5-%EB%A6%AC%ED%8E%98%EC%96%B4-%EC%84%B8%EB%9F%BC-40ml/1014/"
+    },
+    {
+      "id": "lookup:mediheal:1157",
+      "name": "메디힐 마데카소사이드 흔적 리페어 세럼",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "serum",
+      "volume": "100ml",
+      "officialUrl": "https://www.medihealshop.com/product/%EB%8C%80%EC%9A%A9%EB%9F%89-%EB%A7%88%EB%8D%B0%EC%B9%B4%EC%86%8C%EC%82%AC%EC%9D%B4%EB%93%9C-%ED%9D%94%EC%A0%81-%EB%A6%AC%ED%8E%98%EC%96%B4-%EC%84%B8%EB%9F%BC-100ml/1157/"
+    },
+    {
+      "id": "lookup:mediheal:1496",
+      "name": "메디힐 저분자 히알루론산 수분 밀도 세럼",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "serum",
+      "volume": "40ml",
+      "officialUrl": "https://www.medihealshop.com/product/%EC%A0%80%EB%B6%84%EC%9E%90-%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%EC%88%98%EB%B6%84-%EB%B0%80%EB%8F%84-%EC%84%B8%EB%9F%BC-40ml/1496/"
+    },
+    {
+      "id": "lookup:mediheal:1515",
+      "name": "메디힐 탱글 결광 콜라겐 클렌저",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://www.medihealshop.com/product/%ED%83%B1%EA%B8%80-%EA%B2%B0%EA%B4%91-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%81%B4%EB%A0%8C%EC%A0%80-120ml/1515/"
+    },
+    {
+      "id": "lookup:mediheal:1517",
+      "name": "메디힐 콜라겐 탄력 볼륨 세럼",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "serum",
+      "volume": "40ml",
+      "officialUrl": "https://www.medihealshop.com/product/%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%83%84%EB%A0%A5-%EB%B3%BC%EB%A5%A8-%EC%84%B8%EB%9F%BC-40ml/1517/"
+    },
+    {
+      "id": "lookup:mediheal:1520",
+      "name": "메디힐 밀도 보습 히알루론산 클렌저",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://www.medihealshop.com/product/%EB%B0%80%EB%8F%84-%EB%B3%B4%EC%8A%B5-%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%ED%81%B4%EB%A0%8C%EC%A0%80-120ml/1520/"
+    },
+    {
+      "id": "lookup:mediheal:1586",
+      "name": "메디힐 피디알엔 모공 탄력 세럼",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "serum",
+      "volume": "40ml",
+      "officialUrl": "https://www.medihealshop.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EB%AA%A8%EA%B3%B5-%ED%83%84%EB%A0%A5-%EC%84%B8%EB%9F%BC-40ml/1586/"
+    },
+    {
+      "id": "lookup:mediheal:1647",
+      "name": "메디힐 마데카소사이드 더마 크림",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.medihealshop.com/product/%EB%A7%88%EB%8D%B0%EC%B9%B4%EC%86%8C%EC%82%AC%EC%9D%B4%EB%93%9C-%EB%8D%94%EB%A7%88-%ED%81%AC%EB%A6%BC-50ml/1647/"
+    },
+    {
+      "id": "lookup:mediheal:1675",
+      "name": "메디힐 티트리 트러블 진정 토너패드",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "toner",
+      "volume": "100매",
+      "officialUrl": "https://www.medihealshop.com/product/%ED%8B%B0%ED%8A%B8%EB%A6%AC-%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%A7%84%EC%A0%95-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-100%EB%A7%A4/1675/"
+    },
+    {
+      "id": "lookup:mediheal:1676",
+      "name": "메디힐 비타민씨 잡티 토닝 토너패드",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "toner",
+      "volume": "100매",
+      "officialUrl": "https://www.medihealshop.com/product/%EB%B9%84%ED%83%80%EB%AF%BC%EC%94%A8-%EC%9E%A1%ED%8B%B0-%ED%86%A0%EB%8B%9D-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-100%EB%A7%A4/1676/"
+    },
+    {
+      "id": "lookup:mediheal:1677",
+      "name": "메디힐 콜라겐 탄력 채움 토너패드",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "toner",
+      "volume": "100매",
+      "officialUrl": "https://www.medihealshop.com/product/%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%83%84%EB%A0%A5-%EC%B1%84%EC%9B%80-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-100%EB%A7%A4/1677/"
+    },
+    {
+      "id": "lookup:mediheal:1678",
+      "name": "메디힐 피디알엔 모공 탄력 토너패드",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "toner",
+      "volume": "100매",
+      "officialUrl": "https://www.medihealshop.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EB%AA%A8%EA%B3%B5-%ED%83%84%EB%A0%A5-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-100%EB%A7%A4/1678/"
+    },
+    {
+      "id": "lookup:mediheal:1679",
+      "name": "메디힐 히알루론산 속보습 토너패드",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "toner",
+      "volume": "100매",
+      "officialUrl": "https://www.medihealshop.com/product/%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%EC%86%8D%EB%B3%B4%EC%8A%B5-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-100%EB%A7%A4/1679/"
+    },
+    {
+      "id": "lookup:mediheal:1680",
+      "name": "메디힐 피토엔자임 각질 필링 토너패드",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "toner",
+      "volume": "100매",
+      "officialUrl": "https://www.medihealshop.com/product/%ED%94%BC%ED%86%A0%EC%97%94%EC%9E%90%EC%9E%84-%EA%B0%81%EC%A7%88-%ED%95%84%EB%A7%81-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-100%EB%A7%A4/1680/"
+    },
+    {
+      "id": "lookup:mediheal:1710",
+      "name": "메디힐 마데카소사이드 흔적 토너패드",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "toner",
+      "volume": "100매",
+      "officialUrl": "https://www.medihealshop.com/product/%EB%A7%88%EB%8D%B0%EC%B9%B4%EC%86%8C%EC%82%AC%EC%9D%B4%EB%93%9C-%ED%9D%94%EC%A0%81-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-100%EB%A7%A4/1710/"
+    },
+    {
+      "id": "lookup:mediheal:1726",
+      "name": "메디힐 피디알엔 더마 크림",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.medihealshop.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EB%8D%94%EB%A7%88-%ED%81%AC%EB%A6%BC-50ml/1726/"
+    },
+    {
+      "id": "lookup:mediheal:1731",
+      "name": "메디힐 마데카소사이드 수분 선세럼 흔적 리페어",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "sunscreen",
+      "officialUrl": "https://www.medihealshop.com/product/%EB%A7%88%EB%8D%B0%EC%B9%B4%EC%86%8C%EC%82%AC%EC%9D%B4%EB%93%9C-%EC%88%98%EB%B6%84-%EC%84%A0%EC%84%B8%EB%9F%BC-%ED%9D%94%EC%A0%81-%EB%A6%AC%ED%8E%98%EC%96%B4/1731/"
+    },
+    {
+      "id": "lookup:mediheal:1746",
+      "name": "메디힐 PDRN 수분 선세럼 매끈 톤업",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "sunscreen",
+      "officialUrl": "https://www.medihealshop.com/product/pdrn-%EC%88%98%EB%B6%84-%EC%84%A0%EC%84%B8%EB%9F%BC-%EB%A7%A4%EB%81%88-%ED%86%A4%EC%97%85/1746/"
+    },
+    {
+      "id": "lookup:mediheal:1758",
+      "name": "메디힐 마데카소사이드 수분 선세럼 흔적 리페어",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "sunscreen",
+      "volume": "15g",
+      "officialUrl": "https://www.medihealshop.com/product/%EB%A7%88%EB%8D%B0%EC%B9%B4%EC%86%8C%EC%82%AC%EC%9D%B4%EB%93%9C-%EC%88%98%EB%B6%84-%EC%84%A0%EC%84%B8%EB%9F%BC-%ED%9D%94%EC%A0%81-%EB%A6%AC%ED%8E%98%EC%96%B4-15g/1758/"
+    },
+    {
+      "id": "lookup:mediheal:1765",
+      "name": "메디힐 피디알엔 모공 탄력 세럼",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "serum",
+      "volume": "100ml",
+      "officialUrl": "https://www.medihealshop.com/product/%EB%8C%80%EC%9A%A9%EB%9F%89-%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EB%AA%A8%EA%B3%B5-%ED%83%84%EB%A0%A5-%EC%84%B8%EB%9F%BC-100ml/1765/"
+    },
+    {
+      "id": "lookup:mediheal:1854",
+      "name": "메디힐 티트리 진정 수분 세럼",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "serum",
+      "volume": "100ml",
+      "officialUrl": "https://www.medihealshop.com/product/%EB%8C%80%EC%9A%A9%EB%9F%89-%ED%8B%B0%ED%8A%B8%EB%A6%AC-%EC%A7%84%EC%A0%95-%EC%88%98%EB%B6%84-%EC%84%B8%EB%9F%BC-100ml/1854/"
+    },
+    {
+      "id": "lookup:mediheal:1855",
+      "name": "메디힐 저분자 히알루론산 수분 밀도 세럼",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "serum",
+      "volume": "100ml",
+      "officialUrl": "https://www.medihealshop.com/product/%EB%8C%80%EC%9A%A9%EB%9F%89-%EC%A0%80%EB%B6%84%EC%9E%90-%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%EC%88%98%EB%B6%84-%EB%B0%80%EB%8F%84-%EC%84%B8%EB%9F%BC-100ml/1855/"
+    },
+    {
+      "id": "lookup:mediheal:1856",
+      "name": "메디힐 콜라겐 탄력 볼륨 세럼",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "serum",
+      "volume": "100ml",
+      "officialUrl": "https://www.medihealshop.com/product/%EB%8C%80%EC%9A%A9%EB%9F%89-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%83%84%EB%A0%A5-%EB%B3%BC%EB%A5%A8-%EC%84%B8%EB%9F%BC-100ml/1856/"
+    },
+    {
+      "id": "lookup:mediheal:1861",
+      "name": "메디힐 마데카소사이드 더마 세럼",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.medihealshop.com/product/%EB%A7%88%EB%8D%B0%EC%B9%B4%EC%86%8C%EC%82%AC%EC%9D%B4%EB%93%9C-%EB%8D%94%EB%A7%88-%EC%84%B8%EB%9F%BC-50ml/1861/"
+    },
+    {
+      "id": "lookup:mediheal:1862",
+      "name": "메디힐 티트리 더마 세럼",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.medihealshop.com/product/%ED%8B%B0%ED%8A%B8%EB%A6%AC-%EB%8D%94%EB%A7%88-%EC%84%B8%EB%9F%BC-50ml/1862/"
+    },
+    {
+      "id": "lookup:mediheal:1863",
+      "name": "메디힐 피디알엔 더마 세럼",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.medihealshop.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EB%8D%94%EB%A7%88-%EC%84%B8%EB%9F%BC-50ml/1863/"
+    },
+    {
+      "id": "lookup:mediheal:521",
+      "name": "메디힐 비타민씨 브라이트닝 세럼",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "serum",
+      "volume": "40ml",
+      "officialUrl": "https://www.medihealshop.com/product/%EB%B9%84%ED%83%80%EB%AF%BC%EC%94%A8-%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%8B%9D-%EC%84%B8%EB%9F%BC-40ml/521/"
+    },
+    {
+      "id": "lookup:mediheal:917",
+      "name": "메디힐 비타민씨 브라이트닝 세럼",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "serum",
+      "volume": "100ml",
+      "officialUrl": "https://www.medihealshop.com/product/%EB%8C%80%EC%9A%A9%EB%9F%89-%EB%B9%84%ED%83%80%EB%AF%BC%EC%94%A8-%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%8B%9D-%EC%84%B8%EB%9F%BC-100ml/917/"
+    },
+    {
+      "id": "lookup:mediheal:955",
+      "name": "메디힐 마데카소사이드 흔적 리페어 세럼",
+      "brand": "메디힐",
+      "brandAlias": "MEDIHEAL",
+      "category": "serum",
+      "volume": "40ml",
+      "officialUrl": "https://www.medihealshop.com/product/%EB%A7%88%EB%8D%B0%EC%B9%B4%EC%86%8C%EC%82%AC%EC%9D%B4%EB%93%9C-%ED%9D%94%EC%A0%81-%EB%A6%AC%ED%8E%98%EC%96%B4-%EC%84%B8%EB%9F%BC-40ml/955/"
     },
     {
       "id": "lookup:medipeel:1224",
@@ -10760,6 +11217,15 @@
       "officialUrl": "https://www.neogenlab.co.kr/product/%EC%B9%B4%EB%B0%8D-%EC%8B%9C%EC%B9%B4%ED%8A%B8%EB%A6%AC-%ED%8C%A8%EB%93%9C-90%EB%A7%A4/122/"
     },
     {
+      "id": "lookup:neogen:1223",
+      "name": "네오젠 넥스트 글로우 프렙 세럼",
+      "brand": "네오젠",
+      "brandAlias": "NEOGEN",
+      "category": "serum",
+      "volume": "32ml",
+      "officialUrl": "https://www.neogenlab.co.kr/product/%EB%84%A5%EC%8A%A4%ED%8A%B8-%EA%B8%80%EB%A1%9C%EC%9A%B0-%ED%94%84%EB%A0%99-%EC%84%B8%EB%9F%BC-32ml/1223/"
+    },
+    {
       "id": "lookup:neogen:1224",
       "name": "네오젠 넥스트 글로우 수분 크림",
       "brand": "네오젠",
@@ -11017,6 +11483,15 @@
       "category": "serum",
       "volume": "30ml",
       "officialUrl": "https://www.neogenlab.co.kr/product/%EB%A6%AC%EC%96%BC-%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-15-%EC%84%B8%EB%9F%BC-30ml/528/"
+    },
+    {
+      "id": "lookup:neogen:539",
+      "name": "네오젠 써메딕 수퍼 펩타이드 100 트리플 콜라겐 리프팅 세럼",
+      "brand": "네오젠",
+      "brandAlias": "NEOGEN",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.neogenlab.co.kr/product/%EC%8D%A8%EB%A9%94%EB%94%95-%EC%88%98%ED%8D%BC-%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C-100-%ED%8A%B8%EB%A6%AC%ED%94%8C-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EB%A6%AC%ED%94%84%ED%8C%85-%EC%84%B8%EB%9F%BC-50ml/539/"
     },
     {
       "id": "lookup:neogen:540",
@@ -11672,6 +12147,14 @@
       "category": "serum",
       "volume": "30ml",
       "officialUrl": "https://numbuzin.com/product/5%EB%B2%88-%EA%B8%80%EB%A3%A8%ED%83%80%EC%B9%98%EC%98%A8c-%ED%9D%94%EC%A0%81-%EC%95%B0%ED%94%8C-30ml/51/"
+    },
+    {
+      "id": "lookup:numbuzin:52",
+      "name": "넘버즈인 5번 글루타치온c 흔적 필름패드 70pads",
+      "brand": "넘버즈인",
+      "brandAlias": "numbuzin",
+      "category": "toner",
+      "officialUrl": "https://numbuzin.com/product/5%EB%B2%88-%EA%B8%80%EB%A3%A8%ED%83%80%EC%B9%98%EC%98%A8c-%ED%9D%94%EC%A0%81-%ED%95%84%EB%A6%84%ED%8C%A8%EB%93%9C-70pads/52/"
     },
     {
       "id": "lookup:numbuzin:53",
@@ -13039,6 +13522,15 @@
       "officialUrl": "https://pyunkangyul.com/product/%EC%95%84%ED%86%A0%EB%A1%9C%EC%85%98-%EB%B8%94%EB%A3%A8%EB%9D%BC%EB%B2%A8-350ml/58/"
     },
     {
+      "id": "lookup:pyunkangyul:643",
+      "name": "편강율 뉴트리션 크림",
+      "brand": "편강율",
+      "brandAlias": "Pyunkang Yul",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://pyunkangyul.com/product/%EB%89%B4%ED%8A%B8%EB%A6%AC%EC%85%98-%ED%81%AC%EB%A6%BC-50ml/643/"
+    },
+    {
       "id": "lookup:pyunkangyul:658",
       "name": "편강율 모이스처 크림",
       "brand": "편강율",
@@ -13163,6 +13655,15 @@
       "volume": "500ml",
       "officialUrl": "https://roundlab.co.kr/product/1025-%EB%8F%85%EB%8F%84-%ED%86%A0%EB%84%88-%EB%8C%80%EC%9A%A9%EB%9F%89-500ml/14/",
       "image": "https://roundlab.co.kr/web/product/medium/202511/d81a1ca39b565ffb107dff5bdd4c1e25.jpg"
+    },
+    {
+      "id": "lookup:roundlab:140",
+      "name": "라운드랩 자작나무 수분 클렌저",
+      "brand": "라운드랩",
+      "brandAlias": "Round Lab",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://roundlab.co.kr/product/%EC%9E%90%EC%9E%91%EB%82%98%EB%AC%B4-%EC%88%98%EB%B6%84-%ED%81%B4%EB%A0%8C%EC%A0%80-150ml/140/"
     },
     {
       "id": "lookup:roundlab:158",
@@ -18631,6 +19132,14 @@
       "officialUrl": "https://www.vt-cosmetics.com/product/g2-%EA%B8%80%EB%A3%A8%ED%83%80%EC%B9%98%EC%98%A8-%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%8B%9D-%EC%95%B0%ED%94%8C/1823/"
     },
     {
+      "id": "lookup:vt:1825",
+      "name": "브이티 피디알엔 토너",
+      "brand": "브이티",
+      "brandAlias": "VT Cosmetics",
+      "category": "toner",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%ED%86%A0%EB%84%88/1825/"
+    },
+    {
       "id": "lookup:vt:1827",
       "name": "브이티 피디알엔 리들샷 골드 에센스",
       "brand": "브이티",
@@ -19009,7 +19518,7 @@
     },
     {
       "id": "lookup:wellage:1661",
-      "name": "웰라쥬 하이퍼 pdrn 리페어 앰플",
+      "name": "웰라쥬 하이퍼 PDRN 리페어 앰플",
       "brand": "웰라쥬",
       "brandAlias": "WELLAGE",
       "category": "serum",
@@ -19036,7 +19545,7 @@
     },
     {
       "id": "lookup:wellage:1842",
-      "name": "웰라쥬 하이퍼 pdrn 글로우 플럼핑 캡슐 크림",
+      "name": "웰라쥬 하이퍼 PDRN 글로우 플럼핑 캡슐 크림",
       "brand": "웰라쥬",
       "brandAlias": "WELLAGE",
       "category": "moisturizer",
@@ -19045,7 +19554,7 @@
     },
     {
       "id": "lookup:wellage:1878",
-      "name": "웰라쥬 하이퍼 pdrn 글로우 버블 세럼",
+      "name": "웰라쥬 하이퍼 PDRN 글로우 버블 세럼",
       "brand": "웰라쥬",
       "brandAlias": "WELLAGE",
       "category": "serum",
