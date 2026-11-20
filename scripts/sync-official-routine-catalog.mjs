@@ -9,6 +9,10 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  tyf: { brand: "땡큐파머", alias: "THANK YOU FARMER", domain: "tyfmall.co.kr", type: "cafe",
+    paths: [["list1", "/product/list.html?cate_no=72&page=1"]] },
+  huxley: { brand: "헉슬리", alias: "Huxley", domain: "huxley.co.kr", type: "cafe",
+    paths: [1, 2, 3].map(page => [`skin${page}`, `/product/list.html?cate_no=73&page=${page}`]) },
   somebymi: { brand: "썸바이미", alias: "SOME BY MI", domain: "www.somebymi.co.kr", type: "cafe",
     paths: [1, 2, 3].map(page => [`list${page}`, `/product/list.html?cate_no=383&page=${page}`]) },
   ninewishes: { brand: "나인위시스", alias: "9wishes", domain: "www.9wishes.shop", type: "cafe",
@@ -142,6 +146,10 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (storeKey === "tyf") {
+    name = name.replace(/^1등\*토너\s*/u, "");
+    if (/\d+\s*개|씨씨\s*크림|스킨 톤 업 토탈 크림/u.test(name)) return null;
+  }
   if (storeKey === "somebymi") name = name.replace(/\s*\[(\d+(?:\.\d+)?\s*(?:ml|g|매))\]$/iu, " $1");
   if (storeKey === "ninewishes") name = name.replace(/\s*\[사용기한:\s*\d{2}(?:\.\d{2}){2}\]$/u, "");
   if (storeKey === "urang") name = name.replace(/\s*(?:사용기한\s*)?20\d{2}\.\d{1,2}\.\d{1,2}까지$/u, "")
@@ -198,6 +206,8 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   name = name.replaceAll(volumePattern, " ").replace(/[ ]{2,}/g, " ").replace(/\(\s*\)|^\s*[:–-]\s*|\s*[:–-]\s*$/g, "").trim();
   if (name.length < 4 || !nameScript.test(name)) return null;
   let category = classify(name);
+  if (storeKey === "tyf" && /선 프로젝트.*선 에센스/u.test(name)) category = "sunscreen";
+  if (storeKey === "tyf" && /필링 크림$/u.test(name)) category = "cleanser";
   if (storeKey === "ninewishes" && /앰플 (?:아이앤페이스 )?크림(?: 나노 플러스)?$/u.test(name)) category = "moisturizer";
   if (storeKey === "kaine" && /쿨링 부스터 겔$/u.test(name)) category = "moisturizer";
   if (storeKey === "sidmool" && /\s솝$/u.test(name)) category = "cleanser";
@@ -357,7 +367,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const volume = descendants.find(child => attr(child, "rel") === "용량");
       if (title) rawName = [textOf(title), textOf(volume)].join(" ").trim();
     }
-    if (["bonamedusa", "urang", "miguhara", "blab", "ongredients", "onedaysyou", "biodance", "pcalm", "lagom", "bonajour", "jmsolution", "jumiso"].includes(storeKey)) {
+    if (["tyf", "huxley", "bonamedusa", "urang", "miguhara", "blab", "ongredients", "onedaysyou", "biodance", "pcalm", "lagom", "bonajour", "jmsolution", "jumiso"].includes(storeKey)) {
       if (!/(?:^|\s)name(?:\s|$)/.test(attr(node.parentNode, "class") ?? "")) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "").replace(/^JMsolution\s+(?=제이엠솔루션)/iu, "");
     }
