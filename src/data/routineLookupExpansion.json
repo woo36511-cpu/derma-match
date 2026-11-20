@@ -327,6 +327,12 @@
       "usefulPages": 5,
       "fetchedListings": 12
     },
+    "thera": {
+      "name": "더라",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 1,
+      "fetchedListings": 5
+    },
     "tirtir": {
       "name": "티르티르",
       "checkedAt": "2026-11-15",
@@ -20740,6 +20746,56 @@
       "category": "serum",
       "officialUrl": "https://www.sonatural.co.kr/shop/shopdetail.html?branduid=404",
       "image": "https://cdn1-aka.makeshop.co.kr/shopimages/sona6769/001006000021.jpg"
+    },
+    {
+      "id": "lookup:thera:35",
+      "name": "더라 몽글몽글 미스트 에센스",
+      "brand": "더라",
+      "brandAlias": "THE RA",
+      "category": "toner",
+      "volume": "80ml",
+      "officialUrl": "https://www.thera.co.kr/shop_view/?idx=35",
+      "image": "https://cdn.imweb.me/thumbnail/20261029/111caf97f5153.png"
+    },
+    {
+      "id": "lookup:thera:36",
+      "name": "더라 비치노아 21 세럼",
+      "brand": "더라",
+      "brandAlias": "THE RA",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.thera.co.kr/shop_view/?idx=36",
+      "image": "https://cdn.imweb.me/thumbnail/20261029/6d4d7f8068e1d.png"
+    },
+    {
+      "id": "lookup:thera:37",
+      "name": "더라 새미슬 크림",
+      "brand": "더라",
+      "brandAlias": "THE RA",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.thera.co.kr/shop_view/?idx=37",
+      "image": "https://cdn.imweb.me/thumbnail/20261029/b9eb40145c81f.png"
+    },
+    {
+      "id": "lookup:thera:40",
+      "name": "더라 청초안 폼 클렌저",
+      "brand": "더라",
+      "brandAlias": "THE RA",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://www.thera.co.kr/shop_view/?idx=40",
+      "image": "https://cdn.imweb.me/thumbnail/20261029/ae3399f6770f7.jpg"
+    },
+    {
+      "id": "lookup:thera:43",
+      "name": "더라 해가림 선블럭",
+      "brand": "더라",
+      "brandAlias": "THE RA",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.thera.co.kr/shop_view/?idx=43",
+      "image": "https://cdn.imweb.me/thumbnail/20261029/2333dd30f985d.png"
     },
     {
       "id": "lookup:tiam:142",
