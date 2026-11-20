@@ -117,6 +117,12 @@
       "usefulPages": 1,
       "fetchedListings": 21
     },
+    "etude": {
+      "name": "에뛰드",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 4,
+      "fetchedListings": 23
+    },
     "frankly": {
       "name": "프랭클리",
       "checkedAt": "2026-11-20",
@@ -5946,6 +5952,234 @@
       "category": "moisturizer",
       "volume": "20g",
       "officialUrl": "https://drdifferent.com/product/2710-%EA%B9%8C%EC%A7%80%EB%B9%84%ED%83%80%EC%95%84%ED%81%AC%EB%82%A0-tx-%EB%82%98%EC%9D%B4%ED%8A%B8-%ED%81%AC%EB%A6%BC-20g/98/"
+    },
+    {
+      "id": "lookup:etude:31527",
+      "name": "에뛰드 베이킹 파우더 B.B 딥 클렌징 폼",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "cleanser",
+      "volume": "160ml",
+      "officialUrl": "https://www.etude.com/shop/category/cleanser/cleanser-all/%eb%b2%a0%ec%9d%b4%ed%82%b9-%ed%8c%8c%ec%9a%b0%eb%8d%94-b-b-%eb%94%a5-%ed%81%b4%eb%a0%8c%ec%a7%95-%ed%8f%bc-160ml/",
+      "image": "https://www.etude.com/wp-content/uploads/2022/07/0220-Baking_Powder_BB_Deep_Foam_160ml-1-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:31530",
+      "name": "에뛰드 베이킹 파우더 모공 클렌징 폼",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "cleanser",
+      "volume": "160g",
+      "officialUrl": "https://www.etude.com/shop/category/cleanser/cleanser-all/%eb%b2%a0%ec%9d%b4%ed%82%b9-%ed%8c%8c%ec%9a%b0%eb%8d%94-%eb%aa%a8%ea%b3%b5-%ed%81%b4%eb%a0%8c%ec%a7%95-%ed%8f%bc-160g/",
+      "image": "https://www.etude.com/wp-content/uploads/2022/07/0227-Baking_Powder_Pore_Foam_160g_-1-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:31531",
+      "name": "에뛰드 베이킹 파우더 모공 클렌징 폼",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "cleanser",
+      "volume": "300g",
+      "officialUrl": "https://www.etude.com/shop/category/cleanser/cleanser-all/%eb%b2%a0%ec%9d%b4%ed%82%b9-%ed%8c%8c%ec%9a%b0%eb%8d%94-%eb%aa%a8%ea%b3%b5-%ed%81%b4%eb%a0%8c%ec%a7%95-%ed%8f%bc-300g/",
+      "image": "https://www.etude.com/wp-content/uploads/2022/07/0221-Baking_Powder_Pore_Foam_300g-1-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:31565",
+      "name": "에뛰드 선프라이즈 마일드 워터리 라이트 SPF50 PA+++",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "sunscreen",
+      "volume": "50g",
+      "officialUrl": "https://www.etude.com/shop/category/skin-care/skin-care-all/%ec%84%a0%ed%94%84%eb%9d%bc%ec%9d%b4%ec%a6%88-%eb%a7%88%ec%9d%bc%eb%93%9c-%ec%9b%8c%ed%84%b0%eb%a6%ac-%eb%9d%bc%ec%9d%b4%ed%8a%b8-spf50-pa-50g/",
+      "image": "https://www.etude.com/wp-content/uploads/2022/07/0238-SUNPRISE_MILD_WATERY_LIGHT-1-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:31572",
+      "name": "에뛰드 수분가득 콜라겐 에멀전",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "moisturizer",
+      "volume": "180ml",
+      "officialUrl": "https://www.etude.com/shop/category/skin-care/skin-care-all/%ec%88%98%eb%b6%84%ea%b0%80%eb%93%9d-%ec%bd%9c%eb%9d%bc%ea%b2%90-%ec%97%90%eb%a9%80%ec%a0%84-180ml/",
+      "image": "https://www.etude.com/wp-content/uploads/2022/07/0198-MOISTFULL_COLLAGEN_EMULSION_180ml-1-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:31573",
+      "name": "에뛰드 수분가득 콜라겐 에센스",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "serum",
+      "volume": "80ml",
+      "officialUrl": "https://www.etude.com/shop/category/skin-care/skin-care-all/%ec%88%98%eb%b6%84%ea%b0%80%eb%93%9d-%ec%bd%9c%eb%9d%bc%ea%b2%90-%ec%97%90%ec%84%bc%ec%8a%a4-80ml/",
+      "image": "https://www.etude.com/wp-content/uploads/2022/07/0210-MOISTFULL_COLLAGEN_ESSENCE_80ml-1-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:31584",
+      "name": "에뛰드 수분가득 콜라겐 크림",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "moisturizer",
+      "volume": "75ml",
+      "officialUrl": "https://www.etude.com/shop/category/skin-care/skin-care-all/%ec%88%98%eb%b6%84%ea%b0%80%eb%93%9d-%ec%bd%9c%eb%9d%bc%ea%b2%90-%ed%81%ac%eb%a6%bc-75ml/",
+      "image": "https://www.etude.com/wp-content/uploads/2022/07/0199-MOISTFULL_COLLAGEN_CREAM_75_ml-1-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:31585",
+      "name": "에뛰드 수분가득 콜라겐 클렌징 폼",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.etude.com/shop/category/cleanser/cleanser-all/%ec%88%98%eb%b6%84%ea%b0%80%eb%93%9d-%ec%bd%9c%eb%9d%bc%ea%b2%90-%ed%81%b4%eb%a0%8c%ec%a7%95-%ed%8f%bc-150ml/",
+      "image": "https://www.etude.com/wp-content/uploads/2022/07/0211-MOISTFULLCOLLAGEN_CLEANSINGFOAM_150g-1-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:31586",
+      "name": "에뛰드 수분가득 콜라겐 토너",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://www.etude.com/shop/category/skin-care/skin-care-all/%ec%88%98%eb%b6%84%ea%b0%80%eb%93%9d-%ec%bd%9c%eb%9d%bc%ea%b2%90-%ed%86%a0%eb%84%88-200ml/",
+      "image": "https://www.etude.com/wp-content/uploads/2022/07/0200-MOISTFULL_COLLAGEN_FACIALTONER_200ml-1-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:31587",
+      "name": "에뛰드 순정 10무 수분 에멀전",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "moisturizer",
+      "volume": "130ml",
+      "officialUrl": "https://www.etude.com/shop/category/skin-care/skin-care-all/%ec%88%9c%ec%a0%95-10%eb%ac%b4-%ec%88%98%eb%b6%84-%ec%97%90%eb%a9%80%ec%a0%84-130ml/",
+      "image": "https://www.etude.com/wp-content/uploads/2022/07/01-1-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:31591",
+      "name": "에뛰드 순정 디렉터 무기자차 선크림 SPF50+ PA++++",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.etude.com/shop/category/skin-care/skin-care-all/%ec%88%9c%ec%a0%95-%eb%94%94%eb%a0%89%ed%84%b0-%eb%ac%b4%ea%b8%b0%ec%9e%90%ec%b0%a8-%ec%84%a0%ed%81%ac%eb%a6%bc-spf50-pa-50ml/",
+      "image": "https://www.etude.com/wp-content/uploads/2022/07/01-5-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:31593",
+      "name": "에뛰드 순정 디렉터 수분 선크림 SPF50+ PA++++",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.etude.com/shop/category/skin-care/skin-care-all/%ec%88%9c%ec%a0%95-%eb%94%94%eb%a0%89%ed%84%b0-%ec%88%98%eb%b6%84-%ec%84%a0%ed%81%ac%eb%a6%bc-spf50-pa-50ml/",
+      "image": "https://www.etude.com/wp-content/uploads/2022/07/01-4-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:31625",
+      "name": "에뛰드 순정 약산성 클렌징 워터",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "cleanser",
+      "volume": "320ml",
+      "officialUrl": "https://www.etude.com/shop/category/cleanser/cleanser-all/%ec%88%9c%ec%a0%95-%ec%95%bd%ec%82%b0%ec%84%b1-%ed%81%b4%eb%a0%8c%ec%a7%95-%ec%9b%8c%ed%84%b0-320ml/",
+      "image": "https://www.etude.com/wp-content/uploads/2022/07/SJ_cleansing_water_01-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:41735",
+      "name": "에뛰드 순정 약산성 5.5 진정 토너",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "toner",
+      "officialUrl": "https://www.etude.com/shop/category/skin-care/skin-care-all/%ec%88%9c%ec%a0%95-%ec%95%bd%ec%82%b0%ec%84%b1-5-5-%ec%a7%84%ec%a0%95-%ed%86%a0%eb%84%88-500ml-2/",
+      "image": "https://www.etude.com/wp-content/uploads/2023/03/0317_Soonjung_Toner_01-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:42402",
+      "name": "에뛰드 순정 약산성 6.5 휩 클렌저",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.etude.com/shop/category/cleanser/cleanser-all/%ec%88%9c%ec%a0%95-%ec%95%bd%ec%82%b0%ec%84%b1-6-5-%ed%9c%a9-%ed%81%b4%eb%a0%8c%ec%a0%80-150ml-2/",
+      "image": "https://www.etude.com/wp-content/uploads/2023/06/%EC%97%B0%EC%B6%9C%EC%BB%B7_02-1-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:42424",
+      "name": "에뛰드 순정 수분 베리어 크림",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "moisturizer",
+      "volume": "75ml",
+      "officialUrl": "https://www.etude.com/shop/category/cleanser/cleanser-all/%ec%88%9c%ec%a0%95-%ec%88%98%eb%b6%84-%eb%b2%a0%eb%a6%ac%ec%96%b4-%ed%81%ac%eb%a6%bc-75ml-2/",
+      "image": "https://www.etude.com/wp-content/uploads/2023/06/%EC%97%B0%EC%B6%9C%EC%BB%B7_02-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:42427",
+      "name": "에뛰드 순정 약산성 5.5 폼 클렌저",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.etude.com/shop/category/cleanser/cleanser-all/%ec%88%9c%ec%a0%95-%ec%95%bd%ec%82%b0%ec%84%b1-5-5-%ed%8f%bc-%ed%81%b4%eb%a0%8c%ec%a0%80-150ml-2/",
+      "image": "https://www.etude.com/wp-content/uploads/2023/06/%EC%97%B0%EC%B6%9C%EC%BB%B7_02-2-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:42452",
+      "name": "에뛰드 순정 2x 베리어 보습 크림",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "moisturizer",
+      "volume": "60ml",
+      "officialUrl": "https://www.etude.com/shop/category/skin-care/skin-care-all/%ec%88%9c%ec%a0%95-2x-%eb%b2%a0%eb%a6%ac%ec%96%b4-%eb%b3%b4%ec%8a%b5-%ed%81%ac%eb%a6%bc-60ml-2/",
+      "image": "https://www.etude.com/wp-content/uploads/2023/06/%EC%97%B0%EC%B6%9C%EC%BB%B7_02-3-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:43896",
+      "name": "에뛰드 베이킹 파우더 모공 클렌징 크림",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "cleanser",
+      "officialUrl": "https://www.etude.com/shop/category/cleanser/cleanser-all/%eb%b2%a0%ec%9d%b4%ed%82%b9-%ed%8c%8c%ec%9a%b0%eb%8d%94-%eb%aa%a8%ea%b3%b5-%ed%81%b4%eb%a0%8c%ec%a7%95-%ed%81%ac%eb%a6%bc/",
+      "image": "https://www.etude.com/wp-content/uploads/2024/03/TH_02-1-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:44061",
+      "name": "에뛰드 순정 디렉터 톤업 수정 선크림 SPF50+ PA++++",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "sunscreen",
+      "volume": "40ml",
+      "officialUrl": "https://www.etude.com/shop/category/skin-care/skin-care-all/%ec%88%9c%ec%a0%95-%eb%94%94%eb%a0%89%ed%84%b0-%ed%86%a4%ec%97%85-%ec%88%98%ec%a0%95-%ec%84%a0%ed%81%ac%eb%a6%bc-spf50-pa-40ml/",
+      "image": "https://www.etude.com/wp-content/uploads/2024/03/soonjung_tone_up_02-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:46108",
+      "name": "에뛰드 순정 약산성 클렌징 밀크",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://www.etude.com/shop/category/cleanser/cleanser-all/%ec%97%90%eb%9b%b0%eb%93%9c-%ec%88%9c%ec%a0%95-%ec%95%bd%ec%82%b0%ec%84%b1-%ed%81%b4%eb%a0%8c%ec%a7%95-%eb%b0%80%ed%81%ac/",
+      "image": "https://www.etude.com/wp-content/uploads/2025/02/Prd_03-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:47271",
+      "name": "에뛰드 순정 디렉터 톤업 핑크 선크림",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.etude.com/shop/category/skin-care/sun-care/%ec%88%9c%ec%a0%95-%eb%94%94%eb%a0%89%ed%84%b0-%ed%86%a4%ec%97%85-%ed%95%91%ed%81%ac-%ec%84%a0%ed%81%ac%eb%a6%bc/",
+      "image": "https://www.etude.com/wp-content/uploads/2026/03/Toneup_Pink_Sun2-430x430.jpg"
+    },
+    {
+      "id": "lookup:etude:47277",
+      "name": "에뛰드 피지쏙 무기자차 선크림",
+      "brand": "에뛰드",
+      "brandAlias": "ETUDE",
+      "category": "sunscreen",
+      "volume": "80g",
+      "officialUrl": "https://www.etude.com/shop/category/skin-care/sun-care/%ed%94%bc%ec%a7%80%ec%8f%99-%eb%ac%b4%ea%b8%b0%ec%9e%90%ec%b0%a8-%ec%84%a0%ed%81%ac%eb%a6%bc/",
+      "image": "https://www.etude.com/wp-content/uploads/2026/03/Sebum_Mineral_Sun_02-430x430.jpg"
     },
     {
       "id": "lookup:frankly:106",
