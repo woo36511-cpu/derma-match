@@ -57,6 +57,12 @@
       "usefulPages": 6,
       "fetchedListings": 19
     },
+    "bioturm": {
+      "name": "비오투름",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 2,
+      "fetchedListings": 5
+    },
     "blab": {
       "name": "비랩",
       "checkedAt": "2026-11-19",
@@ -128,6 +134,12 @@
       "checkedAt": "2026-11-20",
       "usefulPages": 5,
       "fetchedListings": 25
+    },
+    "easydew": {
+      "name": "이지듀",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 5,
+      "fetchedListings": 14
     },
     "etude": {
       "name": "에뛰드",
@@ -2688,6 +2700,56 @@
       "brandAlias": "Biodance",
       "category": "toner",
       "officialUrl": "https://www.biodance.co.kr/product/%EC%BA%90%EB%B9%84%EC%96%B4-%ED%8E%98%EC%8A%A4%ED%83%80-%EC%BA%90%EB%B9%84%EC%96%B4-pdrn-%EB%93%80%EC%96%BC-%EA%B2%94-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C/801/"
+    },
+    {
+      "id": "lookup:bioturm:291",
+      "name": "비오투름 클렌징 밀크",
+      "brand": "비오투름",
+      "brandAlias": "BIOTURM 비오텀",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://www.bioturm.co.kr/product/%EB%B9%84%EC%98%A4%ED%88%AC%EB%A6%84-%ED%81%B4%EB%A0%8C%EC%A7%95%EB%B0%80%ED%81%AC-200ml/291/",
+      "image": "https://www.bioturm.co.kr/web/product/medium/202208/7e3f0d7d17c756c06da7548d033c63be.jpg"
+    },
+    {
+      "id": "lookup:bioturm:950",
+      "name": "비오투름 마리골드크림(피부결,피부탄력)",
+      "brand": "비오투름",
+      "brandAlias": "BIOTURM 비오텀",
+      "category": "moisturizer",
+      "volume": "75ml",
+      "officialUrl": "https://www.bioturm.co.kr/product/%EB%B9%84%EC%98%A4%ED%88%AC%EB%A6%84-%EB%A7%88%EB%A6%AC%EA%B3%A8%EB%93%9C%ED%81%AC%EB%A6%BC%ED%94%BC%EB%B6%80%EA%B2%B0%ED%94%BC%EB%B6%80%ED%83%84%EB%A0%A575ml/950/",
+      "image": "https://www.bioturm.co.kr/web/product/medium/202305/18bbdd2647681aa9102757c11aa50182.jpg"
+    },
+    {
+      "id": "lookup:bioturm:951",
+      "name": "비오투름 징크크림(진정,개선)",
+      "brand": "비오투름",
+      "brandAlias": "BIOTURM 비오텀",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://www.bioturm.co.kr/product/%EB%B9%84%EC%98%A4%ED%88%AC%EB%A6%84-%EC%A7%95%ED%81%AC%ED%81%AC%EB%A6%BC%EC%A7%84%EC%A0%95%EA%B0%9C%EC%84%A0100ml/951/",
+      "image": "https://www.bioturm.co.kr/web/product/medium/202305/ebbec4064fbf846e9ab0a0c75eb9e0d1.jpg"
+    },
+    {
+      "id": "lookup:bioturm:957",
+      "name": "비오투름 실버크림(진정,개선)",
+      "brand": "비오투름",
+      "brandAlias": "BIOTURM 비오텀",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.bioturm.co.kr/product/%EB%B9%84%EC%98%A4%ED%88%AC%EB%A6%84-%EC%8B%A4%EB%B2%84%ED%81%AC%EB%A6%BC%EC%A7%84%EC%A0%95%EA%B0%9C%EC%84%A050ml/957/",
+      "image": "https://www.bioturm.co.kr/web/product/medium/202208/428f799566c80c3d475fd7d3e1a0046e.jpg"
+    },
+    {
+      "id": "lookup:bioturm:992",
+      "name": "비오투름 오리지널 클렌징 밀크",
+      "brand": "비오투름",
+      "brandAlias": "BIOTURM 비오텀",
+      "category": "cleanser",
+      "volume": "500ml",
+      "officialUrl": "https://www.bioturm.co.kr/product/%EB%B9%84%EC%98%A4%ED%88%AC%EB%A6%84-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%84%90-%ED%81%B4%EB%A0%8C%EC%A7%95%EB%B0%80%ED%81%AC-500ml/992/",
+      "image": "https://www.bioturm.co.kr/web/product/medium/201903/90f80552e736d314b9eafeea17df5152.jpg"
     },
     {
       "id": "lookup:blab:123",
@@ -6288,6 +6350,111 @@
       "volume": "180ml",
       "officialUrl": "https://www.droracle.co.kr/product/%EB%A6%AC%EB%89%B4%EC%96%BC-%EC%9E%AC%EC%9E%85%EA%B3%A0-%EC%95%88%ED%8B%B0%EB%B0%95%C2%AE%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84-%EC%95%84%ED%81%AC%EB%84%A4-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8F%BC-180ml/987/",
       "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202610/43138a29547a0d2957768b59fad0e5ff.png"
+    },
+    {
+      "id": "lookup:easydew:2285",
+      "name": "이지듀 AHA 트러블 토너",
+      "brand": "이지듀",
+      "brandAlias": "Easydew",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://www.easydew.co.kr/product/aha-%ED%8A%B8%EB%9F%AC%EB%B8%94-%ED%86%A0%EB%84%88-200ml/2285/",
+      "image": "https://cafe24img.poxo.com/easydew/web/product/medium/202408/0a66e20a6e938644fe399ab0a10405cd.jpg"
+    },
+    {
+      "id": "lookup:easydew:2347",
+      "name": "이지듀 EGF 베리어 리페어 토너",
+      "brand": "이지듀",
+      "brandAlias": "Easydew",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://www.easydew.co.kr/product/egf-%EB%B2%A0%EB%A6%AC%EC%96%B4-%EB%A6%AC%ED%8E%98%EC%96%B4-%ED%86%A0%EB%84%88-200ml/2347/",
+      "image": "https://cafe24img.poxo.com/easydew/web/product/medium/202611/d5cb1d58340489ba5cbfd9b28266cf8b.jpg"
+    },
+    {
+      "id": "lookup:easydew:2348",
+      "name": "이지듀 EGF 베리어 리페어 미스트",
+      "brand": "이지듀",
+      "brandAlias": "Easydew",
+      "category": "toner",
+      "volume": "60ml",
+      "officialUrl": "https://www.easydew.co.kr/product/egf-%EB%B2%A0%EB%A6%AC%EC%96%B4-%EB%A6%AC%ED%8E%98%EC%96%B4-%EB%AF%B8%EC%8A%A4%ED%8A%B8-60ml/2348/",
+      "image": "https://cafe24img.poxo.com/easydew/web/product/medium/202611/e851d61646840d010d5c577e76432acd.png"
+    },
+    {
+      "id": "lookup:easydew:2354",
+      "name": "이지듀 리프트 EGF 10 코어 이펙트 앰플",
+      "brand": "이지듀",
+      "brandAlias": "Easydew",
+      "category": "serum",
+      "officialUrl": "https://www.easydew.co.kr/product/%EB%B8%94%EB%9E%99-%ED%94%84%EB%9D%BC%EC%9D%B4%EB%8D%B0%EC%9D%B4egf-%EA%B5%AD%EB%82%B4-%EC%B5%9C%EB%8C%80%ED%95%A8%EB%9F%89-10ppm-%ED%95%AD%EC%82%B0%ED%99%94-%EC%95%B0%ED%94%8C-%ED%8A%B9%EA%B0%80/2354/",
+      "image": "https://cafe24img.poxo.com/easydew/web/product/medium/202611/13645c77382ae9eab4cf9da168b3652d.jpg"
+    },
+    {
+      "id": "lookup:easydew:2455",
+      "name": "이지듀 멜라 C 비타 에센스 토너",
+      "brand": "이지듀",
+      "brandAlias": "Easydew",
+      "category": "toner",
+      "officialUrl": "https://www.easydew.co.kr/product/%EC%9E%AC%EC%9E%85%EA%B3%A0-%EC%99%84%EB%A3%8C%EB%B9%84%ED%83%80c-%EA%B8%B0%EB%AF%B8-%ED%86%A0%EB%84%88-150ml-11-%ED%8A%B9%EA%B0%80/2455/",
+      "image": "https://cafe24img.poxo.com/easydew/web/product/medium/202610/31e53f116bee6ceae2526e63a74d51ea.png"
+    },
+    {
+      "id": "lookup:easydew:2462",
+      "name": "이지듀 비타C 앰플 클렌저",
+      "brand": "이지듀",
+      "brandAlias": "Easydew",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://www.easydew.co.kr/product/%EB%B9%84%ED%83%80c-%EC%95%B0%ED%94%8C-%ED%81%B4%EB%A0%8C%EC%A0%80-200ml/2462/",
+      "image": "https://cafe24img.poxo.com/easydew/web/product/medium/202508/e6472cdb7f1e33b324678836371d8a1c.jpg"
+    },
+    {
+      "id": "lookup:easydew:2749",
+      "name": "이지듀 멜라 글루타치온 크림",
+      "brand": "이지듀",
+      "brandAlias": "Easydew",
+      "category": "moisturizer",
+      "officialUrl": "https://www.easydew.co.kr/product/%EB%B8%94%EB%9E%99-%ED%94%84%EB%9D%BC%EC%9D%B4%EB%8D%B0%EC%9D%B4%EA%B8%B0%EB%AF%B8%ED%81%AC%EB%A6%BC-50ml/2749/",
+      "image": "https://cafe24img.poxo.com/easydew/web/product/medium/202611/4cace81ddd5b11f620f180dba0b7c609.jpg"
+    },
+    {
+      "id": "lookup:easydew:2838",
+      "name": "이지듀 EGF 로즈 기미앰플",
+      "brand": "이지듀",
+      "brandAlias": "Easydew",
+      "category": "serum",
+      "officialUrl": "https://www.easydew.co.kr/product/egf-%EB%A1%9C%EC%A6%88-%EA%B8%B0%EB%AF%B8%EC%95%B0%ED%94%8C/2838/",
+      "image": "https://cafe24img.poxo.com/easydew/web/product/medium/202508/2bdcef4c479eb4eb8641d15c50e58423.jpg"
+    },
+    {
+      "id": "lookup:easydew:2843",
+      "name": "이지듀 바르는 MTS 샷 앰플",
+      "brand": "이지듀",
+      "brandAlias": "Easydew",
+      "category": "serum",
+      "volume": "3.5ml",
+      "officialUrl": "https://www.easydew.co.kr/product/%EB%B0%94%EB%A5%B4%EB%8A%94-mts-%EC%83%B7-%EC%95%B0%ED%94%8C-35ml/2843/",
+      "image": "https://cafe24img.poxo.com/easydew/web/product/medium/202602/bed05494fa7404f041f8bd3dd767c727.jpg"
+    },
+    {
+      "id": "lookup:easydew:3119",
+      "name": "이지듀 멜라 비 토닝 기미선스틱",
+      "brand": "이지듀",
+      "brandAlias": "Easydew",
+      "category": "sunscreen",
+      "officialUrl": "https://www.easydew.co.kr/product/uv%EC%B0%A8%EB%8B%A8-%EA%B8%B0%EB%AF%B8%EA%B0%9C%EC%84%A0-%EA%B8%B0%EB%AF%B8-%EC%8D%AC%EC%8A%A4%ED%8B%B1-11/3119/",
+      "image": "https://cafe24img.poxo.com/easydew/web/product/medium/202609/90997f8a393b608a5bb9b04a8417548a.jpg"
+    },
+    {
+      "id": "lookup:easydew:3258",
+      "name": "이지듀 볼릭서 볼륨 앰플 크림",
+      "brand": "이지듀",
+      "brandAlias": "Easydew",
+      "category": "moisturizer",
+      "volume": "30g",
+      "officialUrl": "https://www.easydew.co.kr/product/new-%EB%B3%BC%EB%A6%AD%EC%84%9C-%EB%B3%BC%EB%A5%A8-%EC%95%B0%ED%94%8C-%ED%81%AC%EB%A6%BC-30g-%EC%B6%9C%EC%8B%9C-%ED%8A%B9%EA%B0%80/3258/",
+      "image": "https://cafe24img.poxo.com/easydew/web/product/medium/202611/ef7208d0d51a31be8b6e75eb59f04b77.png"
     },
     {
       "id": "lookup:etude:31527",
