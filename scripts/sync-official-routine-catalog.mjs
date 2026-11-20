@@ -121,6 +121,8 @@ export const stores = {
   blancdoux: cafe("더랩바이블랑두", "the lab by blanc doux", "blancdoux.com", [["list", "/product/list.html?cate_no=4"]]),
   neogen: cafe("네오젠", "NEOGEN", "www.neogenlab.co.kr"),
   drdifferent: cafe("닥터디퍼런트", "Dr.Different", "drdifferent.com"),
+  aprilskin: { brand: "에이프릴스킨", alias: "APRILSKIN", domain: "www.aprilskin.com", type: "cafe",
+    paths: [["skin1", "/product/list.html?cate_no=42&page=1"]] },
   onething: { brand: "원씽", alias: "ONE THING", domain: "www.onething.kr", type: "cafe",
     paths: [["home", "/"], ["type", "/category/category/43/"], ["ingredient", "/category/ingredient/44/"]] },
   banobagi: { brand: "바노바기", alias: "BANOBAGI", domain: "www.banobagicosmetic.com", type: "cafe",
