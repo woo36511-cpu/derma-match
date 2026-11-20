@@ -321,6 +321,12 @@
       "usefulPages": 3,
       "fetchedListings": 39
     },
+    "sonatural": {
+      "name": "쏘내추럴",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 5,
+      "fetchedListings": 12
+    },
     "tirtir": {
       "name": "티르티르",
       "checkedAt": "2026-11-15",
@@ -20625,6 +20631,115 @@
       "category": "moisturizer",
       "volume": "30ml",
       "officialUrl": "https://www.somebymi.co.kr/product/%EC%95%84%ED%95%98-%EB%B0%94%ED%95%98-%ED%8C%8C%ED%95%98-14-%EB%8D%B0%EC%9D%B4%EC%A6%88-%EC%8A%88%ED%8D%BC-%EB%AF%B8%EB%9D%BC%ED%81%B4-%EC%8A%A4%ED%8C%9F-%EC%98%AC%ED%82%AC-%ED%81%AC%EB%A6%BC-30ml/99/"
+    },
+    {
+      "id": "lookup:sonatural:2172417",
+      "name": "쏘내추럴 유브이 프로 톤업 선크림",
+      "brand": "쏘내추럴",
+      "brandAlias": "SO NATURAL",
+      "category": "sunscreen",
+      "officialUrl": "https://www.sonatural.co.kr/shop/shopdetail.html?branduid=2172417",
+      "image": "https://cdn1-aka.makeshop.co.kr/shopimages/sona6769/001007000018.jpg"
+    },
+    {
+      "id": "lookup:sonatural:2172454",
+      "name": "쏘내추럴 레드 필 팅글 세럼",
+      "brand": "쏘내추럴",
+      "brandAlias": "SO NATURAL",
+      "category": "serum",
+      "volume": "11ml",
+      "officialUrl": "https://www.sonatural.co.kr/shop/shopdetail.html?branduid=2172454",
+      "image": "https://cdn1-aka.makeshop.co.kr/shopimages/sona6769/001006000028.jpg"
+    },
+    {
+      "id": "lookup:sonatural:2172465",
+      "name": "쏘내추럴 레드 필 화이트 세럼",
+      "brand": "쏘내추럴",
+      "brandAlias": "SO NATURAL",
+      "category": "serum",
+      "officialUrl": "https://www.sonatural.co.kr/shop/shopdetail.html?branduid=2172465",
+      "image": "https://cdn1-aka.makeshop.co.kr/shopimages/sona6769/001006000029.jpg"
+    },
+    {
+      "id": "lookup:sonatural:2172504",
+      "name": "쏘내추럴 살버터 글로우 토너",
+      "brand": "쏘내추럴",
+      "brandAlias": "SO NATURAL",
+      "category": "toner",
+      "officialUrl": "https://www.sonatural.co.kr/shop/shopdetail.html?branduid=2172504",
+      "image": "https://cdn1-aka.makeshop.co.kr/shopimages/sona6769/005003000014.jpg"
+    },
+    {
+      "id": "lookup:sonatural:2172522",
+      "name": "쏘내추럴 레드 필 스피큘 세럼",
+      "brand": "쏘내추럴",
+      "brandAlias": "SO NATURAL",
+      "category": "serum",
+      "officialUrl": "https://www.sonatural.co.kr/shop/shopdetail.html?branduid=2172522",
+      "image": "https://cdn1-aka.makeshop.co.kr/shopimages/sona6769/001009000040.jpg"
+    },
+    {
+      "id": "lookup:sonatural:2172529",
+      "name": "쏘내추럴 아이스플랜트 워터 크림",
+      "brand": "쏘내추럴",
+      "brandAlias": "SO NATURAL",
+      "category": "moisturizer",
+      "officialUrl": "https://www.sonatural.co.kr/shop/shopdetail.html?branduid=2172529",
+      "image": "https://cdn1-aka.makeshop.co.kr/shopimages/sona6769/005006000008.jpg"
+    },
+    {
+      "id": "lookup:sonatural:2172545",
+      "name": "쏘내추럴 아이스플랜트 퍼밍 앰플",
+      "brand": "쏘내추럴",
+      "brandAlias": "SO NATURAL",
+      "category": "serum",
+      "officialUrl": "https://www.sonatural.co.kr/shop/shopdetail.html?branduid=2172545",
+      "image": "https://cdn1-aka.makeshop.co.kr/shopimages/sona6769/005003000015.jpg"
+    },
+    {
+      "id": "lookup:sonatural:2172548",
+      "name": "쏘내추럴 픽스 리무버 올 데이 클렌징 오일",
+      "brand": "쏘내추럴",
+      "brandAlias": "SO NATURAL",
+      "category": "cleanser",
+      "officialUrl": "https://www.sonatural.co.kr/shop/shopdetail.html?branduid=2172548",
+      "image": "https://cdn1-aka.makeshop.co.kr/shopimages/sona6769/006002000020.jpg"
+    },
+    {
+      "id": "lookup:sonatural:2172549",
+      "name": "쏘내추럴 픽스 리무버 올 데이 클렌징 폼",
+      "brand": "쏘내추럴",
+      "brandAlias": "SO NATURAL",
+      "category": "cleanser",
+      "officialUrl": "https://www.sonatural.co.kr/shop/shopdetail.html?branduid=2172549",
+      "image": "https://cdn1-aka.makeshop.co.kr/shopimages/sona6769/006002000021.jpg"
+    },
+    {
+      "id": "lookup:sonatural:2172571",
+      "name": "쏘내추럴 살버터 글로우 레이어 세럼",
+      "brand": "쏘내추럴",
+      "brandAlias": "SO NATURAL",
+      "category": "serum",
+      "officialUrl": "https://www.sonatural.co.kr/shop/shopdetail.html?branduid=2172571",
+      "image": "https://cdn1-aka.makeshop.co.kr/shopimages/sona6769/005003000016.jpg"
+    },
+    {
+      "id": "lookup:sonatural:2172577",
+      "name": "쏘내추럴 마이크로 낫 앰플 샷",
+      "brand": "쏘내추럴",
+      "brandAlias": "SO NATURAL",
+      "category": "serum",
+      "officialUrl": "https://www.sonatural.co.kr/shop/shopdetail.html?branduid=2172577",
+      "image": "https://cdn1-aka.makeshop.co.kr/shopimages/sona6769/001009000041.jpg"
+    },
+    {
+      "id": "lookup:sonatural:404",
+      "name": "쏘내추럴 레드 필 팅글 세럼",
+      "brand": "쏘내추럴",
+      "brandAlias": "SO NATURAL",
+      "category": "serum",
+      "officialUrl": "https://www.sonatural.co.kr/shop/shopdetail.html?branduid=404",
+      "image": "https://cdn1-aka.makeshop.co.kr/shopimages/sona6769/001006000021.jpg"
     },
     {
       "id": "lookup:tiam:142",
