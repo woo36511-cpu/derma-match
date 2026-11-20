@@ -238,3 +238,12 @@ test("Klairs skips accessory and multi-unit cards", () => {
       <img alt="${name}" src="/web/product/item.jpg"></a><strong class="name">${name}</strong></li>`).join("");
   assert.deepEqual(extractOfficialListings(html, "klairs", stores.klairs).map(p => p.volume), ["180ml"]);
 });
+
+test("Etude keeps the named 2x barrier cream and excludes multipacks", () => {
+  const html = ["순정 2x 베리어 보습 크림 60ml", "순정 클렌저 150ml x 2"].map((name, index) =>
+    `<div class="product-grid-item post-${index + 1}">
+      <h3 class="wd-entities-title"><a href="/shop/category/skin-care/item-${index}/">${name}</a></h3>
+    </div>`).join("");
+  assert.deepEqual(extractOfficialListings(html, "etude", stores.etude).map(p => [p.name, p.volume]),
+    [["에뛰드 순정 2x 베리어 보습 크림", "60ml"]]);
+});

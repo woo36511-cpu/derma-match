@@ -121,6 +121,9 @@ export const stores = {
   blancdoux: cafe("더랩바이블랑두", "the lab by blanc doux", "blancdoux.com", [["list", "/product/list.html?cate_no=4"]]),
   neogen: cafe("네오젠", "NEOGEN", "www.neogenlab.co.kr"),
   drdifferent: cafe("닥터디퍼런트", "Dr.Different", "drdifferent.com"),
+  etude: { brand: "에뛰드", alias: "ETUDE", domain: "www.etude.com", type: "etude",
+    paths: [["list", "/product/category/skin-care/"], ["skin2", "/product/category/skin-care/page/2/"],
+      ["cleanser", "/product/category/cleanser/"], ["cleanser2", "/product/category/cleanser/page/2/"]] },
   realbarrier: { brand: "리얼베리어", alias: "Real Barrier", domain: "myrealbarrier.co.kr", type: "cafe",
     paths: [42, 48, 49].map(category => [`list${category}`, `/product/list.html?cate_no=${category}&sort_method=5`]) },
   mamonde: { brand: "마몽드", alias: "Mamonde", domain: "www.mamonde.com", type: "cafe",
@@ -220,7 +223,8 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   if (storeKey === "primera" && /크림\s*쿠션|모이스처 스무딩 케어/u.test(name)) return null;
   if (storeKey === "medipeel" &&
     /해외\s*전용|클렌징\s*해면|풋\s*크림|제품\s*이미지|\d\s*(?:ml|g)\s+11$/iu.test(name)) return null;
-  if (skip.test(name) || /\b[2345]\s*[xX]\b|[\d.]\s*(?:ml|g)\s*[xX×*]|\bset\b/i.test(name)) return null;
+  const bundleName = storeKey === "etude" ? name.replace(/^순정 2x(?= 베리어 보습 크림)/iu, "순정") : name;
+  if (skip.test(name) || /\b[2345]\s*[xX]\b|[\d.]\s*(?:ml|g)\s*[xX×*]|\bset\b/i.test(bundleName)) return null;
   if (storeKey === "jumiso") name = name.replace(/^\[(?:글로우픽\s*1위|흔적\/모공케어|데일리 톤\/결 케어|보습장벽클렌징|항산화광채케어|장벽회복기능성)\]\s*/u, "");
   name = name.replace(/^\s*(?:\[(?:NEW|대용량|단품|정품|비건|한정)\]\s*)+/iu, "");
   name = name.replace(/^\[(리뉴얼(?: 출시)?)\]\s*/u, "$1 ");
@@ -314,6 +318,19 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
   if (store.type === "innisfree") return extractInnisfree(source, storeKey, store);
   const candidates = [];
   const tree = Array.from(walk(parse5.parse(source), store.type === "cerave"));
+  if (store.type === "etude") return tree.flatMap(card => {
+    const classes = attr(card, "class")?.split(/\s+/) ?? [];
+    if (!classes.includes("product-grid-item")) return [];
+    const id = classes.find(value => /^post-\d+$/.test(value))?.slice(5);
+    const descendants = Array.from(walk(card));
+    const title = descendants.find(node => node.nodeName === "h3" && attr(node, "class")?.split(/\s+/).includes("wd-entities-title"));
+    const link = title?.childNodes.find(node => node.nodeName === "a");
+    const url = urlWithHost(attr(link, "href"), store.domain, false);
+    if (!id || !url?.pathname.startsWith("/shop/category/")) return [];
+    const photo = descendants.find(node => node.nodeName === "img" && attr(node, "class")?.split(/\s+/).includes("attachment-woocommerce_thumbnail"));
+    const candidate = makeCandidate(storeKey, store, textOf(link), url.origin + url.pathname, id, imageUrl(attr(photo, "src"), store.domain));
+    return candidate ? [candidate] : [];
+  });
   if (store.sourceMarket === "US") {
     return tree.flatMap(node => {
       if (node.nodeName !== "a") return [];
