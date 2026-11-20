@@ -189,6 +189,12 @@
       "usefulPages": 1,
       "fetchedListings": 4
     },
+    "mamonde": {
+      "name": "마몽드",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 5,
+      "fetchedListings": 27
+    },
     "manyo": {
       "name": "마녀공장",
       "checkedAt": "2026-11-15",
@@ -254,6 +260,12 @@
       "checkedAt": "2026-11-19",
       "usefulPages": 2,
       "fetchedListings": 20
+    },
+    "realbarrier": {
+      "name": "리얼베리어",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 3,
+      "fetchedListings": 37
     },
     "roundlab": {
       "name": "라운드랩",
@@ -8685,6 +8697,249 @@
       "sourceMarket": "US"
     },
     {
+      "id": "lookup:mamonde:100",
+      "name": "마몽드 민트 포어 클리어 클렌징 밤",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "cleanser",
+      "officialUrl": "https://www.mamonde.com/product/%EB%AF%BC%ED%8A%B8-%ED%8F%AC%EC%96%B4-%ED%81%B4%EB%A6%AC%EC%96%B4-%ED%81%B4%EB%A0%8C%EC%A7%95-%EB%B0%A4/100/",
+      "image": "https://www.mamonde.com/web/product/big/202607/09ecd67b0af9777de7ec5eb1e7d31162.jpg"
+    },
+    {
+      "id": "lookup:mamonde:101",
+      "name": "마몽드 카밍 샷 아줄렌 미스트",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "toner",
+      "officialUrl": "https://www.mamonde.com/product/%EC%B9%B4%EB%B0%8D-%EC%83%B7-%EC%95%84%EC%A4%84%EB%A0%8C-%EB%AF%B8%EC%8A%A4%ED%8A%B8/101/",
+      "image": "https://www.mamonde.com/web/product/big/202609/2d7a46750c0eaa6e1b95ed858ed70cde.jpg"
+    },
+    {
+      "id": "lookup:mamonde:102",
+      "name": "마몽드 플로라 글로우 로즈 유브이 프로텍터 SPF50+/PA+++",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "sunscreen",
+      "officialUrl": "https://www.mamonde.com/product/%ED%94%8C%EB%A1%9C%EB%9D%BC-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EB%A1%9C%EC%A6%88-%EC%9C%A0%EB%B8%8C%EC%9D%B4-%ED%94%84%EB%A1%9C%ED%85%8D%ED%84%B0-spf50pa/102/",
+      "image": "https://www.mamonde.com/web/product/big/202610/8578dd6dc86eef341c5302ee8c496b52.jpg"
+    },
+    {
+      "id": "lookup:mamonde:103",
+      "name": "마몽드 포어 컨트롤 피어니 UV 프로텍터 SPF50+ PA++++",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "sunscreen",
+      "officialUrl": "https://www.mamonde.com/product/%ED%8F%AC%EC%96%B4-%EC%BB%A8%ED%8A%B8%EB%A1%A4-%ED%94%BC%EC%96%B4%EB%8B%88-uv-%ED%94%84%EB%A1%9C%ED%85%8D%ED%84%B0-spf50-pa/103/",
+      "image": "https://www.mamonde.com/web/product/big/202610/a9802bc4c0476ddb88a1f24e61a192ca.jpg"
+    },
+    {
+      "id": "lookup:mamonde:58",
+      "name": "마몽드 어메이징 딥 민트차콜릿 클렌징밤",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "cleanser",
+      "officialUrl": "https://www.mamonde.com/product/%EC%96%B4%EB%A9%94%EC%9D%B4%EC%A7%95-%EB%94%A5-%EB%AF%BC%ED%8A%B8%EC%B0%A8%EC%BD%9C%EB%A6%BF-%ED%81%B4%EB%A0%8C%EC%A7%95%EB%B0%A4/58/",
+      "image": "https://www.mamonde.com/web/product/big/20260331/e981bebbfc59517ea5ba76ce2eb6317c.jpg"
+    },
+    {
+      "id": "lookup:mamonde:59",
+      "name": "마몽드 어메이징 딥 민트차콜릿 팩클렌저",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "cleanser",
+      "officialUrl": "https://www.mamonde.com/product/%EC%96%B4%EB%A9%94%EC%9D%B4%EC%A7%95-%EB%94%A5-%EB%AF%BC%ED%8A%B8%EC%B0%A8%EC%BD%9C%EB%A6%BF-%ED%8C%A9%ED%81%B4%EB%A0%8C%EC%A0%80/59/",
+      "image": "https://www.mamonde.com/web/product/big/20260331/1ad76b194585beba884868999eed015b.jpg"
+    },
+    {
+      "id": "lookup:mamonde:60",
+      "name": "마몽드 어메이징 딥 민트 클렌징폼",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "cleanser",
+      "officialUrl": "https://www.mamonde.com/product/%EC%96%B4%EB%A9%94%EC%9D%B4%EC%A7%95-%EB%94%A5-%EB%AF%BC%ED%8A%B8-%ED%81%B4%EB%A0%8C%EC%A7%95%ED%8F%BC/60/",
+      "image": "https://www.mamonde.com/web/product/big/20260331/912d2d46c3325488ec60090a1f909512.jpg"
+    },
+    {
+      "id": "lookup:mamonde:64",
+      "name": "마몽드 프로바이오틱스 세라마이드 인텐스 크림",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "moisturizer",
+      "officialUrl": "https://www.mamonde.com/product/%ED%94%84%EB%A1%9C%EB%B0%94%EC%9D%B4%EC%98%A4%ED%8B%B1%EC%8A%A4-%EC%84%B8%EB%9D%BC%EB%A7%88%EC%9D%B4%EB%93%9C-%EC%9D%B8%ED%85%90%EC%8A%A4-%ED%81%AC%EB%A6%BC/64/",
+      "image": "https://www.mamonde.com/web/product/big/202609/1fc879ae85f1c1e8c3ebfa3f6bb5adeb.jpg"
+    },
+    {
+      "id": "lookup:mamonde:65",
+      "name": "마몽드 프로바이오틱스 세라마이드 에멀전",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "moisturizer",
+      "officialUrl": "https://www.mamonde.com/product/%ED%94%84%EB%A1%9C%EB%B0%94%EC%9D%B4%EC%98%A4%ED%8B%B1%EC%8A%A4-%EC%84%B8%EB%9D%BC%EB%A7%88%EC%9D%B4%EB%93%9C-%EC%97%90%EB%A9%80%EC%A0%84/65/",
+      "image": "https://www.mamonde.com/web/product/big/202609/2bef23c7a508f49b6d5e042a53a4bfc7.jpg"
+    },
+    {
+      "id": "lookup:mamonde:66",
+      "name": "마몽드 프로바이오틱스 세라마이드 스킨 소프너",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "toner",
+      "officialUrl": "https://www.mamonde.com/product/%ED%94%84%EB%A1%9C%EB%B0%94%EC%9D%B4%EC%98%A4%ED%8B%B1%EC%8A%A4-%EC%84%B8%EB%9D%BC%EB%A7%88%EC%9D%B4%EB%93%9C-%EC%8A%A4%ED%82%A8-%EC%86%8C%ED%94%84%EB%84%88/66/",
+      "image": "https://www.mamonde.com/web/product/big/202609/ba5eec72eb197cea8d927b6ecbbdedb3.jpg"
+    },
+    {
+      "id": "lookup:mamonde:67",
+      "name": "마몽드 플로라 글로우 로즈 스무딩 크림",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "moisturizer",
+      "officialUrl": "https://www.mamonde.com/product/%ED%94%8C%EB%A1%9C%EB%9D%BC-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EB%A1%9C%EC%A6%88-%EC%8A%A4%EB%AC%B4%EB%94%A9-%ED%81%AC%EB%A6%BC/67/",
+      "image": "https://www.mamonde.com/web/product/big/20260331/46affc04304e772bc5114a911ad625a5.jpg"
+    },
+    {
+      "id": "lookup:mamonde:70",
+      "name": "마몽드 어메이징 딥 민트 클렌징 티슈",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "cleanser",
+      "officialUrl": "https://www.mamonde.com/product/%EC%96%B4%EB%A9%94%EC%9D%B4%EC%A7%95-%EB%94%A5-%EB%AF%BC%ED%8A%B8-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8B%B0%EC%8A%88/70/",
+      "image": "https://www.mamonde.com/web/product/big/20260331/8841156d989683b8f3883df8bc20934e.jpg"
+    },
+    {
+      "id": "lookup:mamonde:71",
+      "name": "마몽드 카밍 샷 아줄렌 선크림SPF50+PA++++",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "sunscreen",
+      "officialUrl": "https://www.mamonde.com/product/%EC%B9%B4%EB%B0%8D-%EC%83%B7-%EC%95%84%EC%A4%84%EB%A0%8C-%EC%84%A0%ED%81%AC%EB%A6%BCspf50pa/71/",
+      "image": "https://www.mamonde.com/web/product/big/202609/dcea9385ffdaac07688419b1773e715c.jpg"
+    },
+    {
+      "id": "lookup:mamonde:73",
+      "name": "마몽드 에이지 컨트롤 카멜리아 크림",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "moisturizer",
+      "officialUrl": "https://www.mamonde.com/product/%EC%97%90%EC%9D%B4%EC%A7%80-%EC%BB%A8%ED%8A%B8%EB%A1%A4-%EC%B9%B4%EB%A9%9C%EB%A6%AC%EC%95%84-%ED%81%AC%EB%A6%BC/73/",
+      "image": "https://www.mamonde.com/web/product/big/20260331/ced8bcc73ab96e4c1d01dc4842cd903e.jpg"
+    },
+    {
+      "id": "lookup:mamonde:74",
+      "name": "마몽드 에이지 컨트롤 카멜리아 세럼",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "serum",
+      "officialUrl": "https://www.mamonde.com/product/%EC%97%90%EC%9D%B4%EC%A7%80-%EC%BB%A8%ED%8A%B8%EB%A1%A4-%EC%B9%B4%EB%A9%9C%EB%A6%AC%EC%95%84-%EC%84%B8%EB%9F%BC/74/",
+      "image": "https://www.mamonde.com/web/product/big/20260331/e7e22eec9d6e2d313482bee392e91fd2.jpg"
+    },
+    {
+      "id": "lookup:mamonde:75",
+      "name": "마몽드 에이지 컨트롤 카멜리아 에멀젼",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "moisturizer",
+      "officialUrl": "https://www.mamonde.com/product/%EC%97%90%EC%9D%B4%EC%A7%80-%EC%BB%A8%ED%8A%B8%EB%A1%A4-%EC%B9%B4%EB%A9%9C%EB%A6%AC%EC%95%84-%EC%97%90%EB%A9%80%EC%A0%BC/75/",
+      "image": "https://www.mamonde.com/web/product/big/20260331/d5e8f9fdd71e6d5ba6fcc0d353fbe6c4.jpg"
+    },
+    {
+      "id": "lookup:mamonde:76",
+      "name": "마몽드 에이지 컨트롤 카멜리아 에센스 워터",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "toner",
+      "officialUrl": "https://www.mamonde.com/product/%EC%97%90%EC%9D%B4%EC%A7%80-%EC%BB%A8%ED%8A%B8%EB%A1%A4-%EC%B9%B4%EB%A9%9C%EB%A6%AC%EC%95%84-%EC%97%90%EC%84%BC%EC%8A%A4-%EC%9B%8C%ED%84%B0/76/",
+      "image": "https://www.mamonde.com/web/product/big/20260331/0d772e28ce8db2a024672a0391522634.jpg"
+    },
+    {
+      "id": "lookup:mamonde:79",
+      "name": "마몽드 포어 슈링커 바쿠치올 레티놀 토너",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "toner",
+      "officialUrl": "https://www.mamonde.com/product/%ED%8F%AC%EC%96%B4-%EC%8A%88%EB%A7%81%EC%BB%A4-%EB%B0%94%EC%BF%A0%EC%B9%98%EC%98%AC-%EB%A0%88%ED%8B%B0%EB%86%80-%ED%86%A0%EB%84%88/79/",
+      "image": "https://www.mamonde.com/web/product/big/202609/8d6ba243d945c926d3cc9d33c5bac4e6.jpg"
+    },
+    {
+      "id": "lookup:mamonde:81",
+      "name": "마몽드 맨 리차징 로션",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "moisturizer",
+      "officialUrl": "https://www.mamonde.com/product/%EB%A7%A8-%EB%A6%AC%EC%B0%A8%EC%A7%95-%EB%A1%9C%EC%85%98/81/",
+      "image": "https://www.mamonde.com/web/product/big/202609/608e923e29fa5259f917a12840643cfa.jpg"
+    },
+    {
+      "id": "lookup:mamonde:82",
+      "name": "마몽드 맨 리차징 토너",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "toner",
+      "officialUrl": "https://www.mamonde.com/product/%EB%A7%A8-%EB%A6%AC%EC%B0%A8%EC%A7%95-%ED%86%A0%EB%84%88/82/",
+      "image": "https://www.mamonde.com/web/product/big/202609/bcd0d317e1de0e3373d42247dd3c475e.jpg"
+    },
+    {
+      "id": "lookup:mamonde:83",
+      "name": "마몽드 플로라 글로우 로즈 워터 토너",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "toner",
+      "officialUrl": "https://www.mamonde.com/product/%ED%94%8C%EB%A1%9C%EB%9D%BC-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EB%A1%9C%EC%A6%88-%EC%9B%8C%ED%84%B0-%ED%86%A0%EB%84%88/83/",
+      "image": "https://www.mamonde.com/web/product/big/202609/7b7e294867bf993ecd7beb63aa3ff2da.jpg"
+    },
+    {
+      "id": "lookup:mamonde:84",
+      "name": "마몽드 플로라 글로우 로즈 틴티드 선세럼 SPF50+ PA+++",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "sunscreen",
+      "officialUrl": "https://www.mamonde.com/product/%ED%94%8C%EB%A1%9C%EB%9D%BC-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EB%A1%9C%EC%A6%88-%ED%8B%B4%ED%8B%B0%EB%93%9C-%EC%84%A0%EC%84%B8%EB%9F%BC-spf50-pa/84/",
+      "image": "https://www.mamonde.com/web/product/big/202609/2fb33f15ad69f51406ab82d60f2192e0.jpg"
+    },
+    {
+      "id": "lookup:mamonde:85",
+      "name": "마몽드 카밍 샷 아줄렌 토너",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "toner",
+      "officialUrl": "https://www.mamonde.com/product/%EC%B9%B4%EB%B0%8D-%EC%83%B7-%EC%95%84%EC%A4%84%EB%A0%8C-%ED%86%A0%EB%84%88/85/",
+      "image": "https://www.mamonde.com/web/product/big/202609/fcb72056e5d121e66e94f01f305902ab.jpg"
+    },
+    {
+      "id": "lookup:mamonde:86",
+      "name": "마몽드 카밍 샷 아줄렌 흔적 수분앰플",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "serum",
+      "officialUrl": "https://www.mamonde.com/product/%EC%B9%B4%EB%B0%8D-%EC%83%B7-%EC%95%84%EC%A4%84%EB%A0%8C-%ED%9D%94%EC%A0%81-%EC%88%98%EB%B6%84%EC%95%B0%ED%94%8C/86/",
+      "image": "https://www.mamonde.com/web/product/big/202609/ec0649ca7fa4c615fb815b3842288d7f.jpg"
+    },
+    {
+      "id": "lookup:mamonde:87",
+      "name": "마몽드 카밍 샷 아줄렌 크림",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "moisturizer",
+      "officialUrl": "https://www.mamonde.com/product/%EC%B9%B4%EB%B0%8D-%EC%83%B7-%EC%95%84%EC%A4%84%EB%A0%8C-%ED%81%AC%EB%A6%BC/87/",
+      "image": "https://www.mamonde.com/web/product/big/202609/f424213070ce3ee96b4a0ffdbedbe0ce.jpg"
+    },
+    {
+      "id": "lookup:mamonde:97",
+      "name": "마몽드 어메이징 딥 민트 클렌징밤",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "cleanser",
+      "officialUrl": "https://www.mamonde.com/product/%EC%96%B4%EB%A9%94%EC%9D%B4%EC%A7%95-%EB%94%A5-%EB%AF%BC%ED%8A%B8-%ED%81%B4%EB%A0%8C%EC%A7%95%EB%B0%A4/97/",
+      "image": "https://www.mamonde.com/web/product/big/20260331/5d842a6f434dc4cb6fbf369324c2ca26.jpg"
+    },
+    {
+      "id": "lookup:mamonde:98",
+      "name": "마몽드 포어 슈링커 바쿠치올 크림",
+      "brand": "마몽드",
+      "brandAlias": "Mamonde",
+      "category": "moisturizer",
+      "officialUrl": "https://www.mamonde.com/product/%ED%8F%AC%EC%96%B4-%EC%8A%88%EB%A7%81%EC%BB%A4-%EB%B0%94%EC%BF%A0%EC%B9%98%EC%98%AC-%ED%81%AC%EB%A6%BC/98/",
+      "image": "https://www.mamonde.com/web/product/big/202609/f27726759d9f45fc4f1531bb310cfecc.jpg"
+    },
+    {
       "id": "lookup:manyo:1000000019",
       "name": "마녀공장 파데프리 선크림 모이스처",
       "brand": "마녀공장",
@@ -15059,6 +15314,375 @@
       "brandAlias": "Pyunkang Yul",
       "category": "moisturizer",
       "officialUrl": "https://pyunkangyul.com/product/%EA%B1%B4%EC%A1%B0%ED%95%9C-%EA%B2%A8%EC%9A%B8-%EB%B3%B4%EC%8A%B5-%EB%A0%88%EC%9D%B4%EC%96%B4%EB%A7%81-%ED%81%AC%EB%A6%BC-11-%ED%83%84%ED%83%84%ED%95%9C-%EC%98%81%EC%96%91-%EC%BC%80%EC%96%B4/804/"
+    },
+    {
+      "id": "lookup:realbarrier:101",
+      "name": "리얼베리어 익스트림 에센스 토너 라이트",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=101",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/1ec4e352a62f7aa011d1ee33055cde4a.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:103",
+      "name": "리얼베리어 익스트림 크림 라이트",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "moisturizer",
+      "volume": "75ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=103",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/d0b2480f4c688f2cfc90a317d8e88287.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:107",
+      "name": "리얼베리어 아쿠아 수딩 앰플",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=107",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/c2b9aebc23ea57f98b505c80c27ce473.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:109",
+      "name": "리얼베리어 아쿠아 수딩 크림",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "moisturizer",
+      "volume": "75ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=109",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/5f7bd9e50c81ff6189b4257b7edac727.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:111",
+      "name": "리얼베리어 아쿠아 수딩 앰플 패드",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "toner",
+      "volume": "70매",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=111",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/856ba4019788fbdcefc545b46645da3b.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:113",
+      "name": "리얼베리어 시카릴리프Rx 페이드인 세럼",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=113",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/47b0cc543c0b98729a9174313ea0e914.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:115",
+      "name": "리얼베리어 피치 핏 톤업 선크림",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=115",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/e74ba62d6f672c5986a42d5068aa4f35.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:125",
+      "name": "리얼베리어 익스트림 딥 클렌징 블루 오일",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=125",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/b11b805b751dde8438d77e9008fc1eb3.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:127",
+      "name": "리얼베리어 익스트림 크림",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "moisturizer",
+      "volume": "75ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=127",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20260304/5ee0caa157a169f6fd9a5104ac613393.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:129",
+      "name": "리얼베리어 익스트림 에센스 토너",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=129",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20260318/e3c02c2f01c4666bfc253b5bc20edae9.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:131",
+      "name": "리얼베리어 익스트림 로션",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "moisturizer",
+      "volume": "150ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=131",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/a956c3e6f69e69c60da86dafe330af35.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:134",
+      "name": "리얼베리어 시카 그린 톤업 선크림",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=134",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/903d578f88701a1ca1635ff02fa6a7a2.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:137",
+      "name": "리얼베리어 컨트롤-T 애씨드 퀵 부스팅 패드",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "toner",
+      "volume": "100매",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=137",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/35afea2920e4109845a71492bba59d9d.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:143",
+      "name": "리얼베리어 워터리 히알 세럼",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=143",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250430/123de295eff5f5be176bfb4b1cb81e95.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:145",
+      "name": "리얼베리어 워터리 히알 크림",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "moisturizer",
+      "volume": "70ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=145",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250512/dfca7618063cf3ee744bf1ae581d0e03.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:215",
+      "name": "리얼베리어 컨트롤-T 티트리 AC 쿨링 클렌징 젤",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=215",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250605/af99cf02e423958d0e3f356b7b5446ab.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:233",
+      "name": "리얼베리어 탄력 광채 선세럼",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=233",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250721/bfcad5c731ce5683849b2345bdb54323.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:235",
+      "name": "리얼베리어 컨트롤-T 티트리 캡슐 세럼",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=235",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250721/ea53f29f8fc6ca9b2c4362fa0f8515b5.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:251",
+      "name": "리얼베리어 익스트림 크림 라이트",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=251",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250826/f5ce48207e3813aa0d07d8c2bfefcb61.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:364",
+      "name": "리얼베리어 트라넥사믹애씨드 10% 브라이트닝 세럼",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "serum",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=364",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20260318/9c394404bf7b2cbda701ddb9b8dac91b.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:368",
+      "name": "리얼베리어 워터리 히알 버블 토너",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "toner",
+      "volume": "140ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=368",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20260518/4055f75129da99ca787f4881257512ab.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:369",
+      "name": "리얼베리어 세라마이드 모이스처 클렌징 밀크",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=369",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20260601/d2b3715fa7623a68a2996347ec13eed1.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:58",
+      "name": "리얼베리어 PDRN 광채 리페어 세럼",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=58",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/14abce0583cf0a6ae550a2ef7f423910.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:61",
+      "name": "리얼베리어 레티니올 모공 타이트닝 세럼",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=61",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/08f26bb06bba0f929730c57572115ba0.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:63",
+      "name": "리얼베리어 시카 칼라민 퀵 카밍 세럼",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=63",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/ae6d52c28edcfb2a45a8139ee41fce99.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:65",
+      "name": "리얼베리어 펩티비타씨 잡티 세럼",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=65",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/ec32a83fb95ce5dba066ed4ff56d6b02.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:67",
+      "name": "리얼베리어 시카 칼라민 퀵 카밍 크림",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "moisturizer",
+      "volume": "30ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=67",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/61e990f14949207b9a0fc42964ac18bf.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:70",
+      "name": "리얼베리어 세라마이드 모이스처 클렌징 폼",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=70",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20260318/a7168507366ab99881b9786231a1f284.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:71",
+      "name": "리얼베리어 세라마이드 모이스처 클렌징 폼",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "cleanser",
+      "volume": "220ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=71",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/9d1913cdc3468e5220baac7c2fbb59bd.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:73",
+      "name": "리얼베리어 익스트림 크림",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=73",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20260304/f22cc4bfbf804d72d6969decf11e2768.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:78",
+      "name": "리얼베리어 시카릴리프Rx 카밍 크림",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "moisturizer",
+      "volume": "60ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=78",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/34ce659194a4c62d70eef344f8b4dfce.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:85",
+      "name": "리얼베리어 컨트롤-T 클렌징 폼",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=85",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/4e1bab4ec55dabb7e1700c258f029bf1.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:86",
+      "name": "리얼베리어 컨트롤-T 클렌징 폼 (대용량)",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "cleanser",
+      "volume": "400ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=86",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/8cb497f82ce9db7ee94d6a1213662141.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:92",
+      "name": "리얼베리어 세라 수분장벽 선크림",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=92",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20260318/d0e7128fff61755f7a95296c33544fb7.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:93",
+      "name": "리얼베리어 익스트림 크림 앰플",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=93",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/3533375a7749707412bb36dc0b240e0b.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:95",
+      "name": "리얼베리어 익스트림 판테놀 에센스 미스트",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=95",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/3ccf05b70562b0f6d43ae1da2029e404.jpg"
+    },
+    {
+      "id": "lookup:realbarrier:99",
+      "name": "리얼베리어 익스트림 판테놀 토너 패드",
+      "brand": "리얼베리어",
+      "brandAlias": "Real Barrier",
+      "category": "toner",
+      "volume": "80매",
+      "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=99",
+      "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/317e65b7f5f6ca7416b61f03029f0171.jpg"
     },
     {
       "id": "lookup:roundlab:137",
