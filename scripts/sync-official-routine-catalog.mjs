@@ -121,6 +121,10 @@ export const stores = {
   blancdoux: cafe("더랩바이블랑두", "the lab by blanc doux", "blancdoux.com", [["list", "/product/list.html?cate_no=4"]]),
   neogen: cafe("네오젠", "NEOGEN", "www.neogenlab.co.kr"),
   drdifferent: cafe("닥터디퍼런트", "Dr.Different", "drdifferent.com"),
+  droracle: { brand: "닥터오라클", alias: "Dr.Oracle", domain: "www.droracle.co.kr", type: "cafe",
+    paths: [1, 2, 3, 4, 5, 6].map(page => [`list${page}`, `/product/list.html?cate_no=361&page=${page}`]) },
+  dermora: { brand: "더모라", alias: "DERMORA", domain: "www.dermora.co.kr", type: "cafe",
+    paths: [["home", "/"], ["list", "/product/list.html?cate_no=29"]] },
   thera: { brand: "더라", alias: "THE RA", domain: "www.thera.co.kr", type: "imweb",
     paths: [["home", "/"]] },
   sonatural: { brand: "쏘내추럴", alias: "SO NATURAL", domain: "www.sonatural.co.kr", type: "makeshop",
@@ -176,6 +180,10 @@ function classify(name) {
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
   if (["banobagi", "onething"].includes(storeKey) && /[2-9]\d*\s*개(?:\s|$)/u.test(name)) return null;
+  if (storeKey === "droracle") {
+    if (/씨씨|비비|마스크|아이\s*크림|위클리|디바이스|\d\s*개|\s\+\s/u.test(name)) return null;
+    name = name.replace(/^\[(?:리뉴얼 재입고|리뉴얼|재입고)\]\s*/u, "");
+  }
   if (storeKey === "sonatural" && /크림 팩|프렙 픽서|커버 픽싱 크림|쿠션|아이밤|[2-9]\d*\s*개(?:\s|$)/u.test(name)) return null;
   if (storeKey === "yadah" && /쿠션|아이패치|여행용|[2-9]\d*\s*개(?:\s|$)/u.test(name)) return null;
   if (storeKey === "frankly") {
@@ -245,7 +253,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   name = name.replaceAll(volumePattern, " ").replace(/[ ]{2,}/g, " ").replace(/\(\s*\)|^\s*[:–-]\s*|\s*[:–-]\s*$/g, "").trim();
   if (name.length < 4 || !nameScript.test(name)) return null;
   let category = classify(name);
-  if (storeKey === "thera" && /선블럭$/u.test(name)) category = "sunscreen";
+  if (["thera", "droracle"].includes(storeKey) && /선블[럭록]/u.test(name)) category = "sunscreen";
   if (storeKey === "tyf" && /선 프로젝트.*선 에센스/u.test(name)) category = "sunscreen";
   if (storeKey === "tyf" && /필링 크림$/u.test(name)) category = "cleanser";
   if (storeKey === "ninewishes" && /앰플 (?:아이앤페이스 )?크림(?: 나노 플러스)?$/u.test(name)) category = "moisturizer";
@@ -303,7 +311,7 @@ const imageUrl = (input, host) => {
   try {
     const u = new URL(input, `https://${host}`);
     return u.protocol === "https:" && !u.username && !u.password &&
-      (hostKey(u.hostname) === hostKey(host) || /(?:^|\.)cafe24img\.com$|^godomall\.speedycdn\.net$|(?:^|\.)makeshop\.co\.kr$|^inm-cdn\.innisfree\.com$/.test(u.hostname)) ? u.origin + u.pathname : null;
+      (hostKey(u.hostname) === hostKey(host) || /(?:^|\.)cafe24img\.com$|^cafe24img\.poxo\.com$|^godomall\.speedycdn\.net$|(?:^|\.)makeshop\.co\.kr$|^inm-cdn\.innisfree\.com$/.test(u.hostname)) ? u.origin + u.pathname : null;
   } catch { return null; }
 };
 
@@ -391,6 +399,16 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
     let image = imageUrl((storeKey === "frankly" ? attr(img, "data-src") : null) || attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
+    if (storeKey === "dermora" || storeKey === "droracle") {
+      if (!attr(node.parentNode, "class")?.split(/\s+/).includes("name")) continue;
+      rawName = textOf(node).replace(/^상품명\s*:\s*/u, "");
+      let card = node.parentNode;
+      while (card && !/^anchorBoxId_\d+$/.test(attr(card, "id") ?? "")) card = card.parentNode;
+      const photo = Array.from(walk(card)).find(child => child.nodeName === "img" &&
+        (/^eListPrdImage\d+_\d+$/.test(attr(child, "id") ?? "") ||
+          (storeKey === "dermora" && attr(child, "alt")?.startsWith("더모라"))));
+      image = imageUrl(attr(photo, "src"), store.domain);
+    }
     if (storeKey === "sonatural") {
       if (!attr(node, "class")?.split(/\s+/).includes("title")) continue;
       rawName = textOf(node);
