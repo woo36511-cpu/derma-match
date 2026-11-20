@@ -344,6 +344,12 @@
       "checkedAt": "2026-11-19",
       "usefulPages": 3,
       "fetchedListings": 14
+    },
+    "yadah": {
+      "name": "야다",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 4,
+      "fetchedListings": 28
     }
   },
   "products": [
@@ -22644,6 +22650,286 @@
       "category": "serum",
       "volume": "90ml",
       "officialUrl": "https://www.wellage.co.kr/product/%ED%95%98%EC%9D%B4%ED%8D%BC-pdrn-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EB%B2%84%EB%B8%94-%EC%84%B8%EB%9F%BC-90ml/1878/"
+    },
+    {
+      "id": "lookup:yadah:11",
+      "name": "야다 안티 티 트러블 버블 클렌저",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EC%95%88%ED%8B%B0-%ED%8B%B0-%ED%8A%B8%EB%9F%AC%EB%B8%94-%EB%B2%84%EB%B8%94-%ED%81%B4%EB%A0%8C%EC%A0%80-150ml/11/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202611/62903b6b46939eacc012872ed5a09848.jpg"
+    },
+    {
+      "id": "lookup:yadah:111",
+      "name": "야다 선인장 토너",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "toner",
+      "volume": "210ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EB%B8%94%ED%94%84%F0%9F%94%A5-%EC%84%A0%EC%9D%B8%EC%9E%A5-%ED%86%A0%EB%84%88-210ml/111/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202611/1fe2cbd1353da412db7ae296d13bde4c.jpg"
+    },
+    {
+      "id": "lookup:yadah:112",
+      "name": "야다 선인장 수딩젤",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "moisturizer",
+      "volume": "250ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EC%84%A0%EC%9D%B8%EC%9E%A5-%EC%88%98%EB%94%A9%EC%A0%A4-250ml/112/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202610/ed544c86a698890cfbc8d5eb5b2e68b1.jpg"
+    },
+    {
+      "id": "lookup:yadah:118",
+      "name": "야다 선인장 토너패드",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "toner",
+      "volume": "60매",
+      "officialUrl": "https://www.yadah.co.kr/product/%EB%B8%94%ED%94%84%F0%9F%94%A5-%EC%84%A0%EC%9D%B8%EC%9E%A5-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-60%EB%A7%A4/118/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202611/f64947a26927b0f611b87353951cd490.jpg"
+    },
+    {
+      "id": "lookup:yadah:125",
+      "name": "야다 그린티 퓨어 클렌징밤",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "cleanser",
+      "volume": "100ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EB%B8%94%ED%94%84%F0%9F%94%A5-%EA%B7%B8%EB%A6%B0%ED%8B%B0-%ED%93%A8%EC%96%B4-%ED%81%B4%EB%A0%8C%EC%A7%95%EB%B0%A4-100ml-%EB%B9%84%EA%B1%B4-%EC%9B%90%EC%8A%A4%ED%85%9D-%EB%94%A5%ED%81%B4%EB%A0%8C%EC%A7%95/125/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202611/b6f7c6d142fff87769878c0395840be0.jpg"
+    },
+    {
+      "id": "lookup:yadah:13",
+      "name": "야다 안티 티 토너",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "toner",
+      "volume": "100ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EC%95%88%ED%8B%B0-%ED%8B%B0-%ED%86%A0%EB%84%88-100ml/13/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202611/995966ca0b0714f2e9fc397d8cef4c09.jpg"
+    },
+    {
+      "id": "lookup:yadah:131",
+      "name": "야다 선인장 수분 보습크림",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EB%B8%94%ED%94%84%F0%9F%94%A5-%EC%84%A0%EC%9D%B8%EC%9E%A5-%EC%88%98%EB%B6%84-%EB%B3%B4%EC%8A%B5%ED%81%AC%EB%A6%BC-50ml/131/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202611/569ed937cb0c6b8cbbf1e9174278c77d.jpg"
+    },
+    {
+      "id": "lookup:yadah:14",
+      "name": "야다 안티 티 에멀전",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EC%95%88%ED%8B%B0-%ED%8B%B0-%EC%97%90%EB%A9%80%EC%A0%84-100ml/14/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202611/d3c9e13fb85fa68c08ace3bd7db451ea.jpg"
+    },
+    {
+      "id": "lookup:yadah:15",
+      "name": "야다 안티 티 보습 크림",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EB%B8%94%ED%94%84%F0%9F%94%A5-%EC%95%88%ED%8B%B0-%ED%8B%B0-%EB%B3%B4%EC%8A%B5-%ED%81%AC%EB%A6%BC-50ml/15/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202611/3fabbd99111f748b0118b1ef41bed5be.jpg"
+    },
+    {
+      "id": "lookup:yadah:300",
+      "name": "야다 선인장 수딩젤",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "moisturizer",
+      "volume": "500ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EB%B8%94%ED%94%84%F0%9F%94%A5-%EC%84%A0%EC%9D%B8%EC%9E%A5-%EC%88%98%EB%94%A9%EC%A0%A4-500ml/300/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202610/a16341e1d4e9f1df9d25b9178ab2f774.jpg"
+    },
+    {
+      "id": "lookup:yadah:311",
+      "name": "야다 그린티 퓨어 클렌징밤 II",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "cleanser",
+      "volume": "25ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EC%95%BC%EB%8B%A4-%EA%B7%B8%EB%A6%B0%ED%8B%B0-%ED%93%A8%EC%96%B4-%ED%81%B4%EB%A0%8C%EC%A7%95%EB%B0%A4-ii-25ml-%EB%B9%84%EA%B1%B4-%EC%9B%90%EC%8A%A4%ED%85%9D-%EB%94%A5%ED%81%B4%EB%A0%8C%EC%A7%95/311/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202611/e0efca937c34ffd7c906e7839bf854af.jpg"
+    },
+    {
+      "id": "lookup:yadah:420",
+      "name": "야다 선인장 수딩젤",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "moisturizer",
+      "volume": "100g",
+      "officialUrl": "https://www.yadah.co.kr/product/%EC%84%A0%EC%9D%B8%EC%9E%A5-%EC%88%98%EB%94%A9%EC%A0%A4-100g/420/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202609/32432e219de733e238bbc05b5c93fab8.jpg"
+    },
+    {
+      "id": "lookup:yadah:427",
+      "name": "야다 선인장 선스크린 (SPF50+/PA++++)",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "sunscreen",
+      "volume": "35ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EC%84%A0%EC%9D%B8%EC%9E%A5-%EC%84%A0%EC%8A%A4%ED%81%AC%EB%A6%B0-35ml-spf50pa/427/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202610/575c14907380cd533c11ccbe91c0ce0a.jpg"
+    },
+    {
+      "id": "lookup:yadah:428",
+      "name": "야다 그린티 퓨어 필링젤 (약산성)",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "cleanser",
+      "volume": "100ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EA%B7%B8%EB%A6%B0%ED%8B%B0-%ED%93%A8%EC%96%B4-%ED%95%84%EB%A7%81%EC%A0%A4-100ml-%EC%95%BD%EC%82%B0%EC%84%B1/428/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202611/e1b5fb5fb90ab242772f71cbc4ff1f7d.jpg"
+    },
+    {
+      "id": "lookup:yadah:429",
+      "name": "야다 그린티 퓨어 클렌징젤 (약산성)",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "cleanser",
+      "volume": "100ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EA%B7%B8%EB%A6%B0%ED%8B%B0-%ED%93%A8%EC%96%B4-%ED%81%B4%EB%A0%8C%EC%A7%95%EC%A0%A4-100ml-%EC%95%BD%EC%82%B0%EC%84%B1/429/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202611/b18345b586c8c257ceff19db5ec5f47c.jpg"
+    },
+    {
+      "id": "lookup:yadah:492",
+      "name": "야다 선인장 그린 수분 세럼",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EB%B8%94%ED%94%84%F0%9F%94%A5-%EC%84%A0%EC%9D%B8%EC%9E%A5-%EA%B7%B8%EB%A6%B0-%EC%88%98%EB%B6%84-%EC%84%B8%EB%9F%BC-30ml/492/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202610/83c4f4a5a145c7e570d2202a7169d8fa.jpg"
+    },
+    {
+      "id": "lookup:yadah:493",
+      "name": "야다 청귤 비타 클리어링 세럼",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EB%B8%94%ED%94%84%F0%9F%94%A5-%EC%B2%AD%EA%B7%A4-%EB%B9%84%ED%83%80-%ED%81%B4%EB%A6%AC%EC%96%B4%EB%A7%81-%EC%84%B8%EB%9F%BC-30ml/493/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202610/edcb43cdac49c18d454a7438e5aba307.jpg"
+    },
+    {
+      "id": "lookup:yadah:495",
+      "name": "야다 까멜리아 레드 유스 세럼",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EA%B9%8C%EB%A9%9C%EB%A6%AC%EC%95%84-%EB%A0%88%EB%93%9C-%EC%9C%A0%EC%8A%A4-%EC%84%B8%EB%9F%BC-30ml/495/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202610/22a0bd62a53d3dcbb6b6ae6b6cf97ed8.jpg"
+    },
+    {
+      "id": "lookup:yadah:500",
+      "name": "야다 그린티 퓨어 클렌징 패드",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "cleanser",
+      "volume": "60매",
+      "officialUrl": "https://www.yadah.co.kr/product/%EA%B7%B8%EB%A6%B0%ED%8B%B0-%ED%93%A8%EC%96%B4-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8C%A8%EB%93%9C-60%EB%A7%A4/500/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202509/2667727fed86a7e04ddfedbabad284fe.jpg"
+    },
+    {
+      "id": "lookup:yadah:512",
+      "name": "야다 콜라겐 하이드라 코어 크림",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EB%B8%94%ED%94%84%F0%9F%94%A5-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%95%98%EC%9D%B4%EB%93%9C%EB%9D%BC-%EC%BD%94%EC%96%B4-%ED%81%AC%EB%A6%BC-50ml-%EB%AF%B8%EB%B0%B1-%EC%A3%BC%EB%A6%84%EA%B0%9C%EC%84%A0-%ED%83%84%EB%A0%A5-%EB%B3%B4%EC%8A%B5/512/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202611/0b27fe8ae5972dbdcff8225cde140af4.jpg"
+    },
+    {
+      "id": "lookup:yadah:542",
+      "name": "야다 아쿠아 선인장 선 에센스 (SPF50+/PA++++)",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "sunscreen",
+      "volume": "60ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EC%95%84%EC%BF%A0%EC%95%84-%EC%84%A0%EC%9D%B8%EC%9E%A5-%EC%84%A0-%EC%97%90%EC%84%BC%EC%8A%A4-60ml-spf50pa/542/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202610/92ef86e86212efc9e163dedc107825a6.jpg"
+    },
+    {
+      "id": "lookup:yadah:564",
+      "name": "야다 콜라겐 하이드라 퍼스트 에센스",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "serum",
+      "volume": "150ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EB%B8%94%ED%94%84%F0%9F%94%A5-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%95%98%EC%9D%B4%EB%93%9C%EB%9D%BC-%ED%8D%BC%EC%8A%A4%ED%8A%B8-%EC%97%90%EC%84%BC%EC%8A%A4-150ml/564/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202611/29195cde4f215db2e562aff1f2c655d3.jpg"
+    },
+    {
+      "id": "lookup:yadah:572",
+      "name": "야다 수딩 쿨러 선인장 소프트 선스틱 (SPF50+/PA++++)",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "sunscreen",
+      "volume": "21g",
+      "officialUrl": "https://www.yadah.co.kr/product/%EC%88%98%EB%94%A9-%EC%BF%A8%EB%9F%AC-%EC%84%A0%EC%9D%B8%EC%9E%A5-%EC%86%8C%ED%94%84%ED%8A%B8-%EC%84%A0%EC%8A%A4%ED%8B%B1-21g-spf50pa/572/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202611/c7cae7aa6cc4e6738896b469227d31eb.jpg"
+    },
+    {
+      "id": "lookup:yadah:575",
+      "name": "야다 콜라겐 듀얼 리프트 세럼",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EC%BD%9C%EB%9D%BC%EA%B2%90-%EB%93%80%EC%96%BC-%EB%A6%AC%ED%94%84%ED%8A%B8-%EC%84%B8%EB%9F%BC-50ml/575/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202611/8dbf7a125ae4f4b906e415ecbe7a7023.png"
+    },
+    {
+      "id": "lookup:yadah:576",
+      "name": "야다 선인장 포어 딥 클렌징 오일",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EB%B8%94%ED%94%84%F0%9F%94%A5-%EC%84%A0%EC%9D%B8%EC%9E%A5-%ED%8F%AC%EC%96%B4-%EB%94%A5-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-200ml/576/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202610/3004d3bdcf0a305a5137802710de7104.jpg"
+    },
+    {
+      "id": "lookup:yadah:579",
+      "name": "야다 아줄렌 카밍 클렌징밤",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "cleanser",
+      "volume": "100ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EB%B8%94%ED%94%84%F0%9F%94%A5-%EC%95%84%EC%A4%84%EB%A0%8C-%EC%B9%B4%EB%B0%8D-%ED%81%B4%EB%A0%8C%EC%A7%95%EB%B0%A4-100ml/579/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202611/3e9e8af6a62c32b58640721bccde5c3b.jpg"
+    },
+    {
+      "id": "lookup:yadah:590",
+      "name": "야다 PDRN 엑소좀 카밍 크림",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.yadah.co.kr/product/%EB%B8%94%ED%94%84%F0%9F%94%A5-pdrn-%EC%97%91%EC%86%8C%EC%A2%80-%EC%B9%B4%EB%B0%8D-%ED%81%AC%EB%A6%BC-50ml/590/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202611/5a79b2372bd8d8a751ca170aff25ddab.jpg"
+    },
+    {
+      "id": "lookup:yadah:610",
+      "name": "야다 말차 포어 PDRN 글로우 버블 세럼",
+      "brand": "야다",
+      "brandAlias": "YADAH",
+      "category": "serum",
+      "volume": "90ml",
+      "officialUrl": "https://www.yadah.co.kr/product/new-%EB%A7%90%EC%B0%A8-%ED%8F%AC%EC%96%B4-pdrn-%EA%B8%80%EB%A1%9C%EC%9A%B0-%EB%B2%84%EB%B8%94-%EC%84%B8%EB%9F%BC-90ml/610/",
+      "image": "https://www.yadah.co.kr/web/product/medium/202610/a291d4cb0cc507a56223f06a99e6d714.jpg"
     }
   ]
 }
