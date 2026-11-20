@@ -215,3 +215,9 @@ test("Kaine uses a standalone volume in the product summary", () => {
   assert.deepEqual(extractOfficialListings(card, "kaine", stores.kaine).map(p => [p.name, p.volume]),
     [["카이네 로즈마리 젤 클렌저", "150ml"]]);
 });
+
+test("Heimish matches thumbnail links to their titled product card", () => {
+  const html = '<ul><li id="anchorBoxId_30"><a name="anchorBoxName_30" href="/product/detail.html?product_no=30"><img alt="제품 이미지"></a><div class="name"><a href="#none">말차바이옴 토너 150ml</a></div></li></ul>';
+  assert.deepEqual(extractOfficialListings(html, "heimish", stores.heimish).map(p => [p.name, p.volume]),
+    [["헤이미쉬 말차바이옴 토너", "150ml"]]);
+});

@@ -111,6 +111,12 @@
       "usefulPages": 1,
       "fetchedListings": 29
     },
+    "heimish": {
+      "name": "헤이미쉬",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 2,
+      "fetchedListings": 14
+    },
     "huxley": {
       "name": "헉슬리",
       "checkedAt": "2026-11-19",
@@ -140,6 +146,12 @@
       "checkedAt": "2026-11-19",
       "usefulPages": 2,
       "fetchedListings": 16
+    },
+    "klavuu": {
+      "name": "클라뷰",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 4,
+      "fetchedListings": 17
     },
     "lagom": {
       "name": "라곰",
@@ -5757,6 +5769,146 @@
       "officialUrl": "https://www.hanyul.com/product/%EA%B7%B9%EC%A7%84-%EC%8A%A4%ED%82%A8/97/"
     },
     {
+      "id": "lookup:heimish:14",
+      "name": "헤이미쉬 올 클린 하이드레이팅 클렌징 밤",
+      "brand": "헤이미쉬",
+      "brandAlias": "heimish",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://eheimish.com/product/detail.html?product_no=14",
+      "image": "https://ecimg.cafe24img.com/pg2307b34327853033/eheimish/web/product/medium/20260930/aba6eb409d6e69005b991c7932629a9c.jpg"
+    },
+    {
+      "id": "lookup:heimish:26",
+      "name": "헤이미쉬 워터멜론 모이스처 수딩 젤크림",
+      "brand": "헤이미쉬",
+      "brandAlias": "heimish",
+      "category": "moisturizer",
+      "volume": "110ml",
+      "officialUrl": "https://eheimish.com/product/detail.html?product_no=26",
+      "image": "https://ecimg.cafe24img.com/pg2307b34327853033/eheimish/web/product/medium/20260710/370043b38c30c19d4374615f65e09808.jpg"
+    },
+    {
+      "id": "lookup:heimish:27",
+      "name": "헤이미쉬 말차바이옴 아미노 아크네 클렌징폼",
+      "brand": "헤이미쉬",
+      "brandAlias": "heimish",
+      "category": "cleanser",
+      "volume": "150g",
+      "officialUrl": "https://eheimish.com/product/detail.html?product_no=27",
+      "image": "https://ecimg.cafe24img.com/pg2307b34327853033/eheimish/web/product/medium/20261002/078fca83b8190e7132b3e8ce65a41ae4.jpg"
+    },
+    {
+      "id": "lookup:heimish:30",
+      "name": "헤이미쉬 말차바이옴 레드니스 릴리프 하이드레이팅 토너",
+      "brand": "헤이미쉬",
+      "brandAlias": "heimish",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://eheimish.com/product/detail.html?product_no=30",
+      "image": "https://ecimg.cafe24img.com/pg2307b34327853033/eheimish/web/product/medium/20251202/c1b543a1e8ff343a33bf39dd3e9972f9.jpg"
+    },
+    {
+      "id": "lookup:heimish:32",
+      "name": "헤이미쉬 올 클린 레디언스 클렌징 밤",
+      "brand": "헤이미쉬",
+      "brandAlias": "heimish",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://eheimish.com/product/detail.html?product_no=32",
+      "image": "https://ecimg.cafe24img.com/pg2307b34327853033/eheimish/web/product/medium/20260930/ae221748fc761f28b14d892b460ebc6f.jpg"
+    },
+    {
+      "id": "lookup:heimish:38",
+      "name": "헤이미쉬 말차바이옴 퍼펙트 클렌징 오일",
+      "brand": "헤이미쉬",
+      "brandAlias": "heimish",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://eheimish.com/product/detail.html?product_no=38",
+      "image": "https://ecimg.cafe24img.com/pg2307b34327853033/eheimish/web/product/medium/20251128/d65687bd7f7d7b4a14f5986643475825.jpg"
+    },
+    {
+      "id": "lookup:heimish:43",
+      "name": "헤이미쉬 RX 멀티 비타민 글로우 세럼",
+      "brand": "헤이미쉬",
+      "brandAlias": "heimish",
+      "category": "serum",
+      "volume": "35ml",
+      "officialUrl": "https://eheimish.com/product/detail.html?product_no=43",
+      "image": "https://ecimg.cafe24img.com/pg2307b34327853033/eheimish/web/product/medium/20251128/ebb7deab997482abac839bcd235f482d.jpg"
+    },
+    {
+      "id": "lookup:heimish:44",
+      "name": "헤이미쉬 RX 아하 바하 필링 세럼",
+      "brand": "헤이미쉬",
+      "brandAlias": "heimish",
+      "category": "serum",
+      "volume": "35ml",
+      "officialUrl": "https://eheimish.com/product/detail.html?product_no=44",
+      "image": "https://ecimg.cafe24img.com/pg2307b34327853033/eheimish/web/product/medium/20251128/ac6beaf801dceb492934cd909999cd68.jpg"
+    },
+    {
+      "id": "lookup:heimish:46",
+      "name": "헤이미쉬 RX 히알루론산 하이드레이팅 세럼",
+      "brand": "헤이미쉬",
+      "brandAlias": "heimish",
+      "category": "serum",
+      "volume": "35ml",
+      "officialUrl": "https://eheimish.com/product/detail.html?product_no=46",
+      "image": "https://ecimg.cafe24img.com/pg2307b34327853033/eheimish/web/product/medium/20251128/26876644bd8813c938cd098e12ec8023.jpg"
+    },
+    {
+      "id": "lookup:heimish:47",
+      "name": "헤이미쉬 RX 히알루론산 리치 휩드 크림",
+      "brand": "헤이미쉬",
+      "brandAlias": "heimish",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://eheimish.com/product/detail.html?product_no=47",
+      "image": "https://ecimg.cafe24img.com/pg2307b34327853033/eheimish/web/product/medium/20251128/ca003abe3575721c3c2b7e140ed5fbc8.jpg"
+    },
+    {
+      "id": "lookup:heimish:50",
+      "name": "헤이미쉬 RX 멀티 비타민 다크 스팟 크림",
+      "brand": "헤이미쉬",
+      "brandAlias": "heimish",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://eheimish.com/product/detail.html?product_no=50",
+      "image": "https://ecimg.cafe24img.com/pg2307b34327853033/eheimish/web/product/medium/20251128/3dc56aaa8c228226979e5ed09eaaf7e3.jpg"
+    },
+    {
+      "id": "lookup:heimish:70",
+      "name": "헤이미쉬 PDRN NMN 스킨 리셋 앰플",
+      "brand": "헤이미쉬",
+      "brandAlias": "heimish",
+      "category": "serum",
+      "volume": "40ml",
+      "officialUrl": "https://eheimish.com/product/detail.html?product_no=70",
+      "image": "https://ecimg.cafe24img.com/pg2307b34327853033/eheimish/web/product/medium/20260923/600cc1e91c45f2553c64da26210eb98b.jpg"
+    },
+    {
+      "id": "lookup:heimish:71",
+      "name": "헤이미쉬 PDRN NMN 스킨 리셋 에센스 토너",
+      "brand": "헤이미쉬",
+      "brandAlias": "heimish",
+      "category": "toner",
+      "volume": "120ml",
+      "officialUrl": "https://eheimish.com/product/detail.html?product_no=71",
+      "image": "https://ecimg.cafe24img.com/pg2307b34327853033/eheimish/web/product/medium/20260923/dc45c6fd5a831f98f850480e3bc93c76.jpg"
+    },
+    {
+      "id": "lookup:heimish:72",
+      "name": "헤이미쉬 PDRN NMN 스킨 리셋 크림",
+      "brand": "헤이미쉬",
+      "brandAlias": "heimish",
+      "category": "moisturizer",
+      "volume": "30ml",
+      "officialUrl": "https://eheimish.com/product/detail.html?product_no=72",
+      "image": "https://ecimg.cafe24img.com/pg2307b34327853033/eheimish/web/product/medium/20260923/48ffc79b3bda5f672216d83e92bcb965.jpg"
+    },
+    {
       "id": "lookup:huxley:12",
       "name": "헉슬리 오일에센스 에센스라이크 오일라이크",
       "brand": "헉슬리",
@@ -7418,6 +7570,159 @@
       "category": "moisturizer",
       "volume": "100ml",
       "officialUrl": "https://kaine.co.kr/product/%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%9C%EB%8B%89-%EC%BF%A8%EB%A7%81-%EB%B6%80%EC%8A%A4%ED%84%B0-%EA%B2%94/44/"
+    },
+    {
+      "id": "lookup:klavuu:447",
+      "name": "클라뷰 블루 펄세이션 에잇 하이드라 마린 앰플",
+      "brand": "클라뷰",
+      "brandAlias": "KLAVUU",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.klavuu.com/product/%EB%B8%94%EB%A3%A8-%ED%8E%84%EC%84%B8%EC%9D%B4%EC%85%98-%EC%97%90%EC%9E%87-%ED%95%98%EC%9D%B4%EB%93%9C%EB%9D%BC-%EB%A7%88%EB%A6%B0-%EC%95%B0%ED%94%8C-50ml/447/"
+    },
+    {
+      "id": "lookup:klavuu:53",
+      "name": "클라뷰 블루 펄세이션 원데이 에잇컵스 마린 콜라겐 아쿠아 크림",
+      "brand": "클라뷰",
+      "brandAlias": "KLAVUU",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.klavuu.com/product/%EB%B8%94%EB%A3%A8-%ED%8E%84%EC%84%B8%EC%9D%B4%EC%85%98-%EC%9B%90%EB%8D%B0%EC%9D%B4-%EC%97%90%EC%9E%87%EC%BB%B5%EC%8A%A4-%EB%A7%88%EB%A6%B0-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EC%95%84%EC%BF%A0%EC%95%84-%ED%81%AC%EB%A6%BC-50ml/53/"
+    },
+    {
+      "id": "lookup:klavuu:568",
+      "name": "클라뷰 레쥬브 펄세이션 멀티 펄 펩타이드 크림",
+      "brand": "클라뷰",
+      "brandAlias": "KLAVUU",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.klavuu.com/product/%EB%A0%88%EC%A5%AC%EB%B8%8C-%ED%8E%84%EC%84%B8%EC%9D%B4%EC%85%98-%EB%A9%80%ED%8B%B0-%ED%8E%84-%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C-%ED%81%AC%EB%A6%BC-50ml/568/"
+    },
+    {
+      "id": "lookup:klavuu:701",
+      "name": "클라뷰 디 오리진 앰플 디핑 패드",
+      "brand": "클라뷰",
+      "brandAlias": "KLAVUU",
+      "category": "toner",
+      "volume": "50매",
+      "officialUrl": "https://www.klavuu.com/product/%EB%94%94-%EC%98%A4%EB%A6%AC%EC%A7%84-%EC%95%B0%ED%94%8C-%EB%94%94%ED%95%91-%ED%8C%A8%EB%93%9C-50%EB%A7%A4/701/"
+    },
+    {
+      "id": "lookup:klavuu:702",
+      "name": "클라뷰 피톤치드 마일드 클렌징 폼",
+      "brand": "클라뷰",
+      "brandAlias": "KLAVUU",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.klavuu.com/product/%ED%94%BC%ED%86%A4%EC%B9%98%EB%93%9C-%EB%A7%88%EC%9D%BC%EB%93%9C-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8F%BC-150ml/702/"
+    },
+    {
+      "id": "lookup:klavuu:703",
+      "name": "클라뷰 리얼 비건 퀵 클렌징 패드",
+      "brand": "클라뷰",
+      "brandAlias": "KLAVUU",
+      "category": "cleanser",
+      "volume": "50매",
+      "officialUrl": "https://www.klavuu.com/product/%EB%A6%AC%EC%96%BC-%EB%B9%84%EA%B1%B4-%ED%80%B5-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8C%A8%EB%93%9C-50%EB%A7%A4/703/"
+    },
+    {
+      "id": "lookup:klavuu:705",
+      "name": "클라뷰 피톤치드 퀵 클렌징 패드",
+      "brand": "클라뷰",
+      "brandAlias": "KLAVUU",
+      "category": "cleanser",
+      "volume": "100매",
+      "officialUrl": "https://www.klavuu.com/product/%ED%94%BC%ED%86%A4%EC%B9%98%EB%93%9C-%ED%80%B5-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8C%A8%EB%93%9C-100%EB%A7%A4/705/"
+    },
+    {
+      "id": "lookup:klavuu:706",
+      "name": "클라뷰 리바이탈라이징 페이셜 클렌징 폼",
+      "brand": "클라뷰",
+      "brandAlias": "KLAVUU",
+      "category": "cleanser",
+      "volume": "150ml",
+      "officialUrl": "https://www.klavuu.com/product/%EB%A6%AC%EB%B0%94%EC%9D%B4%ED%83%88%EB%9D%BC%EC%9D%B4%EC%A7%95-%ED%8E%98%EC%9D%B4%EC%85%9C-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8F%BC-150ml/706/"
+    },
+    {
+      "id": "lookup:klavuu:707",
+      "name": "클라뷰 피톤치드 필링 젤",
+      "brand": "클라뷰",
+      "brandAlias": "KLAVUU",
+      "category": "cleanser",
+      "volume": "80ml",
+      "officialUrl": "https://www.klavuu.com/product/%ED%94%BC%ED%86%A4%EC%B9%98%EB%93%9C-%ED%95%84%EB%A7%81-%EC%A0%A4-80ml/707/"
+    },
+    {
+      "id": "lookup:klavuu:784",
+      "name": "클라뷰 리얼 비건 콜라겐 앰플",
+      "brand": "클라뷰",
+      "brandAlias": "KLAVUU",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.klavuu.com/product/%EB%A6%AC%EC%96%BC-%EB%B9%84%EA%B1%B4-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EC%95%B0%ED%94%8C-30ml/784/"
+    },
+    {
+      "id": "lookup:klavuu:785",
+      "name": "클라뷰 리얼 비건 콜라겐 크림",
+      "brand": "클라뷰",
+      "brandAlias": "KLAVUU",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.klavuu.com/product/%EB%A6%AC%EC%96%BC-%EB%B9%84%EA%B1%B4-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%81%AC%EB%A6%BC-50ml/785/"
+    },
+    {
+      "id": "lookup:klavuu:806",
+      "name": "클라뷰 리얼 비건 비타민 앰플",
+      "brand": "클라뷰",
+      "brandAlias": "KLAVUU",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.klavuu.com/product/%EB%A6%AC%EC%96%BC-%EB%B9%84%EA%B1%B4-%EB%B9%84%ED%83%80%EB%AF%BC-%EC%95%B0%ED%94%8C-30ml/806/"
+    },
+    {
+      "id": "lookup:klavuu:807",
+      "name": "클라뷰 리얼 비건 히알루론산 앰플",
+      "brand": "클라뷰",
+      "brandAlias": "KLAVUU",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.klavuu.com/product/%EB%A6%AC%EC%96%BC-%EB%B9%84%EA%B1%B4-%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%EC%95%B0%ED%94%8C-30ml/807/"
+    },
+    {
+      "id": "lookup:klavuu:888",
+      "name": "클라뷰 화이트 펄세이션 스페셜 디바인 펄 세럼",
+      "brand": "클라뷰",
+      "brandAlias": "KLAVUU",
+      "category": "serum",
+      "volume": "33ml",
+      "officialUrl": "https://www.klavuu.com/product/%ED%99%94%EC%9D%B4%ED%8A%B8-%ED%8E%84%EC%84%B8%EC%9D%B4%EC%85%98-%EC%8A%A4%ED%8E%98%EC%85%9C-%EB%94%94%EB%B0%94%EC%9D%B8-%ED%8E%84-%EC%84%B8%EB%9F%BC-33ml/888/"
+    },
+    {
+      "id": "lookup:klavuu:890",
+      "name": "클라뷰 블루 펄세이션 마린 아쿠아 인리치드 크림",
+      "brand": "클라뷰",
+      "brandAlias": "KLAVUU",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.klavuu.com/product/%EB%B8%94%EB%A3%A8-%ED%8E%84%EC%84%B8%EC%9D%B4%EC%85%98-%EB%A7%88%EB%A6%B0-%EC%95%84%EC%BF%A0%EC%95%84-%EC%9D%B8%EB%A6%AC%EC%B9%98%EB%93%9C-%ED%81%AC%EB%A6%BC-50ml/890/"
+    },
+    {
+      "id": "lookup:klavuu:904",
+      "name": "클라뷰 블루 펄세이션 원데이 에잇컵스 마린 콜라겐 아쿠아 토너",
+      "brand": "클라뷰",
+      "brandAlias": "KLAVUU",
+      "category": "toner",
+      "volume": "140ml",
+      "officialUrl": "https://www.klavuu.com/product/%EB%B8%94%EB%A3%A8-%ED%8E%84%EC%84%B8%EC%9D%B4%EC%85%98-%EC%9B%90%EB%8D%B0%EC%9D%B4-%EC%97%90%EC%9E%87%EC%BB%B5%EC%8A%A4-%EB%A7%88%EB%A6%B0-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EC%95%84%EC%BF%A0%EC%95%84-%ED%86%A0%EB%84%88-140ml/904/"
+    },
+    {
+      "id": "lookup:klavuu:906",
+      "name": "클라뷰 화이트 펄세이션 인리치드 디바인 펄 크림",
+      "brand": "클라뷰",
+      "brandAlias": "KLAVUU",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.klavuu.com/product/%ED%99%94%EC%9D%B4%ED%8A%B8-%ED%8E%84%EC%84%B8%EC%9D%B4%EC%85%98-%EC%9D%B8%EB%A6%AC%EC%B9%98%EB%93%9C-%EB%94%94%EB%B0%94%EC%9D%B8-%ED%8E%84-%ED%81%AC%EB%A6%BC-50ml/906/"
     },
     {
       "id": "lookup:lagom:13",

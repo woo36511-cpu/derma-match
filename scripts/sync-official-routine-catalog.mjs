@@ -9,6 +9,10 @@ const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
 export const stores = {
+  heimish: { brand: "헤이미쉬", alias: "heimish", domain: "eheimish.com", type: "cafe",
+    paths: [["skin", "/category/skin-care/23/"], ["clean", "/category/cleansing/25/"]] },
+  klavuu: { brand: "클라뷰", alias: "KLAVUU", domain: "www.klavuu.com", type: "cafe",
+    paths: [1, 2, 3, 4].map(page => [`skin${page}`, `/product/list.html?cate_no=471&page=${page}`]) },
   tyf: { brand: "땡큐파머", alias: "THANK YOU FARMER", domain: "tyfmall.co.kr", type: "cafe",
     paths: [["list1", "/product/list.html?cate_no=72&page=1"]] },
   huxley: { brand: "헉슬리", alias: "Huxley", domain: "huxley.co.kr", type: "cafe",
@@ -146,6 +150,7 @@ function classify(name) {
 
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (storeKey === "klavuu" && /액트리스 백스테이지|선비비|씨씨\s*크림/u.test(name)) return null;
   if (storeKey === "tyf") {
     name = name.replace(/^1등\*토너\s*/u, "");
     if (/\d+\s*개|씨씨\s*크림|스킨 톤 업 토탈 크림/u.test(name)) return null;
@@ -322,6 +327,15 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
     const image = imageUrl(attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
+    if (storeKey === "heimish") {
+      const id = attr(node, "name")?.match(/^anchorBoxName_(\d+)$/)?.[1];
+      if (!id || url.searchParams.get("product_no") !== id) continue;
+      let card = node.parentNode;
+      while (card && attr(card, "id") !== `anchorBoxId_${id}`) card = card.parentNode;
+      const title = Array.from(walk(card)).find(child => attr(child, "class")?.split(/\s+/).includes("name"));
+      if (!title) continue;
+      rawName = textOf(title);
+    }
     if (storeKey === "somebymi") {
       if (attr(node, "spec") !== "prd_name") continue;
       rawName = textOf(node);
@@ -367,7 +381,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const volume = descendants.find(child => attr(child, "rel") === "용량");
       if (title) rawName = [textOf(title), textOf(volume)].join(" ").trim();
     }
-    if (["tyf", "huxley", "bonamedusa", "urang", "miguhara", "blab", "ongredients", "onedaysyou", "biodance", "pcalm", "lagom", "bonajour", "jmsolution", "jumiso"].includes(storeKey)) {
+    if (["klavuu", "tyf", "huxley", "bonamedusa", "urang", "miguhara", "blab", "ongredients", "onedaysyou", "biodance", "pcalm", "lagom", "bonajour", "jmsolution", "jumiso"].includes(storeKey)) {
       if (!/(?:^|\s)name(?:\s|$)/.test(attr(node.parentNode, "class") ?? "")) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "").replace(/^JMsolution\s+(?=제이엠솔루션)/iu, "");
     }
