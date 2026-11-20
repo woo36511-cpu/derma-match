@@ -11884,9 +11884,180 @@
       "id": "lookup:medipeel:2779",
       "name": "메디필 탄력강화 프리미엄 콜라겐 나이테 실 넥크림 30",
       "brand": "메디필",
-      "b
-... 8438 bytes omitted ...
-     "volume": "200ml",
+      "brandAlias": "MEDI-PEEL",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://www.medipeel.co.kr/product/%ED%83%84%EB%A0%A5%EA%B0%95%ED%99%94-%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EB%82%98%EC%9D%B4%ED%85%8C-%EC%8B%A4-%EB%84%A5%ED%81%AC%EB%A6%BC-30-100ml/2779/"
+    },
+    {
+      "id": "lookup:medipeel:2781",
+      "name": "메디필 펩타이드9 볼륨 앤 텐션 톡스 크림 프로",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "moisturizer",
+      "volume": "50g",
+      "officialUrl": "https://www.medipeel.co.kr/product/%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EB%B3%BC%EB%A5%A8-%EC%95%A4-%ED%85%90%EC%85%98-%ED%86%A1%EC%8A%A4-%ED%81%AC%EB%A6%BC-%ED%94%84%EB%A1%9C-50g/2781/"
+    },
+    {
+      "id": "lookup:medipeel:2786",
+      "name": "메디필 펩타이드9 볼륨 바이오 톡스 앰플 프로",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "serum",
+      "volume": "100ml",
+      "officialUrl": "https://www.medipeel.co.kr/product/%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EB%B3%BC%EB%A5%A8-%EB%B0%94%EC%9D%B4%EC%98%A4-%ED%86%A1%EC%8A%A4-%EC%95%B0%ED%94%8C-%ED%94%84%EB%A1%9C-100ml/2786/"
+    },
+    {
+      "id": "lookup:medipeel:2799",
+      "name": "메디필 펩타이드9 볼륨 올인원 에센스 프로",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "serum",
+      "volume": "100ml",
+      "officialUrl": "https://www.medipeel.co.kr/product/%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EB%B3%BC%EB%A5%A8-%EC%98%AC%EC%9D%B8%EC%9B%90-%EC%97%90%EC%84%BC%EC%8A%A4-%ED%94%84%EB%A1%9C-100ml/2799/"
+    },
+    {
+      "id": "lookup:medipeel:2800",
+      "name": "메디필 펩타이드9 볼륨 화이트 시카 에센스 프로",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "serum",
+      "volume": "100ml",
+      "officialUrl": "https://www.medipeel.co.kr/product/%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EB%B3%BC%EB%A5%A8-%ED%99%94%EC%9D%B4%ED%8A%B8-%EC%8B%9C%EC%B9%B4-%EC%97%90%EC%84%BC%EC%8A%A4-%ED%94%84%EB%A1%9C-100ml/2800/"
+    },
+    {
+      "id": "lookup:medipeel:2805",
+      "name": "메디필 히알루론산 레이어 물톡스 앰플",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.medipeel.co.kr/product/%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%EB%A0%88%EC%9D%B4%EC%96%B4-%EB%AC%BC%ED%86%A1%EC%8A%A4-%EC%95%B0%ED%94%8C-30ml/2805/"
+    },
+    {
+      "id": "lookup:medipeel:2807",
+      "name": "메디필 펩타이드9 볼륨 톡스 크림 프로",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "moisturizer",
+      "volume": "50g",
+      "officialUrl": "https://www.medipeel.co.kr/product/%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EB%B3%BC%EB%A5%A8-%ED%86%A1%EC%8A%A4-%ED%81%AC%EB%A6%BC-%ED%94%84%EB%A1%9C-50g/2807/"
+    },
+    {
+      "id": "lookup:medipeel:2821",
+      "name": "메디필 메이크업 딥 클렌징 비건 비타민 딥톡스 클렌징 오일",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://www.medipeel.co.kr/product/%EB%A9%94%EC%9D%B4%ED%81%AC%EC%97%85-%EB%94%A5-%ED%81%B4%EB%A0%8C%EC%A7%95-%EB%B9%84%EA%B1%B4-%EB%B9%84%ED%83%80%EB%AF%BC-%EB%94%A5%ED%86%A1%EC%8A%A4-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-200ml/2821/"
+    },
+    {
+      "id": "lookup:medipeel:2824",
+      "name": "메디필 히알루론산 레이어 물톡스 크림",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "moisturizer",
+      "volume": "50g",
+      "officialUrl": "https://www.medipeel.co.kr/product/%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%EB%A0%88%EC%9D%B4%EC%96%B4-%EB%AC%BC%ED%86%A1%EC%8A%A4-%ED%81%AC%EB%A6%BC-50g/2824/"
+    },
+    {
+      "id": "lookup:medipeel:2855",
+      "name": "메디필 레드 락토 콜라겐 클렌징 오일 20",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "cleanser",
+      "volume": "155ml",
+      "officialUrl": "https://www.medipeel.co.kr/product/%EB%A0%88%EB%93%9C-%EB%9D%BD%ED%86%A0-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-20-155ml/2855/"
+    },
+    {
+      "id": "lookup:medipeel:2858",
+      "name": "메디필 펩타이드9 볼륨 리프팅 올인원 에센스 프로",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "serum",
+      "volume": "100ml",
+      "officialUrl": "https://www.medipeel.co.kr/product/%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EB%B3%BC%EB%A5%A8-%EB%A6%AC%ED%94%84%ED%8C%85-%EC%98%AC%EC%9D%B8%EC%9B%90-%EC%97%90%EC%84%BC%EC%8A%A4-%ED%94%84%EB%A1%9C-100ml/2858/"
+    },
+    {
+      "id": "lookup:medipeel:2863",
+      "name": "메디필 펩타이드9 볼륨 바이오 톡스 토너 프로",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "toner",
+      "volume": "250ml",
+      "officialUrl": "https://www.medipeel.co.kr/product/%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EB%B3%BC%EB%A5%A8-%EB%B0%94%EC%9D%B4%EC%98%A4-%ED%86%A1%EC%8A%A4-%ED%86%A0%EB%84%88-%ED%94%84%EB%A1%9C-250ml/2863/"
+    },
+    {
+      "id": "lookup:medipeel:2904",
+      "name": "메디필 레드 락토 콜라겐 클렌징 오일 20",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://www.medipeel.co.kr/product/%EB%A0%88%EB%93%9C-%EB%9D%BD%ED%86%A0-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-20-200ml/2904/"
+    },
+    {
+      "id": "lookup:medipeel:2917",
+      "name": "메디필 히알루론산 레이어 물톡스 앰플",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.medipeel.co.kr/product/%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%EB%A0%88%EC%9D%B4%EC%96%B4-%EB%AC%BC%ED%86%A1%EC%8A%A4-%EC%95%B0%ED%94%8C-50ml/2917/"
+    },
+    {
+      "id": "lookup:medipeel:2931",
+      "name": "메디필 2주 기미케어 펩타이드9 비타놀 크림 프로",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "moisturizer",
+      "volume": "50g",
+      "officialUrl": "https://www.medipeel.co.kr/product/2%EC%A3%BC-%EA%B8%B0%EB%AF%B8%EC%BC%80%EC%96%B4-%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EB%B9%84%ED%83%80%EB%86%80-%ED%81%AC%EB%A6%BC-%ED%94%84%EB%A1%9C-50g/2931/"
+    },
+    {
+      "id": "lookup:medipeel:3167",
+      "name": "메디필 펩타이드9 아쿠아 볼륨 톡스 미스트 프로",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "toner",
+      "volume": "50ml",
+      "officialUrl": "https://www.medipeel.co.kr/product/%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C9-%EC%95%84%EC%BF%A0%EC%95%84-%EB%B3%BC%EB%A5%A8-%ED%86%A1%EC%8A%A4-%EB%AF%B8%EC%8A%A4%ED%8A%B8-%ED%94%84%EB%A1%9C-50ml/3167/"
+    },
+    {
+      "id": "lookup:medipeel:3168",
+      "name": "메디필 피토 시카놀 b5 샷 세럼 3000",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "serum",
+      "volume": "50g",
+      "officialUrl": "https://www.medipeel.co.kr/product/%ED%94%BC%ED%86%A0-%EC%8B%9C%EC%B9%B4%EB%86%80-b5-%EC%83%B7-%EC%84%B8%EB%9F%BC-3000-50g/3168/"
+    },
+    {
+      "id": "lookup:medipeel:3169",
+      "name": "메디필 피토 시카놀 b5 샷 세럼 6000",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "serum",
+      "volume": "50g",
+      "officialUrl": "https://www.medipeel.co.kr/product/%ED%94%BC%ED%86%A0-%EC%8B%9C%EC%B9%B4%EB%86%80-b5-%EC%83%B7-%EC%84%B8%EB%9F%BC-6000-50g/3169/"
+    },
+    {
+      "id": "lookup:medipeel:3197",
+      "name": "메디필 레드 락토 콜라겐 베리어 크림",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "moisturizer",
+      "volume": "80ml",
+      "officialUrl": "https://www.medipeel.co.kr/product/%EB%A0%88%EB%93%9C-%EB%9D%BD%ED%86%A0-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EB%B2%A0%EB%A6%AC%EC%96%B4-%ED%81%AC%EB%A6%BC-80ml/3197/"
+    },
+    {
+      "id": "lookup:medipeel:3199",
+      "name": "메디필 레드 락토 콜라겐 수딩 에센스 토너",
+      "brand": "메디필",
+      "brandAlias": "MEDI-PEEL",
+      "category": "toner",
+      "volume": "200ml",
       "officialUrl": "https://www.medipeel.co.kr/product/%EB%A0%88%EB%93%9C-%EB%9D%BD%ED%86%A0-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EC%88%98%EB%94%A9-%EC%97%90%EC%84%BC%EC%8A%A4-%ED%86%A0%EB%84%88-200ml/3199/"
     },
     {
