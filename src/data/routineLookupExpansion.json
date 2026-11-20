@@ -105,6 +105,12 @@
       "usefulPages": 2,
       "fetchedListings": 47
     },
+    "dermora": {
+      "name": "더모라",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 2,
+      "fetchedListings": 5
+    },
     "drceuracle": {
       "name": "닥터슈라클",
       "checkedAt": "2026-11-19",
@@ -116,6 +122,12 @@
       "checkedAt": "2026-11-15",
       "usefulPages": 1,
       "fetchedListings": 21
+    },
+    "droracle": {
+      "name": "닥터오라클",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 5,
+      "fetchedListings": 25
     },
     "etude": {
       "name": "에뛰드",
@@ -5070,6 +5082,56 @@
       "officialUrl": "https://www.dalba.co.kr/goods/goods_view.php?goodsNo=1000000893"
     },
     {
+      "id": "lookup:dermora:26",
+      "name": "더모라 더마 리페어 세럼",
+      "brand": "더모라",
+      "brandAlias": "DERMORA",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.dermora.co.kr/product/detail.html?product_no=26",
+      "image": "https://ecimg.cafe24img.com/pg2904b19550663049/dermora/web/product/big/20260630/b9dcc3516032fa1079b670e4ef1469d2.png"
+    },
+    {
+      "id": "lookup:dermora:27",
+      "name": "더모라 하이드라 릴리프 토너",
+      "brand": "더모라",
+      "brandAlias": "DERMORA",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://www.dermora.co.kr/product/detail.html?product_no=27",
+      "image": "https://ecimg.cafe24img.com/pg2904b19550663049/dermora/web/product/big/20260701/f939b2620531eb2c54f4974c39ba4d22.png"
+    },
+    {
+      "id": "lookup:dermora:28",
+      "name": "더모라 비타 씨 글로우 앰플",
+      "brand": "더모라",
+      "brandAlias": "DERMORA",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.dermora.co.kr/product/detail.html?product_no=28",
+      "image": "https://ecimg.cafe24img.com/pg2904b19550663049/dermora/web/product/big/20260701/e2cf90fd4901020f0f585a0a338d01a9.png"
+    },
+    {
+      "id": "lookup:dermora:29",
+      "name": "더모라 더마 코어 크림",
+      "brand": "더모라",
+      "brandAlias": "DERMORA",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.dermora.co.kr/product/detail.html?product_no=29",
+      "image": "https://ecimg.cafe24img.com/pg2904b19550663049/dermora/web/product/big/20260701/64375764eb8f99d7fa554a9ecec78cfa.png"
+    },
+    {
+      "id": "lookup:dermora:30",
+      "name": "더모라 엔자임 파우더 클렌저",
+      "brand": "더모라",
+      "brandAlias": "DERMORA",
+      "category": "cleanser",
+      "volume": "50g",
+      "officialUrl": "https://www.dermora.co.kr/product/detail.html?product_no=30",
+      "image": "https://ecimg.cafe24img.com/pg2904b19550663049/dermora/web/product/big/20260701/d60fcb0a385a758d03c2fd8a62f43dd3.png"
+    },
+    {
       "id": "lookup:dewytree:1072",
       "name": "듀이트리 어반 쉐이드 블루 톤업 선 SPF50+PA++++",
       "brand": "듀이트리",
@@ -5976,6 +6038,256 @@
       "category": "moisturizer",
       "volume": "20g",
       "officialUrl": "https://drdifferent.com/product/2710-%EA%B9%8C%EC%A7%80%EB%B9%84%ED%83%80%EC%95%84%ED%81%AC%EB%82%A0-tx-%EB%82%98%EC%9D%B4%ED%8A%B8-%ED%81%AC%EB%A6%BC-20g/98/"
+    },
+    {
+      "id": "lookup:droracle:1015",
+      "name": "닥터오라클 에스벨® 모이스처라이징 젤크림",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "moisturizer",
+      "volume": "350ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EC%97%90%EC%8A%A4%EB%B2%A8%C2%AE%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B2%98%EB%9D%BC%EC%9D%B4%EC%A7%95-%EC%A0%A4%ED%81%AC%EB%A6%BC-350ml/1015/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202511/d105e4392a4fc4fcd931d8e2b565ae50.png"
+    },
+    {
+      "id": "lookup:droracle:1037",
+      "name": "닥터오라클 EPL 이피엘® 데일리 선블록 SPF50+ PA+++",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.droracle.co.kr/product/epl-%EC%9D%B4%ED%94%BC%EC%97%98%C2%AE%EB%8D%B0%EC%9D%BC%EB%A6%AC-%EC%84%A0%EB%B8%94%EB%A1%9D-spf50-pa-50ml/1037/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202609/3b70352330d458be010efb5b0ed0612a.png"
+    },
+    {
+      "id": "lookup:droracle:1067",
+      "name": "닥터오라클 레티노타이트닝® 더블 콜라겐 레티놀 크림",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EB%A0%88%ED%8B%B0%EB%85%B8%ED%83%80%EC%9D%B4%ED%8A%B8%EB%8B%9D%C2%AE%EB%8D%94%EB%B8%94-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EB%A0%88%ED%8B%B0%EB%86%80-%ED%81%AC%EB%A6%BC-50ml/1067/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202609/346c38d492f62222f58d07b6c3252e0e.png"
+    },
+    {
+      "id": "lookup:droracle:1096",
+      "name": "닥터오라클 레티노타이트닝® 엑토세라마이드 크림토너",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EB%A0%88%ED%8B%B0%EB%85%B8%ED%83%80%EC%9D%B4%ED%8A%B8%EB%8B%9D%C2%AE%EC%97%91%ED%86%A0%EC%84%B8%EB%9D%BC%EB%A7%88%EC%9D%B4%EB%93%9C-%ED%81%AC%EB%A6%BC%ED%86%A0%EB%84%88-150ml/1096/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202609/e681e8d5e5969dfb86752f7699add138.png"
+    },
+    {
+      "id": "lookup:droracle:1143",
+      "name": "닥터오라클 센텔라바이옴® 수딩 선 세럼",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EC%84%BC%ED%85%94%EB%9D%BC%EB%B0%94%EC%9D%B4%EC%98%B4%C2%AE%EC%88%98%EB%94%A9-%EC%84%A0-%EC%84%B8%EB%9F%BC-50ml/1143/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202609/40b9aa084ce7e98a7624de80e81eed11.png"
+    },
+    {
+      "id": "lookup:droracle:1181",
+      "name": "닥터오라클 안티박® 모이스처라이징 젤크림",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EC%95%88%ED%8B%B0%EB%B0%95%C2%AE%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B2%98%EB%9D%BC%EC%9D%B4%EC%A7%95-%EC%A0%A4%ED%81%AC%EB%A6%BC-50ml/1181/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202603/b0eb58ac7be644c58276276c596aebbb.png"
+    },
+    {
+      "id": "lookup:droracle:162",
+      "name": "닥터오라클 안티박® 더마 리파이닝 토너",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "toner",
+      "volume": "130ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EC%95%88%ED%8B%B0%EB%B0%95%C2%AE%EB%8D%94%EB%A7%88-%EB%A6%AC%ED%8C%8C%EC%9D%B4%EB%8B%9D-%ED%86%A0%EB%84%88-130ml/162/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202511/8b7421e50ed11860f1ceb895edf54476.png"
+    },
+    {
+      "id": "lookup:droracle:180",
+      "name": "닥터오라클 에스벨® 콜라겐 클렌징 밀크",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "cleanser",
+      "volume": "1000ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EC%97%90%EC%8A%A4%EB%B2%A8%C2%AE%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%81%B4%EB%A0%8C%EC%A7%95-%EB%B0%80%ED%81%AC-1000ml/180/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202511/5bcf3eb770646d410bb87103c04af3f9.png"
+    },
+    {
+      "id": "lookup:droracle:181",
+      "name": "닥터오라클 에스벨® 그린티 리프레싱 토너",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "toner",
+      "volume": "1000ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EC%97%90%EC%8A%A4%EB%B2%A8%C2%AE%EA%B7%B8%EB%A6%B0%ED%8B%B0-%EB%A6%AC%ED%94%84%EB%A0%88%EC%8B%B1-%ED%86%A0%EB%84%88-1000ml/181/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202511/cbb4c05e8500075e880d656b6ab0e3d4.png"
+    },
+    {
+      "id": "lookup:droracle:205",
+      "name": "닥터오라클 에스벨® 알로에 베라 수딩 젤",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "moisturizer",
+      "volume": "1000ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EC%97%90%EC%8A%A4%EB%B2%A8%C2%AE%EC%95%8C%EB%A1%9C%EC%97%90-%EB%B2%A0%EB%9D%BC-%EC%88%98%EB%94%A9-%EC%A0%A4-1000ml/205/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202511/b3c2470f51d5aef7daeea98711adec6c.png"
+    },
+    {
+      "id": "lookup:droracle:210",
+      "name": "닥터오라클 에스벨® 콜라겐 클렌징 젤",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "cleanser",
+      "volume": "1000ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EC%97%90%EC%8A%A4%EB%B2%A8%C2%AE%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%A0%A4-1000ml/210/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202511/ab227ef530ec49a07ad60de0ee5a9392.png"
+    },
+    {
+      "id": "lookup:droracle:327",
+      "name": "닥터오라클 안티박® 그린테라피 타이트닝 앰플",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EC%95%88%ED%8B%B0%EB%B0%95%C2%AE%EA%B7%B8%EB%A6%B0%ED%85%8C%EB%9D%BC%ED%94%BC-%ED%83%80%EC%9D%B4%ED%8A%B8%EB%8B%9D-%EC%95%B0%ED%94%8C-30ml/327/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202609/912a6dfccc8ab725e15dd1364e19da28.png"
+    },
+    {
+      "id": "lookup:droracle:423",
+      "name": "닥터오라클 리에이젠® 캘러스 리페어링 토너",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "toner",
+      "volume": "120ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EB%A6%AC%EC%97%90%EC%9D%B4%EC%A0%A0%C2%AE%EC%BA%98%EB%9F%AC%EC%8A%A4-%EB%A6%AC%ED%8E%98%EC%96%B4%EB%A7%81-%ED%86%A0%EB%84%88-120ml/423/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202511/b82d3524881b74c6d8f38ba07e77fad8.png"
+    },
+    {
+      "id": "lookup:droracle:425",
+      "name": "닥터오라클 리에이젠® 아이디얼 펩티드 크림",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EB%A6%AC%EC%97%90%EC%9D%B4%EC%A0%A0%C2%AE%EC%95%84%EC%9D%B4%EB%94%94%EC%96%BC-%ED%8E%A9%ED%8B%B0%EB%93%9C-%ED%81%AC%EB%A6%BC-50ml/425/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202511/f087da422d542ce9640e1051d9b4a009.png"
+    },
+    {
+      "id": "lookup:droracle:661",
+      "name": "닥터오라클 레티노타이트닝® 비타민A 레티놀 앰플",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EB%A0%88%ED%8B%B0%EB%85%B8%ED%83%80%EC%9D%B4%ED%8A%B8%EB%8B%9D%C2%AE%EB%B9%84%ED%83%80%EB%AF%BCa-%EB%A0%88%ED%8B%B0%EB%86%80-%EC%95%B0%ED%94%8C-30ml/661/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202601/b44608f546d3befa7022a941277d226e.png"
+    },
+    {
+      "id": "lookup:droracle:707",
+      "name": "닥터오라클 나이아브라이트® 스팟크림",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "moisturizer",
+      "volume": "30ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EB%82%98%EC%9D%B4%EC%95%84%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%C2%AE%EC%8A%A4%ED%8C%9F%ED%81%AC%EB%A6%BC-30ml/707/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202609/1c904793b9b0631c3d8f389e773dff46.png"
+    },
+    {
+      "id": "lookup:droracle:750",
+      "name": "닥터오라클 세라마베리어® 페이셜 세라마이드 크림",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "moisturizer",
+      "volume": "80g",
+      "officialUrl": "https://www.droracle.co.kr/product/%EB%A6%AC%EB%89%B4%EC%96%BC-%EC%9E%AC%EC%9E%85%EA%B3%A0-%EC%84%B8%EB%9D%BC%EB%A7%88%EB%B2%A0%EB%A6%AC%EC%96%B4%C2%AE%ED%8E%98%EC%9D%B4%EC%85%9C-%EC%84%B8%EB%9D%BC%EB%A7%88%EC%9D%B4%EB%93%9C-%ED%81%AC%EB%A6%BC-80g/750/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202611/2cfed365c42674d93fd0f5b0b04008a2.png"
+    },
+    {
+      "id": "lookup:droracle:752",
+      "name": "닥터오라클 센텔라바이옴® 미산성 클렌징폼",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EC%84%BC%ED%85%94%EB%9D%BC%EB%B0%94%EC%9D%B4%EC%98%B4%C2%AE%EB%AF%B8%EC%82%B0%EC%84%B1-%ED%81%B4%EB%A0%8C%EC%A7%95%ED%8F%BC-120ml/752/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202607/6a5aadc30cbc635682f2a6b83e6cd4e0.png"
+    },
+    {
+      "id": "lookup:droracle:764",
+      "name": "닥터오라클 나이아브라이트® 앰플",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EB%82%98%EC%9D%B4%EC%95%84%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%C2%AE%EC%95%B0%ED%94%8C-50ml/764/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202609/26e4490987a7257e2bb01be4d4c8030c.png"
+    },
+    {
+      "id": "lookup:droracle:773",
+      "name": "닥터오라클 센텔라바이옴® 시카 마일드 선크림",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EC%84%BC%ED%85%94%EB%9D%BC%EB%B0%94%EC%9D%B4%EC%98%B4%C2%AE%EC%8B%9C%EC%B9%B4-%EB%A7%88%EC%9D%BC%EB%93%9C-%EC%84%A0%ED%81%AC%EB%A6%BC-50ml/773/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202511/16149dbd9e6ea86ae5bf6d1146a669bd.png"
+    },
+    {
+      "id": "lookup:droracle:821",
+      "name": "닥터오라클 센텔라바이옴® 시카 모공 토너패드",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "toner",
+      "volume": "75매",
+      "officialUrl": "https://www.droracle.co.kr/product/%EC%84%BC%ED%85%94%EB%9D%BC%EB%B0%94%EC%9D%B4%EC%98%B4%C2%AE%EC%8B%9C%EC%B9%B4-%EB%AA%A8%EA%B3%B5-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-75%EB%A7%A4/821/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202610/6c3573d7618b8c70b70e52ba6403331f.png"
+    },
+    {
+      "id": "lookup:droracle:824",
+      "name": "닥터오라클 센텔라바이옴® 시카 앰플",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EC%84%BC%ED%85%94%EB%9D%BC%EB%B0%94%EC%9D%B4%EC%98%B4%C2%AE%EC%8B%9C%EC%B9%B4-%EC%95%B0%ED%94%8C-50ml/824/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202603/8477d05b718b6fedcb17fbe2be9242e4.png"
+    },
+    {
+      "id": "lookup:droracle:889",
+      "name": "닥터오라클 리에이젠® 리프트업 앰플",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EB%A6%AC%EC%97%90%EC%9D%B4%EC%A0%A0%C2%AE%EB%A6%AC%ED%94%84%ED%8A%B8%EC%97%85-%EC%95%B0%ED%94%8C-30ml/889/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202511/1828866a3412f025308db207c519b917.png"
+    },
+    {
+      "id": "lookup:droracle:920",
+      "name": "닥터오라클 안티박® 더마 라이트 선에센스 SPF50+ PA++++",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "sunscreen",
+      "volume": "60ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EC%95%88%ED%8B%B0%EB%B0%95%C2%AE%EB%8D%94%EB%A7%88-%EB%9D%BC%EC%9D%B4%ED%8A%B8-%EC%84%A0%EC%97%90%EC%84%BC%EC%8A%A4-spf50-pa60ml/920/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202610/24822bf1162e0e6cd01fe9467fd3c311.png"
+    },
+    {
+      "id": "lookup:droracle:987",
+      "name": "닥터오라클 안티박® 프리미엄 아크네 클렌징 폼",
+      "brand": "닥터오라클",
+      "brandAlias": "Dr.Oracle",
+      "category": "cleanser",
+      "volume": "180ml",
+      "officialUrl": "https://www.droracle.co.kr/product/%EB%A6%AC%EB%89%B4%EC%96%BC-%EC%9E%AC%EC%9E%85%EA%B3%A0-%EC%95%88%ED%8B%B0%EB%B0%95%C2%AE%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84-%EC%95%84%ED%81%AC%EB%84%A4-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8F%BC-180ml/987/",
+      "image": "https://cafe24img.poxo.com/orc8979/web/product/medium/202610/43138a29547a0d2957768b59fad0e5ff.png"
     },
     {
       "id": "lookup:etude:31527",
