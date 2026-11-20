@@ -121,6 +121,8 @@ export const stores = {
   blancdoux: cafe("더랩바이블랑두", "the lab by blanc doux", "blancdoux.com", [["list", "/product/list.html?cate_no=4"]]),
   neogen: cafe("네오젠", "NEOGEN", "www.neogenlab.co.kr"),
   drdifferent: cafe("닥터디퍼런트", "Dr.Different", "drdifferent.com"),
+  kioskin: { brand: "키오스킨", alias: "KIOSKIN", domain: "kioskin.co.kr", type: "cafe",
+    paths: [["list1", "/product/list.html?cate_no=70&page=1"]] },
   avene: { brand: "아벤느", alias: "Avène Avene", domain: "www.eau-thermale-avene.co.kr", type: "avene",
     paths: [["list", "/ongajog/peiseu-keeo/mingamhan-pibureul-wihan-seukinkeeo"],
       ...["keulrenjeo", "keurim", "sereom", "meikeueob-rimubeo"].map(key => [key, `/ongajog/peiseu-keeo/${key}`]),
@@ -193,6 +195,7 @@ function classify(name) {
 function makeCandidate(storeKey, store, nameInput, url, id, image) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
   if (["banobagi", "onething"].includes(storeKey) && /[2-9]\d*\s*개(?:\s|$)/u.test(name)) return null;
+  if (storeKey === "kioskin" && /특가|블랑카우|쿠션|아이\s*크림|\d\s*개|\s\+\s/u.test(name)) return null;
   if (storeKey === "physiogel" && /특별구성|듀오|쿠션|\d\s*개|\s\+\s/u.test(name)) return null;
   if (storeKey === "bioderma") {
     name = name.replace(/^\[[^\]]*PICK!?\]\s*/iu, "");
@@ -454,7 +457,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const photo = contents.find(child => child.nodeName === "img" && /^eListPrdImage\d+_\d+$/.test(attr(child, "id") ?? ""));
       image = imageUrl(attr(photo, "src"), store.domain);
     }
-    if (["dermora", "droracle", "bioturm", "bioderma", "physiogel"].includes(storeKey)) {
+    if (["dermora", "droracle", "bioturm", "bioderma", "physiogel", "kioskin"].includes(storeKey)) {
       if (!attr(node.parentNode, "class")?.split(/\s+/).includes("name")) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "");
       let card = node.parentNode;
@@ -462,7 +465,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const photo = Array.from(walk(card)).find(child => child.nodeName === "img" &&
         (/^eListPrdImage\d+_\d+$/.test(attr(child, "id") ?? "") ||
           (storeKey === "dermora" && attr(child, "alt")?.startsWith("더모라"))));
-      image = imageUrl(attr(photo, "src"), store.domain);
+      image = imageUrl(attr(photo, "ec-data-src") || attr(photo, "src"), store.domain);
     }
     if (storeKey === "sonatural") {
       if (!attr(node, "class")?.split(/\s+/).includes("title")) continue;
