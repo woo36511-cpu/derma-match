@@ -21,6 +21,12 @@
       "usefulPages": 5,
       "fetchedListings": 20
     },
+    "aprilskin": {
+      "name": "에이프릴스킨",
+      "checkedAt": "2026-11-20",
+      "usefulPages": 1,
+      "fetchedListings": 18
+    },
     "banila": {
       "name": "바닐라코",
       "checkedAt": "2026-11-19",
@@ -1048,6 +1054,168 @@
       "category": "toner",
       "volume": "30ml",
       "officialUrl": "https://anua.kr/product/detail.html?product_no=587"
+    },
+    {
+      "id": "lookup:aprilskin:1009",
+      "name": "에이프릴스킨 캐로틴 보습 진정 크림",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "moisturizer",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=1009",
+      "image": "https://www.aprilskin.com/web/product/big/202609/8da81fc46c94b2a82f5040f1cee721aa.png"
+    },
+    {
+      "id": "lookup:aprilskin:1014",
+      "name": "에이프릴스킨 캐로틴 아크네 폼클렌저",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "cleanser",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=1014",
+      "image": "https://www.aprilskin.com/web/product/big/202607/e4955c2e3e8b5dacc7d35e803ab20413.png"
+    },
+    {
+      "id": "lookup:aprilskin:1034",
+      "name": "에이프릴스킨 당근 진정 세럼",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "serum",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=1034",
+      "image": "https://www.aprilskin.com/web/product/big/202609/a58a2714db5ee71a001fffd0dc3f6cc4.png"
+    },
+    {
+      "id": "lookup:aprilskin:1057",
+      "name": "에이프릴스킨 캐로틴 클래리파잉 비타 패드",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "toner",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=1057",
+      "image": "https://www.aprilskin.com/web/product/big/202512/dbb68d37173c09c108e4df9a51e6887f.png"
+    },
+    {
+      "id": "lookup:aprilskin:1092",
+      "name": "에이프릴스킨 카렌둘라 모공축소 세럼",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "serum",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=1092",
+      "image": "https://www.aprilskin.com/web/product/big/202608/984329689102b93b01a82624f2834cca.png"
+    },
+    {
+      "id": "lookup:aprilskin:1162",
+      "name": "에이프릴스킨 캐로틴 IPMP 24시간 스팟크림",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "moisturizer",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=1162",
+      "image": "https://www.aprilskin.com/web/product/big/202512/45a1015ca7b718b8158e1215ca19c279.png"
+    },
+    {
+      "id": "lookup:aprilskin:1167",
+      "name": "에이프릴스킨 캐로틴 3분 화잘먹 팩패드",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "toner",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=1167",
+      "image": "https://www.aprilskin.com/web/product/big/202608/28f42bfbbd45d4071d32ba9d2fdba737.png"
+    },
+    {
+      "id": "lookup:aprilskin:1172",
+      "name": "에이프릴스킨 캐로틴 멜팅 클렌징밤",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "cleanser",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=1172",
+      "image": "https://www.aprilskin.com/web/product/big/202609/4769f8556087ebd6fd0777a650dfb5ac.jpg"
+    },
+    {
+      "id": "lookup:aprilskin:1316",
+      "name": "에이프릴스킨 핑크알로에 비타토너",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "toner",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=1316",
+      "image": "https://www.aprilskin.com/web/product/big/202607/eb13ceabd571e173b122f5f99d601741.png"
+    },
+    {
+      "id": "lookup:aprilskin:1345",
+      "name": "에이프릴스킨 캐로틴 대왕 팩패드",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "toner",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=1345",
+      "image": "https://www.aprilskin.com/web/product/big/202609/5b95e54e4fd2abd49ee089d4f5599bd7.png"
+    },
+    {
+      "id": "lookup:aprilskin:1371",
+      "name": "에이프릴스킨 트라넥삼산 스피큘 앰플",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "serum",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=1371",
+      "image": "https://www.aprilskin.com/web/product/big/202609/d55495a2be8fbd5e0fcb9d568d3093b8.png"
+    },
+    {
+      "id": "lookup:aprilskin:1372",
+      "name": "에이프릴스킨 트라넥삼산 밀키토너",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "toner",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=1372",
+      "image": "https://www.aprilskin.com/web/product/big/202609/8ef34ef6b65183cd4497b640126b074b.png"
+    },
+    {
+      "id": "lookup:aprilskin:1373",
+      "name": "에이프릴스킨 트라넥삼산 딥 클렌저",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "cleanser",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=1373",
+      "image": "https://www.aprilskin.com/web/product/big/202512/bb3f136fa4e7ab46d772052d529153e4.png"
+    },
+    {
+      "id": "lookup:aprilskin:1483",
+      "name": "에이프릴스킨 머그워트 카밍 선세럼",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "sunscreen",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=1483",
+      "image": "https://www.aprilskin.com/web/product/big/202609/6a24eb14e6b326d14490a57160579924.png"
+    },
+    {
+      "id": "lookup:aprilskin:1510",
+      "name": "에이프릴스킨 비타코직 수분 미백 세럼",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "serum",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=1510",
+      "image": "https://www.aprilskin.com/web/product/big/202608/e9257f63c22c212fe1218819b65fbbc5.jpg"
+    },
+    {
+      "id": "lookup:aprilskin:1531",
+      "name": "에이프릴스킨 레티날 볼륨 세럼",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "serum",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=1531",
+      "image": "https://www.aprilskin.com/web/product/big/202610/0366fd9116f92802953cecc29ff98f6f.jpg"
+    },
+    {
+      "id": "lookup:aprilskin:837",
+      "name": "에이프릴스킨 카렌둘라 모공 타이트닝 패드",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "toner",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=837",
+      "image": "https://www.aprilskin.com/web/product/big/202512/b5e0ca0464a071b4b8a8927fe20d24eb.png"
+    },
+    {
+      "id": "lookup:aprilskin:957",
+      "name": "에이프릴스킨 카렌둘라 약산성 폼클렌저",
+      "brand": "에이프릴스킨",
+      "brandAlias": "APRILSKIN",
+      "category": "cleanser",
+      "officialUrl": "https://www.aprilskin.com/product/detail.html?product_no=957",
+      "image": "https://www.aprilskin.com/web/product/big/202512/625b4f2dc5f733a0ca113705798f37e8.png"
     },
     {
       "id": "lookup:aromatica:1146",
