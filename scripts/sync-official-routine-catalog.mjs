@@ -14,6 +14,10 @@ const clubClio = (brand, alias, id) => ({ brand, alias, domain: "clubclio.co.kr"
   paths: [["121072", `/shop/brandsList/121072000000000/brand/${id}`]] });
 
 export const stores = {
+  drjart: { brand: "닥터자르트", alias: "Dr.Jart+", domain: "www.drjart.co.kr", type: "drjart",
+    paths: [["serum", "/serum"]] },
+  kiehls: { brand: "키엘", alias: "Kiehl's", domain: "www.kiehls.co.kr", type: "kiehls",
+    paths: [["cream", "/kr/view-all-skincare/cream"], ["ultrafacial", "/kr/face-collection/face-ultra-facial"]] },
   isoi: { brand: "아이소이", alias: "ISOI", domain: "www.isoi.co.kr", type: "isoi",
     paths: [["list", "/product/goods_list?ct=118"]] },
   centellian24: { brand: "센텔리안24", alias: "Centellian24", domain: "www.edkshop.com", type: "cafe",
@@ -415,6 +419,21 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
   }
   const candidates = [];
   const tree = Array.from(walk(parse5.parse(source), store.type === "cerave"));
+  if (store.type === "drjart" || store.type === "kiehls") return tree.flatMap(node => {
+    if (node.nodeName !== "a") return [];
+    const url = urlWithHost(attr(node, "href"), store.domain, false);
+    if (!url) return [];
+    const pattern = store.type === "drjart"
+      ? /^\/product\/\d+\/(\d{1,12})\/[a-z0-9-]+(?:\/[a-z0-9-]+)*\/?$/i
+      : /^\/kr\/[^/]+\/(\d{1,12})\.html$/i;
+    const id = pattern.exec(url.pathname)?.[1];
+    if (!id) return [];
+    const img = Array.from(walk(node)).find(child => child.nodeName === "img" && attr(child, "alt"));
+    const name = (attr(img, "alt") || textOf(node)).replace(/\s*간략히 보기$/u, "").trim();
+    if (!/[가-힣]/u.test(name) || name.length > 90 || /장바구니|상품평|구성품|자세히|자세히보기|립펜슬|컨실러|쿠션/u.test(name)) return [];
+    const candidate = submit(storeKey, store, name, url.origin + url.pathname, id, imageUrl(attr(img, "src"), store.domain));
+    return candidate ? [candidate] : [];
+  });
   if (store.type === "isoi") return tree.flatMap(node => {
     if (node.nodeName !== "a") return [];
     const url = urlWithHost(attr(node, "href"), store.domain, false);

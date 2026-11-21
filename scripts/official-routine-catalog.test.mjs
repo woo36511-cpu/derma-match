@@ -361,3 +361,12 @@ test("ISOI and Centellian24 preserve single products and reject other brands and
   const html = dk(11, "마데카 크림 50ml", "센텔리안24") + dk(12, "수분 크림 50ml", "다른브랜드") + dk(13, "마데카 크림 50ml x 2개", "센텔리안24");
   assert.deepEqual(extractOfficialListings(html, "centellian24", stores.centellian24).map(p => p.id), ["lookup:centellian24:11"]);
 });
+
+test("Dr.Jart and Kiehl’s accept identifiable Korean product links only", () => {
+  const drjart = '<a href="/product/35242/122402/cicapair/tm--/1----2--tm">시카페어 인텐시브 수딩 리페어 세럼</a>' +
+    '<a href="https://example.com/product/35242/122403/cicapair/tm">수딩 세럼</a>';
+  const kiehls = '<a href="/kr/키엘-수분-장벽-크림/622.html"><img alt="키엘 수분 장벽 크림"></a>' +
+    '<a href="/kr/holiday/623.html">홀리데이 수분 크림 세트</a>';
+  assert.deepEqual(extractOfficialListings(drjart, "drjart", stores.drjart).map(p => p.id), ["lookup:drjart:122402"]);
+  assert.deepEqual(extractOfficialListings(kiehls, "kiehls", stores.kiehls).map(p => p.id), ["lookup:kiehls:622"]);
+});
