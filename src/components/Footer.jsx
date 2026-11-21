@@ -1,4 +1,5 @@
 import React from "react";
+import { CatalogRefreshStatus } from "./CatalogRefreshStatus";
 
 export function Footer() {
   return (
@@ -38,6 +39,8 @@ export function Footer() {
             </p>
           </div>
         </div>
+
+        <CatalogRefreshStatus />
 
         <p className="text-xs text-gray-400">
           © DearSince. Personalized skincare routine guide.
