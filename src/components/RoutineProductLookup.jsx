@@ -14,9 +14,9 @@ function LookupImage({ src }) {
     : <span aria-hidden="true" className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-xs text-slate-500">사진 없음</span>;
 }
 
-export function RoutineProductLookup({ ownerKey = "guest", profile, savedAt, safetyBlocked = false, onStartSurvey, loading = false, currentRoutine, personalProductFeedback }) {
+export function RoutineProductLookup({ ownerKey = "guest", profile, savedAt, safetyBlocked = false, onStartSurvey, loading = false, currentRoutine, personalProductFeedback, categoryChoices }) {
   if (loading) return <p className="rounded-2xl bg-white p-4 text-sm text-slate-700" role="status">이 기기의 내 루틴을 확인하고 있어요.</p>;
-  const props = { ownerKey, profile, savedAt, safetyBlocked, onStartSurvey, personalProductFeedback };
+  const props = { ownerKey, profile, savedAt, safetyBlocked, onStartSurvey, personalProductFeedback, categoryChoices };
   return currentRoutine ? <RoutineLookupContent key={ownerKey} {...props} routine={currentRoutine} />
     : <StandaloneRoutineLookup key={ownerKey} {...props} />;
 }
@@ -26,14 +26,18 @@ function StandaloneRoutineLookup(props) {
   return <RoutineLookupContent {...props} routine={routine} />;
 }
 
-function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onStartSurvey, routine, personalProductFeedback }) {
+function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onStartSurvey, routine, personalProductFeedback, categoryChoices }) {
   const [query, setQuery] = useState("");
   const [allInOneOnly, setAllInOneOnly] = useState(false);
   const [manualCategory, setManualCategory] = useState("");
+  const [searchCategory, setSearchCategory] = useState("");
+  const categoryKeys = categoryChoices && Object.keys(categoryChoices);
+  const selectedCategory = categoryKeys?.includes(searchCategory) ? searchCategory : "";
   const reviewRef = useRef(null);
   const isFull = routine.entries.length >= CURRENT_ROUTINE_LIMIT;
-  const manual = makeManualRoutineEntry(query, manualCategory);
-  const { matches, total } = searchRoutineProducts(query, 12, allInOneOnly);
+  const chosenManualCategory = selectedCategory || (categoryKeys && !categoryKeys.includes(manualCategory) ? "" : manualCategory);
+  const manual = makeManualRoutineEntry(query, chosenManualCategory);
+  const { matches, total } = searchRoutineProducts(query, 12, allInOneOnly, selectedCategory ? [selectedCategory] : categoryKeys);
   const started = query.normalize("NFKC").replace(/[^\p{L}\p{N}]/gu, "").length >= 2;
   const signedIn = ownerKey.startsWith("account:");
   const exactReviewed = manual && getReviewedRoutineProduct(manual);
@@ -45,6 +49,13 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
     </div>
     <div ref={reviewRef}><CurrentRoutineReview {...{ routine, profile, savedAt, safetyBlocked, onStartSurvey, personalProductFeedback }} /></div>
     {isFull && <p className="text-sm text-slate-600">최대 {CURRENT_ROUTINE_LIMIT}개까지 담을 수 있어요. 더 담으려면 지금 쓰지 않는 제품을 빼주세요.</p>}
+    {categoryChoices && <div role="group" aria-label="찾을 제품 종류" className="flex flex-wrap gap-2">
+      {[["", "전체"], ...Object.entries(categoryChoices)].map(([value, label]) => (
+        <button key={value} type="button" aria-pressed={selectedCategory === value}
+          onClick={() => { setSearchCategory(value); setAllInOneOnly(false); setManualCategory(""); }}
+          className={`care-secondary ${selectedCategory === value ? "border-forest-700 bg-forest-50" : ""}`}>{label}</button>
+      ))}
+    </div>}
     <div>
       <div className="flex flex-wrap items-center justify-between gap-2">
         <label htmlFor="routine-lookup-input" className="text-sm font-semibold">브랜드나 제품명</label>
@@ -52,7 +63,7 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
           className="text-xs font-semibold text-emerald-800 underline underline-offset-2">담은 제품 보기 ({routine.entries.length}개)</button>}
       </div>
       <input id="routine-lookup-input" type="search" maxLength={100} value={query} onChange={event => setQuery(event.target.value)}
-        placeholder="예: 독도 클렌징 밀크" className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-700" />
+        placeholder={selectedCategory ? `브랜드나 ${categoryChoices[selectedCategory]} 이름` : "예: 독도 클렌징 밀크"} className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-700" />
     </div>
     <button type="button" aria-pressed={allInOneOnly} onClick={() => setAllInOneOnly(value => !value)} className={`care-secondary ${allInOneOnly ? "border-forest-700 bg-forest-50" : ""}`}>올인원</button>
     <p role="status" className="text-sm text-slate-600">
@@ -88,14 +99,14 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
       })}
     </ul>}
     {started && <DetailDisclosure title="목록에 없는 제품 직접 추가">
-      <p>위 검색창에 포장에 적힌 제품명을 입력하고 종류를 골라주세요. 검수 전에는 사용감으로 설문을 이어갈 수 있어요.</p>
+      <p>{selectedCategory ? `입력한 제품의 종류는 ${categoryChoices[selectedCategory]}예요.` : "위 검색창에 포장에 적힌 제품명을 입력하고 종류를 골라주세요."} 검수 전에는 사용감으로 설문을 이어갈 수 있어요.</p>
       <a className="mt-2 inline-block font-semibold text-emerald-800 underline underline-offset-2" href={getOfficialIngredientSearchUrl(query.trim())} target="_blank" rel="noreferrer">공식 전성분 자료 검색하기</a>
-      <label className="mt-2 block font-semibold">제품 종류
-        <select value={manualCategory} onChange={event => setManualCategory(event.target.value)} className="ml-2 rounded-lg border border-slate-300 bg-white p-2">
+      {!selectedCategory && <label className="mt-2 block font-semibold">제품 종류
+        <select value={chosenManualCategory} onChange={event => setManualCategory(event.target.value)} className="ml-2 rounded-lg border border-slate-300 bg-white p-2">
           <option value="">고르기</option>
-          {Object.entries(routineLookupCategories).map(([key, label]) => <option key={key} value={key}>{label}</option>)}
+          {Object.entries(categoryChoices ?? routineLookupCategories).map(([key, label]) => <option key={key} value={key}>{label}</option>)}
         </select>
-      </label>
+      </label>}
       <button type="button" disabled={!manual || isFull || routine.entries.some(entry => entry.id === manual.id)} onClick={() => manual && routine.add(manual)}
         className="mt-2 rounded-lg border border-emerald-700 px-3 py-2 font-semibold text-emerald-800 disabled:border-slate-200 disabled:text-slate-500">
         입력한 제품 담기

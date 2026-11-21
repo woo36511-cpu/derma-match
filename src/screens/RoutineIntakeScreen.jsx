@@ -12,6 +12,11 @@ const options = [
   ["skip", "제품 입력 없이 진행할래요"],
 ];
 
+const basicCategories = { cleanser: "세안제", toner: "토너", serum: "세럼", moisturizer: "크림" };
+const sunscreenCategories = { cleanser: "세안제", sunscreen: "선크림" };
+const allCategories = { ...basicCategories, sunscreen: "선크림", mask: "팩", lipCare: "립케어" };
+const withoutSunscreenCategories = { ...basicCategories, mask: "팩", lipCare: "립케어" };
+
 export function RoutineIntakeScreen({ previous, routineReview, onNext, onBack }) {
   const heading = useScreenHeading("routine-intake");
   const [choice, setChoice] = useState(previous?.routineScope ?? (previous?.use === "yes" ? "" : previous?.use ?? ""));
@@ -37,7 +42,9 @@ export function RoutineIntakeScreen({ previous, routineReview, onNext, onBack })
       </div>
     </div>
     {use === "yes" && <div className="space-y-4">
-      <RoutineProductLookup {...routineReview} profile={undefined} />
+      <RoutineProductLookup {...routineReview} profile={undefined}
+        categoryChoices={choice === "sunscreen_only" ? sunscreenCategories
+          : choice === "without_sunscreen" ? withoutSunscreenCategories : allCategories} />
       {choice !== "sunscreen_only" && <label className="block text-sm font-semibold">지금 쓰는 세럼은 어때요? (선택)
         <select value={serum} onChange={event => setSerum(event.target.value)} className="mt-2 block w-full rounded-xl border border-slate-300 bg-white p-2 font-normal">
           <option value="">선택하지 않음</option><option value="keep">편하게 쓰고 있어서 유지할래요</option><option value="compare">쓰지 않거나 다른 세럼을 비교하고 싶어요</option>
