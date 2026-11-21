@@ -29,7 +29,7 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - run: node --test scripts/official-routine-catalog.test.mjs scripts/import-oliveyoung-feed.test.mjs
+      - run: node --test scripts/official-routine-catalog.test.mjs scripts/import-oliveyoung-feed.test.mjs scripts/roundlab-catalog-watch.test.mjs scripts/review-official-catalog-formulas.test.mjs
       - name: Load approved official brand directory
         env:
           DIRECTORY_URL: ${{ vars.ROUTINE_BRAND_DIRECTORY_URL }}
@@ -69,3 +69,17 @@ jobs:
           git add src/data/routineLookupExpansion.json
           git commit -m "Refresh verified-source search listings"
           git push origin HEAD:main
+      - name: Review official formulas and ingredient signals
+        run: |
+          previous=$(gh run list --workflow brand-discovery-watch.yml --branch main --status success --limit 1 --json databaseId --jq '.[0].databaseId // empty')
+          report=()
+          if [[ -n "$previous" ]] && gh run download "$previous" --name official-formula-review --dir prior-review 2>/dev/null; then
+            report=(prior-review/official-formula-review.json)
+          fi
+          node scripts/review-official-catalog-formulas.mjs official-brand-discovery.json official-formula-review.json "${report[@]}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: official-formula-review
+          path: official-formula-review.json
+          if-no-files-found: error
+          retention-days: 90

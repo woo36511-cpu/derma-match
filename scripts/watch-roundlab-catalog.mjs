@@ -55,18 +55,20 @@ function oneField(fields, pattern) {
   const values = new Set([...fields].filter(([key]) => pattern.test(key)).flatMap(([, set]) => [...set]));
   return values.size === 1 ? [...values][0] : "";
 }
-export function readRoundLabFormula(html, product) {
+export function readOfficialFormula(html, product, productIdentity = identity) {
   const fields = fieldValues(html);
   const name = oneField(fields, /^(제품명|상품명)$/u);
   const volume = oneField(fields, /^(내용물의)?(용량|중량|용량또는중량|용량및중량)$/u);
   const ingredients = oneField(fields, /^(전성분|화장품법에따라기재[·ㆍ]?표시하여야하는모든성분|화장품법에따라기재해야하는모든성분)$/u);
-  if (!name || identity(name) !== identity(product.name) || !/^\d+(?:\.\d+)?\s*(?:ml|g)$/iu.test(volume) ||
+  if (!name || productIdentity(name) !== productIdentity(product.name) || !/^\d+(?:\.\d+)?\s*(?:ml|g)$/iu.test(volume) ||
       !product.volume || volume.replace(/\s/gu, "").toLowerCase() !== product.volume.toLowerCase()) return null;
   if (!ingredients || /주요성분|일부성분|상세페이지|별도표기|리뉴얼|및기타/u.test(ingredients.replace(/\s/gu, ""))) return null;
   const parts = ingredients.split(/,(?!\d)(?![^()]*\))/u).map(normalize);
   if (parts.length < 5 || parts.length > 135 || !parts.every(item => /^[\p{L}\p{N}()·+/.% -]{2,90}$/u.test(item))) return null;
   return { ingredients: parts, hash: createHash("sha256").update(JSON.stringify(parts)).digest("hex") };
 }
+
+export const readRoundLabFormula = readOfficialFormula;
 
 async function fetchSource(input, fetcher) {
   let url = new URL(input);
