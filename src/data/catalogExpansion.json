@@ -7376,5 +7376,164 @@
         "상처 난 부위에는 사용을 피하고, 씻은 뒤 따갑거나 붉어지면 중단해요."
       ]
     }
+  },
+  {
+    "id": 93,
+    "name": "디웨더 레스큐리프 블루 레인 드롭",
+    "brand": "디웨더",
+    "category": "serum",
+    "volume": "20ml",
+    "legacyLookupIds": [
+      "lookup:dweather:20"
+    ],
+    "hydrationLevel": 6,
+    "texture": "light",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "메틸프로판다이올",
+      "글리세린",
+      "소듐하이알루로네이트"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "메틸프로판다이올",
+      "다이프로필렌글라이콜",
+      "나이아신아마이드",
+      "폴리글리세린-3",
+      "글리세레스-26",
+      "오이수",
+      "콜라겐수",
+      "1,2-헥산다이올",
+      "글리세린",
+      "옥틸도데세스-16",
+      "하이드록시아세토페논",
+      "부틸렌글라이콜",
+      "아크릴레이트/C10-30알킬아크릴레이트크로스폴리머",
+      "트로메타민",
+      "엑토인",
+      "오이열매추출물",
+      "에틸헥실글리세린",
+      "소듐하이알루로네이트",
+      "하이드롤라이즈드하이알루로닉애씨드",
+      "소듐파이테이트",
+      "아데노신",
+      "글리세릴아크릴레이트/아크릴릭애씨드코폴리머",
+      "서양배추출물",
+      "피브이엠/엠에이코폴리머",
+      "베타-글루칸",
+      "테트라하이드록시프로필에틸렌다이아민",
+      "말라카이트추출물",
+      "트라이소듐에틸렌다이아민다이석시네이트",
+      "알란토인",
+      "마데카소사이드",
+      "하이드로제네이티드레시틴",
+      "카보머",
+      "알지닌",
+      "아시아티코사이드",
+      "폴리글리세릴-10라우레이트",
+      "프로판다이올",
+      "마데카식애씨드",
+      "베타인",
+      "아시아틱애씨드",
+      "카퍼트라이펩타이드-1",
+      "판테놀",
+      "잔탄검",
+      "글라이신",
+      "소듐구아이아줄렌설포네이트",
+      "쿼세틴",
+      "스피룰리나 막시마추출물",
+      "팔미토일다이펩타이드-7",
+      "팔미토일테트라펩타이드-7",
+      "팔미토일트라이펩타이드-1",
+      "팔미토일헥사펩타이드-12",
+      "녹차추출물",
+      "소듐하이알루로네이트크로스폴리머",
+      "포타슘하이알루로네이트",
+      "하이드록시프로필트라이모늄하이알루로네이트",
+      "하이드롤라이즈드소듐하이알루로네이트",
+      "하이알루로닉애씨드",
+      "펜틸렌글라이콜",
+      "소듐아세틸레이티드하이알루로네이트",
+      "향료"
+    ],
+    "careProfile": {
+      "hydrationSupport": 5,
+      "lightweightFit": 7,
+      "soothingSupport": 0,
+      "congestionSupport": 0,
+      "barrierSupport": 0
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-22",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "공식몰에서 드로퍼로 덜어 가볍게 펴 바르는 수분 앰플 제형과 사용법을 확인해 보습 전 수분 단계로 내부 평가했어요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-22",
+      "sources": [
+        {
+          "url": "https://dweather.kr/product/detail.html?product_no=20",
+          "sourceType": "official_domestic_product_page"
+        },
+        {
+          "url": "https://ecimg.cafe24img.com/pg2470b09133303015/fortenine/web/upload/NNEditor/20260327/10b24f438961d7f1383a860f3da227bb.jpg",
+          "sourceType": "official_domestic_ingredient_label"
+        }
+      ],
+      "note": "디웨더 국내 공식몰 상품번호 20의 상품고시 이미지에서 단품 20ml와 전성분을 확인했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": true
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "보습제 전에 가볍게 펴 바르는 수분 앰플이에요.",
+    "shortReason": "보습제 전 가볍게 덧바르는 수분 앰플",
+    "caution": [
+      "향료나 나이아신아마이드가 든 제품에 반응한 적이 있으면 피하세요.",
+      "상처 난 부위에 바르지 말고, 따갑거나 붉어지면 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": false,
+    "isAvailable": true,
+    "link": "https://dweather.kr/product/detail.html?product_no=20",
+    "price": null,
+    "image": "https://ecimg.cafe24img.com/pg2470b09133303015/fortenine/web/product/medium/20260927/2adfc996f143ec57eb1103f28856851d.jpg",
+    "imageSource": {
+      "url": "https://ecimg.cafe24img.com/pg2470b09133303015/fortenine/web/product/medium/20260927/2adfc996f143ec57eb1103f28856851d.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-22"
+    },
+    "purchaseSource": {
+      "provider": "official",
+      "label": "디웨더 공식몰",
+      "url": "https://dweather.kr/product/detail.html?product_no=20",
+      "checkedAt": "2026-11-22",
+      "verification": "official_product_page",
+      "liveStockVerified": false
+    },
+    "usageType": "serum",
+    "usage": {
+      "when": "토너 다음 단계",
+      "howToUse": [
+        "얼굴에 소량을 펴 바르고 가볍게 두드려요."
+      ],
+      "caution": [
+        "향료나 나이아신아마이드가 든 제품에 반응한 적이 있으면 피하세요.",
+        "상처 난 부위에 바르지 말고, 따갑거나 붉어지면 중단해요."
+      ]
+    }
   }
 ]
