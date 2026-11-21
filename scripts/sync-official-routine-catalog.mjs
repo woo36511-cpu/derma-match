@@ -223,6 +223,12 @@ function makeCandidate(storeKey, store, nameInput, url, id, image, onDiscontinue
     onDiscontinued?.({ id: `lookup:${storeKey}:${id}`, officialUrl: url });
     return null;
   }
+  if (storeKey === "curecode") {
+    if (/[×x]\s*\d+\s*개|[2-9]\d*\s*개\s*구성/iu.test(name)) return null;
+    const title = name.match(/^\[?code\s+\d+\]?\s*큐어코드\s+(.+)$/iu)?.[1];
+    if (!title || /오인트먼트/u.test(title)) return null;
+    name = title.split(/\s*[|ㅣᅵ]\s*|\s+l\s+/iu)[0].trim();
+  }
   if (storeKey === "drplinus") name = name.replace(/\s*\d+\s*ml\s*\/?\s*\d+\s*ml\s*$/iu, "").trim();
   if (storeKey === "labcle" && !/^랩클(?:\s|$)/u.test(name)) return null;
   if (["banobagi", "onething"].includes(storeKey) && /[2-9]\d*\s*개(?:\s|$)/u.test(name)) return null;
