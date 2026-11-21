@@ -530,6 +530,42 @@
       "fetchedListings": 38,
       "alias": "REJURAN COSMETICS",
       "officialCatalogUrl": "https://rejurancosmetics.co.kr/category/%ED%81%AC%EB%A6%BC/263/"
+    },
+    "belif": {
+      "name": "빌리프",
+      "checkedAt": "2026-11-21",
+      "usefulPages": 1,
+      "fetchedListings": 13,
+      "alias": "belif",
+      "officialCatalogUrl": "https://belifmall.com/product/list.html?cate_no=661",
+      "listOnly": true
+    },
+    "hera": {
+      "name": "헤라",
+      "checkedAt": "2026-11-21",
+      "usefulPages": 1,
+      "fetchedListings": 10,
+      "alias": "HERA",
+      "officialCatalogUrl": "https://www.hera.com/category/%EC%A0%9C%ED%92%88-%EC%A0%84%EC%B2%B4/85/",
+      "listOnly": true
+    },
+    "iope": {
+      "name": "아이오페",
+      "checkedAt": "2026-11-21",
+      "usefulPages": 1,
+      "fetchedListings": 13,
+      "alias": "IOPE",
+      "officialCatalogUrl": "https://www.iope.com/category/%EC%9C%A0%ED%98%95%EB%B3%84/31/",
+      "listOnly": true
+    },
+    "sulwhasoo": {
+      "name": "설화수",
+      "checkedAt": "2026-11-21",
+      "usefulPages": 1,
+      "fetchedListings": 7,
+      "alias": "Sulwhasoo",
+      "officialCatalogUrl": "https://www.sulwhasoo.com/category/%ED%83%84%EB%A0%A5%EC%9E%90%EC%83%9D/43/",
+      "listOnly": true
     }
   },
   "products": [
@@ -639,7 +675,7 @@
     },
     {
       "id": "lookup:abib:398",
-      "name": "아비브 그린 lha 모공 패드 클리어 터치",
+      "name": "아비브 그린 LHA 모공 패드 클리어 터치",
       "brand": "아비브",
       "brandAlias": "Abib",
       "category": "toner",
@@ -663,7 +699,7 @@
     },
     {
       "id": "lookup:abib:442",
-      "name": "아비브 new 어성초 테카 캡슐 세럼 카밍 드롭",
+      "name": "아비브 어성초 테카 캡슐 세럼 카밍 드롭",
       "brand": "아비브",
       "brandAlias": "Abib",
       "category": "serum",
@@ -679,7 +715,7 @@
     },
     {
       "id": "lookup:abib:551",
-      "name": "아비브 수분초 히알루론 선세럼 워터리 튜브 spf50 pa",
+      "name": "아비브 수분초 히알루론 선세럼 워터리 튜브 SPF50+ PA++++",
       "brand": "아비브",
       "brandAlias": "Abib",
       "category": "sunscreen",
@@ -687,7 +723,7 @@
     },
     {
       "id": "lookup:abib:552",
-      "name": "아비브 어성초 마일드 선크림 릴리프 튜브 spf50 pa",
+      "name": "아비브 어성초 마일드 선크림 릴리프 튜브 SPF50+ PA++++",
       "brand": "아비브",
       "brandAlias": "Abib",
       "category": "sunscreen",
@@ -775,7 +811,7 @@
     },
     {
       "id": "lookup:abib:659",
-      "name": "아비브 pdrn 인텐시브 크림 15 튜브",
+      "name": "아비브 PDRN 인텐시브 크림 1.5 튜브",
       "brand": "아비브",
       "brandAlias": "Abib",
       "category": "moisturizer",
@@ -791,7 +827,7 @@
     },
     {
       "id": "lookup:abib:660",
-      "name": "아비브 pdrn 글로우 세럼 40 펌프",
+      "name": "아비브 PDRN 글로우 세럼 4.0 펌프",
       "brand": "아비브",
       "brandAlias": "Abib",
       "category": "serum",
@@ -839,7 +875,7 @@
     },
     {
       "id": "lookup:abib:759",
-      "name": "아비브 레티날 펩타이드 부스터 크림 21 튜브",
+      "name": "아비브 레티날 펩타이드 부스터 크림 2.1 튜브",
       "brand": "아비브",
       "brandAlias": "Abib",
       "category": "moisturizer",
@@ -2250,6 +2286,111 @@
       "brandAlias": "Beauty of Joseon",
       "category": "sunscreen",
       "officialUrl": "https://beautyofjoseon.co.kr/product/%EB%A7%91%EC%9D%80%EC%8C%80%EC%84%A0%ED%81%AC%EB%A6%BC-%EC%95%84%EC%BF%A0%EC%95%84%ED%94%84%EB%A0%88%EC%89%AC-%EC%8C%80%EC%88%98%ED%8C%90%ED%85%8C%EB%86%80-spf50-pa/75/"
+    },
+    {
+      "id": "lookup:belif:1014",
+      "name": "빌리프 아쿠아 밤 비타 워터 크림",
+      "brand": "빌리프",
+      "brandAlias": "belif",
+      "category": "moisturizer",
+      "officialUrl": "https://belifmall.com/product/%EB%B9%8C%EB%A6%AC%ED%94%84-%EC%95%84%EC%BF%A0%EC%95%84-%EB%B0%A4-%ED%94%84%EB%A1%9C%EC%A6%8C-%ED%81%AC%EB%A6%BC-%EB%8C%80%EC%9A%A9%EB%9F%89/1014/"
+    },
+    {
+      "id": "lookup:belif:1017",
+      "name": "빌리프 아쿠아 밤 프로즌 크림",
+      "brand": "빌리프",
+      "brandAlias": "belif",
+      "category": "moisturizer",
+      "volume": "40ml",
+      "officialUrl": "https://belifmall.com/product/%EB%B9%8C%EB%A6%AC%ED%94%84-%EC%95%84%EC%BF%A0%EC%95%84-%EB%B0%A4-%ED%94%84%EB%A1%9C%EC%A6%8C-%ED%81%AC%EB%A6%BC-40ml/1017/"
+    },
+    {
+      "id": "lookup:belif:1018",
+      "name": "빌리프 더 트루 크림 모이스춰라이징 밤",
+      "brand": "빌리프",
+      "brandAlias": "belif",
+      "category": "moisturizer",
+      "volume": "40ml",
+      "officialUrl": "https://belifmall.com/product/%EB%B9%8C%EB%A6%AC%ED%94%84-%EB%8D%94-%ED%8A%B8%EB%A3%A8-%ED%81%AC%EB%A6%BC-%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B6%B0%EB%9D%BC%EC%9D%B4%EC%A7%95-%EB%B0%A4-40ml/1018/"
+    },
+    {
+      "id": "lookup:belif:1019",
+      "name": "빌리프 더 트루 크림 아쿠아 밤",
+      "brand": "빌리프",
+      "brandAlias": "belif",
+      "category": "moisturizer",
+      "volume": "40ml",
+      "officialUrl": "https://belifmall.com/product/%EB%B9%8C%EB%A6%AC%ED%94%84-%EB%8D%94-%ED%8A%B8%EB%A3%A8-%ED%81%AC%EB%A6%BC-%EC%95%84%EC%BF%A0%EC%95%84-%EB%B0%A4-40ml/1019/"
+    },
+    {
+      "id": "lookup:belif:1070",
+      "name": "빌리프 더 트루 크림 - 모이스춰라이징 밤 대용량 에디션",
+      "brand": "빌리프",
+      "brandAlias": "belif",
+      "category": "moisturizer",
+      "volume": "125ml",
+      "officialUrl": "https://belifmall.com/product/only-%EC%A7%81%EC%98%81%EB%AA%B0-%EB%B9%8C%EB%A6%AC%ED%94%84-%EB%8D%94-%ED%8A%B8%EB%A3%A8-%ED%81%AC%EB%A6%BC-%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B6%B0%EB%9D%BC%EC%9D%B4%EC%A7%95-%EB%B0%A4-%EB%8C%80%EC%9A%A9%EB%9F%89-%EC%97%90%EB%94%94%EC%85%98-125ml/1070/"
+    },
+    {
+      "id": "lookup:belif:1094",
+      "name": "빌리프 only 직영몰 빌리프 클래식 콜라겐 탄력 크림",
+      "brand": "빌리프",
+      "brandAlias": "belif",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://belifmall.com/product/only-%EC%A7%81%EC%98%81%EB%AA%B0-%EB%B9%8C%EB%A6%AC%ED%94%84-%ED%81%B4%EB%9E%98%EC%8B%9D-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%83%84%EB%A0%A5-%ED%81%AC%EB%A6%BC-50ml/1094/"
+    },
+    {
+      "id": "lookup:belif:1100",
+      "name": "빌리프 에이지 넉다운 V크림 AD",
+      "brand": "빌리프",
+      "brandAlias": "belif",
+      "category": "moisturizer",
+      "officialUrl": "https://belifmall.com/product/only-%EC%A7%81%EC%98%81%EB%AA%B0-%EB%B9%8C%EB%A6%AC%ED%94%84-%EC%97%90%EC%9D%B4%EC%A7%80-%EB%84%89%EB%8B%A4%EC%9A%B4-v%ED%81%AC%EB%A6%BC-ad/1100/"
+    },
+    {
+      "id": "lookup:belif:1123",
+      "name": "빌리프 크리미 모이스처라이저 딥 모이스트",
+      "brand": "빌리프",
+      "brandAlias": "belif",
+      "category": "moisturizer",
+      "volume": "125ml",
+      "officialUrl": "https://belifmall.com/product/only-%EC%A7%81%EC%98%81%EB%AA%B0-%EB%B9%8C%EB%A6%AC%ED%94%84-%ED%81%AC%EB%A6%AC%EB%AF%B8-%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B2%98%EB%9D%BC%EC%9D%B4%EC%A0%80-%EB%94%A5-%EB%AA%A8%EC%9D%B4%EC%8A%A4%ED%8A%B8-125ml/1123/"
+    },
+    {
+      "id": "lookup:belif:1124",
+      "name": "빌리프 밀키 모이스처라이저 하이드라 밸런싱",
+      "brand": "빌리프",
+      "brandAlias": "belif",
+      "category": "moisturizer",
+      "volume": "125ml",
+      "officialUrl": "https://belifmall.com/product/only-%EC%A7%81%EC%98%81%EB%AA%B0-%EB%B9%8C%EB%A6%AC%ED%94%84-%EB%B0%80%ED%82%A4-%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B2%98%EB%9D%BC%EC%9D%B4%EC%A0%80-%ED%95%98%EC%9D%B4%EB%93%9C%EB%9D%BC-%EB%B0%B8%EB%9F%B0%EC%8B%B1-125ml/1124/"
+    },
+    {
+      "id": "lookup:belif:868",
+      "name": "빌리프 프라임 인퓨전 리페어 크림",
+      "brand": "빌리프",
+      "brandAlias": "belif",
+      "category": "moisturizer",
+      "officialUrl": "https://belifmall.com/product/%EB%B9%8C%EB%A6%AC%ED%94%84-%ED%94%84%EB%9D%BC%EC%9E%84-%EC%9D%B8%ED%93%A8%EC%A0%84-%EB%A6%AC%ED%8E%98%EC%96%B4-%ED%81%AC%EB%A6%BC-%EC%96%B4%EB%93%9C%EB%B0%B4%EC%8A%A4%EB%93%9C/868/"
+    },
+    {
+      "id": "lookup:belif:940",
+      "name": "빌리프 아쿠아 밤 프로즌 크림",
+      "brand": "빌리프",
+      "brandAlias": "belif",
+      "category": "moisturizer",
+      "volume": "31ml",
+      "officialUrl": "https://belifmall.com/product/%EB%B9%8C%EB%A6%AC%ED%94%84-%EC%95%84%EC%BF%A0%EC%95%84-%EB%B0%A4-%ED%94%84%EB%A1%9C%EC%A6%8C-%ED%81%AC%EB%A6%BC-31ml/940/"
+    },
+    {
+      "id": "lookup:belif:963",
+      "name": "빌리프 클래식 콜라겐 탄력 크림",
+      "brand": "빌리프",
+      "brandAlias": "belif",
+      "category": "moisturizer",
+      "volume": "75ml",
+      "officialUrl": "https://belifmall.com/product/%EB%B9%8C%EB%A6%AC%ED%94%84-%ED%81%B4%EB%9E%98%EC%8B%9D-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%83%84%EB%A0%A5-%ED%81%AC%EB%A6%BC-75ml/963/"
     },
     {
       "id": "lookup:bellflower:112",
@@ -9440,6 +9581,86 @@
       "image": "https://ecimg.cafe24img.com/pg2307b34327853033/eheimish/web/product/medium/20260923/48ffc79b3bda5f672216d83e92bcb965.jpg"
     },
     {
+      "id": "lookup:hera:201",
+      "name": "헤라 컴피 컨디셔닝 에센스",
+      "brand": "헤라",
+      "brandAlias": "HERA",
+      "category": "serum",
+      "officialUrl": "https://www.hera.com/product/%EC%BB%B4%ED%94%BC-%EC%BB%A8%EB%94%94%EC%85%94%EB%8B%9D-%EC%97%90%EC%84%BC%EC%8A%A4/201/"
+    },
+    {
+      "id": "lookup:hera:203",
+      "name": "헤라 시그니아 리파이닝 워터 에센스",
+      "brand": "헤라",
+      "brandAlias": "HERA",
+      "category": "serum",
+      "officialUrl": "https://www.hera.com/product/%EC%8B%9C%EA%B7%B8%EB%8B%88%EC%95%84-%EB%A6%AC%ED%8C%8C%EC%9D%B4%EB%8B%9D-%EC%9B%8C%ED%84%B0-%EC%97%90%EC%84%BC%EC%8A%A4/203/"
+    },
+    {
+      "id": "lookup:hera:204",
+      "name": "헤라 시그니아 코어 리프팅 세럼",
+      "brand": "헤라",
+      "brandAlias": "HERA",
+      "category": "serum",
+      "officialUrl": "https://www.hera.com/product/%EC%8B%9C%EA%B7%B8%EB%8B%88%EC%95%84-%EC%BD%94%EC%96%B4-%EB%A6%AC%ED%94%84%ED%8C%85-%EC%84%B8%EB%9F%BC/204/"
+    },
+    {
+      "id": "lookup:hera:205",
+      "name": "헤라 시그니아 밸런싱 에멀전",
+      "brand": "헤라",
+      "brandAlias": "HERA",
+      "category": "moisturizer",
+      "officialUrl": "https://www.hera.com/product/%EC%8B%9C%EA%B7%B8%EB%8B%88%EC%95%84-%EB%B0%B8%EB%9F%B0%EC%8B%B1-%EC%97%90%EB%A9%80%EC%A0%84/205/"
+    },
+    {
+      "id": "lookup:hera:207",
+      "name": "헤라 시그니아 바이탈 리프팅 크림",
+      "brand": "헤라",
+      "brandAlias": "HERA",
+      "category": "moisturizer",
+      "officialUrl": "https://www.hera.com/product/%EC%8B%9C%EA%B7%B8%EB%8B%88%EC%95%84-%EB%B0%94%EC%9D%B4%ED%83%88-%EB%A6%AC%ED%94%84%ED%8C%85-%ED%81%AC%EB%A6%BC/207/"
+    },
+    {
+      "id": "lookup:hera:208",
+      "name": "헤라 uv 프로텍터 톤업 라벤더 spf50pa",
+      "brand": "헤라",
+      "brandAlias": "HERA",
+      "category": "sunscreen",
+      "officialUrl": "https://www.hera.com/product/uv-%ED%94%84%EB%A1%9C%ED%85%8D%ED%84%B0-%ED%86%A4%EC%97%85-%EB%9D%BC%EB%B2%A4%EB%8D%94-spf50pa/208/"
+    },
+    {
+      "id": "lookup:hera:209",
+      "name": "헤라 uv 프로텍터 씨씨 spf50pa",
+      "brand": "헤라",
+      "brandAlias": "HERA",
+      "category": "sunscreen",
+      "officialUrl": "https://www.hera.com/product/uv-%ED%94%84%EB%A1%9C%ED%85%8D%ED%84%B0-%EC%94%A8%EC%94%A8-spf50pa/209/"
+    },
+    {
+      "id": "lookup:hera:210",
+      "name": "헤라 uv 프로텍터 프레쉬 spf50pa",
+      "brand": "헤라",
+      "brandAlias": "HERA",
+      "category": "sunscreen",
+      "officialUrl": "https://www.hera.com/product/uv-%ED%94%84%EB%A1%9C%ED%85%8D%ED%84%B0-%ED%94%84%EB%A0%88%EC%89%AC-spf50pa/210/"
+    },
+    {
+      "id": "lookup:hera:225",
+      "name": "헤라 옴므 블랙 인텐스 토너",
+      "brand": "헤라",
+      "brandAlias": "HERA",
+      "category": "toner",
+      "officialUrl": "https://www.hera.com/product/%EC%98%B4%EB%AF%80-%EB%B8%94%EB%9E%99-%EC%9D%B8%ED%85%90%EC%8A%A4-%ED%86%A0%EB%84%88/225/"
+    },
+    {
+      "id": "lookup:hera:226",
+      "name": "헤라 옴므 블랙 인텐스 에멀전",
+      "brand": "헤라",
+      "brandAlias": "HERA",
+      "category": "moisturizer",
+      "officialUrl": "https://www.hera.com/product/%EC%98%B4%EB%AF%80-%EB%B8%94%EB%9E%99-%EC%9D%B8%ED%85%90%EC%8A%A4-%EC%97%90%EB%A9%80%EC%A0%84/226/"
+    },
+    {
       "id": "lookup:huxley:12",
       "name": "헉슬리 오일에센스 에센스라이크 오일라이크",
       "brand": "헉슬리",
@@ -10432,6 +10653,22 @@
       "image": "https://inm-cdn.innisfree.com/origin-image/product/product/00/00/03/55/97/a5e21903-6f56-48e9-b18c-f08f211f315d.webp"
     },
     {
+      "id": "lookup:innisfree:36416",
+      "name": "이니스프리 애플씨드 버블 클렌저",
+      "brand": "이니스프리",
+      "brandAlias": "innisfree",
+      "category": "cleanser",
+      "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/36416"
+    },
+    {
+      "id": "lookup:innisfree:36720",
+      "name": "이니스프리 그린티 아미노 수분 클렌징 오일",
+      "brand": "이니스프리",
+      "brandAlias": "innisfree",
+      "category": "cleanser",
+      "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/36720"
+    },
+    {
       "id": "lookup:innisfree:36868",
       "name": "이니스프리 올리브 비타민 E 리얼 클렌징 티슈",
       "brand": "이니스프리",
@@ -10525,6 +10762,111 @@
       "category": "serum",
       "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/37708",
       "image": "https://inm-cdn.innisfree.com/origin-image/product/product/00/00/03/77/08/aefc9162-b943-4195-a60f-5b92ed862658.webp"
+    },
+    {
+      "id": "lookup:iope:45",
+      "name": "아이오페 UV 쉴드 선 스틱 SPF50+ PA++++",
+      "brand": "아이오페",
+      "brandAlias": "IOPE",
+      "category": "sunscreen",
+      "officialUrl": "https://www.iope.com/product/uv-%EC%89%B4%EB%93%9C-%EC%84%A0-%EC%8A%A4%ED%8B%B1-spf50-pa/45/"
+    },
+    {
+      "id": "lookup:iope:48",
+      "name": "아이오페 하이드로 리프트 세럼",
+      "brand": "아이오페",
+      "brandAlias": "IOPE",
+      "category": "serum",
+      "officialUrl": "https://www.iope.com/product/%ED%95%98%EC%9D%B4%EB%93%9C%EB%A1%9C-%EB%A6%AC%ED%94%84%ED%8A%B8-%EC%84%B8%EB%9F%BC/48/"
+    },
+    {
+      "id": "lookup:iope:49",
+      "name": "아이오페 하이드로 리프트 크림",
+      "brand": "아이오페",
+      "brandAlias": "IOPE",
+      "category": "moisturizer",
+      "officialUrl": "https://www.iope.com/product/%ED%95%98%EC%9D%B4%EB%93%9C%EB%A1%9C-%EB%A6%AC%ED%94%84%ED%8A%B8-%ED%81%AC%EB%A6%BC/49/"
+    },
+    {
+      "id": "lookup:iope:51",
+      "name": "아이오페 바이오 컨디셔닝 에센스 폼",
+      "brand": "아이오페",
+      "brandAlias": "IOPE",
+      "category": "serum",
+      "officialUrl": "https://www.iope.com/product/%EB%B0%94%EC%9D%B4%EC%98%A4-%EC%BB%A8%EB%94%94%EC%85%94%EB%8B%9D-%EC%97%90%EC%84%BC%EC%8A%A4-%ED%8F%BC/51/"
+    },
+    {
+      "id": "lookup:iope:54",
+      "name": "아이오페 스킨 부스터 앰플 필 패드",
+      "brand": "아이오페",
+      "brandAlias": "IOPE",
+      "category": "toner",
+      "officialUrl": "https://www.iope.com/product/%EC%8A%A4%ED%82%A8-%EB%B6%80%EC%8A%A4%ED%84%B0-%EC%95%B0%ED%94%8C-%ED%95%84-%ED%8C%A8%EB%93%9C/54/"
+    },
+    {
+      "id": "lookup:iope:55",
+      "name": "아이오페 UV 쉴드 선 프로텍터 SPF 50+ PA++++",
+      "brand": "아이오페",
+      "brandAlias": "IOPE",
+      "category": "sunscreen",
+      "officialUrl": "https://www.iope.com/product/uv-%EC%89%B4%EB%93%9C-%EC%84%A0-%ED%94%84%EB%A1%9C%ED%85%8D%ED%84%B0-spf-50-pa/55/"
+    },
+    {
+      "id": "lookup:iope:56",
+      "name": "아이오페 UV 쉴드 선 앰플",
+      "brand": "아이오페",
+      "brandAlias": "IOPE",
+      "category": "serum",
+      "officialUrl": "https://www.iope.com/product/uv-%EC%89%B4%EB%93%9C-%EC%84%A0-%EC%95%B0%ED%94%8C/56/"
+    },
+    {
+      "id": "lookup:iope:57",
+      "name": "아이오페 비타민C 엑스퍼트 25% 항산화 토닝 앰플",
+      "brand": "아이오페",
+      "brandAlias": "IOPE",
+      "category": "serum",
+      "officialUrl": "https://www.iope.com/product/%EB%B9%84%ED%83%80%EB%AF%BCc-%EC%97%91%EC%8A%A4%ED%8D%BC%ED%8A%B8-25-%ED%95%AD%EC%82%B0%ED%99%94-%ED%86%A0%EB%8B%9D-%EC%95%B0%ED%94%8C/57/"
+    },
+    {
+      "id": "lookup:iope:60",
+      "name": "아이오페 XMD스템3 클리니컬 리커버리 세럼",
+      "brand": "아이오페",
+      "brandAlias": "IOPE",
+      "category": "serum",
+      "officialUrl": "https://www.iope.com/product/xmd%EC%8A%A4%ED%85%9C3-%ED%81%B4%EB%A6%AC%EB%8B%88%EC%BB%AC-%EB%A6%AC%EC%BB%A4%EB%B2%84%EB%A6%AC-%EC%84%B8%EB%9F%BC/60/"
+    },
+    {
+      "id": "lookup:iope:61",
+      "name": "아이오페 XMD스템3 클리니컬 리커버리 크림",
+      "brand": "아이오페",
+      "brandAlias": "IOPE",
+      "category": "moisturizer",
+      "officialUrl": "https://www.iope.com/product/xmd%EC%8A%A4%ED%85%9C3-%ED%81%B4%EB%A6%AC%EB%8B%88%EC%BB%AC-%EB%A6%AC%EC%BB%A4%EB%B2%84%EB%A6%AC-%ED%81%AC%EB%A6%BC/61/"
+    },
+    {
+      "id": "lookup:iope:64",
+      "name": "아이오페 콜라겐 부스터 레티노리프팅 크림",
+      "brand": "아이오페",
+      "brandAlias": "IOPE",
+      "category": "moisturizer",
+      "officialUrl": "https://www.iope.com/product/%EC%BD%9C%EB%9D%BC%EA%B2%90-%EB%B6%80%EC%8A%A4%ED%84%B0-%EB%A0%88%ED%8B%B0%EB%85%B8%EB%A6%AC%ED%94%84%ED%8C%85-%ED%81%AC%EB%A6%BC/64/"
+    },
+    {
+      "id": "lookup:iope:65",
+      "name": "아이오페 슈퍼바이탈 넥 &amp; 데콜테 크림",
+      "brand": "아이오페",
+      "brandAlias": "IOPE",
+      "category": "moisturizer",
+      "officialUrl": "https://www.iope.com/product/%EC%8A%88%ED%8D%BC%EB%B0%94%EC%9D%B4%ED%83%88-%EB%84%A5-%EB%8D%B0%EC%BD%9C%ED%85%8C-%ED%81%AC%EB%A6%BC/65/"
+    },
+    {
+      "id": "lookup:iope:67",
+      "name": "아이오페 레티놀 레티젝션 세럼",
+      "brand": "아이오페",
+      "brandAlias": "IOPE",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.iope.com/product/%EB%A0%88%ED%8B%B0%EB%86%80-%EB%A0%88%ED%8B%B0%EC%A0%9D%EC%85%98-%EC%84%B8%EB%9F%BC-50ml/67/"
     },
     {
       "id": "lookup:isntree:115",
@@ -24775,6 +25117,62 @@
       "brandAlias": "SOONDING",
       "category": "serum",
       "officialUrl": "https://soonding.kr/product/detail.html?product_no=30"
+    },
+    {
+      "id": "lookup:sulwhasoo:53",
+      "name": "설화수 자음생크림",
+      "brand": "설화수",
+      "brandAlias": "Sulwhasoo",
+      "category": "moisturizer",
+      "officialUrl": "https://www.sulwhasoo.com/product/%EC%9E%90%EC%9D%8C%EC%83%9D%ED%81%AC%EB%A6%BC/53/"
+    },
+    {
+      "id": "lookup:sulwhasoo:54",
+      "name": "설화수 자음생크림 리치",
+      "brand": "설화수",
+      "brandAlias": "Sulwhasoo",
+      "category": "moisturizer",
+      "officialUrl": "https://www.sulwhasoo.com/product/%EC%9E%90%EC%9D%8C%EC%83%9D%ED%81%AC%EB%A6%BC-%EB%A6%AC%EC%B9%98/54/"
+    },
+    {
+      "id": "lookup:sulwhasoo:55",
+      "name": "설화수 자음생캡슐세럼",
+      "brand": "설화수",
+      "brandAlias": "Sulwhasoo",
+      "category": "serum",
+      "officialUrl": "https://www.sulwhasoo.com/product/%EC%9E%90%EC%9D%8C%EC%83%9D%EC%BA%A1%EC%8A%90%EC%84%B8%EB%9F%BC/55/"
+    },
+    {
+      "id": "lookup:sulwhasoo:57",
+      "name": "설화수 자음생앰플",
+      "brand": "설화수",
+      "brandAlias": "Sulwhasoo",
+      "category": "serum",
+      "officialUrl": "https://www.sulwhasoo.com/product/%EC%9E%90%EC%9D%8C%EC%83%9D%EC%95%B0%ED%94%8C/57/"
+    },
+    {
+      "id": "lookup:sulwhasoo:61",
+      "name": "설화수 자음생크림 퍼펙팅 리치",
+      "brand": "설화수",
+      "brandAlias": "Sulwhasoo",
+      "category": "moisturizer",
+      "officialUrl": "https://www.sulwhasoo.com/product/%EC%9E%90%EC%9D%8C%EC%83%9D%ED%81%AC%EB%A6%BC-%ED%8D%BC%ED%8E%99%ED%8C%85-%EB%A6%AC%EC%B9%98/61/"
+    },
+    {
+      "id": "lookup:sulwhasoo:96",
+      "name": "설화수 자음생크림 60주년",
+      "brand": "설화수",
+      "brandAlias": "Sulwhasoo",
+      "category": "moisturizer",
+      "officialUrl": "https://www.sulwhasoo.com/product/%EC%9E%90%EC%9D%8C%EC%83%9D%ED%81%AC%EB%A6%BC-60%EC%A3%BC%EB%85%84/96/"
+    },
+    {
+      "id": "lookup:sulwhasoo:97",
+      "name": "설화수 자음생크림 리치 60주년",
+      "brand": "설화수",
+      "brandAlias": "Sulwhasoo",
+      "category": "moisturizer",
+      "officialUrl": "https://www.sulwhasoo.com/product/%EC%9E%90%EC%9D%8C%EC%83%9D%ED%81%AC%EB%A6%BC-%EB%A6%AC%EC%B9%98-60%EC%A3%BC%EB%85%84/97/"
     },
     {
       "id": "lookup:thera:35",
