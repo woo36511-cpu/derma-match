@@ -398,3 +398,13 @@ test("Cure Code keeps the labeled skincare single and drops the multipack", () =
     ["lookup:curecode:35", "큐어코드 수딩 릴리프 젤 수분 크림", "80ml"],
   ]);
 });
+
+test("rdrd uses the official product title and keeps cream patches out of moisturizer search", () => {
+  const store = { brand: "알디알디", alias: "rdrd", domain: "rdrd.co.kr", type: "cafe" };
+  const html = `<strong class="name"><a href="/product/detail.html?product_no=36"><span>상품명 :</span> rdrd 레드 애플 락토 진정 팝핑 토너</a></strong>
+    <strong class="name"><a href="/product/detail.html?product_no=53"><span>상품명 :</span> rdrd 레드 애플 락토 진정 크림 패치 5매</a></strong>`;
+  const products = extractOfficialListings(html, "rdrd", store);
+  assert.deepEqual(products.map(({ id, name, category }) => [id, name, category]), [
+    ["lookup:rdrd:36", "알디알디 레드 애플 락토 진정 팝핑 토너", "toner"],
+  ]);
+});

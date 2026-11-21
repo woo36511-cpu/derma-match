@@ -229,6 +229,11 @@ function makeCandidate(storeKey, store, nameInput, url, id, image, onDiscontinue
     if (!title || /오인트먼트/u.test(title)) return null;
     name = title.split(/\s*[|ㅣᅵ]\s*|\s+l\s+/iu)[0].trim();
   }
+  if (storeKey === "rdrd") {
+    if (/크림\s*패치/u.test(name)) return null;
+    if (/[×x]\s*\d+\s*개|[2-9]\d*\s*개\s*구성/iu.test(name)) return null;
+    name = name.replace(/^rdrd\s+/iu, "");
+  }
   if (storeKey === "drplinus") name = name.replace(/\s*\d+\s*ml\s*\/?\s*\d+\s*ml\s*$/iu, "").trim();
   if (storeKey === "labcle" && !/^랩클(?:\s|$)/u.test(name)) return null;
   if (["banobagi", "onething"].includes(storeKey) && /[2-9]\d*\s*개(?:\s|$)/u.test(name)) return null;
@@ -711,6 +716,10 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const title = descendants.find(child => /(?:^|\s)prdName(?:\s|$)/.test(attr(child, "class") ?? ""));
       if (!title) continue;
       rawName = textOf(title);
+    }
+    if (storeKey === "rdrd" && !sitemap) {
+      if (!/(?:^|\s)name(?:\s|$)/.test(attr(node.parentNode, "class") ?? "")) continue;
+      rawName = textOf(node).replace(/^상품명\s*:\s*/u, "");
     }
     if (storeKey === "primera" && !sitemap) {
       const title = descendants.find(child => /(?:^|\s)title(?:\s|$)/.test(attr(child, "class") ?? ""));

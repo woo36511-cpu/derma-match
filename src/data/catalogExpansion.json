@@ -6481,5 +6481,280 @@
         "처음에는 건조한 부위에 소량 사용하고 따가움이나 붉어짐이 생기면 중단해요."
       ]
     }
+  },
+  {
+    "id": 86,
+    "name": "이니스프리 퍼펙트 9 인텐시브 크림",
+    "brand": "이니스프리",
+    "category": "cream",
+    "volume": "60ml",
+    "legacyLookupIds": [
+      "lookup:innisfree:34719"
+    ],
+    "hydrationLevel": 2,
+    "texture": "rich",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "부틸렌글라이콜",
+      "스쿠알란",
+      "글리세린"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "부틸렌글라이콜",
+      "사이클로펜타실록세인",
+      "다이메티콘",
+      "스쿠알란",
+      "메도우폼씨오일",
+      "펜타에리스리틸테트라에틸헥사노에이트",
+      "세테아릴알코올",
+      "글리세린",
+      "나이아신아마이드",
+      "사이클로헥사실록세인",
+      "베헤닐알코올",
+      "시어버터",
+      "하이드로제네이티드식물성오일",
+      "글리세릴스테아레이트",
+      "1",
+      "2-헥산다이올",
+      "실리카",
+      "펜타에리스리틸다이스테아레이트",
+      "비스-피이지-18메틸에터다이메틸실레인",
+      "피이지-100스테아레이트",
+      "향료",
+      "세테아릴글루코사이드",
+      "폴리실리콘-11",
+      "폴리아크릴레이트-13",
+      "잔탄검",
+      "폴리아이소부텐",
+      "다이소듐이디티에이",
+      "에틸헥실글리세린",
+      "아데노신",
+      "리모넨",
+      "폴리솔베이트20",
+      "스테아릭애씨드",
+      "솔비탄아이소스테아레이트",
+      "하이드로제네이티드레시틴",
+      "덱스트린",
+      "카카오추출물",
+      "불가리스쑥추출물",
+      "약모밀추출물",
+      "폴리글리세릴-3메틸글루코오스다이스테아레이트",
+      "라즈베리추출물",
+      "꿀풀잎추출물",
+      "인동덩굴꽃추출물",
+      "초피나무열매추출물",
+      "서양민들레뿌리줄기/뿌리추출물",
+      "영지버섯추출물",
+      "리날룰",
+      "글루코오스",
+      "시트로넬올",
+      "시트랄",
+      "제라니올",
+      "비에이치티",
+      "토코페롤",
+      "꽃송이버섯추출물"
+    ],
+    "careProfile": {
+      "hydrationSupport": 7,
+      "lightweightFit": 2,
+      "soothingSupport": 0,
+      "congestionSupport": 0,
+      "barrierSupport": 3
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-22",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "국내 공식몰의 농축 밤 제형 설명과 상품고시를 대조해 건성 피부의 보습 마무리로 내부 평가했어요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-22",
+      "sources": [
+        {
+          "url": "https://www.innisfree.com/kr/ko/dp/product/34719",
+          "sourceType": "official_domestic_product_page"
+        }
+      ],
+      "note": "국내 이니스프리 SKU 34719의 60ml 판매 페이지와 상품고시 전성분을 확인했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": true
+    },
+    "skinTypes": [
+      "건성"
+    ],
+    "description": "보습제를 발라도 당기는 건성 피부에서 농축 밤 타입으로 마무리할 때 비교할 수 있는 크림이에요.",
+    "shortReason": "농축 밤 제형으로 건조한 부위에 보습",
+    "caution": [
+      "향료가 들어 있어 향료가 든 화장품에 반응한 적이 있으면 피하세요.",
+      "처음에는 건조한 부위에 소량 사용하고 따가움이나 붉어짐이 생기면 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": false,
+    "isAvailable": true,
+    "link": "https://www.innisfree.com/kr/ko/dp/product/34719",
+    "price": null,
+    "image": "https://inm-cdn.innisfree.com/origin-image/product/product/00/00/03/47/19/7d7256d1-0579-47d7-bb14-cfd23e666845.png",
+    "imageSource": {
+      "url": "https://inm-cdn.innisfree.com/origin-image/product/product/00/00/03/47/19/7d7256d1-0579-47d7-bb14-cfd23e666845.png",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-22"
+    },
+    "purchaseSource": {
+      "provider": "official",
+      "label": "이니스프리",
+      "url": "https://www.innisfree.com/kr/ko/dp/product/34719",
+      "checkedAt": "2026-11-22",
+      "verification": "official_product_page",
+      "liveStockVerified": false
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "세안 후 보습 마무리 단계",
+      "howToUse": [
+        "건조한 부위에 소량을 얇게 펴 발라요."
+      ],
+      "caution": [
+        "향료가 들어 있어 향료가 든 화장품에 반응한 적이 있으면 피하세요.",
+        "처음에는 건조한 부위에 소량 사용하고 따가움이나 붉어짐이 생기면 중단해요."
+      ]
+    }
+  },
+  {
+    "id": 87,
+    "name": "큐어코드 수딩 릴리프 젤",
+    "brand": "큐어코드",
+    "category": "cream",
+    "volume": "80ml",
+    "legacyLookupIds": [
+      "lookup:curecode:35"
+    ],
+    "hydrationLevel": 7,
+    "texture": "gel",
+    "concerns": [
+      "hydration",
+      "barrier"
+    ],
+    "ingredients": [
+      "판테놀",
+      "알란토인",
+      "세라마이드엔피"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "1,2-헥산다이올",
+      "판테놀",
+      "에틸헥실아이소노나노에이트",
+      "카프릴릭/카프릭트라이글리세라이드",
+      "세테아릴알코올",
+      "암모늄아크릴로일다이메틸타우레이트/브이피코폴리머",
+      "폴리글리세릴-10다이스테아레이트",
+      "글리세릴스테아레이트",
+      "솔비탄스테아레이트",
+      "피토스테롤",
+      "부틸렌글라이콜",
+      "팔미틱애씨드",
+      "스테아릭애씨드",
+      "카보머",
+      "알란토인",
+      "소듐하이알루로네이트",
+      "N-팔미토일세린올",
+      "서양고추나물꽃추출물",
+      "아세틸글루코사민",
+      "솔비탄라우레이트",
+      "비피다발효용해물",
+      "레스베라트롤",
+      "하이드록시에틸셀룰로오스",
+      "세라마이드엔피",
+      "병풀추출물",
+      "아세틸다이펩타이드-1세틸에스터",
+      "시알릴락토오스"
+    ],
+    "careProfile": {
+      "hydrationSupport": 6,
+      "lightweightFit": 8,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 4
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-22",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "국내 공식 페이지의 산뜻한 젤크림 설명과 동봉 상품고시 이미지의 전성분을 대조한 내부 평가예요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-22",
+      "sources": [
+        {
+          "url": "https://curecode.co.kr/product/code-02-%ED%81%90%EC%96%B4%EC%BD%94%EB%93%9C-%EC%88%98%EB%94%A9-%EB%A6%B4%EB%A6%AC%ED%94%84-%EC%A0%A4-%EC%88%98%EB%B6%84-%ED%81%AC%EB%A6%BC-80ml-l-%EB%AF%BC%EA%B0%90-%ED%94%BC%EB%B6%80-l-%EC%A7%84%EC%A0%95-l-%EC%88%98%EB%B6%84-%EA%B3%B5%EA%B8%89-l-%EC%A0%80%EC%9E%90%EA%B7%B9-l-%EC%A0%A4-%ED%81%AC%EB%A6%BC-l-%ED%94%BC/35/",
+          "sourceType": "official_domestic_product_page"
+        },
+        {
+          "url": "https://ecimg.cafe24img.com/pg1711b24193012097/curecode/web/upload/NNEditor/20251222/ED8190EC96B4ECBD94EB939C20EC8898EB94A920EBA6B4EBA6ACED948420ECA0A420EC8381EC84B8ED8E98EC9DB4ECA78026.jpg",
+          "sourceType": "official_domestic_ingredient_label"
+        }
+      ],
+      "note": "공식몰 상품번호 35의 Code 02 수딩 릴리프 젤 80ml 상품고시 이미지에서 국내 전성분을 확인했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": true
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "가벼운 젤크림으로 보습을 마무리하고 싶은 복합성 피부에 비교할 수 있어요.",
+    "shortReason": "산뜻한 젤크림으로 보습 마무리",
+    "caution": [
+      "병풀이나 서양고추나물꽃 추출물이 든 제품에 반응한 적이 있으면 피하세요.",
+      "상처 난 부위에는 사용을 피하고, 따가움이나 붉어짐이 생기면 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "isAvailable": true,
+    "link": "https://curecode.co.kr/product/code-02-%ED%81%90%EC%96%B4%EC%BD%94%EB%93%9C-%EC%88%98%EB%94%A9-%EB%A6%B4%EB%A6%AC%ED%94%84-%EC%A0%A4-%EC%88%98%EB%B6%84-%ED%81%AC%EB%A6%BC-80ml-l-%EB%AF%BC%EA%B0%90-%ED%94%BC%EB%B6%80-l-%EC%A7%84%EC%A0%95-l-%EC%88%98%EB%B6%84-%EA%B3%B5%EA%B8%89-l-%EC%A0%80%EC%9E%90%EA%B7%B9-l-%EC%A0%A4-%ED%81%AC%EB%A6%BC-l-%ED%94%BC/35/",
+    "price": null,
+    "image": "https://ecimg.cafe24img.com/pg1711b24193012097/curecode/web/product/medium/20260422/4583e4bb2832da34ce22766d8a8e56f2.jpg",
+    "imageSource": {
+      "url": "https://ecimg.cafe24img.com/pg1711b24193012097/curecode/web/product/medium/20260422/4583e4bb2832da34ce22766d8a8e56f2.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-22"
+    },
+    "purchaseSource": {
+      "provider": "official",
+      "label": "큐어코드 공식몰",
+      "url": "https://curecode.co.kr/product/code-02-%ED%81%90%EC%96%B4%EC%BD%94%EB%93%9C-%EC%88%98%EB%94%A9-%EB%A6%B4%EB%A6%AC%ED%94%84-%EC%A0%A4-%EC%88%98%EB%B6%84-%ED%81%AC%EB%A6%BC-80ml-l-%EB%AF%BC%EA%B0%90-%ED%94%BC%EB%B6%80-l-%EC%A7%84%EC%A0%95-l-%EC%88%98%EB%B6%84-%EA%B3%B5%EA%B8%89-l-%EC%A0%80%EC%9E%90%EA%B7%B9-l-%EC%A0%A4-%ED%81%AC%EB%A6%BC-l-%ED%94%BC/35/",
+      "checkedAt": "2026-11-22",
+      "verification": "official_product_page",
+      "liveStockVerified": false
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "세안 후 보습 마무리 단계",
+      "howToUse": [
+        "건조한 부위에 소량을 얇게 펴 발라요."
+      ],
+      "caution": [
+        "병풀이나 서양고추나물꽃 추출물이 든 제품에 반응한 적이 있으면 피하세요.",
+        "상처 난 부위에는 사용을 피하고, 따가움이나 붉어짐이 생기면 중단해요."
+      ]
+    }
   }
 ]
