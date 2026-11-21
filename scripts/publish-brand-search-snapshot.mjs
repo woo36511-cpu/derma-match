@@ -1,3 +1,4 @@
+import { loadCatalogStores } from "./official-brand-directory.mjs";
 import isFragranceProduct from "../src/utils/isFragranceProduct.js";
 import { readFile, writeFile } from "node:fs/promises";
 import { stores } from "./sync-official-routine-catalog.mjs";
@@ -8,13 +9,16 @@ const [fresh, existing] = await Promise.all([source, destination].map(async path
 if (fresh.market !== "KR" || fresh.provenance !== "official_listing_identity_only" || !Array.isArray(fresh.products))
   throw new Error("Unrecognized official listing snapshot");
 
+const catalogStores = await loadCatalogStores(stores);
 const items = new Map(existing.products.map(item => [item.id, item]));
 const host = name => name.replace(/^(?:www|m)\./i, "");
 for (const candidate of fresh.products) {
   const match = /^lookup:([a-z0-9]+):([a-z0-9-]{1,120})$/.exec(candidate?.id);
-  const store = match && Object.hasOwn(stores, match[1]) && stores[match[1]];
+  const store = match && Object.hasOwn(catalogStores, match[1]) && catalogStores[match[1]];
   if (!store || (!store.sourceMarket && !/^\d{1,12}$/.test(match[2])) || candidate.brand !== store.brand || typeof candidate.name !== "string" || !candidate.name.trim() ||
       candidate.name.length > 128 || isFragranceProduct(candidate.name) || !["cleanser", "toner", "serum", "moisturizer", "sunscreen"].includes(candidate.category)) continue;
+  if (!Object.hasOwn(stores, match[1]) && !existing.brands?.[match[1]]?.officialCatalogUrl &&
+      !(fresh.brands?.[match[1]]?.fetchedListings >= 2 && fresh.brands[match[1]].name === store.brand)) continue;
   let url;
   try { url = new URL(candidate.officialUrl); } catch { continue; }
   if (url.protocol !== "https:" || url.port || url.username || url.password || host(url.hostname) !== host(store.domain)) continue;
@@ -28,11 +32,20 @@ for (const candidate of fresh.products) {
       typeof candidate.volume === "string" && /^\d+(?:\.\d+)?(?:ml|g|매)$/.test(candidate.volume) ? { volume: candidate.volume } : {}),
     officialUrl: url.href, ...(store.sourceMarket && { sourceMarket: store.sourceMarket }), ...(old?.image && { image: old.image }) });
 }
+const publishedKeys = new Set([...items.keys()].map(id => id.split(":")[1]));
+const newBrands = Object.fromEntries(Object.entries(fresh.brands ?? {}).filter(([key, metadata]) =>
+  !Object.hasOwn(stores, key) && Object.hasOwn(catalogStores, key) && publishedKeys.has(key) &&
+  metadata?.name === catalogStores[key].brand && metadata.fetchedListings >= 2 &&
+  !Object.hasOwn(existing.brands ?? {}, key)).map(([key, metadata]) => {
+    const store = catalogStores[key];
+    return [key, { ...metadata, alias: store.alias, officialCatalogUrl: `https://${store.domain}${store.paths[0][1]}` }];
+  }));
+for (const { name } of Object.values(newBrands)) console.log(`New skincare brand published: ${name}`);
 const products = [...items.values()].sort((a, b) => a.id.localeCompare(b.id, "en"));
 const canonical = item => JSON.stringify(Object.entries(item).sort(([a], [b]) => a.localeCompare(b)));
-if (products.length === existing.products.length && products.every((item, i) => canonical(item) === canonical(existing.products[i]))) {
+if (Object.keys(newBrands).length === 0 && products.length === existing.products.length && products.every((item, i) => canonical(item) === canonical(existing.products[i]))) {
   console.log("Product search listings are unchanged");
 } else {
-  await writeFile(destination, JSON.stringify({ ...existing, checkedAt: fresh.checkedAt, products }, null, 2) + "\n");
+  await writeFile(destination, JSON.stringify({ ...existing, checkedAt: fresh.checkedAt, brands: { ...existing.brands, ...newBrands }, products }, null, 2) + "\n");
   console.log(`${products.length} listing-only search entries; no recommendation changes`);
 }

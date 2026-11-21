@@ -1,3 +1,4 @@
+import { loadCatalogStores } from "./official-brand-directory.mjs";
 import isFragranceProduct from "../src/utils/isFragranceProduct.js";
 import { execFile } from "node:child_process";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -698,8 +699,9 @@ async function main() {
   const brands = { ...prior.brands };
   const date = process.env.ROUTINE_CATALOG_DATE ?? new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Seoul" });
   const selection = process.argv.find(arg => arg.startsWith("--brands="))?.slice(9).split(",");
-  if (selection?.some(key => !Object.hasOwn(stores, key))) throw new Error("Unknown brand in --brands");
-  const queue = Object.entries(stores).filter(([key]) => !selection || selection.includes(key));
+  const catalogStores = await loadCatalogStores(stores);
+  if (selection?.some(key => !Object.hasOwn(catalogStores, key))) throw new Error("Unknown brand in --brands");
+  const queue = Object.entries(catalogStores).filter(([key]) => !selection || selection.includes(key));
   await Promise.all(Array.from({ length: 4 }, async () => {
     for (let item; (item = queue.shift()); ) {
       const [key, store] = item;
@@ -729,6 +731,10 @@ async function main() {
           const current = fresh.get(p.id);
           if (!current || p.image || (!current.volume && p.volume)) fresh.set(p.id, p);
         }
+      }
+      if (!Object.hasOwn(stores, key) && fresh.size < 2) {
+        console.log(`${store.brand}: candidate pending, ${fresh.size} usable skincare listings`);
+        continue;
       }
       if (useful) {
         const byName = new Set();

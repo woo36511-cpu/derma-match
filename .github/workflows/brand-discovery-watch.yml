@@ -2,6 +2,11 @@ name: Brand catalog discovery watch
 on:
   schedule:
     - cron: '19 19 * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/brand-discovery-watch.yml'
+      - 'data/official-brand-candidates.json'
   workflow_dispatch:
 
 permissions:
@@ -14,7 +19,7 @@ concurrency:
 jobs:
   discover:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 40
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
@@ -25,18 +30,26 @@ jobs:
           cache: npm
       - run: npm ci
       - run: node --test scripts/official-routine-catalog.test.mjs scripts/import-oliveyoung-feed.test.mjs
-      - name: Update official brand listing snapshot
+      - name: Load approved official brand directory
         env:
-          OLIVEYOUNG_APPROVED_FEED_URL: ${{ secrets.OLIVEYOUNG_APPROVED_FEED_URL }}
+          DIRECTORY_URL: ${{ vars.ROUTINE_BRAND_DIRECTORY_URL }}
         run: |
-          prior=$(gh run list --workflow brand-discovery-watch.yml --branch main --status success --limit 1 --json databaseId --jq '.[0].databaseId // empty')
-          if [[ -n "$prior" ]]; then
-            gh run download "$prior" --name official-brand-discovery --dir prior
-            export ROUTINE_CATALOG_PREVIOUS=prior/official-brand-discovery.json
+          if [[ -z "$DIRECTORY_URL" ]]; then exit 0; fi
+          directory="$RUNNER_TEMP/official-brand-directory.json"
+          if curl --fail --silent --show-error --proto '=https' --max-time 20 --max-filesize 200000 --output "$directory" -- "$DIRECTORY_URL"; then
+            echo "ROUTINE_BRAND_DIRECTORY=$directory" >> "$GITHUB_ENV"
+          else
+            echo "::warning::Approved brand directory unavailable; checking bundled candidates"
           fi
+      - name: Update official brand listing snapshot
+        run: |
           ROUTINE_CATALOG_OUTPUT=official-brand-discovery.json node scripts/sync-official-routine-catalog.mjs "${RUNNER_TEMP}/dearsince-brand-pages" --fetch --scheduled
           node scripts/build-catalog-review-queue.mjs official-brand-discovery.json catalog-review-queue.json
-          node scripts/import-oliveyoung-feed.mjs data/oliveyoung-discovery-seed.json oliveyoung-discovery.json
+      - name: Import approved Olive Young listings
+        continue-on-error: true
+        env:
+          OLIVEYOUNG_APPROVED_FEED_URL: ${{ secrets.OLIVEYOUNG_APPROVED_FEED_URL }}
+        run: node scripts/import-oliveyoung-feed.mjs data/oliveyoung-discovery-seed.json oliveyoung-discovery.json
       - uses: actions/upload-artifact@v4
         with:
           name: official-brand-discovery
