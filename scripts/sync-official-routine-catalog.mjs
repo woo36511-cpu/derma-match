@@ -378,7 +378,7 @@ export const officialListingImage = (input, host) => {
     return u.protocol === "https:" && !u.port && !u.username && !u.password &&
       (hostKey(u.hostname) === hostKey(host) ||
         /(?:^|\.)cafe24img\.com$|^(?:cafe24img|cafe24)\.poxo\.com$|^godomall\.speedycdn\.net$|(?:^|\.)makeshop\.co\.kr$|^inm-cdn\.innisfree\.com$/.test(u.hostname) ||
-        (hostKey(host) === "ethefaceshop.com" && u.hostname === "image.ethefaceshop.com") ||
+        (hostKey(host) === "thefaceshop.com" && u.hostname === "image.ethefaceshop.com") ||
         (hostKey(host) === "eau-thermale-avene.co.kr" && u.hostname === "media-pierre-fabre.wedia-group.com") ||
         (Object.values(stores).some(store => store.type === "imweb" && hostKey(store.domain) === hostKey(host)) && u.hostname === "cdn.imweb.me")) ? u.href.split("#")[0] : null;
   } catch { return null; }
