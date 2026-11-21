@@ -23,5 +23,23 @@
     "alias": "SanDaWha",
     "catalogUrl": "https://skincuremall.com/category/%EC%82%B0%EB%8B%A4%ED%99%94/202/",
     "listOnly": true
+  },
+  {
+    "key": "soonding",
+    "brand": "순딩",
+    "alias": "SOONDING",
+    "catalogUrl": "https://soonding.kr/product/list.html?cate_no=42"
+  },
+  {
+    "key": "makeprem",
+    "brand": "메이크프렘",
+    "alias": "make p:rem",
+    "catalogUrl": "https://www.makeprem.com/goods/goods_list.php?cateCd=001"
+  },
+  {
+    "key": "mastina",
+    "brand": "매스티나",
+    "alias": "MASTINA",
+    "catalogUrl": "https://m.mastina.co.kr/product/list.html?cate_no=156"
   }
 ]
