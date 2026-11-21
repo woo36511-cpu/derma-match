@@ -124,6 +124,8 @@ export const stores = {
   blancdoux: cafe("더랩바이블랑두", "the lab by blanc doux", "blancdoux.com", [["list", "/product/list.html?cate_no=4"]]),
   neogen: cafe("네오젠", "NEOGEN", "www.neogenlab.co.kr"),
   drdifferent: cafe("닥터디퍼런트", "Dr.Different", "drdifferent.com"),
+  neutrogena: { brand: "뉴트로지나", alias: "Neutrogena", domain: "www.neutrogena.co.kr", type: "neutrogena",
+    paths: [["list", "/products"]] },
   goodal: clubClio("구달", "goodal", 3),
   dermatory: clubClio("더마토리", "Dermatory", 5),
   faceshop: { brand: "더페이스샵", alias: "THE FACE SHOP", domain: "www.thefaceshop.com", type: "faceshop", paths: [["list77", "/mall/product/category.jsp?cate_seq=77"]] },
@@ -376,6 +378,21 @@ function extractInnisfree(source, storeKey, store) {
 
 export function extractOfficialListings(source, storeKey, store, sitemap = false) {
   if (store.type === "innisfree") return extractInnisfree(source, storeKey, store);
+  if (store.type === "neutrogena") {
+    for (const script of source.matchAll(/<script\b[^>]*\btype="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
+      let document;
+      try { document = JSON.parse(script[1]); } catch { continue; }
+      if (document?.["@type"] !== "ItemList" || !Array.isArray(document.itemListElement)) continue;
+      return document.itemListElement.flatMap(entry => {
+        const url = urlWithHost(entry?.url, store.domain, false);
+        const id = url?.pathname.match(/^\/(?:products\/)?(?:cleanser|make-up-remover)\/([a-z0-9-]+)\/?$/)?.[1];
+        if (!id || typeof entry.name !== "string") return [];
+        const candidate = makeCandidate(storeKey, store, entry.name, url.origin + url.pathname, id);
+        return candidate ? [candidate] : [];
+      });
+    }
+    return [];
+  }
   const candidates = [];
   const tree = Array.from(walk(parse5.parse(source), store.type === "cerave"));
   if (store.type === "clubclio") return tree.flatMap(node => {
