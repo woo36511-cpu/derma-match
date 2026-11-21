@@ -21,3 +21,12 @@ test("unsafe schemes, fake affiliate hosts and credentials cannot create purchas
   for(const link of ["javascript:alert(1)","data:text/html,test","http://www.coupang.com/test","https://user:password@www.coupang.com/test","#",""]) expect(getProductPurchaseLink({...base,link}).url).toBe("");
   for(const link of ["https://link.coupang.com.evil.test/a/1","https://evil.test/?next=link.coupang.com","https://coupa.ng:444/test"]) expect(isCoupangAffiliateUrl(link)).toBe(false);
 });
+
+test("a verified Coupang product takes precedence and old affiliate shortcuts become ordinary searches", () => {
+  expect(getProductPurchaseLink({ id: 2, link: "https://www.torriden.com/item" })).toMatchObject({
+    url: "https://www.coupang.com/vp/products/8215941962?itemId=23645004326&vendorItemId=87958178858", affiliate: false,
+  });
+  const result = getProductPurchaseLink({ id: 999, name: "예시 크림", volume: "50ml", link: "https://link.coupang.com/a/example" });
+  expect(result.affiliate).toBe(false);
+  expect(new URL(result.url).searchParams.get("q")).toBe("예시 크림 50ml");
+});

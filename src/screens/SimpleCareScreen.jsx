@@ -71,8 +71,8 @@ export function HydrationComparison({ slot, product, entries = [] }) {
   const category = { toner: "toner", serum: "serum", cream: "moisturizer" }[slot];
   if (!category || !product) return null;
 
-  const recommendedScore = getProductEvidenceStatus(product).eligible
-    ? product.careProfile.hydrationSupport : null;
+  const reviewedProfile = getProductEvidenceStatus(product).eligible ? product.careProfile : null;
+  const recommendedScore = reviewedProfile?.hydrationSupport;
   const comparisons = entries.flatMap(entry => {
     const previous = getCurrentRoutineProduct(entry);
     if (previous?.category !== category) return [];
@@ -84,14 +84,23 @@ export function HydrationComparison({ slot, product, entries = [] }) {
       label = recommendedScore > previousScore ? "기존 제품보다 높음"
         : recommendedScore < previousScore ? "기존 제품보다 낮음" : "기존 제품과 비슷함";
     }
-    return [{ id: entry.id, name: previous.name, label }];
+    const textureDifference = reviewedProfile && catalog ? reviewedProfile.lightweightFit - catalog.careProfile.lightweightFit : null;
+    const texture = textureDifference >= 2 ? "기존보다 산뜻한 마무리로 예상돼요."
+      : textureDifference <= -2 ? "기존보다 묵직한 마무리로 예상돼요." : null;
+    const previousPurpose = reviewedProfile && catalog?.shortReason !== product.shortReason ? catalog?.shortReason : null;
+    return [{ id: entry.id, name: previous.name, label, texture, previousPurpose }];
   });
   if (!comparisons.length) return null;
 
   return <section className="mt-2 rounded-xl bg-forest-50 p-3 text-sm" aria-label={`보습감 비교 · ${product.name}`}>
-    <h4 className="font-bold text-forest-900">예상 보습감 비교</h4>
-    <ul className="mt-1 space-y-2">{comparisons.map(({ id, name, label }) =>
-      <li key={id}><span className="block break-words text-slate-700">{name}</span><strong>{label}</strong></li>
+    <h4 className="font-bold text-forest-900">기존 제품과 달라지는 점</h4>
+    <ul className="mt-1 space-y-2">{comparisons.map(({ id, name, label, texture, previousPurpose }) =>
+      <li key={id} className="space-y-1">
+        <span className="block break-words text-slate-700">{name}</span>
+        {previousPurpose && <p>기존 제품의 주요 기능 · {previousPurpose}</p>}
+        <p>예상 보습감 · <strong>{label}</strong></p>
+        {texture && <p>{texture}</p>}
+      </li>
     )}</ul>
     <p className="mt-2 text-xs text-slate-600">제품 검수 자료 기준 · 실제 사용감은 다를 수 있어요.</p>
   </section>;

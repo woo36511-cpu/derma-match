@@ -1,3 +1,4 @@
+import coupangLinks from "../data/productCoupangLinks.json";
 import additions from "../data/catalogExpansion.json";
 import { products } from "../data/products";
 import { cosmeticProductProfiles } from "../data/cosmeticAddOns";
@@ -20,7 +21,7 @@ test("expanded catalog has stable unique identities, actual full ingredients, ph
     expect(p.evidence.priceVerified).toBe(false);
     expect(p.purchaseSource.liveStockVerified).toBe(false);
     const ordinary = getProductPurchaseLink(p, {});
-    expect(ordinary.url).toBe(p.link);
+    expect(ordinary.url).toBe(coupangLinks[p.id] ?? (p.marketplaceListing?.productName === p.name ? p.marketplaceListing.url : p.link));
     expect(ordinary.affiliate).toBe(false);
     expect(p.catalogAudit.careProfileNote).toContain("내부 평가");
   }

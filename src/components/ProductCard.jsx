@@ -1,3 +1,4 @@
+import { CopyProductName } from "./CopyProductName";
 import { useState } from "react";
 import officialProductPhotos from "../data/officialProductPhotos.json";
 import { getCategoryLabel } from "../utils/productCatalog";
@@ -61,11 +62,15 @@ export function ProductCard({ product, categoryKey, userContext, step = 0, optio
     </div>
     <ProductPhoto key={photo} src={photo} name={product.name} />
     <div>
-      <h3 className="text-base font-bold leading-snug text-ink">{product.name}</h3>
+      <div className="flex flex-wrap items-center gap-2">
+        <h3 className="text-base font-bold leading-snug text-ink">{product.name}</h3>
+        <CopyProductName key={product.name} name={product.name} />
+      </div>
       <p className="mt-1 text-xs text-slate-600">
         {[product.volume, price && `공식 기준가 ${price.amount.toLocaleString("ko-KR")}원`].filter(Boolean).join(" · ")}
       </p>
-      {visibleReason && <p className="mt-2 text-sm leading-relaxed text-slate-700">{visibleReason}</p>}
+      {product.shortReason && <p className="mt-2 text-sm text-slate-700"><strong>주요 기능</strong> · {product.shortReason}</p>}
+      {visibleReason && visibleReason !== product.shortReason && <p className="mt-2 text-sm leading-relaxed text-slate-700">{visibleReason}</p>}
     </div>
     <div className="grid gap-1.5 [&_summary]:gap-1.5 [&_summary]:px-2.5 [&_summary]:py-2 [&_summary]:text-xs [&_summary>span]:text-[11px]">
       <DetailDisclosure title={ingredients?.length ? "추천 이유·전성분" : "추천 이유·성분 정보"}>
