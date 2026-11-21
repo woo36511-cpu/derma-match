@@ -514,6 +514,22 @@
       "fetchedListings": 32,
       "alias": "LANEIGE",
       "officialCatalogUrl": "https://laneige.com/category/%EC%A0%84%EC%B2%B4%EB%B3%B4%EA%B8%B0/63/"
+    },
+    "drmelaxin": {
+      "name": "닥터멜락신",
+      "checkedAt": "2026-11-21",
+      "usefulPages": 2,
+      "fetchedListings": 82,
+      "alias": "Dr. MELAXIN",
+      "officialCatalogUrl": "https://melaxin.com/product/list.html?cate_no=66"
+    },
+    "rejuran": {
+      "name": "리쥬란 코스메틱",
+      "checkedAt": "2026-11-21",
+      "usefulPages": 2,
+      "fetchedListings": 38,
+      "alias": "REJURAN COSMETICS",
+      "officialCatalogUrl": "https://rejurancosmetics.co.kr/category/%ED%81%AC%EB%A6%BC/263/"
     }
   },
   "products": [
@@ -7403,6 +7419,666 @@
       "category": "moisturizer",
       "volume": "50ml",
       "officialUrl": "https://www.dr-g.co.kr/item/9938"
+    },
+    {
+      "id": "lookup:drmelaxin:1002",
+      "name": "닥터멜락신 시카피린 카밍 앰플",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EC%8B%9C%EC%B9%B4%ED%94%BC%EB%A6%B0-%EC%B9%B4%EB%B0%8D-%EC%95%B0%ED%94%8C/1002/"
+    },
+    {
+      "id": "lookup:drmelaxin:1250",
+      "name": "닥터멜락신 오이스터 펩타이드 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EC%98%A4%EC%9D%B4%EC%8A%A4%ED%84%B0-%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C-%EC%84%B8%EB%9F%BC/1250/"
+    },
+    {
+      "id": "lookup:drmelaxin:135",
+      "name": "닥터멜락신 엑소좀 트러블 흔적 앰플플러스",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EC%97%91%EC%86%8C%EC%A2%80-%ED%8A%B8%EB%9F%AC%EB%B8%94-%ED%9D%94%EC%A0%81-%EC%95%B0%ED%94%8C%ED%94%8C%EB%9F%AC%EC%8A%A4/135/"
+    },
+    {
+      "id": "lookup:drmelaxin:138",
+      "name": "닥터멜락신 비피 스피큘 베리어 크림",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "moisturizer",
+      "officialUrl": "https://melaxin.com/product/%EB%B9%84%ED%94%BC-%EC%8A%A4%ED%94%BC%ED%81%98-%EB%B2%A0%EB%A6%AC%EC%96%B4-%ED%81%AC%EB%A6%BC/138/"
+    },
+    {
+      "id": "lookup:drmelaxin:147",
+      "name": "닥터멜락신 눈가꺼짐볼륨 관리 시멘리트 칼슘 볼륨 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EB%88%88%EA%B0%80%EA%BA%BC%EC%A7%90%EB%B3%BC%EB%A5%A8-%EA%B4%80%EB%A6%AC-%EC%8B%9C%EB%A9%98%EB%A6%AC%ED%8A%B8-%EC%B9%BC%EC%8A%98-%EB%B3%BC%EB%A5%A8-%EC%84%B8%EB%9F%BC/147/"
+    },
+    {
+      "id": "lookup:drmelaxin:1554",
+      "name": "닥터멜락신 필샷 흑미 휩 클렌저",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "cleanser",
+      "officialUrl": "https://melaxin.com/product/%ED%95%84%EC%83%B7-%ED%9D%91%EB%AF%B8-%ED%9C%A9-%ED%81%B4%EB%A0%8C%EC%A0%80/1554/"
+    },
+    {
+      "id": "lookup:drmelaxin:1555",
+      "name": "닥터멜락신 필샷 코직애씨드 터메릭 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%ED%95%84%EC%83%B7-%EC%BD%94%EC%A7%81%EC%95%A0%EC%94%A8%EB%93%9C-%ED%84%B0%EB%A9%94%EB%A6%AD-%EC%84%B8%EB%9F%BC/1555/"
+    },
+    {
+      "id": "lookup:drmelaxin:1573",
+      "name": "닥터멜락신 티엑스 아스타잔틴 트리플 브라이트닝 젤리 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%ED%8B%B0%EC%97%91%EC%8A%A4-%EC%95%84%EC%8A%A4%ED%83%80%EC%9E%94%ED%8B%B4-%ED%8A%B8%EB%A6%AC%ED%94%8C-%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%8B%9D-%EC%A0%A4%EB%A6%AC-%EC%84%B8%EB%9F%BC/1573/"
+    },
+    {
+      "id": "lookup:drmelaxin:1578",
+      "name": "닥터멜락신 필샷 쌀 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%ED%95%84%EC%83%B7-%EC%8C%80-%EC%84%B8%EB%9F%BC/1578/"
+    },
+    {
+      "id": "lookup:drmelaxin:1760",
+      "name": "닥터멜락신 일시품절best 12 트라넥삼산tx 기미 앰플rx",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EC%9D%BC%EC%8B%9C%ED%92%88%EC%A0%88best-12-%ED%8A%B8%EB%9D%BC%EB%84%A5%EC%82%BC%EC%82%B0tx-%EA%B8%B0%EB%AF%B8-%EC%95%B0%ED%94%8Crx/1760/"
+    },
+    {
+      "id": "lookup:drmelaxin:1834",
+      "name": "닥터멜락신 0원딜 사이아노 핑크 스피큘 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/0%EC%9B%90%EB%94%9C-%EC%82%AC%EC%9D%B4%EC%95%84%EB%85%B8-%ED%95%91%ED%81%AC-%EC%8A%A4%ED%94%BC%ED%81%98-%EC%84%B8%EB%9F%BC/1834/"
+    },
+    {
+      "id": "lookup:drmelaxin:1907",
+      "name": "닥터멜락신 tx 코직애씨드 터메릭 토너 패드",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "toner",
+      "officialUrl": "https://melaxin.com/product/tx-%EC%BD%94%EC%A7%81%EC%95%A0%EC%94%A8%EB%93%9C-%ED%84%B0%EB%A9%94%EB%A6%AD-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C/1907/"
+    },
+    {
+      "id": "lookup:drmelaxin:1953",
+      "name": "닥터멜락신 필 샷 각질 케어 티엑스 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%ED%95%84-%EC%83%B7-%EA%B0%81%EC%A7%88-%EC%BC%80%EC%96%B4-%ED%8B%B0%EC%97%91%EC%8A%A4-%EC%84%B8%EB%9F%BC/1953/"
+    },
+    {
+      "id": "lookup:drmelaxin:2215",
+      "name": "닥터멜락신 칵톡스 선인장 에센스 포어 릴리프 토너",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "toner",
+      "officialUrl": "https://melaxin.com/product/%EC%B9%B5%ED%86%A1%EC%8A%A4-%EC%84%A0%EC%9D%B8%EC%9E%A5-%EC%97%90%EC%84%BC%EC%8A%A4-%ED%8F%AC%EC%96%B4-%EB%A6%B4%EB%A6%AC%ED%94%84-%ED%86%A0%EB%84%88/2215/"
+    },
+    {
+      "id": "lookup:drmelaxin:2234",
+      "name": "닥터멜락신 칵톡스 포어 릴리프 젤리 세럼 미스트",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "toner",
+      "officialUrl": "https://melaxin.com/product/%EC%B9%B5%ED%86%A1%EC%8A%A4-%ED%8F%AC%EC%96%B4-%EB%A6%B4%EB%A6%AC%ED%94%84-%EC%A0%A4%EB%A6%AC-%EC%84%B8%EB%9F%BC-%EB%AF%B8%EC%8A%A4%ED%8A%B8/2234/"
+    },
+    {
+      "id": "lookup:drmelaxin:2331",
+      "name": "닥터멜락신 칵톡스 포어 릴리프 듀얼 캡슐 크림",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "moisturizer",
+      "officialUrl": "https://melaxin.com/product/%EC%B9%B5%ED%86%A1%EC%8A%A4-%ED%8F%AC%EC%96%B4-%EB%A6%B4%EB%A6%AC%ED%94%84-%EB%93%80%EC%96%BC-%EC%BA%A1%EC%8A%90-%ED%81%AC%EB%A6%BC/2331/"
+    },
+    {
+      "id": "lookup:drmelaxin:2333",
+      "name": "닥터멜락신 칵톡스 포어 릴리프 젤 클렌저",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "cleanser",
+      "officialUrl": "https://melaxin.com/product/%EC%B9%B5%ED%86%A1%EC%8A%A4-%ED%8F%AC%EC%96%B4-%EB%A6%B4%EB%A6%AC%ED%94%84-%EC%A0%A4-%ED%81%B4%EB%A0%8C%EC%A0%80/2333/"
+    },
+    {
+      "id": "lookup:drmelaxin:2371",
+      "name": "닥터멜락신 대용량 up to 56 칼슘 본딩 세럼페이셜 크림",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "volume": "100ml",
+      "officialUrl": "https://melaxin.com/product/%EB%8C%80%EC%9A%A9%EB%9F%89-100ml-up-to-56-%EC%B9%BC%EC%8A%98-%EB%B3%B8%EB%94%A9-%EC%84%B8%EB%9F%BC%ED%8E%98%EC%9D%B4%EC%85%9C-%ED%81%AC%EB%A6%BC/2371/"
+    },
+    {
+      "id": "lookup:drmelaxin:2384",
+      "name": "닥터멜락신 칵톡스 포어 릴리프 젤리 토너 패드",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "toner",
+      "officialUrl": "https://melaxin.com/product/%EC%B9%B5%ED%86%A1%EC%8A%A4-%ED%8F%AC%EC%96%B4-%EB%A6%B4%EB%A6%AC%ED%94%84-%EC%A0%A4%EB%A6%AC-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C/2384/"
+    },
+    {
+      "id": "lookup:drmelaxin:240",
+      "name": "닥터멜락신 리피노 무지방산 앰플",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EB%A6%AC%ED%94%BC%EB%85%B8-%EB%AC%B4%EC%A7%80%EB%B0%A9%EC%82%B0-%EC%95%B0%ED%94%8C/240/"
+    },
+    {
+      "id": "lookup:drmelaxin:2406",
+      "name": "닥터멜락신 칵톡스 포어 릴리프 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EB%8B%A5%ED%84%B0%EB%A9%9C%EB%9D%BD%EC%8B%A0-%EC%B9%B5%ED%86%A1%EC%8A%A4-%ED%8F%AC%EC%96%B4-%EB%A6%B4%EB%A6%AC%ED%94%84-%EC%84%B8%EB%9F%BC/2406/"
+    },
+    {
+      "id": "lookup:drmelaxin:2412",
+      "name": "닥터멜락신 칵톡스 포어 릴리프 스크럽 클렌징 오일",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "cleanser",
+      "officialUrl": "https://melaxin.com/product/%EC%B9%B5%ED%86%A1%EC%8A%A4-%ED%8F%AC%EC%96%B4-%EB%A6%B4%EB%A6%AC%ED%94%84-%EC%8A%A4%ED%81%AC%EB%9F%BD-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC/2412/"
+    },
+    {
+      "id": "lookup:drmelaxin:2424",
+      "name": "닥터멜락신 필샷 각질케어 칵톡스 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%ED%95%84%EC%83%B7-%EA%B0%81%EC%A7%88%EC%BC%80%EC%96%B4-%EC%B9%B5%ED%86%A1%EC%8A%A4-%EC%84%B8%EB%9F%BC/2424/"
+    },
+    {
+      "id": "lookup:drmelaxin:2434",
+      "name": "닥터멜락신 칵톡스 릴리프 세럼 솝",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EC%B9%B5%ED%86%A1%EC%8A%A4-%EB%A6%B4%EB%A6%AC%ED%94%84-%EC%84%B8%EB%9F%BC-%EC%86%9D/2434/"
+    },
+    {
+      "id": "lookup:drmelaxin:2440",
+      "name": "닥터멜락신 대용량 칼슘 본딩 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "volume": "80ml",
+      "officialUrl": "https://melaxin.com/product/%EB%8C%80%EC%9A%A9%EB%9F%89-80ml-%EC%B9%BC%EC%8A%98-%EB%B3%B8%EB%94%A9-%EC%84%B8%EB%9F%BC/2440/"
+    },
+    {
+      "id": "lookup:drmelaxin:2441",
+      "name": "닥터멜락신 대용량 칼슘 본딩 페이셜 크림",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://melaxin.com/product/%EB%8C%80%EC%9A%A9%EB%9F%89-100ml-%EC%B9%BC%EC%8A%98-%EB%B3%B8%EB%94%A9-%ED%8E%98%EC%9D%B4%EC%85%9C-%ED%81%AC%EB%A6%BC/2441/"
+    },
+    {
+      "id": "lookup:drmelaxin:2457",
+      "name": "닥터멜락신 59 할인 멜팅클렌저",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "cleanser",
+      "officialUrl": "https://melaxin.com/product/59-%ED%95%A0%EC%9D%B8-%EB%A9%9C%ED%8C%85%ED%81%B4%EB%A0%8C%EC%A0%80/2457/"
+    },
+    {
+      "id": "lookup:drmelaxin:2465",
+      "name": "닥터멜락신 코직애씨드 터메릭 세럼 솝",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EC%BD%94%EC%A7%81%EC%95%A0%EC%94%A8%EB%93%9C-%ED%84%B0%EB%A9%94%EB%A6%AD-%EC%84%B8%EB%9F%BC-%EC%86%9D/2465/"
+    },
+    {
+      "id": "lookup:drmelaxin:2466",
+      "name": "닥터멜락신 코직애씨드 터메릭 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EC%BD%94%EC%A7%81%EC%95%A0%EC%94%A8%EB%93%9C-%ED%84%B0%EB%A9%94%EB%A6%AD-%EC%84%B8%EB%9F%BC/2466/"
+    },
+    {
+      "id": "lookup:drmelaxin:2467",
+      "name": "닥터멜락신 칼슘 본딩 베리어 토너",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "toner",
+      "officialUrl": "https://melaxin.com/product/%EC%B9%BC%EC%8A%98-%EB%B3%B8%EB%94%A9-%EB%B2%A0%EB%A6%AC%EC%96%B4-%ED%86%A0%EB%84%88/2467/"
+    },
+    {
+      "id": "lookup:drmelaxin:2468",
+      "name": "닥터멜락신 나이아신아마이드 피코토닉샷 착색 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-%ED%94%BC%EC%BD%94%ED%86%A0%EB%8B%89%EC%83%B7-%EC%B0%A9%EC%83%89-%EC%84%B8%EB%9F%BC/2468/"
+    },
+    {
+      "id": "lookup:drmelaxin:2469",
+      "name": "닥터멜락신 나이아신아마이드 피코토닉샷 착색 토너",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "toner",
+      "officialUrl": "https://melaxin.com/product/%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-%ED%94%BC%EC%BD%94%ED%86%A0%EB%8B%89%EC%83%B7-%EC%B0%A9%EC%83%89-%ED%86%A0%EB%84%88/2469/"
+    },
+    {
+      "id": "lookup:drmelaxin:2470",
+      "name": "닥터멜락신 나이아신아마이드 피코토닉샷 착색 크림",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "moisturizer",
+      "officialUrl": "https://melaxin.com/product/%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-%ED%94%BC%EC%BD%94%ED%86%A0%EB%8B%89%EC%83%B7-%EC%B0%A9%EC%83%89-%ED%81%AC%EB%A6%BC/2470/"
+    },
+    {
+      "id": "lookup:drmelaxin:248",
+      "name": "닥터멜락신 오이스터 펩타이드 크림",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "moisturizer",
+      "officialUrl": "https://melaxin.com/product/%EC%98%A4%EC%9D%B4%EC%8A%A4%ED%84%B0-%ED%8E%A9%ED%83%80%EC%9D%B4%EB%93%9C-%ED%81%AC%EB%A6%BC/248/"
+    },
+    {
+      "id": "lookup:drmelaxin:2487",
+      "name": "닥터멜락신 필샷 각질케어 멜라씨이 페룰릭 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%ED%95%84%EC%83%B7-%EA%B0%81%EC%A7%88%EC%BC%80%EC%96%B4-%EB%A9%9C%EB%9D%BC%EC%94%A8%EC%9D%B4-%ED%8E%98%EB%A3%B0%EB%A6%AD-%EC%84%B8%EB%9F%BC/2487/"
+    },
+    {
+      "id": "lookup:drmelaxin:2490",
+      "name": "닥터멜락신 에스 징크 블레미쉬 젤 클렌저",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "cleanser",
+      "officialUrl": "https://melaxin.com/product/%EC%97%90%EC%8A%A4-%EC%A7%95%ED%81%AC-%EB%B8%94%EB%A0%88%EB%AF%B8%EC%89%AC-%EC%A0%A4-%ED%81%B4%EB%A0%8C%EC%A0%80/2490/"
+    },
+    {
+      "id": "lookup:drmelaxin:2491",
+      "name": "닥터멜락신 코직애씨드 터메릭 토너",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "toner",
+      "officialUrl": "https://melaxin.com/product/%EC%BD%94%EC%A7%81%EC%95%A0%EC%94%A8%EB%93%9C-%ED%84%B0%EB%A9%94%EB%A6%AD-%ED%86%A0%EB%84%88/2491/"
+    },
+    {
+      "id": "lookup:drmelaxin:2492",
+      "name": "닥터멜락신 에스 징크 블레미쉬 크림",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "moisturizer",
+      "officialUrl": "https://melaxin.com/product/%EC%97%90%EC%8A%A4-%EC%A7%95%ED%81%AC-%EB%B8%94%EB%A0%88%EB%AF%B8%EC%89%AC-%ED%81%AC%EB%A6%BC/2492/"
+    },
+    {
+      "id": "lookup:drmelaxin:2493",
+      "name": "닥터멜락신 멜라씨이 페룰릭 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EB%A9%9C%EB%9D%BC%EC%94%A8%EC%9D%B4-%ED%8E%98%EB%A3%B0%EB%A6%AD-%EC%84%B8%EB%9F%BC/2493/"
+    },
+    {
+      "id": "lookup:drmelaxin:2494",
+      "name": "닥터멜락신 멜라씨이 페룰릭 크림",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "moisturizer",
+      "officialUrl": "https://melaxin.com/product/%EB%A9%9C%EB%9D%BC%EC%94%A8%EC%9D%B4-%ED%8E%98%EB%A3%B0%EB%A6%AD-%ED%81%AC%EB%A6%BC/2494/"
+    },
+    {
+      "id": "lookup:drmelaxin:2496",
+      "name": "닥터멜락신 멜라씨이 페룰릭 버블토너",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "toner",
+      "officialUrl": "https://melaxin.com/product/%EB%A9%9C%EB%9D%BC%EC%94%A8%EC%9D%B4-%ED%8E%98%EB%A3%B0%EB%A6%AD-%EB%B2%84%EB%B8%94%ED%86%A0%EB%84%88/2496/"
+    },
+    {
+      "id": "lookup:drmelaxin:2514",
+      "name": "닥터멜락신 필 샷 에스 징크 블레미쉬 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%ED%95%84-%EC%83%B7-%EC%97%90%EC%8A%A4-%EC%A7%95%ED%81%AC-%EB%B8%94%EB%A0%88%EB%AF%B8%EC%89%AC-%EC%84%B8%EB%9F%BC/2514/"
+    },
+    {
+      "id": "lookup:drmelaxin:2528",
+      "name": "닥터멜락신 에스 징크 비니거 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EC%97%90%EC%8A%A4-%EC%A7%95%ED%81%AC-%EB%B9%84%EB%8B%88%EA%B1%B0-%EC%84%B8%EB%9F%BC/2528/"
+    },
+    {
+      "id": "lookup:drmelaxin:2529",
+      "name": "닥터멜락신 에스 징크 비니거 토너",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "toner",
+      "officialUrl": "https://melaxin.com/product/%EC%97%90%EC%8A%A4-%EC%A7%95%ED%81%AC-%EB%B9%84%EB%8B%88%EA%B1%B0-%ED%86%A0%EB%84%88/2529/"
+    },
+    {
+      "id": "lookup:drmelaxin:2547",
+      "name": "닥터멜락신 리쥬 피디알엔 콜라겐 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EB%A6%AC%EC%A5%AC-%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EC%84%B8%EB%9F%BC/2547/"
+    },
+    {
+      "id": "lookup:drmelaxin:2548",
+      "name": "닥터멜락신 리쥬 피디알엔 콜라겐 페이셜 크림",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "moisturizer",
+      "officialUrl": "https://melaxin.com/product/%EB%A6%AC%EC%A5%AC-%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%8E%98%EC%9D%B4%EC%85%9C-%ED%81%AC%EB%A6%BC/2548/"
+    },
+    {
+      "id": "lookup:drmelaxin:2549",
+      "name": "닥터멜락신 리쥬 피디알엔 콜라겐 세럼 - 손상 피부 케어 장벽 더마 세럼 제품 이미지",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/detail.html?product_no=2549"
+    },
+    {
+      "id": "lookup:drmelaxin:2573",
+      "name": "닥터멜락신 멜라씨이 페룰릭 톤업 선스크린",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "sunscreen",
+      "officialUrl": "https://melaxin.com/product/%EB%A9%9C%EB%9D%BC%EC%94%A8%EC%9D%B4-%ED%8E%98%EB%A3%B0%EB%A6%AD-%ED%86%A4%EC%97%85-%EC%84%A0%EC%8A%A4%ED%81%AC%EB%A6%B0/2573/"
+    },
+    {
+      "id": "lookup:drmelaxin:2574",
+      "name": "닥터멜락신 엔에이디 옥시 바이탈 부스팅 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EC%97%94%EC%97%90%EC%9D%B4%EB%94%94-%EC%98%A5%EC%8B%9C-%EB%B0%94%EC%9D%B4%ED%83%88-%EB%B6%80%EC%8A%A4%ED%8C%85-%EC%84%B8%EB%9F%BC/2574/"
+    },
+    {
+      "id": "lookup:drmelaxin:2575",
+      "name": "닥터멜락신 멜라씨이 페룰릭 톤업 선스크린 - 톤업 선크림 제품 이미지",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "sunscreen",
+      "officialUrl": "https://melaxin.com/product/detail.html?product_no=2575"
+    },
+    {
+      "id": "lookup:drmelaxin:2576",
+      "name": "닥터멜락신 리쥬 피디알엔 콜라겐 선세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "sunscreen",
+      "officialUrl": "https://melaxin.com/product/%EB%A6%AC%EC%A5%AC-%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EC%BD%9C%EB%9D%BC%EA%B2%90-%EC%84%A0%EC%84%B8%EB%9F%BC/2576/"
+    },
+    {
+      "id": "lookup:drmelaxin:2587",
+      "name": "닥터멜락신 스페셜 히든딜칵톡스 포어 릴리프 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EC%8A%A4%ED%8E%98%EC%85%9C-%ED%9E%88%EB%93%A0%EB%94%9C%EC%B9%B5%ED%86%A1%EC%8A%A4-%ED%8F%AC%EC%96%B4-%EB%A6%B4%EB%A6%AC%ED%94%84-%EC%84%B8%EB%9F%BC/2587/"
+    },
+    {
+      "id": "lookup:drmelaxin:2590",
+      "name": "닥터멜락신 스페셜 히든딜코직애씨드 터메릭 세럼 솝",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EC%8A%A4%ED%8E%98%EC%85%9C-%ED%9E%88%EB%93%A0%EB%94%9C%EC%BD%94%EC%A7%81%EC%95%A0%EC%94%A8%EB%93%9C-%ED%84%B0%EB%A9%94%EB%A6%AD-%EC%84%B8%EB%9F%BC-%EC%86%9D/2590/"
+    },
+    {
+      "id": "lookup:drmelaxin:2591",
+      "name": "닥터멜락신 스페셜 히든딜tx 코직애씨드 터메릭 토너 패드",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "toner",
+      "officialUrl": "https://melaxin.com/product/%EC%8A%A4%ED%8E%98%EC%85%9C-%ED%9E%88%EB%93%A0%EB%94%9Ctx-%EC%BD%94%EC%A7%81%EC%95%A0%EC%94%A8%EB%93%9C-%ED%84%B0%EB%A9%94%EB%A6%AD-%ED%86%A0%EB%84%88-%ED%8C%A8%EB%93%9C/2591/"
+    },
+    {
+      "id": "lookup:drmelaxin:2592",
+      "name": "닥터멜락신 스페셜 히든딜나이아신아마이드 피코토닉샷 착색 토너",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "toner",
+      "officialUrl": "https://melaxin.com/product/%EC%8A%A4%ED%8E%98%EC%85%9C-%ED%9E%88%EB%93%A0%EB%94%9C%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-%ED%94%BC%EC%BD%94%ED%86%A0%EB%8B%89%EC%83%B7-%EC%B0%A9%EC%83%89-%ED%86%A0%EB%84%88/2592/"
+    },
+    {
+      "id": "lookup:drmelaxin:2593",
+      "name": "닥터멜락신 스페셜 히든딜 넥스팔트 넥 탄력 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EC%8A%A4%ED%8E%98%EC%85%9C-%ED%9E%88%EB%93%A0%EB%94%9C-%EB%84%A5%EC%8A%A4%ED%8C%94%ED%8A%B8-%EB%84%A5-%ED%83%84%EB%A0%A5-%EC%84%B8%EB%9F%BC/2593/"
+    },
+    {
+      "id": "lookup:drmelaxin:2596",
+      "name": "닥터멜락신 멜라씨이 페룰릭 선스틱",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "sunscreen",
+      "officialUrl": "https://melaxin.com/product/%EB%A9%9C%EB%9D%BC%EC%94%A8%EC%9D%B4-%ED%8E%98%EB%A3%B0%EB%A6%AD-%EC%84%A0%EC%8A%A4%ED%8B%B1/2596/"
+    },
+    {
+      "id": "lookup:drmelaxin:311",
+      "name": "닥터멜락신 티엑스 아스타잔틴 기미 미백 캡슐 선크림 20",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "sunscreen",
+      "officialUrl": "https://melaxin.com/product/%ED%8B%B0%EC%97%91%EC%8A%A4-%EC%95%84%EC%8A%A4%ED%83%80%EC%9E%94%ED%8B%B4-%EA%B8%B0%EB%AF%B8-%EB%AF%B8%EB%B0%B1-%EC%BA%A1%EC%8A%90-%EC%84%A0%ED%81%AC%EB%A6%BC-20/311/"
+    },
+    {
+      "id": "lookup:drmelaxin:329",
+      "name": "닥터멜락신 오직 여기에서만 60 off 비피 포어 베리어 크림",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "moisturizer",
+      "officialUrl": "https://melaxin.com/product/%EC%98%A4%EC%A7%81-%EC%97%AC%EA%B8%B0%EC%97%90%EC%84%9C%EB%A7%8C-60-off-%EB%B9%84%ED%94%BC-%ED%8F%AC%EC%96%B4-%EB%B2%A0%EB%A6%AC%EC%96%B4-%ED%81%AC%EB%A6%BC/329/"
+    },
+    {
+      "id": "lookup:drmelaxin:34",
+      "name": "닥터멜락신 트라넥삼산tx 세럼 20",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%ED%8A%B8%EB%9D%BC%EB%84%A5%EC%82%BC%EC%82%B0tx-%EC%84%B8%EB%9F%BC-20/34/"
+    },
+    {
+      "id": "lookup:drmelaxin:350",
+      "name": "닥터멜락신 아쿠아 이온 플라즈마 수분 크림",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "moisturizer",
+      "officialUrl": "https://melaxin.com/product/%EC%95%84%EC%BF%A0%EC%95%84-%EC%9D%B4%EC%98%A8-%ED%94%8C%EB%9D%BC%EC%A6%88%EB%A7%88-%EC%88%98%EB%B6%84-%ED%81%AC%EB%A6%BC/350/"
+    },
+    {
+      "id": "lookup:drmelaxin:361",
+      "name": "닥터멜락신 오직 여기서만 73 눈가꺼짐 리프팅시멘리트 골조 아이앰플 플러스",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EC%98%A4%EC%A7%81-%EC%97%AC%EA%B8%B0%EC%84%9C%EB%A7%8C-73-%EB%88%88%EA%B0%80%EA%BA%BC%EC%A7%90-%EB%A6%AC%ED%94%84%ED%8C%85%EC%8B%9C%EB%A9%98%EB%A6%AC%ED%8A%B8-%EA%B3%A8%EC%A1%B0-%EC%95%84%EC%9D%B4%EC%95%B0%ED%94%8C-%ED%94%8C%EB%9F%AC%EC%8A%A4/361/"
+    },
+    {
+      "id": "lookup:drmelaxin:379",
+      "name": "닥터멜락신 아쿠아 이온 플라즈마 수분 앰플",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EC%95%84%EC%BF%A0%EC%95%84-%EC%9D%B4%EC%98%A8-%ED%94%8C%EB%9D%BC%EC%A6%88%EB%A7%88-%EC%88%98%EB%B6%84-%EC%95%B0%ED%94%8C/379/"
+    },
+    {
+      "id": "lookup:drmelaxin:380",
+      "name": "닥터멜락신 아쿠아 이온 플라즈마 수분 토너",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "toner",
+      "officialUrl": "https://melaxin.com/product/%EC%95%84%EC%BF%A0%EC%95%84-%EC%9D%B4%EC%98%A8-%ED%94%8C%EB%9D%BC%EC%A6%88%EB%A7%88-%EC%88%98%EB%B6%84-%ED%86%A0%EB%84%88/380/"
+    },
+    {
+      "id": "lookup:drmelaxin:399",
+      "name": "닥터멜락신 비피 스피큘 대용량 앰플",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "volume": "100ml",
+      "officialUrl": "https://melaxin.com/product/%EB%B9%84%ED%94%BC-%EC%8A%A4%ED%94%BC%ED%81%98-%EB%8C%80%EC%9A%A9%EB%9F%89-%EC%95%B0%ED%94%8C-100ml/399/"
+    },
+    {
+      "id": "lookup:drmelaxin:40",
+      "name": "닥터멜락신 트라넥삼산tx 세럼 클렌저",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "cleanser",
+      "officialUrl": "https://melaxin.com/product/%ED%8A%B8%EB%9D%BC%EB%84%A5%EC%82%BC%EC%82%B0tx-%EC%84%B8%EB%9F%BC-%ED%81%B4%EB%A0%8C%EC%A0%80/40/"
+    },
+    {
+      "id": "lookup:drmelaxin:407",
+      "name": "닥터멜락신 넥스팔트 넥 탄력 크림",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "moisturizer",
+      "officialUrl": "https://melaxin.com/product/%EB%84%A5%EC%8A%A4%ED%8C%94%ED%8A%B8-%EB%84%A5-%ED%83%84%EB%A0%A5-%ED%81%AC%EB%A6%BC/407/"
+    },
+    {
+      "id": "lookup:drmelaxin:408",
+      "name": "닥터멜락신 넥스팔트 ecm 세라마이드 넥 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EB%84%A5%EC%8A%A4%ED%8C%94%ED%8A%B8-ecm-%EC%84%B8%EB%9D%BC%EB%A7%88%EC%9D%B4%EB%93%9C-%EB%84%A5-%EC%84%B8%EB%9F%BC/408/"
+    },
+    {
+      "id": "lookup:drmelaxin:45",
+      "name": "닥터멜락신 트라넥삼산tx 크림 20",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "moisturizer",
+      "officialUrl": "https://melaxin.com/product/%ED%8A%B8%EB%9D%BC%EB%84%A5%EC%82%BC%EC%82%B0tx-%ED%81%AC%EB%A6%BC-20/45/"
+    },
+    {
+      "id": "lookup:drmelaxin:569",
+      "name": "닥터멜락신 티엑스 아스타잔틴 미백 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%ED%8B%B0%EC%97%91%EC%8A%A4-%EC%95%84%EC%8A%A4%ED%83%80%EC%9E%94%ED%8B%B4-%EB%AF%B8%EB%B0%B1-%EC%84%B8%EB%9F%BC/569/"
+    },
+    {
+      "id": "lookup:drmelaxin:570",
+      "name": "닥터멜락신 티엑스 아스타잔틴 기미미백 크림 20",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "moisturizer",
+      "officialUrl": "https://melaxin.com/product/%ED%8B%B0%EC%97%91%EC%8A%A4-%EC%95%84%EC%8A%A4%ED%83%80%EC%9E%94%ED%8B%B4-%EA%B8%B0%EB%AF%B8%EB%AF%B8%EB%B0%B1-%ED%81%AC%EB%A6%BC-20/570/"
+    },
+    {
+      "id": "lookup:drmelaxin:60",
+      "name": "닥터멜락신 트라넥삼산tx 필링 토너",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "toner",
+      "officialUrl": "https://melaxin.com/product/%ED%8A%B8%EB%9D%BC%EB%84%A5%EC%82%BC%EC%82%B0tx-%ED%95%84%EB%A7%81-%ED%86%A0%EB%84%88/60/"
+    },
+    {
+      "id": "lookup:drmelaxin:607",
+      "name": "닥터멜락신 무료배송최대 70할인 아이팔트 아이백 리프팅 크림 플러스",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "moisturizer",
+      "officialUrl": "https://melaxin.com/product/%EB%AC%B4%EB%A3%8C%EB%B0%B0%EC%86%A1%EC%B5%9C%EB%8C%80-70%ED%95%A0%EC%9D%B8-%EC%95%84%EC%9D%B4%ED%8C%94%ED%8A%B8-%EC%95%84%EC%9D%B4%EB%B0%B1-%EB%A6%AC%ED%94%84%ED%8C%85-%ED%81%AC%EB%A6%BC-%ED%94%8C%EB%9F%AC%EC%8A%A4/607/"
+    },
+    {
+      "id": "lookup:drmelaxin:643",
+      "name": "닥터멜락신 비피 스피큘 모공 패드",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "toner",
+      "officialUrl": "https://melaxin.com/product/%EB%B9%84%ED%94%BC-%EC%8A%A4%ED%94%BC%ED%81%98-%EB%AA%A8%EA%B3%B5-%ED%8C%A8%EB%93%9C/643/"
+    },
+    {
+      "id": "lookup:drmelaxin:873",
+      "name": "닥터멜락신 사이아노 핑크 스피큘 세럼",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%EC%82%AC%EC%9D%B4%EC%95%84%EB%85%B8-%ED%95%91%ED%81%AC-%EC%8A%A4%ED%94%BC%ED%81%98-%EC%84%B8%EB%9F%BC/873/"
+    },
+    {
+      "id": "lookup:drmelaxin:874",
+      "name": "닥터멜락신 사이아노 핑크 스피큘 크림",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "moisturizer",
+      "officialUrl": "https://melaxin.com/product/%EC%82%AC%EC%9D%B4%EC%95%84%EB%85%B8-%ED%95%91%ED%81%AC-%EC%8A%A4%ED%94%BC%ED%81%98-%ED%81%AC%EB%A6%BC/874/"
+    },
+    {
+      "id": "lookup:drmelaxin:941",
+      "name": "닥터멜락신 필샷 고마쥬 흑미 앰플",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%ED%95%84%EC%83%B7-%EA%B3%A0%EB%A7%88%EC%A5%AC-%ED%9D%91%EB%AF%B8-%EC%95%B0%ED%94%8C/941/"
+    },
+    {
+      "id": "lookup:drmelaxin:942",
+      "name": "닥터멜락신 필샷 고마쥬 백미 앰플",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "serum",
+      "officialUrl": "https://melaxin.com/product/%ED%95%84%EC%83%B7-%EA%B3%A0%EB%A7%88%EC%A5%AC-%EB%B0%B1%EB%AF%B8-%EC%95%B0%ED%94%8C/942/"
+    },
+    {
+      "id": "lookup:drmelaxin:947",
+      "name": "닥터멜락신 넥라인팔트 넥 크림",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "moisturizer",
+      "officialUrl": "https://melaxin.com/product/%EB%84%A5%EB%9D%BC%EC%9D%B8%ED%8C%94%ED%8A%B8-%EB%84%A5-%ED%81%AC%EB%A6%BC/947/"
+    },
+    {
+      "id": "lookup:drmelaxin:948",
+      "name": "닥터멜락신 페이스팔트 타이트닝 크림",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "moisturizer",
+      "officialUrl": "https://melaxin.com/product/%ED%8E%98%EC%9D%B4%EC%8A%A4%ED%8C%94%ED%8A%B8-%ED%83%80%EC%9D%B4%ED%8A%B8%EB%8B%9D-%ED%81%AC%EB%A6%BC/948/"
+    },
+    {
+      "id": "lookup:drmelaxin:949",
+      "name": "닥터멜락신 멜팅 클렌저",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "cleanser",
+      "officialUrl": "https://melaxin.com/product/%EB%A9%9C%ED%8C%85-%ED%81%B4%EB%A0%8C%EC%A0%80/949/"
+    },
+    {
+      "id": "lookup:drmelaxin:984",
+      "name": "닥터멜락신 필샷 백미 토너",
+      "brand": "닥터멜락신",
+      "brandAlias": "Dr. MELAXIN",
+      "category": "toner",
+      "officialUrl": "https://melaxin.com/product/%ED%95%84%EC%83%B7-%EB%B0%B1%EB%AF%B8-%ED%86%A0%EB%84%88/984/"
     },
     {
       "id": "lookup:droracle:1015",
@@ -19294,6 +19970,346 @@
       "volume": "80매",
       "officialUrl": "https://myrealbarrier.co.kr/product/detail.html?product_no=99",
       "image": "https://ecimg.cafe24img.com/pg1840b55012418095/realbarrier/web/product/medium/20250424/317e65b7f5f6ca7416b61f03029f0171.jpg"
+    },
+    {
+      "id": "lookup:rejuran:1008",
+      "name": "리쥬란 코스메틱 g 리파이닝 폼 클렌저",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/g-%EB%A6%AC%ED%8C%8C%EC%9D%B4%EB%8B%9D-%ED%8F%BC-%ED%81%B4%EB%A0%8C%EC%A0%80-120ml/1008/"
+    },
+    {
+      "id": "lookup:rejuran:1009",
+      "name": "리쥬란 코스메틱 g 워터 캡슐 선세럼",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "sunscreen",
+      "volume": "40ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/g-%EC%9B%8C%ED%84%B0-%EC%BA%A1%EC%8A%90-%EC%84%A0%EC%84%B8%EB%9F%BC-40ml/1009/"
+    },
+    {
+      "id": "lookup:rejuran:1010",
+      "name": "리쥬란 코스메틱 g 리쥬란 포어 타이트닝 크림",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/g-%EB%A6%AC%EC%A5%AC%EB%9E%80-%ED%8F%AC%EC%96%B4-%ED%83%80%EC%9D%B4%ED%8A%B8%EB%8B%9D-%ED%81%AC%EB%A6%BC-50ml/1010/"
+    },
+    {
+      "id": "lookup:rejuran:1013",
+      "name": "리쥬란 코스메틱 g 리쥬란 힐러 리프레싱 에멀전",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "45ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/g-%EB%A6%AC%EC%A5%AC%EB%9E%80-%ED%9E%90%EB%9F%AC-%EB%A6%AC%ED%94%84%EB%A0%88%EC%8B%B1-%EC%97%90%EB%A9%80%EC%A0%84-45ml/1013/"
+    },
+    {
+      "id": "lookup:rejuran:1014",
+      "name": "리쥬란 코스메틱 g 유스 포뮬러 크림",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/g-%EC%9C%A0%EC%8A%A4-%ED%8F%AC%EB%AE%AC%EB%9F%AC-%ED%81%AC%EB%A6%BC-50ml/1014/"
+    },
+    {
+      "id": "lookup:rejuran:1015",
+      "name": "리쥬란 코스메틱 g 모이스처 크림",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "60g",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/g-%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B2%98-%ED%81%AC%EB%A6%BC-60g/1015/"
+    },
+    {
+      "id": "lookup:rejuran:1017",
+      "name": "리쥬란 코스메틱 g 액티브 크림 인핸스드",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/g-%EC%95%A1%ED%8B%B0%EB%B8%8C-%ED%81%AC%EB%A6%BC-%EC%9D%B8%ED%95%B8%EC%8A%A4%EB%93%9C-50ml/1017/"
+    },
+    {
+      "id": "lookup:rejuran:1019",
+      "name": "리쥬란 코스메틱 g 뉴트리티브 크림",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/g-%EB%89%B4%ED%8A%B8%EB%A6%AC%ED%8B%B0%EB%B8%8C-%ED%81%AC%EB%A6%BC-50ml/1019/"
+    },
+    {
+      "id": "lookup:rejuran:1020",
+      "name": "리쥬란 코스메틱 g 트리플 래디언스 앰플",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/g-%ED%8A%B8%EB%A6%AC%ED%94%8C-%EB%9E%98%EB%94%94%EC%96%B8%EC%8A%A4-%EC%95%B0%ED%94%8C-30ml/1020/"
+    },
+    {
+      "id": "lookup:rejuran:1022",
+      "name": "리쥬란 코스메틱 g 퍼밍 크림",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/g-%ED%8D%BC%EB%B0%8D-%ED%81%AC%EB%A6%BC-50ml/1022/"
+    },
+    {
+      "id": "lookup:rejuran:1027",
+      "name": "리쥬란 코스메틱 g 달빛 윤광 에디션 토너앰플크림",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "toner",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/g-%EB%8B%AC%EB%B9%9B-%EC%9C%A4%EA%B4%91-%EC%97%90%EB%94%94%EC%85%98-%ED%86%A0%EB%84%88%EC%95%B0%ED%94%8C%ED%81%AC%EB%A6%BC/1027/"
+    },
+    {
+      "id": "lookup:rejuran:105",
+      "name": "리쥬란 코스메틱 듀얼 이펙트 앰플",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%EB%93%80%EC%96%BC-%EC%9D%B4%ED%8E%99%ED%8A%B8-%EC%95%B0%ED%94%8C-30ml/105/"
+    },
+    {
+      "id": "lookup:rejuran:219",
+      "name": "리쥬란 코스메틱 턴오버 앰플",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%ED%84%B4%EC%98%A4%EB%B2%84-%EC%95%B0%ED%94%8C-30ml/219/"
+    },
+    {
+      "id": "lookup:rejuran:231",
+      "name": "리쥬란 코스메틱 워터 캡슐 선세럼",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "sunscreen",
+      "volume": "40ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%EC%9B%8C%ED%84%B0-%EC%BA%A1%EC%8A%90-%EC%84%A0%EC%84%B8%EB%9F%BC-40ml/231/"
+    },
+    {
+      "id": "lookup:rejuran:244",
+      "name": "리쥬란 코스메틱 유스 포뮬러 앰플",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%EC%9C%A0%EC%8A%A4-%ED%8F%AC%EB%AE%AC%EB%9F%AC-%EC%95%B0%ED%94%8C-30ml/244/"
+    },
+    {
+      "id": "lookup:rejuran:245",
+      "name": "리쥬란 코스메틱 유스 포뮬러 크림",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%EC%9C%A0%EC%8A%A4-%ED%8F%AC%EB%AE%AC%EB%9F%AC-%ED%81%AC%EB%A6%BC-50ml/245/"
+    },
+    {
+      "id": "lookup:rejuran:277",
+      "name": "리쥬란 코스메틱 uv 프로텍션 크림",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "40ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/uv-%ED%94%84%EB%A1%9C%ED%85%8D%EC%85%98-%ED%81%AC%EB%A6%BC-40ml/277/"
+    },
+    {
+      "id": "lookup:rejuran:370",
+      "name": "리쥬란 코스메틱 퍼밍 크림",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%ED%8D%BC%EB%B0%8D-%ED%81%AC%EB%A6%BC-50ml/370/"
+    },
+    {
+      "id": "lookup:rejuran:40",
+      "name": "리쥬란 코스메틱 모이스처 크림",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "60g",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%EB%AA%A8%EC%9D%B4%EC%8A%A4%EC%B2%98-%ED%81%AC%EB%A6%BC-60g/40/"
+    },
+    {
+      "id": "lookup:rejuran:43",
+      "name": "리쥬란 코스메틱 뉴트리티브 크림",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%EB%89%B4%ED%8A%B8%EB%A6%AC%ED%8B%B0%EB%B8%8C-%ED%81%AC%EB%A6%BC-50ml/43/"
+    },
+    {
+      "id": "lookup:rejuran:45",
+      "name": "리쥬란 코스메틱 리쥬란 힐러 리프레싱 에멀전",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "45ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%EB%A6%AC%EC%A5%AC%EB%9E%80-%ED%9E%90%EB%9F%AC-%EB%A6%AC%ED%94%84%EB%A0%88%EC%8B%B1-%EC%97%90%EB%A9%80%EC%A0%84-45ml/45/"
+    },
+    {
+      "id": "lookup:rejuran:46",
+      "name": "리쥬란 코스메틱 리쥬란 힐러 리밸런싱 토너",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "toner",
+      "volume": "120ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%EB%A6%AC%EC%A5%AC%EB%9E%80-%ED%9E%90%EB%9F%AC-%EB%A6%AC%EB%B0%B8%EB%9F%B0%EC%8B%B1-%ED%86%A0%EB%84%88-120ml/46/"
+    },
+    {
+      "id": "lookup:rejuran:462",
+      "name": "리쥬란 코스메틱 리쥬란 어드밴스드 카밍 앤 수딩 클렌저 포 센시티브 스킨",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "cleanser",
+      "volume": "150g",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%EB%A6%AC%EC%A5%AC%EB%9E%80-%EC%96%B4%EB%93%9C%EB%B0%B4%EC%8A%A4%EB%93%9C-%EC%B9%B4%EB%B0%8D-%EC%95%A4-%EC%88%98%EB%94%A9-%ED%81%B4%EB%A0%8C%EC%A0%80-%ED%8F%AC-%EC%84%BC%EC%8B%9C%ED%8B%B0%EB%B8%8C-%EC%8A%A4%ED%82%A8-150g/462/"
+    },
+    {
+      "id": "lookup:rejuran:50",
+      "name": "리쥬란 코스메틱 힐링 크림",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%ED%9E%90%EB%A7%81-%ED%81%AC%EB%A6%BC-50ml/50/"
+    },
+    {
+      "id": "lookup:rejuran:558",
+      "name": "리쥬란 코스메틱 리파이닝 폼 클렌저",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "cleanser",
+      "volume": "120ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%EB%A6%AC%ED%8C%8C%EC%9D%B4%EB%8B%9D-%ED%8F%BC-%ED%81%B4%EB%A0%8C%EC%A0%80-120ml/558/"
+    },
+    {
+      "id": "lookup:rejuran:559",
+      "name": "리쥬란 코스메틱 트리플 래디언스 앰플",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%ED%8A%B8%EB%A6%AC%ED%94%8C-%EB%9E%98%EB%94%94%EC%96%B8%EC%8A%A4-%EC%95%B0%ED%94%8C-30ml/559/"
+    },
+    {
+      "id": "lookup:rejuran:669",
+      "name": "리쥬란 코스메틱 듀얼 이펙트 앰플 3ea",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%EB%93%80%EC%96%BC-%EC%9D%B4%ED%8E%99%ED%8A%B8-%EC%95%B0%ED%94%8C-30ml-3ea/669/"
+    },
+    {
+      "id": "lookup:rejuran:675",
+      "name": "리쥬란 코스메틱 포어 타이트닝 앰플",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%ED%8F%AC%EC%96%B4-%ED%83%80%EC%9D%B4%ED%8A%B8%EB%8B%9D-%EC%95%B0%ED%94%8C-30ml/675/"
+    },
+    {
+      "id": "lookup:rejuran:688",
+      "name": "리쥬란 코스메틱 턴오버 크림 인핸스드",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%ED%84%B4%EC%98%A4%EB%B2%84-%ED%81%AC%EB%A6%BC-%EC%9D%B8%ED%95%B8%EC%8A%A4%EB%93%9C-50ml/688/"
+    },
+    {
+      "id": "lookup:rejuran:721",
+      "name": "리쥬란 코스메틱 액티브 크림 인핸스드",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%EC%95%A1%ED%8B%B0%EB%B8%8C-%ED%81%AC%EB%A6%BC-%EC%9D%B8%ED%95%B8%EC%8A%A4%EB%93%9C-50ml/721/"
+    },
+    {
+      "id": "lookup:rejuran:742",
+      "name": "리쥬란 코스메틱 리밸런싱 토너 3ea",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "toner",
+      "volume": "120ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%EB%A6%AC%EB%B0%B8%EB%9F%B0%EC%8B%B1-%ED%86%A0%EB%84%88-120ml-3ea/742/"
+    },
+    {
+      "id": "lookup:rejuran:763",
+      "name": "리쥬란 코스메틱 액티브 크림 인핸스드 3ea",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%EC%95%A1%ED%8B%B0%EB%B8%8C-%ED%81%AC%EB%A6%BC-%EC%9D%B8%ED%95%B8%EC%8A%A4%EB%93%9C-50ml-3ea/763/"
+    },
+    {
+      "id": "lookup:rejuran:801",
+      "name": "리쥬란 코스메틱 포어 타이트닝 클렌징 밤",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "cleanser",
+      "volume": "50ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%ED%8F%AC%EC%96%B4-%ED%83%80%EC%9D%B4%ED%8A%B8%EB%8B%9D-%ED%81%B4%EB%A0%8C%EC%A7%95-%EB%B0%A4-50ml/801/"
+    },
+    {
+      "id": "lookup:rejuran:954",
+      "name": "리쥬란 코스메틱 리쥬란 포어 타이트닝 크림",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%EB%A6%AC%EC%A5%AC%EB%9E%80-%ED%8F%AC%EC%96%B4-%ED%83%80%EC%9D%B4%ED%8A%B8%EB%8B%9D-%ED%81%AC%EB%A6%BC-50ml/954/"
+    },
+    {
+      "id": "lookup:rejuran:955",
+      "name": "리쥬란 코스메틱 달빛 윤광 에디션 토너앰플크림",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "toner",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/%EB%8B%AC%EB%B9%9B-%EC%9C%A4%EA%B4%91-%EC%97%90%EB%94%94%EC%85%98-%ED%86%A0%EB%84%88%EC%95%B0%ED%94%8C%ED%81%AC%EB%A6%BC/955/"
+    },
+    {
+      "id": "lookup:rejuran:997",
+      "name": "리쥬란 코스메틱 g 리쥬란 힐러 리밸런싱 토너",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "toner",
+      "volume": "120ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/g-%EB%A6%AC%EC%A5%AC%EB%9E%80-%ED%9E%90%EB%9F%AC-%EB%A6%AC%EB%B0%B8%EB%9F%B0%EC%8B%B1-%ED%86%A0%EB%84%88-120ml/997/"
+    },
+    {
+      "id": "lookup:rejuran:998",
+      "name": "리쥬란 코스메틱 g 포어 타이트닝 클렌징 밤",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "cleanser",
+      "volume": "50ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/g-%ED%8F%AC%EC%96%B4-%ED%83%80%EC%9D%B4%ED%8A%B8%EB%8B%9D-%ED%81%B4%EB%A0%8C%EC%A7%95-%EB%B0%A4-50ml/998/"
+    },
+    {
+      "id": "lookup:rejuran:999",
+      "name": "리쥬란 코스메틱 g uv 프로텍션 크림",
+      "brand": "리쥬란 코스메틱",
+      "brandAlias": "REJURAN COSMETICS",
+      "category": "moisturizer",
+      "volume": "40ml",
+      "officialUrl": "https://rejurancosmetics.co.kr/product/g-uv-%ED%94%84%EB%A1%9C%ED%85%8D%EC%85%98-%ED%81%AC%EB%A6%BC-40ml/999/"
     },
     {
       "id": "lookup:roundlab:137",
