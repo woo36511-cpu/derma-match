@@ -62,13 +62,19 @@ jobs:
       - name: Update product search when listings change
         if: github.ref == 'refs/heads/main'
         run: |
-          node scripts/publish-brand-search-snapshot.mjs official-brand-discovery.json
-          if git diff --quiet -- src/data/routineLookupExpansion.json; then exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/data/routineLookupExpansion.json
-          git commit -m "Refresh verified-source search listings"
-          git push origin HEAD:main
+          for attempt in 1 2 3; do
+            git fetch --no-tags origin refs/heads/main
+            git switch --detach FETCH_HEAD
+            node scripts/publish-brand-search-snapshot.mjs official-brand-discovery.json
+            if git diff --quiet -- src/data/routineLookupExpansion.json; then exit 0; fi
+            git add src/data/routineLookupExpansion.json
+            git commit -m "Refresh verified-source search listings"
+            if git push origin HEAD:main; then exit 0; fi
+            if [[ "$attempt" != 3 ]]; then sleep 2; fi
+          done
+          exit 1
       - name: Review official formulas and ingredient signals
         run: |
           previous=$(gh run list --workflow brand-discovery-watch.yml --branch main --status success --limit 1 --json databaseId --jq '.[0].databaseId // empty')
