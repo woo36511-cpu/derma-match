@@ -2,7 +2,7 @@ import { ProductCard } from "./ProductCard";
 import { routineSlots } from "../utils/routineAdvice";
 import React from "react";
 
-export function RoutineProductScroller({ productsByCategory, userContext, optionalSlots = [], layout = "scroller" }) {
+export function RoutineProductScroller({ productsByCategory, userContext, optionalSlots = [], renderAfterProduct, layout = "scroller" }) {
   const items = Object.entries(productsByCategory).filter(([, item]) => !!item);
   const ordered = layout === "routine";
   return (
@@ -21,6 +21,7 @@ export function RoutineProductScroller({ productsByCategory, userContext, option
               optional={optionalSlots.includes(key)}
               userContext={userContext && { ...userContext, slot: key }}
             />
+            {renderAfterProduct?.(key, item)}
           </div>
         ))}
     </div>

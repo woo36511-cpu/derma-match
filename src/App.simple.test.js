@@ -2,7 +2,7 @@ import { pricePreferenceQuestion } from "./data/pricePreference";
 import { getMakeupCleansingQuestions, makeupUseQuestion } from "./data/makeupCleansingSurvey";
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import App from "./App";
-import { SimpleCareScreen } from "./screens/SimpleCareScreen";
+import { HydrationComparison, SimpleCareScreen } from "./screens/SimpleCareScreen";
 import { getAdaptiveObservationQuestions as getObservationQuestions, adaptiveObservationQuestions as observationQuestions, adaptiveSupportQuestions, ADAPTIVE_MEASUREMENT_VERSION as OBSERVATION_MEASUREMENT_VERSION } from "./data/adaptiveObservationSurvey";
 import { observationQuestions as previousObservationQuestions, OBSERVATION_SURVEY_VERSION } from "./data/observationSurvey";
 import { analyzeObservationSurvey } from "./utils/analyzeObservationSurvey";
@@ -18,7 +18,27 @@ import { getCosmeticQuestions } from "./data/cosmeticAddOns";
 import { getCosmeticObservationConfig } from "./data/productObservationGoals";
 import { COMFORT_QUESTION, OBSERVATION_KINDS } from "./utils/moisturizerObservation";
 import { JOURNEY_HISTORY_KEY } from "./data/storageKeys";
-import { buildRoutineSurveyContext, readCurrentRoutine } from "./utils/currentRoutineReview";
+import { buildRoutineSurveyContext, getReviewedRoutineProduct, makeManualRoutineEntry, readCurrentRoutine } from "./utils/currentRoutineReview";
+
+import { products } from "./data/products";
+
+test("compares only the same skincare category using reviewed hydration scores", () => {
+  const reviewed = products.map(product => getReviewedRoutineProduct({ id: product.id })?.catalog)
+    .filter(product => product?.category === "cream");
+  const [lighter] = [...reviewed].sort((a, b) => a.careProfile.hydrationSupport - b.careProfile.hydrationSupport);
+  const richer = reviewed.find(product => product.careProfile.hydrationSupport > lighter.careProfile.hydrationSupport);
+  const unknown = makeManualRoutineEntry("미검수 크림", "moisturizer");
+  const toner = makeManualRoutineEntry("미검수 토너", "toner");
+  const { rerender } = render(<HydrationComparison slot="cream" product={richer} entries={[{ id: lighter.id }, unknown, toner]} />);
+  expect(screen.getByText("기존 제품보다 높음")).toBeVisible();
+  expect(screen.getByText("비교 자료 부족")).toBeVisible();
+  expect(screen.queryByText(toner.name)).not.toBeInTheDocument();
+  rerender(<HydrationComparison slot="cream" product={lighter} entries={[{ id: richer.id }]} />);
+  expect(screen.getByText("기존 제품보다 낮음")).toBeVisible();
+  const similar = reviewed.find(product => product.id !== richer.id && product.careProfile.hydrationSupport === richer.careProfile.hydrationSupport);
+  rerender(<HydrationComparison slot="cream" product={richer} entries={[{ id: similar.id }]} />);
+  expect(screen.getByText("기존 제품과 비슷함")).toBeVisible();
+});
 
 const click = name => fireEvent.click(screen.getByRole("button", { name }));
 const expectCollapsed = name => expect(screen.getByText(name, { selector: "summary" }).matches("details:not([open]) > summary")).toBe(true);

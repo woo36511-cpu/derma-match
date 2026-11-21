@@ -11,7 +11,7 @@ export function nextBrandDiscoveryTime(now = new Date()) {
 
 export async function requestBrandDiscovery(rawName) {
   const brandName = rawName.normalize("NFKC").replace(/\s+/g, " ").trim();
-  if (brandName.length > 70 || !/^[\p{L}\p{N} .&+'·_-]+$/u.test(brandName) ||
+  if (brandName.length > 100 || !/^[\p{L}\p{N} .&+'·_()\/,%!-]+$/u.test(brandName) ||
       brandName.replace(/[^\p{L}\p{N}]/gu, "").length < 2) return "invalid";
   const client = getSupabaseClient();
   if (!client) return "error";

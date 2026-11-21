@@ -7,7 +7,7 @@ const inSeoul = new Intl.DateTimeFormat("ko-KR", {
 const messages = {
   accepted: "브랜드 찾기를 접수했어요.",
   existing: "이미 찾기 요청이 접수된 브랜드예요.",
-  invalid: "브랜드 이름만 입력해 주세요.",
+  invalid: "브랜드명이나 제품명을 입력해 주세요.",
   busy: "지금은 요청이 많아요. 잠시 뒤 다시 시도해 주세요.",
   error: "요청을 접수하지 못했어요. 잠시 뒤 다시 시도해 주세요.",
 };
@@ -25,7 +25,7 @@ export function BrandDiscoveryRequest({ query }) {
       {status === "sending" ? "접수 중…" : "이 브랜드를 찾을 수 없어"}
     </button>}
     <p className="text-slate-600">
-      다음 확인 예정 <time dateTime={next.toISOString()}>{inSeoul.format(next)}</time> (한국 시간).
+      제품명만 입력해도 공식 제품 정보를 찾아 브랜드를 확인해요. 다음 확인 예정 <time dateTime={next.toISOString()}>{inSeoul.format(next)}</time> (한국 시간).
       공식몰 확인 후 제품 수집과 검색 반영에는 수십 분 이상 걸릴 수 있어요.
     </p>
     {messages[status] && <p role="status">{messages[status]}</p>}
