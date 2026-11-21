@@ -6262,6 +6262,42 @@
       "officialUrl": "https://www.dewytree.com/product/detail.html?product_no=963"
     },
     {
+      "id": "lookup:dhc:deep-cleansing-oil",
+      "name": "DHC 딥 클렌징 오일",
+      "brand": "DHC",
+      "brandAlias": "디에이치씨",
+      "category": "cleanser",
+      "volume": "6.7 fl. oz.",
+      "officialUrl": "https://www.dhccare.com/products/deep-cleansing-oil"
+    },
+    {
+      "id": "lookup:dhc:extra-nighttime-moisture",
+      "name": "DHC 엑스트라 나이트타임 모이스처 크림",
+      "brand": "DHC",
+      "brandAlias": "디에이치씨",
+      "category": "moisturizer",
+      "volume": "1.5 oz.",
+      "officialUrl": "https://www.dhccare.com/products/extra-nighttime-moisture"
+    },
+    {
+      "id": "lookup:dhc:mild-foaming-face-wash",
+      "name": "DHC 마일드 포밍 페이스 워시",
+      "brand": "DHC",
+      "brandAlias": "디에이치씨",
+      "category": "cleanser",
+      "volume": "3.5 oz.",
+      "officialUrl": "https://www.dhccare.com/products/mild-foaming-face-wash"
+    },
+    {
+      "id": "lookup:dhc:mild-lotion",
+      "name": "DHC 마일드 로션 토너",
+      "brand": "DHC",
+      "brandAlias": "디에이치씨",
+      "category": "toner",
+      "volume": "6 fl. oz.",
+      "officialUrl": "https://www.dhccare.com/products/mild-lotion"
+    },
+    {
       "id": "lookup:drceuracle:1003",
       "name": "닥터슈라클 프로 밸런스 나이트 엔자임 워시",
       "brand": "닥터슈라클",
@@ -6801,6 +6837,42 @@
       "officialUrl": "https://www.dr-g.co.kr/item/4009"
     },
     {
+      "id": "lookup:drg:4421",
+      "name": "닥터지 블랙 스네일 에멀전",
+      "brand": "닥터지",
+      "brandAlias": "Dr.G",
+      "category": "moisturizer",
+      "volume": "150ml",
+      "officialUrl": "https://www.dr-g.co.kr/item/4421"
+    },
+    {
+      "id": "lookup:drg:4422",
+      "name": "닥터지 블랙 스네일 앰플",
+      "brand": "닥터지",
+      "brandAlias": "Dr.G",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://www.dr-g.co.kr/item/4422"
+    },
+    {
+      "id": "lookup:drg:4495",
+      "name": "닥터지 레드 블레미쉬 클리어 수딩 토너",
+      "brand": "닥터지",
+      "brandAlias": "Dr.G",
+      "category": "toner",
+      "volume": "300ml",
+      "officialUrl": "https://www.dr-g.co.kr/item/4495"
+    },
+    {
+      "id": "lookup:drg:4558",
+      "name": "닥터지 레드 블레미쉬 클리어 수딩 액티브 에센스",
+      "brand": "닥터지",
+      "brandAlias": "Dr.G",
+      "category": "serum",
+      "volume": "80ml",
+      "officialUrl": "https://www.dr-g.co.kr/item/4558"
+    },
+    {
       "id": "lookup:drg:9637",
       "name": "닥터지 그린 마일드 업 선 플러스",
       "brand": "닥터지",
@@ -6826,6 +6898,15 @@
       "category": "moisturizer",
       "volume": "70ml",
       "officialUrl": "https://www.dr-g.co.kr/item/9826"
+    },
+    {
+      "id": "lookup:drg:9938",
+      "name": "닥터지 블랙 스네일 크림",
+      "brand": "닥터지",
+      "brandAlias": "Dr.G",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://www.dr-g.co.kr/item/9938"
     },
     {
       "id": "lookup:droracle:1015",
