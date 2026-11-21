@@ -1,3 +1,5 @@
+import publishedFormulas from "../data/verifiedRoutineFormulas.json";
+
 const hosts = { 아누아: "anua.kr", 마녀공장: "www.manyo.co.kr" };
 const types = ["cleanser", "toner", "serum", "moisturizer"];
 
@@ -6,14 +8,19 @@ export function supportsOfficialFormula(product) {
 }
 
 export function readOfficialFormula(evidence, product, now = Date.now()) {
-  if (!supportsOfficialFormula(product) || typeof evidence?.name !== "string" || evidence.name.normalize("NFKC") !== product.name.normalize("NFKC") ||
+  const published = product && Object.hasOwn(publishedFormulas, product.id) ? publishedFormulas[product.id] : null;
+  const fromCatalog = published && published.sourceUrl === product.officialUrl && published.volume === product.volume &&
+    (!product.sourceMarket || product.sourceMarket === "KR");
+  if (fromCatalog) evidence = published;
+  if ((!fromCatalog && !supportsOfficialFormula(product)) || typeof evidence?.name !== "string" || evidence.name.normalize("NFKC") !== product.name.normalize("NFKC") ||
       evidence.category !== product.category || !/^\d+(?:\.\d+)?(?:ml|g)$/.test(evidence.volume ?? "") || typeof evidence.hydrationSignal !== "boolean" ||
       !Array.isArray(evidence.ingredients) || evidence.ingredients.length < 5 || evidence.ingredients.length > 135 ||
       !evidence.ingredients.every(i => typeof i === "string" && i.length >= 2 && i.length < 100 && /^[*\p{L}\p{N}/+()\-,. %·]+$/u.test(i))) return null;
   const knownSize = typeof product.volume === "string" ? product.volume.trim().match(/^(\d+(?:\.\d+)?)\s*(ml|g)$/i) : null;
   if (knownSize && `${Number(knownSize[1])}${knownSize[2].toLowerCase()}` !== evidence.volume) return null;
   const checked = Date.parse(evidence.checkedAt);
-  if (!Number.isFinite(checked) || checked > now + 300_000 || now - checked > 30 * 86400_000) return null;
+  if (!Number.isFinite(checked) || checked > now + 300_000 || now - checked > (fromCatalog ? 90 : 30) * 86400_000) return null;
+  if (fromCatalog) return published;
   const brand = Object.keys(hosts).find(name => product.name.startsWith(name));
   try {
     const url = new URL(evidence.sourceUrl);
@@ -26,6 +33,8 @@ export function readOfficialFormula(evidence, product, now = Date.now()) {
 }
 
 export async function checkOfficialFormula(product, fetcher = typeof fetch === "function" ? fetch : null) {
+  const published = readOfficialFormula(null, product);
+  if (published) return published;
   if (!supportsOfficialFormula(product) || typeof fetcher !== "function") return null;
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 7500);
