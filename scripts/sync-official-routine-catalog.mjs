@@ -1,4 +1,4 @@
-import isFragranceProduct from "../src/utils/isFragranceProduct.cjs";
+import isFragranceProduct from "../src/utils/isFragranceProduct.js";
 import { execFile } from "node:child_process";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
