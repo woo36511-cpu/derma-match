@@ -291,6 +291,12 @@
       "usefulPages": 1,
       "fetchedListings": 65
     },
+    "neutrogena": {
+      "name": "뉴트로지나",
+      "checkedAt": "2026-11-21",
+      "usefulPages": 1,
+      "fetchedListings": 9
+    },
     "ninewishes": {
       "name": "나인위시스",
       "checkedAt": "2026-11-19",
@@ -14912,6 +14918,78 @@
       "category": "toner",
       "volume": "80ml",
       "officialUrl": "https://www.neogenlab.co.kr/product/%ED%99%94%EC%9D%B4%ED%8A%B8-%ED%8A%B8%EB%9F%AC%ED%94%8C-%EC%95%B0%ED%94%8C-%EB%93%9C%EB%A1%AD-%EB%AF%B8%EC%8A%A4%ED%8A%B8-80ml/99/"
+    },
+    {
+      "id": "lookup:neutrogena:dc-acne-foaming-cleanser",
+      "name": "뉴트로지나 딥클린 아크네 포밍 클렌저",
+      "brand": "뉴트로지나",
+      "brandAlias": "Neutrogena",
+      "category": "cleanser",
+      "officialUrl": "https://neutrogena.co.kr/cleanser/dc-acne-foaming-cleanser"
+    },
+    {
+      "id": "lookup:neutrogena:dc-brightening-foaming-cleanser",
+      "name": "뉴트로지나 딥클린 브라이트닝 포밍 클렌저",
+      "brand": "뉴트로지나",
+      "brandAlias": "Neutrogena",
+      "category": "cleanser",
+      "officialUrl": "https://neutrogena.co.kr/cleanser/dc-brightening-foaming-cleanser"
+    },
+    {
+      "id": "lookup:neutrogena:dc-gentle-foaming-cleanser",
+      "name": "뉴트로지나 딥클린 젠틀 포밍 클렌저",
+      "brand": "뉴트로지나",
+      "brandAlias": "Neutrogena",
+      "category": "cleanser",
+      "officialUrl": "https://neutrogena.co.kr/cleanser/dc-gentle-foaming-cleanser"
+    },
+    {
+      "id": "lookup:neutrogena:dc-hydrating-foaming-cleanser",
+      "name": "뉴트로지나 딥클린 하이드레이팅 포밍 클렌저",
+      "brand": "뉴트로지나",
+      "brandAlias": "Neutrogena",
+      "category": "cleanser",
+      "officialUrl": "https://neutrogena.co.kr/cleanser/dc-hydrating-foaming-cleanser"
+    },
+    {
+      "id": "lookup:neutrogena:deep-clean-cleansing-cream",
+      "name": "뉴트로지나 딥클린 클렌징 크림",
+      "brand": "뉴트로지나",
+      "brandAlias": "Neutrogena",
+      "category": "cleanser",
+      "officialUrl": "https://neutrogena.co.kr/products/make-up-remover/deep-clean-cleansing-cream"
+    },
+    {
+      "id": "lookup:neutrogena:deep-clean-cleansing-lotion",
+      "name": "뉴트로지나 딥클린 클렌징 로션",
+      "brand": "뉴트로지나",
+      "brandAlias": "Neutrogena",
+      "category": "cleanser",
+      "officialUrl": "https://neutrogena.co.kr/products/make-up-remover/deep-clean-cleansing-lotion"
+    },
+    {
+      "id": "lookup:neutrogena:deep-clean-cleansing-oil",
+      "name": "뉴트로지나 딥클린 클렌징 오일",
+      "brand": "뉴트로지나",
+      "brandAlias": "Neutrogena",
+      "category": "cleanser",
+      "officialUrl": "https://neutrogena.co.kr/products/make-up-remover/deep-clean-cleansing-oil"
+    },
+    {
+      "id": "lookup:neutrogena:deep-clean-facial-cleanser",
+      "name": "뉴트로지나 딥클린 훼이셜 클렌저",
+      "brand": "뉴트로지나",
+      "brandAlias": "Neutrogena",
+      "category": "cleanser",
+      "officialUrl": "https://neutrogena.co.kr/products/cleanser/deep-clean-facial-cleanser"
+    },
+    {
+      "id": "lookup:neutrogena:deep-clean-foaming-cleanser",
+      "name": "뉴트로지나 딥클린 포밍 클렌저",
+      "brand": "뉴트로지나",
+      "brandAlias": "Neutrogena",
+      "category": "cleanser",
+      "officialUrl": "https://neutrogena.co.kr/products/cleanser/deep-clean-foaming-cleanser"
     },
     {
       "id": "lookup:ninewishes:105",
