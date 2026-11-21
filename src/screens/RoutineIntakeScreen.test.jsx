@@ -18,3 +18,21 @@ test("sunscreen-only answers exclude previously saved leave-on basics from surve
   expect(scoped).toMatchObject({ use: "yes", routineScope: "sunscreen_only", cleanser: { band: "unknown" } });
   expect(scoped.toner).toBeUndefined();
 });
+
+test("the survey filters products by category before searching and uses the selected category for manual entry", () => {
+  const add = jest.fn();
+  render(<RoutineIntakeScreen routineReview={{ currentRoutine: { entries: [], add } }} />);
+  fireEvent.click(screen.getByRole("button", { name: /기초 화장품도 쓰고/ }));
+  const search = screen.getByRole("searchbox", { name: "브랜드나 제품명" });
+  fireEvent.click(screen.getByRole("button", { name: "토너" }));
+  fireEvent.change(search, { target: { value: "라운드랩" } });
+  expect(screen.getAllByRole("button", { name: /토너.*내 루틴에 담기/ }).length).toBeGreaterThan(0);
+  expect(screen.queryByRole("button", { name: /크림.*내 루틴에 담기/ })).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole("button", { name: "세럼" }));
+  expect(screen.queryByRole("button", { name: /토너.*내 루틴에 담기/ })).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole("button", { name: "크림" }));
+  fireEvent.change(search, { target: { value: "내 수분 제품" } });
+  fireEvent.click(screen.getByText("목록에 없는 제품 직접 추가"));
+  fireEvent.click(screen.getByRole("button", { name: "입력한 제품 담기" }));
+  expect(add).toHaveBeenCalledWith(expect.objectContaining({ name: "내 수분 제품", category: "moisturizer" }));
+});

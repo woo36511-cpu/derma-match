@@ -101,16 +101,16 @@ export function exactRoutineLookupProducts(name, category) {
   return index.filter(item => item.product.category === category && item.names.includes(key)).map(item => item.product);
 }
 
-export function searchRoutineProducts(query, limit = 12, allInOneOnly = false) {
+export function searchRoutineProducts(query, limit = 12, allInOneOnly = false, categories) {
   const normalized = normalize(query);
   if (allInOneOnly && !normalized) {
-    const matches = entries.filter(product => product.allInOne);
+    const matches = entries.filter(product => product.allInOne && (!categories || categories.includes(product.category)));
     return { total: matches.length, matches: matches.slice(0, limit) };
   }
   if (normalized.length < 2) return { total: 0, matches: [] };
   const tokens = query.normalize("NFKC").split(/\s+/).map(normalize).filter(Boolean);
   const ranked = index.flatMap(({ product, names, description }) => {
-    if (allInOneOnly && !product.allInOne) return [];
+    if ((categories && !categories.includes(product.category)) || (allInOneOnly && !product.allInOne)) return [];
     if (product.allInOne && ["올인원", "allinone"].includes(normalized)) return [{ product, nameRank: 2 }];
     const nameRank = Math.max(...names.map(name => name === normalized ? 3 : name.startsWith(normalized) ? 2 : name.includes(normalized) ? 1 : 0));
     if (!nameRank && !tokens.every(token => description.includes(token))) return [];
