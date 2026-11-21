@@ -7270,5 +7270,111 @@
         "공식 상품고시에는 3세 이하 영유아에 사용하지 말라고 안내되어 있어요."
       ]
     }
+  },
+  {
+    "id": 92,
+    "name": "인요에 올리브 스쿠알란 3 씨드 클렌징 오일",
+    "brand": "인요에",
+    "category": "cleansing_oil",
+    "volume": "200ml",
+    "legacyLookupIds": [
+      "lookup:inyoe:12"
+    ],
+    "hydrationLevel": 5,
+    "texture": "oil",
+    "concerns": [],
+    "ingredients": [
+      "스쿠알란",
+      "포도씨오일",
+      "해바라기씨오일",
+      "호호바씨오일"
+    ],
+    "fullIngredients": [
+      "에틸헥실팔미테이트",
+      "솔베스-30테트라올리에이트",
+      "스쿠알란(50,000ppm)",
+      "폴리솔베이트60",
+      "포도씨오일(1,000ppm)",
+      "해바라기씨오일(1,000ppm)",
+      "호호바씨오일(1,000ppm)"
+    ],
+    "careProfile": {
+      "hydrationSupport": 0,
+      "lightweightFit": 0,
+      "soothingSupport": 0,
+      "congestionSupport": 0,
+      "barrierSupport": 0
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-22",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "국내 공식 상품고시와 물로 유화하는 사용법을 확인해, 메이크업을 한 날 저녁 1차 세안에 쓰는 오일로 평가했어요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-22",
+      "sources": [
+        {
+          "url": "https://inyoe.co.kr/product/%EC%9D%B8%EC%9A%94%EC%97%90-%EC%98%AC%EB%A6%AC%EB%B8%8C-%EC%8A%A4%EC%BF%A0%EC%95%8C%EB%9E%80-3-%EC%94%A8%EB%93%9C-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-200ml/12/",
+          "sourceType": "official_domestic_product_page"
+        },
+        {
+          "url": "https://ecimg.cafe24img.com/pg2043b99648231054/dhkorea24/web/upload/NNEditor/20260131/EC98A4EC9DBC_3.jpg",
+          "sourceType": "official_domestic_ingredient_label"
+        }
+      ],
+      "note": "인요에 국내 공식몰 상품번호 12의 상품고시 이미지에서 200ml와 전성분을 확인했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": true
+    },
+    "skinTypes": [
+      "건성",
+      "중성",
+      "복합성"
+    ],
+    "description": "메이크업을 한 날 마른 얼굴에 바른 뒤 물로 유화해 헹구는 클렌징 오일이에요.",
+    "shortReason": "물로 유화해 헹구는 1차 세안 오일",
+    "caution": [
+      "포도씨·해바라기씨·호호바씨 오일이 든 제품에 반응한 적이 있으면 피하세요.",
+      "상처 난 부위에는 사용을 피하고, 씻은 뒤 따갑거나 붉어지면 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "isAvailable": true,
+    "link": "https://inyoe.co.kr/product/%EC%9D%B8%EC%9A%94%EC%97%90-%EC%98%AC%EB%A6%AC%EB%B8%8C-%EC%8A%A4%EC%BF%A0%EC%95%8C%EB%9E%80-3-%EC%94%A8%EB%93%9C-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-200ml/12/",
+    "price": null,
+    "image": "https://inyoe.co.kr/moa/img/default/empty_thumb.png",
+    "imageSource": {
+      "url": "https://inyoe.co.kr/moa/img/default/empty_thumb.png",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-22"
+    },
+    "purchaseSource": {
+      "provider": "official",
+      "label": "인요에 공식몰",
+      "url": "https://inyoe.co.kr/product/%EC%9D%B8%EC%9A%94%EC%97%90-%EC%98%AC%EB%A6%AC%EB%B8%8C-%EC%8A%A4%EC%BF%A0%EC%95%8C%EB%9E%80-3-%EC%94%A8%EB%93%9C-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-200ml/12/",
+      "checkedAt": "2026-11-22",
+      "verification": "official_product_page",
+      "liveStockVerified": false
+    },
+    "usageType": "cleansing_oil",
+    "usage": {
+      "when": "저녁 1차 세안",
+      "howToUse": [
+        "마른 손과 얼굴에 오일을 소량 펴 발라요.",
+        "물을 조금씩 묻혀 유화한 뒤 미온수로 충분히 헹궈요."
+      ],
+      "caution": [
+        "포도씨·해바라기씨·호호바씨 오일이 든 제품에 반응한 적이 있으면 피하세요.",
+        "상처 난 부위에는 사용을 피하고, 씻은 뒤 따갑거나 붉어지면 중단해요."
+      ]
+    }
   }
 ]

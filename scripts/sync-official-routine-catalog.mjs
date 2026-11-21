@@ -319,6 +319,10 @@ function makeCandidate(storeKey, store, nameInput, url, id, image, onDiscontinue
   name = name.replaceAll(volumePattern, " ").replace(/[ ]{2,}/g, " ").replace(/\(\s*\)|^\s*[:–-]\s*|\s*[:–-]\s*$/g, "").trim();
   if (name.length < 4 || !nameScript.test(name)) return null;
   let category = classify(name);
+  if (storeKey === "dweather") {
+    if (/레스큐리프 블루 레인 드롭$/u.test(name)) category = "serum";
+    if (/레스쿠쿨 스노우 마스크 패드$/u.test(name)) category = "toner";
+  }
   if (storeKey === "avene") {
     if (/^오 떼르말$|토닝 로션|에센스.?인.?로션/u.test(name)) category = "toner";
     if (/모이스처라이저|모이스춰라이저/u.test(name)) category = "moisturizer";
@@ -718,7 +722,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       if (!title) continue;
       rawName = textOf(title);
     }
-    if (storeKey === "rdrd" && !sitemap) {
+    if ((storeKey === "rdrd" || storeKey === "dweather") && !sitemap) {
       if (!/(?:^|\s)name(?:\s|$)/.test(attr(node.parentNode, "class") ?? "")) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "");
     }
