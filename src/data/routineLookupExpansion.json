@@ -6786,6 +6786,42 @@
       "officialUrl": "https://drdifferent.com/product/2710-%EA%B9%8C%EC%A7%80%EB%B9%84%ED%83%80%EC%95%84%ED%81%AC%EB%82%A0-tx-%EB%82%98%EC%9D%B4%ED%8A%B8-%ED%81%AC%EB%A6%BC-20g/98/"
     },
     {
+      "id": "lookup:drg:4009",
+      "name": "닥터지 약산성 클렌징 젤 폼",
+      "brand": "닥터지",
+      "brandAlias": "Dr.G",
+      "category": "cleanser",
+      "volume": "200ml",
+      "officialUrl": "https://www.dr-g.co.kr/item/4009"
+    },
+    {
+      "id": "lookup:drg:9637",
+      "name": "닥터지 그린 마일드 업 선 플러스",
+      "brand": "닥터지",
+      "brandAlias": "Dr.G",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.dr-g.co.kr/item/9637"
+    },
+    {
+      "id": "lookup:drg:9639",
+      "name": "닥터지 레드 블레미쉬 수딩 업 선",
+      "brand": "닥터지",
+      "brandAlias": "Dr.G",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://www.dr-g.co.kr/item/9639"
+    },
+    {
+      "id": "lookup:drg:9826",
+      "name": "닥터지 레드 블레미쉬 클리어 수딩 크림",
+      "brand": "닥터지",
+      "brandAlias": "Dr.G",
+      "category": "moisturizer",
+      "volume": "70ml",
+      "officialUrl": "https://www.dr-g.co.kr/item/9826"
+    },
+    {
       "id": "lookup:droracle:1015",
       "name": "닥터오라클 에스벨® 모이스처라이징 젤크림",
       "brand": "닥터오라클",
@@ -7367,6 +7403,24 @@
       "volume": "80g",
       "officialUrl": "https://www.etude.com/shop/category/skin-care/sun-care/%ed%94%bc%ec%a7%80%ec%8f%99-%eb%ac%b4%ea%b8%b0%ec%9e%90%ec%b0%a8-%ec%84%a0%ed%81%ac%eb%a6%bc/",
       "image": "https://www.etude.com/wp-content/uploads/2026/03/Sebum_Mineral_Sun_02-430x430.jpg"
+    },
+    {
+      "id": "lookup:eucerin:hyaluron-filler-3x-night",
+      "name": "유세린 하이알루론 3X 나이트크림",
+      "brand": "유세린",
+      "brandAlias": "Eucerin",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://int.eucerin.com/home/products/hyaluron-filler/night-cream"
+    },
+    {
+      "id": "lookup:eucerin:volume-lift-night",
+      "name": "유세린 볼륨리프팅 나이트 크림",
+      "brand": "유세린",
+      "brandAlias": "Eucerin",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://int.eucerin.com/products/hyaluron-filler-plus-volume-lift/hyaluron-filler---volume-lift-night"
     },
     {
       "id": "lookup:faceshop:AF018075",
