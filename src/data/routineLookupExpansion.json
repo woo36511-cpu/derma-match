@@ -7405,6 +7405,15 @@
       "image": "https://www.etude.com/wp-content/uploads/2026/03/Sebum_Mineral_Sun_02-430x430.jpg"
     },
     {
+      "id": "lookup:eucerin:epicelline-serum",
+      "name": "유세린 하이알루론 에피셀린 세럼",
+      "brand": "유세린",
+      "brandAlias": "Eucerin",
+      "category": "serum",
+      "volume": "30ml",
+      "officialUrl": "https://int.eucerin.com/products/hyaluron-filler/epigenetic-serum"
+    },
+    {
       "id": "lookup:eucerin:hyaluron-filler-3x-night",
       "name": "유세린 하이알루론 3X 나이트크림",
       "brand": "유세린",
@@ -7616,6 +7625,33 @@
       "volume": "60ml",
       "officialUrl": "https://clubclio.co.kr/shop/goodsView/0000007839",
       "image": "https://clubclio.co.kr/data/mall_data/images/product/00/00/00/78/39/m.gif"
+    },
+    {
+      "id": "lookup:hadalabo:gokujun-light-lotion",
+      "name": "하다라보 고쿠쥰 로션 라이트",
+      "brand": "하다라보",
+      "brandAlias": "Hada Labo",
+      "category": "toner",
+      "volume": "170ml",
+      "officialUrl": "https://jp.rohto.com/hadalabo/gokujun-lotion-light"
+    },
+    {
+      "id": "lookup:hadalabo:gokujun-lotion",
+      "name": "하다라보 고쿠쥰 로션",
+      "brand": "하다라보",
+      "brandAlias": "Hada Labo",
+      "category": "toner",
+      "volume": "170ml",
+      "officialUrl": "https://jp.rohto.com/hadalabo/gokujun-lotion/"
+    },
+    {
+      "id": "lookup:hadalabo:gokujun-premium-lotion",
+      "name": "하다라보 고쿠쥰 프리미엄 로션",
+      "brand": "하다라보",
+      "brandAlias": "Hada Labo",
+      "category": "toner",
+      "volume": "170ml",
+      "officialUrl": "https://jp.rohto.com/en/hadalabo/gokujun-premium-lotion"
     },
     {
       "id": "lookup:hanyul:104",
