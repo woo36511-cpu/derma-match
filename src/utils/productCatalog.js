@@ -1,3 +1,4 @@
+import { isDiscontinued } from "./discontinuedProducts";
 import { getProductEvidenceStatus } from "./productEvidence";
 import { products } from "../data/products";
 import { starterRoutineByLevel } from "../data/routines";
@@ -44,7 +45,7 @@ export function getCategoryLabel(key) {
 }
 
 export function isProductAvailable(product) {
-  return !!product && product.isAvailable !== false;
+  return !!product && product.isAvailable !== false && !isDiscontinued(product);
 }
 
 export function isValidProductLink(link) {
