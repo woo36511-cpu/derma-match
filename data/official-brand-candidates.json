@@ -89,5 +89,33 @@
     "brand": "리쥬란 코스메틱",
     "alias": "REJURAN COSMETICS",
     "catalogUrl": "https://rejurancosmetics.co.kr/category/%ED%81%AC%EB%A6%BC/263/"
+  },
+  {
+    "key": "belif",
+    "brand": "빌리프",
+    "alias": "belif",
+    "catalogUrl": "https://belifmall.com/product/list.html?cate_no=661",
+    "listOnly": true
+  },
+  {
+    "key": "iope",
+    "brand": "아이오페",
+    "alias": "IOPE",
+    "catalogUrl": "https://www.iope.com/category/%EC%9C%A0%ED%98%95%EB%B3%84/31/",
+    "listOnly": true
+  },
+  {
+    "key": "sulwhasoo",
+    "brand": "설화수",
+    "alias": "Sulwhasoo",
+    "catalogUrl": "https://www.sulwhasoo.com/category/%ED%83%84%EB%A0%A5%EC%9E%90%EC%83%9D/43/",
+    "listOnly": true
+  },
+  {
+    "key": "hera",
+    "brand": "헤라",
+    "alias": "HERA",
+    "catalogUrl": "https://www.hera.com/category/%EC%A0%9C%ED%92%88-%EC%A0%84%EC%B2%B4/85/",
+    "listOnly": true
   }
 ]
