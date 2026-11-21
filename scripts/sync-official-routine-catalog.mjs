@@ -121,6 +121,7 @@ export const stores = {
   blancdoux: cafe("더랩바이블랑두", "the lab by blanc doux", "blancdoux.com", [["list", "/product/list.html?cate_no=4"]]),
   neogen: cafe("네오젠", "NEOGEN", "www.neogenlab.co.kr"),
   drdifferent: cafe("닥터디퍼런트", "Dr.Different", "drdifferent.com"),
+  faceshop: { brand: "더페이스샵", alias: "THE FACE SHOP", domain: "www.thefaceshop.com", type: "faceshop", paths: [["list77", "/mall/product/category.jsp?cate_seq=77"]] },
   kioskin: { brand: "키오스킨", alias: "KIOSKIN", domain: "kioskin.co.kr", type: "cafe",
     paths: [["list1", "/product/list.html?cate_no=70&page=1"]] },
   avene: { brand: "아벤느", alias: "Avène Avene", domain: "www.eau-thermale-avene.co.kr", type: "avene",
@@ -372,6 +373,20 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
   if (store.type === "innisfree") return extractInnisfree(source, storeKey, store);
   const candidates = [];
   const tree = Array.from(walk(parse5.parse(source), store.type === "cerave"));
+  if (store.type === "faceshop") return tree.flatMap(node => {
+    if (node.nodeName !== "p" || !attr(node, "class")?.split(/\s+/).includes("prdt_name_1")) return [];
+    const match = attr(node, "onclick")?.match(/^GA_CA_Event\('([A-Z0-9]+)',\s*'[^']*'\s*,\s*'([^']+)'\s*,\s*'더페이스샵'/u);
+    if (!match) return [];
+    const [, id, name] = match;
+    if (!name.startsWith("더페이스샵 ") || /쿠션|립앤아이|아이크림|마스크|\d\s*개/u.test(name)) return [];
+    let card = node.parentNode;
+    while (card && card.nodeName !== "li") card = card.parentNode;
+    const photo = Array.from(walk(card)).find(child => child.nodeName === "img" &&
+      attr(child, "src")?.startsWith("https://image.ethefaceshop.com/tfsshopWebSrc/upload/product/"));
+    const candidate = makeCandidate(storeKey, store, name,
+      `https://${store.domain}/mall/product/product-view.jsp?dpid=${id}`, id, attr(photo, "src"));
+    return candidate ? [candidate] : [];
+  });
   if (store.type === "avene") return tree.flatMap(node => {
     if (node.nodeName !== "a") return [];
     const isCard = attr(node, "class")?.split(/\s+/).includes("c-card-product__link-overlay");
