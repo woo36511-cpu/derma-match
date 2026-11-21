@@ -8,6 +8,9 @@ import parse5 from "parse5";
 const exec = promisify(execFile);
 const cafe = (brand, alias, domain, paths = []) => ({ brand, alias, domain, type: "cafe", paths: [["site", "/sitemap.xml"], ["home", "/"], ...paths] });
 const godo = (brand, alias, domain) => ({ brand, alias, domain, type: "godo", paths: [1, 2, 3, 4].map(n => [`list${n}`, `/goods/goods_search.php?page=${n}&pageNum=60`]) });
+const clubClio = (brand, alias, id) => ({ brand, alias, domain: "clubclio.co.kr", type: "clubclio",
+  paths: [["121072", `/shop/brandsList/121072000000000/brand/${id}`]] });
+
 export const stores = {
   heimish: { brand: "헤이미쉬", alias: "heimish", domain: "eheimish.com", type: "cafe",
     paths: [["skin", "/category/skin-care/23/"], ["clean", "/category/cleansing/25/"]] },
@@ -121,6 +124,8 @@ export const stores = {
   blancdoux: cafe("더랩바이블랑두", "the lab by blanc doux", "blancdoux.com", [["list", "/product/list.html?cate_no=4"]]),
   neogen: cafe("네오젠", "NEOGEN", "www.neogenlab.co.kr"),
   drdifferent: cafe("닥터디퍼런트", "Dr.Different", "drdifferent.com"),
+  goodal: clubClio("구달", "goodal", 3),
+  dermatory: clubClio("더마토리", "Dermatory", 5),
   faceshop: { brand: "더페이스샵", alias: "THE FACE SHOP", domain: "www.thefaceshop.com", type: "faceshop", paths: [["list77", "/mall/product/category.jsp?cate_seq=77"]] },
   kioskin: { brand: "키오스킨", alias: "KIOSKIN", domain: "kioskin.co.kr", type: "cafe",
     paths: [["list1", "/product/list.html?cate_no=70&page=1"]] },
@@ -373,6 +378,25 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
   if (store.type === "innisfree") return extractInnisfree(source, storeKey, store);
   const candidates = [];
   const tree = Array.from(walk(parse5.parse(source), store.type === "cerave"));
+  if (store.type === "clubclio") return tree.flatMap(node => {
+    if (node.nodeName !== "a") return [];
+    const url = urlWithHost(attr(node, "href"), store.domain, false);
+    const id = url?.pathname.match(/^\/shop\/goodsView\/(\d{10})$/)?.[1];
+    if (!id) return [];
+    const descendants = Array.from(walk(node));
+    const brand = descendants.find(child => attr(child, "class")?.split(/\s+/).includes("details_brand_name"));
+    const title = descendants.find(child => attr(child, "class")?.split(/\s+/).includes("details_title"));
+    if (!title || textOf(brand) !== store.brand) return [];
+    const name = textOf(title).replace(/^\[[^\]]*\]\s*/u, "");
+    const card = node.parentNode?.parentNode;
+    const photo = Array.from(walk(card)).find(child => child.nodeName === "img" &&
+      attr(child.parentNode, "href") === url.pathname);
+    const background = Array.from(walk(card)).find(child => child.nodeName === "a" &&
+      attr(child, "href") === url.pathname && attr(child, "style")?.includes("background-image:"));
+    const photoUrl = attr(photo, "src") ?? attr(background, "style")?.match(/background-image:\s*url\(([^)]+)\)/)?.[1];
+    const candidate = makeCandidate(storeKey, store, name, url.origin + url.pathname, id, imageUrl(photoUrl, store.domain));
+    return candidate ? [candidate] : [];
+  });
   if (store.type === "faceshop") return tree.flatMap(node => {
     if (node.nodeName !== "p" || !attr(node, "class")?.split(/\s+/).includes("prdt_name_1")) return [];
     const match = attr(node, "onclick")?.match(/^GA_CA_Event\('([A-Z0-9]+)',\s*'[^']*'\s*,\s*'([^']+)'\s*,\s*'더페이스샵'/u);
