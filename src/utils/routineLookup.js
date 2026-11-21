@@ -1,6 +1,6 @@
 import lookup from "../data/routineLookupProducts.json";
 import expansion from "../data/routineLookupExpansion.json";
-import isFragranceProduct from "./isFragranceProduct.cjs";
+import isFragranceProduct from "./isFragranceProduct.js";
 import { products } from "../data/products";
 
 export const routineLookupCategories = {

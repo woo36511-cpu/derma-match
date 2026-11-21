@@ -1,4 +1,4 @@
-import isFragranceProduct from "../src/utils/isFragranceProduct.cjs";
+import isFragranceProduct from "../src/utils/isFragranceProduct.js";
 import { readFile, writeFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 
