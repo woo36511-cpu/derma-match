@@ -16,7 +16,7 @@ export function Footer() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-4">
+        <div className="grid gap-4">
           <div className="rounded-2xl bg-gray-50 p-4">
             <p className="text-xs font-semibold text-gray-700 mb-1">
               저장 기능 안내
@@ -29,15 +29,6 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="rounded-2xl bg-gray-50 p-4">
-            <p className="text-xs font-semibold text-gray-700 mb-1">
-              제휴 링크 안내
-            </p>
-            <p className="text-xs text-gray-500 leading-relaxed break-keep">
-              일부 제품 링크는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의
-              수수료를 제공받을 수 있습니다.
-            </p>
-          </div>
         </div>
 
         <CatalogRefreshStatus />
@@ -45,6 +36,12 @@ export function Footer() {
         <p className="text-xs text-gray-400">
           © DearSince. Personalized skincare routine guide.
         </p>
+        <section className="rounded-2xl bg-forest-50 p-4 text-sm text-forest-900" aria-label="디얼신스 제작 응원">
+          <p>쿠팡에서 쇼핑할 일이 있다면 아래 링크를 이용해 주세요. 디얼신스를 더 열심히 만들 힘이 돼요.</p>
+          <p className="mt-1 text-xs text-slate-700">쿠팡 파트너스 활동의 일환으로 일정액의 수수료를 제공받습니다.</p>
+          <a className="mt-2 inline-block font-semibold underline underline-offset-4"
+            href="https://link.coupang.com/a/iRsPawjcNU" target="_blank" rel="sponsored noopener noreferrer">쿠팡으로 제작 응원하기</a>
+        </section>
       </div>
     </footer>
   );

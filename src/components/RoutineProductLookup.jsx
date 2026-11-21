@@ -1,3 +1,4 @@
+import { CopyProductName } from "./CopyProductName";
 import { BrandDiscoveryRequest } from "./BrandDiscoveryRequest";
 import { readOfficialFormula } from "../services/officialCosmetics";
 import { useRef, useState } from "react";
@@ -92,6 +93,7 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
               className="rounded-lg bg-emerald-900 px-3 py-2 text-xs font-semibold text-white disabled:bg-slate-100 disabled:text-slate-600">
               {added ? "내 루틴에 담음" : "내 루틴에 담기"}
             </button>
+            <CopyProductName name={product.name} />
             {product.officialUrl && <a href={product.officialUrl} target="_blank" rel="noreferrer" className="text-xs font-semibold text-emerald-800 underline underline-offset-2">공식 제품 정보</a>}
           </div>
           {signedIn && !reviewed && <DetailDisclosure title="이 제품 검수 요청" className="mt-2">
