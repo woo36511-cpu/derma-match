@@ -675,7 +675,7 @@
     },
     {
       "id": "lookup:abib:398",
-      "name": "아비브 그린 LHA 모공 패드 클리어 터치",
+      "name": "아비브 그린 lha 모공 패드 클리어 터치",
       "brand": "아비브",
       "brandAlias": "Abib",
       "category": "toner",
@@ -699,7 +699,7 @@
     },
     {
       "id": "lookup:abib:442",
-      "name": "아비브 어성초 테카 캡슐 세럼 카밍 드롭",
+      "name": "아비브 new 어성초 테카 캡슐 세럼 카밍 드롭",
       "brand": "아비브",
       "brandAlias": "Abib",
       "category": "serum",
@@ -715,7 +715,7 @@
     },
     {
       "id": "lookup:abib:551",
-      "name": "아비브 수분초 히알루론 선세럼 워터리 튜브 SPF50+ PA++++",
+      "name": "아비브 수분초 히알루론 선세럼 워터리 튜브 spf50 pa",
       "brand": "아비브",
       "brandAlias": "Abib",
       "category": "sunscreen",
@@ -723,7 +723,7 @@
     },
     {
       "id": "lookup:abib:552",
-      "name": "아비브 어성초 마일드 선크림 릴리프 튜브 SPF50+ PA++++",
+      "name": "아비브 어성초 마일드 선크림 릴리프 튜브 spf50 pa",
       "brand": "아비브",
       "brandAlias": "Abib",
       "category": "sunscreen",
@@ -811,7 +811,7 @@
     },
     {
       "id": "lookup:abib:659",
-      "name": "아비브 PDRN 인텐시브 크림 1.5 튜브",
+      "name": "아비브 pdrn 인텐시브 크림 15 튜브",
       "brand": "아비브",
       "brandAlias": "Abib",
       "category": "moisturizer",
@@ -827,7 +827,7 @@
     },
     {
       "id": "lookup:abib:660",
-      "name": "아비브 PDRN 글로우 세럼 4.0 펌프",
+      "name": "아비브 pdrn 글로우 세럼 40 펌프",
       "brand": "아비브",
       "brandAlias": "Abib",
       "category": "serum",
@@ -875,7 +875,7 @@
     },
     {
       "id": "lookup:abib:759",
-      "name": "아비브 레티날 펩타이드 부스터 크림 2.1 튜브",
+      "name": "아비브 레티날 펩타이드 부스터 크림 21 튜브",
       "brand": "아비브",
       "brandAlias": "Abib",
       "category": "moisturizer",
