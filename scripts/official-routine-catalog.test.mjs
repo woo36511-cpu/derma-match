@@ -307,9 +307,25 @@ test("directory candidates are published only after their official catalog yield
     assert.equal((await readPublished()).products.length, 0);
     await writeFile(sitemap, list(["수분-토너-100ml", "보습-세럼-30ml", "바디미스트-100ml"]));
     run("sync");
+    const listPage = join(dir, "fixturebrand-list");
+    const officialPhoto = "https://fixturebrand.com/web/product/toner.jpg";
+    await writeFile(listPage, `<li id="anchorBoxId_1">
+      <a href="/product/수분-토너-100ml/1/"><img data-src="${officialPhoto}"></a>
+      <div class="name"><a href="/product/수분-토너-100ml/1/">수분 토너 100ml</a></div>
+    </li><li id="anchorBoxId_2">
+      <a href="/product/보습-세럼-30ml/2/"><img src="https://unrelated.example/serum.jpg"></a>
+      <div class="name"><a href="/product/보습-세럼-30ml/2/">보습 세럼 30ml</a></div>
+    </li>`);
+    run("sync");
     run("publish");
     const result = await readPublished();
     assert.deepEqual(result.products.map(product => product.category), ["toner", "serum"]);
+    assert.equal(result.products[0].image, officialPhoto);
+    assert.equal(result.products[1].image, undefined);
+    await rm(listPage);
+    run("sync");
+    run("publish");
+    assert.equal((await readPublished()).products[0].image, officialPhoto);
     assert.equal(result.brands.fixturebrand.officialCatalogUrl, "https://fixturebrand.com/product/list.html?cate_no=12");
     run("publish");
     assert.deepEqual(await readPublished(), result);

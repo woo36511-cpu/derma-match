@@ -1,7 +1,7 @@
 import { loadCatalogStores } from "./official-brand-directory.mjs";
 import isFragranceProduct from "../src/utils/isFragranceProduct.js";
 import { readFile, writeFile } from "node:fs/promises";
-import { stores } from "./sync-official-routine-catalog.mjs";
+import { officialListingImage, stores } from "./sync-official-routine-catalog.mjs";
 
 const [source, destination = "src/data/routineLookupExpansion.json"] = process.argv.slice(2);
 if (!source) throw new Error("Expected a discovery snapshot path");
@@ -40,10 +40,13 @@ for (const candidate of fresh.products) {
   // Keep existing names and deep links stable unless discovery reports fields for the same product.
   if (old && (old.brand !== brand || old.category !== category ||
     (old.volume && candidate.volume && old.volume !== candidate.volume))) continue;
+  const publishedImage = typeof candidate.image === "string" && candidate.image.startsWith("https://")
+    ? officialListingImage(candidate.image, store.domain) : null;
+  const image = publishedImage || old?.image;
   items.set(id, { id, name, brand, brandAlias: store.alias, category,
     ...(candidate.volume === undefined ? (old?.volume ? { volume: old.volume } : {}) :
       typeof candidate.volume === "string" && /^\d+(?:\.\d+)?(?:ml|g|매)$/.test(candidate.volume) ? { volume: candidate.volume } : {}),
-    officialUrl: url.href, ...(store.sourceMarket && { sourceMarket: store.sourceMarket }), ...(old?.image && { image: old.image }) });
+    officialUrl: url.href, ...(store.sourceMarket && { sourceMarket: store.sourceMarket }), ...(image && { image }) });
 }
 const publishedKeys = new Set([...items.keys()].map(id => id.split(":")[1]));
 const newBrands = Object.fromEntries(Object.entries(fresh.brands ?? {}).filter(([key, metadata]) =>

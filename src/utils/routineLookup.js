@@ -1,5 +1,6 @@
 import { isDiscontinued, pageIdentity } from "./discontinuedProducts";
 import lookup from "../data/routineLookupProducts.json";
+import officialProductPhotos from "../data/officialProductPhotos.json";
 import expansion from "../data/routineLookupExpansion.json";
 import isFragranceProduct from "./isFragranceProduct.js";
 import { products } from "../data/products";
@@ -83,7 +84,7 @@ const entries = [...base, ...additional, {
   id: "lookup:iope:37", name: "아이오페 맨 올데이 퍼펙트 올인원", brand: "아이오페",
   brandAlias: "IOPE", category: "moisturizer", volume: "120ml", listingOnly: true,
   officialUrl: "https://iope.com/product/detail.html?product_no=37",
-}].map(product => ({ ...product, allInOne: /올인원|allinone/.test(normalize(product.name)) }));
+}].map(product => ({ ...product, image: product.image || officialProductPhotos[product.id], allInOne: /올인원|allinone/.test(normalize(product.name)) }));
 const entriesById = new Map(entries.map(product => [product.id, product]));
 
 const index = entries.map(product => {
