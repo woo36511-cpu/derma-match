@@ -7007,5 +7007,126 @@
         "상처 난 부위와 눈 주변은 피하고, 따가움이나 붉어짐이 생기면 중단해요."
       ]
     }
+  },
+  {
+    "id": 90,
+    "name": "큐어코드 수딩 릴리프 클렌저",
+    "brand": "큐어코드",
+    "category": "cleanser",
+    "volume": "250ml",
+    "legacyLookupIds": [
+      "lookup:curecode:41"
+    ],
+    "hydrationLevel": 6,
+    "texture": "light",
+    "concerns": [
+      "cleansing"
+    ],
+    "ingredients": [
+      "소듐코코일알라니네이트",
+      "포타슘코코일글리시네이트",
+      "글리세린"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "소듐코코일알라니네이트",
+      "아크릴레이트코폴리머",
+      "포타슘코코일글리시네이트",
+      "코코-베타인",
+      "1,2-헥산다이올",
+      "판테놀",
+      "소듐클로라이드",
+      "소듐코코에이트",
+      "서양배추출물",
+      "다마스크장미꽃수",
+      "에틸헥실글리세린",
+      "멜론씨추출물",
+      "서양송악잎/줄기추출물",
+      "오리스뿌리추출물",
+      "프로판다이올",
+      "알란토인",
+      "병풀추출물",
+      "서양고추나물추출물",
+      "N-팔미토일세린올",
+      "글리세릴스테아레이트"
+    ],
+    "careProfile": {
+      "hydrationSupport": 2,
+      "lightweightFit": 8,
+      "soothingSupport": 0,
+      "congestionSupport": 0,
+      "barrierSupport": 0
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-22",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "공식몰의 약산성 거품 세안제 설명과 상품고시를 대조해 세정 단계로 평가했어요. 피부 진정이나 장벽 개선 효과에 점수를 부여하지 않았어요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-22",
+      "sources": [
+        {
+          "url": "https://curecode.co.kr/product/code-01-%ED%81%90%EC%96%B4%EC%BD%94%EB%93%9C-%EC%88%98%EB%94%A9-%EB%A6%B4%EB%A6%AC%ED%94%84-%ED%81%B4%EB%A0%8C%EC%A0%80-250ml-l-%EB%AF%BC%EA%B0%90-%ED%94%BC%EB%B6%80-%EC%A7%84%EC%A0%95-l-ph-%EB%B0%B8%EB%9F%B0%EC%8A%A4-l-%EC%A0%80%EC%9E%90%EA%B7%B9-l-%EC%95%BD%EC%82%B0%EC%84%B1-%EC%84%B8%EC%95%88%EC%A0%9C-l-%ED%81%B4%EB%A0%8C/41/",
+          "sourceType": "official_domestic_product_page"
+        },
+        {
+          "url": "https://ecimg.cafe24img.com/pg1711b24193012097/curecode/web/upload/NNEditor/20251224/ED8190EC96B4ECBD94EB939C20EC8898EB94A920EBA6B4EBA6ACED948420ED81B4EBA08CECA08020EC8381EC84B8ED8E98EC9DB4ECA78025.jpg",
+          "sourceType": "official_domestic_ingredient_label"
+        }
+      ],
+      "note": "국내 공식몰 상품번호 41의 Code 01 수딩 릴리프 클렌저 250ml 상품고시 이미지와 용량·전성분을 대조했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": true
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "거품 타입으로 가볍게 씻어내는 일상용 세안제예요.",
+    "shortReason": "약산성 거품으로 하는 일상 세안",
+    "caution": [
+      "코코-베타인이나 장미꽃수 등 이 제품의 성분에 반응한 적이 있으면 피하세요.",
+      "상처 난 부위는 피하고, 씻은 뒤 따가움이나 붉어짐이 생기면 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "isAvailable": true,
+    "link": "https://curecode.co.kr/product/code-01-%ED%81%90%EC%96%B4%EC%BD%94%EB%93%9C-%EC%88%98%EB%94%A9-%EB%A6%B4%EB%A6%AC%ED%94%84-%ED%81%B4%EB%A0%8C%EC%A0%80-250ml-l-%EB%AF%BC%EA%B0%90-%ED%94%BC%EB%B6%80-%EC%A7%84%EC%A0%95-l-ph-%EB%B0%B8%EB%9F%B0%EC%8A%A4-l-%EC%A0%80%EC%9E%90%EA%B7%B9-l-%EC%95%BD%EC%82%B0%EC%84%B1-%EC%84%B8%EC%95%88%EC%A0%9C-l-%ED%81%B4%EB%A0%8C/41/",
+    "price": null,
+    "image": "https://ecimg.cafe24img.com/pg1711b24193012097/curecode/web/product/medium/20260422/1d6242f99625c866d2a00b5f954c21fc.jpg",
+    "imageSource": {
+      "url": "https://ecimg.cafe24img.com/pg1711b24193012097/curecode/web/product/medium/20260422/1d6242f99625c866d2a00b5f954c21fc.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-22"
+    },
+    "purchaseSource": {
+      "provider": "official",
+      "label": "큐어코드 공식몰",
+      "url": "https://curecode.co.kr/product/code-01-%ED%81%90%EC%96%B4%EC%BD%94%EB%93%9C-%EC%88%98%EB%94%A9-%EB%A6%B4%EB%A6%AC%ED%94%84-%ED%81%B4%EB%A0%8C%EC%A0%80-250ml-l-%EB%AF%BC%EA%B0%90-%ED%94%BC%EB%B6%80-%EC%A7%84%EC%A0%95-l-ph-%EB%B0%B8%EB%9F%B0%EC%8A%A4-l-%EC%A0%80%EC%9E%90%EA%B7%B9-l-%EC%95%BD%EC%82%B0%EC%84%B1-%EC%84%B8%EC%95%88%EC%A0%9C-l-%ED%81%B4%EB%A0%8C/41/",
+      "checkedAt": "2026-11-22",
+      "verification": "official_product_page",
+      "liveStockVerified": false
+    },
+    "usageType": "cleanser",
+    "usage": {
+      "when": "세안 단계",
+      "howToUse": [
+        "젖은 얼굴에 거품을 가볍게 펴 바른 뒤 미온수로 헹궈요."
+      ],
+      "caution": [
+        "코코-베타인이나 장미꽃수 등 이 제품의 성분에 반응한 적이 있으면 피하세요.",
+        "상처 난 부위는 피하고, 씻은 뒤 따가움이나 붉어짐이 생기면 중단해요."
+      ]
+    }
   }
 ]

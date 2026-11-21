@@ -126,5 +126,6 @@
     "catalogUrl": "https://drplinus.com/product/list.html?cate_no=115"
   },
   { "key": "curecode", "brand": "큐어코드", "alias": "CURE CODE", "catalogUrl": "https://curecode.co.kr/product/list.html?cate_no=42" },
-  { "key": "rdrd", "brand": "알디알디", "alias": "rdrd", "catalogUrl": "https://rdrd.co.kr/product/list.html?cate_no=48" }
+  { "key": "rdrd", "brand": "알디알디", "alias": "rdrd", "catalogUrl": "https://rdrd.co.kr/product/list.html?cate_no=48" },
+  { "key": "inyoe", "brand": "인요에", "alias": "inyoe", "catalogUrl": "https://inyoe.co.kr/product/list.html?cate_no=43" }
 ]
