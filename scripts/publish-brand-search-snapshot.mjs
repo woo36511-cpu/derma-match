@@ -12,7 +12,20 @@ if (fresh.market !== "KR" || fresh.provenance !== "official_listing_identity_onl
 const catalogStores = await loadCatalogStores(stores);
 const items = new Map(existing.products.map(item => [item.id, item]));
 const host = name => name.replace(/^(?:www|m)\./i, "");
+const discontinued = new Map((existing.discontinued ?? []).map(entry => [entry.id, entry]));
+for (const entry of fresh.discontinued ?? []) {
+  const key = /^lookup:([a-z0-9]+):[a-z0-9-]{1,120}$/.exec(entry?.id)?.[1];
+  const store = key && Object.hasOwn(catalogStores, key) && catalogStores[key];
+  if (!store) continue;
+  let url;
+  try { url = new URL(entry.officialUrl); } catch { continue; }
+  if (url.protocol !== "https:" || url.port || url.username || url.password || host(url.hostname) !== host(store.domain)) continue;
+  if (!discontinued.has(entry.id)) discontinued.set(entry.id, { id: entry.id, officialUrl: url.href });
+}
+for (const id of discontinued.keys()) items.delete(id);
+
 for (const candidate of fresh.products) {
+  if (discontinued.has(candidate?.id)) continue;
   const match = /^lookup:([a-z0-9]+):([a-z0-9-]{1,120})$/.exec(candidate?.id);
   const store = match && Object.hasOwn(catalogStores, match[1]) && catalogStores[match[1]];
   if (!store || (!store.sourceMarket && !/^\d{1,12}$/.test(match[2])) || candidate.brand !== store.brand || typeof candidate.name !== "string" || !candidate.name.trim() ||
@@ -44,9 +57,9 @@ const newBrands = Object.fromEntries(Object.entries(fresh.brands ?? {}).filter((
 for (const { name } of Object.values(newBrands)) console.log(`New skincare brand published: ${name}`);
 const products = [...items.values()].sort((a, b) => a.id.localeCompare(b.id, "en"));
 const canonical = item => JSON.stringify(Object.entries(item).sort(([a], [b]) => a.localeCompare(b)));
-if (Object.keys(newBrands).length === 0 && products.length === existing.products.length && products.every((item, i) => canonical(item) === canonical(existing.products[i]))) {
+if (discontinued.size === (existing.discontinued ?? []).length && Object.keys(newBrands).length === 0 && products.length === existing.products.length && products.every((item, i) => canonical(item) === canonical(existing.products[i]))) {
   console.log("Product search listings are unchanged");
 } else {
-  await writeFile(destination, JSON.stringify({ ...existing, checkedAt: fresh.checkedAt, brands: { ...existing.brands, ...newBrands }, products }, null, 2) + "\n");
+  await writeFile(destination, JSON.stringify({ ...existing, checkedAt: fresh.checkedAt, ...(discontinued.size && { discontinued: [...discontinued.values()] }), brands: { ...existing.brands, ...newBrands }, products }, null, 2) + "\n");
   console.log(`${products.length} listing-only search entries; no recommendation changes`);
 }

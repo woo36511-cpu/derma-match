@@ -202,8 +202,12 @@ function classify(name) {
   return null;
 }
 
-function makeCandidate(storeKey, store, nameInput, url, id, image) {
+function makeCandidate(storeKey, store, nameInput, url, id, image, onDiscontinued) {
   let name = nameInput.normalize("NFKC").replace(/\s+/g, " ").trim();
+  if (/^\[(?:단종|판매\s*종료)\]|(?:\[(?:단종|판매\s*종료)\]|\((?:단종|판매\s*종료)\)|\s(?:단종|판매\s*종료))$/u.test(name)) {
+    onDiscontinued?.({ id: `lookup:${storeKey}:${id}`, officialUrl: url });
+    return null;
+  }
   if (["banobagi", "onething"].includes(storeKey) && /[2-9]\d*\s*개(?:\s|$)/u.test(name)) return null;
   if (storeKey === "kioskin" && /특가|블랑카우|쿠션|아이\s*크림|\d\s*개|\s\+\s/u.test(name)) return null;
   if (storeKey === "physiogel" && /특별구성|듀오|쿠션|\d\s*개|\s\+\s/u.test(name)) return null;
@@ -360,7 +364,7 @@ const imageUrl = (input, host) => {
   } catch { return null; }
 };
 
-function extractInnisfree(source, storeKey, store) {
+function extractInnisfree(source, storeKey, store, submit) {
   // Nuxt publishes plain indexed JSON alongside the official product-list page.
   const encoded = source.match(/<script\b[^>]*\bid="__NUXT_DATA__"[^>]*>([^<]+)<\/script>/)?.[1];
   if (!encoded) return [];
@@ -371,15 +375,17 @@ function extractInnisfree(source, storeKey, store) {
       if (!row || typeof row !== "object" || Array.isArray(row) || entries[row.inmPrdClCd] !== "1") return [];
       const id = entries[row.inmPrdNo], name = entries[row.prdNm];
       if (!/^\d{4,10}$/.test(id ?? "") || typeof name !== "string") return [];
-      const candidate = makeCandidate(storeKey, store, name, `https://${store.domain}/kr/ko/dp/product/${id}`, id,
+      const candidate = submit(storeKey, store, name, `https://${store.domain}/kr/ko/dp/product/${id}`, id,
         imageUrl(entries[row.bscsImgUrl], store.domain));
       return candidate ? [candidate] : [];
     });
   } catch { return []; }
 }
 
-export function extractOfficialListings(source, storeKey, store, sitemap = false) {
-  if (store.type === "innisfree") return extractInnisfree(source, storeKey, store);
+export function extractOfficialListings(source, storeKey, store, sitemap = false, onDiscontinued) {
+  const submit = (key, config, name, url, id, image) =>
+    makeCandidate(key, config, name, url, id, image, onDiscontinued);
+  if (store.type === "innisfree") return extractInnisfree(source, storeKey, store, submit);
   if (store.type === "neutrogena") {
     for (const script of source.matchAll(/<script\b[^>]*\btype="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
       let document;
@@ -389,7 +395,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
         const url = urlWithHost(entry?.url, store.domain, false);
         const id = url?.pathname.match(/^\/(?:products\/)?(?:cleanser|make-up-remover)\/([a-z0-9-]+)\/?$/)?.[1];
         if (!id || typeof entry.name !== "string") return [];
-        const candidate = makeCandidate(storeKey, store, entry.name, url.origin + url.pathname, id);
+        const candidate = submit(storeKey, store, entry.name, url.origin + url.pathname, id);
         return candidate ? [candidate] : [];
       });
     }
@@ -413,7 +419,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const background = Array.from(walk(card)).find(child => child.nodeName === "a" &&
       attr(child, "href") === url.pathname && attr(child, "style")?.includes("background-image:"));
     const photoUrl = attr(photo, "src") ?? attr(background, "style")?.match(/background-image:\s*url\(([^)]+)\)/)?.[1];
-    const candidate = makeCandidate(storeKey, store, name, url.origin + url.pathname, id, imageUrl(photoUrl, store.domain));
+    const candidate = submit(storeKey, store, name, url.origin + url.pathname, id, imageUrl(photoUrl, store.domain));
     return candidate ? [candidate] : [];
   });
   if (store.type === "faceshop") return tree.flatMap(node => {
@@ -426,7 +432,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     while (card && card.nodeName !== "li") card = card.parentNode;
     const photo = Array.from(walk(card)).find(child => child.nodeName === "img" &&
       attr(child, "src")?.startsWith("https://image.ethefaceshop.com/tfsshopWebSrc/upload/product/"));
-    const candidate = makeCandidate(storeKey, store, name,
+    const candidate = submit(storeKey, store, name,
       `https://${store.domain}/mall/product/product-view.jsp?dpid=${id}`, id, attr(photo, "src"));
     return candidate ? [candidate] : [];
   });
@@ -440,7 +446,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const photo = Array.from(walk(node.parentNode)).find(child => child.nodeName === "img");
     const src = attr(photo, "src") ?? "";
     const image = src.startsWith("https://media-pierre-fabre.wedia-group.com/") ? src.split("?")[0] : null;
-    const candidate = makeCandidate(storeKey, store, textOf(node).replace(/ 자세히 보기$/u, ""), url.origin + url.pathname, id, image);
+    const candidate = submit(storeKey, store, textOf(node).replace(/ 자세히 보기$/u, ""), url.origin + url.pathname, id, image);
     return candidate ? [candidate] : [];
   });
   if (store.type === "imweb") return tree.flatMap(node => {
@@ -454,7 +460,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const photo = descendants.find(child => child.nodeName === "img");
     const src = attr(photo, "src") ?? "";
     const image = imageUrl(src, store.domain) || (src.startsWith("https://cdn.imweb.me/") ? src.split("?")[0] : null);
-    const candidate = makeCandidate(storeKey, store, [textOf(title), textOf(volume)].join(" "), url.origin + url.pathname + "?idx=" + id, id, image);
+    const candidate = submit(storeKey, store, [textOf(title), textOf(volume)].join(" "), url.origin + url.pathname + "?idx=" + id, id, image);
     return candidate ? [candidate] : [];
   });
   if (store.type === "etude") return tree.flatMap(card => {
@@ -467,7 +473,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const url = urlWithHost(attr(link, "href"), store.domain, false);
     if (!id || !url?.pathname.startsWith("/shop/category/")) return [];
     const photo = descendants.find(node => node.nodeName === "img" && attr(node, "class")?.split(/\s+/).includes("attachment-woocommerce_thumbnail"));
-    const candidate = makeCandidate(storeKey, store, textOf(link), url.origin + url.pathname, id, imageUrl(attr(photo, "src"), store.domain));
+    const candidate = submit(storeKey, store, textOf(link), url.origin + url.pathname, id, imageUrl(attr(photo, "src"), store.domain));
     return candidate ? [candidate] : [];
   });
   if (store.sourceMarket === "US") {
@@ -493,7 +499,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
   if (store.type === "aestura") return tree.flatMap(node => {
     const name = attr(node, "prdnm"), id = attr(node, "prdseq");
     if (node.nodeName !== "a" || !name || !/^\d{1,12}$/.test(id ?? "") || /의약품|의료기기|의약외품/.test(attr(node, "catcd2ndnm") ?? "")) return [];
-    const candidate = makeCandidate(storeKey, store, name, `https://${store.domain}/web/product/view.do?prdSeq=${id}`, id);
+    const candidate = submit(storeKey, store, name, `https://${store.domain}/web/product/view.do?prdSeq=${id}`, id);
     return candidate ? [candidate] : [];
   });
   for (const node of tree) {
@@ -650,7 +656,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       sourceUrl = `https://${store.domain}${path}?${key}=${id}`;
     }
     if (rawName) {
-      const candidate = makeCandidate(storeKey, store, rawName, sourceUrl, id, image);
+      const candidate = submit(storeKey, store, rawName, sourceUrl, id, image);
       if (candidate) candidates.push(candidate);
     }
   }
@@ -697,6 +703,7 @@ async function main() {
   const knownNames = new Set(existing.map(p => entryKey(p)));
   const products = new Map(prior.products.map(p => [p.id, p]));
   const brands = { ...prior.brands };
+  const discontinued = new Map();
   const date = process.env.ROUTINE_CATALOG_DATE ?? new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Seoul" });
   const selection = process.argv.find(arg => arg.startsWith("--brands="))?.slice(9).split(",");
   const catalogStores = await loadCatalogStores(stores);
@@ -724,7 +731,7 @@ async function main() {
         }
         const source = await readFile(file).then(b => decodeBody(b, store)).catch(() => null);
         if (!source) { missed++; continue; }
-        const found = extractOfficialListings(source, key, store, kind === "site");
+        const found = extractOfficialListings(source, key, store, kind === "site", product => discontinued.set(product.id, product));
         if (found.length) useful++;
         else missed++;
         for (const p of found) {
@@ -751,6 +758,7 @@ async function main() {
       } else console.log(`${store.brand}: no usable official list`);
     }
   }));
+  for (const id of discontinued.keys()) products.delete(id);
   const canonical = new Map();
   for (const p of products.values()) {
     const key = entryKey(p);
@@ -758,7 +766,7 @@ async function main() {
   }
   const list = [...canonical.values()].sort((a, b) => a.id.localeCompare(b.id, "en"));
   await writeFile(output, JSON.stringify({ market: "KR", checkedAt: date,
-    provenance: "official_listing_identity_only", brands: Object.fromEntries(Object.entries(brands).sort()), products: list }, null, 2) + "\n");
+    provenance: "official_listing_identity_only", discontinued: [...discontinued.values()], brands: Object.fromEntries(Object.entries(brands).sort()), products: list }, null, 2) + "\n");
   const indexedBrands = new Set(list.map(product => product.brand)).size;
   console.log(`${list.length} official listings across ${indexedBrands} indexed brands (${Object.keys(brands).length} with crawl metadata).`);
 }

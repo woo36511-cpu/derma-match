@@ -326,3 +326,14 @@ test("web candidates use their storefront parser and isolate multi-brand catalog
   const html = '<a href="/goods/goods_view.php?goodsNo=123"><strong class="item_name">수딩 리페어 토너 200ml</strong></a>';
   assert.equal(extractOfficialListings(html, "dermafirm", candidates.dermafirm)[0]?.id, "lookup:dermafirm:123");
 });
+
+test("explicit official discontinuation is reported by product ID while sold out remains searchable", () => {
+  const discontinued = [];
+  const xml = "<urlset>" +
+    "<url><loc>https://numbuzin.com/product/수딩세럼-50ml-단종/42/</loc></url>" +
+    "<url><loc>https://numbuzin.com/product/수분토너-100ml-품절/43/</loc></url>" +
+    "</urlset>";
+  const active = extractOfficialListings(xml, "numbuzin", stores.numbuzin, true, item => discontinued.push(item));
+  assert.deepEqual(discontinued.map(item => item.id), ["lookup:numbuzin:42"]);
+  assert.deepEqual(active.map(item => item.id), ["lookup:numbuzin:43"]);
+});

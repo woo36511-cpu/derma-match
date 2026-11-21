@@ -1,3 +1,4 @@
+import { isDiscontinued, pageIdentity } from "./discontinuedProducts";
 import lookup from "../data/routineLookupProducts.json";
 import expansion from "../data/routineLookupExpansion.json";
 import isFragranceProduct from "./isFragranceProduct.js";
@@ -35,7 +36,7 @@ export function getCanonicalRoutineProductId(id) {
   return legacyIds.get(id) ?? id;
 }
 
-const reviewedEntries = products.filter(product => categories[product.category]).map(product => ({
+const reviewedEntries = products.filter(product => categories[product.category] && !isDiscontinued(product)).map(product => ({
     id: product.id,
     name: product.name,
     brand: product.brand,
@@ -52,16 +53,7 @@ const reviewedEntries = products.filter(product => categories[product.category])
   }));
 
 const identity = product => [product.brand, product.category, normalize(product.name), normalize(product.volume ?? "")].join(":");
-const pageIdentity = value => {
-  try {
-    const url = new URL(value);
-    const sku = url.pathname.match(/^\/product\/[^/]+\/(\d+)(?:\/|$)/)?.[1] ?? url.searchParams.get("product_no") ??
-      url.searchParams.get("goodsNo") ?? url.searchParams.get("branduid");
-    return `${url.hostname.replace(/^(?:www|m)\./, "")}:${sku && /^\d+$/.test(sku) ? sku : `${url.pathname}${url.search}`}`;
-  } catch { return null; }
-};
-
-const isSkincareListing = product => Object.hasOwn(routineLookupCategories, product.category) && !isFragranceProduct(product.name);
+const isSkincareListing = product => !isDiscontinued(product) && Object.hasOwn(routineLookupCategories, product.category) && !isFragranceProduct(product.name);
 const baseLookup = lookup.products.filter(product => isSkincareListing(product) && !legacyIds.has(product.id)).map(product => ({ ...product, formulaVerified: false }));
 const base = [...reviewedEntries, ...baseLookup];
 const namesInBase = new Set(base.map(identity));

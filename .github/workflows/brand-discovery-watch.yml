@@ -7,6 +7,8 @@ on:
     paths:
       - '.github/workflows/brand-discovery-watch.yml'
       - 'data/official-brand-candidates.json'
+      - 'scripts/sync-official-routine-catalog.mjs'
+      - 'scripts/publish-brand-search-snapshot.mjs'
   workflow_dispatch:
 
 permissions:

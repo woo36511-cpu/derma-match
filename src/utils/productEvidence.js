@@ -1,3 +1,5 @@
+import { isDiscontinued } from "./discontinuedProducts";
+
 export const PRODUCT_CARE_AXES = ["hydrationSupport", "lightweightFit", "soothingSupport", "congestionSupport", "barrierSupport"];
 export const RECOMMENDATION_RULE_VERSION = "verified-product-fit-v5-current-routine-20261114";
 
@@ -10,8 +12,9 @@ export function getProductEvidenceStatus(product) {
   const issues = [];
   if (!formulaVerified) issues.push("국내 제품·전성분 확인 부족");
   if (!profileReviewed) issues.push("제품별 적합도 평가 근거 부족");
-  if (product?.isAvailable === false) issues.push("현재 추천 대상에서 제외된 제품");
-  return { formulaVerified, profileReviewed, eligible: formulaVerified && profileReviewed && product?.isAvailable !== false,
+  const available = product?.isAvailable !== false && !isDiscontinued(product);
+  if (!available) issues.push("현재 추천 대상에서 제외된 제품");
+  return { formulaVerified, profileReviewed, eligible: formulaVerified && profileReviewed && available,
     sources, lastVerifiedAt: evidence.lastVerifiedAt ?? null, issues,
     assessmentBasis: "internal_conservative_assessment", clinicalEfficacyValidated: false };
 }
