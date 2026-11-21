@@ -4,7 +4,7 @@ import { CURRENT_ROUTINE_LIMIT, getReviewedRoutineProduct, makeCurrentRoutineEnt
 import { DetailDisclosure } from "./DetailDisclosure";
 import { routineLookupCategories, routineLookupCount, searchRoutineProducts } from "../utils/routineLookup";
 import { ProductReviewHistory, ProductReviewRequest } from "./ProductReviewRequest";
-import { getOfficialIngredientSearchUrl } from "../services/productReviewRequests";
+import { getOfficialIngredientSearchUrl, supportsProductReviewRequest } from "../services/productReviewRequests";
 
 function LookupImage({ src }) {
   const [failed, setFailed] = useState(false);
@@ -70,6 +70,7 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
           <p className="text-xs font-medium text-slate-600">{routineLookupCategories[product.category]}{product.allInOne && " · 올인원"}{product.volume && ` · ${product.volume}`}</p>
           <p className="mt-1 break-keep text-sm font-semibold text-slate-950">{product.name}</p>
           <p className="mt-1 text-xs text-slate-600">{product.formulaVerified ? "국내 전성분 확인됨" : product.listingOnly ? (product.sourceMarket === "US" ? "미국 공식 목록 확인 · 전성분 검수 전" : "국내 공식 목록 확인 · 전성분 검수 전") : "전성분 검수 전"}</p>
+          {product.discontinuedInKorea && <p className="mt-1 text-xs text-slate-600">국내 판매 종료 확인</p>}
           {reviewed && <p className="mt-1 text-xs text-slate-700">{reviewed.label}</p>}
           <div className="mt-2 flex flex-wrap items-center gap-2">
             <button type="button" disabled={added || isFull} aria-label={`${actionName} ${added ? "내 루틴에 담음" : "내 루틴에 담기"}`}
@@ -79,7 +80,7 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
             </button>
             {product.officialUrl && <a href={product.officialUrl} target="_blank" rel="noreferrer" className="text-xs font-semibold text-emerald-800 underline underline-offset-2">공식 제품 정보</a>}
           </div>
-          {signedIn && !reviewed && <DetailDisclosure title="이 제품 검수 요청" className="mt-2">
+          {signedIn && !reviewed && supportsProductReviewRequest(product.category) && <DetailDisclosure title="이 제품 검수 요청" className="mt-2">
             <ProductReviewRequest product={product} source={product.officialUrl ?? ""} />
           </DetailDisclosure>}
         </div>
@@ -99,9 +100,10 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
         className="mt-2 rounded-lg border border-emerald-700 px-3 py-2 font-semibold text-emerald-800 disabled:border-slate-200 disabled:text-slate-500">
         입력한 제품 담기
       </button>
-      {exactReviewed ? <p className="mt-2 text-sm">이미 검수된 제품이에요 · {exactReviewed.label}</p>
-        : signedIn ? <ProductReviewRequest key={manual?.id ?? "manual"} product={manual} />
-          : <p className="mt-2 text-xs text-slate-600">로그인하면 국내 전성분과 보습감 검수를 요청할 수 있어요.</p>}
+      {exactReviewed && <p className="mt-2 text-sm">이미 검수된 제품이에요 · {exactReviewed.label}</p>}
+      {!exactReviewed && (!manualCategory || supportsProductReviewRequest(manualCategory)) && (signedIn
+        ? <ProductReviewRequest key={manual?.id ?? "manual"} product={manual} />
+        : <p className="mt-2 text-xs text-slate-600">로그인하면 국내 전성분과 보습감 검수를 요청할 수 있어요.</p>)}
     </DetailDisclosure>}
     {signedIn && <ProductReviewHistory />}
   </section>;

@@ -2,6 +2,11 @@ import { getSupabaseClient } from "./supabaseClient";
 
 const table = "product_review_requests";
 const publicFields = "product_name,category,status,requested_at";
+const reviewCategories = new Set(["cleanser", "moisturizer", "toner", "serum", "sunscreen"]);
+
+export function supportsProductReviewRequest(category) {
+  return reviewCategories.has(category);
+}
 
 export function getOfficialIngredientSearchUrl(name) {
   return `https://www.google.com/search?q=${encodeURIComponent(`${name} 공식 브랜드 국내 전성분`)}`;
