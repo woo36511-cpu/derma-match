@@ -1,0 +1,47 @@
+[
+  {
+    "id": "lookup:chanel:126310",
+    "name": "샤넬 샹스 오 땅드르 오 드 뚜왈렛",
+    "brand": "샤넬",
+    "brandAlias": "CHANEL",
+    "category": "fragrance",
+    "volume": "50ml",
+    "officialUrl": "https://www.chanel.com/kr/fragrance/p/126310/chance-eau-tendre-eau-de-toilette-spray/"
+  },
+  {
+    "id": "lookup:chanel:126250",
+    "name": "샤넬 샹스 오 땅드르 오 드 빠르펭",
+    "brand": "샤넬",
+    "brandAlias": "CHANEL",
+    "category": "fragrance",
+    "volume": "50ml",
+    "officialUrl": "https://www.chanel.com/kr/fragrance/p/126250/chance-eau-tendre-eau-de-parfum-spray/"
+  },
+  {
+    "id": "lookup:granhand:669",
+    "name": "그랑핸드 수아 시그니처 퍼퓸",
+    "brand": "그랑핸드",
+    "brandAlias": "GRANHAND",
+    "category": "fragrance",
+    "volume": "50ml",
+    "officialUrl": "https://granhand.com/product/detail.html?product_no=669"
+  },
+  {
+    "id": "lookup:granhand:695",
+    "name": "그랑핸드 솝니 시그니처 퍼퓸",
+    "brand": "그랑핸드",
+    "brandAlias": "GRANHAND",
+    "category": "fragrance",
+    "volume": "50ml",
+    "officialUrl": "https://granhand.com/product/detail.html?product_no=695"
+  },
+  {
+    "id": "lookup:granhand:696",
+    "name": "그랑핸드 캐스크 시그니처 퍼퓸",
+    "brand": "그랑핸드",
+    "brandAlias": "GRANHAND",
+    "category": "fragrance",
+    "volume": "50ml",
+    "officialUrl": "https://granhand.com/product/detail.html?product_no=696"
+  }
+]
