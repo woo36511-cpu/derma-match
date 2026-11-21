@@ -1,6 +1,6 @@
 import lookup from "../data/routineLookupProducts.json";
 import expansion from "../data/routineLookupExpansion.json";
-import fragrances from "../data/officialFragranceLookup.json";
+import isFragranceProduct from "./isFragranceProduct.cjs";
 import { products } from "../data/products";
 
 export const routineLookupCategories = {
@@ -11,9 +11,6 @@ export const routineLookupCategories = {
   sunscreen: "자외선 차단제",
   mask: "마스크팩",
   lipCare: "립케어",
-  makeup: "색조",
-  bodyCare: "바디케어",
-  fragrance: "향수",
 };
 
 const categories = {
@@ -64,7 +61,8 @@ const pageIdentity = value => {
   } catch { return null; }
 };
 
-const baseLookup = lookup.products.filter(product => !legacyIds.has(product.id)).map(product => ({ ...product, formulaVerified: false }));
+const isSkincareListing = product => Object.hasOwn(routineLookupCategories, product.category) && !isFragranceProduct(product.name);
+const baseLookup = lookup.products.filter(product => isSkincareListing(product) && !legacyIds.has(product.id)).map(product => ({ ...product, formulaVerified: false }));
 const base = [...reviewedEntries, ...baseLookup];
 const namesInBase = new Set(base.map(identity));
 const urlsInBase = new Set(base.map(product => pageIdentity(product.officialUrl)).filter(Boolean));
@@ -74,8 +72,8 @@ const primaryByPage = new Map(base.flatMap(product => {
 }).reverse());
 const backCompatLookupIds = new Map();
 const additional = [];
-for (const product of [...expansion.products, ...fragrances]) {
-  if (legacyIds.has(product.id)) continue;
+for (const product of expansion.products) {
+  if (!isSkincareListing(product) || legacyIds.has(product.id)) continue;
   const url = pageIdentity(product.officialUrl);
   const onSamePage = url && urlsInBase.has(url) ? primaryByPage.get(url) : null;
   if (onSamePage && (!onSamePage.volume || !product.volume || normalize(onSamePage.volume) === normalize(product.volume))) {

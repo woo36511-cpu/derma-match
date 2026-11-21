@@ -1,3 +1,4 @@
+import isFragranceProduct from "../src/utils/isFragranceProduct.cjs";
 import { execFile } from "node:child_process";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
@@ -273,7 +274,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image) {
   if (storeKey === "medipeel" &&
     /해외\s*전용|클렌징\s*해면|풋\s*크림|제품\s*이미지|\d\s*(?:ml|g)\s+11$/iu.test(name)) return null;
   const bundleName = storeKey === "etude" ? name.replace(/^순정 2x(?= 베리어 보습 크림)/iu, "순정") : name;
-  if (skip.test(name) || /\b[2345]\s*[xX]\b|[\d.]\s*(?:ml|g)\s*[xX×*]|\bset\b/i.test(bundleName)) return null;
+  if (isFragranceProduct(name) || skip.test(name) || /\b[2345]\s*[xX]\b|[\d.]\s*(?:ml|g)\s*[xX×*]|\bset\b/i.test(bundleName)) return null;
   if (storeKey === "jumiso") name = name.replace(/^\[(?:글로우픽\s*1위|흔적\/모공케어|데일리 톤\/결 케어|보습장벽클렌징|항산화광채케어|장벽회복기능성)\]\s*/u, "");
   name = name.replace(/^\s*(?:\[(?:NEW|대용량|단품|정품|비건|한정)\]\s*)+/iu, "");
   name = name.replace(/^\[(리뉴얼(?: 출시)?)\]\s*/u, "$1 ");

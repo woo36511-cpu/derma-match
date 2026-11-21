@@ -1,3 +1,4 @@
+import isFragranceProduct from "../src/utils/isFragranceProduct.cjs";
 import { readFile, writeFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 
@@ -13,6 +14,7 @@ export function prepareRetailDiscovery(feed, approvals) {
         !["single", "bundle", "unknown"].includes(input.kind)) throw new Error("Invalid Olive Young listing");
     const name = normalize(input.name);
     if (!name || byId.has(input.goodsNo)) throw new Error("Empty or duplicate Olive Young listing");
+    if (isFragranceProduct(name)) continue;
     const isBundle = input.kind === "bundle" || /기획|세트|증정|\+/u.test(name);
     const match = !isBundle && input.kind === "single" && input.brand === "라운드랩" && name.match(exactDokdo);
     const lookupId = match && Number(match[1]) === input.volumeMl ? `lookup:roundlab:${match[1] === "200" ? "22" : "14"}` : null;

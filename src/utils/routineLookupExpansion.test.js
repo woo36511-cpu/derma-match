@@ -18,3 +18,10 @@ test("shared product names need a volume before reusing a reviewed formula", () 
   expect(getReviewedRoutineProduct(makeManualRoutineEntry(`${name} 55ml`, "serum"))).toBeNull();
   expect(getReviewedRoutineProduct(makeManualRoutineEntry(`${name} 100ml`, "serum"))?.catalog.id).toBe(25);
 });
+
+test("skincare search omits fragrance and makeup but retains masks", () => {
+  expect(searchRoutineProducts("샹스 오 땅드르").matches).toHaveLength(0);
+  expect(getRoutineLookupProduct("lookup:beyond:1058")).toBeNull();
+  expect(getRoutineLookupProduct("lookup:thesaem:1768801816")).toBeNull();
+  expect(getRoutineLookupProduct("lookup:thesaem:0000000685")?.category).toBe("mask");
+});

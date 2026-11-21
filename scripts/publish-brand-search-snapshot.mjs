@@ -1,3 +1,4 @@
+import isFragranceProduct from "../src/utils/isFragranceProduct.cjs";
 import { readFile, writeFile } from "node:fs/promises";
 import { stores } from "./sync-official-routine-catalog.mjs";
 
@@ -13,7 +14,7 @@ for (const candidate of fresh.products) {
   const match = /^lookup:([a-z0-9]+):([a-z0-9-]{1,120})$/.exec(candidate?.id);
   const store = match && Object.hasOwn(stores, match[1]) && stores[match[1]];
   if (!store || (!store.sourceMarket && !/^\d{1,12}$/.test(match[2])) || candidate.brand !== store.brand || typeof candidate.name !== "string" || !candidate.name.trim() ||
-      candidate.name.length > 128 || !["cleanser", "toner", "serum", "moisturizer", "sunscreen"].includes(candidate.category)) continue;
+      candidate.name.length > 128 || isFragranceProduct(candidate.name) || !["cleanser", "toner", "serum", "moisturizer", "sunscreen"].includes(candidate.category)) continue;
   let url;
   try { url = new URL(candidate.officialUrl); } catch { continue; }
   if (url.protocol !== "https:" || url.port || url.username || url.password || host(url.hostname) !== host(store.domain)) continue;
