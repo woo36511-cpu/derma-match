@@ -10,6 +10,7 @@ on:
       - 'scripts/sync-official-routine-catalog.mjs'
       - 'scripts/publish-brand-search-snapshot.mjs'
       - 'scripts/backfill-official-product-photos.mjs'
+      - 'scripts/review-official-catalog-formulas.mjs'
   workflow_dispatch:
 
 permissions:
