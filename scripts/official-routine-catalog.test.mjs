@@ -418,3 +418,14 @@ test("Inyoe sitemap keeps a single cleanser and skips the cleansing duo", () => 
   const products = extractOfficialListings(source, "inyoe", store, true);
   assert.deepEqual(products.map(({ id, volume }) => [id, volume]), [["lookup:inyoe:16", "120ml"]]);
 });
+
+test("DWeather classifies the official ampoule and toner pad titles and skips sets", () => {
+  const store = { brand: "디웨더", alias: "D:WEATHER", domain: "dweather.kr", type: "cafe" };
+  const html = `<div class="name"><a href="/product/detail.html?product_no=20">상품명 : 디웨더 레스큐리프 블루 레인 드롭 20ml</a></div>
+    <div class="name"><a href="/product/detail.html?product_no=16">상품명 : 디웨더 레스쿠쿨 스노우 마스크 패드</a></div>
+    <div class="name"><a href="/product/detail.html?product_no=19">상품명 : 디웨더 레스큐리프 스팀 크림 1+1 기획(리필 포함)</a></div>`;
+  const products = extractOfficialListings(html, "dweather", store);
+  assert.deepEqual(products.map(({ id, category }) => [id, category]), [
+    ["lookup:dweather:20", "serum"], ["lookup:dweather:16", "toner"],
+  ]);
+});
