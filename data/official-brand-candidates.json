@@ -41,5 +41,11 @@
     "brand": "매스티나",
     "alias": "MASTINA",
     "catalogUrl": "https://m.mastina.co.kr/product/list.html?cate_no=156"
+  },
+  {
+    "key": "doctoralthea",
+    "brand": "닥터엘시아",
+    "alias": "Dr. Althea",
+    "catalogUrl": "https://www.doctoralthea.co.kr/product/list.html?cate_no=162"
   }
 ]
