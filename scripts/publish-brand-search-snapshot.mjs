@@ -28,7 +28,7 @@ for (const candidate of fresh.products) {
   if (discontinued.has(candidate?.id)) continue;
   const match = /^lookup:([a-z0-9]+):([a-z0-9-]{1,120})$/.exec(candidate?.id);
   const store = match && Object.hasOwn(catalogStores, match[1]) && catalogStores[match[1]];
-  if (!store || (!store.sourceMarket && !/^\d{1,12}$/.test(match[2])) || candidate.brand !== store.brand || typeof candidate.name !== "string" || !candidate.name.trim() ||
+  if (!store || (!store.sourceMarket && !(store.type === "tonymoly" ? /^\d{12,24}$/ : /^\d{1,12}$/).test(match[2])) || candidate.brand !== store.brand || typeof candidate.name !== "string" || !candidate.name.trim() ||
       candidate.name.length > 128 || isFragranceProduct(candidate.name) || !["cleanser", "toner", "serum", "moisturizer", "sunscreen"].includes(candidate.category)) continue;
   if (!Object.hasOwn(stores, match[1]) && !existing.brands?.[match[1]]?.officialCatalogUrl &&
       !(fresh.brands?.[match[1]]?.fetchedListings >= 2 && fresh.brands[match[1]].name === store.brand)) continue;
