@@ -408,3 +408,13 @@ test("rdrd uses the official product title and keeps cream patches out of moistu
     ["lookup:rdrd:36", "알디알디 레드 애플 락토 진정 팝핑 토너", "toner"],
   ]);
 });
+
+test("Inyoe sitemap keeps a single cleanser and skips the cleansing duo", () => {
+  const store = { brand: "인요에", alias: "inyoe", domain: "inyoe.co.kr", type: "cafe" };
+  const source = `<urlset>
+    <url><loc>https://inyoe.co.kr/product/인요에-아미노산-쌀-도우-클렌징-폼-120ml/16/</loc></url>
+    <url><loc>https://inyoe.co.kr/product/인요에-젠틀-클렌징-듀오/52/</loc></url>
+  </urlset>`;
+  const products = extractOfficialListings(source, "inyoe", store, true);
+  assert.deepEqual(products.map(({ id, volume }) => [id, volume]), [["lookup:inyoe:16", "120ml"]]);
+});

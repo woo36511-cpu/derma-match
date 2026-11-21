@@ -229,6 +229,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image, onDiscontinue
     if (!title || /오인트먼트/u.test(title)) return null;
     name = title.split(/\s*[|ㅣᅵ]\s*|\s+l\s+/iu)[0].trim();
   }
+  if (storeKey === "inyoe" && /듀오|트리오/u.test(name)) return null;
   if (storeKey === "rdrd") {
     if (/크림\s*패치/u.test(name)) return null;
     if (/[×x]\s*\d+\s*개|[2-9]\d*\s*개\s*구성/iu.test(name)) return null;
