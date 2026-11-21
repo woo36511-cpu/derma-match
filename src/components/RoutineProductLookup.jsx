@@ -1,3 +1,4 @@
+import { BrandDiscoveryRequest } from "./BrandDiscoveryRequest";
 import { readOfficialFormula } from "../services/officialCosmetics";
 import { useRef, useState } from "react";
 import { CurrentRoutineReview, useCurrentRoutine } from "./CurrentRoutineReview";
@@ -39,6 +40,7 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
   const manual = makeManualRoutineEntry(query, chosenManualCategory);
   const { matches, total } = searchRoutineProducts(query, 12, allInOneOnly, selectedCategory ? [selectedCategory] : categoryKeys);
   const started = query.normalize("NFKC").replace(/[^\p{L}\p{N}]/gu, "").length >= 2;
+  const brandDiscoveryAvailable = started && total === 0 && searchRoutineProducts(query, 1).total === 0;
   const signedIn = ownerKey.startsWith("account:");
   const exactReviewed = manual && getReviewedRoutineProduct(manual);
   return <section aria-labelledby="routine-lookup-title" className="space-y-4 rounded-3xl border border-slate-200 bg-white p-4 sm:p-6">
@@ -71,6 +73,7 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
         ? "일치하는 제품이 없어요. 이름을 직접 담거나 공식 자료를 찾아 검수를 요청할 수 있어요."
         : `${total}개 찾았어요.${total > matches.length ? ` 앞의 ${matches.length}개만 표시해요. 제품명을 더 입력해보세요.` : ""}`}
     </p>
+    {brandDiscoveryAvailable && <BrandDiscoveryRequest key={query.trim()} query={query.trim()} />}
     {!!matches.length && <ul className="grid gap-3 sm:grid-cols-2">
       {matches.map(product => {
         const added = routine.entries.some(entry => entry.id === product.id);
