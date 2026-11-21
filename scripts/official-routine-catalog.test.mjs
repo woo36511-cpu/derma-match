@@ -352,3 +352,12 @@ test("official Zeroid and Tonymoly detail links preserve SKU identity and ignore
   assert.deepEqual(extractOfficialListings(zeroid, "zeroid", stores.zeroid).map(p => [p.id, p.volume]), [["lookup:zeroid:320", "80ml"]]);
   assert.deepEqual(extractOfficialListings(tony, "tonymoly", stores.tonymoly).map(p => [p.id, p.volume]), [["lookup:tonymoly:20260320000152821", "500ml"]]);
 });
+
+test("ISOI and Centellian24 preserve single products and reject other brands and sets", () => {
+  const isoi = '<a href="/product/goods_detail?goods_no=1"><span class="name">잡티 케어 세럼 35ml</span></a>' +
+    '<a href="/product/goods_detail?goods_no=2">시카고 수딩 크림 50ml</a>';
+  const dk = (id, name, brand) => `<li id="anchorBoxId_${id}"><p class="name"><a href="/product/detail.html?product_no=${id}">상품명 : ${name}</a></p> <p>브랜드 : ${brand}</p></li>`;
+  assert.deepEqual(extractOfficialListings(isoi, "isoi", stores.isoi).map(p => p.id), ["lookup:isoi:1"]);
+  const html = dk(11, "마데카 크림 50ml", "센텔리안24") + dk(12, "수분 크림 50ml", "다른브랜드") + dk(13, "마데카 크림 50ml x 2개", "센텔리안24");
+  assert.deepEqual(extractOfficialListings(html, "centellian24", stores.centellian24).map(p => p.id), ["lookup:centellian24:11"]);
+});

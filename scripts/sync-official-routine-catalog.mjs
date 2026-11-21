@@ -14,6 +14,10 @@ const clubClio = (brand, alias, id) => ({ brand, alias, domain: "clubclio.co.kr"
   paths: [["121072", `/shop/brandsList/121072000000000/brand/${id}`]] });
 
 export const stores = {
+  isoi: { brand: "아이소이", alias: "ISOI", domain: "www.isoi.co.kr", type: "isoi",
+    paths: [["list", "/product/goods_list?ct=118"]] },
+  centellian24: { brand: "센텔리안24", alias: "Centellian24", domain: "www.edkshop.com", type: "cafe",
+    paths: [["list", "/product/list.html?cate_no=132&sort_method=1"]] },
   zeroid: { brand: "제로이드", alias: "ZEROID", domain: "www.zeroid.co.kr", type: "zeroid",
     paths: [309, 311, 313].map(category => [String(category), `/web/product/product_list.asp?cate=${category}`]) },
   tonymoly: { brand: "토니모리", alias: "TONYMOLY", domain: "tonymoly.com", type: "tonymoly",
@@ -411,6 +415,20 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
   }
   const candidates = [];
   const tree = Array.from(walk(parse5.parse(source), store.type === "cerave"));
+  if (store.type === "isoi") return tree.flatMap(node => {
+    if (node.nodeName !== "a") return [];
+    const url = urlWithHost(attr(node, "href"), store.domain, false);
+    if (url?.pathname !== "/product/goods_detail") return [];
+    const id = url.searchParams.get("goods_no");
+    if (!/^\d{1,12}$/.test(id ?? "")) return [];
+    const contents = Array.from(walk(node));
+    const title = contents.find(child => /(?:^|\s)(?:goods-name|goods_name|name|tit)(?:\s|$)/.test(attr(child, "class") ?? ""));
+    const img = contents.find(child => child.nodeName === "img" && attr(child, "alt"));
+    const name = (textOf(title) || attr(img, "alt") || textOf(node)).trim();
+    if (!name || name.length > 110 || /시카고|소이로움|티퍼런스|닥터루츠|쿠션|립스틱|메이크업/u.test(name)) return [];
+    const candidate = submit(storeKey, store, name, `https://${store.domain}/product/goods_detail?goods_no=${id}`, id, imageUrl(attr(img, "src"), store.domain));
+    return candidate ? [candidate] : [];
+  });
   if (store.type === "zeroid" || store.type === "tonymoly") return tree.flatMap(node => {
     if (node.nodeName !== "a") return [];
     const url = urlWithHost(attr(node, "href"), store.domain, false);
@@ -540,6 +558,14 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
     let image = imageUrl((storeKey === "frankly" ? attr(img, "data-src") : null) || attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
+    if (storeKey === "centellian24") {
+      if (!attr(node.parentNode, "class")?.split(/\s+/).includes("name")) continue;
+      let card = node.parentNode;
+      while (card && !/^anchorBoxId_\d+$/.test(attr(card, "id") ?? "")) card = card.parentNode;
+      if (!/브랜드\s*:\s*센텔리안24(?=\s|$)/u.test(textOf(card))) continue;
+      rawName = textOf(node).replace(/^상품명\s*:\s*/u, "");
+      if (/쿠션|컨실러|파우더|맥스컷/u.test(rawName)) continue;
+    }
     if (storeKey === "labcle") {
       if (!attr(node.parentNode, "class")?.split(/\s+/).includes("name")) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "");
