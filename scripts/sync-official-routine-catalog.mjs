@@ -371,12 +371,16 @@ const urlWithHost = (input, host, sitemap) => {
     return null;
   } catch { return null; }
 };
-const imageUrl = (input, host) => {
-  if (!input || input.startsWith("data:")) return null;
+export const officialListingImage = (input, host) => {
+  if (typeof input !== "string" || !input.trim() || input.startsWith("data:")) return null;
   try {
     const u = new URL(input, `https://${host}`);
-    return u.protocol === "https:" && !u.username && !u.password &&
-      (hostKey(u.hostname) === hostKey(host) || /(?:^|\.)cafe24img\.com$|^cafe24img\.poxo\.com$|^godomall\.speedycdn\.net$|(?:^|\.)makeshop\.co\.kr$|^inm-cdn\.innisfree\.com$/.test(u.hostname)) ? u.origin + u.pathname : null;
+    return u.protocol === "https:" && !u.port && !u.username && !u.password &&
+      (hostKey(u.hostname) === hostKey(host) ||
+        /(?:^|\.)cafe24img\.com$|^(?:cafe24img|cafe24)\.poxo\.com$|^godomall\.speedycdn\.net$|(?:^|\.)makeshop\.co\.kr$|^inm-cdn\.innisfree\.com$/.test(u.hostname) ||
+        (hostKey(host) === "ethefaceshop.com" && u.hostname === "image.ethefaceshop.com") ||
+        (hostKey(host) === "eau-thermale-avene.co.kr" && u.hostname === "media-pierre-fabre.wedia-group.com") ||
+        (Object.values(stores).some(store => store.type === "imweb" && hostKey(store.domain) === hostKey(host)) && u.hostname === "cdn.imweb.me")) ? u.href.split("#")[0] : null;
   } catch { return null; }
 };
 
@@ -392,7 +396,7 @@ function extractInnisfree(source, storeKey, store, submit) {
       const id = entries[row.inmPrdNo], name = entries[row.prdNm];
       if (!/^\d{4,10}$/.test(id ?? "") || typeof name !== "string") return [];
       const candidate = submit(storeKey, store, name, `https://${store.domain}/kr/ko/dp/product/${id}`, id,
-        imageUrl(entries[row.bscsImgUrl], store.domain));
+        officialListingImage(entries[row.bscsImgUrl], store.domain));
       return candidate ? [candidate] : [];
     });
   } catch { return []; }
@@ -431,7 +435,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const img = Array.from(walk(node)).find(child => child.nodeName === "img" && attr(child, "alt"));
     const name = (attr(img, "alt") || textOf(node)).replace(/\s*간략히 보기$/u, "").trim();
     if (!/[가-힣]/u.test(name) || name.length > 90 || /장바구니|상품평|구성품|자세히|자세히보기|립펜슬|컨실러|쿠션/u.test(name)) return [];
-    const candidate = submit(storeKey, store, name, url.origin + url.pathname, id, imageUrl(attr(img, "src"), store.domain));
+    const candidate = submit(storeKey, store, name, url.origin + url.pathname, id, officialListingImage(attr(img, "src"), store.domain));
     return candidate ? [candidate] : [];
   });
   if (store.type === "isoi") return tree.flatMap(node => {
@@ -445,7 +449,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const img = contents.find(child => child.nodeName === "img" && attr(child, "alt"));
     const name = (textOf(title) || attr(img, "alt") || textOf(node)).trim();
     if (!name || name.length > 110 || /시카고|소이로움|티퍼런스|닥터루츠|쿠션|립스틱|메이크업/u.test(name)) return [];
-    const candidate = submit(storeKey, store, name, `https://${store.domain}/product/goods_detail?goods_no=${id}`, id, imageUrl(attr(img, "src"), store.domain));
+    const candidate = submit(storeKey, store, name, `https://${store.domain}/product/goods_detail?goods_no=${id}`, id, officialListingImage(attr(img, "src"), store.domain));
     return candidate ? [candidate] : [];
   });
   if (store.type === "zeroid" || store.type === "tonymoly") return tree.flatMap(node => {
@@ -466,7 +470,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     if (!name || name.length > 110 || /두피|스칼프|의료기기|보습제\s*MD|\bMD\b|신규\s*회원\s*전용/u.test(name)) return [];
     url.search = zeroid ? `?idx=${id}` : `?i_sProductcd=TM${id}`;
     url.hash = "";
-    const candidate = submit(storeKey, store, name, url.href, id, imageUrl(attr(img, "src"), store.domain));
+    const candidate = submit(storeKey, store, name, url.href, id, officialListingImage(attr(img, "src"), store.domain));
     return candidate ? [candidate] : [];
   });
   if (store.type === "clubclio") return tree.flatMap(node => {
@@ -485,7 +489,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const background = Array.from(walk(card)).find(child => child.nodeName === "a" &&
       attr(child, "href") === url.pathname && attr(child, "style")?.includes("background-image:"));
     const photoUrl = attr(photo, "src") ?? attr(background, "style")?.match(/background-image:\s*url\(([^)]+)\)/)?.[1];
-    const candidate = submit(storeKey, store, name, url.origin + url.pathname, id, imageUrl(photoUrl, store.domain));
+    const candidate = submit(storeKey, store, name, url.origin + url.pathname, id, officialListingImage(photoUrl, store.domain));
     return candidate ? [candidate] : [];
   });
   if (store.type === "faceshop") return tree.flatMap(node => {
@@ -525,7 +529,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const volume = descendants.find(child => /^\d+\s*(?:ml|g)$/i.test(textOf(child)));
     const photo = descendants.find(child => child.nodeName === "img");
     const src = attr(photo, "src") ?? "";
-    const image = imageUrl(src, store.domain) || (src.startsWith("https://cdn.imweb.me/") ? src.split("?")[0] : null);
+    const image = officialListingImage(src, store.domain) || (src.startsWith("https://cdn.imweb.me/") ? src.split("?")[0] : null);
     const candidate = submit(storeKey, store, [textOf(title), textOf(volume)].join(" "), url.origin + url.pathname + "?idx=" + id, id, image);
     return candidate ? [candidate] : [];
   });
@@ -539,7 +543,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const url = urlWithHost(attr(link, "href"), store.domain, false);
     if (!id || !url?.pathname.startsWith("/shop/category/")) return [];
     const photo = descendants.find(node => node.nodeName === "img" && attr(node, "class")?.split(/\s+/).includes("attachment-woocommerce_thumbnail"));
-    const candidate = submit(storeKey, store, textOf(link), url.origin + url.pathname, id, imageUrl(attr(photo, "src"), store.domain));
+    const candidate = submit(storeKey, store, textOf(link), url.origin + url.pathname, id, officialListingImage(attr(photo, "src"), store.domain));
     return candidate ? [candidate] : [];
   });
   if (store.sourceMarket === "US") {
@@ -575,7 +579,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const descendants = sitemap ? [] : Array.from(walk(node));
     const img = descendants.find(child => child.nodeName === "img" && attr(child, "alt"));
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
-    let image = imageUrl((storeKey === "frankly" ? attr(img, "data-src") : null) || attr(img, "src"), store.domain);
+    let image = officialListingImage((storeKey === "frankly" ? attr(img, "data-src") : null) || attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
     if (storeKey === "centellian24") {
       if (!attr(node.parentNode, "class")?.split(/\s+/).includes("name")) continue;
@@ -597,7 +601,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const identity = contents.find(child => attr(child, "class")?.split(/\s+/).includes("display실상품명"));
       rawName = identity ? textOf(identity).replace(/^실상품명\s*:\s*/u, "") : textOf(node).replace(/^상품명\s*:\s*/u, "");
       const photo = contents.find(child => child.nodeName === "img" && /^eListPrdImage\d+_\d+$/.test(attr(child, "id") ?? ""));
-      image = imageUrl(attr(photo, "src"), store.domain);
+      image = officialListingImage(attr(photo, "src"), store.domain);
     }
     if (["dermora", "droracle", "bioturm", "bioderma", "physiogel", "kioskin"].includes(storeKey)) {
       if (!attr(node.parentNode, "class")?.split(/\s+/).includes("name")) continue;
@@ -607,14 +611,14 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const photo = Array.from(walk(card)).find(child => child.nodeName === "img" &&
         (/^eListPrdImage\d+_\d+$/.test(attr(child, "id") ?? "") ||
           (storeKey === "dermora" && attr(child, "alt")?.startsWith("더모라"))));
-      image = imageUrl(attr(photo, "ec-data-src") || attr(photo, "src"), store.domain);
+      image = officialListingImage(attr(photo, "ec-data-src") || attr(photo, "src"), store.domain);
     }
     if (storeKey === "sonatural") {
       if (!attr(node, "class")?.split(/\s+/).includes("title")) continue;
       rawName = textOf(node);
       const photo = Array.from(walk(node.parentNode)).find(child => child.nodeName === "img" &&
         attr(child.parentNode, "class")?.split(/\s+/).includes("figure"));
-      image = imageUrl(attr(photo, "src"), store.domain);
+      image = officialListingImage(attr(photo, "src"), store.domain);
     }
     if (storeKey === "yadah") {
       if (attr(node.parentNode, "data-tc-product-card-name") == null) continue;
@@ -626,7 +630,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       while (card && attr(card, "data-tc-product-card") == null) card = card.parentNode;
       const thumbnail = Array.from(walk(card)).find(child => attr(child, "data-tc-product-card-image") != null);
       const photo = Array.from(walk(thumbnail)).find(child => child.nodeName === "img");
-      image = imageUrl(attr(photo, "src"), store.domain);
+      image = officialListingImage(attr(photo, "src"), store.domain);
     }
     if (storeKey === "paparecipe") {
       if (!attr(node.parentNode, "class")?.split(/\s+/).includes("sp__product_title_247")) continue;
@@ -634,7 +638,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const card = node.parentNode?.parentNode?.parentNode;
       const photo = Array.from(walk(card)).find(child => child.nodeName === "img" &&
         attr(child.parentNode, "class")?.split(/\s+/).includes("sp__product_image"));
-      image = imageUrl(attr(photo, "src"), store.domain);
+      image = officialListingImage(attr(photo, "src"), store.domain);
     }
     if (storeKey === "banobagi" || storeKey === "onething") {
       if (!attr(node.parentNode, "class")?.split(/\s+/).includes("name")) continue;
@@ -642,7 +646,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       let card = node.parentNode;
       while (card && card.nodeName !== "li") card = card.parentNode;
       const photo = Array.from(walk(card)).find(child => child.nodeName === "img" && /^eListPrdImage\d+_\d+$/.test(attr(child, "id") ?? ""));
-      image = imageUrl(attr(photo, "src"), store.domain);
+      image = officialListingImage(attr(photo, "src"), store.domain);
     }
     if (storeKey === "frankly" || storeKey === "klairs") {
       if (!img) continue;
@@ -734,6 +738,20 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       sourceUrl = `https://${store.domain}${path}?${key}=${id}`;
     }
     if (rawName) {
+      if (!sitemap && store.type === "cafe" && !image) {
+        let card = node.parentNode;
+        while (card && attr(card, "id") !== `anchorBoxId_${id}`) card = card.parentNode;
+        if (card) {
+          const thumbnail = Array.from(walk(card)).find(child => {
+            if (child.nodeName !== "a") return false;
+            const linked = urlWithHost(attr(child, "href"), store.domain, true);
+            return linked?.pathname === url.pathname && linked.searchParams.get("product_no") === url.searchParams.get("product_no") &&
+              Array.from(walk(child)).some(element => element.nodeName === "img");
+          });
+          const photo = thumbnail && Array.from(walk(thumbnail)).find(element => element.nodeName === "img");
+          image = officialListingImage(attr(photo, "ec-data-src") || attr(photo, "data-src") || attr(photo, "src"), store.domain);
+        }
+      }
       const candidate = submit(storeKey, store, rawName, sourceUrl, id, image);
       if (candidate) candidates.push(candidate);
     }
@@ -828,7 +846,7 @@ async function main() {
           const name = entryKey(p);
           if (knownIds.has(p.id) || knownNames.has(name) || byName.has(name)) continue;
           byName.add(name);
-          products.set(p.id, p);
+          products.set(p.id, { ...p, image: p.image ?? products.get(p.id)?.image });
           added++;
         }
         brands[key] = { name: store.brand, checkedAt: date, usefulPages: useful, fetchedListings: fresh.size };
