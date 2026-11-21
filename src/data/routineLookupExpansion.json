@@ -123,6 +123,12 @@
       "usefulPages": 2,
       "fetchedListings": 47
     },
+    "dermatory": {
+      "name": "더마토리",
+      "checkedAt": "2026-11-21",
+      "usefulPages": 1,
+      "fetchedListings": 2
+    },
     "dermora": {
       "name": "더모라",
       "checkedAt": "2026-11-20",
@@ -170,6 +176,12 @@
       "checkedAt": "2026-11-20",
       "usefulPages": 2,
       "fetchedListings": 16
+    },
+    "goodal": {
+      "name": "구달",
+      "checkedAt": "2026-11-21",
+      "usefulPages": 1,
+      "fetchedListings": 3
     },
     "hanyul": {
       "name": "한율",
@@ -5796,6 +5808,26 @@
       "officialUrl": "https://www.dalba.co.kr/goods/goods_view.php?goodsNo=1000000893"
     },
     {
+      "id": "lookup:dermatory:0000006820",
+      "name": "더마토리 히알루론 스킨프렙 속광 로션 B5",
+      "brand": "더마토리",
+      "brandAlias": "Dermatory",
+      "category": "moisturizer",
+      "volume": "200ml",
+      "officialUrl": "https://clubclio.co.kr/shop/goodsView/0000006820",
+      "image": "https://clubclio.co.kr/data/mall_data/images/product/00/00/00/68/20/m.gif"
+    },
+    {
+      "id": "lookup:dermatory:0000007864",
+      "name": "더마토리 세라플러스 NMN 리페어 밀크보습패드",
+      "brand": "더마토리",
+      "brandAlias": "Dermatory",
+      "category": "toner",
+      "volume": "100매",
+      "officialUrl": "https://clubclio.co.kr/shop/goodsView/0000007864",
+      "image": "https://clubclio.co.kr/data/mall_data/images/product/00/00/00/78/64/m.gif"
+    },
+    {
       "id": "lookup:dermora:26",
       "name": "더모라 더마 리페어 세럼",
       "brand": "더모라",
@@ -7500,6 +7532,36 @@
       "category": "serum",
       "officialUrl": "https://www.frankly.co.kr/product/%EC%B4%88%EA%B0%95%EB%A0%A5-%EA%B8%B0%EB%AF%B8%EC%9E%A1%ED%8B%B0%EC%BC%80%EC%96%B4-%EB%B9%84%ED%83%80%EB%AF%BC-c-23-%EC%84%B8%EB%9F%BC/80/",
       "image": "https://www.frankly.co.kr/web/product/medium/202608/ed796ffcd9d5848070dac3ac961c2d7b.jpg"
+    },
+    {
+      "id": "lookup:goodal:0000005767",
+      "name": "구달 피오니 펩타이드 주름 흔적 에센스 미스트",
+      "brand": "구달",
+      "brandAlias": "goodal",
+      "category": "toner",
+      "volume": "120ml",
+      "officialUrl": "https://clubclio.co.kr/shop/goodsView/0000005767",
+      "image": "https://clubclio.co.kr/data/mall_data/images/product/00/00/00/57/67/m.gif"
+    },
+    {
+      "id": "lookup:goodal:0000007678",
+      "name": "구달 피오니 펩타이드 주름 흔적 앰플 (26AD)",
+      "brand": "구달",
+      "brandAlias": "goodal",
+      "category": "serum",
+      "volume": "50ml",
+      "officialUrl": "https://clubclio.co.kr/shop/goodsView/0000007678",
+      "image": "https://clubclio.co.kr/data/mall_data/images/product/00/00/00/76/78/m.gif"
+    },
+    {
+      "id": "lookup:goodal:0000007839",
+      "name": "구달 펩타이드 리프팅 코어 크림",
+      "brand": "구달",
+      "brandAlias": "goodal",
+      "category": "moisturizer",
+      "volume": "60ml",
+      "officialUrl": "https://clubclio.co.kr/shop/goodsView/0000007839",
+      "image": "https://clubclio.co.kr/data/mall_data/images/product/00/00/00/78/39/m.gif"
     },
     {
       "id": "lookup:hanyul:104",
@@ -18454,6 +18516,15 @@
       "category": "sunscreen",
       "volume": "50ml",
       "officialUrl": "https://rovectin.co.kr/product/%EC%88%98%EB%B6%84%EB%AC%B4%EA%B8%B0%EC%9E%90%EC%B0%A8-%EC%95%84%EC%BF%A0%EC%95%84-%EC%88%98%EB%94%A9-%EC%84%A0%ED%81%AC%EB%A6%BC-spf50pa-50ml/99/"
+    },
+    {
+      "id": "lookup:senka:perfect-whip-fa-120g",
+      "name": "센카 퍼펙트 휩 페이셜 워시 FA",
+      "brand": "센카",
+      "brandAlias": "SENKA",
+      "category": "cleanser",
+      "volume": "120g",
+      "officialUrl": "https://brand.finetoday.com/kr/#sec_senka"
     },
     {
       "id": "lookup:sidmool:10",
