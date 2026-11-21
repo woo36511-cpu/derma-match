@@ -1,5 +1,6 @@
 import lookup from "../data/routineLookupProducts.json";
 import expansion from "../data/routineLookupExpansion.json";
+import fragrances from "../data/officialFragranceLookup.json";
 import { products } from "../data/products";
 
 export const routineLookupCategories = {
@@ -12,6 +13,7 @@ export const routineLookupCategories = {
   lipCare: "립케어",
   makeup: "색조",
   bodyCare: "바디케어",
+  fragrance: "향수",
 };
 
 const categories = {
@@ -72,7 +74,7 @@ const primaryByPage = new Map(base.flatMap(product => {
 }).reverse());
 const backCompatLookupIds = new Map();
 const additional = [];
-for (const product of expansion.products) {
+for (const product of [...expansion.products, ...fragrances]) {
   if (legacyIds.has(product.id)) continue;
   const url = pageIdentity(product.officialUrl);
   const onSamePage = url && urlsInBase.has(url) ? primaryByPage.get(url) : null;
