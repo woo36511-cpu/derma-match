@@ -101,8 +101,8 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
         입력한 제품 담기
       </button>
       {exactReviewed && <p className="mt-2 text-sm">이미 검수된 제품이에요 · {exactReviewed.label}</p>}
-      {!exactReviewed && supportsProductReviewRequest(manual?.category) && (signedIn
-        ? <ProductReviewRequest key={manual.id} product={manual} />
+      {!exactReviewed && (!manualCategory || supportsProductReviewRequest(manualCategory)) && (signedIn
+        ? <ProductReviewRequest key={manual?.id ?? "manual"} product={manual} />
         : <p className="mt-2 text-xs text-slate-600">로그인하면 국내 전성분과 보습감 검수를 요청할 수 있어요.</p>)}
     </DetailDisclosure>}
     {signedIn && <ProductReviewHistory />}
