@@ -277,3 +277,43 @@ test("Bioderma indexes H2O as cleanser and skips bundled or different-brand card
   assert.deepEqual(extractOfficialListings(html, "bioderma", stores.bioderma).map(p => [p.category, p.name, p.volume]),
     [["cleanser", "바이오더마 센시비오 H2O", "250ml"]]);
 });
+
+test("directory candidates are published only after their official catalog yields skincare", async () => {
+  const { mkdtemp, readFile, rm, writeFile } = await import("node:fs/promises");
+  const { tmpdir } = await import("node:os");
+  const { join } = await import("node:path");
+  const { execFileSync } = await import("node:child_process");
+  const dir = await mkdtemp(join(tmpdir(), "official-brand-"));
+  try {
+    const directory = join(dir, "directory.json");
+    await writeFile(directory, JSON.stringify([{
+      key: "fixturebrand", brand: "테스트 브랜드", alias: "Test Brand", catalogUrl: "https://fixturebrand.com/product/list.html?cate_no=12",
+    }]));
+    const sitemap = join(dir, "fixturebrand-site");
+    const snapshot = join(dir, "snapshot.json");
+    const published = join(dir, "published.json");
+    await writeFile(published, '{"products":[],"brands":{}}');
+    const run = script => execFileSync(process.execPath, script === "sync"
+      ? ["scripts/sync-official-routine-catalog.mjs", dir, "--brands=fixturebrand"]
+      : ["scripts/publish-brand-search-snapshot.mjs", snapshot, published], {
+      env: { ...process.env, ROUTINE_BRAND_DIRECTORY: directory, ROUTINE_CATALOG_OUTPUT: snapshot, ROUTINE_CATALOG_PREVIOUS: published },
+    });
+    const readPublished = async () => JSON.parse(await readFile(published, "utf8"));
+    const list = names => `<urlset>${names.map((name, i) =>
+      `<url><loc>https://fixturebrand.com/product/${name}/${i + 1}/</loc></url>`).join("")}</urlset>`;
+    await writeFile(sitemap, list(["수분-토너-100ml", "바디미스트-100ml"]));
+    run("sync");
+    run("publish");
+    assert.equal((await readPublished()).products.length, 0);
+    await writeFile(sitemap, list(["수분-토너-100ml", "보습-세럼-30ml", "바디미스트-100ml"]));
+    run("sync");
+    run("publish");
+    const result = await readPublished();
+    assert.deepEqual(result.products.map(product => product.category), ["toner", "serum"]);
+    assert.equal(result.brands.fixturebrand.officialCatalogUrl, "https://fixturebrand.com/product/list.html?cate_no=12");
+    run("publish");
+    assert.deepEqual(await readPublished(), result);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
