@@ -6756,5 +6756,256 @@
         "상처 난 부위에는 사용을 피하고, 따가움이나 붉어짐이 생기면 중단해요."
       ]
     }
+  },
+  {
+    "id": 88,
+    "name": "큐어코드 더블 베리어 크림",
+    "brand": "큐어코드",
+    "category": "cream",
+    "volume": "80ml",
+    "legacyLookupIds": [
+      "lookup:curecode:32"
+    ],
+    "hydrationLevel": 2,
+    "texture": "rich",
+    "concerns": [
+      "hydration",
+      "barrier"
+    ],
+    "ingredients": [
+      "글리세린",
+      "스쿠알란",
+      "세라마이드엔피"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "펜틸렌글라이콜",
+      "카프릴릭/카프릭트라이글리세라이드",
+      "세테아릴알코올",
+      "스쿠알란",
+      "폴리글리세릴-10다이스테아레이트",
+      "솔비탄스테아레이트",
+      "포도씨오일",
+      "글리세릴스테아레이트",
+      "팔미틱애씨드",
+      "스테아릭애씨드",
+      "피토스테롤",
+      "알란토인",
+      "카보머",
+      "N-팔미토일세린올",
+      "아세틸글루코사민",
+      "알지닌",
+      "소듐하이알루로네이트",
+      "부틸렌글라이콜",
+      "1,2-헥산다이올",
+      "세라마이드엔피",
+      "서양고추나물꽃추출물",
+      "레스베라트롤",
+      "병풀추출물",
+      "비피다발효용해물",
+      "시알릴락토오스"
+    ],
+    "careProfile": {
+      "hydrationSupport": 7,
+      "lightweightFit": 2,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 5
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-22",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "국내 공식몰의 건조한 피부용 보습 크림 설명과 상품고시를 함께 검토해 건조 부위 보습 마무리로 내부 평가했어요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-22",
+      "sources": [
+        {
+          "url": "https://curecode.co.kr/product/code-03-%ED%81%90%EC%96%B4%EC%BD%94%EB%93%9C-%EB%8D%94%EB%B8%94-%EB%B2%A0%EB%A6%AC%EC%96%B4-%ED%81%AC%EB%A6%BC-80ml-l-%EB%89%B4%EB%A1%9C%EB%A7%88%EC%9D%B4%EB%93%9C-%ED%95%A8%EC%9C%A0-l-%ED%94%BC%EB%B6%80-%EC%9E%A5%EB%B2%BD-%EA%B0%95%ED%99%94-l-%EC%A0%80%EC%9E%90%EA%B7%B9-l-%EC%88%98%EB%B6%84-%EC%A7%84%EC%A0%95-l-%EB%B3%B4%EC%8A%B5%ED%81%AC%EB%A6%BC/32/",
+          "sourceType": "official_domestic_product_page"
+        },
+        {
+          "url": "https://ecimg.cafe24img.com/pg1711b24193012097/curecode/web/upload/NNEditor/20251222/ED8190EC96B4ECBD94EB939C20EB8D94EBB89420EBB2A0EBA6ACEC96B420ED81ACEBA6BC20EC8381EC84B8ED8E98EC9DB4ECA78022_2.jpg",
+          "sourceType": "official_domestic_ingredient_label"
+        }
+      ],
+      "note": "국내 공식몰 상품번호 32와 Code 03 더블 베리어 크림 80ml 상품고시 이미지의 용량과 전성분을 확인했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": true
+    },
+    "skinTypes": [
+      "건성"
+    ],
+    "description": "가벼운 보습제로는 당김이 남는 건성 피부에서 비교하는 보습 크림이에요.",
+    "shortReason": "당김이 남는 건조한 부위에 보습 크림",
+    "caution": [
+      "병풀이나 서양고추나물꽃 추출물이 든 제품에 반응한 적이 있으면 피하세요.",
+      "상처 난 부위에는 사용을 피하고, 따갑거나 붉어지면 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "isAvailable": true,
+    "link": "https://curecode.co.kr/product/code-03-%ED%81%90%EC%96%B4%EC%BD%94%EB%93%9C-%EB%8D%94%EB%B8%94-%EB%B2%A0%EB%A6%AC%EC%96%B4-%ED%81%AC%EB%A6%BC-80ml-l-%EB%89%B4%EB%A1%9C%EB%A7%88%EC%9D%B4%EB%93%9C-%ED%95%A8%EC%9C%A0-l-%ED%94%BC%EB%B6%80-%EC%9E%A5%EB%B2%BD-%EA%B0%95%ED%99%94-l-%EC%A0%80%EC%9E%90%EA%B7%B9-l-%EC%88%98%EB%B6%84-%EC%A7%84%EC%A0%95-l-%EB%B3%B4%EC%8A%B5%ED%81%AC%EB%A6%BC/32/",
+    "price": null,
+    "image": "https://ecimg.cafe24img.com/pg1711b24193012097/curecode/web/product/medium/20260422/06c7bb0a4aab11838767ea83378b84cd.jpg",
+    "imageSource": {
+      "url": "https://ecimg.cafe24img.com/pg1711b24193012097/curecode/web/product/medium/20260422/06c7bb0a4aab11838767ea83378b84cd.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-22"
+    },
+    "purchaseSource": {
+      "provider": "official",
+      "label": "큐어코드 공식몰",
+      "url": "https://curecode.co.kr/product/code-03-%ED%81%90%EC%96%B4%EC%BD%94%EB%93%9C-%EB%8D%94%EB%B8%94-%EB%B2%A0%EB%A6%AC%EC%96%B4-%ED%81%AC%EB%A6%BC-80ml-l-%EB%89%B4%EB%A1%9C%EB%A7%88%EC%9D%B4%EB%93%9C-%ED%95%A8%EC%9C%A0-l-%ED%94%BC%EB%B6%80-%EC%9E%A5%EB%B2%BD-%EA%B0%95%ED%99%94-l-%EC%A0%80%EC%9E%90%EA%B7%B9-l-%EC%88%98%EB%B6%84-%EC%A7%84%EC%A0%95-l-%EB%B3%B4%EC%8A%B5%ED%81%AC%EB%A6%BC/32/",
+      "checkedAt": "2026-11-22",
+      "verification": "official_product_page",
+      "liveStockVerified": false
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "세안 후 보습 마무리 단계",
+      "howToUse": [
+        "건조한 부위에 소량을 얇게 펴 발라요."
+      ],
+      "caution": [
+        "병풀이나 서양고추나물꽃 추출물이 든 제품에 반응한 적이 있으면 피하세요.",
+        "상처 난 부위에는 사용을 피하고, 따갑거나 붉어지면 중단해요."
+      ]
+    }
+  },
+  {
+    "id": 89,
+    "name": "알디알디 레드 애플 락토 진정 팝핑 토너",
+    "brand": "알디알디",
+    "category": "toner",
+    "volume": "95g",
+    "legacyLookupIds": [
+      "lookup:rdrd:36"
+    ],
+    "hydrationLevel": 6,
+    "texture": "light",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "글리세린",
+      "판테놀",
+      "소듐하이알루로네이트"
+    ],
+    "fullIngredients": [
+      "사과수 (766,202 ppm)",
+      "트라이프로필렌글라이콜",
+      "글리세린",
+      "프로판다이올",
+      "부틸렌글라이콜",
+      "1,2-헥산다이올",
+      "판테놀",
+      "솔비톨",
+      "락토바실러스발효물 (9,790 ppm)",
+      "C12-14알케스-12",
+      "정제수",
+      "에틸헥실글리세린",
+      "잔탄검",
+      "글루코오스",
+      "다이소듐이디티에이",
+      "사이아노코발아민",
+      "향료",
+      "사과추출물 (10 ppm)",
+      "소듐하이알루로네이트",
+      "하이알루로닉애씨드",
+      "소듐하이알루로네이트크로스폴리머",
+      "하이드롤라이즈드소듐하이알루로네이트",
+      "하이드롤라이즈드하이알루로닉애씨드",
+      "소듐아세틸레이티드하이알루로네이트",
+      "하이드록시프로필트라이모늄하이알루로네이트",
+      "풀스애플민트잎추출물",
+      "녹차추출물",
+      "타임잎추출물"
+    ],
+    "careProfile": {
+      "hydrationSupport": 4,
+      "lightweightFit": 7,
+      "soothingSupport": 0,
+      "congestionSupport": 0,
+      "barrierSupport": 0
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-22",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "공식 상품고시의 펌프 사용법과 거품 토너 제형을 확인해 세안 후 가볍게 덧바르는 수분 단계로 내부 평가했어요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-22",
+      "sources": [
+        {
+          "url": "https://rdrd.co.kr/product/detail.html?product_no=36",
+          "sourceType": "official_domestic_product_page"
+        },
+        {
+          "url": "https://ecimg.cafe24img.com/pg2261b70612927060/rdrdofficial/web/upload/NNEditor/20260703/rdrd_EBA088EB939CEC95A0ED948CEB9DBDED86A0ECA784ECA095ED8C9DED9591ED86A0EB8488-528ECA084EC84B1EBB68429.jpg",
+          "sourceType": "official_domestic_ingredient_label"
+        }
+      ],
+      "note": "국내 공식몰 상품번호 36의 레드 애플 단품 95g 상품고시를 대조했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": true
+    },
+    "skinTypes": [
+      "중성",
+      "복합성"
+    ],
+    "description": "세안 뒤 가벼운 수분 단계를 원할 때 손으로 펴 바르는 거품 토너예요.",
+    "shortReason": "세안 뒤 거품 토너로 가볍게 수분 보충",
+    "caution": [
+      "향료와 애플민트잎·타임잎 추출물이 든 제품에 반응한 적이 있으면 피하세요.",
+      "상처 난 부위와 눈 주변은 피하고, 따가움이나 붉어짐이 생기면 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": false,
+    "isAvailable": true,
+    "link": "https://rdrd.co.kr/product/detail.html?product_no=36",
+    "price": null,
+    "image": "https://ecimg.cafe24img.com/pg2261b70612927060/rdrdofficial/web/product/big/20260818/be690eeef5209c138dbc9973e2801b94.jpg",
+    "imageSource": {
+      "url": "https://ecimg.cafe24img.com/pg2261b70612927060/rdrdofficial/web/product/big/20260818/be690eeef5209c138dbc9973e2801b94.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-22"
+    },
+    "purchaseSource": {
+      "provider": "official",
+      "label": "알디알디 공식몰",
+      "url": "https://rdrd.co.kr/product/detail.html?product_no=36",
+      "checkedAt": "2026-11-22",
+      "verification": "official_product_page",
+      "liveStockVerified": false
+    },
+    "usageType": "toner",
+    "usage": {
+      "when": "세안 직후",
+      "howToUse": [
+        "펌프로 소량을 덜어 얼굴에 부드럽게 펴 발라요."
+      ],
+      "caution": [
+        "향료와 애플민트잎·타임잎 추출물이 든 제품에 반응한 적이 있으면 피하세요.",
+        "상처 난 부위와 눈 주변은 피하고, 따가움이나 붉어짐이 생기면 중단해요."
+      ]
+    }
   }
 ]
