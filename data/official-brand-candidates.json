@@ -117,5 +117,6 @@
     "alias": "HERA",
     "catalogUrl": "https://www.hera.com/category/%EC%A0%9C%ED%92%88-%EC%A0%84%EC%B2%B4/85/",
     "listOnly": true
-  }
+  },
+  { "key": "aplb", "brand": "에이피엘비", "alias": "APLB", "catalogUrl": "https://aplb.co.kr/product/list.html?cate_no=85" }
 ]

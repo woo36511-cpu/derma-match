@@ -6,7 +6,7 @@ import { getRoutineLookupProduct } from "../utils/routineLookup";
 import ProductChangeReview from "../components/ProductChangeReview";
 import { readPricePreference } from "../data/pricePreference";
 import { getProductById } from "../utils/productCatalog";
-import { RECOMMENDATION_RULE_VERSION } from "../utils/productEvidence";
+import { getProductEvidenceStatus, RECOMMENDATION_RULE_VERSION } from "../utils/productEvidence";
 import { AcneCareReview } from "../components/AcneCareReview";
 import { buildAcneCareReview } from "../utils/acneCareReview";
 import { ADAPTIVE_SURVEY_VERSION } from "../data/adaptiveObservationSurvey";
@@ -22,7 +22,7 @@ import { FolliculitisOptions } from "../components/FolliculitisOptions";
 import { ConcernProductOptions } from "../components/ConcernProductOptions";
 import { RoutineProductScroller } from "../components/RoutineProductScroller";
 import { getBasicObservationTracks, getObservationKinds } from "../utils/moisturizerObservation";
-import { buildRoutineSurveyContext, getEntriesForSurveyScope, getCurrentRoutineContext, getCurrentRoutineProduct, getExactCatalogProduct, getSerumRoutineSummary } from "../utils/currentRoutineReview";
+import { buildRoutineSurveyContext, getEntriesForSurveyScope, getCurrentRoutineContext, getCurrentRoutineProduct, getExactCatalogProduct, getReviewedRoutineProduct, getSerumRoutineSummary } from "../utils/currentRoutineReview";
 import { DetailDisclosure } from "../components/DetailDisclosure";
 import { RoutineProductLookup } from "../components/RoutineProductLookup";
 import { buildRoutineAdvice, getRoutineComparison, getRoutinePreferences, routineSlotNames } from "../utils/routineAdvice";
@@ -67,7 +67,37 @@ export function applyObservationToCarePlan(plan, profile) {
   return plan;
 }
 
-export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, serumStatus, otherRetained = [], advice, recommendationContext, ownedIds, notes, routineHasIrritation, makeupCleansing, replacement, tracking }) {
+export function HydrationComparison({ slot, product, entries = [] }) {
+  const category = { toner: "toner", serum: "serum", cream: "moisturizer" }[slot];
+  if (!category || !product) return null;
+
+  const recommendedScore = getProductEvidenceStatus(product).eligible
+    ? product.careProfile.hydrationSupport : null;
+  const comparisons = entries.flatMap(entry => {
+    const previous = getCurrentRoutineProduct(entry);
+    if (previous?.category !== category) return [];
+    const catalog = getReviewedRoutineProduct(entry)?.catalog;
+    if (previous.id === product.id || catalog?.id === product.id) return [];
+    const previousScore = catalog?.careProfile.hydrationSupport;
+    let label = "비교 자료 부족";
+    if (Number.isFinite(recommendedScore) && Number.isFinite(previousScore)) {
+      label = recommendedScore > previousScore ? "기존 제품보다 높음"
+        : recommendedScore < previousScore ? "기존 제품보다 낮음" : "기존 제품과 비슷함";
+    }
+    return [{ id: entry.id, name: previous.name, label }];
+  });
+  if (!comparisons.length) return null;
+
+  return <section className="mt-2 rounded-xl bg-forest-50 p-3 text-sm" aria-label={`보습감 비교 · ${product.name}`}>
+    <h4 className="font-bold text-forest-900">예상 보습감 비교</h4>
+    <ul className="mt-1 space-y-2">{comparisons.map(({ id, name, label }) =>
+      <li key={id}><span className="block break-words text-slate-700">{name}</span><strong>{label}</strong></li>
+    )}</ul>
+    <p className="mt-2 text-xs text-slate-600">제품 검수 자료 기준 · 실제 사용감은 다를 수 있어요.</p>
+  </section>;
+}
+
+export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, serumStatus, otherRetained = [], advice, recommendationContext, ownedIds, notes, routineHasIrritation, makeupCleansing, replacement, tracking, currentEntries }) {
   const heading = useScreenHeading("care-result");
   const concernFirst = plan.blockNewBasics || (plan.answers.concern !== "none" && !routineHasIrritation);
   const priority = concernFirst ? plan : advice;
@@ -75,6 +105,8 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
   const firstCareAction = !concernFirst && !routineHasIrritation && profile.observationAssessment?.canRecommendBasics === false
     ? profile.observationAssessment.careActions?.[0] : null;
   const seasonalPair = getSeasonalMoisturizerPair(profile.hydrationLevel, recommendationContext, routine);
+  const compareHydration = routine.isHistorical ? undefined : (slot, product) =>
+    <HydrationComparison slot={slot} product={product} entries={currentEntries} />;
   return <div className="space-y-5 sm:space-y-6">
     <section className="rounded-[1.75rem] bg-forest-900 p-5 text-white sm:p-8" aria-labelledby="simple-result-title">
       <p className="text-xs font-semibold tracking-wide text-forest-100">내 피부 관리 결과</p>
@@ -147,14 +179,14 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
         <div className="p-3 sm:p-4"><p className="font-bold text-forest-900">아침</p><p className="mt-0.5 text-slate-700">기초 관리 후 선크림</p></div>
         <div className="p-3 sm:p-4"><p className="font-bold text-forest-900">저녁</p><p className="mt-0.5 text-slate-700">세안 후 필요한 기초 관리</p></div>
       </div>
-      <RoutineProductScroller layout="routine" productsByCategory={routine.products} optionalSlots={["toner", "serum"]} userContext={{ ...recommendationContext, level: profile.hydrationLevel, acneSupport: plan.answers.concern === "acne" }} />
+      <RoutineProductScroller layout="routine" productsByCategory={routine.products} renderAfterProduct={compareHydration} optionalSlots={["toner", "serum"]} userContext={{ ...recommendationContext, level: profile.hydrationLevel, acneSupport: plan.answers.concern === "acne" }} />
       {seasonalPair && <section className="care-panel space-y-3" aria-label="계절과 사용감에 따른 보습제 비교">
         <h3 className="font-bold">같은 피부 성향, 다른 날의 보습제</h3>
         <p className="text-sm text-slate-700">더울 때와 건조할 때 중 지금에 맞는 한 가지를 골라요. 두 제품을 함께 쓸 필요는 없어요.</p>
         <div className="grid gap-3 sm:grid-cols-2">
           {[["더울 때 · 가벼운 사용감", seasonalPair.light], ["건조할 때 · 더 있는 보습감", seasonalPair.rich]].map(([label, product]) =>
             <div key={product.id} className="space-y-2"><p className="care-kicker">{label}</p>
-              <RoutineProductScroller layout="routine" productsByCategory={{ cream: product }} userContext={{ ...recommendationContext, level: profile.hydrationLevel }} />
+              <RoutineProductScroller layout="routine" productsByCategory={{ cream: product }} renderAfterProduct={compareHydration} userContext={{ ...recommendationContext, level: profile.hydrationLevel }} />
             </div>)}
         </div>
       </section>}
@@ -163,7 +195,7 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
         return comparison && <DetailDisclosure key={slot} title={`${routineSlotNames[slot]} 대안 비교`}>
           <p className="font-semibold">{comparison.alternative.name}</p><p>{comparison.reason}</p>
           {comparison.closeFit && <p className="mt-1 text-slate-600">두 후보 모두 비슷한 조건에 맞아요. 평소 선호하는 사용감으로 골라도 돼요.</p>}
-          <div className="mt-3 max-w-xs"><RoutineProductScroller layout="routine" productsByCategory={{ [slot]: comparison.alternative }} userContext={{ ...recommendationContext, level: profile.hydrationLevel }} /></div>
+          <div className="mt-3 max-w-xs"><RoutineProductScroller layout="routine" productsByCategory={{ [slot]: comparison.alternative }} renderAfterProduct={compareHydration} userContext={{ ...recommendationContext, level: profile.hydrationLevel }} /></div>
         </DetailDisclosure>;
       })}
       <DetailDisclosure title="사용 순서·세안법·함께 쓸 때 주의점">
@@ -330,7 +362,7 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     {replacement && <section className="care-panel space-y-3" aria-label="불편했던 기본 제품 대안">
       <h2 className="font-bold">불편했던 기본 제품 대안</h2>
       <p className="text-sm">이 단계 하나만 비교해요. 이미 편하게 쓰는 다른 제품까지 바꿀 필요는 없어요. 전성분을 확인한 후보지만, 따가움이 없다고 보장할 수는 없어요.</p>
-      <RoutineProductScroller layout="routine" productsByCategory={{ [replacementSlot]: replacement }} userContext={{ ...replacementContext, level: profile.hydrationLevel ?? 5 }} />
+      <RoutineProductScroller layout="routine" productsByCategory={{ [replacementSlot]: replacement }} renderAfterProduct={(slot, product) => <HydrationComparison slot={slot} product={product} entries={activeRoutineEntries} />} userContext={{ ...replacementContext, level: profile.hydrationLevel ?? 5 }} />
     </section>}
     {surveyAnswers?.reactionProduct && <details className="rounded-xl border border-slate-200 p-4 text-sm">
       <summary className="cursor-pointer font-semibold">따갑거나 붉어진 제품을 추천에 어떻게 반영했나요?</summary>
@@ -351,7 +383,7 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     </div>}
     </>;
     return <div className="space-y-6">
-      <SimpleCareResult profile={profile} routine={displayRoutine} otherRetained={otherRetained} advice={advice} recommendationContext={recommendationContext} ownedIds={currentRoutine.ownedProductIds} plan={displayPlan} serumStatus={visibleSerumStatus} onReviewRoutine={saveError ? undefined : onReviewRoutine} notes={notes} replacement={replacement} tracking={openTracking} routineHasIrritation={currentRoutine.irritated.length > 0} makeupCleansing={makeupCleansing} />
+      <SimpleCareResult currentEntries={activeRoutineEntries} profile={profile} routine={displayRoutine} otherRetained={otherRetained} advice={advice} recommendationContext={recommendationContext} ownedIds={currentRoutine.ownedProductIds} plan={displayPlan} serumStatus={visibleSerumStatus} onReviewRoutine={saveError ? undefined : onReviewRoutine} notes={notes} replacement={replacement} tracking={openTracking} routineHasIrritation={currentRoutine.irritated.length > 0} makeupCleansing={makeupCleansing} />
     {(profile.surveyVersion !== ADAPTIVE_SURVEY_VERSION || displayRoutine.isHistorical) && onRestart && <button onClick={onRestart} className="rounded-xl border px-4 py-3">새 기준으로 다시 확인</button>}
     {allowNewBasics && <CosmeticAddOnSection context={cosmeticContext} initialAnswers={cosmeticAnswers} onApply={save} />}
     {(offers.length > 0 || tracked.length > 0) && <section id="care-result-tracking" className="care-panel space-y-3" aria-label="관리 변화 기록">
