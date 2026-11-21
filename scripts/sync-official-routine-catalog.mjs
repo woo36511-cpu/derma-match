@@ -223,6 +223,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image, onDiscontinue
     onDiscontinued?.({ id: `lookup:${storeKey}:${id}`, officialUrl: url });
     return null;
   }
+  if (storeKey === "drplinus") name = name.replace(/\s*\d+\s*ml\s*\/?\s*\d+\s*ml\s*$/iu, "").trim();
   if (storeKey === "labcle" && !/^랩클(?:\s|$)/u.test(name)) return null;
   if (["banobagi", "onething"].includes(storeKey) && /[2-9]\d*\s*개(?:\s|$)/u.test(name)) return null;
   if (storeKey === "kioskin" && /특가|블랑카우|쿠션|아이\s*크림|\d\s*개|\s\+\s/u.test(name)) return null;
@@ -710,8 +711,8 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
       const volume = descendants.find(child => attr(child, "rel") === "용량");
       if (title) rawName = [textOf(title), textOf(volume)].join(" ").trim();
     }
-    if (["klavuu", "tyf", "huxley", "bonamedusa", "urang", "miguhara", "blab", "ongredients", "onedaysyou", "biodance", "pcalm", "lagom", "bonajour", "jmsolution", "jumiso"].includes(storeKey)) {
-      if (!/(?:^|\s)name(?:\s|$)/.test(attr(node.parentNode, "class") ?? "")) continue;
+    if (["klavuu", "tyf", "huxley", "bonamedusa", "urang", "miguhara", "blab", "ongredients", "onedaysyou", "biodance", "pcalm", "lagom", "bonajour", "jmsolution", "jumiso", "drplinus"].includes(storeKey)) {
+      if (!(storeKey === "drplinus" && sitemap) && !/(?:^|\s)name(?:\s|$)/.test(attr(node.parentNode, "class") ?? "")) continue;
       rawName = textOf(node).replace(/^상품명\s*:\s*/u, "").replace(/^JMsolution\s+(?=제이엠솔루션)/iu, "");
     }
     if (store.type === "cafe") {
