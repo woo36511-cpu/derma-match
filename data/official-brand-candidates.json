@@ -124,5 +124,6 @@
     "brand": "닥터플리너스",
     "alias": "DR.PLINUS",
     "catalogUrl": "https://drplinus.com/product/list.html?cate_no=115"
-  }
+  },
+  { "key": "curecode", "brand": "큐어코드", "alias": "CURE CODE", "catalogUrl": "https://curecode.co.kr/product/list.html?cate_no=42" }
 ]

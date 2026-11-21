@@ -386,3 +386,15 @@ test("Dr.Jart and Kiehl’s accept identifiable Korean product links only", () =
   assert.deepEqual(extractOfficialListings(drjart, "drjart", stores.drjart).map(p => p.id), ["lookup:drjart:122402"]);
   assert.deepEqual(extractOfficialListings(kiehls, "kiehls", stores.kiehls).map(p => p.id), ["lookup:kiehls:622"]);
 });
+
+test("Cure Code keeps the labeled skincare single and drops the multipack", () => {
+  const store = { brand: "큐어코드", alias: "CURE CODE", domain: "curecode.co.kr", type: "cafe" };
+  const source = `<urlset>
+    <url><loc>https://curecode.co.kr/product/code-02-큐어코드-수딩-릴리프-젤-수분-크림-80ml-l-민감-피부/35/</loc></url>
+    <url><loc>https://curecode.co.kr/product/code-02-큐어코드-수딩-릴리프-젤-수분-크림-80ml-x-2개-l-민감-피부/36/</loc></url>
+  </urlset>`;
+  const products = extractOfficialListings(source, "curecode", store, true);
+  assert.deepEqual(products.map(({ id, name, volume }) => [id, name, volume]), [
+    ["lookup:curecode:35", "큐어코드 수딩 릴리프 젤 수분 크림", "80ml"],
+  ]);
+});
