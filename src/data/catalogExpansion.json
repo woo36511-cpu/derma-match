@@ -7535,5 +7535,164 @@
         "상처 난 부위에 바르지 말고, 따갑거나 붉어지면 중단해요."
       ]
     }
+  },
+  {
+    "id": 94,
+    "name": "루벨 NAD 더마 리바이탈 버블 토너",
+    "brand": "루벨",
+    "category": "toner",
+    "volume": "145ml",
+    "legacyLookupIds": [
+      "lookup:lubelle:44"
+    ],
+    "hydrationLevel": 5,
+    "texture": "medium",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "글리세린",
+      "판테놀",
+      "소듐하이알루로네이트"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "콜라겐수",
+      "트라이에틸헥사노인",
+      "하이드로제네이티드폴리(C6-14올레핀)",
+      "글리세린",
+      "부틸렌글라이콜",
+      "펜틸렌글라이콜",
+      "메틸프로판다이올",
+      "말토덱스트린(18,650ppm)",
+      "1,2-헥산다이올",
+      "판테놀",
+      "트라이라우레스-4포스페이트",
+      "하이드록시아세토페논",
+      "에틸헥실글리세린",
+      "카프릴릴글라이콜",
+      "아데노신",
+      "소듐파이테이트",
+      "해바라기싹추출물(150ppm)",
+      "시트릭애씨드",
+      "엑토인",
+      "하이드로제네이티드레시틴",
+      "세테아릴알코올",
+      "스테아릭애씨드",
+      "토코페롤",
+      "베타-시토스테롤",
+      "피토스테롤",
+      "포트마리골드꽃추출물",
+      "세라마이드엔피",
+      "병풀캘러스세포외소포",
+      "병풀추출물",
+      "병풀잎추출물",
+      "병풀뿌리추출물",
+      "소듐하이알루로네이트",
+      "프랑스해안송껍질추출물",
+      "세라마이드엔에스",
+      "세라마이드에이에스",
+      "세라마이드에이피",
+      "아세틸헥사펩타이드-8",
+      "아세틸테트라펩타이드-2",
+      "헥사펩타이드-9",
+      "팔미토일펜타펩타이드-4",
+      "팔미토일트라이펩타이드-1",
+      "팔미토일테트라펩타이드-7",
+      "팔미토일트라이펩타이드-5",
+      "카퍼트라이펩타이드-1",
+      "팔미토일헥사펩타이드-12",
+      "노나펩타이드-1",
+      "트라이펩타이드-1",
+      "마데카식애씨드",
+      "마데카소사이드",
+      "아시아틱애씨드",
+      "아시아티코사이드",
+      "세라마이드이오피",
+      "하이알루로닉애씨드",
+      "하이드롤라이즈드하이알루로닉애씨드",
+      "하이드롤라이즈드소듐하이알루로네이트",
+      "하이드롤라이즈드글라이코사미노글리칸",
+      "하이드록시프로필트라이모늄하이알루로네이트",
+      "다이메틸실란올하이알루로네이트",
+      "소듐아세틸레이티드하이알루로네이트",
+      "소듐하이알루로네이트크로스폴리머"
+    ],
+    "careProfile": {
+      "hydrationSupport": 5,
+      "lightweightFit": 5,
+      "soothingSupport": 0,
+      "congestionSupport": 0,
+      "barrierSupport": 0
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-22",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "국내 공식몰의 거품 제형과 펴 바르는 사용법을 확인해 세안 후 보습 전 단계로 내부 평가했어요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-22",
+      "sources": [
+        {
+          "url": "https://www.lubelle.co.kr/product/%EB%A3%A8%EB%B2%A8-nad-%EB%8D%94%EB%A7%88-%EB%A6%AC%EB%B0%94%EC%9D%B4%ED%83%88-%EB%B2%84%EB%B8%94-%ED%86%A0%EB%84%88/44/",
+          "sourceType": "official_domestic_product_page"
+        },
+        {
+          "url": "https://www.lubelle.co.kr/open_souce/toner/bubbletoner_20.png",
+          "sourceType": "official_domestic_ingredient_label"
+        }
+      ],
+      "note": "루벨 국내 공식몰 단품 상품번호 44의 상품고시 이미지에서 145ml와 전성분을 확인했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": true
+    },
+    "skinTypes": [
+      "건성",
+      "중성"
+    ],
+    "description": "세안 뒤 보습제 전에 손으로 펴 바르는 거품 토너예요.",
+    "shortReason": "거품 제형으로 바르는 보습 전 토너",
+    "caution": [
+      "병풀이나 포트마리골드꽃 추출물이 든 제품에 반응한 적이 있으면 피하세요.",
+      "상처 난 부위에는 바르지 말고, 따갑거나 붉어지면 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "isAvailable": true,
+    "link": "https://www.lubelle.co.kr/product/%EB%A3%A8%EB%B2%A8-nad-%EB%8D%94%EB%A7%88-%EB%A6%AC%EB%B0%94%EC%9D%B4%ED%83%88-%EB%B2%84%EB%B8%94-%ED%86%A0%EB%84%88/44/",
+    "price": null,
+    "image": "https://www.lubelle.co.kr/web/product/big/202608/555387cc245cd0814167f7d337541796.png",
+    "imageSource": {
+      "url": "https://www.lubelle.co.kr/web/product/big/202608/555387cc245cd0814167f7d337541796.png",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-22"
+    },
+    "purchaseSource": {
+      "provider": "official",
+      "label": "루벨 공식몰",
+      "url": "https://www.lubelle.co.kr/product/%EB%A3%A8%EB%B2%A8-nad-%EB%8D%94%EB%A7%88-%EB%A6%AC%EB%B0%94%EC%9D%B4%ED%83%88-%EB%B2%84%EB%B8%94-%ED%86%A0%EB%84%88/44/",
+      "checkedAt": "2026-11-22",
+      "verification": "official_product_page",
+      "liveStockVerified": false
+    },
+    "usageType": "toner",
+    "usage": {
+      "when": "세안 직후",
+      "howToUse": [
+        "손에 소량 덜어 피부에 부드럽게 펴 발라요."
+      ],
+      "caution": [
+        "병풀이나 포트마리골드꽃 추출물이 든 제품에 반응한 적이 있으면 피하세요.",
+        "상처 난 부위에는 바르지 말고, 따갑거나 붉어지면 중단해요."
+      ]
+    }
   }
 ]
