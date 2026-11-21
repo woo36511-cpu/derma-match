@@ -9,6 +9,7 @@ on:
       - 'data/official-brand-candidates.json'
       - 'scripts/sync-official-routine-catalog.mjs'
       - 'scripts/publish-brand-search-snapshot.mjs'
+      - 'scripts/backfill-official-product-photos.mjs'
   workflow_dispatch:
 
 permissions:
@@ -21,7 +22,7 @@ concurrency:
 jobs:
   discover:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 60
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
@@ -46,6 +47,7 @@ jobs:
       - name: Update official brand listing snapshot
         run: |
           ROUTINE_CATALOG_OUTPUT=official-brand-discovery.json node scripts/sync-official-routine-catalog.mjs "${RUNNER_TEMP}/dearsince-brand-pages" --fetch --scheduled
+          node scripts/backfill-official-product-photos.mjs official-brand-discovery.json
           node scripts/build-catalog-review-queue.mjs official-brand-discovery.json catalog-review-queue.json
       - name: Import approved Olive Young listings
         continue-on-error: true
