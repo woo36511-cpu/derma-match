@@ -343,3 +343,12 @@ test("Labcle search on a shared official mall keeps only Labcle products", () =>
     '<div class="name"><a href="/product/detail.html?product_no=82">마이녹셀 수딩 크림 60ml</a></div>';
   assert.deepEqual(extractOfficialListings(html, "labcle", stores.labcle).map(p => p.id), ["lookup:labcle:81"]);
 });
+
+test("official Zeroid and Tonymoly detail links preserve SKU identity and ignore unrelated items", () => {
+  const zeroid = '<a href="/web/product/product_detail.asp?idx=320&gtype=303"><img alt="인텐시브 크림 80ml"></a>' +
+    '<a href="/web/product/product_detail.asp?idx=321">스칼프 수딩 크림 80ml</a>';
+  const tony = '<a href="/products/ceramide-mochi-toner-500ml.do?i_sProductcd=TM20260320000152821"><span class="name">세라마이드 모찌 토너 500ml</span></a>' +
+    '<a href="/set/products/two.do?i_sProductcd=TM20260320000152822">크림 100ml</a>';
+  assert.deepEqual(extractOfficialListings(zeroid, "zeroid", stores.zeroid).map(p => [p.id, p.volume]), [["lookup:zeroid:320", "80ml"]]);
+  assert.deepEqual(extractOfficialListings(tony, "tonymoly", stores.tonymoly).map(p => [p.id, p.volume]), [["lookup:tonymoly:20260320000152821", "500ml"]]);
+});

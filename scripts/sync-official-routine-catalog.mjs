@@ -14,6 +14,11 @@ const clubClio = (brand, alias, id) => ({ brand, alias, domain: "clubclio.co.kr"
   paths: [["121072", `/shop/brandsList/121072000000000/brand/${id}`]] });
 
 export const stores = {
+  zeroid: { brand: "제로이드", alias: "ZEROID", domain: "www.zeroid.co.kr", type: "zeroid",
+    paths: [309, 311, 313].map(category => [String(category), `/web/product/product_list.asp?cate=${category}`]) },
+  tonymoly: { brand: "토니모리", alias: "TONYMOLY", domain: "tonymoly.com", type: "tonymoly",
+    paths: [["new", "/new/shop_new_arrival_main.do"],
+      ["online", "/ctgr/category_product_list.do?i_sCategorycd1=6&i_sCategorycd2=&i_sCategorycd3=&i_sCategorynm1=%EC%98%A8%EB%9D%BC%EC%9D%B8+%EC%A0%84%EC%9A%A9&i_sCategorynm2=%EC%A0%84%EC%B2%B4&i_sCategorynm3=%EC%A0%84%EC%B2%B4"]] },
   labcle: { brand: "랩클", alias: "LABCLE", domain: "thelabcle.com", type: "cafe",
     paths: [["list", "/product/search.html?keyword=%EB%9E%A9%ED%81%B4"]] },
   heimish: { brand: "헤이미쉬", alias: "heimish", domain: "eheimish.com", type: "cafe",
@@ -406,6 +411,27 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
   }
   const candidates = [];
   const tree = Array.from(walk(parse5.parse(source), store.type === "cerave"));
+  if (store.type === "zeroid" || store.type === "tonymoly") return tree.flatMap(node => {
+    if (node.nodeName !== "a") return [];
+    const url = urlWithHost(attr(node, "href"), store.domain, false);
+    if (!url) return [];
+    const zeroid = store.type === "zeroid";
+    const id = zeroid && url.pathname === "/web/product/product_detail.asp"
+      ? url.searchParams.get("idx")
+      : !zeroid && /^\/products\/[a-z0-9-]+\.do$/i.test(url.pathname)
+        ? /^TM(\d{12,24})$/.exec(url.searchParams.get("i_sProductcd") ?? "")?.[1]
+        : null;
+    if (!/^\d{1,24}$/.test(id ?? "")) return [];
+    const contents = Array.from(walk(node));
+    const title = contents.find(child => /(?:^|\s)(?:prd-name|product-name|goods-name|name|tit)(?:\s|$)/.test(attr(child, "class") ?? ""));
+    const img = contents.find(child => child.nodeName === "img" && attr(child, "alt"));
+    const name = (textOf(title) || attr(img, "alt") || textOf(node)).replace(/^상품명\s*:\s*/u, "");
+    if (!name || name.length > 110 || /두피|스칼프|의료기기|보습제\s*MD|\bMD\b|신규\s*회원\s*전용/u.test(name)) return [];
+    url.search = zeroid ? `?idx=${id}` : `?i_sProductcd=TM${id}`;
+    url.hash = "";
+    const candidate = submit(storeKey, store, name, url.href, id, imageUrl(attr(img, "src"), store.domain));
+    return candidate ? [candidate] : [];
+  });
   if (store.type === "clubclio") return tree.flatMap(node => {
     if (node.nodeName !== "a") return [];
     const url = urlWithHost(attr(node, "href"), store.domain, false);
