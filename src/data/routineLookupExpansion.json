@@ -1,6 +1,6 @@
 {
   "market": "KR",
-  "checkedAt": "2026-11-20",
+  "checkedAt": "2026-11-21",
   "provenance": "official_listing_identity_only",
   "brands": {
     "abib": {
@@ -158,6 +158,12 @@
       "checkedAt": "2026-11-20",
       "usefulPages": 4,
       "fetchedListings": 23
+    },
+    "faceshop": {
+      "name": "더페이스샵",
+      "checkedAt": "2026-11-21",
+      "usefulPages": 1,
+      "fetchedListings": 2
     },
     "frankly": {
       "name": "프랭클리",
@@ -7329,6 +7335,26 @@
       "volume": "80g",
       "officialUrl": "https://www.etude.com/shop/category/skin-care/sun-care/%ed%94%bc%ec%a7%80%ec%8f%99-%eb%ac%b4%ea%b8%b0%ec%9e%90%ec%b0%a8-%ec%84%a0%ed%81%ac%eb%a6%bc/",
       "image": "https://www.etude.com/wp-content/uploads/2026/03/Sebum_Mineral_Sun_02-430x430.jpg"
+    },
+    {
+      "id": "lookup:faceshop:AF018075",
+      "name": "더페이스샵 미감수 브라이트 클렌징 폼",
+      "brand": "더페이스샵",
+      "brandAlias": "THE FACE SHOP",
+      "category": "cleanser",
+      "volume": "160ml",
+      "officialUrl": "https://www.thefaceshop.com/mall/product/product-view.jsp?dpid=AF018075",
+      "image": "https://image.ethefaceshop.com/tfsshopWebSrc/upload/product/202604/AF018075_01_1.jpg"
+    },
+    {
+      "id": "lookup:faceshop:AF018184",
+      "name": "더페이스샵 미감수 브라이트 클렌징 폼",
+      "brand": "더페이스샵",
+      "brandAlias": "THE FACE SHOP",
+      "category": "cleanser",
+      "volume": "100ml",
+      "officialUrl": "https://www.thefaceshop.com/mall/product/product-view.jsp?dpid=AF018184",
+      "image": "https://image.ethefaceshop.com/tfsshopWebSrc/upload/product/202608/AF018184_01_1.jpg"
     },
     {
       "id": "lookup:frankly:106",
