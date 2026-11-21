@@ -337,3 +337,9 @@ test("explicit official discontinuation is reported by product ID while sold out
   assert.deepEqual(discontinued.map(item => item.id), ["lookup:numbuzin:42"]);
   assert.deepEqual(active.map(item => item.id), ["lookup:numbuzin:43"]);
 });
+
+test("Labcle search on a shared official mall keeps only Labcle products", () => {
+  const html = '<div class="name"><a href="/product/detail.html?product_no=81">상품명 : 랩클 모이스처라이징 크림 80ml</a></div>' +
+    '<div class="name"><a href="/product/detail.html?product_no=82">마이녹셀 수딩 크림 60ml</a></div>';
+  assert.deepEqual(extractOfficialListings(html, "labcle", stores.labcle).map(p => p.id), ["lookup:labcle:81"]);
+});
