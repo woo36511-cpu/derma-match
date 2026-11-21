@@ -53,5 +53,17 @@
     "brand": "셀인샷",
     "alias": "CELLINSHOT",
     "catalogUrl": "https://cellinshot.com/product/list.html?cate_no=24"
+  },
+  {
+    "key": "graymelin",
+    "brand": "그레이멜린",
+    "alias": "GRAYMELIN",
+    "catalogUrl": "https://m.graymelin.com/category/product/54/"
+  },
+  {
+    "key": "goongbe",
+    "brand": "궁중비책",
+    "alias": "GOONGBE",
+    "catalogUrl": "https://m.goongbe.com/product/list.html?cate_no=57"
   }
 ]
