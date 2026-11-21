@@ -474,6 +474,30 @@
       "fetchedListings": 9,
       "alias": "VARIHOPE",
       "officialCatalogUrl": "https://varihope.com/product/list.html?cate_no=67"
+    },
+    "cellinshot": {
+      "name": "셀인샷",
+      "checkedAt": "2026-11-21",
+      "usefulPages": 2,
+      "fetchedListings": 8,
+      "alias": "CELLINSHOT",
+      "officialCatalogUrl": "https://cellinshot.com/product/list.html?cate_no=24"
+    },
+    "goongbe": {
+      "name": "궁중비책",
+      "checkedAt": "2026-11-21",
+      "usefulPages": 1,
+      "fetchedListings": 4,
+      "alias": "GOONGBE",
+      "officialCatalogUrl": "https://m.goongbe.com/product/list.html?cate_no=57"
+    },
+    "graymelin": {
+      "name": "그레이멜린",
+      "checkedAt": "2026-11-21",
+      "usefulPages": 1,
+      "fetchedListings": 14,
+      "alias": "GRAYMELIN",
+      "officialCatalogUrl": "https://m.graymelin.com/category/product/54/"
     }
   },
   "products": [
@@ -5155,6 +5179,71 @@
       "officialUrl": "https://cellfusionc.co.kr/product/%EC%84%B8%EB%9D%BC-%EB%93%80%EC%9D%B4-%EC%84%B8%ED%8C%85-%EB%AF%B8%EC%8A%A4%ED%8A%B8-55ml/693/"
     },
     {
+      "id": "lookup:cellinshot:150",
+      "name": "셀인샷 무막스템 아줄렌 크림",
+      "brand": "셀인샷",
+      "brandAlias": "CELLINSHOT",
+      "category": "moisturizer",
+      "officialUrl": "https://cellinshot.com/product/%EC%85%80%EC%9D%B8%EC%83%B7-%EB%AC%B4%EB%A7%89%EC%8A%A4%ED%85%9C-%EC%95%84%EC%A4%84%EB%A0%8C-%ED%81%AC%EB%A6%BC/150/"
+    },
+    {
+      "id": "lookup:cellinshot:24",
+      "name": "셀인샷 egf 알란테놀 리페어 크림",
+      "brand": "셀인샷",
+      "brandAlias": "CELLINSHOT",
+      "category": "moisturizer",
+      "officialUrl": "https://cellinshot.com/product/%EC%85%80%EC%9D%B8%EC%83%B7-egf-%EC%95%8C%EB%9E%80%ED%85%8C%EB%86%80-%EB%A6%AC%ED%8E%98%EC%96%B4-%ED%81%AC%EB%A6%BC/24/"
+    },
+    {
+      "id": "lookup:cellinshot:266",
+      "name": "셀인샷 egf 알란테놀 리페어 크림 트래블 에디션",
+      "brand": "셀인샷",
+      "brandAlias": "CELLINSHOT",
+      "category": "moisturizer",
+      "volume": "20ml",
+      "officialUrl": "https://cellinshot.com/product/%EC%85%80%EC%9D%B8%EC%83%B7-egf-%EC%95%8C%EB%9E%80%ED%85%8C%EB%86%80-%EB%A6%AC%ED%8E%98%EC%96%B4-%ED%81%AC%EB%A6%BC-20ml-%ED%8A%B8%EB%9E%98%EB%B8%94-%EC%97%90%EB%94%94%EC%85%98/266/"
+    },
+    {
+      "id": "lookup:cellinshot:271",
+      "name": "셀인샷 egf 알란테놀 리페어 앰플",
+      "brand": "셀인샷",
+      "brandAlias": "CELLINSHOT",
+      "category": "serum",
+      "officialUrl": "https://cellinshot.com/product/%EC%85%80%EC%9D%B8%EC%83%B7-egf-%EC%95%8C%EB%9E%80%ED%85%8C%EB%86%80-%EB%A6%AC%ED%8E%98%EC%96%B4-%EC%95%B0%ED%94%8C/271/"
+    },
+    {
+      "id": "lookup:cellinshot:328",
+      "name": "셀인샷 egf 알란테놀 선세럼",
+      "brand": "셀인샷",
+      "brandAlias": "CELLINSHOT",
+      "category": "sunscreen",
+      "officialUrl": "https://cellinshot.com/product/%EC%85%80%EC%9D%B8%EC%83%B7-egf-%EC%95%8C%EB%9E%80%ED%85%8C%EB%86%80-%EC%84%A0%EC%84%B8%EB%9F%BC/328/"
+    },
+    {
+      "id": "lookup:cellinshot:487",
+      "name": "셀인샷 바이올렛 PDRN 캘러스 크림",
+      "brand": "셀인샷",
+      "brandAlias": "CELLINSHOT",
+      "category": "moisturizer",
+      "officialUrl": "https://cellinshot.com/product/%EC%85%80%EC%9D%B8%EC%83%B7-%EB%B0%94%EC%9D%B4%EC%98%AC%EB%A0%9B-pdrn-%EC%BA%98%EB%9F%AC%EC%8A%A4-%ED%81%AC%EB%A6%BC/487/"
+    },
+    {
+      "id": "lookup:cellinshot:49",
+      "name": "셀인샷 트라넥 글루타샷 세럼 이미지",
+      "brand": "셀인샷",
+      "brandAlias": "CELLINSHOT",
+      "category": "serum",
+      "officialUrl": "https://cellinshot.com/product/%EC%85%80%EC%9D%B8%EC%83%B7-%ED%8A%B8%EB%9D%BC%EB%84%A5-%EA%B8%80%EB%A3%A8%ED%83%80%EC%83%B7/49/"
+    },
+    {
+      "id": "lookup:cellinshot:591",
+      "name": "셀인샷 EGF 알란테놀 딥 카밍 토너",
+      "brand": "셀인샷",
+      "brandAlias": "CELLINSHOT",
+      "category": "toner",
+      "officialUrl": "https://cellinshot.com/product/%EC%85%80%EC%9D%B8%EC%83%B7-egf-%EC%95%8C%EB%9E%80%ED%85%8C%EB%86%80-%EB%94%A5-%EC%B9%B4%EB%B0%8D-%ED%86%A0%EB%84%88/591/"
+    },
+    {
       "id": "lookup:ceraveus:-acne-foaming-cream-wash-",
       "name": "세라비 Acne Foaming Cream Wash",
       "brand": "세라비",
@@ -8103,6 +8192,161 @@
       "volume": "60ml",
       "officialUrl": "https://clubclio.co.kr/shop/goodsView/0000007839",
       "image": "https://clubclio.co.kr/data/mall_data/images/product/00/00/00/78/39/m.gif"
+    },
+    {
+      "id": "lookup:goongbe:126",
+      "name": "궁중비책 베이비 딥 모이스처 크림",
+      "brand": "궁중비책",
+      "brandAlias": "GOONGBE",
+      "category": "moisturizer",
+      "volume": "100ml",
+      "officialUrl": "https://m.goongbe.com/product/detail.html?product_no=126"
+    },
+    {
+      "id": "lookup:goongbe:156",
+      "name": "궁중비책 다이애퍼 크림",
+      "brand": "궁중비책",
+      "brandAlias": "GOONGBE",
+      "category": "moisturizer",
+      "officialUrl": "https://m.goongbe.com/product/detail.html?product_no=156"
+    },
+    {
+      "id": "lookup:goongbe:157",
+      "name": "궁중비책 수딩 세럼",
+      "brand": "궁중비책",
+      "brandAlias": "GOONGBE",
+      "category": "serum",
+      "officialUrl": "https://m.goongbe.com/product/detail.html?product_no=157"
+    },
+    {
+      "id": "lookup:goongbe:983",
+      "name": "궁중비책 키즈 버블 페이셜 클렌저",
+      "brand": "궁중비책",
+      "brandAlias": "GOONGBE",
+      "category": "cleanser",
+      "volume": "100ml",
+      "officialUrl": "https://m.goongbe.com/product/detail.html?product_no=983"
+    },
+    {
+      "id": "lookup:graymelin:135",
+      "name": "그레이멜린 갈락토미세스 세럼 투명 결광 피부 광채 케어",
+      "brand": "그레이멜린",
+      "brandAlias": "GRAYMELIN",
+      "category": "serum",
+      "officialUrl": "https://m.graymelin.com/product/%EA%B0%88%EB%9D%BD%ED%86%A0%EB%AF%B8%EC%84%B8%EC%8A%A4-%EC%84%B8%EB%9F%BC-%EB%A7%A4%EB%81%88%EA%B2%B0%EA%B4%91/135/"
+    },
+    {
+      "id": "lookup:graymelin:213",
+      "name": "그레이멜린 센텔라 집중 진정 크림 시카 장벽 보호 진정",
+      "brand": "그레이멜린",
+      "brandAlias": "GRAYMELIN",
+      "category": "moisturizer",
+      "officialUrl": "https://m.graymelin.com/product/%EC%84%BC%ED%85%94%EB%9D%BC-%EB%A6%AC%EC%A0%9C%EB%84%88%EB%A0%88%EC%9D%B4%EC%85%98-%ED%81%AC%EB%A6%BC-%EC%A7%91%EC%A4%91%EC%A7%84%EC%A0%95/213/"
+    },
+    {
+      "id": "lookup:graymelin:234",
+      "name": "그레이멜린 카놀라 클렌징 오일 올리브영 1위 대용량 블랙헤드 제거",
+      "brand": "그레이멜린",
+      "brandAlias": "GRAYMELIN",
+      "category": "cleanser",
+      "volume": "500ml",
+      "officialUrl": "https://m.graymelin.com/product/%EC%B9%B4%EB%86%80%EB%9D%BC-%ED%81%AC%EB%A0%88%EC%9D%B4%EC%A7%80-%EB%8C%80%EC%9A%A9%EB%9F%89-%ED%81%B4%EB%A0%8C%EC%A7%95%EC%98%A4%EC%9D%BC-500ml-%EB%B8%94%EB%9E%99%ED%97%A4%EB%93%9C%EC%A0%9C%EA%B1%B0/234/"
+    },
+    {
+      "id": "lookup:graymelin:268",
+      "name": "그레이멜린 톤업 부스터 미백톤업크림",
+      "brand": "그레이멜린",
+      "brandAlias": "GRAYMELIN",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://m.graymelin.com/product/%ED%86%A4%EC%97%85-%EB%B6%80%EC%8A%A4%ED%84%B0-50ml-%EB%AF%B8%EB%B0%B1%ED%86%A4%EC%97%85%ED%81%AC%EB%A6%BC/268/"
+    },
+    {
+      "id": "lookup:graymelin:271",
+      "name": "그레이멜린 로즈플라워 워터 대용량 토너 생기보습",
+      "brand": "그레이멜린",
+      "brandAlias": "GRAYMELIN",
+      "category": "toner",
+      "volume": "500ml",
+      "officialUrl": "https://m.graymelin.com/product/%EB%A1%9C%EC%A6%88%ED%94%8C%EB%9D%BC%EC%9B%8C-%EC%9B%8C%ED%84%B0-%EB%8C%80%EC%9A%A9%EB%9F%89-%ED%86%A0%EB%84%88-500ml-%EC%83%9D%EA%B8%B0%EB%B3%B4%EC%8A%B5/271/"
+    },
+    {
+      "id": "lookup:graymelin:316",
+      "name": "그레이멜린 라 노니 대용량 크림 영양활력",
+      "brand": "그레이멜린",
+      "brandAlias": "GRAYMELIN",
+      "category": "moisturizer",
+      "volume": "500g",
+      "officialUrl": "https://m.graymelin.com/product/%EB%9D%BC-%EB%85%B8%EB%8B%88-%EB%8C%80%EC%9A%A9%EB%9F%89-%ED%81%AC%EB%A6%BC-500g-%EC%98%81%EC%96%91%ED%99%9C%EB%A0%A5/316/"
+    },
+    {
+      "id": "lookup:graymelin:339",
+      "name": "그레이멜린 그린푸드 대용량 크림 [수분진정]",
+      "brand": "그레이멜린",
+      "brandAlias": "GRAYMELIN",
+      "category": "moisturizer",
+      "volume": "500g",
+      "officialUrl": "https://m.graymelin.com/product/%EA%B7%B8%EB%A6%B0%ED%91%B8%EB%93%9C-%EB%8C%80%EC%9A%A9%EB%9F%89-%ED%81%AC%EB%A6%BC-500g-%EC%88%98%EB%B6%84%EC%A7%84%EC%A0%95/339/"
+    },
+    {
+      "id": "lookup:graymelin:361",
+      "name": "그레이멜린 강황 대용량 크림 탄력보습",
+      "brand": "그레이멜린",
+      "brandAlias": "GRAYMELIN",
+      "category": "moisturizer",
+      "volume": "500g",
+      "officialUrl": "https://m.graymelin.com/product/%EA%B0%95%ED%99%A9-%EB%8C%80%EC%9A%A9%EB%9F%89-%ED%81%AC%EB%A6%BC-500g-%ED%83%84%EB%A0%A5%EB%B3%B4%EC%8A%B5/361/"
+    },
+    {
+      "id": "lookup:graymelin:386",
+      "name": "그레이멜린 리턴 토너 피부 본질 리턴 수분 스탠다드",
+      "brand": "그레이멜린",
+      "brandAlias": "GRAYMELIN",
+      "category": "toner",
+      "officialUrl": "https://m.graymelin.com/product/%EA%B0%88%EB%9D%BD%ED%86%A0%EC%84%B8%EB%9D%BC-%EB%A6%AC%ED%84%B4-%ED%86%A0%EB%84%88-%EB%B0%B8%EB%9F%B0%EC%8A%A4%EC%BC%80%EC%96%B4/386/"
+    },
+    {
+      "id": "lookup:graymelin:397",
+      "name": "그레이멜린 파인애플 마일드 필링젤 올리브영 입점 저자극 순한 고마쥬 각질 케어",
+      "brand": "그레이멜린",
+      "brandAlias": "GRAYMELIN",
+      "category": "cleanser",
+      "officialUrl": "https://m.graymelin.com/product/%ED%8C%8C%EC%9D%B8%EC%95%A0%ED%94%8C-%EB%A7%88%EC%9D%BC%EB%93%9C-%ED%95%84%EB%A7%81%EC%A0%A4-%EB%A7%A4%EB%81%88%EA%B0%81%EC%A7%88/397/"
+    },
+    {
+      "id": "lookup:graymelin:443",
+      "name": "그레이멜린 체리블라썸 클렌징 오일 화사한 벚꽃 생기 수분 세안",
+      "brand": "그레이멜린",
+      "brandAlias": "GRAYMELIN",
+      "category": "cleanser",
+      "volume": "500ml",
+      "officialUrl": "https://m.graymelin.com/product/%ED%94%84%EB%A0%88%EC%89%AC-%EC%B2%B4%EB%A6%AC%EB%B8%94%EB%9D%BC%EC%8D%B8-%ED%81%B4%EB%A0%8C%EC%A7%95%EC%98%A4%EC%9D%BC-400ml-%ED%99%94%EC%82%AC%EC%83%9D%EA%B8%B0/443/"
+    },
+    {
+      "id": "lookup:graymelin:492",
+      "name": "그레이멜린 알래스카 내추럴 토너 올리브영 입점 대용량 수분진정",
+      "brand": "그레이멜린",
+      "brandAlias": "GRAYMELIN",
+      "category": "toner",
+      "volume": "500ml",
+      "officialUrl": "https://m.graymelin.com/product/%EC%95%8C%EB%9E%98%EC%8A%A4%EC%B9%B4-%EB%B9%99%ED%95%98%EC%88%98-%EB%8C%80%EC%9A%A9%EB%9F%89-%ED%86%A0%EB%84%88-500ml-%EC%88%98%EB%B6%84%EB%B3%B4%EC%8A%B5/492/"
+    },
+    {
+      "id": "lookup:graymelin:551",
+      "name": "그레이멜린 아르간 클렌징 오일 대용량 고보습 세안",
+      "brand": "그레이멜린",
+      "brandAlias": "GRAYMELIN",
+      "category": "cleanser",
+      "volume": "500ml",
+      "officialUrl": "https://m.graymelin.com/product/11-%EC%95%84%EB%A5%B4%EA%B0%84-%EB%8C%80%EC%9A%A9%EB%9F%89-%ED%81%B4%EB%A0%8C%EC%A7%95-%EC%98%A4%EC%9D%BC-500ml-%EA%B3%A0%EB%B3%B4%EC%8A%B5/551/"
+    },
+    {
+      "id": "lookup:graymelin:561",
+      "name": "그레이멜린 슈퍼 시카 크림 진정 쉴드 보습 크림",
+      "brand": "그레이멜린",
+      "brandAlias": "GRAYMELIN",
+      "category": "moisturizer",
+      "officialUrl": "https://m.graymelin.com/product/%EC%8B%9C%EC%B9%B4-%ED%81%AC%EB%A6%BC-%EC%A7%84%EC%A0%95%EC%9E%A5%EB%B2%BD/561/"
     },
     {
       "id": "lookup:hadalabo:gokujun-light-lotion",
