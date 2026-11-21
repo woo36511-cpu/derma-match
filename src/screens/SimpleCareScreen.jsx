@@ -5,7 +5,7 @@ import { getReactionIngredientClues } from "../utils/reactionIngredientFit";
 import { getRoutineLookupProduct } from "../utils/routineLookup";
 import ProductChangeReview from "../components/ProductChangeReview";
 import { readPricePreference } from "../data/pricePreference";
-import { getProductById } from "../utils/productCatalog";
+import { getProductById, hasExfoliatingActive } from "../utils/productCatalog";
 import { getProductEvidenceStatus, RECOMMENDATION_RULE_VERSION } from "../utils/productEvidence";
 import { AcneCareReview } from "../components/AcneCareReview";
 import { buildAcneCareReview } from "../utils/acneCareReview";
@@ -16,7 +16,7 @@ import { useMemo, useState } from "react";
 import { acneAreas, getSimpleCareQuestions, cleanSimpleCareAnswers } from "../data/simpleCare";
 import { buildSimpleCarePlan, SIMPLE_CARE_VERSION } from "../utils/simpleCarePlan";
 import { buildSimpleSkinRecord } from "../utils/simpleSkinRecord";
-import { buildDynamicRoutine, getSeasonalMoisturizerPair, pickBestProductByCategory } from "../utils/routineRecommendation";
+import { buildDynamicRoutine, getRankedProductCandidates, getSeasonalMoisturizerPair, pickBestProductByCategory } from "../utils/routineRecommendation";
 import { AcnePhotoReference } from "../components/AcnePhotoReference";
 import { FolliculitisOptions } from "../components/FolliculitisOptions";
 import { ConcernProductOptions } from "../components/ConcernProductOptions";
@@ -106,6 +106,35 @@ export function HydrationComparison({ slot, product, entries = [] }) {
   </section>;
 }
 
+export function CombinationMoisturizerGuide({ profile, product, context, renderedComparison }) {
+  const observations = profile.observationAssessment?.resolvedObservations;
+  if (!product || observations?.observedOil !== "tzone") return null;
+
+  const comfortable = observations.drynessArea === "none";
+  const persistent = observations.drynessTiming === "persistent";
+  const sustained = observations.drynessArea === "cheeks" && (persistent || observations.drynessTiming === "day");
+  if (!comfortable && !sustained) return null;
+
+  const richer = persistent && getRankedProductCandidates("cream", 3, context).find(candidate =>
+    candidate.id !== product.id && !hasExfoliatingActive(candidate) &&
+    candidate.careProfile.hydrationSupport > product.careProfile.hydrationSupport);
+
+  return <section className="care-panel space-y-2 text-sm" aria-label="복합성 피부의 부위별 보습">
+    <h3 className="font-bold">{comfortable ? "이마·코는 번들거리고 볼은 편안해요" : "이마·코는 번들거리고 볼은 당겨요"}</h3>
+    <p>{comfortable ? "볼이 편안하다면 가벼운 보습제 하나로 시작해요."
+      : "볼의 당김과 이마·코의 유분을 함께 고려해 중간 보습감 기준으로 제품을 골랐어요. 먼저 보습제 하나로 시작해요."}</p>
+    <ul className="space-y-1">
+      <li><strong>이마·코</strong> · 얇게 발라요.</li>
+      <li><strong>볼</strong> · {comfortable ? "편안하게 느껴지는 양만 발라요." : "같은 제품을 바르고, 당김이 남는 곳에만 한 겹 더 발라요."}</li>
+    </ul>
+    {persistent && <DetailDisclosure title="볼만 계속 당기면">
+      <p>같은 제품을 한 겹 더 발라도 계속 당긴다면 볼에만 더 보습감 있는 제형을 고려해요.</p>
+      {richer && <div className="mt-3 max-w-xs"><RoutineProductScroller layout="routine" productsByCategory={{ cream: richer }}
+        renderAfterProduct={renderedComparison} userContext={{ ...context, level: 3 }} /></div>}
+    </DetailDisclosure>}
+  </section>;
+}
+
 export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, serumStatus, otherRetained = [], advice, recommendationContext, ownedIds, notes, routineHasIrritation, makeupCleansing, replacement, tracking, currentEntries }) {
   const heading = useScreenHeading("care-result");
   const concernFirst = plan.blockNewBasics || (plan.answers.concern !== "none" && !routineHasIrritation);
@@ -189,6 +218,8 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
         <div className="p-3 sm:p-4"><p className="font-bold text-forest-900">저녁</p><p className="mt-0.5 text-slate-700">세안 후 필요한 기초 관리</p></div>
       </div>
       <RoutineProductScroller layout="routine" productsByCategory={routine.products} renderAfterProduct={compareHydration} optionalSlots={["toner", "serum"]} userContext={{ ...recommendationContext, level: profile.hydrationLevel, acneSupport: plan.answers.concern === "acne" }} />
+      {!routine.isHistorical && <CombinationMoisturizerGuide profile={profile} product={routine.products.cream}
+        context={recommendationContext} renderedComparison={compareHydration} />}
       {seasonalPair && <section className="care-panel space-y-3" aria-label="계절과 사용감에 따른 보습제 비교">
         <h3 className="font-bold">같은 피부 성향, 다른 날의 보습제</h3>
         <p className="text-sm text-slate-700">더울 때와 건조할 때 중 지금에 맞는 한 가지를 골라요. 두 제품을 함께 쓸 필요는 없어요.</p>

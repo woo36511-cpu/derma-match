@@ -2,7 +2,7 @@ import { pricePreferenceQuestion } from "./data/pricePreference";
 import { getMakeupCleansingQuestions, makeupUseQuestion } from "./data/makeupCleansingSurvey";
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import App from "./App";
-import { HydrationComparison, SimpleCareScreen } from "./screens/SimpleCareScreen";
+import { CombinationMoisturizerGuide, HydrationComparison, SimpleCareScreen } from "./screens/SimpleCareScreen";
 import { getAdaptiveObservationQuestions as getObservationQuestions, adaptiveObservationQuestions as observationQuestions, adaptiveSupportQuestions, ADAPTIVE_MEASUREMENT_VERSION as OBSERVATION_MEASUREMENT_VERSION } from "./data/adaptiveObservationSurvey";
 import { observationQuestions as previousObservationQuestions, OBSERVATION_SURVEY_VERSION } from "./data/observationSurvey";
 import { analyzeObservationSurvey } from "./utils/analyzeObservationSurvey";
@@ -21,6 +21,19 @@ import { JOURNEY_HISTORY_KEY } from "./data/storageKeys";
 import { buildRoutineSurveyContext, getReviewedRoutineProduct, makeManualRoutineEntry, readCurrentRoutine } from "./utils/currentRoutineReview";
 
 import { products } from "./data/products";
+
+test("shows a single moisturizer approach for oily T-zone and dry cheeks", () => {
+  const product = products.find(item => item.category === "cream");
+  const profile = drynessTiming => ({ observationAssessment: { resolvedObservations: {
+    observedOil: "tzone", drynessArea: "cheeks", drynessTiming,
+  } } });
+  const { rerender } = render(<CombinationMoisturizerGuide profile={profile("day")} product={product} />);
+  expect(screen.getByText(/중간 보습감 기준/)).toBeVisible();
+  expect(screen.getByText(/당김이 남는 곳에만 한 겹 더/)).toBeVisible();
+  expect(screen.queryByText("볼만 계속 당기면")).not.toBeInTheDocument();
+  rerender(<CombinationMoisturizerGuide profile={profile("persistent")} product={product} />);
+  expect(screen.getByText("볼만 계속 당기면")).toBeVisible();
+});
 
 test("compares only the same skincare category using reviewed hydration scores", () => {
   const reviewed = products.map(product => getReviewedRoutineProduct({ id: product.id })?.catalog)
