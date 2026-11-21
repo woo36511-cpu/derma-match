@@ -65,5 +65,17 @@
     "brand": "궁중비책",
     "alias": "GOONGBE",
     "catalogUrl": "https://m.goongbe.com/product/list.html?cate_no=57"
+  },
+  {
+    "key": "ilso",
+    "brand": "일소",
+    "alias": "ILSO",
+    "catalogUrl": "https://www.ilso.kr/category/%EB%8B%A8%EA%B3%84%EB%B3%84/113/"
+  },
+  {
+    "key": "laneige",
+    "brand": "라네즈",
+    "alias": "LANEIGE",
+    "catalogUrl": "https://laneige.com/category/%EC%A0%84%EC%B2%B4%EB%B3%B4%EA%B8%B0/63/"
   }
 ]

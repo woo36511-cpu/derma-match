@@ -14,6 +14,8 @@ const clubClio = (brand, alias, id) => ({ brand, alias, domain: "clubclio.co.kr"
   paths: [["121072", `/shop/brandsList/121072000000000/brand/${id}`]] });
 
 export const stores = {
+  labcle: { brand: "랩클", alias: "LABCLE", domain: "thelabcle.com", type: "cafe",
+    paths: [["list", "/product/search.html?keyword=%EB%9E%A9%ED%81%B4"]] },
   heimish: { brand: "헤이미쉬", alias: "heimish", domain: "eheimish.com", type: "cafe",
     paths: [["skin", "/category/skin-care/23/"], ["clean", "/category/cleansing/25/"]] },
   klavuu: { brand: "클라뷰", alias: "KLAVUU", domain: "www.klavuu.com", type: "cafe",
@@ -208,6 +210,7 @@ function makeCandidate(storeKey, store, nameInput, url, id, image, onDiscontinue
     onDiscontinued?.({ id: `lookup:${storeKey}:${id}`, officialUrl: url });
     return null;
   }
+  if (storeKey === "labcle" && !/^랩클(?:\s|$)/u.test(name)) return null;
   if (["banobagi", "onething"].includes(storeKey) && /[2-9]\d*\s*개(?:\s|$)/u.test(name)) return null;
   if (storeKey === "kioskin" && /특가|블랑카우|쿠션|아이\s*크림|\d\s*개|\s\+\s/u.test(name)) return null;
   if (storeKey === "physiogel" && /특별구성|듀오|쿠션|\d\s*개|\s\+\s/u.test(name)) return null;
@@ -511,6 +514,10 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
     let image = imageUrl((storeKey === "frankly" ? attr(img, "data-src") : null) || attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
+    if (storeKey === "labcle") {
+      if (!attr(node.parentNode, "class")?.split(/\s+/).includes("name")) continue;
+      rawName = textOf(node).replace(/^상품명\s*:\s*/u, "");
+    }
     if (storeKey === "easydew") {
       if (!attr(node.parentNode, "class")?.split(/\s+/).includes("name")) continue;
       let card = node.parentNode;
