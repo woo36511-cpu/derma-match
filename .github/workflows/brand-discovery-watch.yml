@@ -61,22 +61,6 @@ jobs:
             oliveyoung-discovery.json
           if-no-files-found: error
           retention-days: 90
-      - name: Update product search when listings change
-        if: github.ref == 'refs/heads/main'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for attempt in 1 2 3; do
-            git fetch --no-tags origin refs/heads/main
-            git switch --detach FETCH_HEAD
-            node scripts/publish-brand-search-snapshot.mjs official-brand-discovery.json
-            if git diff --quiet -- src/data/routineLookupExpansion.json; then exit 0; fi
-            git add src/data/routineLookupExpansion.json
-            git commit -m "Refresh verified-source search listings"
-            if git push origin HEAD:main; then exit 0; fi
-            if [[ "$attempt" != 3 ]]; then sleep 2; fi
-          done
-          exit 1
       - name: Review official formulas and ingredient signals
         run: |
           previous=$(gh run list --workflow brand-discovery-watch.yml --branch main --status success --limit 1 --json databaseId --jq '.[0].databaseId // empty')
@@ -91,3 +75,20 @@ jobs:
           path: official-formula-review.json
           if-no-files-found: error
           retention-days: 90
+      - name: Update product search when listings change
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch --no-tags origin refs/heads/main
+            git switch --detach FETCH_HEAD
+            node scripts/publish-brand-search-snapshot.mjs official-brand-discovery.json
+            node scripts/publish-survey-formulas.mjs official-formula-review.json
+            if git diff --quiet -- src/data/routineLookupExpansion.json src/data/verifiedRoutineFormulas.json; then exit 0; fi
+            git add src/data/routineLookupExpansion.json src/data/verifiedRoutineFormulas.json
+            git commit -m "Refresh verified-source search listings"
+            if git push origin HEAD:main; then exit 0; fi
+            if [[ "$attempt" != 3 ]]; then sleep 2; fi
+          done
+          exit 1

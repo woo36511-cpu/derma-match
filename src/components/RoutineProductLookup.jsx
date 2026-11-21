@@ -1,3 +1,4 @@
+import { readOfficialFormula } from "../services/officialCosmetics";
 import { useRef, useState } from "react";
 import { CurrentRoutineReview, useCurrentRoutine } from "./CurrentRoutineReview";
 import { CURRENT_ROUTINE_LIMIT, getReviewedRoutineProduct, makeCurrentRoutineEntry, makeManualRoutineEntry } from "../utils/currentRoutineReview";
@@ -40,7 +41,7 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
     <div>
       <h3 id="routine-lookup-title" className="text-lg font-bold">지금 쓰는 화장품 찾기</h3>
       <p className="mt-1 text-sm text-slate-600">등록된 {routineLookupCount}개 중 제품을 찾아 담고, 실제 사용 반응을 기준으로 유지할 것과 점검할 것을 나눠봐요.</p>
-      <p className="mt-1 text-xs text-slate-600">아누아·마녀공장은 제품명과 국내 공식 전성분이 정확히 맞으면 자동으로 확인해요.</p>
+      <p className="mt-1 text-xs text-slate-600">국내 공식 전성분이 제품명과 용량에 정확히 일치하면 설문에 함께 반영해요.</p>
     </div>
     <div ref={reviewRef}><CurrentRoutineReview {...{ routine, profile, savedAt, safetyBlocked, onStartSurvey, personalProductFeedback }} /></div>
     {isFull && <p className="text-sm text-slate-600">최대 {CURRENT_ROUTINE_LIMIT}개까지 담을 수 있어요. 더 담으려면 지금 쓰지 않는 제품을 빼주세요.</p>}
@@ -69,7 +70,7 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
         <div className="min-w-0">
           <p className="text-xs font-medium text-slate-600">{routineLookupCategories[product.category]}{product.allInOne && " · 올인원"}{product.volume && ` · ${product.volume}`}</p>
           <p className="mt-1 break-keep text-sm font-semibold text-slate-950">{product.name}</p>
-          <p className="mt-1 text-xs text-slate-600">{product.formulaVerified ? "국내 전성분 확인됨" : product.listingOnly ? (product.sourceMarket === "US" ? "미국 공식 목록 확인 · 전성분 검수 전" : "국내 공식 목록 확인 · 전성분 검수 전") : "전성분 검수 전"}</p>
+          <p className="mt-1 text-xs text-slate-600">{(product.formulaVerified || readOfficialFormula(null, product)) ? "국내 전성분 확인됨" : product.listingOnly ? (product.sourceMarket === "US" ? "미국 공식 목록 확인 · 전성분 검수 전" : "국내 공식 목록 확인 · 전성분 검수 전") : "전성분 검수 전"}</p>
           {reviewed && <p className="mt-1 text-xs text-slate-700">{reviewed.label}</p>}
           <div className="mt-2 flex flex-wrap items-center gap-2">
             <button type="button" disabled={added || isFull} aria-label={`${actionName} ${added ? "내 루틴에 담음" : "내 루틴에 담기"}`}
