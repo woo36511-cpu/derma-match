@@ -6109,5 +6109,128 @@
         "unit": "ppm"
       }
     ]
+  },
+  {
+    "id": 83,
+    "name": "바이오더마 센시비오 디펜시브 크림",
+    "brand": "바이오더마",
+    "category": "cream",
+    "volume": "40ml",
+    "legacyLookupIds": [
+      "lookup:bioderma:1271"
+    ],
+    "hydrationLevel": 6,
+    "texture": "light",
+    "concerns": [
+      "hydration",
+      "barrier"
+    ],
+    "ingredients": [
+      "글리세린",
+      "부틸렌글라이콜",
+      "스쿠알란"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "다이카프릴릴에터",
+      "프로필헵틸카프릴레이트",
+      "부틸렌글라이콜",
+      "글리세릴스테아레이트시트레이트",
+      "글라이콜팔미테이트",
+      "스쿠알란",
+      "수크로오스스테아레이트",
+      "망고씨버터",
+      "펜틸렌글라이콜",
+      "아크릴레이트/C10-30알킬아크릴레이트크로스폴리머",
+      "카프릴릴글라이콜",
+      "카르노신",
+      "하이드록시에틸아크릴레이트/소듐아크릴로일다이메틸타우레이트코폴리머",
+      "만니톨",
+      "자일리톨",
+      "토코페롤",
+      "단삼꽃/잎/뿌리추출물",
+      "람노오스",
+      "돌콩오일",
+      "폴리솔베이트60",
+      "솔비탄아이소스테아레이트",
+      "팔미토일테트라펩타이드-10"
+    ],
+    "careProfile": {
+      "hydrationSupport": 6,
+      "lightweightFit": 7,
+      "soothingSupport": 3,
+      "congestionSupport": 0,
+      "barrierSupport": 4
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-22",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "국내 공식 상품고시와 브랜드의 가벼운 크림 제형 설명을 바탕으로 건조감이 있는 중성·복합성 피부의 가벼운 보습 마무리로 내부 평가. 점수는 실측 보습 지속시간이나 진정 효과를 뜻하지 않아요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-22",
+      "sources": [
+        {
+          "url": "https://naosmall.kr/product/detail.html?product_no=1271",
+          "sourceType": "official_domestic_product_page"
+        },
+        {
+          "url": "https://www.bioderma.co.uk/p/sensibio-defensive-moisturiser",
+          "sourceType": "official_brand_texture_reference"
+        }
+      ],
+      "note": "나오스코리아 40ml 일반 디펜시브 크림의 국내 상품고시 전성분을 확인했어요. 해외 공식 설명은 제형 확인에만 사용했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": true
+    },
+    "skinTypes": [
+      "중성",
+      "복합성"
+    ],
+    "description": "번들거리는 마무리가 부담스럽고 세안 뒤 당김이 있을 때 얇게 바르는 보습 크림이에요.",
+    "shortReason": "가벼운 크림으로 보습 마무리",
+    "caution": [
+      "돌콩오일이 포함돼 있어 해당 성분의 화장품에 반응한 적이 있으면 피하세요.",
+      "처음에는 좁은 부위에 소량 사용하고 따가움이나 붉어짐이 생기면 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "isAvailable": true,
+    "link": "https://naosmall.kr/product/detail.html?product_no=1271",
+    "price": null,
+    "image": "https://naosmall.kr/web/product/medium/202606/ef4638834ebb8accc68bd001343ecb39.jpg",
+    "imageSource": {
+      "url": "https://naosmall.kr/web/product/medium/202606/ef4638834ebb8accc68bd001343ecb39.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-22"
+    },
+    "purchaseSource": {
+      "provider": "official",
+      "label": "나오스몰",
+      "url": "https://naosmall.kr/product/detail.html?product_no=1271",
+      "checkedAt": "2026-11-22",
+      "verification": "official_product_page",
+      "liveStockVerified": false
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "세안 후 보습 마무리 단계",
+      "howToUse": [
+        "얼굴의 건조한 부위에 소량을 얇게 펴 발라요."
+      ],
+      "caution": [
+        "돌콩오일이 포함돼 있어 해당 성분의 화장품에 반응한 적이 있으면 피하세요.",
+        "처음에는 좁은 부위에 소량 사용하고 따가움이나 붉어짐이 생기면 중단해요."
+      ]
+    }
   }
 ]
