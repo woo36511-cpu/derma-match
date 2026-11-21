@@ -614,6 +614,14 @@
       "fetchedListings": 6,
       "alias": "D:WEATHER",
       "officialCatalogUrl": "https://dweather.kr/product/list.html?cate_no=48"
+    },
+    "lubelle": {
+      "name": "루벨",
+      "checkedAt": "2026-11-22",
+      "usefulPages": 1,
+      "fetchedListings": 8,
+      "alias": "LUBELLE",
+      "officialCatalogUrl": "https://www.lubelle.co.kr/product/list.html?cate_no=42"
     }
   },
   "products": [
@@ -11098,7 +11106,7 @@
       "brandAlias": "HANYUL",
       "category": "toner",
       "officialUrl": "https://www.hanyul.com/product/%EC%96%B4%EB%A6%B0%EC%91%A5-%EC%86%8D%EC%88%98%EB%B6%84-%EC%91%A5%ED%9E%88%EC%95%8C-%ED%8C%A8%EB%93%9C/128/",
-      "image": "https://hanyul.com/web/product/medium/202604/dbf75cf7e6b6857b511e0cbca7f3dcc0.jpg"
+      "image": "https://www.hanyul.com/web/product/medium/202604/dbf75cf7e6b6857b511e0cbca7f3dcc0.jpg"
     },
     {
       "id": "lookup:hanyul:129",
@@ -11107,7 +11115,7 @@
       "brandAlias": "HANYUL",
       "category": "moisturizer",
       "officialUrl": "https://www.hanyul.com/product/%EC%96%B4%EB%A6%B0%EC%91%A5-%EC%86%8D%EC%88%98%EB%B6%84-%EC%91%A5%ED%9E%88%EC%95%8C-%ED%81%AC%EB%A6%BC/129/",
-      "image": "https://hanyul.com/web/product/medium/202604/cdf2082b64e033a3e5f1a92783ce438a.jpg"
+      "image": "https://www.hanyul.com/web/product/medium/202604/cdf2082b64e033a3e5f1a92783ce438a.jpg"
     },
     {
       "id": "lookup:hanyul:130",
@@ -11116,7 +11124,7 @@
       "brandAlias": "HANYUL",
       "category": "serum",
       "officialUrl": "https://www.hanyul.com/product/%EC%96%B4%EB%A6%B0%EC%91%A5-%EC%86%8D%EC%88%98%EB%B6%84-%EC%91%A5%ED%9E%88%EC%95%8C-%EC%84%B8%EB%9F%BC/130/",
-      "image": "https://hanyul.com/web/product/medium/202604/7973595f37b8020f2a71d2e9940c836d.jpg"
+      "image": "https://www.hanyul.com/web/product/medium/202604/7973595f37b8020f2a71d2e9940c836d.jpg"
     },
     {
       "id": "lookup:hanyul:131",
@@ -11134,7 +11142,7 @@
       "brandAlias": "HANYUL",
       "category": "cleanser",
       "officialUrl": "https://www.hanyul.com/product/%EB%8B%AC%EB%B9%9B%EC%9C%A0%EC%9E%90-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%86%A4%EC%97%85-%ED%8C%A9%ED%8F%BC/132/",
-      "image": "https://hanyul.com/web/product/medium/202604/97fb0ce652e811f36849bd1dbd98ea1d.jpg"
+      "image": "https://www.hanyul.com/web/product/medium/202604/97fb0ce652e811f36849bd1dbd98ea1d.jpg"
     },
     {
       "id": "lookup:hanyul:74",
@@ -12452,6 +12460,15 @@
       "image": "https://inm-cdn.innisfree.com/origin-image/product/product/00/00/03/45/02/444ac51e-95a3-4615-be0e-48f3abec3893.png"
     },
     {
+      "id": "lookup:innisfree:34508",
+      "name": "이니스프리 그린티 히알루론산 스킨",
+      "brand": "이니스프리",
+      "brandAlias": "innisfree",
+      "category": "toner",
+      "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/34508",
+      "image": "https://inm-cdn.innisfree.com/origin-image/product/product/00/00/03/45/08/21c1311d-3b61-4738-a474-4dc9b83e28da.webp"
+    },
+    {
       "id": "lookup:innisfree:34511",
       "name": "이니스프리 그린티 아미노 수분 폼 클렌징",
       "brand": "이니스프리",
@@ -12711,6 +12728,15 @@
       "category": "cleanser",
       "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/37066",
       "image": "https://inm-cdn.innisfree.com/origin-image/product/product/00/00/03/70/66/a430235e-f262-45d8-9a31-126a0045ad4c.webp"
+    },
+    {
+      "id": "lookup:innisfree:37159",
+      "name": "이니스프리 올리브 비타민 E 리얼 크림",
+      "brand": "이니스프리",
+      "brandAlias": "innisfree",
+      "category": "moisturizer",
+      "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/37159",
+      "image": "https://inm-cdn.innisfree.com/origin-image/product/product/00/00/03/71/59/19ba9a7d-a4c1-40a2-8eff-ce74cf2258d3.webp"
     },
     {
       "id": "lookup:innisfree:37401",
@@ -14866,6 +14892,78 @@
       "category": "cleanser",
       "officialUrl": "https://www.laroche-posay.us/our-products/face/face-wash/vitamin-c-brightening-facial-cleanser-3337875924726.html",
       "sourceMarket": "US"
+    },
+    {
+      "id": "lookup:lubelle:30",
+      "name": "루벨 피디알엔 하이드로 부스트 패드",
+      "brand": "루벨",
+      "brandAlias": "LUBELLE",
+      "category": "toner",
+      "officialUrl": "https://www.lubelle.co.kr/product/%EB%A3%A8%EB%B2%A8-%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%ED%95%98%EC%9D%B4%EB%93%9C%EB%A1%9C-%EB%B6%80%EC%8A%A4%ED%8A%B8-%ED%8C%A8%EB%93%9C/30/",
+      "image": "https://www.lubelle.co.kr/web/product/big/202607/4b59f1a8bda34c05138d87e29dbcca41.png"
+    },
+    {
+      "id": "lookup:lubelle:31",
+      "name": "루벨 퓨어 글로우 클렌징 패드",
+      "brand": "루벨",
+      "brandAlias": "LUBELLE",
+      "category": "cleanser",
+      "officialUrl": "https://www.lubelle.co.kr/product/%EB%A3%A8%EB%B2%A8-%ED%93%A8%EC%96%B4-%EA%B8%80%EB%A1%9C%EC%9A%B0-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8C%A8%EB%93%9C/31/",
+      "image": "https://www.lubelle.co.kr/web/product/big/202607/88be9c23f7262427c7551eb6c6fd6861.png"
+    },
+    {
+      "id": "lookup:lubelle:32",
+      "name": "루벨 글로우 클렌징 밀크",
+      "brand": "루벨",
+      "brandAlias": "LUBELLE",
+      "category": "cleanser",
+      "officialUrl": "https://www.lubelle.co.kr/product/%EB%A3%A8%EB%B2%A8-%EA%B8%80%EB%A1%9C%EC%9A%B0-%ED%81%B4%EB%A0%8C%EC%A7%95-%EB%B0%80%ED%81%AC/32/",
+      "image": "https://www.lubelle.co.kr/web/product/big/202607/35e2655da2e7bc7f20c7fcc3d193b76c.png"
+    },
+    {
+      "id": "lookup:lubelle:37",
+      "name": "루벨 알로에 수딩젤",
+      "brand": "루벨",
+      "brandAlias": "LUBELLE",
+      "category": "moisturizer",
+      "officialUrl": "https://www.lubelle.co.kr/product/%EB%A3%A8%EB%B2%A8-%EC%95%8C%EB%A1%9C%EC%97%90-%EC%88%98%EB%94%A9%EC%A0%A4/37/",
+      "image": "https://www.lubelle.co.kr/web/product/big/202608/ecc7920e9ec5916974de6c5c3a1bd55e.png"
+    },
+    {
+      "id": "lookup:lubelle:38",
+      "name": "루벨 리본 크림",
+      "brand": "루벨",
+      "brandAlias": "LUBELLE",
+      "category": "moisturizer",
+      "officialUrl": "https://www.lubelle.co.kr/product/%EB%A3%A8%EB%B2%A8-%EB%A6%AC%EB%B3%B8-%ED%81%AC%EB%A6%BC/38/",
+      "image": "https://www.lubelle.co.kr/web/product/big/202608/5e8370970c66e3fedfe9c0828b6ef550.png"
+    },
+    {
+      "id": "lookup:lubelle:41",
+      "name": "루벨 실크 선세럼",
+      "brand": "루벨",
+      "brandAlias": "LUBELLE",
+      "category": "sunscreen",
+      "officialUrl": "https://www.lubelle.co.kr/product/%EB%A3%A8%EB%B2%A8-%EC%8B%A4%ED%81%AC-%EC%84%A0%EC%84%B8%EB%9F%BC/41/",
+      "image": "https://www.lubelle.co.kr/web/product/big/202608/4633676e09e0a87969f97df3b159cded.png"
+    },
+    {
+      "id": "lookup:lubelle:42",
+      "name": "루벨 듀얼 pdrn 세럼",
+      "brand": "루벨",
+      "brandAlias": "LUBELLE",
+      "category": "serum",
+      "officialUrl": "https://www.lubelle.co.kr/product/%EB%A3%A8%EB%B2%A8-%EB%93%80%EC%96%BC-pdrn-%EC%84%B8%EB%9F%BC/42/",
+      "image": "https://www.lubelle.co.kr/web/product/big/202608/8e1020993573293ee8086ba67141ec8f.png"
+    },
+    {
+      "id": "lookup:lubelle:44",
+      "name": "루벨 nad 더마 리바이탈 버블 토너",
+      "brand": "루벨",
+      "brandAlias": "LUBELLE",
+      "category": "toner",
+      "officialUrl": "https://www.lubelle.co.kr/product/%EB%A3%A8%EB%B2%A8-nad-%EB%8D%94%EB%A7%88-%EB%A6%AC%EB%B0%94%EC%9D%B4%ED%83%88-%EB%B2%84%EB%B8%94-%ED%86%A0%EB%84%88/44/",
+      "image": "https://www.lubelle.co.kr/web/product/big/202608/555387cc245cd0814167f7d337541796.png"
     },
     {
       "id": "lookup:mamonde:100",
@@ -25162,7 +25260,8 @@
       "brandAlias": "SIDMOOL",
       "category": "sunscreen",
       "volume": "80ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77093"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77093",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77095",
@@ -25171,7 +25270,8 @@
       "brandAlias": "SIDMOOL",
       "category": "serum",
       "volume": "30ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77095"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77095",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77098",
@@ -25180,7 +25280,8 @@
       "brandAlias": "SIDMOOL",
       "category": "moisturizer",
       "volume": "80ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77098"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77098",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77105",
@@ -25189,7 +25290,8 @@
       "brandAlias": "SIDMOOL",
       "category": "moisturizer",
       "volume": "80ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77105"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77105",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77107",
@@ -25198,7 +25300,8 @@
       "brandAlias": "SIDMOOL",
       "category": "sunscreen",
       "volume": "60ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77107"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77107",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77112",
@@ -25207,7 +25310,8 @@
       "brandAlias": "SIDMOOL",
       "category": "moisturizer",
       "volume": "60ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77112"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77112",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77113",
@@ -25216,7 +25320,8 @@
       "brandAlias": "SIDMOOL",
       "category": "toner",
       "volume": "150ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77113"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77113",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77117",
@@ -25225,7 +25330,8 @@
       "brandAlias": "SIDMOOL",
       "category": "cleanser",
       "volume": "60g",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77117"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77117",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77121",
@@ -25234,7 +25340,8 @@
       "brandAlias": "SIDMOOL",
       "category": "serum",
       "volume": "30ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77121"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77121",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77122",
@@ -25243,7 +25350,8 @@
       "brandAlias": "SIDMOOL",
       "category": "serum",
       "volume": "110ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77122"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77122",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77123",
@@ -25252,7 +25360,8 @@
       "brandAlias": "SIDMOOL",
       "category": "moisturizer",
       "volume": "110ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77123"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77123",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77125",
@@ -25261,7 +25370,8 @@
       "brandAlias": "SIDMOOL",
       "category": "serum",
       "volume": "13g",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77125"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77125",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77126",
@@ -25270,7 +25380,8 @@
       "brandAlias": "SIDMOOL",
       "category": "cleanser",
       "volume": "150ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77126"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77126",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77127",
@@ -25279,7 +25390,8 @@
       "brandAlias": "SIDMOOL",
       "category": "moisturizer",
       "volume": "150ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77127"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77127",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77130",
@@ -25288,7 +25400,8 @@
       "brandAlias": "SIDMOOL",
       "category": "toner",
       "volume": "60ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77130"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77130",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77132",
@@ -25297,7 +25410,8 @@
       "brandAlias": "SIDMOOL",
       "category": "moisturizer",
       "volume": "60ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77132"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77132",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77136",
@@ -25306,7 +25420,8 @@
       "brandAlias": "SIDMOOL",
       "category": "serum",
       "volume": "33ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77136"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77136",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77137",
@@ -25315,7 +25430,8 @@
       "brandAlias": "SIDMOOL",
       "category": "moisturizer",
       "volume": "50ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77137"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77137",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77138",
@@ -25324,7 +25440,8 @@
       "brandAlias": "SIDMOOL",
       "category": "moisturizer",
       "volume": "60ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77138"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77138",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77142",
@@ -25333,7 +25450,8 @@
       "brandAlias": "SIDMOOL",
       "category": "sunscreen",
       "volume": "50ml",
-      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77142"
+      "officialUrl": "https://www.sidmool.com/shop/shopdetail.html?branduid=77142",
+      "image": "https://www.sidmool.com/shopimages/sidmool/all_og__20250115171711phpSXZVAC.jpg"
     },
     {
       "id": "lookup:sidmool:77149",
