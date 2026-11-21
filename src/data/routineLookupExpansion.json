@@ -2744,6 +2744,15 @@
       "image": "https://beplain.co.kr/shopimages/beplain01/0120010000042.jpg"
     },
     {
+      "id": "lookup:beyond:1058",
+      "name": "비욘드 토탈 리커버리 인텐스 바디미스트",
+      "brand": "비욘드",
+      "brandAlias": "BEYOND",
+      "category": "bodyCare",
+      "volume": "120ml",
+      "officialUrl": "https://beyond.co.kr/product/%ED%86%A0%ED%83%88-%EB%A6%AC%EC%BB%A4%EB%B2%84%EB%A6%AC-%EC%9D%B8%ED%85%90%EC%8A%A4-%EB%B0%94%EB%94%94%EB%AF%B8%EC%8A%A4%ED%8A%B8-120ml/1058"
+    },
+    {
       "id": "lookup:biodance:10",
       "name": "바이오던스 스킨 글로우 에센스 크림",
       "brand": "바이오던스",
@@ -22540,6 +22549,69 @@
       "volume": "50ml",
       "officialUrl": "https://www.thera.co.kr/shop_view/?idx=43",
       "image": "https://cdn.imweb.me/thumbnail/20261029/2333dd30f985d.png"
+    },
+    {
+      "id": "lookup:thesaem:0000000040",
+      "name": "더샘 힐링 티 가든 클렌징 워터",
+      "brand": "더샘",
+      "brandAlias": "The Saem",
+      "category": "cleanser",
+      "volume": "300ml",
+      "officialUrl": "https://www.thesaemcosmetic.com/product/item.php?it_id=0000000040"
+    },
+    {
+      "id": "lookup:thesaem:0000000442",
+      "name": "더샘 어반 에코 하라케케 에멀젼",
+      "brand": "더샘",
+      "brandAlias": "The Saem",
+      "category": "moisturizer",
+      "volume": "130ml",
+      "officialUrl": "https://www.thesaemcosmetic.com/product/item.php?it_id=0000000442"
+    },
+    {
+      "id": "lookup:thesaem:0000000445",
+      "name": "더샘 어반 에코 하라케케 토너",
+      "brand": "더샘",
+      "brandAlias": "The Saem",
+      "category": "toner",
+      "volume": "150ml",
+      "officialUrl": "https://www.thesaemcosmetic.com/product/item.php?it_id=0000000445"
+    },
+    {
+      "id": "lookup:thesaem:0000000685",
+      "name": "더샘 퓨어 내추럴 마스크 시트 [달팽이]",
+      "brand": "더샘",
+      "brandAlias": "The Saem",
+      "category": "mask",
+      "volume": "20ml",
+      "officialUrl": "https://www.thesaemcosmetic.com/product/item.php?it_id=0000000685"
+    },
+    {
+      "id": "lookup:thesaem:0000000710",
+      "name": "더샘 허니 오트밀 멜팅 립밤",
+      "brand": "더샘",
+      "brandAlias": "The Saem",
+      "category": "lipCare",
+      "volume": "2g",
+      "officialUrl": "https://www.thesaemcosmetic.com/product/item.php?it_id=0000000710"
+    },
+    {
+      "id": "lookup:thesaem:1768801816",
+      "name": "더샘 커버 퍼펙션 팁 컨실러",
+      "brand": "더샘",
+      "brandAlias": "The Saem",
+      "category": "makeup",
+      "volume": "6.5g",
+      "officialUrl": "https://www.thesaemcosmetic.com/product/item.php?it_id=1768801816"
+    },
+    {
+      "id": "lookup:thesaem:1768801931",
+      "name": "더샘 커버 퍼펙션 펜 컨실러",
+      "brand": "더샘",
+      "brandAlias": "The Saem",
+      "category": "makeup",
+      "volume": "4ml",
+      "officialUrl": "https://www.thesaemcosmetic.com/product/item.php?it_id=1768801931"
     },
     {
       "id": "lookup:tiam:142",

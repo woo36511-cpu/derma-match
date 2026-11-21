@@ -8,6 +8,10 @@ export const routineLookupCategories = {
   toner: "토너·패드·미스트",
   serum: "세럼·앰플·에센스",
   sunscreen: "자외선 차단제",
+  mask: "마스크팩",
+  lipCare: "립케어",
+  makeup: "색조",
+  bodyCare: "바디케어",
 };
 
 const categories = {
