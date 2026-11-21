@@ -8,7 +8,7 @@ export async function loadCatalogStores(existing, directoryPath = process.env.RO
   const read = async path => JSON.parse(await readFile(path, "utf8"));
   const catalog = await read(new URL("../src/data/routineLookupExpansion.json", import.meta.url));
   const rows = Object.entries(catalog.brands ?? {}).flatMap(([key, brand]) =>
-    brand.officialCatalogUrl ? [{ key, brand: brand.name, alias: brand.alias, catalogUrl: brand.officialCatalogUrl }] : []);
+    brand.officialCatalogUrl ? [{ key, brand: brand.name, alias: brand.alias, catalogUrl: brand.officialCatalogUrl, listOnly: brand.listOnly }] : []);
   rows.push(...await read(bundled));
   if (directoryPath) {
     const approved = await read(directoryPath);
@@ -24,9 +24,11 @@ export async function loadCatalogStores(existing, directoryPath = process.env.RO
     if (!row || typeof row.key !== "string" || !/^[a-z][a-z0-9]{1,39}$/.test(row.key) ||
         !textField(row.brand) || !textField(row.alias)) throw new Error("Invalid official brand identity");
     const url = new URL(row.catalogUrl);
+    const godo = url.pathname === "/goods/goods_list.php" && /^\?cateCd=\d{3,18}$/.test(url.search);
+    const cafe = (/^\/category\/[^/]+\/\d+\/$/.test(url.pathname) || url.pathname === "/product/list.html") &&
+      /^(?:\?cate_no=\d+)?$/.test(url.search);
     if (url.protocol !== "https:" || url.username || url.password || url.port || url.hash || !hostname.test(url.hostname) ||
-        !(/^\/category\/[^/]+\/\d+\/$/.test(url.pathname) || url.pathname === "/product/list.html") ||
-        !/^(?:\?cate_no=\d+)?$/.test(url.search)) throw new Error(`Invalid official catalog URL for ${row.key}`);
+        (!cafe && !godo)) throw new Error(`Invalid official catalog URL for ${row.key}`);
     if (Object.hasOwn(existing, row.key)) continue;
     const brand = normalize(row.brand);
     const host = url.hostname.replace(/^www\./, "");
@@ -34,8 +36,8 @@ export async function loadCatalogStores(existing, directoryPath = process.env.RO
     registeredNames.add(brand);
     registeredHosts.add(host);
     candidates.set(row.key, {
-      brand: row.brand, alias: row.alias, domain: url.hostname, type: "cafe",
-      paths: [["list", url.pathname + url.search], ["site", "/sitemap.xml"]],
+      brand: row.brand, alias: row.alias, domain: url.hostname, type: godo ? "godo" : "cafe",
+      paths: [["list", url.pathname + url.search], ...(!godo && row.listOnly !== true ? [["site", "/sitemap.xml"]] : [])],
     });
   }
   return Object.fromEntries([...candidates, ...Object.entries(existing)]);

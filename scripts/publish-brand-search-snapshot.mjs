@@ -38,7 +38,8 @@ const newBrands = Object.fromEntries(Object.entries(fresh.brands ?? {}).filter((
   metadata?.name === catalogStores[key].brand && metadata.fetchedListings >= 2 &&
   !Object.hasOwn(existing.brands ?? {}, key)).map(([key, metadata]) => {
     const store = catalogStores[key];
-    return [key, { ...metadata, alias: store.alias, officialCatalogUrl: `https://${store.domain}${store.paths[0][1]}` }];
+    return [key, { ...metadata, alias: store.alias, officialCatalogUrl: `https://${store.domain}${store.paths[0][1]}`,
+      ...(store.paths.length === 1 && { listOnly: true }) }];
   }));
 for (const { name } of Object.values(newBrands)) console.log(`New skincare brand published: ${name}`);
 const products = [...items.values()].sort((a, b) => a.id.localeCompare(b.id, "en"));

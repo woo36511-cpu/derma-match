@@ -317,3 +317,12 @@ test("directory candidates are published only after their official catalog yield
     await rm(dir, { recursive: true, force: true });
   }
 });
+
+test("web candidates use their storefront parser and isolate multi-brand catalogs", async () => {
+  const { loadCatalogStores } = await import("./official-brand-directory.mjs");
+  const candidates = await loadCatalogStores(stores);
+  assert.equal(candidates.dermafirm.type, "godo");
+  assert.deepEqual(candidates.sandawha.paths.map(([kind]) => kind), ["list"]);
+  const html = '<a href="/goods/goods_view.php?goodsNo=123"><strong class="item_name">수딩 리페어 토너 200ml</strong></a>';
+  assert.equal(extractOfficialListings(html, "dermafirm", candidates.dermafirm)[0]?.id, "lookup:dermafirm:123");
+});
