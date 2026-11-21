@@ -10,5 +10,18 @@
     "brand": "벨플라워",
     "alias": "Bellflower",
     "catalogUrl": "https://www.bellflowercos.com/category/%EC%8A%A4%ED%82%A8%EC%BC%80%EC%96%B4/44/"
+  },
+  {
+    "key": "dermafirm",
+    "brand": "더마펌",
+    "alias": "DERMAFIRM",
+    "catalogUrl": "https://www.dermafirm.com/goods/goods_list.php?cateCd=025"
+  },
+  {
+    "key": "sandawha",
+    "brand": "산다화",
+    "alias": "SanDaWha",
+    "catalogUrl": "https://skincuremall.com/category/%EC%82%B0%EB%8B%A4%ED%99%94/202/",
+    "listOnly": true
   }
 ]
