@@ -47,5 +47,11 @@
     "brand": "닥터엘시아",
     "alias": "Dr. Althea",
     "catalogUrl": "https://www.doctoralthea.co.kr/product/list.html?cate_no=162"
+  },
+  {
+    "key": "cellinshot",
+    "brand": "셀인샷",
+    "alias": "CELLINSHOT",
+    "catalogUrl": "https://cellinshot.com/product/list.html?cate_no=24"
   }
 ]
