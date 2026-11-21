@@ -7128,5 +7128,147 @@
         "상처 난 부위는 피하고, 씻은 뒤 따가움이나 붉어짐이 생기면 중단해요."
       ]
     }
+  },
+  {
+    "id": 91,
+    "name": "인요에 세라마이드 쌀 그리미 밀크 토너",
+    "brand": "인요에",
+    "category": "toner",
+    "volume": "200ml",
+    "legacyLookupIds": [
+      "lookup:inyoe:11"
+    ],
+    "hydrationLevel": 4,
+    "texture": "medium",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "부틸렌글라이콜",
+      "프로판다이올",
+      "글리세린"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "부틸렌글라이콜",
+      "프로판다이올",
+      "글리세린",
+      "나이아신아마이드",
+      "2,3-부탄다이올",
+      "1,2-헥산다이올",
+      "스핑고모나스발효추출물",
+      "백미꽃추출물",
+      "접시꽃추출물",
+      "소이밀크(500ppb)",
+      "쌀추출물(300ppb)",
+      "다이프로필렌글라이콜",
+      "트라이에틸헥사노인",
+      "다이페닐다이메티콘",
+      "글리세레스-26",
+      "메틸글루세스-20",
+      "펜틸렌글라이콜",
+      "폴리글리세릴-10미리스테이트",
+      "폴리아크릴레이트크로스폴리머-6",
+      "하이드록시아세토페논",
+      "C12-14 알케스-12",
+      "하이드롤라이즈드스클레로튬검",
+      "카프릴릭/카프릭트라이글리세라이드",
+      "하이드로제네이티드레시틴",
+      "베타-글루칸",
+      "에틸헥실글리세린",
+      "징크락테이트",
+      "아데노신",
+      "스테아릭애씨드",
+      "판테놀",
+      "세라마이드엔피(55.5ppm)",
+      "콜레스테롤",
+      "피토스핑고신",
+      "세라마이드엔지(750ppb)",
+      "세라마이드엔에스(750ppb)",
+      "세라마이드에이피(500ppb)",
+      "세라마이드에이에스(500ppb)",
+      "토코페롤",
+      "세라마이드이오피(1ppb)",
+      "세테아릴알코올",
+      "다이소듐이디티에이"
+    ],
+    "careProfile": {
+      "hydrationSupport": 5,
+      "lightweightFit": 5,
+      "soothingSupport": 0,
+      "congestionSupport": 0,
+      "barrierSupport": 0
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-22",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "공식몰의 밀크 레이어링 제형 설명과 상품고시를 대조해 보습 전 단계에 얇게 바르는 토너로 내부 평가했어요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-22",
+      "sources": [
+        {
+          "url": "https://inyoe.co.kr/product/%EC%9D%B8%EC%9A%94%EC%97%90-%EC%84%B8%EB%9D%BC%EB%A7%88%EC%9D%B4%EB%93%9C-%EC%8C%80-%EA%B7%B8%EB%A6%AC%EB%AF%B8-%EB%B0%80%ED%81%AC-%ED%86%A0%EB%84%88-200ml/11/",
+          "sourceType": "official_domestic_product_page"
+        },
+        {
+          "url": "https://ecimg.cafe24img.com/pg2043b99648231054/dhkorea24/web/product/inyoe/toner/260728/toner_02_02.jpg",
+          "sourceType": "official_domestic_ingredient_label"
+        }
+      ],
+      "note": "인요에 국내 공식몰 상품번호 11의 상품고시 이미지에서 200ml와 전성분을 확인했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": true
+    },
+    "skinTypes": [
+      "건성",
+      "중성"
+    ],
+    "description": "묽은 토너보다 촉촉한 밀크 제형을 선호할 때 보습 전에 얇게 펴 바르는 토너예요.",
+    "shortReason": "밀크 토너로 보습 전 수분 보충",
+    "caution": [
+      "소이밀크나 나이아신아마이드가 든 제품에 반응한 적이 있으면 피하세요.",
+      "상처 난 부위에는 사용을 피하고, 바른 뒤 따갑거나 붉어지면 중단해요.",
+      "공식 상품고시에는 3세 이하 영유아에 사용하지 말라고 안내되어 있어요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "isAvailable": true,
+    "link": "https://inyoe.co.kr/product/%EC%9D%B8%EC%9A%94%EC%97%90-%EC%84%B8%EB%9D%BC%EB%A7%88%EC%9D%B4%EB%93%9C-%EC%8C%80-%EA%B7%B8%EB%A6%AC%EB%AF%B8-%EB%B0%80%ED%81%AC-%ED%86%A0%EB%84%88-200ml/11/",
+    "price": null,
+    "image": "https://inyoe.co.kr/moa/img/default/empty_thumb.png",
+    "imageSource": {
+      "url": "https://inyoe.co.kr/moa/img/default/empty_thumb.png",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-22"
+    },
+    "purchaseSource": {
+      "provider": "official",
+      "label": "인요에 공식몰",
+      "url": "https://inyoe.co.kr/product/%EC%9D%B8%EC%9A%94%EC%97%90-%EC%84%B8%EB%9D%BC%EB%A7%88%EC%9D%B4%EB%93%9C-%EC%8C%80-%EA%B7%B8%EB%A6%AC%EB%AF%B8-%EB%B0%80%ED%81%AC-%ED%86%A0%EB%84%88-200ml/11/",
+      "checkedAt": "2026-11-22",
+      "verification": "official_product_page",
+      "liveStockVerified": false
+    },
+    "usageType": "toner",
+    "usage": {
+      "when": "세안 직후",
+      "howToUse": [
+        "손에 소량 덜어 얼굴에 부드럽게 펴 발라요."
+      ],
+      "caution": [
+        "소이밀크나 나이아신아마이드가 든 제품에 반응한 적이 있으면 피하세요.",
+        "상처 난 부위에는 사용을 피하고, 바른 뒤 따갑거나 붉어지면 중단해요.",
+        "공식 상품고시에는 3세 이하 영유아에 사용하지 말라고 안내되어 있어요."
+      ]
+    }
   }
 ]
