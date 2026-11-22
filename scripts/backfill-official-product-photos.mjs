@@ -16,31 +16,57 @@ const samePage = (expected, actual) => {
 };
 
 export function productPhoto(html, url, host) {
-  let canonical;
-  let image;
   const head = parse5.parse(html).childNodes.find(node => node.nodeName === "html")?.childNodes
     .find(node => node.nodeName === "head");
+  let matchingPage = false;
+  let currentOpenGraphPage = false;
+  const images = [];
   for (const node of head?.childNodes ?? []) {
     const attrs = Object.fromEntries((node.attrs ?? []).map(({ name, value }) => [name, value]));
-    if (node.nodeName === "link" && attrs.rel === "canonical") canonical = attrs.href;
-    if (node.nodeName === "meta" && attrs.property === "og:url" && !canonical) canonical = attrs.content;
-    if (node.nodeName === "meta" && attrs.property === "og:image" && !image) image = attrs.content;
+    const identity = node.nodeName === "link" && attrs.rel === "canonical" ? attrs.href
+      : attrs.property === "og:url" ? attrs.content : null;
+    if (identity) {
+      let matches = false;
+      try { matches = samePage(url, new URL(identity, url)); } catch { /* Ignore malformed metadata. */ }
+      matchingPage ||= matches;
+      if (attrs.property === "og:url") currentOpenGraphPage = matches;
+    }
+    if (node.nodeName === "meta" && ["og:image", "og:image:secure_url"].includes(attrs.property) && attrs.content) {
+      images.push({ source: attrs.content, tiedToProduct: currentOpenGraphPage });
+    }
   }
-  if (!canonical || !image) return null;
-  try {
-    const photo = new URL(image, url);
-    if (!samePage(url, new URL(canonical, url)) || /logo|placeholder|no[_-]?image|default[_-]?image/i.test(photo.pathname)) return null;
-    return officialListingImage(photo.href, host);
-  } catch { return null; }
+  if (!matchingPage) return null;
+  for (const { source, tiedToProduct } of images.reverse()) {
+    try {
+      const photo = new URL(source, url);
+      if (/logo|placeholder|no[_-]?image|default[_-]?image|share-image/i.test(photo.pathname)) continue;
+      if (!tiedToProduct && images.length > 1 && !/\/web\/product\//i.test(photo.pathname)) continue;
+      const image = officialListingImage(photo.href, host);
+      if (image) return image;
+    } catch { /* Skip malformed image URLs. */ }
+  }
+  return null;
 }
 
 async function fetchHtml(url, encoding = "utf-8") {
-  const response = await fetch(url, {
+  const options = {
     headers: { "User-Agent": "DearSinceCatalog/1.0" },
-    redirect: "error",
+    redirect: "manual",
     signal: AbortSignal.timeout(7000),
-  });
-  if (!response.ok) return null;
+  };
+  let response = await fetch(url, options);
+  if ([301, 302, 303, 307, 308].includes(response.status)) {
+    const location = response.headers.get("location");
+    await response.body?.cancel();
+    if (!location) return null;
+    const target = new URL(location, url);
+    if (!samePage(url, target) || target.pathname !== url.pathname || target.search !== url.search) return null;
+    response = await fetch(target, options);
+  }
+  if (!response.ok) {
+    await response.body?.cancel();
+    return null;
+  }
   const reader = response.body.getReader();
   const decoder = new TextDecoder(encoding);
   let result = "", size = 0;
@@ -87,8 +113,8 @@ async function backfill(snapshotPath) {
       try { robots = await fetchHtml(new URL("/robots.txt", rows[0].url)); } catch { continue; }
       if (!robots || !/^\s*(user-agent|sitemap)\s*:/im.test(robots)) continue;
       const allowed = rows.filter(({ url }) => allowsPublicCatalogPath(robots, url.pathname + url.search));
-      const perHost = 20;
-      const page = Number(rotation) % Math.max(1, Math.ceil(allowed.length / perHost));
+      const perHost = rotation === "all" ? Math.max(1, allowed.length) : 20;
+      const page = (rotation === "all" ? 0 : Number(rotation)) % Math.max(1, Math.ceil(allowed.length / perHost));
       for (const { product, store, url } of allowed.slice(page * perHost, (page + 1) * perHost)) {
         await new Promise(resolve => setTimeout(resolve, 1000));
         try {
