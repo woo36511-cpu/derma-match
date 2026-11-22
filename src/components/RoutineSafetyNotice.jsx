@@ -5,6 +5,7 @@ export function RoutineSafetyNotice({ safety, onRecheck }) {
   return <div className="max-w-3xl mx-auto rounded-3xl border border-amber-200 bg-amber-50 p-6" role="status">
     <h2 className="text-xl font-bold">지금은 새 제품 추천보다 상태 확인이 먼저예요</h2>
     <p className="mt-3 text-sm leading-relaxed">{safety.reason}</p>
+    <p className="mt-2 text-sm leading-relaxed">증상이 시작된 시점과 최근 사용한 제품을 적어두면 진료에서 어떤 반응이 있었는지 설명하기 쉬워요.</p>
     <button onClick={onRecheck} className="mt-4 rounded-2xl border border-amber-300 bg-white px-5 py-3 text-sm font-semibold">현재 증상 다시 확인</button>
   </div>;
 }
