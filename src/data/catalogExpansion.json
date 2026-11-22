@@ -8180,5 +8180,120 @@
         "상처 난 곳을 피하고 화장솜으로 세게 문지르지 않아요."
       ]
     }
+  },
+  {
+    "id": 99,
+    "name": "바이오더마 센시비오 에이알 플러스 크림",
+    "brand": "바이오더마",
+    "category": "cream",
+    "volume": "40ml",
+    "legacyLookupIds": [
+      "lookup:bioderma:1204"
+    ],
+    "hydrationLevel": 5,
+    "texture": "medium",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "글리세린",
+      "스쿠알란"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "C15-19알케인",
+      "C10-18트라이글리세라이즈",
+      "다이프로필렌글라이콜",
+      "글리세릴스테아레이트시트레이트",
+      "해바라기씨왁스",
+      "펜틸렌글라이콜",
+      "스쿠알란",
+      "수크로오스스테아레이트",
+      "변성옥수수전분",
+      "코코넛야자오일",
+      "말토올리고실글루코사이드",
+      "글리세릴카프릴레이트/카프레이트",
+      "스클레로튬검",
+      "글리시레티닉애씨드",
+      "하이드로제네이티드스타치하이드롤리세이트",
+      "잔탄검",
+      "1-메틸하이단토인-2-이미드",
+      "피토스핑고신",
+      "소듐시트레이트",
+      "시트릭애씨드",
+      "만니톨",
+      "자일리톨",
+      "o-사이멘-5-올",
+      "벤조트라이아졸릴도데실p-크레솔",
+      "람노오스",
+      "토코페롤",
+      "해바라기씨오일"
+    ],
+    "careProfile": {
+      "hydrationSupport": 5,
+      "lightweightFit": 5,
+      "soothingSupport": 0,
+      "congestionSupport": 0,
+      "barrierSupport": 0
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-23",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "공식 상품고시의 크림 제형과 세안 후 사용법을 근거로 기본 보습 마무리로 분류했어요. 보습감과 사용감 수치는 내부 중립 기준이며 붉은기·장벽 효과는 점수에 반영하지 않았어요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-23",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://naosmall.kr/product/detail.html?product_no=1204"
+        }
+      ],
+      "note": "나오스코리아 공식몰 상품번호 1204의 에이알 플러스 크림 40ml와 전성분 29개를 검수했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": false
+    },
+    "skinTypes": [
+      "건성",
+      "중성",
+      "복합성"
+    ],
+    "description": "세안 후 건조한 부위에 펴 바르는 기본 보습 크림이에요.",
+    "shortReason": "건조한 부위의 보습 마무리",
+    "caution": [
+      "코코넛야자오일이 든 제품에 반응한 적이 있으면 피하세요.",
+      "상처 부위에는 바르지 말고 따갑거나 붉어지면 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "isAvailable": true,
+    "link": "https://naosmall.kr/product/detail.html?product_no=1204",
+    "price": null,
+    "image": "https://naosmall.kr/web/product/medium/202606/a538156f09f934ef8403d55543eb1e1d.jpg",
+    "imageSource": {
+      "url": "https://naosmall.kr/web/product/medium/202606/a538156f09f934ef8403d55543eb1e1d.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-23"
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "보습 마무리 단계",
+      "howToUse": [
+        "세안 후 적당량을 얼굴에 부드럽게 펴 발라요."
+      ],
+      "caution": [
+        "코코넛야자오일이 든 제품에 반응한 적이 있으면 피하세요.",
+        "상처 부위에는 바르지 말고 따갑거나 붉어지면 중단해요."
+      ]
+    }
   }
 ]
