@@ -108,9 +108,7 @@ export function StartScreen({
           <div>
             <p className="care-kicker mb-4 flex items-center gap-2"><span aria-hidden="true" className="h-px w-5 bg-forest-700" /> 내 피부에 맞는 관리</p>
             <h1 id="start-title" className="text-[clamp(1.85rem,6vw,3rem)] font-bold leading-[1.22] tracking-[-0.045em] text-forest-900 md:text-[clamp(2rem,4.4vw,3.25rem)]">
-              <span className="block">지금 피부에서</span>
-              <span className="block">뭐가 가장</span>
-              <span className="block">신경 쓰여요?</span>
+              내 피부에 맞는 제품 찾기
             </h1>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-700 sm:text-base">
               지금 쓰는 화장품과 피부 상태를 보고, 그대로 쓸 제품과 오늘 먼저 할 관리를 알려드려요.
@@ -120,7 +118,7 @@ export function StartScreen({
                 setActiveJourneyId(null);
                 startSimpleSkinCare();
               }} className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl bg-forest-700 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-forest-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest-700 sm:w-auto sm:text-base">
-                내 피부에 맞는 제품 찾기 <span aria-hidden="true">→</span>
+                설문조사로 시작 <span aria-hidden="true">→</span>
               </button>
               <button type="button" onClick={() => setStep("basicRoutineTrial")} className="care-secondary w-full sm:w-auto">
                 모든 게 귀찮은 분들을 위해
