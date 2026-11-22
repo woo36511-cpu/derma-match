@@ -143,6 +143,15 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
     (profile.observationAssessment?.currentIrritation || routineHasIrritation ||
       ["irritated", "product_stings"].includes(plan.answers.areaState) || plan.answers.response === "irritated");
   const retainedCream = otherRetained.find(([slot]) => slot === "cream")?.[1]?.[0];
+  const mayShowGentleCream = barrierCareFirst && !retainedCream && !replacement &&
+    !["broken", "unknown"].includes(profile.observationAssessment?.resolvedObservations?.surfaceObservation) &&
+    !profile.observationAssessment?.resolvedObservations?.surfaceObservation?.includes("ooz");
+  const gentleCreamContext = { ...recommendationContext, basicOnly: true, isSensitive: true, irritated: [] };
+  const gentleCreamLevel = profile.hydrationLevel ?? 5;
+  const gentleCream = mayShowGentleCream ? getRankedProductCandidates("cream", gentleCreamLevel, gentleCreamContext)
+    .find(product => product.careProfile.hydrationSupport >= 5 &&
+      !getReactionIngredientClues(product.fullIngredients).some(clue => clue.family === "fragrance") &&
+      !product.fullIngredients.some(ingredient => /향료|fragrance|parfum|limonene|linalool|리모넨|리날룰|(?:라벤더|페퍼민트|베르가모트|레몬껍질|오렌지껍질|티트리).*오일|(?:lavender|peppermint|bergamot|peel|tea tree).*oil/i.test(ingredient))) : null;
   const fitNote = !concernFirst && advice?.slot && getRoutineFitSignals(advice.slot, recommendationContext)?.note;
   const firstCareAction = !concernFirst && !routineHasIrritation && profile.observationAssessment?.canRecommendBasics === false
     ? profile.observationAssessment.careActions?.[0] : null;
@@ -177,8 +186,8 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
         <p className="care-kicker">오늘 할 한 가지</p>
         <h2 className="text-lg font-bold text-forest-900 sm:text-xl">{priority.title}</h2>
         {barrierCareFirst && <div className="rounded-lg bg-white p-3 text-sm leading-relaxed">
-          <p><strong>{retainedCream ?? "향료 없는 기본 보습 크림"}</strong> · 세안 후 당기는 볼이나 입 주변의 상처 없는 피부에 얇게 발라요.</p>
-          {!retainedCream && <p className="mt-1">이미 편하게 쓰던 크림이 있다면 그 제품을 먼저 사용해요. 새로 고른다면 글리세린이나 세라마이드가 든 무향료 보습 크림을 기본 후보로 보세요.</p>}
+          <p><strong>{retainedCream ?? gentleCream?.name ?? "향료 없는 기본 보습 크림"}</strong> · 세안 후 당기는 볼이나 입 주변의 상처 없는 피부에 얇게 발라요.</p>
+          {!retainedCream && !gentleCream && <p className="mt-1">이미 편하게 쓰던 크림이 있다면 그 제품을 먼저 사용해요. 새로 고른다면 글리세린이나 세라마이드가 든 무향료 보습 크림을 기본 후보로 보세요.</p>}
           <p className="mt-1">헐거나 진물이 나는 곳과 단단한 덩이는 따로 살펴봐요. 크림을 바를 때 따가움이 생기면 해당 제품 사용을 쉬어요.</p>
         </div>}
         <p className="text-sm leading-relaxed">{priority.detail}</p>
@@ -255,6 +264,12 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
       {hasBasicCandidates && <a href="#basic-product-candidates" className="inline-block font-semibold text-forest-900 underline underline-offset-4">세안·보습 제품 후보 보기</a>}
       {Object.values(fallbackBasics).some(Boolean) && <RoutineProductScroller layout="routine" productsByCategory={fallbackBasics}
         userContext={{ ...fallbackContext, level: fallbackLevel }} />}
+    </section>}
+    {gentleCream && <section className="care-panel space-y-3" aria-label="건조한 주변 피부에 쓸 보습 크림">
+      <h2 className="font-bold text-forest-900">건조한 주변 피부에 쓸 보습 크림</h2>
+      <p className="text-sm">향료와 각질 제거 성분을 거른 보습 후보예요. 세안 후 헐거나 진물이 없는 건조한 부위에만 소량 발라보고, 따가우면 사용을 쉬어요.</p>
+      <RoutineProductScroller layout="routine" productsByCategory={{ cream: gentleCream }}
+        userContext={{ ...gentleCreamContext, level: gentleCreamLevel }} />
     </section>}
     <AcneCareReview review={buildAcneCareReview(plan)} />
     <MakeupCleansingSection plan={makeupCleansing} />
