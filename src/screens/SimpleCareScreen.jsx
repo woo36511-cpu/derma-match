@@ -245,8 +245,8 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
       <ul className="space-y-3">{plan.concernSummary.secondary.map(item => <li key={item.shape}>
         <p className="font-semibold">{item.label}{item.area && ` · ${item.area}`}</p>
         <p className="mt-1 text-sm text-slate-700">{secondaryConcernActions[item.shape]}</p>
-        {barrierCareFirst && ["closed", "blackhead", "red", "pus", "dark_mark"].includes(item.shape) &&
-          <p className="mt-1 text-sm font-semibold text-forest-900">지금 따갑거나 벗겨지는 부위에는 위 성분을 새로 바르기 전에, 결과 상단의 보습 관리부터 해요.</p>}
+        {(barrierCareFirst || plan.blockNewBasics || routineHasIrritation) && ["closed", "blackhead", "red", "pus", "dark_mark"].includes(item.shape) &&
+          <p className="mt-1 text-sm font-semibold text-forest-900">위 성분은 피부가 편안해진 뒤에 검토해요. 지금은 결과 상단에 표시된 관리부터 따라주세요.</p>}
         {!barrierCareFirst && !plan.blockNewBasics && ["dark_mark", "red_mark"].includes(item.shape) &&
           <p className="mt-1 text-sm">잘 맞는 선크림이 없다면 <a href={sunscreenOption.source} target="_blank" rel="noreferrer"
             className="font-semibold underline underline-offset-4">{sunscreenOption.name}</a>을 후보로 볼 수 있어요.</p>}
