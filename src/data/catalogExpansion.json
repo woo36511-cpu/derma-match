@@ -8078,5 +8078,107 @@
         "상처 부위는 피하고, 눈에 들어가면 바로 물로 씻어요."
       ]
     }
+  },
+  {
+    "id": 98,
+    "name": "바이오더마 센시비오 토너",
+    "brand": "바이오더마",
+    "category": "toner",
+    "volume": "250ml",
+    "legacyLookupIds": [
+      "lookup:bioderma:1398"
+    ],
+    "hydrationLevel": 5,
+    "texture": "light",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "글리세린",
+      "자일리톨",
+      "알란토인"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "자일리톨",
+      "폴리솔베이트20",
+      "피이지-40하이드로제네이티드캐스터오일",
+      "다이소듐이디티에이",
+      "알란토인",
+      "세트리모늄브로마이드",
+      "프로필렌글라이콜",
+      "오이열매추출물",
+      "프룩토올리고사카라이드",
+      "만니톨",
+      "소듐하이드록사이드",
+      "시트릭애씨드",
+      "람노오스"
+    ],
+    "careProfile": {
+      "hydrationSupport": 3,
+      "lightweightFit": 7,
+      "soothingSupport": 0,
+      "congestionSupport": 0,
+      "barrierSupport": 0
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-23",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "세안 후 화장솜에 덜어 가볍게 두드리는 토너로 공식 안내를 확인했어요. 크림 전 가벼운 보습 보조로 평가했으며 수치는 내부 분류 기준이에요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-23",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://naosmall.kr/product/detail.html?product_no=1398"
+        }
+      ],
+      "note": "나오스코리아 공식몰 상품번호 1398의 250ml 단품 및 전성분 15개를 확인했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "세안 후 크림 전에 사용하는 가벼운 보습 보조 토너예요.",
+    "shortReason": "크림 전에 가볍게 수분 보조",
+    "caution": [
+      "프로필렌글라이콜 함유 제품에 반응한 적이 있으면 피하고, 따가움이나 붉어짐이 생기면 중단해요.",
+      "상처 난 곳을 피하고 화장솜으로 세게 문지르지 않아요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "isAvailable": true,
+    "link": "https://naosmall.kr/product/detail.html?product_no=1398",
+    "price": null,
+    "image": "https://naosmall.kr/web/product/medium/202606/fe259bba2e3fec668b2386dd1e751814.jpg",
+    "imageSource": {
+      "url": "https://naosmall.kr/web/product/medium/202606/fe259bba2e3fec668b2386dd1e751814.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-23"
+    },
+    "usageType": "toner",
+    "usage": {
+      "when": "세안 후, 크림 전",
+      "howToUse": [
+        "화장솜에 적당량을 덜어 얼굴에 가볍게 두드려요."
+      ],
+      "caution": [
+        "프로필렌글라이콜 함유 제품에 반응한 적이 있으면 피하고, 따가움이나 붉어짐이 생기면 중단해요.",
+        "상처 난 곳을 피하고 화장솜으로 세게 문지르지 않아요."
+      ]
+    }
   }
 ]
