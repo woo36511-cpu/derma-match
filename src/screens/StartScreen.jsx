@@ -120,7 +120,7 @@ export function StartScreen({
                 setActiveJourneyId(null);
                 startSimpleSkinCare();
               }} className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl bg-forest-700 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-forest-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest-700 sm:w-auto sm:text-base">
-                내 피부에 맞는 관리 찾기 <span aria-hidden="true">→</span>
+                내 피부에 맞는 제품 찾기 <span aria-hidden="true">→</span>
               </button>
               <p className="mt-3 text-xs text-slate-600 sm:text-sm">피부타입을 몰라도 시작할 수 있어요.</p>
             </div>
