@@ -7969,5 +7969,114 @@
         "상처 난 부위에는 바르지 말고, 따갑거나 붉어지면 중단해요."
       ]
     }
+  },
+  {
+    "id": 97,
+    "name": "에뛰드 순정 약산성 5.5 폼 클렌저",
+    "brand": "에뛰드",
+    "category": "cleanser",
+    "volume": "150ml",
+    "legacyLookupIds": [
+      "lookup:etude:42427"
+    ],
+    "hydrationLevel": 5,
+    "texture": "light",
+    "concerns": [
+      "cleansing"
+    ],
+    "ingredients": [
+      "글리세린",
+      "판테놀",
+      "마데카소사이드"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "소듐코코일이세티오네이트",
+      "글리세린",
+      "하이드록시프로필스타치포스페이트",
+      "소듐메틸코코일타우레이트",
+      "데실글루코사이드",
+      "포타슘코코일글리시네이트",
+      "세테아릴알코올",
+      "글리세릴스테아레이트",
+      "솔비탄올리베이트",
+      "글라이콜다이스테아레이트",
+      "포타슘코코에이트",
+      "카프릴릴글라이콜",
+      "시트릭애씨드",
+      "폴리쿼터늄-67",
+      "글리세릴카프릴레이트",
+      "다이소듐이디티에이",
+      "소듐아세테이트",
+      "소듐클로라이드",
+      "판테놀",
+      "펜틸렌글라이콜",
+      "마데카소사이드"
+    ],
+    "careProfile": {
+      "hydrationSupport": 0,
+      "lightweightFit": 6,
+      "soothingSupport": 0,
+      "congestionSupport": 0,
+      "barrierSupport": 0
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-23",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "공식 사용법에 따라 손에서 거품을 내고 물로 씻는 기본 세안으로 평가했어요. 5는 보습 측정값이 아닌 내부 중립 기준이며, 피부에 남는 보습·진정·장벽 효과에 점수를 부여하지 않았어요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-23",
+      "sources": [
+        {
+          "sourceType": "official_domestic_brand_product_page",
+          "url": "https://www.etude.com/shop/category/cleanser/cleanser-all/%ec%88%9c%ec%a0%95-%ec%95%bd%ec%82%b0%ec%84%b1-5-5-%ed%8f%bc-%ed%81%b4%eb%a0%8c%ec%a0%80-150ml-2/"
+        }
+      ],
+      "note": "에뛰드 국내 공식 상품고시의 150ml 폼 단품과 전성분 22개를 대조했어요. 6.5 휩 클렌저와 제형 및 처방이 달라요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": false
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "물로 씻어내는 거품형 세안제예요.",
+    "shortReason": "손에서 거품을 내 사용하는 기본 세안",
+    "caution": [
+      "세안 후 당기거나 따가움·붉어짐이 생기면 사용을 중단해요.",
+      "상처 부위는 피하고, 눈에 들어가면 바로 물로 씻어요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "isAvailable": true,
+    "link": "https://www.etude.com/shop/category/cleanser/cleanser-all/%ec%88%9c%ec%a0%95-%ec%95%bd%ec%82%b0%ec%84%b1-5-5-%ed%8f%bc-%ed%81%b4%eb%a0%8c%ec%a0%80-150ml-2/",
+    "price": null,
+    "image": "https://www.etude.com/wp-content/uploads/2023/06/%EC%97%B0%EC%B6%9C%EC%BB%B7_02-2-430x430.jpg",
+    "imageSource": {
+      "url": "https://www.etude.com/wp-content/uploads/2023/06/%EC%97%B0%EC%B6%9C%EC%BB%B7_02-2-430x430.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-23"
+    },
+    "usageType": "cleanser",
+    "usage": {
+      "when": "세안 단계",
+      "howToUse": [
+        "젖은 손에 적당량을 덜어 거품을 낸 뒤 얼굴에 부드럽게 문지르고 물로 씻어내요."
+      ],
+      "caution": [
+        "세안 후 당기거나 따가움·붉어짐이 생기면 사용을 중단해요.",
+        "상처 부위는 피하고, 눈에 들어가면 바로 물로 씻어요."
+      ]
+    }
   }
 ]
