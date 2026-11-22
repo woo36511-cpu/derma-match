@@ -135,6 +135,18 @@ export function CombinationMoisturizerGuide({ profile, product, context, rendere
   </section>;
 }
 
+const secondaryConcernActions = {
+  closed: "붉거나 따갑지 않은 면포성 여드름으로 확인되면, 해당 부위에 바르는 아다팔렌을 치료 후보로 비교할 수 있어요.",
+  blackhead: "피부가 편안하고 블랙헤드가 남으면, 살리실산 제품을 블랙헤드가 있는 부위에만 제품 안내에 따라 비교해요.",
+  red: "염증성 여드름으로 확인되면, 벤조일퍼옥사이드 제품을 여드름이 나는 부위에 제품 안내에 따라 써볼 수 있어요.",
+  pus: "작은 고름 돌기가 여드름으로 확인되고 피부 표면이 아물어 있다면, 벤조일퍼옥사이드 제품을 후보로 볼 수 있어요. 상처나 진물이 있는 곳에는 바르지 않아요.",
+  deep: "짜거나 누르지 않아요. 깊고 아픈 여드름 결절로 확인되면 병변 내 스테로이드 주사가 붓기와 통증을 줄이는 치료 선택지예요.",
+  dark_mark: "아침에는 잘 맞는 자외선 차단제를 써요. 피부가 편안해진 뒤 갈색 자국에 아젤라산 제품을 색소 관리 후보로 비교할 수 있어요.",
+  red_mark: "세안 후 건조한 주변 피부에 편하게 쓰는 무향료 보습 크림을 바르고, 아침에는 잘 맞는 자외선 차단제를 써요.",
+  indented_scar: "아침에는 잘 맞는 자외선 차단제를 바르고, 패인 부분은 흉터 유형에 맞는 시술을 별도로 비교할 수 있어요.",
+  raised_scar: "만지거나 문지르지 말고, 주변 피부가 건조하면 편하게 쓰던 보습 크림을 바르고 아침에는 자외선 차단제를 써요.",
+};
+
 export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, serumStatus, otherRetained = [], advice, recommendationContext, ownedIds, notes, routineHasIrritation, makeupCleansing, replacement, tracking, currentEntries }) {
   const heading = useScreenHeading("care-result");
   const concernFirst = plan.blockNewBasics || (plan.answers.concern !== "none" && !routineHasIrritation);
@@ -232,10 +244,16 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
       <h2 className="text-lg font-bold">함께 선택한 고민</h2>
       <ul className="space-y-3">{plan.concernSummary.secondary.map(item => <li key={item.shape}>
         <p className="font-semibold">{item.label}{item.area && ` · ${item.area}`}</p>
-        <p className="text-sm text-slate-700">{item.observation}</p>
+        <p className="mt-1 text-sm text-slate-700">{secondaryConcernActions[item.shape]}</p>
+        {barrierCareFirst && ["closed", "blackhead", "red", "pus", "dark_mark"].includes(item.shape) &&
+          <p className="mt-1 text-sm font-semibold text-forest-900">지금 따갑거나 벗겨지는 부위에는 위 성분을 새로 바르기 전에, 결과 상단의 보습 관리부터 해요.</p>}
+        {!barrierCareFirst && !plan.blockNewBasics && ["dark_mark", "red_mark"].includes(item.shape) &&
+          <p className="mt-1 text-sm">잘 맞는 선크림이 없다면 <a href={sunscreenOption.source} target="_blank" rel="noreferrer"
+            className="font-semibold underline underline-offset-4">{sunscreenOption.name}</a>을 후보로 볼 수 있어요.</p>}
+        <p className="mt-1 text-xs text-slate-600">{item.observation}</p>
       </li>)}</ul>
       {plan.parallelCare ? <p className="text-sm text-slate-600">새 트러블 관리와 평평한 자국 관리는 함께 할 수 있어요. 아침에는 {plan.parallelCare.hasSunscreen ? "잘 맞는 선크림을 유지하고" : "위 선크림 후보로 자외선 차단을 챙기고"}, 트러블에 쓰는 제품은 해당 부위와 제품 안내에 맞춰 사용해요.</p>
-        : !plan.separateBreakout && <p className="text-sm text-slate-600">지금은 위의 관리부터 살펴보고, 다른 고민에 새 제품을 한꺼번에 추가하지 않아요.</p>}
+        : !plan.separateBreakout && <p className="text-sm text-slate-600">지금 쓸 기초 제품부터 확인해요. 기능성 제품을 새로 시작할 때는 한 가지씩 써보고 피부 반응을 비교해요.</p>}
     </section>}
     {plan.separateBreakout && <section className="care-panel space-y-3" aria-label="지금 올라온 트러블 관리">
       <h2 className="text-lg font-bold">지금 올라온 트러블 관리{plan.separateBreakout.area && ` · ${plan.separateBreakout.area}`}</h2>
