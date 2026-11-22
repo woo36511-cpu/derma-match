@@ -7694,5 +7694,150 @@
         "상처 난 부위에는 바르지 말고, 따갑거나 붉어지면 중단해요."
       ]
     }
+  },
+  {
+    "id": 95,
+    "name": "루벨 리본 크림",
+    "brand": "루벨",
+    "category": "cream",
+    "volume": "80g",
+    "legacyLookupIds": [
+      "lookup:lubelle:38"
+    ],
+    "hydrationLevel": 4,
+    "texture": "medium",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "글리세레스-26",
+      "글리세린",
+      "시어버터"
+    ],
+    "fullIngredients": [
+      "병풀잎수",
+      "정제수",
+      "부틸렌글라이콜",
+      "세틸에틸헥사노에이트",
+      "글리세레스-26",
+      "1,2-헥산다이올",
+      "세테아릴알코올",
+      "나이아신아마이드",
+      "사이클로펜타실록세인",
+      "사이클로헥사실록세인",
+      "비즈왁스",
+      "다이메티콘",
+      "트레할로오스",
+      "소듐디엔에이",
+      "글리세릴스테아레이트",
+      "시어버터",
+      "피이지-100스테아레이트",
+      "하이드록시에틸아크릴레이트/소듐아크릴로일다이메틸타우레이트코폴리머",
+      "클로페네신",
+      "알란토인",
+      "알지닌",
+      "카보머",
+      "아데노신",
+      "리모넨",
+      "베르가모트오일",
+      "병풀추출물",
+      "다이소듐이디티에이",
+      "폴리솔베이트60",
+      "솔비탄아이소스테아레이트",
+      "글리세린",
+      "리날룰",
+      "카프릴릭/카프릭트라이글리세라이드",
+      "다이에톡시에틸석시네이트",
+      "하이드로제네이티드레시틴",
+      "포스포리피드",
+      "세라마이드엔피",
+      "프로폴리스추출물",
+      "아시아티코사이드",
+      "아시아틱애씨드",
+      "마데카식애씨드",
+      "마데카소사이드",
+      "약모밀추출물",
+      "에틸헥실글리세린",
+      "알로에베라잎추출물",
+      "카프릴릴글라이콜",
+      "펜틸렌글라이콜",
+      "쇠비름추출물"
+    ],
+    "careProfile": {
+      "hydrationSupport": 6,
+      "lightweightFit": 4,
+      "soothingSupport": 0,
+      "congestionSupport": 0,
+      "barrierSupport": 0
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-22",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "국내 공식 상품고시의 크림 마무리 사용법과 전성분을 대조해 건조한 부위의 보습 단계로 내부 평가했어요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-22",
+      "sources": [
+        {
+          "url": "https://www.lubelle.co.kr/product/%EB%A3%A8%EB%B2%A8-%EB%A6%AC%EB%B3%B8-%ED%81%AC%EB%A6%BC/38/",
+          "sourceType": "official_domestic_product_page"
+        },
+        {
+          "url": "https://www.lubelle.co.kr/open_souce/reborncream/reborncream_13.png",
+          "sourceType": "official_domestic_ingredient_label"
+        }
+      ],
+      "note": "루벨 공식몰 단품 상품번호 38의 상품고시 이미지에서 80g과 전성분을 확인했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": true
+    },
+    "skinTypes": [
+      "건성",
+      "중성"
+    ],
+    "description": "세안 후 건조한 부위에 보습을 더하는 마무리 크림이에요.",
+    "shortReason": "건조한 부위에 바르는 리본 보습 크림",
+    "caution": [
+      "베르가모트오일, 리모넨, 리날룰 또는 프로폴리스가 든 제품에 반응한 적이 있으면 피하세요.",
+      "상처 난 부위에는 바르지 말고 처음에는 소량 사용해요. 따갑거나 붉어지면 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": false,
+    "isAvailable": true,
+    "link": "https://www.lubelle.co.kr/product/%EB%A3%A8%EB%B2%A8-%EB%A6%AC%EB%B3%B8-%ED%81%AC%EB%A6%BC/38/",
+    "price": null,
+    "image": "https://www.lubelle.co.kr/web/product/big/202608/5e8370970c66e3fedfe9c0828b6ef550.png",
+    "imageSource": {
+      "url": "https://www.lubelle.co.kr/web/product/big/202608/5e8370970c66e3fedfe9c0828b6ef550.png",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-22"
+    },
+    "purchaseSource": {
+      "provider": "official",
+      "label": "루벨 공식몰",
+      "url": "https://www.lubelle.co.kr/product/%EB%A3%A8%EB%B2%A8-%EB%A6%AC%EB%B3%B8-%ED%81%AC%EB%A6%BC/38/",
+      "checkedAt": "2026-11-22",
+      "verification": "official_product_page",
+      "liveStockVerified": false
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "보습 마무리 단계",
+      "howToUse": [
+        "건조한 부위에 소량을 얇게 펴 발라요."
+      ],
+      "caution": [
+        "베르가모트오일, 리모넨, 리날룰 또는 프로폴리스가 든 제품에 반응한 적이 있으면 피하세요.",
+        "상처 난 부위에는 바르지 말고 처음에는 소량 사용해요. 따갑거나 붉어지면 중단해요."
+      ]
+    }
   }
 ]
