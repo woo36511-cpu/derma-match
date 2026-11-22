@@ -19,7 +19,7 @@ import { buildSimpleSkinRecord } from "../utils/simpleSkinRecord";
 import { buildDynamicRoutine, getRankedProductCandidates, getSeasonalMoisturizerPair, pickBestProductByCategory } from "../utils/routineRecommendation";
 import { AcnePhotoReference } from "../components/AcnePhotoReference";
 import { FolliculitisOptions } from "../components/FolliculitisOptions";
-import { ConcernProductOptions } from "../components/ConcernProductOptions";
+import { ConcernProductCard, ConcernProductOptions } from "../components/ConcernProductOptions";
 import { RoutineProductScroller } from "../components/RoutineProductScroller";
 import { getBasicObservationTracks, getObservationKinds } from "../utils/moisturizerObservation";
 import { buildRoutineSurveyContext, getEntriesForSurveyScope, getCurrentRoutineContext, getCurrentRoutineProduct, getExactCatalogProduct, getReviewedRoutineProduct, getSerumRoutineSummary } from "../utils/currentRoutineReview";
@@ -135,6 +135,15 @@ export function CombinationMoisturizerGuide({ profile, product, context, rendere
   </section>;
 }
 
+const benzoylConcernProduct = {
+  type: "일반의약품 · 확인된 여드름의 제품 예시",
+  name: "파티마겔 2.5%",
+  image: "/otc/patima.png",
+  guidance: "벤조일퍼옥사이드 제품 예시예요. 피부가 따갑거나 벗겨진 상태에는 사용을 미루고, 상처나 진물이 있는 곳에는 바르지 않아요. 사용 전 설명서를 확인해요.",
+  source: "https://www.taiguk.co.kr/product/view.jsp?pid=AHG72438",
+  sourceLabel: "제조사 제품·설명서",
+};
+
 const secondaryConcernActions = {
   closed: "붉거나 따갑지 않은 면포성 여드름으로 확인되면, 해당 부위에 바르는 아다팔렌을 치료 후보로 비교할 수 있어요.",
   blackhead: "피부가 편안하고 블랙헤드가 남으면, 살리실산 제품을 블랙헤드가 있는 부위에만 제품 안내에 따라 비교해요.",
@@ -169,6 +178,11 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
     ? profile.observationAssessment.careActions?.[0] : null;
   const hasBasicCandidates = !plan.blockNewBasics && profile.observationAssessment?.canRecommendBasics !== false &&
     Object.values(routine.products).some(Boolean);
+  const secondaryConcerns = plan.concernSummary?.secondary ?? [];
+  const firstTraceWithSunscreen = !recommendationContext?.hasSunscreen &&
+    secondaryConcerns.find(item => ["dark_mark", "red_mark"].includes(item.shape))?.shape;
+  const firstBenzoylConcern = plan.answers.areaState !== "concerning" &&
+    secondaryConcerns.find(item => ["red", "pus"].includes(item.shape))?.shape;
   const observedSurface = profile.observationAssessment?.resolvedObservations?.surfaceObservation;
   const canOfferBasicExample = !plan.blockNewBasics && !routineHasIrritation &&
     ["normal", "flakes"].includes(observedSurface) && !routine.isHistorical;
@@ -247,9 +261,9 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
         <p className="mt-1 text-sm text-slate-700">{secondaryConcernActions[item.shape]}</p>
         {(barrierCareFirst || plan.blockNewBasics || routineHasIrritation) && ["closed", "blackhead", "red", "pus", "dark_mark"].includes(item.shape) &&
           <p className="mt-1 text-sm font-semibold text-forest-900">위 성분은 피부가 편안해진 뒤에 검토해요. 지금은 결과 상단에 표시된 관리부터 따라주세요.</p>}
-        {!barrierCareFirst && !plan.blockNewBasics && ["dark_mark", "red_mark"].includes(item.shape) &&
-          <p className="mt-1 text-sm">잘 맞는 선크림이 없다면 <a href={sunscreenOption.source} target="_blank" rel="noreferrer"
-            className="font-semibold underline underline-offset-4">{sunscreenOption.name}</a>을 후보로 볼 수 있어요.</p>}
+        {!barrierCareFirst && !plan.blockNewBasics && item.shape === firstTraceWithSunscreen &&
+          <div className="mt-2"><ConcernProductCard product={sunscreenOption} /></div>}
+        {item.shape === firstBenzoylConcern && <div className="mt-2"><ConcernProductCard product={benzoylConcernProduct} /></div>}
         <p className="mt-1 text-xs text-slate-600">{item.observation}</p>
       </li>)}</ul>
       {plan.parallelCare ? <p className="text-sm text-slate-600">새 트러블 관리와 평평한 자국 관리는 함께 할 수 있어요. 아침에는 {plan.parallelCare.hasSunscreen ? "잘 맞는 선크림을 유지하고" : "위 선크림 후보로 자외선 차단을 챙기고"}, 트러블에 쓰는 제품은 해당 부위와 제품 안내에 맞춰 사용해요.</p>

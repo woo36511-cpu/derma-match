@@ -3,18 +3,21 @@ export const blackheadCosmetics = [
   {
     type: "씻어내는 화장품 · 살리실산 세안제",
     name: "코스알엑스 살리실산 데일리 젠틀 클렌저",
+    image: "https://ecimg.cafe24img.com/pg3307b33863671083/cosrxinc2026/web/product/medium/20261023/8c5df8754af8e5b250ffff359bc41ac1.png",
     guidance: "세안제 형태를 원할 때. 기존 세안제와 연달아 쓰는 대신 이 제품을 쓰는 날에는 세안제를 대체하는 선택지예요.",
     source: "https://www.cosrx.co.kr/product/살리실산-데일리-젠틀-클렌저-150ml/162/category/77/display/1/",
   },
   {
     type: "바르고 두는 화장품 · AHA/BHA 토너",
     name: "코스알엑스 AHA/BHA 클래리파잉 트리트먼트 토너",
+    image: "https://thumbnail.coupangcdn.com/thumbnails/remote/492x492q90trim/image/retail/images/80755316256044-ba3f756a-81ac-4183-85bb-9a14b24708f5.jpg",
     guidance: "글라이콜릭애씨드·베타인살리실레이트가 든 토너예요. 각질 관리용 토너로 한 가지만 골라요.",
     source: "https://cosrx.co.kr/m/product_detail.html?brand_uid=191",
   },
   {
     type: "바르고 두는 화장품 · BHA 리퀴드",
     name: "코스알엑스 BHA 블랙헤드 파워 리퀴드",
+    image: "https://thumbnail13.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/e9fb/8effc1bb3005666fa6c031616cf281e7c20366f39bfbaeb2cf70c764ddae.jpg",
     guidance: "베타인살리실레이트를 담은 국내 화장품이에요. 살리실산 2% 일반의약품과 성분 표시 및 용도가 달라요.",
     source: "https://www.cosrx.co.kr/m/product_detail.html?brand_uid=1173596",
   },
@@ -46,6 +49,7 @@ export const pharmacyOptions = {
 export const sunscreenOption = {
   type: "자외선 차단제 · 화장품",
   name: "라운드랩 자작나무 수분 선크림",
+    image: "https://www.roundlab.co.kr/web/product/medium/202511/bbe64ecbaa73ee13599f02c8f2cbf761.jpg",
   guidance: "잘 맞는 자외선 차단제가 없다면 살펴볼 후보예요. 잔주름을 없애는 제품으로 제시하지 않아요.",
   source: "https://roundlab.co.kr/product/자작나무-수분-선크림-50ml/138/",
 };
