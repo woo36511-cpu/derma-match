@@ -429,3 +429,15 @@ test("DWeather classifies the official ampoule and toner pad titles and skips se
     ["lookup:dweather:20", "serum"], ["lookup:dweather:16", "toner"],
   ]);
 });
+
+test("Mild Lab excludes B2B and duo offers and keeps the current cleanser listing", () => {
+  const store = { brand: "마일드랩", alias: "MILD LAB", domain: "mildlab.co.kr", type: "cafe" };
+  const source = `<urlset>
+    <url><loc>https://mildlab.co.kr/product/베타트리칸-트러블-클렌징폼-150ml/961/</loc></url>
+    <url><loc>https://mildlab.co.kr/product/베타트리칸-트러블-진정-여드름-클렌징폼-150ml/966/</loc></url>
+    <url><loc>https://mildlab.co.kr/product/수부지-md-pick-아줄렌-에센스토너-블루센텔라-리페어크림/793/</loc></url>
+    <url><loc>https://mildlab.co.kr/product/b2b-블루센텔라-더마-리페어크림-50ml/1901/</loc></url>
+  </urlset>`;
+  const products = extractOfficialListings(source, "mildlab", store, true);
+  assert.deepEqual(products.map(({ id }) => id), ["lookup:mildlab:961"]);
+});
