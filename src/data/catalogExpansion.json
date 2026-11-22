@@ -8512,5 +8512,134 @@
         "향료 함유 제품에 반응한 적이 있으면 피하고, 상처 난 곳이나 따가운 부위에는 사용하지 않아요."
       ]
     }
+  },
+  {
+    "id": 102,
+    "name": "원씽 병풀 수딩 인텐시브 밤 크림",
+    "brand": "원씽",
+    "category": "cream",
+    "volume": "100ml",
+    "legacyLookupIds": [
+      "lookup:onething:543"
+    ],
+    "hydrationLevel": 7,
+    "texture": "rich",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "글리세린",
+      "베타인",
+      "세라마이드엔피"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "코코넛야자씨버터",
+      "비닐다이메티콘",
+      "다이카프릴릴에터",
+      "글리세레스-26",
+      "베타인",
+      "세테아릴알코올",
+      "폴리메틸실세스퀴옥세인",
+      "병풀잎수",
+      "퀸즈랜드넛오일",
+      "카프릴릭/카프릭/석시닉트라이글리세라이드",
+      "1,2-헥산다이올",
+      "세테아릴올리베이트",
+      "암모늄아크릴로일다이메틸타우레이트/브이피코폴리머",
+      "폴리글리세릴-2스테아레이트",
+      "솔비탄올리베이트",
+      "글리세릴스테아레이트에스이",
+      "글리세릴스테아레이트",
+      "아크릴레이트/C10-30알킬아크릴레이트크로스폴리머",
+      "하이드록시아세토페논",
+      "하이드록시에틸아크릴레이트/소듐아크릴로일다이메틸타우레이트코폴리머",
+      "팔미틱애씨드",
+      "스테아릴알코올",
+      "스테아릭애씨드",
+      "베헤닐알코올",
+      "알지닌",
+      "잔탄검",
+      "하이드로제네이티드레시틴",
+      "병풀잎추출물",
+      "에틸헥실글리세린",
+      "콜레스테롤",
+      "솔비탄아이소스테아레이트",
+      "세라마이드엔피",
+      "시트릭애씨드",
+      "토코페롤",
+      "판테놀",
+      "베타-시토스테롤",
+      "피토스테롤",
+      "병풀추출물",
+      "펜틸렌글라이콜",
+      "베타-글루칸",
+      "카프릴릴글라이콜"
+    ],
+    "careProfile": {
+      "hydrationSupport": 6,
+      "lightweightFit": 3,
+      "soothingSupport": 0,
+      "congestionSupport": 0,
+      "barrierSupport": 0
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-23",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "국내 공식몰의 밤 크림 제형과 얼굴에 도포하는 사용법으로 보습 마무리 용도를 분류했어요. 수치는 제형 기반 내부 분류이며 실측 보습이나 진정·장벽 개선 효과를 평가한 값이 아니에요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-23",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://www.onething.kr/product/%EB%B3%91%ED%92%80-%EC%88%98%EB%94%A9-%EC%9D%B8%ED%85%90%EC%8B%9C%EB%B8%8C-%EB%B0%A4-%ED%81%AC%EB%A6%BC-100ml/543/"
+        }
+      ],
+      "note": "원씽 국내 공식몰 상품번호 543의 100ml 단품과 전성분 43개를 확인했어요. 기존 병풀 수딩 젤 크림과 구분했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": false
+    },
+    "skinTypes": [
+      "건성",
+      "중성"
+    ],
+    "description": "건조한 부위에 펴 바르는 밤 크림 제형의 보습제예요.",
+    "shortReason": "건조한 부위에 밤 크림으로 보습 마무리",
+    "caution": [
+      "코코넛야자씨버터·퀸즈랜드넛오일·병풀을 함유한 화장품에 반응한 적이 있으면 피하세요.",
+      "상처 부위에는 바르지 말고 따가움이나 붉어짐이 생기면 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "isAvailable": true,
+    "link": "https://www.onething.kr/product/%EB%B3%91%ED%92%80-%EC%88%98%EB%94%A9-%EC%9D%B8%ED%85%90%EC%8B%9C%EB%B8%8C-%EB%B0%A4-%ED%81%AC%EB%A6%BC-100ml/543/",
+    "price": null,
+    "image": "https://www.onething.kr/web/product/medium/202611/c2a40070a0fefc1d03be2948d0843b85.jpg",
+    "imageSource": {
+      "url": "https://www.onething.kr/web/product/medium/202611/c2a40070a0fefc1d03be2948d0843b85.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-23"
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "보습 마무리 단계",
+      "howToUse": [
+        "얼굴의 건조한 부위에 적당량을 고르게 펴 발라요."
+      ],
+      "caution": [
+        "코코넛야자씨버터·퀸즈랜드넛오일·병풀을 함유한 화장품에 반응한 적이 있으면 피하세요.",
+        "상처 부위에는 바르지 말고 따가움이나 붉어짐이 생기면 중단해요."
+      ]
+    }
   }
 ]
