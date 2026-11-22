@@ -44,3 +44,15 @@ test("T-zone oil keeps cheek hydration, immediate heaviness changes the texture,
   expect(heavy.selectionEvidence.cream.alternatives.map(item => item.productId)).not.toContain(original.products.cream.id);
   expect(Object.values(buildDynamicRoutine(5, { ...context, irritated: ["불편했던 크림"] }).products).every(p => !p)).toBe(true);
 });
+
+test("a toner paired with a retained serum offers lightweight hydration and soothing", () => {
+  const context = { basicOnly: true, supportTonerForSerum: "흔적 관리 앰플" };
+  const candidates = getRankedProductCandidates("toner", 5, context);
+  expect(candidates.length).toBeGreaterThan(0);
+  for (const { careProfile } of candidates) {
+    expect(careProfile.lightweightFit).toBeGreaterThanOrEqual(7);
+    expect(careProfile.hydrationSupport).toBeGreaterThan(0);
+    expect(careProfile.soothingSupport).toBeGreaterThan(0);
+  }
+  expect(getRankedProductCandidates("toner", 5, { ...context, suppressedSlots: new Set(["toner"]) })).toEqual([]);
+});

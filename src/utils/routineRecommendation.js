@@ -59,6 +59,13 @@ export function getRankedProductCandidates(category, level, userContext = {}) {
       allowedCategories.includes(product.category) &&
       isProductAllowedForContext(product, category, userContext),
   );
+  if (category === "toner" && userContext.supportTonerForSerum) {
+    categoryProducts = categoryProducts.filter(product =>
+      product.beginnerFriendly && !hasExfoliatingActive(product) && !isSpecializedTreatmentProduct(product) &&
+      product.careProfile.hydrationSupport > 0 && product.careProfile.soothingSupport > 0 &&
+      product.careProfile.lightweightFit >= 7,
+    );
+  }
   if (userContext.isSensitive) categoryProducts = categoryProducts.filter(product => product.sensitivitySafe);
   if (getRoutineFitSignals(category, userContext)?.heavy) {
     categoryProducts = categoryProducts.filter(product => product.careProfile.lightweightFit >= 7);

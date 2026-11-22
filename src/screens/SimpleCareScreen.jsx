@@ -144,7 +144,12 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
     ? profile.observationAssessment.careActions?.[0] : null;
   const seasonalPair = getSeasonalMoisturizerPair(profile.hydrationLevel, recommendationContext, routine);
   const compareHydration = routine.isHistorical ? undefined : (slot, product) =>
-    <HydrationComparison slot={slot} product={product} entries={currentEntries} />;
+    <>
+      {slot === "toner" && recommendationContext?.supportTonerForSerum && <p className="mt-2 text-sm text-slate-700">
+        세안 직후 당김을 가볍게 보완하는 선택 단계예요. {recommendationContext.supportTonerForSerum} 전에 사용하고 크림으로 마무리해요.
+      </p>}
+      <HydrationComparison slot={slot} product={product} entries={currentEntries} />
+    </>;
   return <div className="space-y-5 sm:space-y-6">
     <section className="rounded-[1.75rem] bg-forest-900 p-5 text-white sm:p-8" aria-labelledby="simple-result-title">
       <p className="text-xs font-semibold tracking-wide text-forest-100">내 피부 관리 결과</p>
@@ -310,7 +315,11 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     cleanserDiscomfort: Boolean(currentRoutine.slotReactions.cleanser) || ["tight", "stings"].includes(observedSkin?.washResponse),
   });
   if (makeupCleansing?.skipNewCleanser) preferences.suppressedSlots.add("cleanser");
+  const serumToKeep = effectiveSerumPreference !== "compare" ? getCurrentRoutineProduct(serumStatus.keep[0]) : null;
+  const supportTonerForSerum = allowNewBasics && observedSkin?.drynessTiming !== "persistent" &&
+    (observedSkin?.washResponse === "tight" || observedSkin?.drynessTiming === "wash") ? serumToKeep?.name : undefined;
   const recommendationContext = { ...currentRoutine, ...reactionContext, suppressedSlots: preferences.suppressedSlots, mainConcern: "none",
+    supportTonerForSerum,
     pricePreference: readPricePreference(surveyAnswers),
     skinType: profile.skinType, careNeeds: profile.careNeeds, basicOnly: profile.surveyVersion === ADAPTIVE_SURVEY_VERSION,
     isSensitive: assessment?.isSensitive ?? true, observationKinds: getObservationKinds(profile),
@@ -322,7 +331,7 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
   const mayCompareReplacement = (specificStinging || plan.answers.areaState === "irritated") &&
     !["worse", "irritated"].includes(plan.answers.response) && !["broken", "irritated"].includes(observedSkin?.surfaceObservation);
   const replacementContext = { ...recommendationContext, isSensitive: true, basicOnly: true,
-    irritated: [], suppressedSlots: new Set(), pricePreference: null };
+    irritated: [], suppressedSlots: new Set(), pricePreference: null, supportTonerForSerum: undefined };
   const replacement = mayCompareReplacement && ["cleanser", "cream", "toner", "serum"].includes(replacementSlot)
     ? pickBestProductByCategory(replacementSlot, profile.hydrationLevel ?? 5, replacementContext) : null;
   const historical = !reactionProduct && initialRecord?.routine && initialRecord.recommendationAssessment?.ruleVersion !== RECOMMENDATION_RULE_VERSION &&
