@@ -226,7 +226,11 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
     </section>}
     {showNextAction && plan.answers.areaState !== "concerning" && <section className="care-panel space-y-3" aria-label="지금 할 수 있는 기본 관리">
       <h2 className="font-bold text-forest-900">지금 바로 할 관리</h2>
-      {hasDeepLump && <p className="text-sm">덩이를 짜거나 반복해서 누르지 마세요. 커지거나, 아프고 붉거나 뜨거워지거나, 단단하고 움직이지 않거나, 2주 넘게 남으면 피부과에서 덩이의 원인을 확인받으세요.</p>}
+      {hasDeepLump && <div className="space-y-2 text-sm">
+        <p><strong>세안 후 주변이 당기면</strong> 향료가 없는 보습 크림을 상처 없는 주변 피부에 얇게 발라요. 평소 편하게 쓰던 크림이 있으면 그걸 사용해요.</p>
+        <p><strong>덩이 부위는</strong> 짜거나 누르지 말고, 원인이 확인되기 전에는 각질제거나 여드름 연고를 새로 바르지 않아요.</p>
+        <p className="text-slate-600">크기가 커지거나, 붉고 뜨거우면서 아프거나, 단단하고 움직이지 않거나, 2주 넘게 남으면 진료로 원인을 확인해요.</p>
+      </div>}
       <p className="text-sm">미지근한 물로 부드럽게 씻고, 이미 편하게 쓰던 세안제와 보습제가 있다면 그대로 써요.</p>
       {(plan.blockNewBasics || routineHasIrritation) ? <p className="text-sm">새로 바른 화장품이 따갑거나 붉게 만들었다면 해당 제품 사용을 쉬어요. 반응이 계속되거나 심해지면 사용 제품과 반응이 시작된 시점을 기록해 피부과에서 확인받으세요.</p>
         : <p className="text-sm">기초 제품이 필요하면 향료가 없는 부드러운 세안제와 보습 크림부터 살펴봐요.</p>}
