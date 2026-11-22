@@ -1,5 +1,6 @@
 import { useSkinCoach } from "./hooks/useSkinCoach";
 import { Header } from "./components/Header";
+import { BasicRoutineTrialScreen } from "./screens/BasicRoutineTrialScreen";
 import { StartScreen } from "./screens/StartScreen";
 import { JourneyScreen } from "./screens/JourneyScreen";
 import { QuickRecommendScreen } from "./screens/QuickRecommendScreen";
@@ -168,6 +169,9 @@ export default function App() {
           />
         )}
 
+        {step === "basicRoutineTrial" && <BasicRoutineTrialScreen key={ownerKey} ownerKey={ownerKey}
+          blocked={routineReview.safetyBlocked} currentRoutine={currentRoutineContext} personalProductFeedback={personalProductFeedback}
+          onHome={() => setStep("start")} />}
         {step === "routineReview" && <div className="space-y-4">
           <RoutineProductLookup {...routineReview} onStartSurvey={startSimpleSkinCare} />
           <button type="button" onClick={() => setStep("start")} className="rounded-xl border px-4 py-3 text-sm font-semibold">시작 화면으로</button>

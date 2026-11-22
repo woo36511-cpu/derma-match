@@ -115,14 +115,16 @@ export function StartScreen({
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-700 sm:text-base">
               지금 쓰는 화장품과 피부 상태를 보고, 그대로 쓸 제품과 오늘 먼저 할 관리를 알려드려요.
             </p>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-wrap gap-2.5">
               <button type="button" onClick={() => {
                 setActiveJourneyId(null);
                 startSimpleSkinCare();
               }} className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl bg-forest-700 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-forest-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-forest-700 sm:w-auto sm:text-base">
                 내 피부에 맞는 제품 찾기 <span aria-hidden="true">→</span>
               </button>
-              <p className="mt-3 text-xs text-slate-600 sm:text-sm">피부타입을 몰라도 시작할 수 있어요.</p>
+              <button type="button" onClick={() => setStep("basicRoutineTrial")} className="care-secondary w-full sm:w-auto">
+                기초 4종으로 시작하기
+              </button>
             </div>
           </div>
           <CareIllustration />
