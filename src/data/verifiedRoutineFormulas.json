@@ -1120,5 +1120,28 @@
       "레몬머틀잎추출물"
     ],
     "hydrationSignal": true
+  },
+  "lookup:numbuzin:20": {
+    "name": "넘버즈인 1번 말끔 순삭 클렌징오일",
+    "category": "cleanser",
+    "volume": "200ml",
+    "sourceUrl": "https://numbuzin.com/product/1%EB%B2%88-%EB%A7%90%EB%81%94-%EC%88%9C%EC%82%AD-%ED%81%B4%EB%A0%8C%EC%A7%95%EC%98%A4%EC%9D%BC-200ml/20/",
+    "checkedAt": "2026-11-22T00:01:29.975Z",
+    "ingredients": [
+      "옥수수오일",
+      "아이소프로필미리스테이트",
+      "솔베스-30테트라올리에이트",
+      "에틸헥실팔미테이트",
+      "카프릴릭/카프릭트라이글리세라이드",
+      "다이아이소스테아릴말레이트",
+      "솔비탄세스퀴올리에이트",
+      "마카다미아씨오일",
+      "기름골뿌리오일",
+      "해바라기씨오일",
+      "정제수",
+      "토코페릴아세테이트",
+      "향료"
+    ],
+    "hydrationSignal": false
   }
 }
