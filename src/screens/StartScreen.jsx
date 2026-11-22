@@ -123,7 +123,7 @@ export function StartScreen({
                 내 피부에 맞는 제품 찾기 <span aria-hidden="true">→</span>
               </button>
               <button type="button" onClick={() => setStep("basicRoutineTrial")} className="care-secondary w-full sm:w-auto">
-                기초 4종으로 시작하기
+                모든 게 귀찮은 분들을 위해
               </button>
             </div>
           </div>
