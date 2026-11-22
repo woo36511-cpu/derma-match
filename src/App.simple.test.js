@@ -59,7 +59,7 @@ const records = () => JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY) || "[
 const values = Object.fromEntries(skinSurveyQuestions.map(q => [q.id, q.type === "multi" ? [q.options[0].label] : q.options[0].label]));
 beforeEach(() => { localStorage.clear(); window.history.replaceState({}, "", "/"); });
 function baseSurvey(overrides = {}, { use = "skip", setup, serum } = {}) {
-  click("내 피부에 맞는 제품 찾기");
+  click("설문조사로 시작");
   expect(screen.getByRole("heading", { name: "지금 쓰는 화장품이 있나요?" })).toBeVisible();
   click({ skip: "제품 입력 없이 진행할래요", yes: "세안제나 기초 화장품도 쓰고, 선크림도 발라요", no: "아니요, 지금은 아무것도 안 써요" }[use]);
   setup?.();
@@ -377,7 +377,7 @@ test("unknown follow-up observations suppress a new routine and do not crash on 
 });
 
 test("conflicting answers get a clarification instead of a forced type, and guidance starts folded", () => {
-  render(<App />); click("내 피부에 맞는 제품 찾기");
+  render(<App />); click("설문조사로 시작");
   click("제품 입력 없이 진행할래요"); click("피부 상태 질문으로");
   expectCollapsed("답변 기준 자세히 보기");
   click("화장품 답변으로"); click("시작 화면으로");
