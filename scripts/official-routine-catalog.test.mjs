@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { extractOfficialListings, stores } from "./sync-official-routine-catalog.mjs";
+import { productPhoto } from "./backfill-official-product-photos.mjs";
 
 test("an official sitemap keeps single product variants without copying promo listings or outside domains", () => {
   const source = `<urlset>
@@ -440,4 +441,15 @@ test("Mild Lab excludes B2B and duo offers and keeps the current cleanser listin
   </urlset>`;
   const products = extractOfficialListings(source, "mildlab", store, true);
   assert.deepEqual(products.map(({ id }) => id), ["lookup:mildlab:961"]);
+});
+
+test("photo backfill selects product metadata after a global store logo", () => {
+  const url = new URL("https://www.medipeel.co.kr/product/item/1348/");
+  const photo = "https://www.medipeel.co.kr/web/product/big/item.jpg";
+  const html = `<meta property="og:image" content="https://medipeel.co.kr/meta/site_logo.jpg">
+    <link rel="canonical" href="https://medipeel.co.kr/product/item/1348/">
+    <meta property="og:url" content="https://medipeel.co.kr/product/item/1348/">
+    <meta property="og:image" content="${photo}">`;
+  assert.equal(productPhoto(html, url, url.hostname), photo);
+  assert.equal(productPhoto(html, new URL("/product/item/1349/", url), url.hostname), null);
 });
