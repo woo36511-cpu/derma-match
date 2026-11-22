@@ -26,7 +26,7 @@ function getDirectGoalFit(goal, axes) {
   }
 }
 
-export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}, carePlan = {}, routine = {}, personalProductFeedback, knownSerumFamilies = [], serumIrritation = false, currentRoutine = {} } = {}) {
+export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}, carePlan = {}, routine = {}, personalProductFeedback, knownSerumFamilies = [], serumIrritation = false, currentRoutine = {}, serumHydrationLevel } = {}) {
   const answers = cleanCosmeticAnswers(input, carePlan);
   const result = { version: COSMETIC_ADDON_VERSION, answers, complete: isCosmeticComplete(answers, carePlan), product: null, suppressPharmacy: false };
   const hold = (title, detail) => ({ ...result, status: "hold", title, detail });
@@ -67,6 +67,8 @@ export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}
   let candidates = products.filter(product => {
     const extra = cosmeticProductProfiles[product.id];
     if (!extra?.goals.includes(answers.goal) || !isProductAvailable(product) || avoidPersonalProduct(product, personalProductFeedback) || !getProductEvidenceStatus(product).eligible) return false;
+    if (Number.isFinite(serumHydrationLevel) &&
+      (product.category !== "serum" || Math.abs(product.hydrationLevel - serumHydrationLevel) > 1)) return false;
     if (Math.abs(product.hydrationLevel - level) > 3) return false;
     if ((answers.goal === "sebum" || observedSkin?.observedOil === "whole" || (!observedSkin && level >= 7)) && getProductCareProfile(product).lightweightFit < 5) return false;
     if ((isSensitive || sensitiveReaction) && (!product.sensitivitySafe || extra.intensity === "exfoliant" || extra.intensity === "high")) return false;

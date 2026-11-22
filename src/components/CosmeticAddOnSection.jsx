@@ -23,7 +23,7 @@ export function CosmeticAddOnResult({ plan }) {
   </div>;
 }
 
-export function CosmeticAddOnSection({ context, initialAnswers, onApply }) {
+export function CosmeticAddOnSection({ context, initialAnswers, onApply, onUseCandidate }) {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(() => initialAnswers ?? {});
   const [index, setIndex] = useState(0);
@@ -44,6 +44,8 @@ export function CosmeticAddOnSection({ context, initialAnswers, onApply }) {
   return <section className="space-y-4 rounded-3xl border border-emerald-200 bg-emerald-50/40 p-5 sm:p-6" aria-label="기능성·고민별 화장품 추가">
     <div><p className="text-xs font-semibold text-emerald-800">선택 사항</p><h2 className="mt-1 text-xl font-bold">기능성·고민별 화장품 추가</h2><p className="mt-2 text-sm text-slate-700">기본 제품 외에 보완하고 싶은 고민이 있나요? 피부의 보습 필요도와 현재 쓰는 성분을 확인해 후보 한 가지를 골라요. 화장품으로 염증·모낭염을 치료한다고 안내하지 않아요.</p></div>
     {!editing && plan?.complete && <CosmeticAddOnResult plan={plan} />}
+    {!editing && plan?.status === "candidate" && onUseCandidate &&
+      <button type="button" className="care-secondary" onClick={() => onUseCandidate(plan.product)}>이 세럼으로 다음 사용 시작</button>}
     {!editing ? <div className="flex flex-wrap gap-3"><button className="rounded-xl bg-emerald-900 px-4 py-3 text-sm font-semibold text-white" onClick={() => { setDraft(initialAnswers ?? {}); setIndex(0); setEditing(true); }}>{initialAnswers ? "추가 추천 답변 바꾸기" : "추가 화장품 후보 찾아보기"}</button>{initialAnswers && <button className="rounded-xl border border-slate-300 px-4 py-3 text-sm" onClick={() => { onApply(null); setDraft({}); }}>추가 선택 지우기</button>}</div> : <div className="space-y-4">
       <p className="text-xs text-slate-600">추가 확인 {index + 1}/{questions.length}</p><h3 className="font-semibold">{question.q}</h3>{question.multiple && <p className="text-sm text-slate-600">해당하는 성분을 모두 골라요. 모르는 성분은 추측하지 않아도 돼요.</p>}
       <div className="space-y-2" role="group" aria-label={question.q}>{question.options.map(option => { const active = question.multiple ? draft[question.id]?.includes(option.value) : draft[question.id] === option.value; return <button key={option.value} aria-pressed={Boolean(active)} className={`w-full rounded-xl border p-3 text-left text-sm ${active ? "border-emerald-700 bg-emerald-100" : "border-slate-200 bg-white"}`} onClick={() => answer(option.value)}><span className="block font-semibold">{option.label}</span>{option.detail && <span className="mt-1 block text-slate-600">{option.detail}</span>}</button>; })}</div>
