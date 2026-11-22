@@ -8295,5 +8295,118 @@
         "상처 부위에는 바르지 말고 따갑거나 붉어지면 중단해요."
       ]
     }
+  },
+  {
+    "id": 100,
+    "name": "바이오더마 센시비오 디펜시브 리치 크림",
+    "brand": "바이오더마",
+    "category": "cream",
+    "volume": "40ml",
+    "legacyLookupIds": [
+      "lookup:bioderma:1262"
+    ],
+    "hydrationLevel": 7,
+    "texture": "rich",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "글리세린",
+      "스쿠알란"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "다이카프릴릴에터",
+      "글라이콜팔미테이트",
+      "부틸렌글라이콜",
+      "세틸팔미테이트",
+      "글리세릴스테아레이트시트레이트",
+      "스쿠알란",
+      "수크로오스스테아레이트",
+      "트라이데실트라이멜리테이트",
+      "글리세릴다이베헤네이트",
+      "폴리솔베이트60",
+      "펜틸렌글라이콜",
+      "트라이베헤닌",
+      "글리세릴베헤네이트",
+      "아크릴레이트/C10-30알킬아크릴레이트크로스폴리머",
+      "카프릴릴글라이콜",
+      "카르노신",
+      "하이드록시에틸아크릴레이트/소듐아크릴로일다이메틸타우레이트코폴리머",
+      "만니톨",
+      "자일리톨",
+      "토코페롤",
+      "단삼꽃/잎/뿌리추출물",
+      "람노오스",
+      "돌콩오일",
+      "솔비탄아이소스테아레이트",
+      "소듐하이드록사이드",
+      "팔미토일테트라펩타이드-10"
+    ],
+    "careProfile": {
+      "hydrationSupport": 6,
+      "lightweightFit": 3,
+      "soothingSupport": 0,
+      "congestionSupport": 0,
+      "barrierSupport": 0
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-23",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "국내 공식 리치 크림 표기와 세안 후 보습 단계 사용법을 근거로 건조한 부위의 보습 마무리로 분류했어요. 수치는 실측값이 아닌 제형 상대 평가예요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-23",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://naosmall.kr/product/detail.html?product_no=1262"
+        }
+      ],
+      "note": "나오스코리아 공식몰 상품번호 1262의 리치 크림 40ml와 전성분 28개를 확인했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": false
+    },
+    "skinTypes": [
+      "건성",
+      "중성"
+    ],
+    "description": "세안 후 건조한 부위에 바르는 리치 타입 보습 크림이에요.",
+    "shortReason": "건조한 부위를 리치 크림으로 마무리",
+    "caution": [
+      "돌콩오일이나 단삼 추출물이 든 화장품에 반응한 적이 있으면 피하세요.",
+      "상처 난 곳은 피하고, 따갑거나 붉어지면 사용을 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "isAvailable": true,
+    "link": "https://naosmall.kr/product/detail.html?product_no=1262",
+    "price": null,
+    "image": "https://naosmall.kr/web/product/medium/202606/dd6ba0b10dba55158979c6025e5e2214.jpg",
+    "imageSource": {
+      "url": "https://naosmall.kr/web/product/medium/202606/dd6ba0b10dba55158979c6025e5e2214.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-23"
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "보습 마무리 단계",
+      "howToUse": [
+        "세안 후 적당량을 얼굴에 부드럽게 펴 발라요."
+      ],
+      "caution": [
+        "돌콩오일이나 단삼 추출물이 든 화장품에 반응한 적이 있으면 피하세요.",
+        "상처 난 곳은 피하고, 따갑거나 붉어지면 사용을 중단해요."
+      ]
+    }
   }
 ]
