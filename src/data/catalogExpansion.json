@@ -8745,5 +8745,124 @@
         "상처 난 곳은 피하고 화장솜으로 세게 문지르지 않아요. 따갑거나 붉어지면 중단해요."
       ]
     }
+  },
+  {
+    "id": 104,
+    "name": "바이오더마 하이드라비오 세럼",
+    "brand": "바이오더마",
+    "category": "serum",
+    "volume": "40ml",
+    "legacyLookupIds": [
+      "lookup:bioderma:1439"
+    ],
+    "hydrationLevel": 5,
+    "texture": "medium",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "글리세린",
+      "스쿠알란",
+      "소듐하이알루로네이트"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "스쿠알란",
+      "부틸렌글라이콜",
+      "나이아신아마이드",
+      "펜틸렌글라이콜",
+      "프로필렌글라이콜",
+      "하이드록시에틸아크릴레이트/소듐아크릴로일다이메틸타우레이트코폴리머",
+      "카프릴릭/카프릭트라이글리세라이드",
+      "다이카프릴릴카보네이트",
+      "카보머",
+      "실리카",
+      "덱스트린팔미테이트",
+      "프룩토올리고사카라이드",
+      "하이드록시아세토페논",
+      "폴리솔베이트60",
+      "다이아이소스테아릴말레이트",
+      "향료",
+      "만니톨",
+      "소듐시트레이트",
+      "자일리톨",
+      "헥실데칸올",
+      "람노오스",
+      "소듐피씨에이",
+      "솔비탄아이소스테아레이트",
+      "소듐하이드록사이드",
+      "락토바실러스발효물",
+      "소듐하이알루로네이트",
+      "시트릭애씨드",
+      "사카라이드아이소머레이트",
+      "사과씨추출물",
+      "유채스테롤",
+      "토코페롤"
+    ],
+    "careProfile": {
+      "hydrationSupport": 5,
+      "lightweightFit": 5,
+      "soothingSupport": 0,
+      "congestionSupport": 0,
+      "barrierSupport": 0
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-23",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "공식몰의 건조한 피부 대상 표기와 토너 다음에 바르는 사용법을 근거로 보습용 세럼으로 분류했어요. 수치는 내부 중립 기준이며 민감 피부 적합성은 가산하지 않았어요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-23",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://naosmall.kr/product/detail.html?product_no=1439"
+        }
+      ],
+      "note": "나오스코리아 공식몰 상품번호 1439의 40ml 단품과 전성분 33개를 확인했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": false
+    },
+    "skinTypes": [
+      "건성",
+      "중성"
+    ],
+    "description": "세안 후 크림 전에 덧바르는 보습용 세럼이에요.",
+    "shortReason": "크림 전 보습 세럼",
+    "caution": [
+      "향료나 프로필렌글라이콜이 든 화장품에 반응한 적이 있으면 피하세요.",
+      "상처 부위에는 바르지 말고, 따갑거나 붉어지면 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "isAvailable": true,
+    "link": "https://naosmall.kr/product/detail.html?product_no=1439",
+    "price": null,
+    "image": "https://naosmall.kr/web/product/medium/202609/46b6dc1215e3c1ddf9126e9d24658b31.jpg",
+    "imageSource": {
+      "url": "https://naosmall.kr/web/product/medium/202609/46b6dc1215e3c1ddf9126e9d24658b31.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-23"
+    },
+    "usageType": "serum",
+    "usage": {
+      "when": "세안 후, 크림 전",
+      "howToUse": [
+        "적당량을 덜어 얼굴에 가볍게 펴 발라요."
+      ],
+      "caution": [
+        "향료나 프로필렌글라이콜이 든 화장품에 반응한 적이 있으면 피하세요.",
+        "상처 부위에는 바르지 말고, 따갑거나 붉어지면 중단해요."
+      ]
+    }
   }
 ]
