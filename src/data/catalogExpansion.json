@@ -7839,5 +7839,134 @@
         "상처 난 부위에는 바르지 말고 처음에는 소량 사용해요. 따갑거나 붉어지면 중단해요."
       ]
     }
+  },
+  {
+    "id": 96,
+    "name": "마일드랩 데일리진정 수분크림",
+    "brand": "마일드랩",
+    "category": "cream",
+    "volume": "80ml",
+    "legacyLookupIds": [
+      "lookup:mildlab:351"
+    ],
+    "hydrationLevel": 5,
+    "texture": "medium",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "스쿠알란",
+      "부틸렌글라이콜",
+      "글리세레스-26"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "스쿠알란(70,000ppm)",
+      "부틸렌글라이콜",
+      "카프릴릭/카프릭트라이글리세라이드",
+      "글리세레스-26",
+      "1,2-헥산다이올",
+      "세틸에틸헥사노에이트",
+      "폴리글리세릴-3메틸글루코오스다이스테아레이트",
+      "동백나무잎추출물",
+      "병풀추출물",
+      "하이드롤라이즈드하이알루로닉애씨드",
+      "펜틸렌글라이콜",
+      "소듐하이알루로네이트크로스폴리머",
+      "소듐아세틸레이티드하이알루로네이트",
+      "소듐하이알루로네이트",
+      "하이드록시프로필트라이모늄하이알루로네이트",
+      "에스에이치-펜타펩타이드-19",
+      "에스에이치-올리고펩타이드-9",
+      "에스에이치-옥타펩타이드-4",
+      "에스에이치-데카펩타이드-7",
+      "트레할로오스",
+      "알란토인",
+      "세테아릴올리베이트",
+      "솔비탄올리베이트",
+      "알지닌",
+      "아크릴레이트/C10-30알킬아크릴레이트크로스폴리머",
+      "소듐폴리아크릴로일다이메틸타우레이트",
+      "하이드로제네이티드폴리데센",
+      "에틸헥실글리세린",
+      "트라이데세스-10"
+    ],
+    "careProfile": {
+      "hydrationSupport": 6,
+      "lightweightFit": 5,
+      "soothingSupport": 0,
+      "congestionSupport": 0,
+      "barrierSupport": 0
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-22",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "국내 공식몰의 수분크림 제형과 크림 단계 사용법을 확인해 세안 후 보습 마무리로 내부 평가했어요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-22",
+      "sources": [
+        {
+          "url": "https://mildlab.co.kr/product/%EB%8D%B0%EC%9D%BC%EB%A6%AC%EC%A7%84%EC%A0%95-%EC%88%98%EB%B6%84%ED%81%AC%EB%A6%BC-80ml/351/",
+          "sourceType": "official_domestic_product_page"
+        },
+        {
+          "url": "https://milimealweb.shop/mildlab/water_cream/230720/10.jpg",
+          "sourceType": "official_domestic_ingredient_label"
+        }
+      ],
+      "note": "마일드랩 국내 공식몰 단품 상품번호 351의 상품고시 이미지에서 80ml와 전성분을 확인했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": true
+    },
+    "skinTypes": [
+      "중성",
+      "복합성",
+      "수부지"
+    ],
+    "description": "세안 후 건조한 부위에 바르는 일상 보습용 수분크림이에요.",
+    "shortReason": "수분크림으로 마무리하는 기본 보습",
+    "caution": [
+      "병풀이나 동백나무잎 추출물이 든 제품에 반응한 적이 있으면 피하세요.",
+      "상처 난 부위에는 바르지 말고, 따갑거나 붉어지면 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "isAvailable": true,
+    "link": "https://mildlab.co.kr/product/%EB%8D%B0%EC%9D%BC%EB%A6%AC%EC%A7%84%EC%A0%95-%EC%88%98%EB%B6%84%ED%81%AC%EB%A6%BC-80ml/351/",
+    "price": null,
+    "image": "https://mildlab.co.kr/web/product/medium/202604/e7abb95d59c7bc9229bc3a2e54f8d90c.jpg",
+    "imageSource": {
+      "url": "https://mildlab.co.kr/web/product/medium/202604/e7abb95d59c7bc9229bc3a2e54f8d90c.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-22"
+    },
+    "purchaseSource": {
+      "provider": "official",
+      "label": "마일드랩 공식몰",
+      "url": "https://mildlab.co.kr/product/%EB%8D%B0%EC%9D%BC%EB%A6%AC%EC%A7%84%EC%A0%95-%EC%88%98%EB%B6%84%ED%81%AC%EB%A6%BC-80ml/351/",
+      "checkedAt": "2026-11-22",
+      "verification": "official_product_page",
+      "liveStockVerified": false
+    },
+    "usageType": "cream",
+    "usage": {
+      "when": "보습 마무리 단계",
+      "howToUse": [
+        "건조한 부위에 크림을 소량 펴 발라요."
+      ],
+      "caution": [
+        "병풀이나 동백나무잎 추출물이 든 제품에 반응한 적이 있으면 피하세요.",
+        "상처 난 부위에는 바르지 말고, 따갑거나 붉어지면 중단해요."
+      ]
+    }
   }
 ]
