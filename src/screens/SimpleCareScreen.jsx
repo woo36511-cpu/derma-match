@@ -229,6 +229,15 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
       {hasDeepLump && <div className="space-y-2 text-sm">
         <p><strong>세안 후 주변이 당기면</strong> 향료가 없는 보습 크림을 상처 없는 주변 피부에 얇게 발라요. 평소 편하게 쓰던 크림이 있으면 그걸 사용해요.</p>
         <p><strong>덩이 부위는</strong> 짜거나 누르지 말고, 원인이 확인되기 전에는 각질제거나 여드름 연고를 새로 바르지 않아요.</p>
+        <details className="rounded-xl border border-line p-3">
+          <summary className="cursor-pointer font-semibold text-forest-900">깊은 여드름 결절로 확인됐다면 쓸 수 있는 치료</summary>
+          <ul className="mt-2 list-disc space-y-2 pl-5">
+            <li><strong>큰 결절 한 개가 붓고 아플 때</strong> · 병변 내 스테로이드 주사는 붓기와 통증을 줄이는 데 쓰여요.</li>
+            <li><strong>깊은 결절이 여러 개이거나 반복되고 흉터가 남을 때</strong> · 먹는 이소트레티노인은 중증 여드름의 처방 치료 선택지예요.</li>
+            <li><strong>함께 생기는 여드름을 관리할 때</strong> · 바르는 벤조일퍼옥사이드나 아다팔렌이 여드름 치료에 쓰여요. 이미 생긴 깊은 덩이 한 개를 빠르게 가라앉히는 효과는 제한적이에요.</li>
+          </ul>
+          <a className="mt-2 inline-block underline" href="https://www.aad.org/member/clinical-quality/guidelines/acne" target="_blank" rel="noreferrer">미국피부과학회 여드름 치료 지침</a>
+        </details>
         <p className="text-slate-600">크기가 커지거나, 붉고 뜨거우면서 아프거나, 단단하고 움직이지 않거나, 2주 넘게 남으면 진료로 원인을 확인해요.</p>
       </div>}
       <p className="text-sm">미지근한 물로 부드럽게 씻고, 이미 편하게 쓰던 세안제와 보습제가 있다면 그대로 써요.</p>
