@@ -88,7 +88,7 @@ export function BasicRoutineTrialScreen({ ownerKey, blocked, currentRoutine, per
 
   return <div className="space-y-5">
     <section className="care-panel space-y-3">
-      <h1 ref={heading} tabIndex={-1} className="text-2xl font-bold text-forest-900">기초 4종으로 시작하기</h1>
+      <h1 ref={heading} tabIndex={-1} className="text-2xl font-bold text-forest-900">모든 게 귀찮은 분들을 위해</h1>
       <p>클렌저, 토너, 세럼, 크림을 써보고 피부 반응에 따라 루틴을 조정해요. 토너는 세럼과 크림의 수분감을 가볍게 보완해요.</p>
       {blocked && <p>최근 피부 반응 기록을 먼저 확인해 주세요. 지금은 새 루틴 시작을 보류해요.</p>}
       {trial && <p className="text-sm text-slate-700">사용 시작 {dateLabel(trial.startedAt)} · 7일 확인 {dateLabel(trial.startedAt + day * 7)} · 14일 확인 {dateLabel(trial.startedAt + day * 14)}</p>}
