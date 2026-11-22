@@ -139,6 +139,10 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
   const heading = useScreenHeading("care-result");
   const concernFirst = plan.blockNewBasics || (plan.answers.concern !== "none" && !routineHasIrritation);
   const priority = concernFirst ? plan : advice;
+  const barrierCareFirst = plan.answers.areaState !== "concerning" && plan.answers.response !== "worse" &&
+    (profile.observationAssessment?.currentIrritation || routineHasIrritation ||
+      ["irritated", "product_stings"].includes(plan.answers.areaState) || plan.answers.response === "irritated");
+  const retainedCream = otherRetained.find(([slot]) => slot === "cream")?.[1]?.[0];
   const fitNote = !concernFirst && advice?.slot && getRoutineFitSignals(advice.slot, recommendationContext)?.note;
   const firstCareAction = !concernFirst && !routineHasIrritation && profile.observationAssessment?.canRecommendBasics === false
     ? profile.observationAssessment.careActions?.[0] : null;
@@ -172,6 +176,11 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
       {priority && <section className="mt-5 space-y-2 rounded-xl bg-paper p-4 text-ink sm:mt-6 sm:p-5" aria-label="지금 먼저 할 한 가지">
         <p className="care-kicker">오늘 할 한 가지</p>
         <h2 className="text-lg font-bold text-forest-900 sm:text-xl">{priority.title}</h2>
+        {barrierCareFirst && <div className="rounded-lg bg-white p-3 text-sm leading-relaxed">
+          <p><strong>{retainedCream ?? "향료 없는 기본 보습 크림"}</strong> · 세안 후 당기는 볼이나 입 주변의 상처 없는 피부에 얇게 발라요.</p>
+          {!retainedCream && <p className="mt-1">이미 편하게 쓰던 크림이 있다면 그 제품을 먼저 사용해요. 새로 고른다면 글리세린이나 세라마이드가 든 무향료 보습 크림을 기본 후보로 보세요.</p>}
+          <p className="mt-1">헐거나 진물이 나는 곳과 단단한 덩이는 따로 살펴봐요. 크림을 바를 때 따가움이 생기면 해당 제품 사용을 쉬어요.</p>
+        </div>}
         <p className="text-sm leading-relaxed">{priority.detail}</p>
         {firstCareAction && <p className="text-sm text-slate-600">{firstCareAction}</p>}
         {fitNote && <p className="text-sm text-slate-600">{fitNote}</p>}
