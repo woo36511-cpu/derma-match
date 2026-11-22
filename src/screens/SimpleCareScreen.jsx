@@ -142,6 +142,17 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
   const fitNote = !concernFirst && advice?.slot && getRoutineFitSignals(advice.slot, recommendationContext)?.note;
   const firstCareAction = !concernFirst && !routineHasIrritation && profile.observationAssessment?.canRecommendBasics === false
     ? profile.observationAssessment.careActions?.[0] : null;
+  const hasBasicCandidates = !plan.blockNewBasics && profile.observationAssessment?.canRecommendBasics !== false &&
+    Object.values(routine.products).some(Boolean);
+  const observedSurface = profile.observationAssessment?.resolvedObservations?.surfaceObservation;
+  const canOfferBasicExample = !plan.blockNewBasics && !routineHasIrritation &&
+    ["normal", "flakes"].includes(observedSurface) && !routine.isHistorical;
+  const fallbackContext = { ...recommendationContext, basicOnly: true, isSensitive: true };
+  const fallbackLevel = profile.hydrationLevel ?? 5;
+  const fallbackBasics = !hasBasicCandidates && canOfferBasicExample ? {
+    cleanser: pickBestProductByCategory("cleanser", fallbackLevel, fallbackContext),
+    cream: pickBestProductByCategory("cream", fallbackLevel, fallbackContext),
+  } : {};
   const seasonalPair = getSeasonalMoisturizerPair(profile.hydrationLevel, recommendationContext, routine);
   const compareHydration = routine.isHistorical ? undefined : (slot, product) =>
     <>
@@ -212,7 +223,7 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
     </section>}
     <AcneCareReview review={buildAcneCareReview(plan)} />
     <MakeupCleansingSection plan={makeupCleansing} />
-    {!plan.blockNewBasics && profile.observationAssessment?.canRecommendBasics !== false && Object.values(routine.products).some(Boolean) && <section className="space-y-4" aria-label="피부타입별 기본 화장품">
+    {hasBasicCandidates && <section className="space-y-4" aria-label="피부타입별 기본 화장품">
       <div>
         <p className="care-kicker">필요한 단계만</p>
         <h2 className="mt-1 text-xl font-bold text-forest-900 sm:text-2xl">피부타입에 맞는 기본 화장품</h2>
@@ -248,6 +259,14 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
         <p className="mt-2">약과 화장품의 사용 순서는 해당 약 설명서를 우선해요. 각질 관리제·레티놀·벤조일퍼옥사이드를 같은 부위에 새로 여러 개 추가하지 않아요. 따갑거나 벗겨지면 새 제품을 쉬고 편안했던 세안·보습으로 줄여요. 토너·세럼 4단계를 모두 써야 장벽이 회복되는 것은 아니에요.</p>
         <p className="mt-2">현재 제품명을 모두 입력받는 방식은 아니므로 개별 제품 조합의 안전성을 보증하지 않아요. 새 제품은 한 가지씩 추가해 반응을 확인해요.</p>
       </DetailDisclosure>
+    </section>}
+    {!hasBasicCandidates && plan.answers.areaState !== "concerning" && <section className="care-panel space-y-3" aria-label="지금 할 수 있는 기본 관리">
+      <h2 className="font-bold text-forest-900">지금 할 수 있는 기본 관리</h2>
+      <p className="text-sm">미지근한 물로 부드럽게 씻고, 이미 편하게 쓰던 세안제와 보습제가 있다면 그대로 써요.</p>
+      {(plan.blockNewBasics || routineHasIrritation) ? <p className="text-sm">새로 바른 화장품이 따갑거나 붉게 만들었다면 해당 제품 사용을 쉬어요. 반응이 계속되거나 심해지면 사용 제품과 반응이 시작된 시점을 기록해 피부과에서 확인받으세요.</p>
+        : <p className="text-sm">기초 제품이 필요하면 향료가 없는 부드러운 세안제와 보습 크림부터 살펴봐요.</p>}
+      {Object.values(fallbackBasics).some(Boolean) && <RoutineProductScroller layout="routine" productsByCategory={fallbackBasics}
+        userContext={{ ...fallbackContext, level: fallbackLevel }} />}
     </section>}
     <DetailDisclosure title="피부 상태와 추천 근거"><ObservationSummary profile={profile} /></DetailDisclosure>
     {onReviewRoutine && <button type="button" onClick={onReviewRoutine} className="care-secondary">지금 쓰는 제품 점검하기</button>}
