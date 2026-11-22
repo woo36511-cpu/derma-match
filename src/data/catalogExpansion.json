@@ -8641,5 +8641,109 @@
         "상처 부위에는 바르지 말고 따가움이나 붉어짐이 생기면 중단해요."
       ]
     }
+  },
+  {
+    "id": 103,
+    "name": "바이오더마 하이드라비오 토너",
+    "brand": "바이오더마",
+    "category": "toner",
+    "volume": "250ml",
+    "legacyLookupIds": [
+      "lookup:bioderma:1305"
+    ],
+    "hydrationLevel": 5,
+    "texture": "light",
+    "concerns": [
+      "hydration"
+    ],
+    "ingredients": [
+      "글리세린",
+      "자일리톨",
+      "알란토인"
+    ],
+    "fullIngredients": [
+      "정제수",
+      "글리세린",
+      "폴리솔베이트20",
+      "다이소듐이디티에이",
+      "세트리모늄브로마이드",
+      "나이아신아마이드",
+      "자일리톨",
+      "알란토인",
+      "프룩토올리고사카라이드",
+      "만니톨",
+      "헥실데칸올",
+      "소듐하이드록사이드",
+      "시트릭애씨드",
+      "람노오스",
+      "사과씨추출물",
+      "유채스테롤",
+      "토코페롤",
+      "향료"
+    ],
+    "careProfile": {
+      "hydrationSupport": 3,
+      "lightweightFit": 7,
+      "soothingSupport": 0,
+      "congestionSupport": 0,
+      "barrierSupport": 0
+    },
+    "catalogAudit": {
+      "reviewedAt": "2026-11-23",
+      "status": "reviewed",
+      "formulaStatus": "domestic_official",
+      "careProfileSource": "internal_conservative_assessment",
+      "careProfileNote": "공식몰의 건조한 피부 대상 표기와 세안 후 화장솜에 덜어 사용하는 토너 제형을 근거로 보습 보조로 분류했어요. 향료가 포함돼 민감 피부 추천에는 가산하지 않았어요. 수치는 내부 분류 기준이에요."
+    },
+    "evidence": {
+      "evidenceLevel": "formula_verified",
+      "officialProductVerified": true,
+      "currentOfficialProductVerified": true,
+      "domesticFormulaVerified": true,
+      "fullIngredientsVerified": true,
+      "fullIngredientsMarket": "domestic_official",
+      "lastVerifiedAt": "2026-11-23",
+      "sources": [
+        {
+          "sourceType": "official_domestic_product_page",
+          "url": "https://naosmall.kr/product/detail.html?product_no=1305"
+        }
+      ],
+      "note": "나오스코리아 공식몰 상품번호 1305의 250ml 단품과 전성분 18개를 확인했어요. 500ml와 구분했어요.",
+      "priceVerified": false,
+      "purchaseLinkVerified": false
+    },
+    "skinTypes": [
+      "건성",
+      "중성"
+    ],
+    "description": "세안 후 크림 전에 사용하는 보습 보조 토너예요.",
+    "shortReason": "크림 전에 가볍게 수분 보조",
+    "caution": [
+      "향료 함유 화장품에 반응한 적이 있으면 피하세요.",
+      "상처 난 곳은 피하고 화장솜으로 세게 문지르지 않아요. 따갑거나 붉어지면 중단해요."
+    ],
+    "sensitivitySafe": false,
+    "beginnerFriendly": true,
+    "isAvailable": true,
+    "link": "https://naosmall.kr/product/detail.html?product_no=1305",
+    "price": null,
+    "image": "https://naosmall.kr/web/product/medium/202608/f1c161c8d63265e280d7eb67b8ba5118.jpg",
+    "imageSource": {
+      "url": "https://naosmall.kr/web/product/medium/202608/f1c161c8d63265e280d7eb67b8ba5118.jpg",
+      "sourceType": "official_product_image",
+      "checkedAt": "2026-11-23"
+    },
+    "usageType": "toner",
+    "usage": {
+      "when": "세안 후, 크림 전",
+      "howToUse": [
+        "화장솜에 적당량을 덜어 가볍게 두드려요."
+      ],
+      "caution": [
+        "향료 함유 화장품에 반응한 적이 있으면 피하세요.",
+        "상처 난 곳은 피하고 화장솜으로 세게 문지르지 않아요. 따갑거나 붉어지면 중단해요."
+      ]
+    }
   }
 ]
