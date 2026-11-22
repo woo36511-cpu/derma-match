@@ -12,7 +12,7 @@ test("home replaces the old full-survey accordion with direct quick shelves", ()
   expect(screen.queryByText("처음이라 설문으로 시작할래요")).not.toBeInTheDocument();
   expect(screen.getByRole("button", { name: /피부타입별 화장품/ })).toHaveAttribute("aria-expanded", "false");
   expect(screen.getByRole("button", { name: /피부 고민별 약품 안내/ })).toHaveAttribute("aria-expanded", "false");
-  expect(screen.getByRole("button", { name: "내 피부에 맞는 관리 찾기" })).toBeInTheDocument();
+  expect(screen.getByRole("button", { name: "내 피부에 맞는 제품 찾기" })).toBeInTheDocument();
 });
 test("every skin type shows four current catalog products immediately without a survey or saved usage", () => {
   render(<App />); click(/피부타입별 화장품/);
