@@ -147,9 +147,12 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
   const observedSurface = profile.observationAssessment?.resolvedObservations?.surfaceObservation;
   const canOfferBasicExample = !plan.blockNewBasics && !routineHasIrritation &&
     ["normal", "flakes"].includes(observedSurface) && !routine.isHistorical;
+  const hasDeepLump = plan.answers.shape === "deep" || plan.answers.shapes?.includes("deep");
+  const needsConcernBasics = hasDeepLump || (plan.concernSummary && !plan.pharmacy && !plan.cosmetics?.length && !plan.separateBreakout?.pharmacy);
+  const showNextAction = needsConcernBasics || !hasBasicCandidates;
   const fallbackContext = { ...recommendationContext, basicOnly: true, isSensitive: true };
   const fallbackLevel = profile.hydrationLevel ?? 5;
-  const fallbackBasics = !hasBasicCandidates && canOfferBasicExample ? {
+  const fallbackBasics = showNextAction && canOfferBasicExample && !hasBasicCandidates ? {
     cleanser: pickBestProductByCategory("cleanser", fallbackLevel, fallbackContext),
     cream: pickBestProductByCategory("cream", fallbackLevel, fallbackContext),
   } : {};
@@ -205,7 +208,7 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
       {!concernFirst && <><h2 className="text-lg font-bold">{plan.title}</h2><p>{plan.detail}</p></>}
       <ConcernProductOptions plan={plan} />
       {plan.showFolliculitis && <FolliculitisOptions />}
-      {plan.answers.shape === "deep" && plan.answers.medicine !== "none" && <p className="text-sm">깊은 덩이는 짜지 않아요. 계속 커지거나 통증·흉터가 생기면 확인이 필요해요.</p>}
+
     </section>}
     {plan.concernSummary && <section className="care-panel space-y-3" aria-label="함께 선택한 고민">
       <h2 className="text-lg font-bold">함께 선택한 고민</h2>
@@ -221,9 +224,19 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
       <p className="font-semibold">{plan.separateBreakout.title}</p><p className="text-sm">{plan.separateBreakout.detail}</p>
       <ConcernProductOptions plan={plan.separateBreakout} />
     </section>}
+    {showNextAction && plan.answers.areaState !== "concerning" && <section className="care-panel space-y-3" aria-label="지금 할 수 있는 기본 관리">
+      <h2 className="font-bold text-forest-900">지금 바로 할 관리</h2>
+      {hasDeepLump && <p className="text-sm">덩이를 짜거나 반복해서 누르지 마세요. 커지거나, 아프고 붉거나 뜨거워지거나, 단단하고 움직이지 않거나, 2주 넘게 남으면 피부과에서 덩이의 원인을 확인받으세요.</p>}
+      <p className="text-sm">미지근한 물로 부드럽게 씻고, 이미 편하게 쓰던 세안제와 보습제가 있다면 그대로 써요.</p>
+      {(plan.blockNewBasics || routineHasIrritation) ? <p className="text-sm">새로 바른 화장품이 따갑거나 붉게 만들었다면 해당 제품 사용을 쉬어요. 반응이 계속되거나 심해지면 사용 제품과 반응이 시작된 시점을 기록해 피부과에서 확인받으세요.</p>
+        : <p className="text-sm">기초 제품이 필요하면 향료가 없는 부드러운 세안제와 보습 크림부터 살펴봐요.</p>}
+      {hasBasicCandidates && <a href="#basic-product-candidates" className="inline-block font-semibold text-forest-900 underline underline-offset-4">세안·보습 제품 후보 보기</a>}
+      {Object.values(fallbackBasics).some(Boolean) && <RoutineProductScroller layout="routine" productsByCategory={fallbackBasics}
+        userContext={{ ...fallbackContext, level: fallbackLevel }} />}
+    </section>}
     <AcneCareReview review={buildAcneCareReview(plan)} />
     <MakeupCleansingSection plan={makeupCleansing} />
-    {hasBasicCandidates && <section className="space-y-4" aria-label="피부타입별 기본 화장품">
+    {hasBasicCandidates && <section id="basic-product-candidates" className="scroll-mt-24 space-y-4" aria-label="피부타입별 기본 화장품">
       <div>
         <p className="care-kicker">필요한 단계만</p>
         <h2 className="mt-1 text-xl font-bold text-forest-900 sm:text-2xl">피부타입에 맞는 기본 화장품</h2>
@@ -259,14 +272,6 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
         <p className="mt-2">약과 화장품의 사용 순서는 해당 약 설명서를 우선해요. 각질 관리제·레티놀·벤조일퍼옥사이드를 같은 부위에 새로 여러 개 추가하지 않아요. 따갑거나 벗겨지면 새 제품을 쉬고 편안했던 세안·보습으로 줄여요. 토너·세럼 4단계를 모두 써야 장벽이 회복되는 것은 아니에요.</p>
         <p className="mt-2">현재 제품명을 모두 입력받는 방식은 아니므로 개별 제품 조합의 안전성을 보증하지 않아요. 새 제품은 한 가지씩 추가해 반응을 확인해요.</p>
       </DetailDisclosure>
-    </section>}
-    {!hasBasicCandidates && plan.answers.areaState !== "concerning" && <section className="care-panel space-y-3" aria-label="지금 할 수 있는 기본 관리">
-      <h2 className="font-bold text-forest-900">지금 할 수 있는 기본 관리</h2>
-      <p className="text-sm">미지근한 물로 부드럽게 씻고, 이미 편하게 쓰던 세안제와 보습제가 있다면 그대로 써요.</p>
-      {(plan.blockNewBasics || routineHasIrritation) ? <p className="text-sm">새로 바른 화장품이 따갑거나 붉게 만들었다면 해당 제품 사용을 쉬어요. 반응이 계속되거나 심해지면 사용 제품과 반응이 시작된 시점을 기록해 피부과에서 확인받으세요.</p>
-        : <p className="text-sm">기초 제품이 필요하면 향료가 없는 부드러운 세안제와 보습 크림부터 살펴봐요.</p>}
-      {Object.values(fallbackBasics).some(Boolean) && <RoutineProductScroller layout="routine" productsByCategory={fallbackBasics}
-        userContext={{ ...fallbackContext, level: fallbackLevel }} />}
     </section>}
     <DetailDisclosure title="피부 상태와 추천 근거"><ObservationSummary profile={profile} /></DetailDisclosure>
     {onReviewRoutine && <button type="button" onClick={onReviewRoutine} className="care-secondary">지금 쓰는 제품 점검하기</button>}
