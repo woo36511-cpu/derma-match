@@ -17,12 +17,12 @@ export function Header({ resetFlow, isStart = false }) {
             <p className="mt-1 text-xs text-slate-600">내 피부 관리 가이드</p>
           </div>
         </div>
-        <div className="flex shrink-0 flex-wrap items-center justify-end gap-1.5 sm:gap-2">
-          <details className="relative">
+        <div className="relative flex shrink-0 flex-wrap items-center justify-end gap-1.5 sm:gap-2">
+          <details>
             <summary className="care-secondary cursor-pointer list-none whitespace-nowrap px-2.5 text-xs [&::-webkit-details-marker]:hidden sm:px-4 sm:text-sm">
               <span aria-hidden="true" className="mr-1">☆</span>즐겨찾기
             </summary>
-            <div className="absolute right-0 z-20 mt-2 w-64 max-w-[calc(100vw-2rem)] rounded-xl border border-line bg-white p-4 text-sm shadow-lg">
+            <div className="absolute right-0 top-full z-20 mt-2 w-64 max-w-[calc(100vw_-_2rem)] rounded-xl border border-line bg-white p-4 text-sm shadow-lg">
               <p className="font-bold text-forest-900">디얼신스 즐겨찾기에 추가</p>
               <ul className="mt-2 space-y-2 text-slate-700">
                 <li><strong>Windows</strong> · <kbd>Ctrl</kbd> + <kbd>D</kbd></li>
