@@ -236,13 +236,17 @@ test("different acne appearances and traces retain priority and locations throug
   const chosen = { concern: "acne", shapes: ["closed", "red", "dark_mark", "indented_scar"], primaryShape: "red",
     locations: { closed: "forehead", red: "chin", dark_mark: "cheeks", indented_scar: "cheeks" }, areaState: "comfortable", medicine: "none" };
   extraCare(chosen);
-  expect(screen.getByText(/먼저 고른 고민: 고름 없는 작은 붉은 뾰루지 · 턱·턱선/)).toBeInTheDocument();
+  expect(screen.getByText(/먼저 관리할 고민: 고름 없는 작은 붉은 뾰루지 · 턱·턱선/)).toBeInTheDocument();
   const secondary = screen.getByRole("region", { name: "함께 선택한 고민" });
   expect(within(secondary).getByText("살색·하얀 좁쌀 · 이마")).toBeInTheDocument();
   expect(within(secondary).getByText("평평한 갈색·회갈색 자국 · 볼")).toBeInTheDocument();
   expect(within(secondary).getByText(/새 트러블 관리와 평평한 자국 관리는 함께 할 수 있어요/)).toBeInTheDocument();
   expect(screen.getByRole("region", { name: "고민에 맞는 화장품" })).toHaveTextContent("라운드랩 자작나무 수분 선크림");
   expect(within(secondary).getByText("패인 흉터처럼 보여요 · 볼")).toBeInTheDocument();
+  for (const label of ["평평한 갈색·회갈색 자국 · 볼", "패인 흉터처럼 보여요 · 볼"]) {
+    const concern = within(secondary).getByText(label).closest("li");
+    expect(within(concern).getByText("라운드랩 자작나무 수분 선크림")).toBeInTheDocument();
+  }
   expect(screen.getAllByRole("region", { name: "일반의약품 후보" })).toHaveLength(1);
   expect(records()[0].additionalCare).toMatchObject({ ...chosen, shape: "red" });
   cleanup(); render(<App />); click("최근 결과 다시 보기");

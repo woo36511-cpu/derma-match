@@ -135,15 +135,6 @@ export function CombinationMoisturizerGuide({ profile, product, context, rendere
   </section>;
 }
 
-const benzoylConcernProduct = {
-  type: "일반의약품 · 확인된 여드름의 제품 예시",
-  name: "파티마겔 2.5%",
-  image: "/otc/patima.png",
-  guidance: "벤조일퍼옥사이드 제품 예시예요. 피부가 따갑거나 벗겨진 상태에는 사용을 미루고, 상처나 진물이 있는 곳에는 바르지 않아요. 사용 전 설명서를 확인해요.",
-  source: "https://www.taiguk.co.kr/product/view.jsp?pid=AHG72438",
-  sourceLabel: "제조사 제품·설명서",
-};
-
 const secondaryConcernActions = {
   closed: "붉거나 따갑지 않은 면포성 여드름으로 확인되면, 해당 부위에 바르는 아다팔렌을 치료 후보로 비교할 수 있어요.",
   blackhead: "피부가 편안하고 블랙헤드가 남으면, 살리실산 제품을 블랙헤드가 있는 부위에만 제품 안내에 따라 비교해요.",
@@ -178,11 +169,25 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
     ? profile.observationAssessment.careActions?.[0] : null;
   const hasBasicCandidates = !plan.blockNewBasics && profile.observationAssessment?.canRecommendBasics !== false &&
     Object.values(routine.products).some(Boolean);
-  const secondaryConcerns = plan.concernSummary?.secondary ?? [];
-  const firstTraceWithSunscreen = !recommendationContext?.hasSunscreen &&
-    secondaryConcerns.find(item => ["dark_mark", "red_mark"].includes(item.shape))?.shape;
-  const firstBenzoylConcern = plan.answers.areaState !== "concerning" &&
-    secondaryConcerns.find(item => ["red", "pus"].includes(item.shape))?.shape;
+  const concernCardsAllowed = plan.answers.areaState !== "concerning" && plan.answers.response !== "worse";
+  const concernCream = concernCardsAllowed && (!plan.blockNewBasics || barrierCareFirst) && !retainedCream &&
+    !["broken", "unknown"].includes(profile.observationAssessment?.resolvedObservations?.surfaceObservation)
+    ? gentleCream ?? pickBestProductByCategory("cream", gentleCreamLevel, gentleCreamContext)
+    : null;
+  const renderConcernSupport = shape => {
+    if (!concernCardsAllowed) return null;
+    if (["dark_mark", "red_mark", "indented_scar", "raised_scar"].includes(shape) &&
+        !plan.blockNewBasics && !barrierCareFirst) {
+      return <ConcernProductCard product={{ ...sunscreenOption, guidance: "노출되는 피부의 자외선 차단용이에요. 편하게 쓰는 선크림이 있다면 그대로 유지해요." }} />;
+    }
+    if (retainedCream) return <p className="text-sm">주변이 건조하면 편하게 쓰는 보습제인 {retainedCream}을 유지해요.</p>;
+    if (!concernCream) return null;
+    return <>
+      <p className="text-sm">상처 없는 주변 피부가 건조할 때 비교할 보습 후보예요.</p>
+      <RoutineProductScroller layout="routine" productsByCategory={{ cream: concernCream }}
+        userContext={{ ...gentleCreamContext, level: gentleCreamLevel }} />
+    </>;
+  };
   const observedSurface = profile.observationAssessment?.resolvedObservations?.surfaceObservation;
   const canOfferBasicExample = !plan.blockNewBasics && !routineHasIrritation &&
     ["normal", "flakes"].includes(observedSurface) && !routine.isHistorical;
@@ -248,9 +253,10 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
     {notes}
     {(!concernFirst || plan.concernSummary || plan.pharmacy || plan.cosmetics?.length || plan.productNote || plan.recheck || plan.showFolliculitis || (plan.answers.shape === "deep" && plan.answers.medicine !== "none")) && <section className="care-panel space-y-3" aria-label="추가 고민 관리">
       <p className="care-kicker">{concernFirst ? "이 고민에 맞는 관리" : "관리 방향"}</p>
-      {plan.concernSummary && <p className="text-sm font-semibold text-emerald-800">먼저 고른 고민: {plan.concernSummary.primary.label}{plan.concernSummary.primary.area && ` · ${plan.concernSummary.primary.area}`}</p>}
+      {plan.concernSummary && <p className="text-sm font-semibold text-emerald-800">먼저 관리할 고민: {plan.concernSummary.primary.label}{plan.concernSummary.primary.area && ` · ${plan.concernSummary.primary.area}`}</p>}
       {!concernFirst && <><h2 className="text-lg font-bold">{plan.title}</h2><p>{plan.detail}</p></>}
       <ConcernProductOptions plan={plan} />
+      {plan.answers.shape && !plan.pharmacy && !plan.cosmetics?.length && renderConcernSupport(plan.answers.shape)}
       {plan.showFolliculitis && <FolliculitisOptions />}
 
     </section>}
@@ -261,9 +267,9 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
         <p className="mt-1 text-sm text-slate-700">{secondaryConcernActions[item.shape]}</p>
         {(barrierCareFirst || plan.blockNewBasics || routineHasIrritation) && ["closed", "blackhead", "red", "pus", "dark_mark"].includes(item.shape) &&
           <p className="mt-1 text-sm font-semibold text-forest-900">위 성분은 피부가 편안해진 뒤에 검토해요. 지금은 결과 상단에 표시된 관리부터 따라주세요.</p>}
-        {!barrierCareFirst && !plan.blockNewBasics && item.shape === firstTraceWithSunscreen &&
-          <div className="mt-2"><ConcernProductCard product={sunscreenOption} /></div>}
-        {item.shape === firstBenzoylConcern && <div className="mt-2"><ConcernProductCard product={benzoylConcernProduct} /></div>}
+        <div className="mt-2">{item.shape === plan.separateBreakout?.shape && plan.separateBreakout.pharmacy
+          ? <ConcernProductOptions plan={plan.separateBreakout} />
+          : renderConcernSupport(item.shape)}</div>
         <p className="mt-1 text-xs text-slate-600">{item.observation}</p>
       </li>)}</ul>
       {plan.parallelCare ? <p className="text-sm text-slate-600">새 트러블 관리와 평평한 자국 관리는 함께 할 수 있어요. 아침에는 {plan.parallelCare.hasSunscreen ? "잘 맞는 선크림을 유지하고" : "위 선크림 후보로 자외선 차단을 챙기고"}, 트러블에 쓰는 제품은 해당 부위와 제품 안내에 맞춰 사용해요.</p>
@@ -272,7 +278,7 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
     {plan.separateBreakout && <section className="care-panel space-y-3" aria-label="지금 올라온 트러블 관리">
       <h2 className="text-lg font-bold">지금 올라온 트러블 관리{plan.separateBreakout.area && ` · ${plan.separateBreakout.area}`}</h2>
       <p className="font-semibold">{plan.separateBreakout.title}</p><p className="text-sm">{plan.separateBreakout.detail}</p>
-      <ConcernProductOptions plan={plan.separateBreakout} />
+      {!plan.concernSummary?.secondary.some(item => item.shape === plan.separateBreakout.shape) && <ConcernProductOptions plan={plan.separateBreakout} />}
     </section>}
     {showNextAction && plan.answers.areaState !== "concerning" && <section className="care-panel space-y-3" aria-label="지금 할 수 있는 기본 관리">
       <h2 className="font-bold text-forest-900">지금 바로 할 관리</h2>
