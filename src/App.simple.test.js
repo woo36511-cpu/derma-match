@@ -721,8 +721,9 @@ test("the scar-first result shows the separate breakout candidate and a basic al
   const top = screen.getByRole("region", { name: "지금 먼저 할 한 가지" });
   expect(top).toHaveTextContent("교체 검토");
   expect(top).toHaveTextContent("트러블용 후보 · 애크논크림");
-  const active = screen.getByRole("region", { name: "지금 올라온 트러블 관리" });
-  expect(within(active).getByRole("heading", { name: "애크논크림" })).toBeInTheDocument();
+  const secondary = screen.getByRole("region", { name: "함께 선택한 고민" });
+  const breakout = within(secondary).getByText("고름이 보이는 작은 뾰루지 · 턱·턱선").closest("li");
+  expect(within(breakout).getByRole("heading", { name: "애크논크림" })).toBeInTheDocument();
   expect(screen.getByRole("region", { name: "불편했던 기본 제품 대안" })).toBeInTheDocument();
   expect(screen.getByRole("region", { name: "함께 선택한 고민" })).toHaveTextContent("솟은 흉터처럼 보여요");
 });
