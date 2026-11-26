@@ -236,13 +236,17 @@ test("different acne appearances and traces retain priority and locations throug
   const chosen = { concern: "acne", shapes: ["closed", "red", "dark_mark", "indented_scar"], primaryShape: "red",
     locations: { closed: "forehead", red: "chin", dark_mark: "cheeks", indented_scar: "cheeks" }, areaState: "comfortable", medicine: "none" };
   extraCare(chosen);
-  expect(screen.getByText(/먼저 고른 고민: 고름 없는 작은 붉은 뾰루지 · 턱·턱선/)).toBeInTheDocument();
+  expect(screen.getByText(/먼저 관리할 고민: 고름 없는 작은 붉은 뾰루지 · 턱·턱선/)).toBeInTheDocument();
   const secondary = screen.getByRole("region", { name: "함께 선택한 고민" });
   expect(within(secondary).getByText("살색·하얀 좁쌀 · 이마")).toBeInTheDocument();
   expect(within(secondary).getByText("평평한 갈색·회갈색 자국 · 볼")).toBeInTheDocument();
   expect(within(secondary).getByText(/새 트러블 관리와 평평한 자국 관리는 함께 할 수 있어요/)).toBeInTheDocument();
   expect(screen.getByRole("region", { name: "고민에 맞는 화장품" })).toHaveTextContent("라운드랩 자작나무 수분 선크림");
   expect(within(secondary).getByText("패인 흉터처럼 보여요 · 볼")).toBeInTheDocument();
+  for (const label of ["평평한 갈색·회갈색 자국 · 볼", "패인 흉터처럼 보여요 · 볼"]) {
+    const concern = within(secondary).getByText(label).closest("li");
+    expect(within(concern).getByText("라운드랩 자작나무 수분 선크림")).toBeInTheDocument();
+  }
   expect(screen.getAllByRole("region", { name: "일반의약품 후보" })).toHaveLength(1);
   expect(records()[0].additionalCare).toMatchObject({ ...chosen, shape: "red" });
   cleanup(); render(<App />); click("최근 결과 다시 보기");
@@ -717,8 +721,9 @@ test("the scar-first result shows the separate breakout candidate and a basic al
   const top = screen.getByRole("region", { name: "지금 먼저 할 한 가지" });
   expect(top).toHaveTextContent("교체 검토");
   expect(top).toHaveTextContent("트러블용 후보 · 애크논크림");
-  const active = screen.getByRole("region", { name: "지금 올라온 트러블 관리" });
-  expect(within(active).getByRole("heading", { name: "애크논크림" })).toBeInTheDocument();
+  const secondary = screen.getByRole("region", { name: "함께 선택한 고민" });
+  const breakout = within(secondary).getByText("고름이 보이는 작은 뾰루지 · 턱·턱선").closest("li");
+  expect(within(breakout).getByRole("heading", { name: "애크논크림" })).toBeInTheDocument();
   expect(screen.getByRole("region", { name: "불편했던 기본 제품 대안" })).toBeInTheDocument();
   expect(screen.getByRole("region", { name: "함께 선택한 고민" })).toHaveTextContent("솟은 흉터처럼 보여요");
 });
