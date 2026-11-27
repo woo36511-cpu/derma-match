@@ -26,7 +26,7 @@ function getDirectGoalFit(goal, axes) {
   }
 }
 
-export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}, carePlan = {}, routine = {}, personalProductFeedback, knownSerumFamilies = [], serumIrritation = false, currentRoutine = {}, serumHydrationLevel } = {}) {
+export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}, carePlan = {}, routine = {}, personalProductFeedback, knownSerumFamilies = [], serumIrritation = false, currentRoutine = {}, serumHydrationLevel, allowProduct } = {}) {
   const answers = cleanCosmeticAnswers(input, carePlan);
   const result = { version: COSMETIC_ADDON_VERSION, answers, complete: isCosmeticComplete(answers, carePlan), product: null, suppressPharmacy: false };
   const hold = (title, detail) => ({ ...result, status: "hold", title, detail });
@@ -65,6 +65,7 @@ export function buildCosmeticAddOnPlan(input, { profile = {}, surveyAnswers = {}
   if (!Number.isFinite(level)) return hold("제품의 보습 기준을 확인하지 못했어요.", "피부타입 답변을 확인한 뒤 다시 추천받아요.");
   const sensitiveReaction = surveyAnswers.sensitivity === "자주 따갑고 붉어진다";
   let candidates = products.filter(product => {
+    if (allowProduct && !allowProduct(product)) return false;
     const extra = cosmeticProductProfiles[product.id];
     if (!extra?.goals.includes(answers.goal) || !isProductAvailable(product) || avoidPersonalProduct(product, personalProductFeedback) || !getProductEvidenceStatus(product).eligible) return false;
     if (Number.isFinite(serumHydrationLevel) &&
