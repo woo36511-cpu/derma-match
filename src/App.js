@@ -1,3 +1,4 @@
+import { SkinPhotoStartScreen } from "./screens/SkinPhotoStartScreen";
 import { useSkinCoach } from "./hooks/useSkinCoach";
 import { Header } from "./components/Header";
 import { BasicRoutineTrialScreen } from "./screens/BasicRoutineTrialScreen";
@@ -26,7 +27,7 @@ import { readRoutineSurveyContext } from "./data/routineSurveyContext";
 
 export default function App() {
   const {
-    personalProductFeedback, ownerKey, currentRoutine, currentRoutineContext, simpleMode, simpleRecord, startSimpleSkinCare, completeRoutineIntake, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
+    skinPhotoFeatures, continueFromSkinPhoto, personalProductFeedback, ownerKey, currentRoutine, currentRoutineContext, simpleMode, simpleRecord, startSimpleSkinCare, completeRoutineIntake, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
     symptomCheck, concernCheck, concernCheckHistory, moisturizerObservation, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck, continueFeedback,
     account,
     resetFlow,
@@ -211,12 +212,14 @@ export default function App() {
             startQuickJourneyFeedback={startQuickJourneyFeedback}
           />
         ))}
+        {step === "skinPhotoStart" && <SkinPhotoStartScreen key={ownerKey} onContinue={continueFromSkinPhoto} onBack={() => setStep("start")} />}
         {step === "routineIntake" && <RoutineIntakeScreen key={ownerKey} previous={readRoutineSurveyContext(surveyAnswers.routineIntake)}
           routineReview={routineReview} onNext={completeRoutineIntake} onBack={() => setStep("start")} />}
 
         {step === "survey" && currentSurveyQuestion && (
           <SurveyScreen
             simpleMode={simpleMode}
+            skinPhotoFeatures={skinPhotoFeatures}
             afterRoutineIntake={Boolean(simpleMode && readRoutineSurveyContext(surveyAnswers.routineIntake))}
             surveyIndex={surveyIndex}
             surveyProgress={surveyProgress}
@@ -233,7 +236,7 @@ export default function App() {
           />
         )}
 
-        {step === "simpleCare" && <SimpleCareScreen key={account.user?.id ?? "guest"} profile={surveyResult} surveyAnswers={surveyAnswers} initialRecord={simpleRecord} currentRoutineEntries={currentRoutine.entries} routineReview={routineReview} priorSerumPreference={savedSurvey?.routinePreferences?.serum} personalProductFeedback={personalProductFeedback} observation={moisturizerObservation} onRestart={startSimpleSkinCare} onRecheck={startSavedFeedback} onReviewRoutine={() => setStep("routineReview")} onSave={saveSimpleSkinRecord} onBack={() => { setSurveyIndex(activeSurveyQuestions.length - 1); setStep("survey"); }} onHome={() => setStep("start")} />}
+        {step === "simpleCare" && <SimpleCareScreen key={account.user?.id ?? "guest"} profile={surveyResult} surveyAnswers={surveyAnswers} skinPhotoFeatures={skinPhotoFeatures} initialRecord={simpleRecord} currentRoutineEntries={currentRoutine.entries} routineReview={routineReview} priorSerumPreference={savedSurvey?.routinePreferences?.serum} personalProductFeedback={personalProductFeedback} observation={moisturizerObservation} onRestart={startSimpleSkinCare} onRecheck={startSavedFeedback} onReviewRoutine={() => setStep("routineReview")} onSave={saveSimpleSkinRecord} onBack={() => { setSurveyIndex(activeSurveyQuestions.length - 1); setStep("survey"); }} onHome={() => setStep("start")} />}
 
         {step === "issueSelect" && (
           <IssueSelectScreen

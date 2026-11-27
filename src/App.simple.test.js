@@ -59,7 +59,7 @@ const records = () => JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY) || "[
 const values = Object.fromEntries(skinSurveyQuestions.map(q => [q.id, q.type === "multi" ? [q.options[0].label] : q.options[0].label]));
 beforeEach(() => { localStorage.clear(); window.history.replaceState({}, "", "/"); });
 function baseSurvey(overrides = {}, { use = "skip", setup, serum } = {}) {
-  click("설문조사로 시작");
+  click("설문조사로 시작"); click("사진 없이 설문 시작");
   expect(screen.getByRole("heading", { name: "지금 쓰는 화장품이 있나요?" })).toBeVisible();
   click({ skip: "제품 입력 없이 진행할래요", yes: "세안제나 기초 화장품도 쓰고, 선크림도 발라요", no: "아니요, 지금은 아무것도 안 써요" }[use]);
   setup?.();
@@ -383,7 +383,7 @@ test("unknown follow-up observations suppress a new routine and do not crash on 
 });
 
 test("conflicting answers get a clarification instead of a forced type, and guidance starts folded", () => {
-  render(<App />); click("설문조사로 시작");
+  render(<App />); click("설문조사로 시작"); click("사진 없이 설문 시작");
   click("제품 입력 없이 진행할래요"); click("피부 상태 질문으로");
   expectCollapsed("답변 기준 자세히 보기");
   click("화장품 답변으로"); click("시작 화면으로");
@@ -400,7 +400,7 @@ test("historical simple results keep the historical scale until a fresh survey i
   render(<App />); click("최근 결과 다시 보기");
   expect(screen.getByText("예전 설문 기준으로 저장된 결과예요. 당시 답변과 점수를 유지했어요.")).toBeInTheDocument();
   expect(records()[0].skinMeasurement.measurementVersion).toBe("survey-8-axis-v1");
-  click("새 기준으로 다시 확인");
+  click("새 기준으로 다시 확인"); click("사진 없이 설문 시작");
   expect(screen.getByRole("heading", { name: "지금 쓰는 화장품이 있나요?" })).toBeInTheDocument();
   expect(records()[0].skinMeasurement).toEqual(record.skinMeasurement);
 });
@@ -443,7 +443,7 @@ test("saved product IDs remain historical when recommendation rules change, and 
   expect(screen.getByText(/저장 당시의 제품 후보/)).toBeInTheDocument();
   expect(screen.getByText("닥터지 약산성 클렌징 젤 폼")).toBeInTheDocument();
   expect(records()[0].routine).toEqual(record.routine);
-  click("새 기준으로 다시 확인");
+  click("새 기준으로 다시 확인"); click("사진 없이 설문 시작");
   expect(screen.getByRole("heading", { name: "지금 쓰는 화장품이 있나요?" })).toBeInTheDocument();
 });
 
