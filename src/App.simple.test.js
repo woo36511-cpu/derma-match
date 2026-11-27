@@ -244,7 +244,7 @@ test("different acne appearances and traces retain priority and locations throug
   expect(screen.getByRole("region", { name: "고민에 맞는 화장품" })).toHaveTextContent("라운드랩 자작나무 수분 선크림");
   expect(within(secondary).getByText("패인 흉터처럼 보여요 · 볼")).toBeInTheDocument();
   for (const label of ["평평한 갈색·회갈색 자국 · 볼", "패인 흉터처럼 보여요 · 볼"]) {
-    const concern = within(secondary).getByText(label).closest("li");
+    const concern = within(secondary).getAllByRole("listitem").find(item => within(item).queryByText(label));
     expect(within(concern).getByText("라운드랩 자작나무 수분 선크림")).toBeInTheDocument();
   }
   expect(screen.getAllByRole("region", { name: "일반의약품 후보" })).toHaveLength(1);
@@ -322,7 +322,9 @@ function completeStandardRecheck() {
   click("변화 저장하고 다음 추천 보기");
 }
 test("recheck keeps the new observation scale and does not invent missing axes", () => {
-  render(<App />); baseSurvey(); extraCare({ concern: "none" }); startFollowUp();
+  render(<App />); baseSurvey(); extraCare({ concern: "none" });
+  expect(screen.getByRole("heading", { name: "루틴 사용 시작 후 14일 뒤 재검사" })).toBeVisible();
+  startFollowUp();
   completeStandardRecheck();
   const followUp = records().find(record => record.type === "feedback" && !record.assessmentOnly);
   expect(followUp.outcome.skinComparison.after.measurementVersion).toBe(OBSERVATION_MEASUREMENT_VERSION);
@@ -722,7 +724,8 @@ test("the scar-first result shows the separate breakout candidate and a basic al
   expect(top).toHaveTextContent("교체 검토");
   expect(top).toHaveTextContent("트러블용 후보 · 애크논크림");
   const secondary = screen.getByRole("region", { name: "함께 선택한 고민" });
-  const breakout = within(secondary).getByText("고름이 보이는 작은 뾰루지 · 턱·턱선").closest("li");
+  const breakout = within(secondary).getAllByRole("listitem").find(item =>
+    within(item).queryByText("고름이 보이는 작은 뾰루지 · 턱·턱선"));
   expect(within(breakout).getByRole("heading", { name: "애크논크림" })).toBeInTheDocument();
   expect(screen.getByRole("region", { name: "불편했던 기본 제품 대안" })).toBeInTheDocument();
   expect(screen.getByRole("region", { name: "함께 선택한 고민" })).toHaveTextContent("솟은 흉터처럼 보여요");
