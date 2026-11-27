@@ -30,9 +30,19 @@ test("an unidentified reaction pauses all used products and remembers their excl
   render(<BasicRoutineTrialScreen ownerKey="guest" onHome={jest.fn()} />);
   fireEvent.click(screen.getByRole("button", { name: "이 루틴으로 피부관리 시작해보기" }));
   fireEvent.click(screen.getByRole("button", { name: "불편한 반응 기록" }));
-  fireEvent.change(screen.getByLabelText("특정 제품을 바를 때 불편함이 반복됐나요?"), { target: { value: "unknown" } });
   fireEvent.click(screen.getByRole("button", { name: "사용 반응 저장" }));
   expect(screen.getByRole("heading", { name: "새로 시작한 제품을 잠시 중단해요" })).toBeVisible();
   const saved = JSON.parse(localStorage.getItem("dearsince:basic-routine-trial:v1:guest"));
   expect(saved.excludedIds).toEqual(Object.values(saved.ids));
+});
+
+test("the app singles out the only product changed before a reaction", () => {
+  render(<BasicRoutineTrialScreen ownerKey="guest" onHome={jest.fn()} />);
+  fireEvent.click(screen.getByRole("button", { name: "이 루틴으로 피부관리 시작해보기" }));
+  fireEvent.click(screen.getByRole("button", { name: "불편한 반응 기록" }));
+  const changes = screen.getByRole("group", { name: /불편해지기 전에/ });
+  fireEvent.click(changes.querySelector('input[type="checkbox"]'));
+  fireEvent.click(screen.getByRole("button", { name: "사용 반응 저장" }));
+  const saved = JSON.parse(localStorage.getItem("dearsince:basic-routine-trial:v1:guest"));
+  expect(saved.excludedIds).toEqual([saved.ids.cleanser]);
 });
