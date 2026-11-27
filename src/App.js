@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import { SkinPhotoStartScreen } from "./screens/SkinPhotoStartScreen";
 import { useSkinCoach } from "./hooks/useSkinCoach";
 import { Header } from "./components/Header";
@@ -346,6 +347,7 @@ export default function App() {
       </main>
 
       <Footer />
+      <Analytics />
     </div>
   );
 }
