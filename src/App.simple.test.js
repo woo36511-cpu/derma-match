@@ -685,7 +685,6 @@ test("first survey keeps the two comfortable serums entered before the result", 
   click("코스알엑스 나이아신아마이드 15 세럼 내 루틴에 담기");
   fireEvent.change(screen.getByRole("combobox", { name: "코스알엑스 나이아신아마이드 15 세럼 사용 반응" }), { target: { value: "comfortable" } });
   fireEvent.change(search, { target: { value: "테스트 재생 세럼" } });
-  fireEvent.click(screen.getByText("목록에 없는 제품 직접 추가"));
   fireEvent.change(screen.getByRole("combobox", { name: "제품 종류" }), { target: { value: "serum" } });
   click("입력한 제품 담기");
   fireEvent.change(screen.getByRole("combobox", { name: "테스트 재생 세럼 사용 반응" }), { target: { value: "comfortable" } });
