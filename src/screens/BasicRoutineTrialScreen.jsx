@@ -96,7 +96,7 @@ export function BasicRoutineTrialScreen({ ownerKey, blocked, currentRoutine, per
 
     <RoutineProductScroller layout="routine" productsByCategory={products}
       optionalSlots={["toner"]} userContext={{ ...context, level }} />
-    {!trial && !blocked && entries.length === 4 && <button type="button" className="care-secondary" onClick={() => start(products, level)}>4종 사용 시작</button>}
+    {!trial && !blocked && entries.length === 4 && <button type="button" className="care-secondary" onClick={() => start(products, level)}>이 루틴으로 피부관리 시작해보기</button>}
     {!trial && !blocked && entries.length < 4 && <p>현재 추천 기준을 충족한 4종 세트가 없어 시작을 보류해요.</p>}
 
     {trial && !irritation && editing === null && <div className="flex flex-wrap gap-2">
