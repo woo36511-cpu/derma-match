@@ -11,7 +11,7 @@ test("the four-product trial starts directly, persists, and opens its follow-up 
   const clock = jest.spyOn(Date, "now").mockReturnValue(startedAt);
   const page = <BasicRoutineTrialScreen ownerKey="guest" onHome={jest.fn()} />;
   const { unmount } = render(page);
-  fireEvent.click(screen.getByRole("button", { name: "4종 사용 시작" }));
+  fireEvent.click(screen.getByRole("button", { name: "이 루틴으로 피부관리 시작해보기" }));
   expect(screen.queryByRole("button", { name: "14일 피부 변화 확인" })).not.toBeInTheDocument();
   unmount();
 
