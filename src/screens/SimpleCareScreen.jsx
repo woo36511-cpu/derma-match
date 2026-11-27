@@ -1,3 +1,7 @@
+import { getIngredientFamilies, hasIntensiveActives } from "../utils/ingredientCompatibility";
+import { ProductCard } from "../components/ProductCard";
+import { RoutineAnswerFollowUp, RoutineReactionFollowUp } from "../components/RoutineResultRecovery";
+import { reviewedSunscreen } from "../data/reviewedSunscreen";
 import { RoutineRecheckNotice } from "../components/RoutineRecheckNotice";
 import { GuidedFacePhoto } from "../components/GuidedFacePhoto";
 import { avoidPersonalProduct, getPersonalRoutineActions } from "../utils/personalProductFeedback";
@@ -5,13 +9,14 @@ import { sunscreenOption } from "../data/targetedCareProducts";
 import { useVerifiedProductFormula } from "../hooks/useVerifiedProductFormula";
 import { getReactionIngredientClues } from "../utils/reactionIngredientFit";
 import { getRoutineLookupProduct } from "../utils/routineLookup";
+import { readOfficialFormula } from "../services/officialCosmetics";
 import ProductChangeReview from "../components/ProductChangeReview";
 import { readPricePreference } from "../data/pricePreference";
 import { getProductById, hasExfoliatingActive } from "../utils/productCatalog";
 import { getProductEvidenceStatus, RECOMMENDATION_RULE_VERSION } from "../utils/productEvidence";
 import { AcneCareReview } from "../components/AcneCareReview";
 import { buildAcneCareReview } from "../utils/acneCareReview";
-import { ADAPTIVE_SURVEY_VERSION } from "../data/adaptiveObservationSurvey";
+import { ADAPTIVE_SURVEY_VERSION, adaptiveObservationQuestions } from "../data/adaptiveObservationSurvey";
 import { CosmeticAddOnSection } from "../components/CosmeticAddOnSection";
 import { buildCosmeticAddOnPlan } from "../utils/cosmeticAddOnPlan";
 import { useMemo, useState } from "react";
@@ -38,6 +43,11 @@ import { MakeupCleansingSection } from "../components/MakeupCleansingSection";
 import { getMakeupCleansingPlan } from "../utils/makeupCleansingPlan";
 
 const emptyRoutine = [];
+const isGentleVerifiedCandidate = product => product.beginnerFriendly && product.evidence?.domesticFormulaVerified &&
+  product.evidence?.fullIngredientsVerified && product.fullIngredients?.length &&
+  !hasIntensiveActives(getIngredientFamilies(product)) &&
+  !getReactionIngredientClues(product.fullIngredients).some(clue => clue.family === "fragrance") &&
+  !product.fullIngredients.some(ingredient => /캐모마일꽃오일|구주소나무잎오일|라벤더오일|베르가모트오일|페퍼민트오일|리모넨|리날룰|limonene|linalool/i.test(ingredient));
 
 export function ObservationSummary({ profile }) {
   const assessment = profile.observationAssessment;
@@ -149,7 +159,7 @@ const secondaryConcernActions = {
   raised_scar: "만지거나 문지르지 말고, 주변 피부가 건조하면 편하게 쓰던 보습 크림을 바르고 아침에는 자외선 차단제를 써요.",
 };
 
-export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, serumStatus, otherRetained = [], advice, recommendationContext, ownedIds, notes, routineHasIrritation, makeupCleansing, replacement, tracking, currentEntries }) {
+export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, serumStatus, otherRetained = [], advice, recommendationContext, ownedIds, notes, routineHasIrritation, makeupCleansing, replacement, tracking, currentEntries, retainedCards = [], recovery }) {
   const heading = useScreenHeading("care-result");
   const concernFirst = plan.blockNewBasics || (plan.answers.concern !== "none" && !routineHasIrritation);
   const priority = concernFirst ? plan : advice;
@@ -237,6 +247,7 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
         {tracking && <button type="button" className="care-secondary" onClick={tracking}>이 관리 시작·변화 기록</button>}
       </section>}
     </section>
+    {recovery}
     {serumStatus?.skipBasicSerum && !plan.blockNewBasics && <section aria-label="지금 쓰는 세럼" className="care-panel space-y-1 text-sm">
       <p className="care-kicker">{serumStatus.hasIrritation ? "사용감 먼저 확인" : "그대로 쓸 제품"}</p>
       <h2 className="font-bold">{serumStatus.hasIrritation ? "세럼은 자극 여부부터 확인해요." : "편하게 쓰는 세럼은 그대로 유지해요."}</h2>
@@ -245,12 +256,13 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
         <p>지금 조합이 편하다면 기본 세럼을 하나 더 살 필요는 없어요.</p>
       </>}
     </section>}
-    {otherRetained.length > 0 && !plan.blockNewBasics && <section aria-label="그대로 쓸 화장품" className="care-panel space-y-1 text-sm">
+    {retainedCards.length > 0 && plan.answers.areaState !== "concerning" && <section aria-label="그대로 쓸 화장품" className="care-panel space-y-1 text-sm">
       <p className="care-kicker">그대로 쓸 제품</p>
       <h2 className="font-bold">편하게 쓰는 기초 제품도 유지해요.</h2>
-      <ul className="mt-2 grid gap-1">
-        {otherRetained.map(([slot, products]) => <li key={slot}><span className="font-semibold text-forest-700">{routineSlotNames[slot]}</span> · {products.join(" · ")}</li>)}
-      </ul>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {retainedCards.map(product => <ProductCard key={product.id} categoryKey={product.category === "moisturizer" ? "cream" : product.category}
+          product={{ ...product, ...getExactCatalogProduct(product), link: product.officialUrl, shortReason: product.retentionNote ?? "기록한 사용감 기준으로 유지할 제품이에요." }} />)}
+      </div>
     </section>}
     {notes}
     {(!concernFirst || plan.concernSummary || plan.pharmacy || plan.cosmetics?.length || plan.productNote || plan.recheck || plan.showFolliculitis || (plan.answers.shape === "deep" && plan.answers.medicine !== "none")) && <section className="care-panel space-y-3" aria-label="추가 고민 관리">
@@ -366,7 +378,7 @@ function updateCareAnswer(previous, id, value, options) {
   return cleanSimpleCareAnswers(next, options);
 }
 
-export function SimpleCareScreen({ profile, surveyAnswers, skinPhotoFeatures, initialRecord, onSave, onBack, onHome, onRestart, onReviewRoutine, onRecheck, currentRoutineEntries, routineReview, priorSerumPreference, personalProductFeedback, observation }) {
+export function SimpleCareScreen({ profile, surveyAnswers, reviseSurveyAnswer, skinPhotoFeatures, initialRecord, onSave, onBack, onHome, onRestart, onReviewRoutine, onRecheck, currentRoutineEntries, routineReview, priorSerumPreference, personalProductFeedback, observation }) {
   const [legacyExtent, setLegacyExtent] = useState(() => Boolean(initialRecord &&
     initialRecord.symptomAssessment?.ruleVersion !== SIMPLE_CARE_VERSION && !initialRecord.additionalCare?.breakoutExtent));
   const priorReactionProduct = surveyAnswers?.reactionProduct ? getRoutineLookupProduct(surveyAnswers.reactionProductId) : null;
@@ -376,6 +388,7 @@ export function SimpleCareScreen({ profile, surveyAnswers, skinPhotoFeatures, in
   const [record, setRecord] = useState(initialRecord ?? null);
   const [showResult, setShowResult] = useState(() => Boolean(initialRecord));
   const [saveError, setSaveError] = useState(false);
+  const [reactionStatuses, setReactionStatuses] = useState({});
   const intake = readRoutineSurveyContext(surveyAnswers?.routineIntake);
   const [legacySerumPreference, setSerumPreference] = useState(() => initialRecord?.routinePreferences?.serum ?? priorSerumPreference ?? "");
   const serumPreference = intake ? intake.serumPreference ?? "" : legacySerumPreference;
@@ -393,7 +406,11 @@ export function SimpleCareScreen({ profile, surveyAnswers, skinPhotoFeatures, in
   const ownedCatalog = (activeRoutineEntries ?? []).map(entryCatalog).filter(Boolean);
   const hasEarlierIrritation = entry => avoidPersonalProduct(entryCatalog(entry), personalProductFeedback);
   const comfortEntries = (reviewEntries ?? []).filter(entry => !hasEarlierIrritation(entry));
-  const currentRoutine = useMemo(() => getCurrentRoutineContext(reviewEntries), [reviewEntries]);
+  const recordedReactions = (activeRoutineEntries ?? []).filter(entry => entry.reaction === "irritation")
+    .map(getCurrentRoutineProduct).filter(Boolean);
+  const reactionUnresolved = recordedReactions.some(product => !["stopped", "settled"].includes(reactionStatuses[product.id]));
+  const currentRoutine = getCurrentRoutineContext(reviewEntries);
+  if (!reactionUnresolved) currentRoutine.irritated = [];
   const comfortRoutine = getCurrentRoutineContext(comfortEntries);
   const removedUnsafeSerum = Boolean(currentRoutine.rowsBySlot.serum?.length && !comfortRoutine.rowsBySlot.serum?.length);
   const effectiveSerumPreference = removedUnsafeSerum ? "" : serumPreference;
@@ -409,7 +426,7 @@ export function SimpleCareScreen({ profile, surveyAnswers, skinPhotoFeatures, in
   for (const slot of ["cleanser", "toner", "serum", "cream"]) {
     if (currentRoutine.rowsBySlot[slot]?.length && !comfortRoutine.rowsBySlot[slot]?.length) preferences.suppressedSlots.delete(slot);
   }
-  const allowNewBasics = assessment?.canRecommendBasics !== false && !plan.blockNewBasics && !currentRoutine.irritated.length;
+  const allowNewBasics = assessment?.canRecommendBasics !== false && !plan.blockNewBasics && !reactionUnresolved;
   const makeupCleansing = getMakeupCleansingPlan(surveyAnswers, {
     blocked: !allowNewBasics,
     sensitive: assessment?.isSensitive ?? true,
@@ -434,7 +451,40 @@ export function SimpleCareScreen({ profile, surveyAnswers, skinPhotoFeatures, in
   const replacementContext = { ...recommendationContext, isSensitive: true, basicOnly: true,
     irritated: [], suppressedSlots: new Set(), pricePreference: null, supportTonerForSerum: undefined };
   const replacement = mayCompareReplacement && ["cleanser", "cream", "toner", "serum"].includes(replacementSlot)
-    ? pickBestProductByCategory(replacementSlot, profile.hydrationLevel ?? 5, replacementContext) : null;
+    ? getRankedProductCandidates(replacementSlot, profile.hydrationLevel ?? 5, replacementContext)
+      .find(candidate => isGentleVerifiedCandidate(candidate) &&
+        !getReactionIngredientClues(candidate.fullIngredients).some(clue => reactionContext.reactionIngredientFamilies.includes(clue.family))) ?? null : null;
+  const canCompareRecordedReaction = !reactionUnresolved && !assessment?.currentIrritation &&
+    ["normal", "flakes"].includes(observedSkin?.surfaceObservation) &&
+    plan.answers.areaState !== "concerning" && plan.answers.response !== "worse";
+  const reactionAlternatives = {};
+  if (showResult && canCompareRecordedReaction) {
+    for (const product of recordedReactions) {
+      if (reactionStatuses[product.id] !== "stopped") continue;
+      const catalog = getExactCatalogProduct(product);
+      const slot = product.category === "moisturizer" ? "cream" : product.category;
+      const storedEntry = activeRoutineEntries.find(entry => entry.id === product.id);
+      const savedFormula = readOfficialFormula(storedEntry?.officialFormula, product);
+      const ingredients = catalog?.evidence?.domesticFormulaVerified && catalog.evidence?.fullIngredientsVerified
+        ? catalog.fullIngredients : savedFormula?.ingredients;
+      const families = getReactionIngredientClues(ingredients).map(clue => clue.family);
+      const knownFamilies = getIngredientFamilies(catalog);
+      if (slot === "sunscreen") {
+        if (product.id !== reviewedSunscreen.id && product.name !== reviewedSunscreen.name &&
+            !activeRoutineEntries.some(entry => getCurrentRoutineProduct(entry)?.id === reviewedSunscreen.id) &&
+            !reviewedSunscreen.formulaFamilies.some(family => knownFamilies.includes(family))) reactionAlternatives[product.id] = reviewedSunscreen;
+        continue;
+      }
+      if (!["cleanser", "toner", "serum", "cream"].includes(slot)) continue;
+      const level = catalog?.hydrationLevel ?? profile.hydrationLevel ?? 5;
+      reactionAlternatives[product.id] = getRankedProductCandidates(slot, level, {
+        ...replacementContext, reactionIngredientFamilies: [...new Set([...families, ...reactionContext.reactionIngredientFamilies])],
+      }).find(candidate => isGentleVerifiedCandidate(candidate) &&
+        Math.abs(candidate.hydrationLevel - level) <= (catalog ? 1 : 2) &&
+        !getReactionIngredientClues(candidate.fullIngredients).some(clue =>
+          families.includes(clue.family)));
+    }
+  }
   const historical = !reactionProduct && initialRecord?.routine && initialRecord.recommendationAssessment?.ruleVersion !== RECOMMENDATION_RULE_VERSION &&
     JSON.stringify(cleanSimpleCareAnswers(initialRecord.additionalCare ?? {}, careQuestionOptions)) === JSON.stringify(answers) &&
     (initialRecord.routinePreferences?.serum ?? priorSerumPreference ?? "") === serumPreference &&
@@ -444,6 +494,21 @@ export function SimpleCareScreen({ profile, surveyAnswers, skinPhotoFeatures, in
       selectionEvidence: initialRecord.recommendationAssessment?.selectionEvidence ?? null, isHistorical: true }
     : buildDynamicRoutine(profile.hydrationLevel, recommendationContext);
   const otherRetained = Object.entries(preferences.retained).filter(([slot]) => slot !== "serum");
+  const retainedNames = new Set([...Object.values(preferences.retained).flat(), ...serumStatus.keep.map(entry => getCurrentRoutineProduct(entry)?.name)]);
+  const retainedCards = comfortEntries.filter(entry => ["comfortable", "later_oil"].includes(entry.reaction))
+    .map(getCurrentRoutineProduct).filter(product => product && (retainedNames.has(product.name) || product.category === "sunscreen"));
+  if (!assessment?.currentIrritation) {
+    retainedCards.push(...recordedReactions.filter(product => reactionStatuses[product.id] === "settled")
+      .map(product => ({ ...product, retentionNote: "현재는 편안하다고 답했어요. 이전 불편 기록이 있는 제품이에요." })));
+  }
+  const followUpIds = new Set();
+  if (profile.surveyVersion === ADAPTIVE_SURVEY_VERSION && assessment?.canRecommendBasics === false && !assessment.currentIrritation) {
+    if (!["normal", "flakes"].includes(observedSkin?.surfaceObservation)) followUpIds.add("surfaceObservation");
+    if (profile.skinState?.oiliness == null && profile.skinState?.dryness == null) {
+      followUpIds.add("observedOil"); followUpIds.add("drynessArea");
+    }
+  }
+  const followUpQuestions = adaptiveObservationQuestions.filter(question => followUpIds.has(question.id));
   const pastIrritationProduct = ownedCatalog.find(product => avoidPersonalProduct(product, personalProductFeedback));
   const advice = pastIrritationProduct && allowNewBasics ? {
     title: "이전에 불편했던 제품부터 점검해요.",
@@ -532,10 +597,18 @@ export function SimpleCareScreen({ profile, surveyAnswers, skinPhotoFeatures, in
       <button type="button" className="font-semibold text-emerald-900 underline" onClick={onRestart}>검수된 제품 정보로 다시 확인</button>
     </div>}
     </>;
+    const recovery = <>
+      <RoutineReactionFollowUp rows={recordedReactions} statuses={reactionStatuses} alternatives={reactionAlternatives} canCompare={canCompareRecordedReaction}
+        onStatus={(id, status) => setReactionStatuses(previous => ({ ...previous, [id]: status }))} />
+      {reviseSurveyAnswer && <RoutineAnswerFollowUp questions={followUpQuestions} answers={surveyAnswers} onAnswer={reviseSurveyAnswer}
+        changed={Boolean(record && surveyAnswers !== record.surveyAnswers && ["surfaceObservation", "observedOil", "drynessArea"].some(id => surveyAnswers[id] !== record.surveyAnswers?.[id]))}
+        onSave={() => save()} photoFeatures={skinPhotoFeatures} />}
+    </>;
     return <div className="space-y-6">
-      <SimpleCareResult currentEntries={activeRoutineEntries} profile={profile} routine={displayRoutine} otherRetained={otherRetained} advice={advice} recommendationContext={recommendationContext} ownedIds={currentRoutine.ownedProductIds} plan={displayPlan} serumStatus={visibleSerumStatus} onReviewRoutine={saveError ? undefined : onReviewRoutine} notes={notes} replacement={replacement} tracking={openTracking} routineHasIrritation={currentRoutine.irritated.length > 0} makeupCleansing={makeupCleansing} />
+      <SimpleCareResult recovery={recovery} retainedCards={retainedCards} currentEntries={activeRoutineEntries} profile={profile} routine={displayRoutine} otherRetained={otherRetained} advice={advice} recommendationContext={recommendationContext} ownedIds={currentRoutine.ownedProductIds} plan={displayPlan} serumStatus={visibleSerumStatus} onReviewRoutine={saveError ? undefined : onReviewRoutine} notes={notes} replacement={replacement} tracking={openTracking} routineHasIrritation={reactionUnresolved} makeupCleansing={makeupCleansing} />
     {(profile.surveyVersion !== ADAPTIVE_SURVEY_VERSION || displayRoutine.isHistorical) && onRestart && <button onClick={onRestart} className="rounded-xl border px-4 py-3">새 기준으로 다시 확인</button>}
-    {allowNewBasics && <RoutineRecheckNotice onRecheck={saveError ? undefined : onRecheck} />}
+    {allowNewBasics ? <RoutineRecheckNotice onRecheck={saveError ? undefined : onRecheck} />
+      : !saveError && onRecheck && <button type="button" className="care-secondary" onClick={onRecheck}>현재 피부 상태 재검사</button>}
     {allowNewBasics && <CosmeticAddOnSection context={cosmeticContext} initialAnswers={cosmeticAnswers} onApply={save} />}
     {(offers.length > 0 || tracked.length > 0) && <section id="care-result-tracking" className="care-panel space-y-3" aria-label="관리 변화 기록">
       <h2 className="font-bold">제품과 고민별로 변화 기록하기</h2>

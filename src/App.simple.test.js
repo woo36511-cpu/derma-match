@@ -286,6 +286,13 @@ test("unknown observations are saved as unknown and never become a normal-skin r
   expect(Object.values(records()[0].skinMeasurement.values).every(v => v === null)).toBe(true);
   cleanup(); render(<App />); click("최근 결과 다시 보기");
   expect(screen.queryByRole("region", { name: "피부타입별 기본 화장품" })).not.toBeInTheDocument();
+  const followUp = within(screen.getByRole("region", { name: "추천에 필요한 추가 답변" }));
+  for (const [id, value] of [["surfaceObservation", "normal"], ["observedOil", "tzone"]]) {
+    const option = observationQuestions.find(question => question.id === id).options.find(item => item.value === value);
+    fireEvent.click(followUp.getByRole("button", { name: option.label }));
+  }
+  click("추가 답변 저장하고 추천 갱신");
+  expect(screen.getByRole("region", { name: "피부타입별 기본 화장품" })).toBeVisible();
 });
 test("current surface irritation overrides a reassuring extra-concern answer", () => {
   render(<App />); baseSurvey({ surfaceObservation: "irritated" }); extraCare({ concern: "acne", shape: "blackhead", areaState: "comfortable", medicine: "none" });
@@ -694,6 +701,9 @@ test("first survey keeps the two comfortable serums entered before the result", 
   extraCare({ concern: "none" });
   const keep = within(screen.getByRole("region", { name: "지금 쓰는 세럼" }));
   expect(keep.getByText(/코스알엑스 나이아신아마이드 15 세럼 · 테스트 재생 세럼/)).toBeVisible();
+  const cards = within(screen.getByRole("region", { name: "그대로 쓸 화장품" }));
+  expect(cards.getByRole("article", { name: "코스알엑스 나이아신아마이드 15 세럼" })).toBeVisible();
+  expect(cards.getByRole("article", { name: "테스트 재생 세럼" })).toBeVisible();
   expect(records()[0].routine.serum).toBeNull();
   expect(records()[0].productUsagePlan.some(product => product.category === "serum")).toBe(false);
 });
@@ -704,6 +714,24 @@ test("a first-time visitor can keep an unnamed serum without using product searc
   expect(screen.getByText("편하게 쓰는 세럼은 그대로 유지해요.")).toBeVisible();
   expect(records()[0].routine.serum).toBeNull();
   expect(records()[0].routinePreferences.serum).toBe("keep");
+});
+
+test("a previous sunscreen reaction offers a verified alternative only after the current flare has settled", () => {
+  const original = "라운드랩 자작나무 수분 선크림";
+  render(<App />);
+  baseSurvey({}, { use: "yes", setup: () => {
+    fireEvent.change(screen.getByRole("searchbox", { name: "브랜드나 제품명" }), { target: { value: original } });
+    click(original + " 내 루틴에 담기");
+    fireEvent.change(screen.getByRole("combobox", { name: original + " 사용 반응" }), { target: { value: "irritation" } });
+  } });
+  extraCare({ concern: "none" });
+  const recovery = within(screen.getByRole("region", { name: "현재 제품 반응 다시 확인" }));
+  const status = recovery.getByRole("combobox", { name: original + " 지금 상태" });
+  const alternative = /히알루-시카 워터핏 선 세럼/;
+  fireEvent.change(status, { target: { value: "ongoing" } });
+  expect(recovery.queryByRole("article", { name: alternative })).not.toBeInTheDocument();
+  fireEvent.change(status, { target: { value: "stopped" } });
+  expect(recovery.getByRole("article", { name: alternative })).toBeVisible();
 });
 
 test("product-specific stinging shows a same-stage basic alternative and no new acne medicine", () => {

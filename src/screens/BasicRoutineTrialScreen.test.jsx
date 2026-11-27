@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { BasicRoutineTrialScreen } from "./BasicRoutineTrialScreen";
 
 afterEach(() => {
@@ -49,4 +49,20 @@ test("the app singles out the only product changed before a reaction", () => {
   fireEvent.click(screen.getByRole("button", { name: "사용 반응 저장" }));
   const saved = JSON.parse(localStorage.getItem("dearsince:basic-routine-trial:v1:guest"));
   expect(saved.excludedIds).toEqual([saved.ids.cleanser]);
+});
+
+test("the trial can compare and save a different sunscreen after a recorded reaction", () => {
+  const page = <BasicRoutineTrialScreen ownerKey="guest" onHome={jest.fn()} />;
+  const { unmount } = render(page);
+  fireEvent.click(screen.getByRole("button", { name: "이 루틴으로 피부관리 시작해보기" }));
+  fireEvent.click(screen.getByRole("button", { name: "불편한 반응 기록" }));
+  const changed = within(screen.getByRole("group", { name: /불편해지기 전에/ }));
+  fireEvent.click(changed.getByRole("checkbox", { name: /자작나무 수분 선크림/ }));
+  fireEvent.click(screen.getByRole("button", { name: "사용 반응 저장" }));
+  const replacement = /히알루-시카 워터핏 선 세럼/;
+  expect(screen.getByRole("heading", { name: replacement })).toBeVisible();
+  fireEvent.click(screen.getByRole("button", { name: "불편함이 가라앉았어요 · 대체품으로 이어가기" }));
+  unmount();
+  render(page);
+  expect(screen.getByRole("heading", { name: replacement })).toBeVisible();
 });
