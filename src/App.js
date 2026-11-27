@@ -139,10 +139,10 @@ export default function App() {
 
       <main className={`max-w-5xl mx-auto px-4 sm:px-6 ${step === "start" ? "pt-4 pb-10 sm:pt-6 sm:pb-14" : "py-10 sm:py-14"}`}>
         {step === "symptomCheck" && <SymptomCheckScreen check={symptomCheck} />}
-        {step === "symptomResult" && <SymptomResultScreen check={symptomCheck} setStep={setStep} currentRoutine={currentRoutineContext} personalProductFeedback={personalProductFeedback}
+        {step === "symptomResult" && <SymptomResultScreen check={symptomCheck} setStep={setStep} currentRoutine={currentRoutineContext} personalProductFeedback={personalProductFeedback} routineReview={routineReview}
           onRecordConcern={symptomCheck.returningToConcernCheck ? concernCheck.resume : concernCheck.canStart ? concernCheck.start : undefined} />}
         {step === "concernCheck" && <ConcernCheckScreen check={concernCheck} onHome={() => setStep("start")} onDetailedFeedback={startSavedFeedback} />}
-        {step === "moisturizerObservation" && <MoisturizerObservationScreen key={JSON.stringify([account.user?.id, moisturizerObservation.record?.id, moisturizerObservation.offer?.kind])} observation={moisturizerObservation} onRecommend={startSimpleSkinCare} onHome={() => setStep("start")} />}
+        {step === "moisturizerObservation" && <MoisturizerObservationScreen key={JSON.stringify([account.user?.id, moisturizerObservation.record?.id, moisturizerObservation.offer?.kind])} observation={moisturizerObservation} routineReview={routineReview} onRecommend={startSimpleSkinCare} onHome={() => setStep("start")} />}
         {step === "start" && (
           <StartScreen
             startCheckedFlow={startCheckedFlow}
@@ -297,6 +297,8 @@ export default function App() {
           <FeedbackScreen
             continueFeedback={continueFeedback}
             onSymptomRecheck={startSymptomRecheck}
+            routineReview={routineReview}
+            safetyBlocked={feedbackSafety.blocked || routineReview.safetyBlocked}
             feedbackTargetProducts={feedbackTargetProducts}
             concernTracking={concernTracking}
             productUsageFeedback={productUsageFeedback}
