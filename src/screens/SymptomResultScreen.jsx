@@ -1,3 +1,5 @@
+import { RoutineProductLookup } from "../components/RoutineProductLookup";
+import { DetailDisclosure } from "../components/DetailDisclosure";
 import React, { useLayoutEffect } from "react";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { BreakoutPatternGuide } from "../components/BreakoutPatternGuide";
@@ -12,7 +14,7 @@ import { SYMPTOM_RULE_VERSION } from "../utils/symptomAssessment";
 import { buildFirstVisitPlan } from "../utils/firstVisitCare";
 import { SymptomCareSummary } from "../components/SelfCarePlan";
 
-export function SymptomResultScreen({ check, setStep, onRecordConcern, currentRoutine, personalProductFeedback }) {
+export function SymptomResultScreen({ check, setStep, onRecordConcern, currentRoutine, personalProductFeedback, routineReview }) {
   const assessment = check.assessment;
   const guided = assessment?.guidedCare === true;
   useLayoutEffect(() => {
@@ -30,6 +32,10 @@ export function SymptomResultScreen({ check, setStep, onRecordConcern, currentRo
     </> : assessment.guidedCare ? <SymptomAssessmentCard assessment={assessment} hideObservations={showBreakoutGuide} /> : <SymptomCareSummary assessment={assessment} />}
     {guided && !["emergency", "urgent", "clinic"].includes(assessment.urgency) && <RecentProductCheck answers={assessment.answers} />}
     {(!check.historical || assessment.ruleVersion === SYMPTOM_RULE_VERSION) && <CarePrioritySummary priorities={buildCarePriorities(assessment, plan)} />}
+    {routineReview && !check.historical && !["emergency", "urgent", "clinic"].includes(assessment.urgency) &&
+      <DetailDisclosure title="쓰던 화장품과 피부 반응 점검하기">
+        <RoutineProductLookup {...routineReview} safetyBlocked={assessment.blockRoutine || routineReview.safetyBlocked} />
+      </DetailDisclosure>}
     {showBreakoutGuide && <BreakoutPatternGuide assessment={assessment} />}
     {plan?.pharmacy && <ProductReactionCheck key={plan.pharmacy.name} productName={plan.pharmacy.name} onRecheck={reaction =>
       check.begin("guidedCare", { concern: assessment.answers.concern, secondaryConcerns: assessment.answers.secondaryConcerns, product: plan.pharmacy.name, reaction })

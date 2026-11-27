@@ -1,3 +1,6 @@
+import { GuidedFacePhoto } from "../components/GuidedFacePhoto";
+import { RoutineReactionComparison } from "../components/CurrentRoutineReview";
+import { RoutineProductLookup } from "../components/RoutineProductLookup";
 import { useState } from "react";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { SectionTitle } from "../components/SectionTitle";
@@ -56,7 +59,7 @@ function ObservationHistory({ history, onSelect }) {
   </div>;
 }
 
-export function MoisturizerObservationScreen({ observation, onHome, onRecommend }) {
+export function MoisturizerObservationScreen({ observation, onHome, onRecommend, routineReview }) {
   const [days, setDays] = useState("");
   const [area, setArea] = useState("");
   const [comfort, setComfort] = useState("");
@@ -74,6 +77,9 @@ export function MoisturizerObservationScreen({ observation, onHome, onRecommend 
   const change = report && config ? describeObservationChange(study, report, config) : null;
   const comfortChange = report && study ? describeComfortChange(study, report) : null;
   const reaction = report?.reaction;
+  const reportedReaction = answers.reaction || reaction;
+  const knowsUsedProduct = product && (answers.used || report?.used) === "recommended";
+  const recordedIrritation = ["irritation", "stopped_irritation"].includes(reportedReaction);
   const selected = (id, value) => setAnswers(previous => ({ ...previous, [id]: value }));
   const afterDays = numberOrNull(answers.days);
   const canFollow = (isObservationValue(config, afterDays) || (!config?.legacy && answers.days === "unknown")) &&
@@ -146,6 +152,12 @@ export function MoisturizerObservationScreen({ observation, onHome, onRecommend 
         ]} />
         <PrimaryButton disabled={!canFollow} onClick={() => observation.followUp({ ...answers, days: afterDays, comfort: numberOrNull(answers.comfort) })}>{isEarly ? "중간 기록 저장" : "변화 기록 저장"}</PrimaryButton>
       </div>}
+      {knowsUsedProduct ? <RoutineReactionComparison rows={[{ product, entry: {
+        id: product.id, reaction: recordedIrritation ? "irritation" : null,
+      } }]} safetyBlocked={routineReview?.safetyBlocked} /> : <GuidedFacePhoto />}
+      {routineReview && <DetailDisclosure title="다른 화장품도 점검하기">
+        <RoutineProductLookup {...routineReview} />
+      </DetailDisclosure>}
       {observation.signedIn && <ConsentField checked={Boolean(study.analysisConsent)} onChange={observation.setAnalysisConsent} legacy={config.legacy} cosmetic={config.cosmetic} />}
     </>}
     {!config && <>
