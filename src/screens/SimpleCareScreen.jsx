@@ -366,7 +366,7 @@ function updateCareAnswer(previous, id, value, options) {
   return cleanSimpleCareAnswers(next, options);
 }
 
-export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave, onBack, onHome, onRestart, onReviewRoutine, onRecheck, currentRoutineEntries, routineReview, priorSerumPreference, personalProductFeedback, observation }) {
+export function SimpleCareScreen({ profile, surveyAnswers, skinPhotoFeatures, initialRecord, onSave, onBack, onHome, onRestart, onReviewRoutine, onRecheck, currentRoutineEntries, routineReview, priorSerumPreference, personalProductFeedback, observation }) {
   const [legacyExtent, setLegacyExtent] = useState(() => Boolean(initialRecord &&
     initialRecord.symptomAssessment?.ruleVersion !== SIMPLE_CARE_VERSION && !initialRecord.additionalCare?.breakoutExtent));
   const priorReactionProduct = surveyAnswers?.reactionProduct ? getRoutineLookupProduct(surveyAnswers.reactionProductId) : null;
@@ -555,14 +555,14 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
       setCosmeticAnswers(null);
     }
   };
-  return <SimpleCareQuestion routineReview={routineReview} serumPreference={serumPreference} onSerumPreference={intake ? undefined : setSerumPreference} question={question} index={index} total={questions.length} answer={answers[question.id]} locations={answers.locations}
+  return <SimpleCareQuestion skinPhotoFeatures={skinPhotoFeatures} routineReview={routineReview} serumPreference={serumPreference} onSerumPreference={intake ? undefined : setSerumPreference} question={question} index={index} total={questions.length} answer={answers[question.id]} locations={answers.locations}
     onAnswer={value => changeAnswer(question.id, value)}
     onLocation={(shape, value) => changeAnswer("locations", { ...answers.locations, [shape]: value })}
     onPrev={() => index === 0 ? onBack() : setIndex(index - 1)}
     onNext={() => index === questions.length - 1 ? save() : setIndex(index + 1)} />;
 }
 
-export function SimpleCareQuestion({ question, index, total, answer, locations, onAnswer, onLocation, onPrev, onNext, serumPreference, onSerumPreference, routineReview }) {
+export function SimpleCareQuestion({ question, skinPhotoFeatures, index, total, answer, locations, onAnswer, onLocation, onPrev, onNext, serumPreference, onSerumPreference, routineReview }) {
   const heading = useScreenHeading(question.id);
   const selected = question.multiple ? answer ?? [] : [];
   const isSelected = value => question.multiple ? selected.includes(value) : answer === value;
@@ -573,7 +573,7 @@ export function SimpleCareQuestion({ question, index, total, answer, locations, 
       <p className="care-kicker">피부 설문 · 추가 고민 {index + 1}/{total}</p>
       <h1 id="care-question" ref={heading} tabIndex={-1} className="scroll-mt-28 text-2xl font-bold leading-snug tracking-tight focus:outline-none sm:text-3xl">{question.q}</h1>
       {question.hint && <p className="text-sm text-slate-600">{question.hint}</p>}
-      {question.visual && <><AcnePhotoReference /><GuidedFacePhoto key={question.id} renderConfirmation={features => {
+      {question.visual && <><AcnePhotoReference /><GuidedFacePhoto key={question.id} initialFeatures={skinPhotoFeatures} renderConfirmation={features => {
         if (question.id !== "shapes" || !features.includes("bumps")) return null;
         const options = question.options.filter(option => ["closed", "red", "pus", "deep"].includes(option.value));
         return <div className="space-y-2">

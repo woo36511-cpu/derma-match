@@ -1,7 +1,7 @@
 import { GuidedFacePhoto } from "./GuidedFacePhoto";
 
-export function SkinPhotoSurfaceCheck({ question, answer, onAnswer }) {
-  return <GuidedFacePhoto key={question.id} renderConfirmation={features => {
+export function SkinPhotoSurfaceCheck({ question, answer, onAnswer, initialFeatures }) {
+  return <GuidedFacePhoto key={question.id} initialFeatures={initialFeatures} renderConfirmation={features => {
     if (!["surfaceObservation", "surfaceCheck"].includes(question.id)) return null;
     const options = question.options.filter(option =>
       (option.value === "flakes" && features.includes("flaking")) ||

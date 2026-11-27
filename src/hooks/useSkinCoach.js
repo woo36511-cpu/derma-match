@@ -74,6 +74,7 @@ export function useSkinCoach() {
   const [baseLevel, setBaseLevel] = useState(5);
   const [surveyAnswers, setSurveyAnswers] = useState({});
   const [surveyIndex, setSurveyIndex] = useState(0);
+  const [skinPhotoFeatures, setSkinPhotoFeatures] = useState([]);
   const [simpleMode, setSimpleMode] = useState(false);
   const [simpleRecord, setSimpleRecord] = useState(null);
   const [activeJourneyId, setActiveJourneyId] = useState(null);
@@ -189,6 +190,7 @@ export function useSkinCoach() {
   useEffect(() => {
     setStep("start");
     setSimpleMode(false); setSimpleRecord(null);
+    setSkinPhotoFeatures([]);
     setActiveJourneyId(null);
     setViewJourneyId(null);
     setSurveyAnswers({});
@@ -634,6 +636,7 @@ export function useSkinCoach() {
 
   const resetFlow = () => {
     setSimpleMode(false); setSimpleRecord(null);
+    setSkinPhotoFeatures([]);
     setFeedbackDraft(null);
     setAnswers({});
     setSurveyAnswers({});
@@ -787,13 +790,19 @@ export function useSkinCoach() {
 
   const startCheckedFlow = destination => {
     setSimpleMode(false); setSimpleRecord(null);
+    setSkinPhotoFeatures([]);
     symptomCheck.begin(destination);
   };
 
   const startSimpleSkinCare = () => {
     setSimpleMode(true); setSimpleRecord(null);
+    setSkinPhotoFeatures([]);
     setSurveyAnswers({}); setSurveyIndex(0); setMainConcern(""); setIssueAnswers({});
-    setActiveJourneyId(null); setStep("routineIntake");
+    setActiveJourneyId(null); setStep("skinPhotoStart");
+  };
+  const continueFromSkinPhoto = features => {
+    setSkinPhotoFeatures(features);
+    setStep("routineIntake");
   };
   const completeRoutineIntake = (use, serumPreference, checkedEntries = currentRoutine.entries, routineScope) => {
     const routineIntake = buildRoutineSurveyContext(use, checkedEntries, serumPreference, routineScope);
@@ -811,6 +820,7 @@ export function useSkinCoach() {
     setSimpleRecord(record); setActiveJourneyId(record.journeyId); setViewJourneyId(null);
   };
   const openSavedSurveyResult = () => {
+    setSkinPhotoFeatures([]);
     if (savedSurvey?.source === "simple") {
       setSimpleMode(true); setSimpleRecord(savedSurvey); setSurveyAnswers(savedSurvey.surveyAnswers);
       setActiveJourneyId(savedSurvey.journeyId); setStep("simpleCare");
@@ -824,7 +834,7 @@ export function useSkinCoach() {
   };
 
   return {
-    personalProductFeedback, ownerKey, currentRoutine, currentRoutineContext, simpleMode, simpleRecord, startSimpleSkinCare, completeRoutineIntake, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
+    skinPhotoFeatures, continueFromSkinPhoto, personalProductFeedback, ownerKey, currentRoutine, currentRoutineContext, simpleMode, simpleRecord, startSimpleSkinCare, completeRoutineIntake, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
     symptomCheck, concernCheck, moisturizerObservation, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck,
     continueFeedback: () => feedbackNeedsSymptomReview(answers) ? symptomCheck.begin("recheck") : setStep("recheck"),
     account,
