@@ -4,7 +4,7 @@ import { RoutineProductScroller } from "../components/RoutineProductScroller";
 import { getProductById } from "../utils/productCatalog";
 import { buildDynamicRoutine, getRankedProductCandidates } from "../utils/routineRecommendation";
 import { getIngredientFamilies } from "../utils/ingredientCompatibility";
-import { getReactionIngredientClues } from "../utils/reactionIngredientFit";
+import { getReactionIngredientClues, getReactionIngredientFit } from "../utils/reactionIngredientFit";
 import { useScreenHeading } from "../hooks/useScreenHeading";
 
 const slots = { cleanser: "클렌저", toner: "토너", serum: "세럼", cream: "크림" };
@@ -30,7 +30,13 @@ export function BasicRoutineTrialScreen({ ownerKey, blocked, currentRoutine, per
   const [draft, setDraft] = useState(emptyCheck);
   const [saveError, setSaveError] = useState(false);
   const excludedIds = trial?.excludedIds ?? [];
-  const context = { ...basicContext, personalProductFeedback };
+  const reactionIngredientFamilies = trial?.reactionIngredientFamilies ?? [];
+  const context = { ...basicContext, personalProductFeedback, reactionIngredientFamilies };
+  const isReplacementAllowed = product => !excludedIds.includes(product.id) && (
+    !reactionIngredientFamilies.length || (product.evidence?.domesticFormulaVerified &&
+      product.evidence?.fullIngredientsVerified && product.fullIngredients?.length &&
+      getReactionIngredientFit(product, context) === 0)
+  );
   const avoidedIds = new Set([...excludedIds, ...(currentRoutine?.ownedProductIds ?? [])]);
   const level = trial?.level ?? 5;
   const products = trial
@@ -47,6 +53,7 @@ export function BasicRoutineTrialScreen({ ownerKey, blocked, currentRoutine, per
   const adjustedCream = nextLevel !== level && cream && latest.used.includes("cream")
     ? getRankedProductCandidates("cream", nextLevel, { ...context, ownedProductIds: new Set([...excludedIds, cream.id]),
       observedSkin: { moisturizerUse: latest.feel === "dry" ? "persistent" : "heavy" } })
+      .filter(isReplacementAllowed)
       .find(candidate => latest.feel === "dry" ? candidate.careProfile.hydrationSupport > cream.careProfile.hydrationSupport
         : candidate.careProfile.lightweightFit > cream.careProfile.lightweightFit)
     : null;
@@ -75,10 +82,26 @@ export function BasicRoutineTrialScreen({ ownerKey, blocked, currentRoutine, per
   };
   const start = (nextProducts, nextBand, excluded = excludedIds) => save({
     excludedIds: excluded,
+    reactionIngredientFamilies,
     startedAt: Date.now(), level: nextBand,
     history: trial ? [...(trial.history ?? []), { startedAt: trial.startedAt, ids: trial.ids, check: trial.check }].slice(-12) : [],
     ids: Object.fromEntries(Object.entries(nextProducts).map(([slot, product]) => [slot, product?.id ?? null])),
   });
+  const saveCheck = () => {
+    const check = { ...draft, stage: editing };
+    if (check.reaction !== "irritation") {
+      save({ ...trial, check });
+      return;
+    }
+    const flagged = entries.filter(([slot]) => check.used.includes(slot) &&
+      (check.source === "unknown" || check.source === slot));
+    const clues = flagged.flatMap(([, product]) => getReactionIngredientClues(product.fullIngredients));
+    save({
+      ...trial, check,
+      excludedIds: [...new Set([...excludedIds, ...flagged.map(([, product]) => product.id)])],
+      reactionIngredientFamilies: [...new Set([...reactionIngredientFamilies, ...clues.map(clue => clue.family)])],
+    });
+  };
   const open = stage => {
     setDraft({ ...emptyCheck, used: latest?.used ?? entries.map(([slot]) => slot), reaction: stage === "early" ? "irritation" : "" });
     setEditing(stage);
@@ -94,7 +117,9 @@ export function BasicRoutineTrialScreen({ ownerKey, blocked, currentRoutine, per
       {trial && <p className="text-sm text-slate-700">사용 시작 {dateLabel(trial.startedAt)} · 7일 확인 {dateLabel(trial.startedAt + day * 7)} · 14일 확인 {dateLabel(trial.startedAt + day * 14)}</p>}
     </section>
 
-    <RoutineProductScroller layout="routine" productsByCategory={products}
+    <RoutineProductScroller layout="routine" productsByCategory={irritation ? Object.fromEntries(entries.filter(([slot]) =>
+      latest.used.includes(slot) && !reactionProducts.some(([flaggedSlot]) => flaggedSlot === slot),
+    )) : products}
       optionalSlots={["toner"]} userContext={{ ...context, level }} />
     {!trial && entries.length === 4 && <button type="button" className="care-secondary" aria-describedby={blocked ? "basic-routine-start-deferred" : undefined} onClick={() => start(products, level)}>이 루틴으로 피부관리 시작해보기</button>}
     {!trial && entries.length < 4 && <p>현재 추천 기준을 충족한 4종 세트가 없어 시작을 보류해요.</p>}
@@ -107,7 +132,7 @@ export function BasicRoutineTrialScreen({ ownerKey, blocked, currentRoutine, per
 
     {editing !== null && <form className="care-panel space-y-4" onSubmit={event => {
       event.preventDefault();
-      if (enough) save({ ...trial, check: { ...draft, stage: editing } });
+      if (enough) saveCheck();
     }}>
       <fieldset className="space-y-2">
         <legend className="font-bold">실제로 사용한 제품을 고르세요</legend>
@@ -154,7 +179,7 @@ export function BasicRoutineTrialScreen({ ownerKey, blocked, currentRoutine, per
 
     {irritation && <section className="care-panel space-y-2" aria-label="불편한 제품 확인">
       <h2 className="font-bold">{latest.source === "unknown" ? "새로 시작한 제품을 잠시 중단해요" : `${products[latest.source]?.name ?? "해당 제품"}을 우선 제외해요`}</h2>
-      <p>사용 시점과 전성분을 함께 참고해요. 성분표만으로 불편의 원인을 확정하기는 어려워요.</p>
+      <p>불편했던 제품은 추천에서 잠시 제외해요. 아래 성분은 확인할 후보이며, 이 기록만으로 알레르기 원인을 확정하기는 어려워요.</p>
       {reactionProducts.map(([slot, product]) => <details key={slot}><summary className="font-semibold">{product.name} 전성분</summary>
         <p className="mt-1 text-sm">{product.fullIngredients?.join(", ")}</p>
         {getReactionIngredientClues(product.fullIngredients).map(clue => <p key={clue.family} className="text-sm">확인할 성분 · {clue.ingredient}</p>)}
@@ -169,7 +194,8 @@ export function BasicRoutineTrialScreen({ ownerKey, blocked, currentRoutine, per
     {early && !irritation && <p className="care-panel">7일 사용감을 저장했어요. 14일 확인에서 보습감과 남은 고민을 살펴봐요.</p>}
     {resultReady && <section className="care-panel space-y-3">
       <h2 className="font-bold">다음 루틴</h2>
-      <p>{adjustedCream ? "써본 제품 중 편했던 단계는 유지하고 크림 한 가지만 비교해요."
+      <p>{adjustedCream ? (latest.feel === "dry" ? "볼이나 얼굴이 당겼다면 지금보다 보습감이 높은 크림을 비교해요."
+        : "무겁거나 번들거렸다면 지금보다 가벼운 크림을 비교해요.")
         : latest.feel === "fits" ? "사용감이 편했던 제품은 유지해요."
         : latest.feel === "mixed" ? "당기는 볼에 크림을 중심으로 바르고, 번들거리는 이마·코에는 사용량을 줄여 사용감을 비교해요."
         : "현재 답변에 맞는 크림 교체를 보류하고 사용감을 조금 더 확인해요."}</p>
@@ -178,8 +204,8 @@ export function BasicRoutineTrialScreen({ ownerKey, blocked, currentRoutine, per
         <button type="button" className="care-secondary" onClick={() => start({ ...products, cream: adjustedCream }, nextLevel)}>이 크림으로 다음 사용 시작</button>
       </>}
     </section>}
-    {resultReady && latest.feel === "fits" && latest.change !== "worse" && latest.used.includes("serum") && !blocked &&
-      <CosmeticAddOnSection key={trial.startedAt} context={cosmeticContext} initialAnswers={trial.cosmeticAnswers}
+    {resultReady && ["fits", "dry", "heavy", "mixed"].includes(latest.feel) && !adjustedCream && latest.change !== "worse" && latest.used.includes("serum") && !blocked &&
+      <CosmeticAddOnSection key={trial.startedAt} context={{ ...cosmeticContext, allowProduct: isReplacementAllowed }} initialAnswers={trial.cosmeticAnswers}
         onApply={answers => save({ ...trial, cosmeticAnswers: answers })}
         onUseCandidate={product => start({ ...products, serum: product }, level)} />}
     {trial?.history?.length > 0 && <details className="care-panel">
