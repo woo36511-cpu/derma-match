@@ -244,7 +244,7 @@ test("different acne appearances and traces retain priority and locations throug
   expect(screen.getByRole("region", { name: "고민에 맞는 화장품" })).toHaveTextContent("라운드랩 자작나무 수분 선크림");
   expect(within(secondary).getByText("패인 흉터처럼 보여요 · 볼")).toBeInTheDocument();
   for (const label of ["평평한 갈색·회갈색 자국 · 볼", "패인 흉터처럼 보여요 · 볼"]) {
-    const concern = within(secondary).getByText(label).closest("li");
+    const concern = within(secondary).getAllByRole("listitem").find(item => within(item).queryByText(label));
     expect(within(concern).getByText("라운드랩 자작나무 수분 선크림")).toBeInTheDocument();
   }
   expect(screen.getAllByRole("region", { name: "일반의약품 후보" })).toHaveLength(1);
@@ -297,7 +297,7 @@ test("current surface irritation overrides a reassuring extra-concern answer", (
 
 function startFollowUp(onFeedback = () => {}) {
   click("시작 화면");
-  click(screen.queryByRole("button", { name: "루틴·제품 자세히 체크하기" }) ? "루틴·제품 자세히 체크하기" : "2주 후 체크하기");
+  click("재검사");
   const symptomValues = { concern: "none", breathing: "no", eyeWarning: "no", eruption: "no", change: "stable", surface: "intact", barrier: "none", habit: "observe", area: "face", form: "mixed", comedones: "yes", uniform: "no", itch: "none", follicular: "no", shaving: "no", pain: "none", duration: "under_week", recentProduct: "none" };
   for (const q of getVisibleSymptomQuestions(symptomValues)) {
     click(q.options.find(o => o.value === symptomValues[q.id]).label);
@@ -322,7 +322,9 @@ function completeStandardRecheck() {
   click("변화 저장하고 다음 추천 보기");
 }
 test("recheck keeps the new observation scale and does not invent missing axes", () => {
-  render(<App />); baseSurvey(); extraCare({ concern: "none" }); startFollowUp();
+  render(<App />); baseSurvey(); extraCare({ concern: "none" });
+  expect(screen.getByRole("heading", { name: "루틴 사용 시작 후 14일 뒤 재검사" })).toBeVisible();
+  startFollowUp();
   completeStandardRecheck();
   const followUp = records().find(record => record.type === "feedback" && !record.assessmentOnly);
   expect(followUp.outcome.skinComparison.after.measurementVersion).toBe(OBSERVATION_MEASUREMENT_VERSION);
@@ -473,7 +475,7 @@ test("saved concerns can be recorded immediately and the next check restores onl
   render(<App />); baseSurvey();
   extraCare({ concern: "acne", shapes: ["red", "dark_mark"], primaryShape: "red",
     locations: { red: "chin", dark_mark: "cheeks" }, areaState: "comfortable", medicine: "none" });
-  click("시작 화면"); click("2주 후 체크하기");
+  click("시작 화면"); click("고민만 빠르게 체크하기");
   expect(screen.getByRole("heading", { name: "지난 고민만 빠르게 체크" })).toBeInTheDocument();
   expect(screen.getByRole("button", { name: "변화만 저장" })).toBeDisabled();
   click("3~5개"); click("변화만 저장");
@@ -683,7 +685,6 @@ test("first survey keeps the two comfortable serums entered before the result", 
   click("코스알엑스 나이아신아마이드 15 세럼 내 루틴에 담기");
   fireEvent.change(screen.getByRole("combobox", { name: "코스알엑스 나이아신아마이드 15 세럼 사용 반응" }), { target: { value: "comfortable" } });
   fireEvent.change(search, { target: { value: "테스트 재생 세럼" } });
-  fireEvent.click(screen.getByText("목록에 없는 제품 직접 추가"));
   fireEvent.change(screen.getByRole("combobox", { name: "제품 종류" }), { target: { value: "serum" } });
   click("입력한 제품 담기");
   fireEvent.change(screen.getByRole("combobox", { name: "테스트 재생 세럼 사용 반응" }), { target: { value: "comfortable" } });
@@ -722,7 +723,8 @@ test("the scar-first result shows the separate breakout candidate and a basic al
   expect(top).toHaveTextContent("교체 검토");
   expect(top).toHaveTextContent("트러블용 후보 · 애크논크림");
   const secondary = screen.getByRole("region", { name: "함께 선택한 고민" });
-  const breakout = within(secondary).getByText("고름이 보이는 작은 뾰루지 · 턱·턱선").closest("li");
+  const breakout = within(secondary).getAllByRole("listitem").find(item =>
+    within(item).queryByText("고름이 보이는 작은 뾰루지 · 턱·턱선"));
   expect(within(breakout).getByRole("heading", { name: "애크논크림" })).toBeInTheDocument();
   expect(screen.getByRole("region", { name: "불편했던 기본 제품 대안" })).toBeInTheDocument();
   expect(screen.getByRole("region", { name: "함께 선택한 고민" })).toHaveTextContent("솟은 흉터처럼 보여요");

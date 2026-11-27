@@ -75,8 +75,7 @@ test("the home lookup finds new and existing products without saving a routine",
   expect(lookup.getByText(/피지오겔 DMT 데일리 모이스쳐/)).toBeVisible();
   fireEvent.change(search, { target: { value: "없는브랜드테스트" } });
   expect(lookup.getByRole("status")).toHaveTextContent("일치하는 제품이 없어요");
-  fireEvent.click(lookup.getByText("목록에 없는 제품 직접 추가"));
-  expect(lookup.getByRole("link", { name: "공식 전성분 자료 검색하기" })).toHaveAttribute("href", expect.stringContaining(encodeURIComponent("없는브랜드테스트")));
+  expect(lookup.getByRole("combobox", { name: "제품 종류" })).toBeVisible();
   expect(lookup.getByText("로그인하면 국내 전성분과 보습감 검수를 요청할 수 있어요.")).toBeVisible();
   expect(JSON.parse(localStorage.getItem(JOURNEY_HISTORY_KEY) || "[]")).toHaveLength(0);
 });
@@ -92,7 +91,6 @@ test("review saves actual reactions, accepts an unlisted product, and never sugg
   expect(review.queryByText("대체 후보 보기")).not.toBeInTheDocument();
 
   fireEvent.change(search, { target: { value: "테스트 크림" } });
-  fireEvent.click(screen.getByText("목록에 없는 제품 직접 추가"));
   fireEvent.change(screen.getByRole("combobox", { name: "제품 종류" }), { target: { value: "moisturizer" } });
   click("입력한 제품 담기");
   fireEvent.change(review.getByRole("combobox", { name: "테스트 크림 사용 반응" }), { target: { value: "later_oil" } });

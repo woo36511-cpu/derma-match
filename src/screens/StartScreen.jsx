@@ -85,12 +85,12 @@ export function StartScreen({
                 최근 결과 다시 보기
               </button>
 
-              <PrimaryButton onClick={onQuickConcernCheck ?? startSavedFeedback}>
-                2주 후 체크하기
+              <PrimaryButton onClick={startSavedFeedback}>
+                재검사
               </PrimaryButton>
-              {onQuickConcernCheck && <button type="button" onClick={startSavedFeedback}
+              {onQuickConcernCheck && <button type="button" onClick={onQuickConcernCheck}
                 className="care-secondary px-2 sm:px-5">
-                루틴·제품 자세히 체크하기
+                고민만 빠르게 체크하기
               </button>}
               <button
                 onClick={() => setStep("journey")}

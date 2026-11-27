@@ -25,3 +25,11 @@ test("skincare search omits fragrance and makeup but retains masks", () => {
   expect(getRoutineLookupProduct("lookup:thesaem:1768801816")).toBeNull();
   expect(getRoutineLookupProduct("lookup:thesaem:0000000685")?.category).toBe("mask");
 });
+
+test("routine lookup accepts mixed-language brand names, compact queries, and isolated typos", () => {
+  const expected = expect.objectContaining({ name: expect.stringContaining("굿모닝 젤 클렌저") });
+  expect(searchRoutineProducts("굿모닝젤클렌저COSRX").matches).toContainEqual(expected);
+  expect(searchRoutineProducts("COSRX굿모닝젤클렌저").matches).toContainEqual(expected);
+  expect(searchRoutineProducts("COSRX 굿모닝 젤 클렌져").matches).toContainEqual(expected);
+  expect(searchRoutineProducts("COSRX 굿모닝 젤 클렌저", 12, false, ["sunscreen"]).matches).toHaveLength(0);
+});

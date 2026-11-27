@@ -7,7 +7,6 @@ import { CURRENT_ROUTINE_LIMIT, getReviewedRoutineProduct, makeCurrentRoutineEnt
 import { DetailDisclosure } from "./DetailDisclosure";
 import { routineLookupCategories, routineLookupCount, searchRoutineProducts } from "../utils/routineLookup";
 import { ProductReviewHistory, ProductReviewRequest } from "./ProductReviewRequest";
-import { getOfficialIngredientSearchUrl } from "../services/productReviewRequests";
 
 function LookupImage({ src }) {
   const [failed, setFailed] = useState(false);
@@ -30,6 +29,7 @@ function StandaloneRoutineLookup(props) {
 
 function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onStartSurvey, routine, personalProductFeedback, categoryChoices }) {
   const [query, setQuery] = useState("");
+  const [visibleCount, setVisibleCount] = useState(12);
   const [allInOneOnly, setAllInOneOnly] = useState(false);
   const [manualCategory, setManualCategory] = useState("");
   const [searchCategory, setSearchCategory] = useState("");
@@ -39,11 +39,31 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
   const isFull = routine.entries.length >= CURRENT_ROUTINE_LIMIT;
   const chosenManualCategory = selectedCategory || (categoryKeys && !categoryKeys.includes(manualCategory) ? "" : manualCategory);
   const manual = makeManualRoutineEntry(query, chosenManualCategory);
-  const { matches, total } = searchRoutineProducts(query, 12, allInOneOnly, selectedCategory ? [selectedCategory] : categoryKeys);
+  const { matches, total } = searchRoutineProducts(query, visibleCount, allInOneOnly, selectedCategory ? [selectedCategory] : categoryKeys);
   const started = query.normalize("NFKC").replace(/[^\p{L}\p{N}]/gu, "").length >= 2;
-  const brandDiscoveryAvailable = started && total === 0 && searchRoutineProducts(query, 1).total === 0;
+  const hasFilters = Boolean(selectedCategory || allInOneOnly);
+  const unfilteredTotal = started && total === 0 ? searchRoutineProducts(query, 1, false, categoryKeys).total : 0;
+  const brandDiscoveryAvailable = started && total === 0 && !searchRoutineProducts(query, 1).total;
+  const clearFilters = () => { setSearchCategory(""); setAllInOneOnly(false); setVisibleCount(12); };
   const signedIn = ownerKey.startsWith("account:");
   const exactReviewed = manual && getReviewedRoutineProduct(manual);
+  const manualAdded = manual && routine.entries.some(entry => entry.id === manual.id);
+  const manualForm = <>
+      <p>{selectedCategory ? `입력한 제품의 종류는 ${categoryChoices[selectedCategory]}예요.` : "입력한 제품명으로 담으려면 종류만 골라주세요."}</p>
+      {!selectedCategory && <label className="mt-2 block font-semibold">제품 종류
+        <select value={chosenManualCategory} onChange={event => setManualCategory(event.target.value)} className="ml-2 rounded-lg border border-slate-300 bg-white p-2">
+          <option value="">고르기</option>
+          {Object.entries(categoryChoices ?? routineLookupCategories).map(([key, label]) => <option key={key} value={key}>{label}</option>)}
+        </select>
+      </label>}
+      <button type="button" disabled={!manual || isFull || manualAdded} onClick={() => manual && routine.add(manual)}
+        className="mt-2 rounded-lg border border-emerald-700 px-3 py-2 font-semibold text-emerald-800 disabled:border-slate-200 disabled:text-slate-500">
+        {manualAdded ? "내 루틴에 담음" : "입력한 제품 담기"}
+      </button>
+      {exactReviewed ? <p className="mt-2 text-sm">이미 검수된 제품이에요 · {exactReviewed.label}</p>
+        : signedIn ? <ProductReviewRequest key={manual?.id ?? "manual"} product={manual} />
+          : <p className="mt-2 text-xs text-slate-600">로그인하면 국내 전성분과 보습감 검수를 요청할 수 있어요.</p>}
+    </>;
   return <section aria-labelledby="routine-lookup-title" className="space-y-4 rounded-3xl border border-slate-200 bg-white p-4 sm:p-6">
     <div>
       <h3 id="routine-lookup-title" className="text-lg font-bold">지금 쓰는 화장품 찾기</h3>
@@ -55,7 +75,7 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
     {categoryChoices && <div role="group" aria-label="찾을 제품 종류" className="flex flex-wrap gap-2">
       {[["", "전체"], ...Object.entries(categoryChoices)].map(([value, label]) => (
         <button key={value} type="button" aria-pressed={selectedCategory === value}
-          onClick={() => { setSearchCategory(value); setAllInOneOnly(false); setManualCategory(""); }}
+          onClick={() => { setSearchCategory(value); setAllInOneOnly(false); setManualCategory(""); setVisibleCount(12); }}
           className={`care-secondary ${selectedCategory === value ? "border-forest-700 bg-forest-50" : ""}`}>{label}</button>
       ))}
     </div>}
@@ -65,16 +85,16 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
         {routine.entries.length > 0 && <button type="button" onClick={() => reviewRef.current?.scrollIntoView?.({ block: "start" })}
           className="text-xs font-semibold text-emerald-800 underline underline-offset-2">담은 제품 보기 ({routine.entries.length}개)</button>}
       </div>
-      <input id="routine-lookup-input" type="search" maxLength={100} value={query} onChange={event => setQuery(event.target.value)}
+      <input id="routine-lookup-input" type="search" maxLength={100} value={query} onChange={event => { setQuery(event.target.value); setVisibleCount(12); }}
         placeholder={selectedCategory ? `브랜드나 ${categoryChoices[selectedCategory]} 이름` : "예: 독도 클렌징 밀크"} className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-700" />
     </div>
-    <button type="button" aria-pressed={allInOneOnly} onClick={() => setAllInOneOnly(value => !value)} className={`care-secondary ${allInOneOnly ? "border-forest-700 bg-forest-50" : ""}`}>올인원</button>
+    <button type="button" aria-pressed={allInOneOnly} onClick={() => { setAllInOneOnly(value => !value); setVisibleCount(12); }} className={`care-secondary ${allInOneOnly ? "border-forest-700 bg-forest-50" : ""}`}>올인원</button>
     <p role="status" className="text-sm text-slate-600">
       {!started && !allInOneOnly ? "두 글자 이상 입력해요." : total === 0
         ? "일치하는 제품이 없어요. 이름을 직접 담거나 공식 자료를 찾아 검수를 요청할 수 있어요."
-        : `${total}개 찾았어요.${total > matches.length ? ` 앞의 ${matches.length}개만 표시해요. 제품명을 더 입력해보세요.` : ""}`}
+        : `${total}개 찾았어요.${total > matches.length ? ` ${matches.length}개 표시 중이에요.` : ""}`}
     </p>
-    {brandDiscoveryAvailable && <BrandDiscoveryRequest key={query.trim()} query={query.trim()} />}
+    {hasFilters && unfilteredTotal > 0 && <button type="button" className="care-secondary" onClick={clearFilters}>필터 해제하고 {unfilteredTotal}개 보기</button>}
     {!!matches.length && <ul className="grid gap-3 sm:grid-cols-2">
       {matches.map(product => {
         const added = routine.entries.some(entry => entry.id === product.id);
@@ -103,23 +123,14 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
       </li>;
       })}
     </ul>}
-    {started && <DetailDisclosure title="목록에 없는 제품 직접 추가">
-      <p>{selectedCategory ? `입력한 제품의 종류는 ${categoryChoices[selectedCategory]}예요.` : "위 검색창에 포장에 적힌 제품명을 입력하고 종류를 골라주세요."} 검수 전에는 사용감으로 설문을 이어갈 수 있어요.</p>
-      <a className="mt-2 inline-block font-semibold text-emerald-800 underline underline-offset-2" href={getOfficialIngredientSearchUrl(query.trim())} target="_blank" rel="noreferrer">공식 전성분 자료 검색하기</a>
-      {!selectedCategory && <label className="mt-2 block font-semibold">제품 종류
-        <select value={chosenManualCategory} onChange={event => setManualCategory(event.target.value)} className="ml-2 rounded-lg border border-slate-300 bg-white p-2">
-          <option value="">고르기</option>
-          {Object.entries(categoryChoices ?? routineLookupCategories).map(([key, label]) => <option key={key} value={key}>{label}</option>)}
-        </select>
-      </label>}
-      <button type="button" disabled={!manual || isFull || routine.entries.some(entry => entry.id === manual.id)} onClick={() => manual && routine.add(manual)}
-        className="mt-2 rounded-lg border border-emerald-700 px-3 py-2 font-semibold text-emerald-800 disabled:border-slate-200 disabled:text-slate-500">
-        입력한 제품 담기
-      </button>
-      {exactReviewed ? <p className="mt-2 text-sm">이미 검수된 제품이에요 · {exactReviewed.label}</p>
-        : signedIn ? <ProductReviewRequest key={manual?.id ?? "manual"} product={manual} />
-          : <p className="mt-2 text-xs text-slate-600">로그인하면 국내 전성분과 보습감 검수를 요청할 수 있어요.</p>}
-    </DetailDisclosure>}
+    {total > matches.length && <button type="button" className="care-secondary" onClick={() => setVisibleCount(count => count + 12)}>제품 더 보기</button>}
+    {started && (total === 0
+      ? <section className="space-y-2 rounded-2xl border border-emerald-700 p-4 text-sm" aria-label="목록에 없는 제품 직접 추가">
+        <h4 className="font-semibold">목록에 없는 제품 직접 추가</h4>
+        {manualForm}
+      </section>
+      : <DetailDisclosure title="목록에 없는 제품 직접 추가">{manualForm}</DetailDisclosure>)}
+    {brandDiscoveryAvailable && <BrandDiscoveryRequest key={query.trim()} query={query.trim()} />}
     {signedIn && <ProductReviewHistory />}
   </section>;
 }

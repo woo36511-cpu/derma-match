@@ -18,11 +18,14 @@ export function ProductReviewRequest({ product, source = "" }) {
   };
   const sent = ["pending", "existing"].includes(status);
   return <div className="mt-3 space-y-2 border-t border-slate-200 pt-3">
-    <label className="block font-semibold">공식 제품 링크 (선택)
-      <input type="url" inputMode="url" className="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 font-normal"
-        placeholder="브랜드 공식 제품 페이지 주소" maxLength={512} value={url} onChange={event => setUrl(event.target.value)} />
-    </label>
-    <p className="text-xs text-slate-600">제품명·종류·입력한 링크만 검수에 사용해요. 피부 답변과 사용감은 보내지 않아요.</p>
+    <p className="text-xs text-slate-600">제품명과 종류만으로 검수를 요청할 수 있어요.</p>
+    <details open={status === "invalid_url" ? true : undefined}>
+      <summary className="cursor-pointer text-xs font-semibold text-slate-600">공식 제품 링크 추가 (선택)</summary>
+      <label className="mt-2 block font-semibold">공식 제품 링크 (선택)
+        <input type="url" inputMode="url" className="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 font-normal"
+          placeholder="브랜드 공식 제품 페이지 주소" maxLength={512} value={url} onChange={event => setUrl(event.target.value)} />
+      </label>
+    </details>
     <button type="button" disabled={!product || sent || status === "sending"} onClick={submit}
       className="rounded-lg border border-emerald-700 px-3 py-2 font-semibold text-emerald-800 disabled:border-slate-200 disabled:text-slate-500">
       {status === "sending" ? "보내는 중…" : sent ? "검수 요청함" : "전성분·보습감 검수 요청"}

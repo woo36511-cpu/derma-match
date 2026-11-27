@@ -162,7 +162,7 @@ test("survey answers gate progression and a saved result can be reopened", () =>
   expect(
     screen.getByRole("heading", { name: "추천 루틴" }),
   ).toBeInTheDocument();
-  click("2주 사용 후 피드백 입력");
+  click("재검사 시작");
   completeSymptomCheck();
   completeFeedback({ usageDetails: true });
   expect(history()[1].journeyId).toBe(history()[0].journeyId);

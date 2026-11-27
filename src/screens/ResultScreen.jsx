@@ -1,3 +1,4 @@
+import { RoutineRecheckNotice } from "../components/RoutineRecheckNotice";
 import { SectionTitle } from "../components/SectionTitle";
 import { FeedbackAdviceCard } from "../components/FeedbackAdviceCard";
 import { RoutineProductScroller } from "../components/RoutineProductScroller";
@@ -64,6 +65,7 @@ export function ResultScreen({
 
       <div className="max-w-3xl mx-auto mb-8 space-y-5"><SymptomCareSummary assessment={symptomAssessment} /><button onClick={onSymptomRecheck} className="underline text-sm">증상 변화·악화 재설문</button></div>
       <FeedbackAdviceCard advice={feedbackAdvice} />
+      <RoutineRecheckNotice />
 
       <div className="max-w-3xl mx-auto mb-8">
         <DetailDisclosure title="다음 루틴을 추천한 이유">

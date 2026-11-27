@@ -95,10 +95,10 @@ function Replacement({ result, onStartSurvey }) {
   return <p>{replacementText[result.status] ?? replacementText.no_candidate}</p>;
 }
 
-function RoutineReactionComparison({ rows, safetyBlocked }) {
+export function RoutineReactionComparison({ rows, safetyBlocked }) {
   const [changed, setChanged] = useState([]);
   const [submitted, setSubmitted] = useState(false);
-  const suspects = rows.filter(({ entry }) => changed.includes(entry.id));
+  const suspects = rows.filter(({ entry }) => entry.reaction === "irritation" || changed.includes(entry.id));
   const original = suspects.length === 1 ? getExactCatalogProduct(suspects[0].product) : null;
   const formula = suspects.length === 1
     ? readOfficialFormula(suspects[0].entry.officialFormula, suspects[0].product)?.ingredients : null;
@@ -121,9 +121,10 @@ function RoutineReactionComparison({ rows, safetyBlocked }) {
     <div className="space-y-3">
       <GuidedFacePhoto />
       <fieldset className="space-y-2">
-        <legend className="font-semibold">불편해지기 전에 새로 쓰거나 사용량을 늘린 제품</legend>
+        <legend className="font-semibold">불편해지기 전에 새로 쓰거나 사용량을 늘린 제품 (선택)</legend>
+        {rows.some(({ entry }) => entry.reaction === "irritation") && <p>따가움·붉어짐을 기록한 제품은 자동으로 점검해요.</p>}
         {rows.map(({ entry, product }) => <label key={entry.id} className="flex gap-2">
-          <input type="checkbox" checked={changed.includes(entry.id)} onChange={() => {
+          <input type="checkbox" checked={entry.reaction === "irritation" || changed.includes(entry.id)} disabled={entry.reaction === "irritation"} onChange={() => {
             setSubmitted(false);
             setChanged(previous => previous.includes(entry.id)
               ? previous.filter(id => id !== entry.id) : [...previous, entry.id]);
@@ -132,7 +133,7 @@ function RoutineReactionComparison({ rows, safetyBlocked }) {
       </fieldset>
       <button type="button" className="care-secondary" onClick={() => setSubmitted(true)}>먼저 쉬어볼 제품과 대체품 확인</button>
       {submitted && <div role="status" className="space-y-2">
-        {suspects.length ? <p>먼저 쉬어볼 제품 · {suspects.map(({ product }) => product.name).join(", ")}</p>
+        {suspects.length ? <p>먼저 점검할 제품 · {suspects.map(({ product }) => product.name).join(", ")}</p>
           : <p>바뀐 제품을 확인하기 어려워요. 불편해지기 전에 새로 시작한 제품이 있다면 잠시 쉬어요.</p>}
         {candidate ? <>
           <p>피부가 편해진 뒤 비교할 제품이에요. 보습감이 비슷하고, 확인한 전성분에서 향료와 이번에 확인한 성분 계열이 제외됐어요.</p>

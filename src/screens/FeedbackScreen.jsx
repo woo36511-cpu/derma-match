@@ -1,3 +1,7 @@
+import { GuidedFacePhoto } from "../components/GuidedFacePhoto";
+import { RoutineReactionComparison } from "../components/CurrentRoutineReview";
+import { RoutineProductLookup } from "../components/RoutineProductLookup";
+import { DetailDisclosure } from "../components/DetailDisclosure";
 import { SectionTitle } from "../components/SectionTitle";
 import { getCategoryLabel } from "../utils/productCatalog";
 import { feedbackQuestions } from "../data/feedbackQuestions";
@@ -8,6 +12,8 @@ import { ProductUsageFields } from "../components/ProductUsageFields";
 
 export function FeedbackScreen({
   onSymptomRecheck,
+  routineReview,
+  safetyBlocked,
   continueFeedback,
   feedbackTargetProducts,
   concernTracking,
@@ -19,6 +25,14 @@ export function FeedbackScreen({
   nextRoutineInfo,
   isComplete,
 }) {
+  const reactionRows = feedbackTargetProducts.flatMap(({ product }) => {
+    const usage = productUsageFeedback[product.id];
+    if (!usage?.status || usage.status === "never_used") return [];
+    return [{ product, entry: {
+      id: product.id,
+      reaction: usage.irritationObserved === true || usage.stopReason === "irritation" ? "irritation" : null,
+    } }];
+  });
   return (
     <section>
       <SectionTitle
@@ -100,6 +114,11 @@ export function FeedbackScreen({
             </div>
           </div>
         )}
+
+        {reactionRows.length ? <RoutineReactionComparison rows={reactionRows} safetyBlocked={safetyBlocked} /> : <GuidedFacePhoto />}
+        {routineReview && <DetailDisclosure title="다른 화장품도 점검하기">
+          <RoutineProductLookup {...routineReview} safetyBlocked={safetyBlocked} />
+        </DetailDisclosure>}
 
         {feedbackQuestions.map((q) => (
           <div

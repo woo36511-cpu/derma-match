@@ -87,12 +87,33 @@ const entries = [...base, ...additional, {
 }].map(product => ({ ...product, image: product.image || officialProductPhotos[product.id], allInOne: /올인원|allinone/.test(normalize(product.name)) }));
 const entriesById = new Map(entries.map(product => [product.id, product]));
 
+const searchWords = text => text.normalize("NFKC").toLowerCase().match(/[\p{L}\p{N}]+/gu) ?? [];
+
 const index = entries.map(product => {
-  const names = [product.name, ...(product.aliases ?? []), ...(product.volume ? [`${product.name} ${product.volume}`] : [])].map(normalize);
-  const description = [...names, product.brandAlias && normalize(product.brandAlias),
-    product.volume && normalize(product.volume)].filter(Boolean).join(" ");
-  return { product, names, description };
+  const labels = [product.name, ...(product.aliases ?? [])];
+  const names = [...labels, ...(product.volume ? [`${product.name} ${product.volume}`] : [])].map(normalize);
+  const brands = [product.brand, product.brandAlias, brandAliases[product.brand]].filter(Boolean);
+  const searchLabels = [...labels, ...brands, product.volume ?? ""];
+  const description = [...names, ...searchLabels.map(normalize)].join(" ");
+  const productName = normalize(product.name);
+  const localBrand = normalize(product.brand ?? "");
+  const shortName = localBrand && productName.startsWith(localBrand) ? productName.slice(localBrand.length) : productName;
+  const brandNames = brands.map(normalize);
+
+  const words = [...new Set(searchLabels.flatMap(searchWords))];
+  return { product, names, description, brandNames, shortName, words };
 });
+
+function isOneEditAway(query, word) {
+  if (query.length < 3 || /\d/.test(query) || /\d/.test(word) || Math.abs(query.length - word.length) > 1) return false;
+  const shorter = query.length <= word.length ? query : word;
+  const longer = query.length <= word.length ? word : query;
+  let index = 0;
+  while (index < shorter.length && shorter[index] === longer[index]) index += 1;
+  return shorter.length === longer.length
+    ? shorter.slice(index + 1) === longer.slice(index + 1)
+    : shorter.slice(index) === longer.slice(index + 1);
+}
 
 export const routineLookupCount = entries.length;
 export const officialExpansionCount = additional.length;
@@ -109,16 +130,28 @@ export function searchRoutineProducts(query, limit = 12, allInOneOnly = false, c
     return { total: matches.length, matches: matches.slice(0, limit) };
   }
   if (normalized.length < 2) return { total: 0, matches: [] };
-  const tokens = query.normalize("NFKC").split(/\s+/).map(normalize).filter(Boolean);
-  const ranked = index.flatMap(({ product, names, description }) => {
+  const tokens = query.normalize("NFKC").trim().split(/\s+/).map(normalize).filter(Boolean);
+  const ranked = index.flatMap(({ product, names, description, brandNames, shortName, words }) => {
     if ((categories && !categories.includes(product.category)) || (allInOneOnly && !product.allInOne)) return [];
     if (product.allInOne && ["올인원", "allinone"].includes(normalized)) return [{ product, nameRank: 2 }];
     const nameRank = Math.max(...names.map(name => name === normalized ? 3 : name.startsWith(normalized) ? 2 : name.includes(normalized) ? 1 : 0));
-    if (!nameRank && !tokens.every(token => description.includes(token))) return [];
-    return [{ product, nameRank }];
+    if (nameRank) return [{ product, nameRank: nameRank + 2 }];
+    const compactMatch = brandNames.some(brand => {
+      const fragment = normalized.startsWith(brand) ? normalized.slice(brand.length)
+        : normalized.endsWith(brand) ? normalized.slice(0, -brand.length) : "";
+      return fragment.length >= 2 && shortName.includes(fragment);
+    });
+    if (compactMatch || tokens.every(token => description.includes(token)))
+      return [{ product, nameRank: 2 }];
+    const unmatched = tokens.filter(token => !description.includes(token));
+    if (unmatched.length === 1 && words.some(word => isOneEditAway(unmatched[0], word)))
+      return [{ product, nameRank: 1 }];
+    return [];
   }).sort((a, b) => b.nameRank - a.nameRank || Number(b.product.formulaVerified) - Number(a.product.formulaVerified) ||
     a.product.name.localeCompare(b.product.name, "ko"));
-  return { total: ranked.length, matches: ranked.slice(0, limit).map(({ product }) => product) };
+  const exact = ranked.filter(item => item.nameRank > 1);
+  const matches = exact.length ? exact : ranked;
+  return { total: matches.length, matches: matches.slice(0, limit).map(({ product }) => product) };
 }
 
 export function getRoutineLookupProduct(id) {

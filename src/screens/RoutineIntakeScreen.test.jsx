@@ -32,7 +32,6 @@ test("the survey filters products by category before searching and uses the sele
   expect(screen.queryByRole("button", { name: /토너.*내 루틴에 담기/ })).not.toBeInTheDocument();
   fireEvent.click(screen.getByRole("button", { name: "크림" }));
   fireEvent.change(search, { target: { value: "내 수분 제품" } });
-  fireEvent.click(screen.getByText("목록에 없는 제품 직접 추가"));
   fireEvent.click(screen.getByRole("button", { name: "입력한 제품 담기" }));
   expect(add).toHaveBeenCalledWith(expect.objectContaining({ name: "내 수분 제품", category: "moisturizer" }));
 });
