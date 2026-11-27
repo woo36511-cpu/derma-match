@@ -3,11 +3,15 @@ import { useEffect, useRef, useState } from "react";
 const vision = "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.21";
 const model = "https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/1/blaze_face_short_range.tflite";
 
+const labels = { redness: "붉어 보이는 부위", bumps: "돌기처럼 보이는 부분", flaking: "각질처럼 보이는 부분" };
+
 export function GuidedFacePhoto() {
   const video = useRef(null);
   const [open, setOpen] = useState(false);
   const [photo, setPhoto] = useState("");
   const [status, setStatus] = useState("카메라를 준비하고 있어요.");
+  const [analysis, setAnalysis] = useState(null);
+  const [pending, setPending] = useState(false);
   const [closeUp, setCloseUp] = useState(false);
 
   useEffect(() => {
@@ -103,9 +107,26 @@ export function GuidedFacePhoto() {
     };
   }, [open, photo, closeUp]);
 
+  const analyze = async () => {
+    setPending(true);
+    try {
+      const response = await fetch("/api/skin-photo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ photo }),
+      });
+      if (!response.ok) throw new Error("analysis failed");
+      setAnalysis(await response.json());
+    } catch {
+      setAnalysis({ error: true });
+    } finally {
+      setPending(false);
+    }
+  };
+
   return <section className="care-panel space-y-3" aria-label="피부 사진 확인">
     <h2 className="font-bold">피부 사진 확인 · 선택</h2>
-    <p className="text-sm">사진은 이 화면에서 피부 상태를 살펴보는 데 쓰여요. 서버에 전송하거나 저장하지 않아요.</p>
+    <p className="text-sm">촬영과 미리보기는 기기에서 진행해요. 사진 분석을 선택하면 사진이 Vercel AI Gateway와 OpenAI에 전송돼요.</p>
     {!open ? <button type="button" className="care-secondary" onClick={() => setOpen(true)}>얼굴 사진 찍기</button> : <>
       <div className="relative mx-auto aspect-square max-w-xs overflow-hidden rounded-xl bg-slate-900">
         {photo ? <img src={photo} alt={closeUp ? "촬영한 고민 부위" : "촬영한 얼굴"} className="h-full w-full object-cover" /> : <>
@@ -115,10 +136,22 @@ export function GuidedFacePhoto() {
       </div>
       <p role="status">{photo ? "사진을 확인해 주세요." : status}</p>
       <div className="flex flex-wrap gap-2">
-        {photo && <button type="button" className="care-secondary" onClick={() => setPhoto("")}>다시 찍기</button>}
-        {photo && !closeUp && <button type="button" className="care-secondary" onClick={() => { setCloseUp(true); setPhoto(""); }}>고민 부위 가까이 찍기</button>}
-        <button type="button" className="care-secondary" onClick={() => { setOpen(false); setPhoto(""); setCloseUp(false); }}>닫기</button>
+        {photo && <button type="button" className="care-secondary" disabled={pending} onClick={() => { setPhoto(""); setAnalysis(null); }}>다시 찍기</button>}
+        {photo && !closeUp && <button type="button" className="care-secondary" disabled={pending} onClick={() => { setCloseUp(true); setPhoto(""); setAnalysis(null); }}>고민 부위 가까이 찍기</button>}
+        <button type="button" className="care-secondary" disabled={pending} onClick={() => { setOpen(false); setPhoto(""); setCloseUp(false); setAnalysis(null); }}>닫기</button>
+        {photo && (!analysis || analysis.error) && <button type="button" className="care-secondary" disabled={pending} onClick={analyze}>
+          {pending ? "사진 분석 중…" : "사진 전송에 동의하고 분석하기"}
+        </button>}
       </div>
+      {analysis && <div role="status" className="space-y-2 text-sm">
+        {analysis.error ? <p>사진 분석에 연결하지 못했어요. 아래 설문은 계속할 수 있어요.</p>
+          : !analysis.usable ? <p>사진에서 피부 특징을 구분하기 어려워요. 다시 찍거나 설문을 계속해 주세요.</p>
+            : analysis.observations.length ? <ul className="list-disc space-y-1 pl-5">
+              {analysis.observations.map(({ key, question }) => <li key={key}>
+                <strong>{labels[key]}</strong> · {question}
+              </li>)}
+            </ul> : <p>사진에서 뚜렷한 특징을 찾기 어려웠어요. 느낀 불편함은 설문에 남겨 주세요.</p>}
+      </div>}
     </>}
   </section>;
 }
