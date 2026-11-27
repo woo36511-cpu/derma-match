@@ -1,4 +1,4 @@
-import { GuidedFacePhoto } from "../components/GuidedFacePhoto";
+import { SkinPhotoSurfaceCheck } from "../components/SkinPhotoSurfaceCheck";
 import { useState } from "react";
 import { searchRoutineProducts, getRoutineLookupProduct } from "../utils/routineLookup";
 import { SkinObservationReference } from "../components/SkinObservationReference";
@@ -79,7 +79,7 @@ export function SurveyScreen({
               <p className="mt-2">겉이 무겁거나 끈적이기만 하고 조이는 느낌은 없다면 ‘따갑지는 않지만 무겁거나 끈적여요’를 골라요.</p>
             </DetailDisclosure>}
           <SkinObservationReference kind={currentSurveyQuestion.visual} />
-          {currentSurveyQuestion.visual && <GuidedFacePhoto />}
+          {(currentSurveyQuestion.visual || currentSurveyQuestion.id === "surfaceObservation") && <SkinPhotoSurfaceCheck question={currentSurveyQuestion} answer={currentSurveyAnswer} onAnswer={handleSurveyAnswer} />}
           {multiple && <p className="mb-3 text-sm font-medium text-forest-700">해당하는 항목을 모두 골라주세요.</p>}
           {productSearch && <SurveyProductSearch key={currentSurveyQuestion.id} question={currentSurveyQuestion} selectedId={selectedProductId} onSelect={handleSurveyAnswer} />}
           <div className="grid gap-2.5" role="group" aria-labelledby="survey-question">

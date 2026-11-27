@@ -1,3 +1,4 @@
+import { RoutineRecheckNotice } from "../components/RoutineRecheckNotice";
 import { SurveyResultOverview } from "../components/SurveyResultOverview";
 import { SkinIssueGuideCard } from "../components/SkinIssueGuideCard";
 import { SectionTitle } from "../components/SectionTitle";
@@ -70,7 +71,7 @@ export function SurveyResultScreen({
         </DetailDisclosure>
       </div>
 
-      <p className="text-center text-sm text-slate-600">2주 체크는 자극·악화·사용 상태를 확인해요. 악화하면 기다리지 말고 증상을 다시 확인하세요.</p>
+      <RoutineRecheckNotice />
       <button onClick={onSymptomRecheck} className="block mx-auto underline text-sm mt-4">증상 변화·악화 재설문</button>
       <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
         <button
@@ -85,7 +86,7 @@ export function SurveyResultScreen({
         </button>
 
         <PrimaryButton onClick={startSavedFeedback}>
-          2주 사용 후 피드백 입력
+          재검사 시작
         </PrimaryButton>
       </div>
     </section>

@@ -297,7 +297,7 @@ test("current surface irritation overrides a reassuring extra-concern answer", (
 
 function startFollowUp(onFeedback = () => {}) {
   click("시작 화면");
-  click(screen.queryByRole("button", { name: "루틴·제품 자세히 체크하기" }) ? "루틴·제품 자세히 체크하기" : "2주 후 체크하기");
+  click("재검사");
   const symptomValues = { concern: "none", breathing: "no", eyeWarning: "no", eruption: "no", change: "stable", surface: "intact", barrier: "none", habit: "observe", area: "face", form: "mixed", comedones: "yes", uniform: "no", itch: "none", follicular: "no", shaving: "no", pain: "none", duration: "under_week", recentProduct: "none" };
   for (const q of getVisibleSymptomQuestions(symptomValues)) {
     click(q.options.find(o => o.value === symptomValues[q.id]).label);
@@ -473,7 +473,7 @@ test("saved concerns can be recorded immediately and the next check restores onl
   render(<App />); baseSurvey();
   extraCare({ concern: "acne", shapes: ["red", "dark_mark"], primaryShape: "red",
     locations: { red: "chin", dark_mark: "cheeks" }, areaState: "comfortable", medicine: "none" });
-  click("시작 화면"); click("2주 후 체크하기");
+  click("시작 화면"); click("고민만 빠르게 체크하기");
   expect(screen.getByRole("heading", { name: "지난 고민만 빠르게 체크" })).toBeInTheDocument();
   expect(screen.getByRole("button", { name: "변화만 저장" })).toBeDisabled();
   click("3~5개"); click("변화만 저장");

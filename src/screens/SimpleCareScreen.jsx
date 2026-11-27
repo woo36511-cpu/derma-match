@@ -1,3 +1,4 @@
+import { RoutineRecheckNotice } from "../components/RoutineRecheckNotice";
 import { GuidedFacePhoto } from "../components/GuidedFacePhoto";
 import { avoidPersonalProduct, getPersonalRoutineActions } from "../utils/personalProductFeedback";
 import { sunscreenOption } from "../data/targetedCareProducts";
@@ -365,7 +366,7 @@ function updateCareAnswer(previous, id, value, options) {
   return cleanSimpleCareAnswers(next, options);
 }
 
-export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave, onBack, onHome, onRestart, onReviewRoutine, currentRoutineEntries, routineReview, priorSerumPreference, personalProductFeedback, observation }) {
+export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave, onBack, onHome, onRestart, onReviewRoutine, onRecheck, currentRoutineEntries, routineReview, priorSerumPreference, personalProductFeedback, observation }) {
   const [legacyExtent, setLegacyExtent] = useState(() => Boolean(initialRecord &&
     initialRecord.symptomAssessment?.ruleVersion !== SIMPLE_CARE_VERSION && !initialRecord.additionalCare?.breakoutExtent));
   const priorReactionProduct = surveyAnswers?.reactionProduct ? getRoutineLookupProduct(surveyAnswers.reactionProductId) : null;
@@ -534,6 +535,7 @@ export function SimpleCareScreen({ profile, surveyAnswers, initialRecord, onSave
     return <div className="space-y-6">
       <SimpleCareResult currentEntries={activeRoutineEntries} profile={profile} routine={displayRoutine} otherRetained={otherRetained} advice={advice} recommendationContext={recommendationContext} ownedIds={currentRoutine.ownedProductIds} plan={displayPlan} serumStatus={visibleSerumStatus} onReviewRoutine={saveError ? undefined : onReviewRoutine} notes={notes} replacement={replacement} tracking={openTracking} routineHasIrritation={currentRoutine.irritated.length > 0} makeupCleansing={makeupCleansing} />
     {(profile.surveyVersion !== ADAPTIVE_SURVEY_VERSION || displayRoutine.isHistorical) && onRestart && <button onClick={onRestart} className="rounded-xl border px-4 py-3">새 기준으로 다시 확인</button>}
+    {allowNewBasics && <RoutineRecheckNotice onRecheck={saveError ? undefined : onRecheck} />}
     {allowNewBasics && <CosmeticAddOnSection context={cosmeticContext} initialAnswers={cosmeticAnswers} onApply={save} />}
     {(offers.length > 0 || tracked.length > 0) && <section id="care-result-tracking" className="care-panel space-y-3" aria-label="관리 변화 기록">
       <h2 className="font-bold">제품과 고민별로 변화 기록하기</h2>
@@ -571,7 +573,15 @@ export function SimpleCareQuestion({ question, index, total, answer, locations, 
       <p className="care-kicker">피부 설문 · 추가 고민 {index + 1}/{total}</p>
       <h1 id="care-question" ref={heading} tabIndex={-1} className="scroll-mt-28 text-2xl font-bold leading-snug tracking-tight focus:outline-none sm:text-3xl">{question.q}</h1>
       {question.hint && <p className="text-sm text-slate-600">{question.hint}</p>}
-      {question.visual && <><AcnePhotoReference /><GuidedFacePhoto /></>}
+      {question.visual && <><AcnePhotoReference /><GuidedFacePhoto key={question.id} renderConfirmation={features => {
+        if (question.id !== "shapes" || !features.includes("bumps")) return null;
+        const options = question.options.filter(option => ["closed", "red", "pus", "deep"].includes(option.value));
+        return <div className="space-y-2">
+          <p>돌기처럼 보이는 부분이 있어요. 실제 모습과 느낌이 일치하는 항목을 확인하면 관리 결과에 반영해요.</p>
+          {options.map(option => <button type="button" key={option.value} className="care-secondary mr-2"
+            disabled={isSelected(option.value)} onClick={() => select(option.value)}>{option.label} 확인</button>)}
+        </div>;
+      }} /></>}
       {question.multiple && <p className="text-sm font-medium text-forest-700">여러 고민이 함께 있다면 해당하는 항목을 모두 골라주세요.</p>}
       {question.id === "concern" && <p className="text-sm text-slate-600">기초 관리에 더해 지금 필요한 관리가 있는지 확인해요.</p>}
       <div className="grid gap-2.5 pt-2" role="group" aria-labelledby="care-question">{question.options.map(option => <SurveyChoice key={option.value} multiple={question.multiple} selected={isSelected(option.value)} onClick={() => select(option.value)}>

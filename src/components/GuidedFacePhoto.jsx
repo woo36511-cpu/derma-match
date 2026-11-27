@@ -5,7 +5,7 @@ const model = "https://storage.googleapis.com/mediapipe-models/face_detector/bla
 
 const labels = { redness: "붉어 보이는 부위", bumps: "돌기처럼 보이는 부분", flaking: "각질처럼 보이는 부분" };
 
-export function GuidedFacePhoto() {
+export function GuidedFacePhoto({ renderConfirmation } = {}) {
   const video = useRef(null);
   const [open, setOpen] = useState(false);
   const [photo, setPhoto] = useState("");
@@ -151,6 +151,7 @@ export function GuidedFacePhoto() {
                 <strong>{labels[key]}</strong> · {question}
               </li>)}
             </ul> : <p>사진에서 뚜렷한 특징을 찾기 어려웠어요. 느낀 불편함은 설문에 남겨 주세요.</p>}
+        {analysis.usable && analysis.observations.length > 0 && renderConfirmation?.(analysis.observations.map(({ key }) => key))}
       </div>}
     </>}
   </section>;

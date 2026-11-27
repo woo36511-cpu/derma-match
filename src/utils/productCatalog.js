@@ -33,6 +33,7 @@ export function getCategoryLabel(key) {
     toner: "토너",
     serum: "세럼",
     cream: "크림",
+    sunscreen: "선크림",
 
     cleansing_oil: "클렌징 오일",
     cleansing_milk: "클렌징 밀크",

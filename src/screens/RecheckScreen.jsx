@@ -1,3 +1,4 @@
+import { SkinPhotoSurfaceCheck } from "../components/SkinPhotoSurfaceCheck";
 import { SkinObservationReference } from "../components/SkinObservationReference";
 import { DetailDisclosure } from "../components/DetailDisclosure";
 import { SectionTitle } from "../components/SectionTitle";
@@ -46,6 +47,7 @@ export function RecheckScreen({
               {question.hint && <p className="mb-4 text-sm text-slate-600">{question.hint}</p>}
               {question.helper && <DetailDisclosure title="답변 기준 자세히 보기" className="mb-4"><p>{question.helper}</p></DetailDisclosure>}
               <SkinObservationReference kind={question.visual} />
+              {(question.visual || question.id === "surfaceObservation") && <SkinPhotoSurfaceCheck question={question} answer={currentAnswer} onAnswer={handleFeedbackSurveyAnswer} />}
               <div className="flex flex-wrap gap-2">
                 {question.options.map((option) => {
                   const active =
