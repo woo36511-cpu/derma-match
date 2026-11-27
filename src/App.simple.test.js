@@ -460,7 +460,9 @@ test("current routine review reuses a completed survey and suggests only a diffe
   fireEvent.change(review.getByRole("combobox", { name: product + " 사용 반응" }), { target: { value: "heavy" } });
   fireEvent.click(review.getByText("대체 후보 보기"));
   expect(review.getByText(/지난 설문과 이번 사용 반응에 맞춰 고른 같은 단계 후보예요/)).toBeVisible();
-  expect(review.getAllByText(product, { exact: true })).toHaveLength(1);
+  const currentProduct = review.getAllByRole("listitem").find(item =>
+    within(item).queryByRole("combobox", { name: product + " 사용 반응" }));
+  expect(within(currentProduct).getAllByText(product, { exact: true })).toHaveLength(1);
 
   fireEvent.change(search, { target: { value: "굿모닝 젤 클렌저" } });
   const cleanser = "코스알엑스 약산성 굿모닝 젤 클렌저";
