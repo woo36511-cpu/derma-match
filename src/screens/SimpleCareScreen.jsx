@@ -159,7 +159,7 @@ const secondaryConcernActions = {
   raised_scar: "만지거나 문지르지 말고, 주변 피부가 건조하면 편하게 쓰던 보습 크림을 바르고 아침에는 자외선 차단제를 써요.",
 };
 
-export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, serumStatus, otherRetained = [], advice, recommendationContext, ownedIds, notes, routineHasIrritation, makeupCleansing, replacement, tracking, currentEntries, retainedCards = [] }) {
+export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, serumStatus, otherRetained = [], advice, recommendationContext, ownedIds, notes, routineHasIrritation, makeupCleansing, replacement, tracking, currentEntries, retainedCards = [], recovery }) {
   const heading = useScreenHeading("care-result");
   const concernFirst = plan.blockNewBasics || (plan.answers.concern !== "none" && !routineHasIrritation);
   const priority = concernFirst ? plan : advice;
@@ -247,6 +247,7 @@ export function SimpleCareResult({ profile, routine, plan, onReviewRoutine, seru
         {tracking && <button type="button" className="care-secondary" onClick={tracking}>이 관리 시작·변화 기록</button>}
       </section>}
     </section>
+    {recovery}
     {serumStatus?.skipBasicSerum && !plan.blockNewBasics && <section aria-label="지금 쓰는 세럼" className="care-panel space-y-1 text-sm">
       <p className="care-kicker">{serumStatus.hasIrritation ? "사용감 먼저 확인" : "그대로 쓸 제품"}</p>
       <h2 className="font-bold">{serumStatus.hasIrritation ? "세럼은 자극 여부부터 확인해요." : "편하게 쓰는 세럼은 그대로 유지해요."}</h2>
@@ -596,13 +597,15 @@ export function SimpleCareScreen({ profile, surveyAnswers, reviseSurveyAnswer, s
       <button type="button" className="font-semibold text-emerald-900 underline" onClick={onRestart}>검수된 제품 정보로 다시 확인</button>
     </div>}
     </>;
-    return <div className="space-y-6">
+    const recovery = <>
       <RoutineReactionFollowUp rows={recordedReactions} statuses={reactionStatuses} alternatives={reactionAlternatives} canCompare={canCompareRecordedReaction}
         onStatus={(id, status) => setReactionStatuses(previous => ({ ...previous, [id]: status }))} />
       {reviseSurveyAnswer && <RoutineAnswerFollowUp questions={followUpQuestions} answers={surveyAnswers} onAnswer={reviseSurveyAnswer}
         changed={Boolean(record && surveyAnswers !== record.surveyAnswers && ["surfaceObservation", "observedOil", "drynessArea"].some(id => surveyAnswers[id] !== record.surveyAnswers?.[id]))}
         onSave={() => save()} photoFeatures={skinPhotoFeatures} />}
-      <SimpleCareResult retainedCards={retainedCards} currentEntries={activeRoutineEntries} profile={profile} routine={displayRoutine} otherRetained={otherRetained} advice={advice} recommendationContext={recommendationContext} ownedIds={currentRoutine.ownedProductIds} plan={displayPlan} serumStatus={visibleSerumStatus} onReviewRoutine={saveError ? undefined : onReviewRoutine} notes={notes} replacement={replacement} tracking={openTracking} routineHasIrritation={reactionUnresolved} makeupCleansing={makeupCleansing} />
+    </>;
+    return <div className="space-y-6">
+      <SimpleCareResult recovery={recovery} retainedCards={retainedCards} currentEntries={activeRoutineEntries} profile={profile} routine={displayRoutine} otherRetained={otherRetained} advice={advice} recommendationContext={recommendationContext} ownedIds={currentRoutine.ownedProductIds} plan={displayPlan} serumStatus={visibleSerumStatus} onReviewRoutine={saveError ? undefined : onReviewRoutine} notes={notes} replacement={replacement} tracking={openTracking} routineHasIrritation={reactionUnresolved} makeupCleansing={makeupCleansing} />
     {(profile.surveyVersion !== ADAPTIVE_SURVEY_VERSION || displayRoutine.isHistorical) && onRestart && <button onClick={onRestart} className="rounded-xl border px-4 py-3">새 기준으로 다시 확인</button>}
     {allowNewBasics ? <RoutineRecheckNotice onRecheck={saveError ? undefined : onRecheck} />
       : !saveError && onRecheck && <button type="button" className="care-secondary" onClick={onRecheck}>현재 피부 상태 재검사</button>}
