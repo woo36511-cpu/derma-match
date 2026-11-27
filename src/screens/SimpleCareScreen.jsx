@@ -1,3 +1,4 @@
+import { GuidedFacePhoto } from "../components/GuidedFacePhoto";
 import { avoidPersonalProduct, getPersonalRoutineActions } from "../utils/personalProductFeedback";
 import { sunscreenOption } from "../data/targetedCareProducts";
 import { useVerifiedProductFormula } from "../hooks/useVerifiedProductFormula";
@@ -570,7 +571,7 @@ export function SimpleCareQuestion({ question, index, total, answer, locations, 
       <p className="care-kicker">피부 설문 · 추가 고민 {index + 1}/{total}</p>
       <h1 id="care-question" ref={heading} tabIndex={-1} className="scroll-mt-28 text-2xl font-bold leading-snug tracking-tight focus:outline-none sm:text-3xl">{question.q}</h1>
       {question.hint && <p className="text-sm text-slate-600">{question.hint}</p>}
-      {question.visual && <AcnePhotoReference />}
+      {question.visual && <><AcnePhotoReference /><GuidedFacePhoto /></>}
       {question.multiple && <p className="text-sm font-medium text-forest-700">여러 고민이 함께 있다면 해당하는 항목을 모두 골라주세요.</p>}
       {question.id === "concern" && <p className="text-sm text-slate-600">기초 관리에 더해 지금 필요한 관리가 있는지 확인해요.</p>}
       <div className="grid gap-2.5 pt-2" role="group" aria-labelledby="care-question">{question.options.map(option => <SurveyChoice key={option.value} multiple={question.multiple} selected={isSelected(option.value)} onClick={() => select(option.value)}>

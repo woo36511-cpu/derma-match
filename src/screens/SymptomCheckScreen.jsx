@@ -1,3 +1,4 @@
+import { GuidedFacePhoto } from "../components/GuidedFacePhoto";
 import React from "react";
 import { SectionTitle } from "../components/SectionTitle";
 import { PrimaryButton } from "../components/PrimaryButton";
@@ -15,7 +16,7 @@ export function SymptomCheckScreen({ check }) {
     <div className="rounded-3xl border border-slate-100 bg-white p-6 sm:p-8 shadow-sm">
       <h2 className="text-2xl font-bold mb-4" aria-live="polite">{question.q}</h2>
       {question.help && <p className="text-sm text-slate-600 mb-4">{question.help}</p>}
-      {question.visual && <LesionComparison />}
+      {question.visual && <><LesionComparison /><GuidedFacePhoto /></>}
       <div className="space-y-3" role="group" aria-label={question.q}>
         {question.options.map(option => <button key={option.value} aria-pressed={isSelected(option.value)} onClick={() => check.answer(question, option.value)} className={`w-full text-left p-4 rounded-2xl border ${isSelected(option.value) ? "bg-slate-950 text-white border-slate-950" : "bg-white border-slate-200 hover:bg-slate-50"}`}>{option.label}</button>)}
       </div>

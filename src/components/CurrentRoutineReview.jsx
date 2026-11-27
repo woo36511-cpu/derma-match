@@ -1,8 +1,12 @@
+import { RoutineProductScroller } from "./RoutineProductScroller";
+import { GuidedFacePhoto } from "./GuidedFacePhoto";
+import { getRankedProductCandidates } from "../utils/routineRecommendation";
+import { getReactionIngredientClues } from "../utils/reactionIngredientFit";
 import { useEffect, useRef, useState } from "react";
 import {
   CURRENT_ROUTINE_LIMIT, getCurrentRoutineProduct, getRoutineConclusion, getRoutineReactionOptions,
   getRoutineReplacement, getSurveyRoutineReaction, readCurrentRoutine, writeCurrentRoutine,
-  getReviewedRoutineProduct,
+  getReviewedRoutineProduct, getExactCatalogProduct,
 } from "../utils/currentRoutineReview";
 import { routineLookupCategories } from "../utils/routineLookup";
 import { DetailDisclosure } from "./DetailDisclosure";
@@ -91,6 +95,55 @@ function Replacement({ result, onStartSurvey }) {
   return <p>{replacementText[result.status] ?? replacementText.no_candidate}</p>;
 }
 
+function RoutineReactionComparison({ rows, safetyBlocked }) {
+  const [changed, setChanged] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
+  const suspects = rows.filter(({ entry }) => changed.includes(entry.id));
+  const original = suspects.length === 1 ? getExactCatalogProduct(suspects[0].product) : null;
+  const formula = suspects.length === 1
+    ? readOfficialFormula(suspects[0].entry.officialFormula, suspects[0].product)?.ingredients : null;
+  const exactIngredients = original?.evidence?.domesticFormulaVerified && original.evidence.fullIngredientsVerified
+    ? original.fullIngredients : formula;
+  const avoid = new Set(getReactionIngredientClues(exactIngredients ?? []).map(clue => clue.family));
+  avoid.add("fragrance");
+  const level = original?.hydrationLevel;
+  const candidate = submitted && !safetyBlocked && exactIngredients?.length && Number.isFinite(level)
+    ? getRankedProductCandidates(original.category, level, { basicOnly: true, isSensitive: true,
+      ownedProductIds: new Set(rows.flatMap(({ product }) => [product.id, getExactCatalogProduct(product)?.id])),
+    }).filter(product => product.category === original.category && product.id !== original.id &&
+      product.beginnerFriendly && product.evidence?.domesticFormulaVerified && product.evidence.fullIngredientsVerified &&
+      product.fullIngredients?.length && Number.isFinite(product.hydrationLevel) &&
+      Math.abs(product.hydrationLevel - level) <= 1 &&
+      !getReactionIngredientClues(product.fullIngredients).some(clue => avoid.has(clue.family)))
+      .sort((a, b) => Math.abs(a.hydrationLevel - level) - Math.abs(b.hydrationLevel - level))[0]
+    : null;
+  return <DetailDisclosure title="피부가 불편했을 때 제품 비교">
+    <div className="space-y-3">
+      <GuidedFacePhoto />
+      <fieldset className="space-y-2">
+        <legend className="font-semibold">불편해지기 전에 새로 쓰거나 사용량을 늘린 제품</legend>
+        {rows.map(({ entry, product }) => <label key={entry.id} className="flex gap-2">
+          <input type="checkbox" checked={changed.includes(entry.id)} onChange={() => {
+            setSubmitted(false);
+            setChanged(previous => previous.includes(entry.id)
+              ? previous.filter(id => id !== entry.id) : [...previous, entry.id]);
+          }} />{product.name}
+        </label>)}
+      </fieldset>
+      <button type="button" className="care-secondary" onClick={() => setSubmitted(true)}>먼저 쉬어볼 제품과 대체품 확인</button>
+      {submitted && <div role="status" className="space-y-2">
+        {suspects.length ? <p>먼저 쉬어볼 제품 · {suspects.map(({ product }) => product.name).join(", ")}</p>
+          : <p>바뀐 제품을 확인하기 어려워요. 불편해지기 전에 새로 시작한 제품이 있다면 잠시 쉬어요.</p>}
+        {candidate ? <>
+          <p>피부가 편해진 뒤 비교할 제품이에요. 보습감이 비슷하고, 확인한 전성분에서 향료와 이번에 확인한 성분 계열이 제외됐어요.</p>
+          <RoutineProductScroller layout="routine" productsByCategory={{ [candidate.category]: candidate }} />
+        </>
+          : <p>지금 조건에서 비교할 대체품을 확인하지 못했어요.</p>}
+      </div>}
+    </div>
+  </DetailDisclosure>;
+}
+
 export function CurrentRoutineReview({ routine, profile, savedAt, safetyBlocked, onStartSurvey, personalProductFeedback }) {
   const rows = routine.entries.map(entry => ({ entry, product: getCurrentRoutineProduct(entry), conclusion: getRoutineConclusion(entry.reaction) }))
     .filter(row => row.product).sort((a, b) => a.conclusion.rank - b.conclusion.rank);
@@ -107,6 +160,7 @@ export function CurrentRoutineReview({ routine, profile, savedAt, safetyBlocked,
         <p className="font-semibold">{first ? `먼저 확인 · ${first.product.name}` : "편안하게 쓰는 제품은 그대로 유지해요."}</p>
         {first && <p className="mt-1">{first.conclusion.text}</p>}
       </div>
+      <RoutineReactionComparison rows={rows} safetyBlocked={safetyBlocked} />
       <ul className="mt-3 space-y-3">
         {rows.map(({ entry, product, conclusion }) => {
           const options = getRoutineReactionOptions(product.category);
