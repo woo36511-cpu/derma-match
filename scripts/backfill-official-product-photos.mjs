@@ -39,7 +39,7 @@ export function productPhoto(html, url, host) {
   for (const { source, tiedToProduct } of images.reverse()) {
     try {
       const photo = new URL(source, url);
-      if (/logo|placeholder|no[_-]?image|default[_-]?image|share-image/i.test(photo.pathname)) continue;
+      if (/logo|empty[_-]?thumb|placeholder|no[_-]?image|default[_-]?image|share-image/i.test(photo.pathname)) continue;
       if (!tiedToProduct && images.length > 1 && !/\/web\/product\//i.test(photo.pathname)) continue;
       const image = officialListingImage(photo.href, host);
       if (image) return image;

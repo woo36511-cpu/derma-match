@@ -1,3 +1,4 @@
+import { ProductPhoto } from "./ProductPhoto";
 import { useMemo, useState } from "react";
 import { quickSkinTypes, homeMedicineGroups } from "../data/homeQuickGuides";
 import { buildDynamicRoutine } from "../utils/routineRecommendation";
@@ -15,7 +16,7 @@ const quickBrowseItems = [
 export function MedicineReferenceCard({ medicine }) {
   return <article className="space-y-3 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5" aria-label={medicine.name}>
     <div className="flex items-center gap-4">
-      {medicine.image && <img src={medicine.image} alt={`${medicine.name} 제품 포장`} width="88" height="88" loading="lazy" className="h-[88px] w-[88px] shrink-0 rounded-xl bg-slate-50 object-contain p-1" />}
+      <ProductPhoto product={medicine} alt={`${medicine.name} 제품 포장`} width="88" height="88" className="h-[88px] w-[88px] shrink-0 rounded-xl bg-slate-50 object-contain p-1" />
       <div><p className={`mb-2 inline-block rounded-full px-2 py-1 text-xs font-semibold ${medicine.classification.startsWith("전문") ? "bg-amber-50 text-amber-900" : "bg-slate-100 text-slate-700"}`}>{medicine.classification}</p><h4 className="text-lg font-bold text-slate-950">{medicine.name}</h4><p className="mt-1 text-sm text-slate-600">{medicine.role}</p></div>
     </div>
     <p className="text-sm leading-relaxed text-slate-700">{medicine.indication}</p>

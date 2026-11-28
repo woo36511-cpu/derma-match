@@ -1,3 +1,4 @@
+import { ProductPhoto } from "./ProductPhoto";
 import { useState } from "react";
 import { getCosmeticQuestions, cleanCosmeticAnswers } from "../data/cosmeticAddOns";
 import { buildCosmeticAddOnPlan } from "../utils/cosmeticAddOnPlan";
@@ -10,7 +11,7 @@ export function CosmeticAddOnResult({ plan }) {
   return <div className="space-y-4" aria-label="추가 화장품 추천 결과">
     <div><h3 className="font-bold">{plan.title}</h3><p className="mt-1 text-sm text-slate-700">{plan.detail}</p></div>
     {plan.product && <article className="space-y-3 rounded-2xl border border-emerald-100 bg-white p-4" aria-label={plan.product.name}>
-      <div className="flex items-center gap-4"><img src={plan.product.image} alt={plan.product.name} loading="lazy" width="100" height="100" className="h-24 w-24 shrink-0 rounded-xl object-contain bg-slate-50" /><div><p className="text-xs font-semibold text-emerald-800">{plan.classification}</p><h4 className="mt-1 font-bold">{plan.product.name}</h4><p className="mt-1 text-sm text-slate-600">{plan.product.volume}</p><CopyProductName key={plan.product.name} name={plan.product.name} /></div></div>
+      <div className="flex items-center gap-4"><ProductPhoto product={plan.product} width="100" height="100" className="h-24 w-24 shrink-0 rounded-xl object-contain bg-slate-50" /><div><p className="text-xs font-semibold text-emerald-800">{plan.classification}</p><h4 className="mt-1 font-bold">{plan.product.name}</h4><p className="mt-1 text-sm text-slate-600">{plan.product.volume}</p><CopyProductName key={plan.product.name} name={plan.product.name} /></div></div>
       {plan.product.shortReason && <p className="text-sm"><strong>주요 기능</strong> · {plan.product.shortReason}</p>}
       <p className="text-sm">{plan.fit}</p>
       {plan.priceReference && <p className="text-sm font-semibold text-emerald-800"><a href={plan.priceReference.url} target="_blank" rel="noreferrer" className="underline">공식 기준가 {plan.priceReference.amount.toLocaleString("ko-KR")}원</a> <span className="text-xs font-normal text-slate-600">· {plan.priceReference.checkedAt} 확인</span></p>}
