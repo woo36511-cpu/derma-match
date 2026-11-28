@@ -35,3 +35,15 @@ export function getRoutineFitSignals(category, context = {}) {
 
   return { hydration, texture, barrier, washTight, heavy, postMoistureTight, zonedOil, distinctAreas, note };
 }
+
+
+export function getCleanserTargetLevel(level, context, fit = getRoutineFitSignals("cleanser", context)) {
+  if (fit?.washTight) return 3;
+  if (context.observedSkin?.washResponse !== "comfortable") return level;
+
+  const oil = context.observedSkin.observedOil;
+  if (oil === "whole") return 7;
+  if (oil === "tzone") return 6;
+  if (oil === "none") return 5;
+  return level;
+}
