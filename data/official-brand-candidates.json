@@ -134,5 +134,6 @@
   { "key": "rejuvenil", "brand": "리쥬베닐", "alias": "Re-juvenil", "catalogUrl": "https://rejuvenil.shop/product/list.html?cate_no=42", "listOnly": true },
   { "key": "theharnay", "brand": "더하르나이", "alias": "THE HARNAY", "catalogUrl": "https://theharnay.co.kr/product/list.html?cate_no=155" },
   { "key": "haedals", "brand": "해달씨", "alias": "HAEDAL'S", "catalogUrl": "https://haedals.com/product/list.html?cate_no=42" },
-  { "key": "blancnature", "brand": "블랑네이처", "alias": "Blanc Nature", "catalogUrl": "https://www.blancnature.co.kr/category/all/45/" }
+  { "key": "blancnature", "brand": "블랑네이처", "alias": "Blanc Nature", "catalogUrl": "https://www.blancnature.co.kr/category/all/45/" },
+  { "key": "hidiff", "brand": "히디프", "alias": "HIDIFF", "catalogUrl": "https://hidiff.co.kr/product/list.html?cate_no=29" }
 ]
