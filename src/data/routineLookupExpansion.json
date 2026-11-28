@@ -630,6 +630,15 @@
       "fetchedListings": 15,
       "alias": "MILD LAB",
       "officialCatalogUrl": "https://mildlab.co.kr/product/list.html?cate_no=192"
+    },
+    "rejuvenil": {
+      "name": "리쥬베닐",
+      "checkedAt": "2026-11-28",
+      "usefulPages": 1,
+      "fetchedListings": 3,
+      "alias": "Re-juvenil",
+      "officialCatalogUrl": "https://rejuvenil.shop/product/list.html?cate_no=42",
+      "listOnly": true
     }
   },
   "products": [
@@ -24402,6 +24411,33 @@
       "volume": "40ml",
       "officialUrl": "https://rejurancosmetics.co.kr/product/g-uv-%ED%94%84%EB%A1%9C%ED%85%8D%EC%85%98-%ED%81%AC%EB%A6%BC-40ml/999/",
       "image": "https://rejurancosmetics.co.kr/web/product/big/202604/194f2a4c94041f9ca6bae48b998cc98b.png"
+    },
+    {
+      "id": "lookup:rejuvenil:51",
+      "name": "리쥬베닐 리페어 PDRNTX+1500 크림 - 피부 회복과 균형을 돕는 리페어 크림 제형 이미지",
+      "brand": "리쥬베닐",
+      "brandAlias": "Re-juvenil",
+      "category": "moisturizer",
+      "officialUrl": "https://rejuvenil.shop/product/detail.html?product_no=51",
+      "image": "https://ecimg.cafe24img.com/pg2981b14026203025/vindemiacos/web/product/medium/20260602/3cde70d7b13006aa1343e0bebe7e51d5.png"
+    },
+    {
+      "id": "lookup:rejuvenil:52",
+      "name": "리쥬베닐 파이토베리어 호호바EGF크림 - 피부 본연의 힘을 기르는 고보습 크림 제품 이미지",
+      "brand": "리쥬베닐",
+      "brandAlias": "Re-juvenil",
+      "category": "moisturizer",
+      "officialUrl": "https://rejuvenil.shop/product/detail.html?product_no=52",
+      "image": "https://ecimg.cafe24img.com/pg2981b14026203025/vindemiacos/web/product/medium/20260602/b81299adcf1916a72710bb06b7aaec3e.png"
+    },
+    {
+      "id": "lookup:rejuvenil:53",
+      "name": "리쥬베닐 아바파하 샴페인 미스트앰플 - 피부 회복력을 돕는 미스트형 앰플 제품 이미지",
+      "brand": "리쥬베닐",
+      "brandAlias": "Re-juvenil",
+      "category": "toner",
+      "officialUrl": "https://rejuvenil.shop/product/detail.html?product_no=53",
+      "image": "https://ecimg.cafe24img.com/pg2981b14026203025/vindemiacos/web/product/medium/20260602/586f2faae9570cb8818c3fb26e2fb18b.png"
     },
     {
       "id": "lookup:roundlab:137",
