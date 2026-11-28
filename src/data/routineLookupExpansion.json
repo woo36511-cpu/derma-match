@@ -663,6 +663,14 @@
       "fetchedListings": 6,
       "alias": "Blanc Nature",
       "officialCatalogUrl": "https://www.blancnature.co.kr/category/all/45/"
+    },
+    "hidiff": {
+      "name": "히디프",
+      "checkedAt": "2026-11-29",
+      "usefulPages": 1,
+      "fetchedListings": 9,
+      "alias": "HIDIFF",
+      "officialCatalogUrl": "https://hidiff.co.kr/product/list.html?cate_no=29"
     }
   },
   "products": [
@@ -12017,6 +12025,87 @@
       "image": "https://www.hera.com/web/product/medium/202605/17489994fcb934fc6411a0f30b1987d4.jpg"
     },
     {
+      "id": "lookup:hidiff:11",
+      "name": "히디프 로얄 레이어링 버블토너",
+      "brand": "히디프",
+      "brandAlias": "HIDIFF",
+      "category": "toner",
+      "officialUrl": "https://hidiff.co.kr/product/%EB%A1%9C%EC%96%84-%EB%A0%88%EC%9D%B4%EC%96%B4%EB%A7%81-%EB%B2%84%EB%B8%94%ED%86%A0%EB%84%88/11/",
+      "image": "https://ecimg.cafe24img.com/pg875b30552274082/hidiff/web/product/big/20250114/4aa8e2da7f465f32d6c35cc2f187d0d6.png"
+    },
+    {
+      "id": "lookup:hidiff:12",
+      "name": "히디프 로얄 피니시 크림",
+      "brand": "히디프",
+      "brandAlias": "HIDIFF",
+      "category": "moisturizer",
+      "officialUrl": "https://hidiff.co.kr/product/%EB%A1%9C%EC%96%84-%ED%94%BC%EB%8B%88%EC%8B%9C-%ED%81%AC%EB%A6%BC/12/",
+      "image": "https://ecimg.cafe24img.com/pg875b30552274082/hidiff/web/product/big/20251124/d4edd5bf8a8e64816b7d533687f7b9c7.png"
+    },
+    {
+      "id": "lookup:hidiff:13",
+      "name": "히디프 로얄 레이어링 버블토너 로얄 피니시 크림",
+      "brand": "히디프",
+      "brandAlias": "HIDIFF",
+      "category": "toner",
+      "officialUrl": "https://hidiff.co.kr/product/%EB%A1%9C%EC%96%84-%EB%A0%88%EC%9D%B4%EC%96%B4%EB%A7%81-%EB%B2%84%EB%B8%94%ED%86%A0%EB%84%88-%EB%A1%9C%EC%96%84-%ED%94%BC%EB%8B%88%EC%8B%9C-%ED%81%AC%EB%A6%BC/13/",
+      "image": "https://ecimg.cafe24img.com/pg875b30552274082/hidiff/web/product/big/20260612/c947cc310f5a4d4eca3134dcdb47b585.png"
+    },
+    {
+      "id": "lookup:hidiff:20",
+      "name": "히디프 퓨어 톤 캡슐 선크림",
+      "brand": "히디프",
+      "brandAlias": "HIDIFF",
+      "category": "sunscreen",
+      "officialUrl": "https://hidiff.co.kr/product/%ED%93%A8%EC%96%B4-%ED%86%A4-%EC%BA%A1%EC%8A%90-%EC%84%A0%ED%81%AC%EB%A6%BC/20/",
+      "image": "https://ecimg.cafe24img.com/pg875b30552274082/hidiff/web/product/big/20250609/fc107b2b083bd3679fc568726c2f058d.png"
+    },
+    {
+      "id": "lookup:hidiff:30",
+      "name": "히디프 로얄 판테놀 3 카밍 세럼",
+      "brand": "히디프",
+      "brandAlias": "HIDIFF",
+      "category": "serum",
+      "officialUrl": "https://hidiff.co.kr/product/%EB%A1%9C%EC%96%84-%ED%8C%90%ED%85%8C%EB%86%80-3-%EC%B9%B4%EB%B0%8D-%EC%84%B8%EB%9F%BC/30/",
+      "image": "https://ecimg.cafe24img.com/pg875b30552274082/hidiff/web/product/big/20250109/6fe1dafe4217b4ad13c158d9507423d8.png"
+    },
+    {
+      "id": "lookup:hidiff:48",
+      "name": "히디프 로얄 레이어링 버블토너 로얄 피니시 크림 로얄 판테놀 3 카밍 세럼",
+      "brand": "히디프",
+      "brandAlias": "HIDIFF",
+      "category": "toner",
+      "officialUrl": "https://hidiff.co.kr/product/%EB%A1%9C%EC%96%84-%EB%A0%88%EC%9D%B4%EC%96%B4%EB%A7%81-%EB%B2%84%EB%B8%94%ED%86%A0%EB%84%88-%EB%A1%9C%EC%96%84-%ED%94%BC%EB%8B%88%EC%8B%9C-%ED%81%AC%EB%A6%BC-%EB%A1%9C%EC%96%84-%ED%8C%90%ED%85%8C%EB%86%80-3-%EC%B9%B4%EB%B0%8D-%EC%84%B8%EB%9F%BC/48/",
+      "image": "https://ecimg.cafe24img.com/pg875b30552274082/hidiff/web/product/big/20261005/887724c63965a6c04fd0ed248faa0532.png"
+    },
+    {
+      "id": "lookup:hidiff:54",
+      "name": "히디프 로얄 애플비니거 밸런싱 클렌징밀크",
+      "brand": "히디프",
+      "brandAlias": "HIDIFF",
+      "category": "cleanser",
+      "officialUrl": "https://hidiff.co.kr/product/%EB%A1%9C%EC%96%84-%EC%95%A0%ED%94%8C%EB%B9%84%EB%8B%88%EA%B1%B0-%EB%B0%B8%EB%9F%B0%EC%8B%B1-%ED%81%B4%EB%A0%8C%EC%A7%95%EB%B0%80%ED%81%AC/54/",
+      "image": "https://ecimg.cafe24img.com/pg875b30552274082/hidiff/web/product/big/20250530/a807fb1db4a42cbf83dafa04cf942aab.png"
+    },
+    {
+      "id": "lookup:hidiff:55",
+      "name": "히디프 로얄 약산성 클렌징 폼",
+      "brand": "히디프",
+      "brandAlias": "HIDIFF",
+      "category": "cleanser",
+      "officialUrl": "https://hidiff.co.kr/product/%EB%A1%9C%EC%96%84-%EC%95%BD%EC%82%B0%EC%84%B1-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8F%BC/55/",
+      "image": "https://ecimg.cafe24img.com/pg875b30552274082/hidiff/web/product/big/20250530/9ba0303d0748aed361f885110193bb8d.png"
+    },
+    {
+      "id": "lookup:hidiff:61",
+      "name": "히디프 클렌징 듀오 클렌징밀크 클렌징 폼",
+      "brand": "히디프",
+      "brandAlias": "HIDIFF",
+      "category": "cleanser",
+      "officialUrl": "https://hidiff.co.kr/product/%ED%81%B4%EB%A0%8C%EC%A7%95-%EB%93%80%EC%98%A4-%ED%81%B4%EB%A0%8C%EC%A7%95%EB%B0%80%ED%81%AC-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8F%BC/61/",
+      "image": "https://ecimg.cafe24img.com/pg875b30552274082/hidiff/web/product/big/20250530/8a3e3a91393077ba8aeabb8c3180ee7c.png"
+    },
+    {
       "id": "lookup:huxley:12",
       "name": "헉슬리 오일에센스 에센스라이크 오일라이크",
       "brand": "헉슬리",
@@ -17089,7 +17178,7 @@
       "category": "cleanser",
       "volume": "120ml",
       "officialUrl": "https://www.medihealshop.com/product/%ED%83%B1%EA%B8%80-%EA%B2%B0%EA%B4%91-%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%81%B4%EB%A0%8C%EC%A0%80-120ml/1515/",
-      "image": "https://www.medihealshop.com/web/product/medium/202503/640d0da1de0bab9fe8f99db493bfaaa8.jpg"
+      "image": "https://medihealshop.com/web/product/medium/202503/640d0da1de0bab9fe8f99db493bfaaa8.jpg"
     },
     {
       "id": "lookup:mediheal:1517",
@@ -17109,7 +17198,7 @@
       "category": "cleanser",
       "volume": "120ml",
       "officialUrl": "https://www.medihealshop.com/product/%EB%B0%80%EB%8F%84-%EB%B3%B4%EC%8A%B5-%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%ED%81%B4%EB%A0%8C%EC%A0%80-120ml/1520/",
-      "image": "https://www.medihealshop.com/web/product/medium/202503/d72216f1276cf2c3590020493154b97c.jpg"
+      "image": "https://medihealshop.com/web/product/medium/202503/d72216f1276cf2c3590020493154b97c.jpg"
     },
     {
       "id": "lookup:mediheal:1586",
@@ -17129,7 +17218,7 @@
       "category": "moisturizer",
       "volume": "50ml",
       "officialUrl": "https://www.medihealshop.com/product/%EB%A7%88%EB%8D%B0%EC%B9%B4%EC%86%8C%EC%82%AC%EC%9D%B4%EB%93%9C-%EB%8D%94%EB%A7%88-%ED%81%AC%EB%A6%BC-50ml/1647/",
-      "image": "https://www.medihealshop.com/web/product/medium/202510/2afd31c799d09695913ff3b7a6f4f63f.jpg"
+      "image": "https://medihealshop.com/web/product/medium/202510/2afd31c799d09695913ff3b7a6f4f63f.jpg"
     },
     {
       "id": "lookup:mediheal:1675",
@@ -17139,7 +17228,7 @@
       "category": "toner",
       "volume": "100매",
       "officialUrl": "https://www.medihealshop.com/product/%ED%8B%B0%ED%8A%B8%EB%A6%AC-%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%A7%84%EC%A0%95-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-100%EB%A7%A4/1675/",
-      "image": "https://www.medihealshop.com/web/product/medium/202511/6118093c215fa99f3bac6a5b8ba45905.jpg"
+      "image": "https://medihealshop.com/web/product/medium/202511/6118093c215fa99f3bac6a5b8ba45905.jpg"
     },
     {
       "id": "lookup:mediheal:1676",
@@ -17149,7 +17238,7 @@
       "category": "toner",
       "volume": "100매",
       "officialUrl": "https://www.medihealshop.com/product/%EB%B9%84%ED%83%80%EB%AF%BC%EC%94%A8-%EC%9E%A1%ED%8B%B0-%ED%86%A0%EB%8B%9D-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-100%EB%A7%A4/1676/",
-      "image": "https://www.medihealshop.com/web/product/medium/202511/0aaa2f2471840ef246cff4686d0d33ce.jpg"
+      "image": "https://medihealshop.com/web/product/medium/202511/0aaa2f2471840ef246cff4686d0d33ce.jpg"
     },
     {
       "id": "lookup:mediheal:1677",
@@ -17159,7 +17248,7 @@
       "category": "toner",
       "volume": "100매",
       "officialUrl": "https://www.medihealshop.com/product/%EC%BD%9C%EB%9D%BC%EA%B2%90-%ED%83%84%EB%A0%A5-%EC%B1%84%EC%9B%80-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-100%EB%A7%A4/1677/",
-      "image": "https://www.medihealshop.com/web/product/medium/202511/0c7a60e014e7ba718961f0df075bb583.jpg"
+      "image": "https://medihealshop.com/web/product/medium/202511/0c7a60e014e7ba718961f0df075bb583.jpg"
     },
     {
       "id": "lookup:mediheal:1678",
@@ -17169,7 +17258,7 @@
       "category": "toner",
       "volume": "100매",
       "officialUrl": "https://www.medihealshop.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EB%AA%A8%EA%B3%B5-%ED%83%84%EB%A0%A5-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-100%EB%A7%A4/1678/",
-      "image": "https://www.medihealshop.com/web/product/medium/202512/7cd1cb6abca03523c3f06e55b5e67ece.jpg"
+      "image": "https://medihealshop.com/web/product/medium/202512/7cd1cb6abca03523c3f06e55b5e67ece.jpg"
     },
     {
       "id": "lookup:mediheal:1679",
@@ -17179,7 +17268,7 @@
       "category": "toner",
       "volume": "100매",
       "officialUrl": "https://www.medihealshop.com/product/%ED%9E%88%EC%95%8C%EB%A3%A8%EB%A1%A0%EC%82%B0-%EC%86%8D%EB%B3%B4%EC%8A%B5-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-100%EB%A7%A4/1679/",
-      "image": "https://www.medihealshop.com/web/product/medium/202511/283e769c6416b46ee167b7015caebe22.jpg"
+      "image": "https://medihealshop.com/web/product/medium/202511/283e769c6416b46ee167b7015caebe22.jpg"
     },
     {
       "id": "lookup:mediheal:1680",
@@ -17189,7 +17278,7 @@
       "category": "toner",
       "volume": "100매",
       "officialUrl": "https://www.medihealshop.com/product/%ED%94%BC%ED%86%A0%EC%97%94%EC%9E%90%EC%9E%84-%EA%B0%81%EC%A7%88-%ED%95%84%EB%A7%81-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-100%EB%A7%A4/1680/",
-      "image": "https://www.medihealshop.com/web/product/medium/202511/84400240ac86da29c2e016329571fdb3.jpg"
+      "image": "https://medihealshop.com/web/product/medium/202511/84400240ac86da29c2e016329571fdb3.jpg"
     },
     {
       "id": "lookup:mediheal:1710",
@@ -17199,7 +17288,7 @@
       "category": "toner",
       "volume": "100매",
       "officialUrl": "https://www.medihealshop.com/product/%EB%A7%88%EB%8D%B0%EC%B9%B4%EC%86%8C%EC%82%AC%EC%9D%B4%EB%93%9C-%ED%9D%94%EC%A0%81-%ED%86%A0%EB%84%88%ED%8C%A8%EB%93%9C-100%EB%A7%A4/1710/",
-      "image": "https://www.medihealshop.com/web/product/medium/202601/623e5f291b7f531081dd7f3581f0ff49.jpg"
+      "image": "https://medihealshop.com/web/product/medium/202601/623e5f291b7f531081dd7f3581f0ff49.jpg"
     },
     {
       "id": "lookup:mediheal:1726",
@@ -17209,7 +17298,7 @@
       "category": "moisturizer",
       "volume": "50ml",
       "officialUrl": "https://www.medihealshop.com/product/%ED%94%BC%EB%94%94%EC%95%8C%EC%97%94-%EB%8D%94%EB%A7%88-%ED%81%AC%EB%A6%BC-50ml/1726/",
-      "image": "https://www.medihealshop.com/web/product/medium/202602/afe73d5580baa50c0144e5dc81c54939.jpg"
+      "image": "https://medihealshop.com/web/product/medium/202602/afe73d5580baa50c0144e5dc81c54939.jpg"
     },
     {
       "id": "lookup:mediheal:1731",
@@ -17218,7 +17307,7 @@
       "brandAlias": "MEDIHEAL",
       "category": "sunscreen",
       "officialUrl": "https://www.medihealshop.com/product/%EB%A7%88%EB%8D%B0%EC%B9%B4%EC%86%8C%EC%82%AC%EC%9D%B4%EB%93%9C-%EC%88%98%EB%B6%84-%EC%84%A0%EC%84%B8%EB%9F%BC-%ED%9D%94%EC%A0%81-%EB%A6%AC%ED%8E%98%EC%96%B4/1731/",
-      "image": "https://www.medihealshop.com/web/product/medium/202603/eda5ff895bc6e3e058b2b4eca4beb31d.jpg"
+      "image": "https://medihealshop.com/web/product/medium/202603/eda5ff895bc6e3e058b2b4eca4beb31d.jpg"
     },
     {
       "id": "lookup:mediheal:1746",
@@ -17227,7 +17316,7 @@
       "brandAlias": "MEDIHEAL",
       "category": "sunscreen",
       "officialUrl": "https://www.medihealshop.com/product/pdrn-%EC%88%98%EB%B6%84-%EC%84%A0%EC%84%B8%EB%9F%BC-%EB%A7%A4%EB%81%88-%ED%86%A4%EC%97%85/1746/",
-      "image": "https://www.medihealshop.com/web/product/medium/202604/ac377f49d052213e875130460d2164d0.jpg"
+      "image": "https://medihealshop.com/web/product/medium/202604/ac377f49d052213e875130460d2164d0.jpg"
     },
     {
       "id": "lookup:mediheal:1758",
@@ -17646,7 +17735,7 @@
       "category": "moisturizer",
       "volume": "50ml",
       "officialUrl": "https://www.medipeel.co.kr/product/detail.html?product_no=2718",
-      "image": "https://www.medipeel.co.kr/web/product/medium/202611/6d663e804e0a12b36c58996670cdae0b.jpg"
+      "image": "https://medipeel.co.kr/web/product/medium/202611/6d663e804e0a12b36c58996670cdae0b.jpg"
     },
     {
       "id": "lookup:medipeel:2739",
@@ -18240,7 +18329,7 @@
       "category": "serum",
       "volume": "30ml",
       "officialUrl": "https://www.medipeel.co.kr/product/detail.html?product_no=4307",
-      "image": "https://www.medipeel.co.kr/web/product/medium/202611/43075eff2ad100384bb1337cc84b94d3.jpg"
+      "image": "https://medipeel.co.kr/web/product/medium/202611/43075eff2ad100384bb1337cc84b94d3.jpg"
     },
     {
       "id": "lookup:medipeel:4308",
@@ -18250,7 +18339,7 @@
       "category": "moisturizer",
       "volume": "50g",
       "officialUrl": "https://www.medipeel.co.kr/product/detail.html?product_no=4308",
-      "image": "https://www.medipeel.co.kr/web/product/medium/202611/d6588fa5ce6ad085e2abd8ab59dce427.jpg"
+      "image": "https://medipeel.co.kr/web/product/medium/202611/d6588fa5ce6ad085e2abd8ab59dce427.jpg"
     },
     {
       "id": "lookup:medipeel:4331",
@@ -27793,7 +27882,7 @@
       "category": "serum",
       "volume": "30ml",
       "officialUrl": "https://www.skin1004korea.com/product/%EB%A7%88%EB%8B%A4%EA%B0%80%EC%8A%A4%EC%B9%B4%EB%A5%B4-%EC%84%BC%ED%85%94%EB%9D%BC-%EB%A7%A4%ED%8A%B8%EB%A6%AD%EC%8B%A4-10-%EB%B6%80%EC%8A%A4%ED%8C%85%EC%83%B7-%EC%95%B0%ED%94%8C-30ml/363/",
-      "image": "https://www.skin1004korea.com/web/product/big/202505/6c663e438484a183995f3f1478714c1d.png"
+      "image": "https://skin1004korea.com/web/product/big/202505/6c663e438484a183995f3f1478714c1d.png"
     },
     {
       "id": "lookup:skin1004:367",
@@ -27803,7 +27892,7 @@
       "category": "serum",
       "volume": "30ml",
       "officialUrl": "https://www.skin1004korea.com/product/%EB%A7%88%EB%8B%A4%EA%B0%80%EC%8A%A4%EC%B9%B4%EB%A5%B4-%EC%84%BC%ED%85%94%EB%9D%BC-%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-10-%EB%B6%80%EC%8A%A4%ED%8C%85%EC%83%B7-%EC%95%B0%ED%94%8C-30ml/367/",
-      "image": "https://www.skin1004korea.com/web/product/big/202505/0db09d8480f95ac5372f6a979a1c22e0.png"
+      "image": "https://skin1004korea.com/web/product/big/202505/0db09d8480f95ac5372f6a979a1c22e0.png"
     },
     {
       "id": "lookup:skin1004:368",
@@ -27813,7 +27902,7 @@
       "category": "serum",
       "volume": "30ml",
       "officialUrl": "https://www.skin1004korea.com/product/%EB%A7%88%EB%8B%A4%EA%B0%80%EC%8A%A4%EC%B9%B4%EB%A5%B4-%EC%84%BC%ED%85%94%EB%9D%BC-%EB%A0%88%ED%8B%B0%EB%86%80-02-%EB%B6%80%EC%8A%A4%ED%8C%85%EC%83%B7-%EC%95%B0%ED%94%8C-30ml/368/",
-      "image": "https://www.skin1004korea.com/web/product/big/202505/fcdd1072b8dc16a4ff93b26c525306e9.png"
+      "image": "https://skin1004korea.com/web/product/big/202505/fcdd1072b8dc16a4ff93b26c525306e9.png"
     },
     {
       "id": "lookup:skin1004:369",
@@ -28389,7 +28478,7 @@
       "brandAlias": "SKIN&LAB",
       "category": "cleanser",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=110",
-      "image": "https://skinnlab.com/web/product/medium/202503/8ef0accaf81bf11c74a1ab324a037724.jpg"
+      "image": "https://www.skinnlab.com/web/product/medium/202503/8ef0accaf81bf11c74a1ab324a037724.jpg"
     },
     {
       "id": "lookup:skinnlab:112",
@@ -28398,7 +28487,7 @@
       "brandAlias": "SKIN&LAB",
       "category": "serum",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=112",
-      "image": "https://skinnlab.com/web/product/medium/202410/7673522f0ebed02580cf1be69fa57572.jpg"
+      "image": "https://www.skinnlab.com/web/product/medium/202410/7673522f0ebed02580cf1be69fa57572.jpg"
     },
     {
       "id": "lookup:skinnlab:142",
@@ -28407,7 +28496,7 @@
       "brandAlias": "SKIN&LAB",
       "category": "serum",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=142",
-      "image": "https://skinnlab.com/web/product/medium/202604/965bdf9192d083756d378bdcf02643d3.jpg"
+      "image": "https://www.skinnlab.com/web/product/medium/202604/965bdf9192d083756d378bdcf02643d3.jpg"
     },
     {
       "id": "lookup:skinnlab:151",
@@ -28416,7 +28505,7 @@
       "brandAlias": "SKIN&LAB",
       "category": "serum",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=151",
-      "image": "https://skinnlab.com/web/product/medium/202604/f8393afba30d20da313cdcc04ffa5da2.jpg"
+      "image": "https://www.skinnlab.com/web/product/medium/202604/f8393afba30d20da313cdcc04ffa5da2.jpg"
     },
     {
       "id": "lookup:skinnlab:158",
@@ -28425,7 +28514,7 @@
       "brandAlias": "SKIN&LAB",
       "category": "moisturizer",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=158",
-      "image": "https://skinnlab.com/web/product/medium/202410/9fd6a51a3293ea95c40bef424ff2b904.jpg"
+      "image": "https://www.skinnlab.com/web/product/medium/202410/9fd6a51a3293ea95c40bef424ff2b904.jpg"
     },
     {
       "id": "lookup:skinnlab:180",
@@ -28492,7 +28581,7 @@
       "category": "serum",
       "volume": "30ml",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=190",
-      "image": "https://skinnlab.com/web/product/medium/202604/77557b8453b9ebf07fdab107d936e8cf.jpg"
+      "image": "https://www.skinnlab.com/web/product/medium/202604/77557b8453b9ebf07fdab107d936e8cf.jpg"
     },
     {
       "id": "lookup:skinnlab:191",
@@ -28559,7 +28648,7 @@
       "brandAlias": "SKIN&LAB",
       "category": "toner",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=317",
-      "image": "https://skinnlab.com/web/product/medium/202604/715394235d77b9fbef1b59406275a000.jpg"
+      "image": "https://www.skinnlab.com/web/product/medium/202604/715394235d77b9fbef1b59406275a000.jpg"
     },
     {
       "id": "lookup:skinnlab:320",
@@ -28579,7 +28668,7 @@
       "category": "moisturizer",
       "volume": "100ml",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=84",
-      "image": "https://skinnlab.com/web/product/medium/202408/f2458d54a82eed352451828f11d92f16.jpg"
+      "image": "https://www.skinnlab.com/web/product/medium/202408/f2458d54a82eed352451828f11d92f16.jpg"
     },
     {
       "id": "lookup:skinnlab:87",
@@ -28588,7 +28677,7 @@
       "brandAlias": "SKIN&LAB",
       "category": "serum",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=87",
-      "image": "https://skinnlab.com/web/product/medium/202409/e5037d025972977a470dbe391a5ac900.jpg"
+      "image": "https://www.skinnlab.com/web/product/medium/202409/e5037d025972977a470dbe391a5ac900.jpg"
     },
     {
       "id": "lookup:skinrxlab:10",
@@ -31452,7 +31541,7 @@
       "brand": "브이티",
       "brandAlias": "VT Cosmetics",
       "category": "moisturizer",
-      "officialUrl": "https://www.vt-cosmetics.com/product/detail.html?product_no=1013",
+      "officialUrl": "https://www.vt-cosmetics.com/product/%EB%A6%AC%EB%93%A4%EC%83%B7-%EB%A6%AC%ED%94%84%ED%8C%85-%ED%81%AC%EB%A6%BC/1013/",
       "image": "https://www.vt-cosmetics.com/web/product/medium/202601/2d224bb77de3555494f050f41c9b4af0.jpg"
     },
     {
@@ -31943,7 +32032,7 @@
       "brandAlias": "VT Cosmetics",
       "category": "sunscreen",
       "officialUrl": "https://www.vt-cosmetics.com/product/detail.html?product_no=2446",
-      "image": "https://vt-cosmetics.com/web/product/medium/202605/63be55039a0405959df90d23ce5ef28e.jpg"
+      "image": "https://www.vt-cosmetics.com/web/product/medium/202605/63be55039a0405959df90d23ce5ef28e.jpg"
     },
     {
       "id": "lookup:vt:2630",
