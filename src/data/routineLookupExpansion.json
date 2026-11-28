@@ -5799,6 +5799,16 @@
       "image": "https://ecimg.cafe24img.com/pg2019b28217072075/celimax001/web/product/medium/20261125/0ba4a171d95e736bff4f8562065a0aee.png"
     },
     {
+      "id": "lookup:celimax:135",
+      "name": "셀리맥스 노니진정위크 노니 밸런싱 토너",
+      "brand": "셀리맥스",
+      "brandAlias": "celimax",
+      "category": "toner",
+      "volume": "320ml",
+      "officialUrl": "https://celimax.co.kr/product/%EB%85%B8%EB%8B%88%EC%A7%84%EC%A0%95%EC%9C%84%ED%81%AC-%EB%85%B8%EB%8B%88-%EB%B0%B8%EB%9F%B0%EC%8B%B1-%ED%86%A0%EB%84%88-320ml/135/",
+      "image": "https://ecimg.cafe24img.com/pg2019b28217072075/celimax001/web/product/medium/20261125/5ae68fd5e4a24b733f9d29a4362e584f.jpg"
+    },
+    {
       "id": "lookup:celimax:19",
       "name": "셀리맥스 수정화장 패드",
       "brand": "셀리맥스",
@@ -5932,12 +5942,12 @@
     },
     {
       "id": "lookup:celimax:45",
-      "name": "셀리맥스 노니진정위크 노니 리페어 크림",
+      "name": "셀리맥스 노니 리페어 크림",
       "brand": "셀리맥스",
       "brandAlias": "celimax",
       "category": "moisturizer",
       "volume": "50ml",
-      "officialUrl": "https://celimax.co.kr/product/%EB%85%B8%EB%8B%88%EC%A7%84%EC%A0%95%EC%9C%84%ED%81%AC-%EB%85%B8%EB%8B%88-%EB%A6%AC%ED%8E%98%EC%96%B4-%ED%81%AC%EB%A6%BC-50ml/45/",
+      "officialUrl": "https://celimax.co.kr/product/%EB%85%B8%EB%8B%88-%EB%A6%AC%ED%8E%98%EC%96%B4-%ED%81%AC%EB%A6%BC-50ml/45/",
       "image": "https://ecimg.cafe24img.com/pg2019b28217072075/celimax001/web/product/medium/20261127/a00bf891a7b843cc82f481e11b863f42.jpg"
     },
     {
@@ -6097,12 +6107,12 @@
     },
     {
       "id": "lookup:celimax:65",
-      "name": "셀리맥스 트라넥삼산 브라이트닝 선크림",
+      "name": "셀리맥스 트라넥삼산 잡티 선크림",
       "brand": "셀리맥스",
       "brandAlias": "celimax",
       "category": "sunscreen",
       "volume": "50ml",
-      "officialUrl": "https://celimax.co.kr/product/%ED%8A%B8%EB%9D%BC%EB%84%A5%EC%82%BC%EC%82%B0-%EB%B8%8C%EB%9D%BC%EC%9D%B4%ED%8A%B8%EB%8B%9D-%EC%84%A0%ED%81%AC%EB%A6%BC-50ml/65/",
+      "officialUrl": "https://celimax.co.kr/product/%ED%8A%B8%EB%9D%BC%EB%84%A5%EC%82%BC%EC%82%B0-%EC%9E%A1%ED%8B%B0-%EC%84%A0%ED%81%AC%EB%A6%BC-50ml/65/",
       "image": "https://ecimg.cafe24img.com/pg2019b28217072075/celimax001/web/product/medium/20261125/30ca281c3cbd7d89d372b9b263fa8251.png"
     },
     {
@@ -6312,7 +6322,7 @@
       "category": "cleanser",
       "volume": "130ml",
       "officialUrl": "https://cellfusionc.co.kr/product/%EB%A9%9C%ED%8C%85-%ED%81%B4%EB%A0%8C%EC%A7%95-%ED%8F%BC-130ml/411/",
-      "image": "https://cellfusionc.co.kr/web/product/big/shop1_40b90f57571ff2cde6489dbec1d900f9.jpg"
+      "image": "https://cellfusionc.co.kr/web/product/medium/shop1_e24ae5e6fe2a495dbb743d3abf43e712.jpg"
     },
     {
       "id": "lookup:cellfusionc:424",
@@ -13083,6 +13093,15 @@
       "category": "cleanser",
       "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/36868",
       "image": "https://inm-cdn.innisfree.com/origin-image/product/product/00/00/03/68/68/f31ebdca-9207-4dff-a2d3-5bd9c8492825.webp"
+    },
+    {
+      "id": "lookup:innisfree:36902",
+      "name": "이니스프리 블루베리 리밸런싱 클렌징 워터",
+      "brand": "이니스프리",
+      "brandAlias": "innisfree",
+      "category": "cleanser",
+      "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/36902",
+      "image": "https://inm-cdn.innisfree.com/origin-image/product/product/00/00/03/69/02/c4449d98-3fbb-4b97-9d4a-7e463d066536.webp"
     },
     {
       "id": "lookup:innisfree:36903",
@@ -31637,7 +31656,7 @@
       "brandAlias": "VT Cosmetics",
       "category": "sunscreen",
       "officialUrl": "https://www.vt-cosmetics.com/product/detail.html?product_no=2446",
-      "image": "https://vt-cosmetics.com/web/product/medium/202605/63be55039a0405959df90d23ce5ef28e.jpg"
+      "image": "https://www.vt-cosmetics.com/web/product/medium/202605/63be55039a0405959df90d23ce5ef28e.jpg"
     },
     {
       "id": "lookup:vt:2630",
