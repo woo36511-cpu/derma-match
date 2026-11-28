@@ -647,6 +647,14 @@
       "fetchedListings": 10,
       "alias": "THE HARNAY",
       "officialCatalogUrl": "https://theharnay.co.kr/product/list.html?cate_no=155"
+    },
+    "haedals": {
+      "name": "해달씨",
+      "checkedAt": "2026-11-28",
+      "usefulPages": 2,
+      "fetchedListings": 6,
+      "alias": "HAEDAL'S",
+      "officialCatalogUrl": "https://haedals.com/product/list.html?cate_no=42"
     }
   },
   "products": [
@@ -1302,7 +1310,7 @@
       "brandAlias": "Anua",
       "category": "cleanser",
       "officialUrl": "https://anua.kr/product/detail.html?product_no=253",
-      "image": "https://anua.kr/web/product/big/202412/d7ea424ec0c17269819c3a301d459294.png"
+      "image": "https://www.anua.kr/web/product/big/202412/d7ea424ec0c17269819c3a301d459294.png"
     },
     {
       "id": "lookup:anua:294",
@@ -1311,7 +1319,7 @@
       "brandAlias": "Anua",
       "category": "moisturizer",
       "officialUrl": "https://anua.kr/product/detail.html?product_no=294",
-      "image": "https://anua.kr/web/product/big/202412/2bafb7073909608ac3fe64a388b9e718.png"
+      "image": "https://www.anua.kr/web/product/big/202412/2bafb7073909608ac3fe64a388b9e718.png"
     },
     {
       "id": "lookup:anua:347",
@@ -1329,7 +1337,7 @@
       "brandAlias": "Anua",
       "category": "serum",
       "officialUrl": "https://anua.kr/product/detail.html?product_no=349",
-      "image": "https://anua.kr/web/product/big/202412/4d9facdda7a49744a53e257e1edd6073.png"
+      "image": "https://www.anua.kr/web/product/big/202412/4d9facdda7a49744a53e257e1edd6073.png"
     },
     {
       "id": "lookup:anua:350",
@@ -1338,7 +1346,7 @@
       "brandAlias": "Anua",
       "category": "moisturizer",
       "officialUrl": "https://anua.kr/product/detail.html?product_no=350",
-      "image": "https://anua.kr/web/product/big/202412/828272a7997f84998b622cc1005788e4.png"
+      "image": "https://www.anua.kr/web/product/big/202412/828272a7997f84998b622cc1005788e4.png"
     },
     {
       "id": "lookup:anua:395",
@@ -1347,7 +1355,7 @@
       "brandAlias": "Anua",
       "category": "toner",
       "officialUrl": "https://anua.kr/product/detail.html?product_no=395",
-      "image": "https://anua.kr/web/product/big/202502/60df88a1d8ce0085607e3f7736f619d2.png"
+      "image": "https://www.anua.kr/web/product/big/202502/60df88a1d8ce0085607e3f7736f619d2.png"
     },
     {
       "id": "lookup:anua:403",
@@ -1356,7 +1364,7 @@
       "brandAlias": "Anua",
       "category": "toner",
       "officialUrl": "https://anua.kr/product/detail.html?product_no=403",
-      "image": "https://anua.kr/web/product/big/202502/efc49810262b6737459ff777440d01d1.png"
+      "image": "https://www.anua.kr/web/product/big/202502/efc49810262b6737459ff777440d01d1.png"
     },
     {
       "id": "lookup:anua:420",
@@ -1411,7 +1419,7 @@
       "category": "toner",
       "volume": "100ml",
       "officialUrl": "https://anua.kr/product/detail.html?product_no=466",
-      "image": "https://anua.kr/web/product/big/202611/6ba343c98a07f41c1ed8a679b5ebe7f5.png"
+      "image": "https://www.anua.kr/web/product/big/202611/6ba343c98a07f41c1ed8a679b5ebe7f5.png"
     },
     {
       "id": "lookup:anua:468",
@@ -11392,6 +11400,64 @@
       "officialUrl": "https://jp.rohto.com/en/hadalabo/gokujun-premium-lotion"
     },
     {
+      "id": "lookup:haedals:35",
+      "name": "해달씨 워터리 선크림 3중 기능성",
+      "brand": "해달씨",
+      "brandAlias": "HAEDAL'S",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://haedals.com/product/%ED%95%B4%EB%8B%AC%EC%94%A8-%EC%9B%8C%ED%84%B0%EB%A6%AC-%EC%84%A0%ED%81%AC%EB%A6%BC-3%EC%A4%91-%EA%B8%B0%EB%8A%A5%EC%84%B1-50ml/35/",
+      "image": "https://haedals.com/web/product/medium/202607/9e3dae1ebb4a8f81e3c279150df56852.png"
+    },
+    {
+      "id": "lookup:haedals:36",
+      "name": "해달씨 이노시톨 진정 쿨링크림",
+      "brand": "해달씨",
+      "brandAlias": "HAEDAL'S",
+      "category": "moisturizer",
+      "volume": "50ml",
+      "officialUrl": "https://haedals.com/product/%ED%95%B4%EB%8B%AC%EC%94%A8-%EC%9D%B4%EB%85%B8%EC%8B%9C%ED%86%A8-%EC%A7%84%EC%A0%95-%EC%BF%A8%EB%A7%81%ED%81%AC%EB%A6%BC-50ml/36/",
+      "image": "https://haedals.com/web/product/medium/202611/ab51476930236927a8b9d6202a46a03e.jpg"
+    },
+    {
+      "id": "lookup:haedals:37",
+      "name": "해달씨 lha 클렌징폼",
+      "brand": "해달씨",
+      "brandAlias": "HAEDAL'S",
+      "category": "cleanser",
+      "volume": "100ml",
+      "officialUrl": "https://haedals.com/product/%ED%95%B4%EB%8B%AC%EC%94%A8-lha-%ED%81%B4%EB%A0%8C%EC%A7%95%ED%8F%BC-100ml/37/",
+      "image": "https://haedals.com/web/product/medium/202611/396b3520081a9ea22ea9158f4c34d3e2.jpg"
+    },
+    {
+      "id": "lookup:haedals:39",
+      "name": "해달씨 수분 보습 pdrn 앰플 로로정식",
+      "brand": "해달씨",
+      "brandAlias": "HAEDAL'S",
+      "category": "serum",
+      "officialUrl": "https://haedals.com/product/%ED%95%B4%EB%8B%AC%EC%94%A8-%EC%88%98%EB%B6%84-%EB%B3%B4%EC%8A%B5-pdrn-%EC%95%B0%ED%94%8C-%EB%A1%9C%EB%A1%9C%EC%A0%95%EC%8B%9D/39/",
+      "image": "https://haedals.com/web/product/medium/202611/39860cbef289123c16483dc2f4fa888e.png"
+    },
+    {
+      "id": "lookup:haedals:44",
+      "name": "해달씨 스쿠알란 흔적 리커버리크림 미백 주름 다크스팟",
+      "brand": "해달씨",
+      "brandAlias": "HAEDAL'S",
+      "category": "moisturizer",
+      "officialUrl": "https://haedals.com/product/%ED%95%B4%EB%8B%AC%EC%94%A8-%EC%8A%A4%EC%BF%A0%EC%95%8C%EB%9E%80-%ED%9D%94%EC%A0%81-%EB%A6%AC%EC%BB%A4%EB%B2%84%EB%A6%AC%ED%81%AC%EB%A6%BC-%EB%AF%B8%EB%B0%B1-%EC%A3%BC%EB%A6%84-%EB%8B%A4%ED%81%AC%EC%8A%A4%ED%8C%9F/44/",
+      "image": "https://haedals.com/web/product/medium/202611/d70b2503c242fbc96ddb72f0ddc3088d.png"
+    },
+    {
+      "id": "lookup:haedals:48",
+      "name": "해달씨 아줄렌 1100 딥블루 카밍앰플",
+      "brand": "해달씨",
+      "brandAlias": "HAEDAL'S",
+      "category": "serum",
+      "volume": "32ml",
+      "officialUrl": "https://haedals.com/product/%ED%95%B4%EB%8B%AC%EC%94%A8-%EC%95%84%EC%A4%84%EB%A0%8C-1100-%EB%94%A5%EB%B8%94%EB%A3%A8-%EC%B9%B4%EB%B0%8D%EC%95%B0%ED%94%8C-32ml/48/",
+      "image": "https://haedals.com/web/product/medium/202611/557b8a5f84f7bc987c0eaf0d2fd81058.jpg"
+    },
+    {
       "id": "lookup:hanyul:104",
       "name": "한율 어린쑥 수분진정 패드",
       "brand": "한율",
@@ -12948,6 +13014,15 @@
       "category": "moisturizer",
       "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/34719",
       "image": "https://inm-cdn.innisfree.com/origin-image/product/product/00/00/03/47/19/7d7256d1-0579-47d7-bb14-cfd23e666845.png"
+    },
+    {
+      "id": "lookup:innisfree:34861",
+      "name": "이니스프리 그린티 히알루론산 미스트",
+      "brand": "이니스프리",
+      "brandAlias": "innisfree",
+      "category": "toner",
+      "officialUrl": "https://www.innisfree.com/kr/ko/dp/product/34861",
+      "image": "https://inm-cdn.innisfree.com/origin-image/product/product/00/00/03/48/61/a57fe815-c4e9-452f-8c0c-a984bc2268ae.webp"
     },
     {
       "id": "lookup:innisfree:35097",
@@ -20136,7 +20211,7 @@
       "category": "serum",
       "volume": "32ml",
       "officialUrl": "https://www.neogenlab.co.kr/product/%EB%84%A5%EC%8A%A4%ED%8A%B8-%EA%B8%80%EB%A1%9C%EC%9A%B0-%ED%94%84%EB%A0%99-%EC%84%B8%EB%9F%BC-32ml/1223/",
-      "image": "https://neogenlab.co.kr/web/product/small/202611/dfc5741b669937cfd1fc56edd6f543b0.jpg"
+      "image": "https://www.neogenlab.co.kr/web/product/small/202611/dfc5741b669937cfd1fc56edd6f543b0.jpg"
     },
     {
       "id": "lookup:neogen:1224",
