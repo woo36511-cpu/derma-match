@@ -1,7 +1,7 @@
 import React from "react";
 import { CatalogRefreshStatus } from "./CatalogRefreshStatus";
 
-export function Footer() {
+export function Footer({ onSupport }) {
   return (
     <footer className="border-t border-gray-200 bg-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-4">
@@ -30,6 +30,8 @@ export function Footer() {
           </div>
 
         </div>
+
+        {onSupport && <button type="button" className="text-sm font-semibold text-forest-900 underline underline-offset-4" onClick={onSupport}>고객센터 · 의견 남기기</button>}
 
         <CatalogRefreshStatus />
 

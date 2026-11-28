@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Header({ resetFlow, isStart = false }) {
+export function Header({ resetFlow, isStart = false, onSupport }) {
   return (
     <header className="sticky top-0 z-10 border-b border-line bg-paper/95 backdrop-blur">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-2 px-4 py-3 sm:px-6">
@@ -18,6 +18,7 @@ export function Header({ resetFlow, isStart = false }) {
           </div>
         </div>
         <div className="relative flex shrink-0 flex-wrap items-center justify-end gap-1.5 sm:gap-2">
+          {onSupport && <button type="button" onClick={onSupport} className="care-secondary whitespace-nowrap px-2.5 text-xs sm:px-4 sm:text-sm">고객센터</button>}
           <details>
             <summary className="care-secondary cursor-pointer list-none whitespace-nowrap px-2.5 text-xs [&::-webkit-details-marker]:hidden sm:px-4 sm:text-sm">
               <span aria-hidden="true" className="mr-1">☆</span>즐겨찾기
