@@ -671,6 +671,14 @@
       "fetchedListings": 9,
       "alias": "HIDIFF",
       "officialCatalogUrl": "https://hidiff.co.kr/product/list.html?cate_no=29"
+    },
+    "celladix": {
+      "name": "셀라딕스",
+      "checkedAt": "2026-11-29",
+      "usefulPages": 1,
+      "fetchedListings": 5,
+      "alias": "Celladix",
+      "officialCatalogUrl": "https://celladix.co.kr/product/list.html?cate_no=69"
     }
   },
   "products": [
@@ -6234,6 +6242,51 @@
       "volume": "15ml",
       "officialUrl": "https://celimax.co.kr/product/%EB%A0%88%ED%8B%B0%EB%82%A0-%EC%83%B7-%ED%83%80%EC%9D%B4%ED%8A%B8%EB%8B%9D-%EB%B6%80%EC%8A%A4%ED%84%B0-%EC%8A%A4%ED%8C%9F-%ED%81%AC%EB%A6%BC-15ml/70/",
       "image": "https://ecimg.cafe24img.com/pg2019b28217072075/celimax001/web/product/medium/20261125/2950d4708689056ac68a7e6a239f30cf.png"
+    },
+    {
+      "id": "lookup:celladix:10",
+      "name": "셀라딕스 트러블 세범 밸런싱 131 앰플",
+      "brand": "셀라딕스",
+      "brandAlias": "Celladix",
+      "category": "serum",
+      "officialUrl": "https://celladix.co.kr/product/detail.html?product_no=10",
+      "image": "https://celladix.co.kr/web/product/big/202609/9403ae8dc9d914ff88adf938b89580b1.jpg"
+    },
+    {
+      "id": "lookup:celladix:12",
+      "name": "셀라딕스 트러블 세라 캡슐 131 크림",
+      "brand": "셀라딕스",
+      "brandAlias": "Celladix",
+      "category": "moisturizer",
+      "officialUrl": "https://celladix.co.kr/product/detail.html?product_no=12",
+      "image": "https://celladix.co.kr/web/product/big/202610/2a573667b37eff90dd3a4251f2552cf9.jpg"
+    },
+    {
+      "id": "lookup:celladix:13",
+      "name": "셀라딕스 트러블 쿨 카밍 131 토너",
+      "brand": "셀라딕스",
+      "brandAlias": "Celladix",
+      "category": "toner",
+      "officialUrl": "https://celladix.co.kr/product/detail.html?product_no=13",
+      "image": "https://celladix.co.kr/web/product/big/202512/01e64804268d9924a53927d574e05b63.jpg"
+    },
+    {
+      "id": "lookup:celladix:18",
+      "name": "셀라딕스 트러블 클리어 약산성 젤클렌저",
+      "brand": "셀라딕스",
+      "brandAlias": "Celladix",
+      "category": "cleanser",
+      "officialUrl": "https://celladix.co.kr/product/detail.html?product_no=18",
+      "image": "https://celladix.co.kr/web/product/big/202512/4060b9b687eb42e2b249d4c93313d4e9.jpg"
+    },
+    {
+      "id": "lookup:celladix:209",
+      "name": "셀라딕스 비톡실 세럼",
+      "brand": "셀라딕스",
+      "brandAlias": "Celladix",
+      "category": "serum",
+      "officialUrl": "https://celladix.co.kr/product/detail.html?product_no=209",
+      "image": "https://celladix.co.kr/web/product/big/202512/c6319a3240b013033f617299771fc899.jpg"
     },
     {
       "id": "lookup:cellfusionc:231",
@@ -17735,7 +17788,7 @@
       "category": "moisturizer",
       "volume": "50ml",
       "officialUrl": "https://www.medipeel.co.kr/product/detail.html?product_no=2718",
-      "image": "https://medipeel.co.kr/web/product/medium/202611/6d663e804e0a12b36c58996670cdae0b.jpg"
+      "image": "https://www.medipeel.co.kr/web/product/medium/202611/6d663e804e0a12b36c58996670cdae0b.jpg"
     },
     {
       "id": "lookup:medipeel:2739",
@@ -18329,7 +18382,7 @@
       "category": "serum",
       "volume": "30ml",
       "officialUrl": "https://www.medipeel.co.kr/product/detail.html?product_no=4307",
-      "image": "https://medipeel.co.kr/web/product/medium/202611/43075eff2ad100384bb1337cc84b94d3.jpg"
+      "image": "https://www.medipeel.co.kr/web/product/medium/202611/43075eff2ad100384bb1337cc84b94d3.jpg"
     },
     {
       "id": "lookup:medipeel:4308",
@@ -18339,7 +18392,7 @@
       "category": "moisturizer",
       "volume": "50g",
       "officialUrl": "https://www.medipeel.co.kr/product/detail.html?product_no=4308",
-      "image": "https://medipeel.co.kr/web/product/medium/202611/d6588fa5ce6ad085e2abd8ab59dce427.jpg"
+      "image": "https://www.medipeel.co.kr/web/product/medium/202611/d6588fa5ce6ad085e2abd8ab59dce427.jpg"
     },
     {
       "id": "lookup:medipeel:4331",
@@ -27882,7 +27935,7 @@
       "category": "serum",
       "volume": "30ml",
       "officialUrl": "https://www.skin1004korea.com/product/%EB%A7%88%EB%8B%A4%EA%B0%80%EC%8A%A4%EC%B9%B4%EB%A5%B4-%EC%84%BC%ED%85%94%EB%9D%BC-%EB%A7%A4%ED%8A%B8%EB%A6%AD%EC%8B%A4-10-%EB%B6%80%EC%8A%A4%ED%8C%85%EC%83%B7-%EC%95%B0%ED%94%8C-30ml/363/",
-      "image": "https://skin1004korea.com/web/product/big/202505/6c663e438484a183995f3f1478714c1d.png"
+      "image": "https://www.skin1004korea.com/web/product/big/202505/6c663e438484a183995f3f1478714c1d.png"
     },
     {
       "id": "lookup:skin1004:367",
@@ -27892,7 +27945,7 @@
       "category": "serum",
       "volume": "30ml",
       "officialUrl": "https://www.skin1004korea.com/product/%EB%A7%88%EB%8B%A4%EA%B0%80%EC%8A%A4%EC%B9%B4%EB%A5%B4-%EC%84%BC%ED%85%94%EB%9D%BC-%EB%82%98%EC%9D%B4%EC%95%84%EC%8B%A0%EC%95%84%EB%A7%88%EC%9D%B4%EB%93%9C-10-%EB%B6%80%EC%8A%A4%ED%8C%85%EC%83%B7-%EC%95%B0%ED%94%8C-30ml/367/",
-      "image": "https://skin1004korea.com/web/product/big/202505/0db09d8480f95ac5372f6a979a1c22e0.png"
+      "image": "https://www.skin1004korea.com/web/product/big/202505/0db09d8480f95ac5372f6a979a1c22e0.png"
     },
     {
       "id": "lookup:skin1004:368",
@@ -27902,7 +27955,7 @@
       "category": "serum",
       "volume": "30ml",
       "officialUrl": "https://www.skin1004korea.com/product/%EB%A7%88%EB%8B%A4%EA%B0%80%EC%8A%A4%EC%B9%B4%EB%A5%B4-%EC%84%BC%ED%85%94%EB%9D%BC-%EB%A0%88%ED%8B%B0%EB%86%80-02-%EB%B6%80%EC%8A%A4%ED%8C%85%EC%83%B7-%EC%95%B0%ED%94%8C-30ml/368/",
-      "image": "https://skin1004korea.com/web/product/big/202505/fcdd1072b8dc16a4ff93b26c525306e9.png"
+      "image": "https://www.skin1004korea.com/web/product/big/202505/fcdd1072b8dc16a4ff93b26c525306e9.png"
     },
     {
       "id": "lookup:skin1004:369",
@@ -28478,7 +28531,7 @@
       "brandAlias": "SKIN&LAB",
       "category": "cleanser",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=110",
-      "image": "https://www.skinnlab.com/web/product/medium/202503/8ef0accaf81bf11c74a1ab324a037724.jpg"
+      "image": "https://skinnlab.com/web/product/medium/202503/8ef0accaf81bf11c74a1ab324a037724.jpg"
     },
     {
       "id": "lookup:skinnlab:112",
@@ -28487,7 +28540,7 @@
       "brandAlias": "SKIN&LAB",
       "category": "serum",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=112",
-      "image": "https://www.skinnlab.com/web/product/medium/202410/7673522f0ebed02580cf1be69fa57572.jpg"
+      "image": "https://skinnlab.com/web/product/medium/202410/7673522f0ebed02580cf1be69fa57572.jpg"
     },
     {
       "id": "lookup:skinnlab:142",
@@ -28496,7 +28549,7 @@
       "brandAlias": "SKIN&LAB",
       "category": "serum",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=142",
-      "image": "https://www.skinnlab.com/web/product/medium/202604/965bdf9192d083756d378bdcf02643d3.jpg"
+      "image": "https://skinnlab.com/web/product/medium/202604/965bdf9192d083756d378bdcf02643d3.jpg"
     },
     {
       "id": "lookup:skinnlab:151",
@@ -28505,7 +28558,7 @@
       "brandAlias": "SKIN&LAB",
       "category": "serum",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=151",
-      "image": "https://www.skinnlab.com/web/product/medium/202604/f8393afba30d20da313cdcc04ffa5da2.jpg"
+      "image": "https://skinnlab.com/web/product/medium/202604/f8393afba30d20da313cdcc04ffa5da2.jpg"
     },
     {
       "id": "lookup:skinnlab:158",
@@ -28514,7 +28567,7 @@
       "brandAlias": "SKIN&LAB",
       "category": "moisturizer",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=158",
-      "image": "https://www.skinnlab.com/web/product/medium/202410/9fd6a51a3293ea95c40bef424ff2b904.jpg"
+      "image": "https://skinnlab.com/web/product/medium/202410/9fd6a51a3293ea95c40bef424ff2b904.jpg"
     },
     {
       "id": "lookup:skinnlab:180",
@@ -28581,7 +28634,7 @@
       "category": "serum",
       "volume": "30ml",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=190",
-      "image": "https://www.skinnlab.com/web/product/medium/202604/77557b8453b9ebf07fdab107d936e8cf.jpg"
+      "image": "https://skinnlab.com/web/product/medium/202604/77557b8453b9ebf07fdab107d936e8cf.jpg"
     },
     {
       "id": "lookup:skinnlab:191",
@@ -28648,7 +28701,7 @@
       "brandAlias": "SKIN&LAB",
       "category": "toner",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=317",
-      "image": "https://www.skinnlab.com/web/product/medium/202604/715394235d77b9fbef1b59406275a000.jpg"
+      "image": "https://skinnlab.com/web/product/medium/202604/715394235d77b9fbef1b59406275a000.jpg"
     },
     {
       "id": "lookup:skinnlab:320",
@@ -28668,7 +28721,7 @@
       "category": "moisturizer",
       "volume": "100ml",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=84",
-      "image": "https://www.skinnlab.com/web/product/medium/202408/f2458d54a82eed352451828f11d92f16.jpg"
+      "image": "https://skinnlab.com/web/product/medium/202408/f2458d54a82eed352451828f11d92f16.jpg"
     },
     {
       "id": "lookup:skinnlab:87",
@@ -28677,7 +28730,7 @@
       "brandAlias": "SKIN&LAB",
       "category": "serum",
       "officialUrl": "https://www.skinnlab.com/product/detail.html?product_no=87",
-      "image": "https://www.skinnlab.com/web/product/medium/202409/e5037d025972977a470dbe391a5ac900.jpg"
+      "image": "https://skinnlab.com/web/product/medium/202409/e5037d025972977a470dbe391a5ac900.jpg"
     },
     {
       "id": "lookup:skinrxlab:10",
