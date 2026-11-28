@@ -56,7 +56,7 @@ test("malassezia information keeps off-label use distinct from Korean Nizoral in
   click("주사·모낭충 관련 돌기"); expect(screen.getByText("전문의약품 · 처방 필요")).toBeVisible();
 });
 test("quick browsing can start the existing type survey and selected routine recording keeps its safety check", () => {
-  render(<App />); click(/피부타입별 화장품/); click("피부타입을 잘 모르겠어요 · 설문으로 확인");
+  render(<App />); click(/피부타입별 화장품/); click("피부타입을 잘 모르겠어요 · 설문으로 확인"); click("사진 없이 설문 시작");
   expect(screen.getByRole("heading", { name: "지금 쓰는 화장품이 있나요?" })).toBeInTheDocument();
   click("시작 화면으로"); click(/피부타입별 화장품/); click(/^건성/); click("이 루틴으로 기록하기");
   expect(screen.getByRole("heading", { name: "지금 피부 상태부터 확인할게요" })).toBeInTheDocument();
@@ -102,4 +102,16 @@ test("review saves actual reactions, accepts an unlisted product, and never sugg
   expect(reopened.getByRole("combobox", { name: "테스트 크림 사용 반응" })).toHaveValue("later_oil");
   click("테스트 크림 내 루틴에서 빼기");
   expect(reopened.queryByText("테스트 크림")).not.toBeInTheDocument();
+});
+
+test("a started beginner routine reopens from its home summary", () => {
+  render(<App />);
+  click("모든 게 귀찮은 분들을 위해");
+  click("이 루틴으로 피부관리 시작해보기");
+  click("처음으로");
+  const resume = within(screen.getByRole("region", { name: "내 루틴 이어하기" }));
+  expect(resume.getByText(/사용 시작.*재검사 예정/)).toBeVisible();
+  expect(resume.getByText("라운드랩 자작나무 수분 선크림")).toBeVisible();
+  fireEvent.click(resume.getByRole("button", { name: "간편 루틴 이어하기" }));
+  expect(screen.getByRole("button", { name: "불편한 반응 기록" })).toBeVisible();
 });

@@ -1,3 +1,4 @@
+import { useBasicRoutineTrial } from "./hooks/useBasicRoutineTrial";
 import { useRef } from "react";
 import { SupportCenter } from "./components/SupportCenter";
 import { SkinPhotoStartScreen } from "./screens/SkinPhotoStartScreen";
@@ -129,6 +130,7 @@ export default function App() {
     ingredients,
   } = useSkinCoach();
   const lastSymptom = symptomCheck.latestRecord;
+  const basicTrial = useBasicRoutineTrial(ownerKey, account.user?.id);
   const routineReview = {
     ownerKey, currentRoutine, currentRoutineContext, personalProductFeedback,
     loading: account.authLoading,
@@ -150,6 +152,7 @@ export default function App() {
         {step === "moisturizerObservation" && <MoisturizerObservationScreen key={JSON.stringify([account.user?.id, moisturizerObservation.record?.id, moisturizerObservation.offer?.kind])} observation={moisturizerObservation} routineReview={routineReview} onRecommend={startSimpleSkinCare} onHome={() => setStep("start")} />}
         {step === "start" && (
           <StartScreen
+            basicTrial={basicTrial}
             startCheckedFlow={startCheckedFlow}
             startSimpleSkinCare={startSimpleSkinCare}
             setQuickLevel={setQuickLevel}
@@ -174,7 +177,7 @@ export default function App() {
           />
         )}
 
-        {step === "basicRoutineTrial" && <BasicRoutineTrialScreen key={ownerKey} ownerKey={ownerKey}
+        {step === "basicRoutineTrial" && <BasicRoutineTrialScreen key={ownerKey} trialStore={basicTrial}
           blocked={routineReview.safetyBlocked} currentRoutine={currentRoutineContext} personalProductFeedback={personalProductFeedback}
           onHome={() => setStep("start")} />}
         {step === "routineReview" && <div className="space-y-4">

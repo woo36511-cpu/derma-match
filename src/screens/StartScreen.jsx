@@ -1,3 +1,4 @@
+import { BasicRoutineResume } from "../components/BasicRoutineResume";
 import { formatSavedAt } from "../utils/formatSavedAt";
 import { PrimaryButton } from "../components/PrimaryButton";
 import { HomeQuickBrowse } from "../components/HomeQuickBrowse";
@@ -55,15 +56,17 @@ export function StartScreen({
   onQuickConcernCheck,
   onMoisturizerCheck,
   routineReview,
+  basicTrial,
 }) {
   return (
     <div className="space-y-7">
+      {basicTrial && <BasicRoutineResume store={basicTrial} onOpen={() => setStep("basicRoutineTrial")} />}
       {hasSavedSurvey && !isQuickJourney && (
         <section aria-label="최근 저장된 설문 결과" className="care-panel">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <p className="care-kicker mb-2">
-                최근 저장된 설문 결과 · {formatSavedAt(savedSurvey?.savedAt)}
+                설문 루틴 이어하기 · {formatSavedAt(savedSurvey?.savedAt)}
               </p>
 
               <h2 className="text-xl font-bold mb-2 break-keep">
