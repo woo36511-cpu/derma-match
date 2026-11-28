@@ -1,3 +1,4 @@
+import { ProductPhoto } from "./ProductPhoto";
 import { CopyProductName } from "./CopyProductName";
 import { BrandDiscoveryRequest } from "./BrandDiscoveryRequest";
 import { readOfficialFormula } from "../services/officialCosmetics";
@@ -7,13 +8,6 @@ import { CURRENT_ROUTINE_LIMIT, getReviewedRoutineProduct, makeCurrentRoutineEnt
 import { DetailDisclosure } from "./DetailDisclosure";
 import { routineLookupCategories, routineLookupCount, searchRoutineProducts } from "../utils/routineLookup";
 import { ProductReviewHistory, ProductReviewRequest } from "./ProductReviewRequest";
-
-function LookupImage({ src }) {
-  const [failed, setFailed] = useState(false);
-  return src && !failed
-    ? <img src={src} alt="" width="64" height="64" loading="lazy" referrerPolicy="no-referrer" onError={() => setFailed(true)} className="h-16 w-16 shrink-0 rounded-xl bg-white object-contain" />
-    : <span aria-hidden="true" className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-xs text-slate-500">사진 없음</span>;
-}
 
 export function RoutineProductLookup({ ownerKey = "guest", profile, savedAt, safetyBlocked = false, onStartSurvey, loading = false, currentRoutine, personalProductFeedback, categoryChoices }) {
   if (loading) return <p className="rounded-2xl bg-white p-4 text-sm text-slate-700" role="status">이 기기의 내 루틴을 확인하고 있어요.</p>;
@@ -101,7 +95,7 @@ function RoutineLookupContent({ ownerKey, profile, savedAt, safetyBlocked, onSta
         const reviewed = getReviewedRoutineProduct(product);
         const actionName = product.listingOnly && product.volume ? `${product.name} ${product.volume}` : product.name;
         return <li key={product.id} className="flex items-start gap-3 rounded-2xl border border-slate-200 p-3">
-        <LookupImage key={product.image} src={product.image} />
+        <ProductPhoto product={product} alt="" width={64} height={64} className="h-16 w-16 shrink-0 rounded-xl bg-slate-50 object-contain" />
         <div className="min-w-0">
           <p className="text-xs font-medium text-slate-600">{routineLookupCategories[product.category]}{product.allInOne && " · 올인원"}{product.volume && ` · ${product.volume}`}</p>
           <p className="mt-1 break-keep text-sm font-semibold text-slate-950">{product.name}</p>

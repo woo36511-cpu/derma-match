@@ -1,9 +1,10 @@
+import { ProductPhoto } from "./ProductPhoto";
 import { DetailDisclosure } from "./DetailDisclosure";
 
 export function ConcernProductCard({ product }) {
   return (
     <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3">
-      {product.image && <img src={product.image} alt={`${product.name} 제품 사진`} width={88} height={88} loading="lazy" className="h-[88px] w-[88px] shrink-0 rounded-lg bg-white object-contain p-1" />}
+      <ProductPhoto product={product} alt={`${product.name} 제품 사진`} width={88} height={88} className="h-[88px] w-[88px] shrink-0 rounded-lg bg-white object-contain p-1" />
       <div className="min-w-0">
       <p className="text-xs font-semibold text-emerald-800">{product.type}</p>
       <p className="font-semibold">{product.name}</p>
@@ -28,7 +29,7 @@ export function ConcernProductOptions({ plan }) {
     </section>}
     {pharmacy && <section className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 space-y-3" aria-label="일반의약품 후보">
       <div className="flex items-center gap-3">
-        {pharmacy.image && <img src={pharmacy.image} alt={`${pharmacy.name} 제품 포장`} width="88" height="88" className="h-[88px] w-[88px] shrink-0 rounded-lg bg-white object-contain p-1" />}
+        <ProductPhoto product={pharmacy} alt={`${pharmacy.name} 제품 포장`} width="88" height="88" className="h-[88px] w-[88px] shrink-0 rounded-lg bg-white object-contain p-1" />
         <div>
           <p className="text-xs font-semibold text-emerald-800">{plan.replacementOnly ? "교체 검토용 일반의약품 후보" : "약국 일반의약품 후보"}</p>
           <h3 className="font-semibold">{pharmacy.name}</h3>

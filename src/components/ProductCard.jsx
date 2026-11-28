@@ -1,6 +1,5 @@
 import { CopyProductName } from "./CopyProductName";
-import { useState } from "react";
-import officialProductPhotos from "../data/officialProductPhotos.json";
+import { ProductPhoto } from "./ProductPhoto";
 import { getCategoryLabel } from "../utils/productCatalog";
 import { getProductPurchaseLink } from "../utils/productPurchaseLink";
 import { getOfficialPriceReference } from "../utils/pricePreference";
@@ -33,17 +32,9 @@ function ProductUsage({ usage, usageAmount, recommendedAmount }) {
   </DetailDisclosure>;
 }
 
-function ProductPhoto({ src, name }) {
-  const [failed, setFailed] = useState(false);
-  return src && !failed ? <img src={src} alt={name} loading="lazy" width="240" height="160"
-    referrerPolicy="no-referrer" onError={() => setFailed(true)}
-    className="h-28 w-full rounded-xl bg-stone-50 object-contain p-2 sm:h-36" /> : null;
-}
-
 export function ProductCard({ product, categoryKey, userContext, step = 0, optional = false }) {
   if (!product) return null;
 
-  const photo = product.image || officialProductPhotos[product.id];
   const purchase = getProductPurchaseLink(product);
   const tags = userContext ? buildUserTags(userContext) : [];
   const detailTags = [...new Set([...tags, ...(product.ratingTags ?? [])])];
@@ -60,7 +51,7 @@ export function ProductCard({ product, categoryKey, userContext, step = 0, optio
       <p className="care-kicker">{step > 0 && <span aria-hidden="true" className="mr-1.5 tabular-nums">{String(step).padStart(2, "0")}</span>}{getCategoryLabel(categoryKey)}</p>
       {optional && <span className="text-xs text-slate-600">필요할 때 추가</span>}
     </div>
-    <ProductPhoto key={photo} src={photo} name={product.name} />
+    <ProductPhoto product={product} width={240} height={160} className="h-28 w-full rounded-xl bg-stone-50 object-contain p-2 sm:h-36" />
     <div>
       <div className="flex flex-wrap items-center gap-2">
         <h3 className="text-base font-bold leading-snug text-ink">{product.name}</h3>

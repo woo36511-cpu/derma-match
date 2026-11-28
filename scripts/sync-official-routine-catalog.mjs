@@ -393,6 +393,7 @@ export const officialListingImage = (input, host) => {
   if (typeof input !== "string" || !input.trim() || input.startsWith("data:")) return null;
   try {
     const u = new URL(input, `https://${host}`);
+    if (/empty[_-]?thumb|placeholder|no[_-]?image|default[_-]?image/i.test(u.pathname)) return null;
     return u.protocol === "https:" && !u.port && !u.username && !u.password &&
       (hostKey(u.hostname) === hostKey(host) ||
         /(?:^|\.)cafe24img\.com$|^(?:cafe24img|cafe24)\.poxo\.com$|^godomall\.speedycdn\.net$|(?:^|\.)makeshop\.co\.kr$|^inm-cdn\.innisfree\.com$/.test(u.hostname) ||
@@ -600,7 +601,7 @@ export function extractOfficialListings(source, storeKey, store, sitemap = false
     const descendants = sitemap ? [] : Array.from(walk(node));
     const img = descendants.find(child => child.nodeName === "img" && attr(child, "alt"));
     const display = descendants.find(child => /(?:^|\s)(?:item_name|prd-name)(?:\s|$)/.test(attr(child, "class") ?? ""));
-    let image = officialListingImage((storeKey === "frankly" ? attr(img, "data-src") : null) || attr(img, "src"), store.domain);
+    let image = officialListingImage(attr(img, "ec-data-src") || attr(img, "data-src") || attr(img, "src"), store.domain);
     let rawName = textOf(display) || attr(img, "alt") || "", id, sourceUrl;
     if (storeKey === "centellian24") {
       if (!attr(node.parentNode, "class")?.split(/\s+/).includes("name")) continue;
