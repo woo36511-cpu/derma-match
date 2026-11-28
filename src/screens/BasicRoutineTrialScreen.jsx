@@ -1,3 +1,4 @@
+import { PrimaryButton } from "../components/PrimaryButton";
 import { reviewedSunscreen } from "../data/reviewedSunscreen";
 import { RoutineRecheckNotice } from "../components/RoutineRecheckNotice";
 import { useState } from "react";
@@ -140,7 +141,11 @@ function BasicRoutineTrialContent({ trialStore, blocked, currentRoutine, persona
     <section className="care-panel space-y-3">
       <h1 ref={heading} tabIndex={-1} className="text-2xl font-bold text-forest-900">모든 게 귀찮은 분들을 위해</h1>
       <p>클렌저, 토너, 세럼, 크림으로 관리하고 아침에는 선크림까지 써봐요. 사용 후 불편했던 단계부터 한 가지씩 조정해요.</p>
-      {blocked && <p id="basic-routine-start-deferred">최근 피부 반응 기록이 있어요. 자극이 계속되는 동안에는 새 제품 사용을 미루고, 시작 버튼은 루틴을 기록할 때 눌러요.</p>}
+      {blocked && <p>최근 피부 반응 기록이 있어요. 자극이 계속되는 동안에는 새 제품 사용을 미뤄요.</p>}
+      {!trial && entries.length === 5 && <div className="space-y-2">
+        <PrimaryButton onClick={() => start(products, level)}>추천 루틴 기록하기</PrimaryButton>
+        <p className="text-sm text-slate-700">추천 제품 5개와 오늘 날짜를 저장해요. 홈의 ‘내 루틴 이어하기’에서 다시 볼 수 있어요.</p>
+      </div>}
       {trial && <p className="text-sm text-slate-700">사용 시작 {dateLabel(trial.startedAt)} · 7일 확인 {dateLabel(trial.startedAt + day * 7)} · 재검사 예정 {dateLabel(trial.startedAt + day * 14)}</p>}
     </section>
 
@@ -152,7 +157,6 @@ function BasicRoutineTrialContent({ trialStore, blocked, currentRoutine, persona
     {products.sunscreen && (!irritation || (latest.used.includes("sunscreen") && !reactionProducts.some(([slot]) => slot === "sunscreen"))) &&
       <ProductCard categoryKey="sunscreen" product={products.sunscreen} step={5} />}
     {!trial && entries.length === 5 && !blocked && <RoutineRecheckNotice />}
-    {!trial && entries.length === 5 && <button type="button" className="care-secondary" aria-describedby={blocked ? "basic-routine-start-deferred" : undefined} onClick={() => start(products, level)}>이 루틴으로 피부관리 시작해보기</button>}
     {!trial && entries.length < 5 && <p>현재 추천 기준을 충족한 5단계 세트가 없어 시작을 보류해요.</p>}
 
     {trial && !irritation && editing === null && <div className="flex flex-wrap gap-2">

@@ -11,7 +11,7 @@ test("the five-product trial starts directly, persists, and opens its follow-up 
   const clock = jest.spyOn(Date, "now").mockReturnValue(startedAt);
   const page = <BasicRoutineTrialScreen ownerKey="guest" onHome={jest.fn()} />;
   const { unmount } = render(page);
-  fireEvent.click(screen.getByRole("button", { name: "이 루틴으로 피부관리 시작해보기" }));
+  fireEvent.click(screen.getByRole("button", { name: "추천 루틴 기록하기" }));
   expect(screen.getByRole("heading", { name: "라운드랩 자작나무 수분 선크림" })).toBeVisible();
   const trial = JSON.parse(localStorage.getItem("dearsince:basic-routine-trial:v1:guest"));
   expect(Object.keys(trial.ids)).toEqual(["cleanser", "toner", "serum", "cream", "sunscreen"]);
@@ -32,7 +32,7 @@ test("the five-product trial starts directly, persists, and opens its follow-up 
 
 test("an unidentified reaction pauses all used products and remembers their exclusions", () => {
   render(<BasicRoutineTrialScreen ownerKey="guest" onHome={jest.fn()} />);
-  fireEvent.click(screen.getByRole("button", { name: "이 루틴으로 피부관리 시작해보기" }));
+  fireEvent.click(screen.getByRole("button", { name: "추천 루틴 기록하기" }));
   fireEvent.click(screen.getByRole("button", { name: "불편한 반응 기록" }));
   fireEvent.click(screen.getByRole("button", { name: "사용 반응 저장" }));
   expect(screen.getByRole("heading", { name: "새로 시작한 제품을 잠시 중단해요" })).toBeVisible();
@@ -42,7 +42,7 @@ test("an unidentified reaction pauses all used products and remembers their excl
 
 test("the app singles out the only product changed before a reaction", () => {
   render(<BasicRoutineTrialScreen ownerKey="guest" onHome={jest.fn()} />);
-  fireEvent.click(screen.getByRole("button", { name: "이 루틴으로 피부관리 시작해보기" }));
+  fireEvent.click(screen.getByRole("button", { name: "추천 루틴 기록하기" }));
   fireEvent.click(screen.getByRole("button", { name: "불편한 반응 기록" }));
   const changes = screen.getByRole("group", { name: /불편해지기 전에/ });
   fireEvent.click(changes.querySelector('input[type="checkbox"]'));
@@ -54,7 +54,7 @@ test("the app singles out the only product changed before a reaction", () => {
 test("the trial can compare and save a different sunscreen after a recorded reaction", () => {
   const page = <BasicRoutineTrialScreen ownerKey="guest" onHome={jest.fn()} />;
   const { unmount } = render(page);
-  fireEvent.click(screen.getByRole("button", { name: "이 루틴으로 피부관리 시작해보기" }));
+  fireEvent.click(screen.getByRole("button", { name: "추천 루틴 기록하기" }));
   fireEvent.click(screen.getByRole("button", { name: "불편한 반응 기록" }));
   const changed = within(screen.getByRole("group", { name: /불편해지기 전에/ }));
   fireEvent.click(changed.getByRole("checkbox", { name: /자작나무 수분 선크림/ }));
