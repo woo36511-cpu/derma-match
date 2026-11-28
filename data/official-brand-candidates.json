@@ -135,5 +135,6 @@
   { "key": "theharnay", "brand": "더하르나이", "alias": "THE HARNAY", "catalogUrl": "https://theharnay.co.kr/product/list.html?cate_no=155" },
   { "key": "haedals", "brand": "해달씨", "alias": "HAEDAL'S", "catalogUrl": "https://haedals.com/product/list.html?cate_no=42" },
   { "key": "blancnature", "brand": "블랑네이처", "alias": "Blanc Nature", "catalogUrl": "https://www.blancnature.co.kr/category/all/45/" },
-  { "key": "hidiff", "brand": "히디프", "alias": "HIDIFF", "catalogUrl": "https://hidiff.co.kr/product/list.html?cate_no=29" }
+  { "key": "hidiff", "brand": "히디프", "alias": "HIDIFF", "catalogUrl": "https://hidiff.co.kr/product/list.html?cate_no=29" },
+  { "key": "celladix", "brand": "셀라딕스", "alias": "Celladix", "catalogUrl": "https://celladix.co.kr/product/list.html?cate_no=69" }
 ]
