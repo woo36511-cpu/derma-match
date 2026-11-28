@@ -5,16 +5,16 @@ import { SupportCenter } from "./SupportCenter";
 
 jest.mock("../services/supabaseClient");
 
-const randomUUID = Object.getOwnPropertyDescriptor(global.crypto, "randomUUID");
+const cryptoProperty = Object.getOwnPropertyDescriptor(global, "crypto");
 beforeEach(() => {
-  Object.defineProperty(global.crypto, "randomUUID", {
+  Object.defineProperty(global, "crypto", {
     configurable: true,
-    value: () => "00000000-0000-4000-8000-000000000001",
+    value: { randomUUID: () => "00000000-0000-4000-8000-000000000001" },
   });
 });
 afterEach(() => {
-  if (randomUUID) Object.defineProperty(global.crypto, "randomUUID", randomUUID);
-  else delete global.crypto.randomUUID;
+  if (cryptoProperty) Object.defineProperty(global, "crypto", cryptoProperty);
+  else delete global.crypto;
 });
 
 test("a failed feedback submission keeps the text and retries the same receipt", async () => {
