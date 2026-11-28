@@ -1,3 +1,5 @@
+import { useRef } from "react";
+import { SupportCenter } from "./components/SupportCenter";
 import { SkinPhotoStartScreen } from "./screens/SkinPhotoStartScreen";
 import { useSkinCoach } from "./hooks/useSkinCoach";
 import { Header } from "./components/Header";
@@ -26,6 +28,8 @@ import { RoutineIntakeScreen } from "./screens/RoutineIntakeScreen";
 import { readRoutineSurveyContext } from "./data/routineSurveyContext";
 
 export default function App() {
+  const supportDialog = useRef(null);
+  const openSupport = () => supportDialog.current?.showModal();
   const {
     skinPhotoFeatures, continueFromSkinPhoto, personalProductFeedback, ownerKey, currentRoutine, currentRoutineContext, simpleMode, simpleRecord, startSimpleSkinCare, completeRoutineIntake, saveSimpleSkinRecord, startCheckedFlow, surveyAnswers,
     symptomCheck, concernCheck, concernCheckHistory, moisturizerObservation, routineSafety, feedbackSafety, quickSafety, startSymptomRecheck, continueFeedback,
@@ -135,7 +139,7 @@ export default function App() {
   };
   return (
     <div className="min-h-screen bg-paper text-ink">
-      <Header resetFlow={resetFlow} isStart={step === "start"} />
+      <Header resetFlow={resetFlow} isStart={step === "start"} onSupport={openSupport} />
       <AccountPanel account={account} />
 
       <main className={`max-w-5xl mx-auto px-4 sm:px-6 ${step === "start" ? "pt-4 pb-10 sm:pt-6 sm:pb-14" : "py-10 sm:py-14"}`}>
@@ -345,7 +349,8 @@ export default function App() {
         )}
       </main>
 
-      <Footer />
+      <Footer onSupport={openSupport} />
+      <SupportCenter dialogRef={supportDialog} />
     </div>
   );
 }
