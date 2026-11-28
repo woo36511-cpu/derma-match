@@ -131,5 +131,6 @@
   { "key": "dweather", "brand": "디웨더", "alias": "D:WEATHER", "catalogUrl": "https://dweather.kr/product/list.html?cate_no=48" },
   { "key": "lubelle", "brand": "루벨", "alias": "LUBELLE", "catalogUrl": "https://www.lubelle.co.kr/product/list.html?cate_no=42" },
   { "key": "mildlab", "brand": "마일드랩", "alias": "MILD LAB", "catalogUrl": "https://mildlab.co.kr/product/list.html?cate_no=192" },
-  { "key": "rejuvenil", "brand": "리쥬베닐", "alias": "Re-juvenil", "catalogUrl": "https://rejuvenil.shop/product/list.html?cate_no=42", "listOnly": true }
+  { "key": "rejuvenil", "brand": "리쥬베닐", "alias": "Re-juvenil", "catalogUrl": "https://rejuvenil.shop/product/list.html?cate_no=42", "listOnly": true },
+  { "key": "theharnay", "brand": "더하르나이", "alias": "THE HARNAY", "catalogUrl": "https://theharnay.co.kr/product/list.html?cate_no=155" }
 ]
