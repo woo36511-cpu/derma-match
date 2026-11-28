@@ -5,7 +5,7 @@ import { RECOMMENDATION_RULE_VERSION, getProductEvidenceStatus } from "./product
 import { getProductCareProfile } from "./productCareProfile";
 import { hasExfoliatingActive } from "./productCatalog";
 import { getReviewedProductObservation, OBSERVATION_FIT_BONUS } from "./reviewedProductObservations";
-import { getRoutineFitSignals } from "./routineFitContext";
+import { getCleanserTargetLevel, getRoutineFitSignals } from "./routineFitContext";
 
 export function getCareNeedMatchScore(product, careNeeds = {}) {
   if (!product) return 0;
@@ -126,7 +126,8 @@ export function getRecommendationBreakdown(product, currentLevel, userContext = 
     ...rawNeeds, hydrationNeed: 0, lightTextureNeed: 0, barrierCareNeed: 0,
   }) * 0.4 : getCareNeedMatchScore(product, rawNeeds) * 0.55;
   const concernSupport = getConcernMatchScore(product, userContext.mainConcern) * 3.5;
-  const moistureDistance = Math.abs((product.hydrationLevel ?? 5) - currentLevel);
+  const targetLevel = slot === "cleanser" ? getCleanserTargetLevel(currentLevel, userContext, fit) : currentLevel;
+  const moistureDistance = Math.abs((product.hydrationLevel ?? 5) - targetLevel);
   const evidence = getProductEvidenceStatus(product);
   const observation = getReviewedProductObservation(product, evidence, currentLevel, userContext);
   const personalFit = getPersonalBasicFit(product, currentLevel, userContext);
@@ -162,10 +163,10 @@ export function sortProductsForRecommendation(
   currentLevel,
   userContext = {},
 ) {
-  const scores = new Map(productList.map(product => [product.id, getRecommendationScore(product, currentLevel, userContext)]));
+  const scores = new Map(productList.map(product => [product.id, getRecommendationBreakdown(product, currentLevel, userContext)]));
   const ranked = [...productList].sort((a, b) => {
-    const aScore = scores.get(a.id);
-    const bScore = scores.get(b.id);
+    const aScore = scores.get(a.id).total;
+    const bScore = scores.get(b.id).total;
 
     if (aScore !== bScore) {
       return bScore - aScore;
@@ -180,9 +181,9 @@ export function sortProductsForRecommendation(
       return bConcernScore - aConcernScore;
     }
 
-    const aDiff = Math.abs((a.hydrationLevel ?? 5) - currentLevel);
+    const aDiff = scores.get(a.id).moistureDistance;
 
-    const bDiff = Math.abs((b.hydrationLevel ?? 5) - currentLevel);
+    const bDiff = scores.get(b.id).moistureDistance;
 
     if (aDiff !== bDiff) {
       return aDiff - bDiff;
@@ -204,7 +205,7 @@ export function sortProductsForRecommendation(
 
     return bBeginner - aBeginner || (a.id ?? 0) - (b.id ?? 0);
   });
-  return preferComparablePrice(ranked, product => scores.get(product.id), userContext.pricePreference);
+  return preferComparablePrice(ranked, product => scores.get(product.id).total, userContext.pricePreference);
 }
 
 export function sortProductsForDisplay(productList, currentLevel) {

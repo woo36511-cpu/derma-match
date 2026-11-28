@@ -10,7 +10,7 @@ import {
   sortProductsForRecommendation,
   getRecommendationBreakdown,
 } from "./recommendationScoring";
-import { getRoutineFitSignals } from "./routineFitContext";
+import { getCleanserTargetLevel, getRoutineFitSignals } from "./routineFitContext";
 
 export function getRecommendedIngredients(level, feedbackContext = {}) {
   const list = [];
@@ -41,13 +41,15 @@ export function getRecommendedIngredients(level, feedbackContext = {}) {
 export function getRankedProductCandidates(category, level, userContext = {}) {
   if (!Number.isFinite(level) || userContext.irritated?.length || userContext.suppressedSlots?.has(category)) return [];
   let allowedCategories = [category];
+  const contextualFit = getRoutineFitSignals(category, userContext);
+  const candidateLevel = category === "cleanser" ? getCleanserTargetLevel(level, userContext, contextualFit) : level;
 
   // 클렌저는 한 종류로 고정하지 않고
   // 현재 단계에 맞는 여러 세안제 중에서 비교
   if (category === "cleanser") {
-    if (level <= 3) {
+    if (candidateLevel <= 3) {
       allowedCategories = ["cleansing_milk", "cleanser", "gel_cleanser"];
-    } else if (level >= 7 && !getRoutineFitSignals(category, userContext)?.washTight) {
+    } else if (candidateLevel >= 7 && !contextualFit?.washTight) {
       allowedCategories = ["gel_cleanser", "cleanser"];
     } else {
       allowedCategories = ["cleanser", "gel_cleanser", "cleansing_milk"];
@@ -67,7 +69,7 @@ export function getRankedProductCandidates(category, level, userContext = {}) {
     );
   }
   if (userContext.isSensitive) categoryProducts = categoryProducts.filter(product => product.sensitivitySafe);
-  if (getRoutineFitSignals(category, userContext)?.heavy) {
+  if (contextualFit?.heavy) {
     categoryProducts = categoryProducts.filter(product => product.careProfile.lightweightFit >= 7);
   }
 
@@ -88,10 +90,9 @@ export function getRankedProductCandidates(category, level, userContext = {}) {
 
   // Compare the second-nearest band even when the closest band already has a candidate.
   // Without current observations, the legacy quick path keeps its published level behavior.
-  const contextualFit = getRoutineFitSignals(category, userContext);
   const width = contextualFit?.washTight || contextualFit?.postMoistureTight || contextualFit?.heavy ? 3 : 2;
   const levelMatchedProducts = contextualFit
-    ? categoryProducts.filter(product => Math.abs((product.hydrationLevel ?? 5) - level) <= width)
+    ? categoryProducts.filter(product => Math.abs((product.hydrationLevel ?? 5) - candidateLevel) <= width)
     : filterByLevel(categoryProducts, level);
 
   // 현재 고민과 잘 맞는 제품은
@@ -124,7 +125,7 @@ export function getRankedProductCandidates(category, level, userContext = {}) {
   // 가까운 단계나 고민 적합 후보가 하나도 없으면
   // 안전 게이트를 통과한 같은 카테고리 전체로 fallback
   if (candidateProducts.length === 0) {
-    candidateProducts = contextualFit ? categoryProducts.filter(product => Math.abs((product.hydrationLevel ?? 5) - level) <= 3) : [...categoryProducts];
+    candidateProducts = contextualFit ? categoryProducts.filter(product => Math.abs((product.hydrationLevel ?? 5) - candidateLevel) <= 3) : [...categoryProducts];
   }
 
   // 특별한 고민이 없거나 빠른 추천일 때는

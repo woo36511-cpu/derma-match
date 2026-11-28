@@ -1,7 +1,7 @@
 import { buildCosmeticAddOnPlan } from "./cosmeticAddOnPlan";
 import { getCurrentRoutineContext, makeManualRoutineEntry } from "./currentRoutineReview";
 import { getProductById } from "./productCatalog";
-import { getRoutineFitSignals } from "./routineFitContext";
+import { getCleanserTargetLevel, getRoutineFitSignals } from "./routineFitContext";
 import { buildDynamicRoutine, getRankedProductCandidates } from "./routineRecommendation";
 
 const profile = { hydrationLevel: 6, skinType: "복합성", careNeeds: {},
@@ -55,4 +55,20 @@ test("a toner paired with a retained serum offers lightweight hydration and soot
     expect(careProfile.soothingSupport).toBeGreaterThan(0);
   }
   expect(getRankedProductCandidates("toner", 5, { ...context, suppressedSlots: new Set(["toner"]) })).toEqual([]);
+});
+
+test("cleanser ranking distinguishes wash tightness from oil distribution at the same routine level", () => {
+  const context = { basicOnly: true, isSensitive: true,
+    careNeeds: { hydrationNeed: 4, lightTextureNeed: 6, barrierCareNeed: 2 } };
+  const byWash = (observedOil, washResponse, level = 5) =>
+    buildDynamicRoutine(level, { ...context, observedSkin: { observedOil, washResponse } }).products.cleanser;
+
+  const tight = byWash("whole", "tight");
+  const oily = byWash("whole", "comfortable");
+  const balanced = byWash("none", "comfortable");
+  expect(tight?.careProfile.hydrationSupport).toBeGreaterThan(oily?.careProfile.hydrationSupport);
+  expect(new Set([tight?.id, oily?.id, balanced?.id]).size).toBe(3);
+  expect([tight, oily, balanced].every(product => product.sensitivitySafe)).toBe(true);
+  expect(byWash("whole", "tight", 7)?.id).toBe(tight.id);
+  expect(getCleanserTargetLevel(5, { observedSkin: { observedOil: "tzone", washResponse: "comfortable" } })).toBe(6);
 });
