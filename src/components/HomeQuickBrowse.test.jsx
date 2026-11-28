@@ -108,7 +108,7 @@ test("a started beginner routine reopens from its home summary", () => {
   render(<App />);
   click("모든 게 귀찮은 분들을 위해");
   click("이 루틴으로 피부관리 시작해보기");
-  click("처음으로");
+  fireEvent.click(within(screen.getByRole("banner")).getByRole("button", { name: "처음으로" }));
   const resume = within(screen.getByRole("region", { name: "내 루틴 이어하기" }));
   expect(resume.getByText(/사용 시작.*재검사 예정/)).toBeVisible();
   expect(resume.getByText("라운드랩 자작나무 수분 선크림")).toBeVisible();
