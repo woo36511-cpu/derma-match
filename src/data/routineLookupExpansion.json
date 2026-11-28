@@ -639,6 +639,14 @@
       "alias": "Re-juvenil",
       "officialCatalogUrl": "https://rejuvenil.shop/product/list.html?cate_no=42",
       "listOnly": true
+    },
+    "theharnay": {
+      "name": "더하르나이",
+      "checkedAt": "2026-11-28",
+      "usefulPages": 2,
+      "fetchedListings": 10,
+      "alias": "THE HARNAY",
+      "officialCatalogUrl": "https://theharnay.co.kr/product/list.html?cate_no=155"
     }
   },
   "products": [
@@ -20128,7 +20136,7 @@
       "category": "serum",
       "volume": "32ml",
       "officialUrl": "https://www.neogenlab.co.kr/product/%EB%84%A5%EC%8A%A4%ED%8A%B8-%EA%B8%80%EB%A1%9C%EC%9A%B0-%ED%94%84%EB%A0%99-%EC%84%B8%EB%9F%BC-32ml/1223/",
-      "image": "https://www.neogenlab.co.kr/web/product/small/202611/dfc5741b669937cfd1fc56edd6f543b0.jpg"
+      "image": "https://neogenlab.co.kr/web/product/small/202611/dfc5741b669937cfd1fc56edd6f543b0.jpg"
     },
     {
       "id": "lookup:neogen:1224",
@@ -29425,6 +29433,106 @@
       "category": "moisturizer",
       "officialUrl": "https://www.sulwhasoo.com/product/%EC%9E%90%EC%9D%8C%EC%83%9D%ED%81%AC%EB%A6%BC-%EB%A6%AC%EC%B9%98-60%EC%A3%BC%EB%85%84/97/",
       "image": "https://www.sulwhasoo.com/web/product/big/202608/4ef439b3052f6d9803396fdb609732cd.png"
+    },
+    {
+      "id": "lookup:theharnay:103",
+      "name": "더하르나이 시카이드 수딩 베리어 크림",
+      "brand": "더하르나이",
+      "brandAlias": "THE HARNAY",
+      "category": "moisturizer",
+      "volume": "80ml",
+      "officialUrl": "https://theharnay.co.kr/product/%EB%8D%94%ED%95%98%EB%A5%B4%EB%82%98%EC%9D%B4-%EC%8B%9C%EC%B9%B4%EC%9D%B4%EB%93%9C-%EC%88%98%EB%94%A9-%EB%B2%A0%EB%A6%AC%EC%96%B4-%ED%81%AC%EB%A6%BC-80ml/103/",
+      "image": "https://theharnay.co.kr/web/product/big/202608/6adf78f242bdfe5402af001368c9b209.png"
+    },
+    {
+      "id": "lookup:theharnay:106",
+      "name": "더하르나이 시카이드 크림 미스트",
+      "brand": "더하르나이",
+      "brandAlias": "THE HARNAY",
+      "category": "toner",
+      "volume": "30ml",
+      "officialUrl": "https://theharnay.co.kr/product/%EB%8D%94%ED%95%98%EB%A5%B4%EB%82%98%EC%9D%B4-%EC%8B%9C%EC%B9%B4%EC%9D%B4%EB%93%9C-%ED%81%AC%EB%A6%BC-%EB%AF%B8%EC%8A%A4%ED%8A%B8-30ml/106/",
+      "image": "https://theharnay.co.kr/web/product/medium/202610/d28a955126cc36ed8d382ed82b86cc84.png"
+    },
+    {
+      "id": "lookup:theharnay:107",
+      "name": "더하르나이 시카이드 크림 미스트",
+      "brand": "더하르나이",
+      "brandAlias": "THE HARNAY",
+      "category": "toner",
+      "volume": "80ml",
+      "officialUrl": "https://theharnay.co.kr/product/%EB%8D%94%ED%95%98%EB%A5%B4%EB%82%98%EC%9D%B4-%EC%8B%9C%EC%B9%B4%EC%9D%B4%EB%93%9C-%ED%81%AC%EB%A6%BC-%EB%AF%B8%EC%8A%A4%ED%8A%B8-80ml/107/",
+      "image": "https://theharnay.co.kr/web/product/medium/202610/265f56dbaccb40145bd2f0802df2aad4.png"
+    },
+    {
+      "id": "lookup:theharnay:12",
+      "name": "더하르나이 하이줄렌 토너",
+      "brand": "더하르나이",
+      "brandAlias": "THE HARNAY",
+      "category": "toner",
+      "volume": "200ml",
+      "officialUrl": "https://theharnay.co.kr/product/%EB%8D%94%ED%95%98%EB%A5%B4%EB%82%98%EC%9D%B4-%ED%95%98%EC%9D%B4%EC%A4%84%EB%A0%8C-%ED%86%A0%EB%84%88-200ml/12/",
+      "image": "https://theharnay.co.kr/web/product/medium/202606/6408bd3c40ec924943445a19ff93446e.png"
+    },
+    {
+      "id": "lookup:theharnay:13",
+      "name": "더하르나이 하이줄렌 로션",
+      "brand": "더하르나이",
+      "brandAlias": "THE HARNAY",
+      "category": "moisturizer",
+      "volume": "200ml",
+      "officialUrl": "https://theharnay.co.kr/product/%EB%8D%94%ED%95%98%EB%A5%B4%EB%82%98%EC%9D%B4-%ED%95%98%EC%9D%B4%EC%A4%84%EB%A0%8C-%EB%A1%9C%EC%85%98-200ml/13/",
+      "image": "https://theharnay.co.kr/web/product/big/202606/a0fd0b50fc37b4b1589acc6e10f35141.png"
+    },
+    {
+      "id": "lookup:theharnay:18",
+      "name": "더하르나이 유브이아웃 톤업 선크림",
+      "brand": "더하르나이",
+      "brandAlias": "THE HARNAY",
+      "category": "sunscreen",
+      "volume": "70ml",
+      "officialUrl": "https://theharnay.co.kr/product/%EB%8D%94%ED%95%98%EB%A5%B4%EB%82%98%EC%9D%B4-%EC%9C%A0%EB%B8%8C%EC%9D%B4%EC%95%84%EC%9B%83-%ED%86%A4%EC%97%85-%EC%84%A0%ED%81%AC%EB%A6%BC-70ml/18/",
+      "image": "https://theharnay.co.kr/web/product/big/202410/d348f4d49894955ca77204844f43d66b.png"
+    },
+    {
+      "id": "lookup:theharnay:20",
+      "name": "더하르나이 카밍퓨어 클렌저",
+      "brand": "더하르나이",
+      "brandAlias": "THE HARNAY",
+      "category": "cleanser",
+      "volume": "130ml",
+      "officialUrl": "https://theharnay.co.kr/product/%EB%8D%94%ED%95%98%EB%A5%B4%EB%82%98%EC%9D%B4-%EC%B9%B4%EB%B0%8D%ED%93%A8%EC%96%B4-%ED%81%B4%EB%A0%8C%EC%A0%80-130ml/20/",
+      "image": "https://theharnay.co.kr/web/product/big/202410/a8fe78e145f9517cf18afead69bcc340.png"
+    },
+    {
+      "id": "lookup:theharnay:22",
+      "name": "더하르나이 시카이드 수딩 베리어 크림 미스트",
+      "brand": "더하르나이",
+      "brandAlias": "THE HARNAY",
+      "category": "toner",
+      "volume": "120ml",
+      "officialUrl": "https://theharnay.co.kr/product/%EB%8D%94%ED%95%98%EB%A5%B4%EB%82%98%EC%9D%B4-%EC%8B%9C%EC%B9%B4%EC%9D%B4%EB%93%9C-%EC%88%98%EB%94%A9-%EB%B2%A0%EB%A6%AC%EC%96%B4-%ED%81%AC%EB%A6%BC-%EB%AF%B8%EC%8A%A4%ED%8A%B8-120ml/22/",
+      "image": "https://theharnay.co.kr/web/product/medium/202610/22369d1822e5711e1af3e76991eddfcb.png"
+    },
+    {
+      "id": "lookup:theharnay:46",
+      "name": "더하르나이 시카이드 무기자차 선크림 spf50 pa",
+      "brand": "더하르나이",
+      "brandAlias": "THE HARNAY",
+      "category": "sunscreen",
+      "volume": "50ml",
+      "officialUrl": "https://theharnay.co.kr/product/%EB%8D%94%ED%95%98%EB%A5%B4%EB%82%98%EC%9D%B4-%EC%8B%9C%EC%B9%B4%EC%9D%B4%EB%93%9C-%EB%AC%B4%EA%B8%B0%EC%9E%90%EC%B0%A8-%EC%84%A0%ED%81%AC%EB%A6%BC-50ml-spf50-pa/46/",
+      "image": "https://theharnay.co.kr/web/product/big/202410/aafc8f2dd6c7ee19bb7a3ed7d8ab033d.png"
+    },
+    {
+      "id": "lookup:theharnay:48",
+      "name": "더하르나이 시카이드 수딩 베리어 크림",
+      "brand": "더하르나이",
+      "brandAlias": "THE HARNAY",
+      "category": "moisturizer",
+      "volume": "30ml",
+      "officialUrl": "https://theharnay.co.kr/product/%EB%8D%94%ED%95%98%EB%A5%B4%EB%82%98%EC%9D%B4-%EC%8B%9C%EC%B9%B4%EC%9D%B4%EB%93%9C-%EC%88%98%EB%94%A9-%EB%B2%A0%EB%A6%AC%EC%96%B4-%ED%81%AC%EB%A6%BC-30ml/48/",
+      "image": "https://theharnay.co.kr/web/product/big/202610/fb35a613184c345232fbbfeb81ac9e6c.png"
     },
     {
       "id": "lookup:thera:35",
