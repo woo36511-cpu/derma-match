@@ -1,45 +1,35 @@
 import { reviewedSunscreen } from "../data/reviewedSunscreen";
 import { RoutineRecheckNotice } from "../components/RoutineRecheckNotice";
 import { useState } from "react";
-import { sunscreenOption } from "../data/targetedCareProducts";
+import { dateLabel, day, getTrialProduct, trialSunscreen } from "../utils/basicTrialProducts";
+import { useBasicRoutineTrial } from "../hooks/useBasicRoutineTrial";
+import { TrialSyncStatus } from "../components/BasicRoutineResume";
 import { ProductCard } from "../components/ProductCard";
 import { CosmeticAddOnSection } from "../components/CosmeticAddOnSection";
 import { GuidedFacePhoto } from "../components/GuidedFacePhoto";
 import { RoutineProductScroller } from "../components/RoutineProductScroller";
-import { getProductById } from "../utils/productCatalog";
 import { buildDynamicRoutine, getRankedProductCandidates } from "../utils/routineRecommendation";
 import { getIngredientFamilies } from "../utils/ingredientCompatibility";
 import { getReactionIngredientClues, getReactionIngredientFit } from "../utils/reactionIngredientFit";
 import { useScreenHeading } from "../hooks/useScreenHeading";
 
 const slots = { cleanser: "클렌저", toner: "토너", serum: "세럼", cream: "크림", sunscreen: "선크림" };
-const trialSunscreen = {
-  ...sunscreenOption,
-  id: "roundlab-birch-sunscreen",
-  category: "sunscreen",
-  link: sunscreenOption.source,
-  purchaseSource: { label: "공식몰" },
-  shortReason: "아침 루틴 마지막에 사용하는 자외선 차단제",
-};
-const getTrialProduct = id => id === trialSunscreen.id ? trialSunscreen : id === reviewedSunscreen.id ? reviewedSunscreen : getProductById(id);
-const day = 86_400_000;
-const dateLabel = time => new Date(time).toLocaleDateString("ko-KR");
 const emptyCheck = { used: [], reaction: "", source: "", changed: [], feel: "", fitSlot: "", change: "" };
 const basicContext = { basicOnly: true, isSensitive: true };
 
-function readTrial(key) {
-  try {
-    const data = JSON.parse(localStorage.getItem(key));
-    return Number.isFinite(data?.startedAt) && Number.isFinite(data?.level) && data.ids ? data : null;
-  } catch {
-    return null;
-  }
+export function BasicRoutineTrialScreen({ trialStore, ...props }) {
+  return trialStore ? <BasicRoutineTrialContent {...props} trialStore={trialStore} />
+    : <LocalBasicRoutineTrial {...props} />;
 }
 
-export function BasicRoutineTrialScreen({ ownerKey, blocked, currentRoutine, personalProductFeedback, onHome }) {
+function LocalBasicRoutineTrial(props) {
+  const trialStore = useBasicRoutineTrial(props.ownerKey);
+  return <BasicRoutineTrialContent {...props} trialStore={trialStore} />;
+}
+
+function BasicRoutineTrialContent({ trialStore, blocked, currentRoutine, personalProductFeedback, onHome }) {
   const heading = useScreenHeading("basic-routine-trial");
-  const key = `dearsince:basic-routine-trial:v1:${ownerKey}`;
-  const [trial, setTrial] = useState(() => readTrial(key));
+  const { trial } = trialStore;
   const [editing, setEditing] = useState(null);
   const [draft, setDraft] = useState(emptyCheck);
   const [saveError, setSaveError] = useState(false);
@@ -106,12 +96,10 @@ export function BasicRoutineTrialScreen({ ownerKey, blocked, currentRoutine, per
   };
 
   const save = next => {
-    try {
-      localStorage.setItem(key, JSON.stringify(next));
-      setTrial(next);
+    if (trialStore.save(next)) {
       setEditing(null);
       setSaveError(false);
-    } catch {
+    } else {
       setSaveError(true);
     }
   };
@@ -146,6 +134,8 @@ export function BasicRoutineTrialScreen({ ownerKey, blocked, currentRoutine, per
   const enough = draft.used.length > 0 && (draft.reaction === "irritation" ? true
     : draft.reaction === "comfortable" && (editing !== 14 || Boolean(draft.feel && draft.change)));
 
+  if (!trial && ["loading", "conflict"].includes(trialStore.status)) return <TrialSyncStatus store={trialStore} />;
+
   return <div className="space-y-5">
     <section className="care-panel space-y-3">
       <h1 ref={heading} tabIndex={-1} className="text-2xl font-bold text-forest-900">모든 게 귀찮은 분들을 위해</h1>
@@ -154,6 +144,7 @@ export function BasicRoutineTrialScreen({ ownerKey, blocked, currentRoutine, per
       {trial && <p className="text-sm text-slate-700">사용 시작 {dateLabel(trial.startedAt)} · 7일 확인 {dateLabel(trial.startedAt + day * 7)} · 재검사 예정 {dateLabel(trial.startedAt + day * 14)}</p>}
     </section>
 
+    <TrialSyncStatus store={trialStore} />
     <RoutineProductScroller layout="routine" productsByCategory={Object.fromEntries(entries.filter(([slot]) =>
       slot !== "sunscreen" && (!irritation || (latest.used.includes(slot) && !reactionProducts.some(([flaggedSlot]) => flaggedSlot === slot))),
     ))}
@@ -288,7 +279,7 @@ export function BasicRoutineTrialScreen({ ownerKey, blocked, currentRoutine, per
         }</li>)}
       </ul>
     </details>}
-    {saveError && <p role="alert">기록을 저장하지 못했어요. 브라우저 저장 공간을 확인한 뒤 다시 시도해 주세요.</p>}
+    {saveError && <p role="alert">기록을 저장하지 못했어요. 계정 기록 동기화를 확인한 뒤 다시 시도해 주세요.</p>}
     <button type="button" className="care-secondary" onClick={onHome}>처음으로</button>
   </div>;
 }
